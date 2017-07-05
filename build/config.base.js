@@ -13,7 +13,6 @@ module.exports = {
             'jquery',
             'lodash',
             'moment',
-            'classnames',
             'immutable'
         ],
         main: CONST.ENTRY
@@ -30,7 +29,7 @@ module.exports = {
             title: 'UEM',
             filename: 'index.html',
             template: path.resolve(CONST.SRC, './assets/templates/index.html'),
-            // favicon: path.resolve(CONST.SRC, './favicon.ico')
+            favicon: path.resolve(CONST.SRC, './assets/images/favicon.png'),
             minify: {
                 // removeComments: true,
                 // collapseWhitespace: true
@@ -53,10 +52,12 @@ module.exports = {
     module: {
         rules: [{
             test: /\.jsx?$/,
+            exclude: [CONST.MODULES, path.resolve(CONST.SRC, './assets')],
             use: ['babel-loader']
         }, {
             test: /\.(png|svg|jpg|gif)$/,
             // use: ['file-loader']
+            exclude: [CONST.MODULES],
             use: {
                 loader: 'url-loader',
                 options: {
@@ -74,7 +75,8 @@ module.exports = {
                 }
             }
         }, {
-            test: /\.(csv|tsv)$/, use: ['csv-loader']
+            test: /\.(csv|tsv)$/,
+            use: ['csv-loader']
         }, {
             test: /\.xml$/,
             use: ['xml-loader']

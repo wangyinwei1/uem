@@ -25,7 +25,7 @@ useStrict(true);
 
 // antd 全局设置
 message.config({
-    duration: 5
+    duration: 3
 });
 
 if (process.env.NODE_ENV === 'development') {

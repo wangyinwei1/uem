@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {
     MapChart,
     BarChart
-} from '../../Frame/Chart';
+} from '../../Common/Chart';
 import config from './config';
 import styles from './index.scss';
 

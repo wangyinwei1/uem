@@ -18,12 +18,9 @@ export default class Crumb extends React.PureComponent {
     constructor(props) {
         super(props);
     }
-    getPath(path) {
-        return path.substr(1, path.length - 1);
-    }
     render() {
         return (
-            <div className={styles['crumb']}>{this.crumbText[this.getPath(this.props.path)]}</div>
+            <div className={styles['crumb']}>{this.crumbText[this.props.module]}</div>
         );
     }
 }

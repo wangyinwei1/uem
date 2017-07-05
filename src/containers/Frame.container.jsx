@@ -4,13 +4,18 @@ import { withRouter } from 'react-router-dom';
 
 import {
     Menu,
-    Crumb
-} from '../components/Frame';
+    Crumb,
+    HeaderBar
+} from '../components/Common';
 
 @inject('frameStore')
 @observer
 class Frame extends React.Component {
+    takeModuleName(path) {
+        return path.substr(1, path.length - 1);
+    }
     render() {
+        const module = this.takeModuleName(this.props.location.pathname);
         return (
             <div id="Frame">
                 <Menu 
@@ -20,7 +25,10 @@ class Frame extends React.Component {
                 />
                 <div className="container">
                     <Crumb
-                        path={this.props.location.pathname}
+                        module={module}
+                    />
+                    <HeaderBar 
+                        module={module}
                     />
                     <div className="content" key={this.props.frameStore.platform}>
                         {this.props.children}
