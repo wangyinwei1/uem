@@ -1,0 +1,17 @@
+# Editor
+.vscode/
+.idea/
+
+# Logs
+logs
+*.log
+npm-debug*
+
+# Mac
+.DS_Store
+
+# Dependency Packages
+node_modules/
+
+# Release 
+dist/

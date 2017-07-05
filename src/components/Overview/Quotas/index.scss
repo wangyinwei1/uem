@@ -1,0 +1,18 @@
+.quotas {
+    :global {
+        .tile-body {
+            padding: 0;
+            height: 195px;
+            .chart {
+                height: inherit;
+            }
+        }
+        .ant-row {
+            margin-left: -20px;
+        }
+        .ant-col-8,
+        .ant-col-12 {
+            border-left: 20px solid transparent;
+        }
+    }
+}

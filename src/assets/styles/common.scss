@@ -1,0 +1,53 @@
+// i.fa,
+// i.iconfont {
+//     vertical-align: middle;
+// }
+
+.btn {
+    display: inline-block;
+    padding: 0 20px;
+    border-radius: 2px;
+    background-color: #1681C4;
+    color: #FFFFFF;
+    cursor: pointer;
+    &.active {
+        box-shadow: inset 0 3px 5px rgba(0, 0, 0, .15);
+        cursor: default;
+    }
+    &.disabled {
+        cursor: not-allowed;
+    }
+    i.fa,
+    i.iconfont {
+        margin-right: 5px;
+    }
+}
+
+.chart {
+    width: 100%;
+    height: 300px;
+}
+
+.tile-head {
+    padding: 0 20px;
+    height: 40px;
+    background-color: #10335B;
+    color: #FFFFFF;
+    font-size: 13px;
+    line-height: 40px;
+}
+
+.tile-body {
+    margin-bottom: 20px;
+    padding: 15px 20px;
+    background-color: rgba(0, 0, 0, .2);
+}
+
+// iconfont
+.iconfont {
+    color: #6CA4CD;
+}
+
+.icon-bangzhu {
+    font-size: 21px;
+}

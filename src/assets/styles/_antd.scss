@@ -1,0 +1,23 @@
+// Pagination
+.ant-pagination {
+    text-align: right;
+}
+
+// Spin
+.ant-spin-blur {
+    overflow: visible;
+    background-color: transparent;
+}
+.ant-spin-blur:after {
+    background-color: transparent;
+}
+
+// Progress
+.ant-progress-circle-trail {
+    stroke: #183559;
+}
+
+// Tooltip
+.ant-tooltip-inner {
+    max-width: 355px;
+}

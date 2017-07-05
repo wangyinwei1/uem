@@ -1,0 +1,24 @@
+.apps-bar {
+    margin: 20px 0;
+    height: 40px;
+    line-height: 40px;
+}
+
+.create-app {
+    float: left;
+    height: inherit;
+    font-size: 13px;
+    line-height: inherit;
+}
+
+.sort-app {
+    background-color: #214D81;
+}
+
+.btn-wrapper {
+    float: right;
+    & > div {
+        display: inline-block;
+    }
+}
+
