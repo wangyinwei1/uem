@@ -1,11 +1,23 @@
 import { observable, action } from 'mobx';
 
+function getTimeType() {
+    try {
+        return JSON.parse(sessionStorage.getItem('UEM_timeType'));
+    } catch (e) {
+        return {
+            type: 1,
+            units: 'hours'
+        };
+    }
+}
+
 class FrameStore {
+    
     @observable appId = sessionStorage.getItem('UEM_appId');;
     @observable platform = sessionStorage.getItem('UEM_platform');
     @observable lang = localStorage.getItem('UEM_lang');
     @observable theme = localStorage.getItem('UEM_theme');
-    @observable timeType = sessionStorage.getItem('UEM_timeType');
+    @observable timeType = getTimeType();
 
     constructor() {
     }
@@ -21,7 +33,7 @@ class FrameStore {
     @action onChooseTimeType = payload => {
         this.timeType = payload.timeType;
         console.log(payload.timeType)
-        sessionStorage.setItem('UEM_timeType', payload.timeType);
+        sessionStorage.setItem('UEM_timeType', JSON.stringify(payload.timeType));
     }
 }
 

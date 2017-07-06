@@ -33,16 +33,23 @@ export default class HeaderBar extends React.PureComponent {
     }
     handleSelectTime(obj) {
         const { type, units } = obj;
-        const timeType = `${type}${units}`;
+        // const timeType = `${type}${units}`;
 
         clearTimeout(this.timer);
         // 防止 DatePicker 组件触发两次 onChange 事件
         this.timer = setTimeout(() => {
-            this.props.chooseTimeType({timeType});
+            this.props.chooseTimeType({
+                timeType: {
+                    type,
+                    units
+                }
+            });
         }, 0);
     }
     takeDefaultValue() {
-        switch(this.props.timeType) {
+        const { type, units } = this.props.timeType;
+        const timeType = `${type}${units}`;
+        switch(timeType) {
             case '1months':
                 return '最近 1月';
             case '7days':
