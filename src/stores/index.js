@@ -13,4 +13,8 @@ export default {
     performanceBrowse,
     settingStore,
     performanceOverviewStore
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 }
