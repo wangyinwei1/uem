@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Row, Col } from 'antd';
 import {
     LineChart
-} from '../../Frame/Chart';
+} from '../../Common/Chart';
 import config from './config';
 
 import styles from './index.scss';
