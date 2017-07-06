@@ -1,0 +1,51 @@
+{
+    "errCode": null,
+    "message": null,
+    "data": [
+        {
+            "productId": "0cfcd81048c748d8a3f877eb62dcc82f",
+            "productNum": "1005",
+            "productName": "Automation",
+            "description": null,
+            "productUrl": "http://automation.uyuntest.cn/",
+            "addTime": 1463540543000,
+            "role": null
+        },
+        {
+            "productId": "2555ae9414f748528800501df6581d63",
+            "productNum": "1001",
+            "productName": "Monitor",
+            "description": null,
+            "productUrl": "http://monitor.uyuntest.cn/",
+            "addTime": 1463024829000,
+            "role": null
+        },
+        {
+            "productId": "4ff4059bd89e47dfa65a7d5f35173349",
+            "productNum": "1004",
+            "productName": "CMDB",
+            "description": "运维管理的元数据，驱动您的运维场景",
+            "productUrl": "http://cmdb.uyuntest.cn/crab",
+            "addTime": 1463627989000,
+            "role": null
+        },
+        {
+            "productId": "c1041fb28fd741b1972a966c332c3898",
+            "productNum": "1002",
+            "productName": "WEB",
+            "description": null,
+            "productUrl": "http://browser.uyuntest.cn/octopus/web",
+            "addTime": 1463541079000,
+            "role": null
+        },
+        {
+            "productId": "d08eec10d14a42c7b0fd965023d01351",
+            "productNum": "1003",
+            "productName": "Mobile",
+            "description": null,
+            "productUrl": "http://mobile.uyuntest.cn/octopus/mobile",
+            "addTime": 1463438953000,
+            "role": null
+        }
+    ]
+}
