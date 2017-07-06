@@ -33,6 +33,13 @@
     background: #1E3E64;
 }
 
+
+/* 选择区域 */
+::selection {
+    background: #2DB7F5;
+    color: #FFFFFF;
+}
+
 /* 页面主体 */
 body {
     // overflow-x: hidden;

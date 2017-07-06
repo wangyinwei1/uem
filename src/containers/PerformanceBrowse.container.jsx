@@ -15,7 +15,9 @@ export default class PerformanceBrowse extends React.Component {
     render() {
         return (
             <div id="PerformanceBrowse">
-                <TabTable />
+                <TabTable 
+                    type="PerformanceBrowse"
+                />
             </div>
         );
     }

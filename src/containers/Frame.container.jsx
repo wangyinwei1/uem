@@ -16,12 +16,19 @@ class Frame extends React.Component {
     }
     render() {
         const module = this.takeModuleName(this.props.location.pathname);
+        const {
+            appId,
+            platform,
+            timeType,
+            onChoosePlatform,
+            onChooseTimeType
+        } = this.props.frameStore;
         return (
             <div id="Frame">
                 <Menu 
-                    appId={this.props.frameStore.appId}
-                    platform={this.props.frameStore.platform}
-                    choosePlatform={this.props.frameStore.onChoosePlatform}
+                    appId={appId}
+                    platform={platform}
+                    choosePlatform={onChoosePlatform}
                 />
                 <div className="container">
                     <Crumb
@@ -29,10 +36,10 @@ class Frame extends React.Component {
                     />
                     <HeaderBar 
                         module={module}
-                        timeType={this.props.frameStore.timeType}
-                        chooseTimeType={this.props.frameStore.onChooseTimeType}
+                        timeType={timeType}
+                        chooseTimeType={onChooseTimeType}
                     />
-                    <div className="content" key={this.props.frameStore.platform}>
+                    <div className="content" key={`${platform}${timeType.type}${timeType.units}`}>
                         {this.props.children}
                     </div>
                 </div>

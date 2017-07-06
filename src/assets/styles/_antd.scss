@@ -1,3 +1,31 @@
+// Input
+.ant-input {
+    padding-left: 10px;
+    height: 30px;
+    outline-width: 0;
+    border: 1px solid #41A4E2;
+    border-radius: 2px;
+    background-color: #0D5990;
+    color: #FFFFFF;
+    line-height: 30px;
+    transition: all .2s;
+    &:focus {
+        background-color: #1C77B8;
+        box-shadow: none;
+    }
+}
+.ant-input-affix-wrapper {
+    .ant-input-prefix,
+    .ant-input-suffix {
+        color: inherit;
+    }
+}
+.ant-input-search-icon {
+    &:hover {
+        color: inherit;
+    }
+}
+
 // Pagination
 .ant-pagination {
     text-align: right;
@@ -8,6 +36,7 @@
     overflow: visible;
     background-color: transparent;
 }
+
 .ant-spin-blur:after {
     background-color: transparent;
 }
@@ -20,4 +49,39 @@
 // Tooltip
 .ant-tooltip-inner {
     max-width: 355px;
+}
+
+// Tabs 
+.ant-tabs-bar {
+    margin-bottom: 0;
+    border-bottom: 0;
+}
+
+.ant-tabs-nav {
+    .ant-tabs-tab {
+        margin-right: 0;
+        padding: 0 30px;
+        color: #FFFFFF;
+        &:hover {
+            color: #FFFFFF;
+        }
+    }
+    .ant-tabs-tab-active {
+        background-color: #1D6AA7;
+    }
+}
+
+.ant-tabs-ink-bar {
+    z-index: -1;
+}
+
+.ant-tabs-nav-container {
+    margin-bottom: 0;
+    height: 40px;
+    font-size: 12px;
+    line-height: 40px;
+}
+
+.ant-tabs-nav-scroll {
+    background-color: #153253;
 }

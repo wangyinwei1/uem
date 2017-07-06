@@ -3,6 +3,7 @@
 //     vertical-align: middle;
 // }
 
+// 按钮
 .btn {
     display: inline-block;
     padding: 0 20px;
@@ -23,11 +24,22 @@
     }
 }
 
+// 图表
 .chart {
     width: 100%;
     height: 300px;
 }
 
+// iconfont
+.iconfont {
+    color: #6CA4CD;
+}
+
+.icon-bangzhu {
+    font-size: 21px;
+}
+
+// 磁贴容器
 .tile-head {
     padding: 0 20px;
     height: 40px;
@@ -43,11 +55,7 @@
     background-color: rgba(0, 0, 0, .2);
 }
 
-// iconfont
-.iconfont {
-    color: #6CA4CD;
-}
-
-.icon-bangzhu {
-    font-size: 21px;
+// 搜索框
+.search-bar {
+    // width: 200px;
 }
