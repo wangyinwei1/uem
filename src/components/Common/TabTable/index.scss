@@ -20,11 +20,35 @@
             }
             .iconfont {
                 color: inherit;
-                font-size: 21px;
             }
         }
     }
 }
 
 .col-option {
+    padding: 20px;
+    background-color: #226EAF;
+    color: #FFFFFF;
+    dt {
+        margin: 10px 0;
+        font-weight: bold;
+        &:first-child {
+            margin-top: 0;
+        }
+    }
+}
+
+.checkbox-group {
+    width: 320px;
+    font-size: 12px;
+    :global {
+        .ant-checkbox-wrapper {
+            width: 33.333%;
+            height: 25px;
+            line-height: 25px;
+            &:not(:last-child) {
+                margin-right: 0;
+            }
+        }
+    }
 }

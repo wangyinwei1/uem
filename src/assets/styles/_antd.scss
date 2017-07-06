@@ -26,6 +26,46 @@
     }
 }
 
+// Popover 
+.ant-popover-inner {
+    overflow: hidden;
+    border-radius: 2px;
+    background-color: transparent;
+}
+.ant-popover-inner-content {
+    padding: 0;
+    color: inherit;
+}
+
+// Checkbox
+.ant-checkbox-disabled.ant-checkbox-checked {
+    .ant-checkbox-inner {
+        &:after {
+            border-color: #FFFFFF;
+        }
+    }
+}
+.ant-checkbox-checked {
+    .ant-checkbox-inner {
+        border-color: #276490 !important;
+        background-color: #2378C3 !important;
+    }
+}
+.ant-checkbox-disabled {
+    & + span {
+        color: inherit;
+        opacity: .5;
+    }
+    .ant-checkbox-inner {
+        border-color: #1E76AE !important;
+        background-color: #07476F;
+    }
+}
+.ant-checkbox-inner {
+    border: 1px solid #1E76AE;
+    background-color: #07476F;
+}
+
 // Pagination
 .ant-pagination {
     text-align: right;
@@ -49,6 +89,35 @@
 // Tooltip
 .ant-tooltip-inner {
     max-width: 355px;
+}
+
+// Table
+.ant-table-fixed-header {
+    .ant-table-scroll {
+        .ant-table-header {
+            overflow: auto;
+        }
+    }
+}
+.ant-table-fixed-left,
+.ant-table-fixed-left table {
+    border-radius: 0;
+}
+.ant-table {
+    border-radius: 0;
+    table {
+        border-radius: 0;
+    }
+}
+.ant-table-header {
+    table {
+        border-radius: 0;
+    }
+}
+.ant-table-thead > tr > th {
+    background: #153253;
+    color: #57C5F7;
+    font-weight: bold;
 }
 
 // Tabs 

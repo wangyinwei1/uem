@@ -17,10 +17,10 @@ import {
 } from './containers';
 
 // 样式
-import './assets/styles/base.scss';
-import './assets/styles/common.scss';
 import './assets/styles/fontawesome.css';
 import './assets/styles/iconfont.css';
+import './assets/styles/base.scss';
+import './assets/styles/common.scss';
 
 useStrict(true);
 

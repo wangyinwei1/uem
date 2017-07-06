@@ -2,6 +2,7 @@ import React from 'react';
 import { Tabs } from 'antd';
 import config from './config';
 import ControlBar from './ControlBar';
+import Table from './Table';
 
 const TabPane = Tabs.TabPane;
 
@@ -16,8 +17,14 @@ export default class TabTable extends React.Component {
                 {config[type].map((item, index) => {
                     return (
                         <TabPane tab={item.tabName} key={index}>
-                            <ControlBar />
-                            {item.content}
+                            <ControlBar 
+                                type={type}
+                                index={index}
+                            />
+                            <Table 
+                                type={type}
+                                tabIndex={index}
+                            />
                         </TabPane>
                     );
                 })}
