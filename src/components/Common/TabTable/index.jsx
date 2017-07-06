@@ -10,10 +10,18 @@ export default class TabTable extends React.Component {
     constructor(props) {
         super(props);
     }
+    changeTab(key) {
+        const tagType = key === '0'
+            ? 'marked'
+            : 'unmarked';
+        this.props.onChangeTagType({
+            tagType
+        });
+    }
     render() {
-        const { type } = this.props;
+        const { type, dataList } = this.props;
         return (
-            <Tabs defaultActiveKey="0" onChange={null}>
+            <Tabs defaultActiveKey="0" onChange={this.changeTab.bind(this)}>
                 {config[type].map((item, index) => {
                     return (
                         <TabPane tab={item.tabName} key={index}>
@@ -24,6 +32,7 @@ export default class TabTable extends React.Component {
                             <Table 
                                 type={type}
                                 tabIndex={index}
+                                dataList={dataList}
                             />
                         </TabPane>
                     );

@@ -33,7 +33,7 @@ export default class Menu extends React.Component {
                     menu.list.map(item => (
                         <li key={item.name} >
                             <NavLink exact onClick={this.checkApp.bind(this)} activeClassName={styles['current']} replace to={item.to}>
-                                <i className={cls('iconfont', item.icon)}></i>{item.name}
+                                <i className={cls('iconfont', item.icon)}></i><span>{item.name}</span>
                             </NavLink>
                         </li>
                     ))

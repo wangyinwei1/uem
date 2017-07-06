@@ -79,4 +79,3 @@ class AppListStore {
 const appListStore = new AppListStore();
 
 export default appListStore;
-// export { AppStore };

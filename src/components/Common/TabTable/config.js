@@ -5,21 +5,24 @@ export default {
             normal: [{
                 value: 'type',
                 label: '标识',
+                width: 80,
                 checked: true,
                 disabled: true,
                 fixed: 'left'
             }, {
                 value: 'operType',
                 label: '类型',
-                width: 200,
+                width: 100,
                 checked: true,
                 disabled: true,
                 fixed: 'left'
             }, {
                 value: 'operName',
                 label: '页面名称',
+                width: 200,
                 checked: true,
-                disabled: true
+                disabled: true,
+                fixed: 'left'
             }, {
                 value: 'path',
                 label: 'URL',

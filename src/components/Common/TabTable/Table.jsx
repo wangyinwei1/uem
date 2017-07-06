@@ -43,14 +43,15 @@ export default class Table extends React.Component{
                     dataIndex: value,
                     width,
                     fixed
-                })
+                });
             });
         })
     }
     render() {
+        const { dataList } = this.props;
         return (
             <div className="table">
-                <AntdTable columns={this.columns} dataSource={[]} scroll={{ x: 1500, y: 300 }} />
+                <AntdTable columns={this.columns} dataSource={dataList} scroll={{ x: 1500 }} />
             </div>
         );
     }

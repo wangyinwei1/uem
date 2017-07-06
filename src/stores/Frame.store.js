@@ -13,7 +13,7 @@ function getTimeType() {
 
 class FrameStore {
     
-    @observable appId = sessionStorage.getItem('UEM_appId');;
+    @observable appId = sessionStorage.getItem('UEM_appId');
     @observable platform = sessionStorage.getItem('UEM_platform');
     @observable lang = localStorage.getItem('UEM_lang');
     @observable theme = localStorage.getItem('UEM_theme');
@@ -40,4 +40,4 @@ class FrameStore {
 const frameStore = new FrameStore();
 
 export default frameStore;
-// export { AppStore };
+// export { FrameStore };
