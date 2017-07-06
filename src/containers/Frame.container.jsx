@@ -21,7 +21,7 @@ class Frame extends React.Component {
                 <Menu 
                     appId={this.props.frameStore.appId}
                     platform={this.props.frameStore.platform}
-                    choosePlatform={this.props.frameStore.choosePlatform}
+                    choosePlatform={this.props.frameStore.onChoosePlatform}
                 />
                 <div className="container">
                     <Crumb
@@ -29,6 +29,8 @@ class Frame extends React.Component {
                     />
                     <HeaderBar 
                         module={module}
+                        timeType={this.props.frameStore.timeType}
+                        chooseTimeType={this.props.frameStore.onChooseTimeType}
                     />
                     <div className="content" key={this.props.frameStore.platform}>
                         {this.props.children}

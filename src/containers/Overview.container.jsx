@@ -27,10 +27,10 @@ export default class Overview extends React.Component {
             realTimeData,
             deploy,
             trend,
-            getRealTimeData,
-            getApdex,
-            getTrend,
-            getUserDistribution
+            onGetRealTimeData,
+            onGetApdex,
+            onGetTrend,
+            onGetUserDistribution
         } = this.props.overviewStore;
         const { loading } = this.state;
         return (
@@ -38,16 +38,16 @@ export default class Overview extends React.Component {
                 <Spin spinning={loading} size="large">
                     <Crux
                         realTimeData={realTimeData}
-                        getRealTimeData={getRealTimeData}
-                        getApdex={getApdex}
+                        getRealTimeData={onGetRealTimeData}
+                        getApdex={onGetApdex}
                         apdex={deploy.apdex}
                     />
                     <Quotas
                         trend={trend}
-                        getTrend={getTrend}
+                        getTrend={onGetTrend}
                     />
                     <Atlas
-                        getUserDistribution={getUserDistribution}
+                        getUserDistribution={onGetUserDistribution}
                     />
                 </Spin>
             </div>

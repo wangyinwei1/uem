@@ -14,18 +14,18 @@ export default class AppList extends React.Component {
     }
     componentDidMount() {
         const {
-            getApps,
+            onGetApps,
         } = this.props.appListStore;
 
-        getApps();
+        onGetApps();
     }
     render() {
         const {
             appId,
 
             // action
-            chooseApp,
-            choosePlatform
+            onChooseApp,
+            onChoosePlatform
         } = this.props.frameStore;
         const {
             appList,
@@ -36,33 +36,33 @@ export default class AppList extends React.Component {
             loading,
 
             // action
-            updateApp,
-            delApp,
-            pageJump,
-            addApp,
-            sortBy
+            onUpdateApp,
+            onDelApp,
+            onPageJump,
+            onAddApp,
+            onSortBy
         } = this.props.appListStore;
         return (
             <div id="AppList">
                 <AppBar
-                    addApp={addApp}
-                    sortBy={sortBy}
+                    addApp={onAddApp}
+                    sortBy={onSortBy}
                     sortKey={sortKey}
                 />
                 <Apps
                     loading={loading}
                     list={appList}
-                    updateApp={updateApp}
-                    delApp={delApp}
-                    chooseApp={chooseApp}
-                    choosePlatform={choosePlatform}
+                    updateApp={onUpdateApp}
+                    delApp={onDelApp}
+                    chooseApp={onChooseApp}
+                    choosePlatform={onChoosePlatform}
                 />
                 <Pagination
                     showTotal={total => '总共 ' + total + ' 个应用'}
                     current={pageIndex}
                     total={total}
                     pageSize={pageSize}
-                    onChange={index => pageJump(index)}
+                    onChange={index => onPageJump({index})}
                 />
             </div>
         );

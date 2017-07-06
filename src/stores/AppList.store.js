@@ -18,15 +18,15 @@ class AppListStore {
     @action onLoaded = () => {
         this.loading = false;
     }
-    @action pageJump = payload => {
-        this.pageIndex = payload;
-        this.getApps();
+    @action onPageJump = payload => {
+        this.pageIndex = payload.index;
+        this.onGetApps();
     }
-    @action sortBy = payload => {
+    @action onSortBy = payload => {
         this.sortKey = payload;
-        this.getApps();
+        this.onGetApps();
     }
-    @action getApps = async () => {
+    @action onGetApps = async () => {
         this.onLoading();
         try {
             const data = await Service.getApps({
@@ -47,28 +47,28 @@ class AppListStore {
             throw error;
         }
     }
-    @action updateApp = async payload => {
+    @action onUpdateApp = async payload => {
         try {
             const data = await Service.updateApp(payload);
-            this.getApps();
+            this.onGetApps();
             return data;
         } catch (error) {
             throw error;
         }
     }
-    @action delApp = async payload => {
+    @action onDelApp = async payload => {
         try {
             const data = await Service.delApp(payload);
-            this.getApps();
+            this.onGetApps();
             return data;
         } catch (error) {
             throw error;
         }
     }
-    @action addApp = async payload => {
+    @action onAddApp = async payload => {
         try {
             const data = await Service.addApp(payload);
-            this.getApps();
+            this.onGetApps();
             return data;
         } catch (error) {
             throw error;

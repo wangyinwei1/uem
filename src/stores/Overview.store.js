@@ -12,7 +12,7 @@ class OverviewStore {
     @observable trend = {};
     @observable userDistribution = {};
 
-    @action getRealTimeData = async payload => {
+    @action onGetRealTimeData = async payload => {
         try {
             const data = await Service.getRealTimeData(payload);
             runInAction(() => {
@@ -23,7 +23,7 @@ class OverviewStore {
             throw error;
         }
     }
-    @action getApdex = async payload => {
+    @action onGetApdex = async payload => {
         try {
             const data = await Service.getApdex(payload);
             runInAction(() => {
@@ -34,7 +34,7 @@ class OverviewStore {
             throw error;
         }
     }
-    @action getTrend = async payload => {
+    @action onGetTrend = async payload => {
         try {
             const data = await Service.getTrend(payload);
             runInAction(() => {
@@ -45,7 +45,7 @@ class OverviewStore {
             throw error;
         }
     }
-    @action getUserDistribution = async payload => {
+    @action onGetUserDistribution = async payload => {
         try {
             const data = await Service.getUserDistribution(payload);
             runInAction(() => {

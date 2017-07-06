@@ -12,6 +12,7 @@ npm-debug*
 
 # Dependency Packages
 node_modules/
+src/components/Public/
 
 # Release 
 dist/
