@@ -12,7 +12,8 @@ import stores from './stores';
 import {
     Frame,
     AppList,
-    Overview
+    Overview,
+    PerformanceBrowse
 } from './containers';
 
 // 样式
@@ -47,6 +48,7 @@ ReactDOM.render(
                     <Redirect exact from="/" to="/app_list" />
                     <Route exact path="/app_list" component={AppList} />
                     <Route path="/overview" component={Overview} />
+                    <Route path="/performance_browse" component={PerformanceBrowse} />
                     {/*<Route component={AppList} />*/}
                 </Switch>
             </Frame>

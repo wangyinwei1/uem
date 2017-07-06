@@ -20,6 +20,7 @@ class FrameStore {
     }
     @action onChooseTimeType = payload => {
         this.timeType = payload.timeType;
+        console.log(payload.timeType)
         sessionStorage.setItem('UEM_timeType', payload.timeType);
     }
 }

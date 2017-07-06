@@ -18,13 +18,13 @@ export default class HeaderBar extends React.PureComponent {
         setting: false
     }
     dateSetting = [
-        { text: '1月', value: 1, type: 'month' },
-        { text: '7天', value: 7, type: 'day' },
-        { text: '3天', value: 3, type: 'day' },
-        { text: '1天', value: 1, type: 'day' },
-        { text: '12小时', value: 12, type: 'hour' },
-        { text: '6小时', value: 6, type: 'hour' },
-        { text: '1小时', value: 1, type: 'hour' },
+        { text: '1月', value: 1, type: 'months' },
+        { text: '7天', value: 7, type: 'days' },
+        { text: '3天', value: 3, type: 'days' },
+        { text: '1天', value: 1, type: 'days' },
+        { text: '12小时', value: 12, type: 'hours' },
+        { text: '6小时', value: 6, type: 'hours' },
+        { text: '1小时', value: 1, type: 'hours' },
     ]
     constructor(props) {
         super(props);
@@ -33,12 +33,16 @@ export default class HeaderBar extends React.PureComponent {
     }
     handleSelectTime(obj) {
         const { type, units } = obj;
-        const timeType = `${type}${units}`;
 
         clearTimeout(this.timer);
         // 防止 DatePicker 组件触发两次 onChange 事件
         this.timer = setTimeout(() => {
-            this.props.chooseTimeType({timeType});
+            this.props.chooseTimeType({
+                timeType: {
+                    type,
+                    units
+                }
+            });
         }, 0);
     }
     takeDefaultValue() {
