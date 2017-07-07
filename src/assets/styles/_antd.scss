@@ -105,6 +105,7 @@
 }
 .ant-table {
     border-radius: 0;
+    color: #FFFFFF;
     table {
         border-radius: 0;
     }
@@ -115,10 +116,38 @@
     }
 }
 .ant-table-thead > tr > th {
+    padding: 0;
+    height: 50px;
     background: #153253;
     color: #57C5F7;
     text-align: center;
     font-weight: bold;
+    line-height: 50px;
+}
+.ant-table-tbody {
+    & > tr {
+        background-color: #0D3F67;
+        &:hover {
+            background-color: #1B3E67;
+            & > td {
+                background-color: inherit;
+            }
+        }
+        &:nth-child(even) {
+            background-color: #104B7B;
+        }
+        & > td {
+            padding: 10px;
+            border-bottom: 0;
+            text-align: center;
+        }
+    }
+}
+.ant-table-thead > tr.ant-table-row-hover > td,
+.ant-table-tbody > tr.ant-table-row-hover > td,
+.ant-table-thead > tr:hover > td,
+.ant-table-tbody > tr:hover > td {
+    background: inherit;
 }
 
 // Tabs 

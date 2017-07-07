@@ -12,7 +12,7 @@ export default {
             }, {
                 value: 'operType',
                 label: '类型',
-                width: 100,
+                width: 80,
                 checked: true,
                 disabled: true,
                 fixed: 'left'
@@ -27,63 +27,75 @@ export default {
                 value: 'path',
                 label: 'URL',
                 checked: false,
-                disabled: false
+                disabled: false,
+                width: 400,
             }, {
                 value: 'match',
                 label: 'URL规则',
                 checked: false,
-                disabled: false
+                disabled: false,
+                width: 400,
             }, {
                 value: 'creator',
                 label: '创建人',
                 checked: false,
-                disabled: false
+                disabled: false,
+                width: 200,
             }, {
                 value: 'createTime',
                 label: '创建时间',
                 checked: false,
-                disabled: false
+                disabled: false,
+                width: 200,
             }, {
                 value: 'updator',
                 label: '修改人',
                 checked: false,
-                disabled: false
+                disabled: false,
+                width: 200,
             }, {
                 value: 'updateTime',
                 label: '最后修改时间',
                 checked: false,
-                disabled: false
+                disabled: false,
+                width: 200,
             }],
             quota: [{
                 value: 'apdex',
                 label: 'Apdex',
                 checked: true,
-                disabled: false
+                disabled: false,
+                width: 100,
             }, {
                 value: 'thruput',
                 label: '吞吐率',
                 checked: true,
-                disabled: false
+                disabled: false,
+                width: 100,
             }, {
                 value: 'errorCount',
                 label: '错误数',
                 checked: true,
-                disabled: false
+                disabled: false,
+                width: 100,
             }, {
                 value: 'avgRspTime',
                 label: '响应时间',
                 checked: true,
-                disabled: false
+                disabled: false,
+                width: 100,
             }, {
                 value: 'pv',
                 label: '浏览量PV',
                 checked: true,
-                disabled: false
+                disabled: false,
+                width: 100,
             }, {
                 value: 'uv',
                 label: '访问量UV',
                 checked: true,
-                disabled: false
+                disabled: false,
+                width: 100,
             }]
         }
     }, {

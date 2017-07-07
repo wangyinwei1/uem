@@ -11,40 +11,53 @@ const Search = Input.Search;
 const CheckboxGroup = Checkbox.Group;
 
 export default class ControlBar extends React.PureComponent {
+    defaultValue = {
+        normal: [],
+        quota: []
+    };
     constructor(props) {
         super(props);
     }
-    makeOptionsContent() {
+    componentWillMount() {
         const { type, index } = this.props;
-
-        const defaultValue = {
-            normal: [],
-            quota: []
-        };
         ['normal', 'quota'].forEach(key => {
             config[type][index].options[key].forEach(item => {
                 if (item.checked) {
-                    defaultValue[key].push(item.value);
+                    this.defaultValue[key].push(item.value);
                 }
             });
-        })
-        
+        });
+        this.onChangeCol();
+    }
+    onChangeCol() {
+        this.props.onChangeCol({
+            col: Array.prototype.concat.call([], this.defaultValue.normal, this.defaultValue.quota)
+        });
+    }
+    changeColOptions(type, val) {
+        this.defaultValue[type] = val;
+        this.onChangeCol();
+    }
+    makeOptionsContent() {
+        const { type, index } = this.props;
         return (
             <dl className={styles['col-option']}>
                 <dt>常规</dt>
                 <dd>
                     <CheckboxGroup
                         className={styles['checkbox-group']}
-                        defaultValue={defaultValue.normal}
+                        defaultValue={this.defaultValue.normal}
                         options={config[type][index].options.normal}
+                        onChange={this.changeColOptions.bind(this, 'normal')}
                     />
                 </dd>
                 <dt>指标</dt>
                 <dd>
                     <CheckboxGroup
                         className={styles['checkbox-group']}
-                        defaultValue={defaultValue.quota}
+                        defaultValue={this.defaultValue.quota}
                         options={config[type][index].options.quota}
+                        onChange={this.changeColOptions.bind(this, 'quota')}
                     />
                 </dd>
             </dl>

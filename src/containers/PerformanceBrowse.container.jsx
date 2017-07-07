@@ -22,7 +22,6 @@ export default class PerformanceBrowse extends React.Component {
             onChangeTagType,
             onGetOpersList
         } = this.props.performanceBrowseStore;
-        
         onGetOpersList({
             type,
             operType,
@@ -34,14 +33,17 @@ export default class PerformanceBrowse extends React.Component {
     render() {
         const {
             dataList,
+            col,
+            onChangeCol,
             onChangeTagType
         } = this.props.performanceBrowseStore;
-        console.log(dataList.toJS())
         return (
             <div id="PerformanceBrowse">
                 <TabTable 
                     type="PerformanceBrowse"
+                    col={col.toJS()}
                     onChangeTagType={onChangeTagType}
+                    onChangeCol={onChangeCol}
                     dataList={dataList.toJS()}
                 />
             </div>
