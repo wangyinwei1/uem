@@ -8,35 +8,50 @@ import config from './config';
 import styles from './index.scss';
 
 const Search = Input.Search;
-const CheckboxGroup = Checkbox.Group;
+// const CheckboxGroup = Checkbox.Group;
 
 export default class ControlBar extends React.PureComponent {
-    defaultValue = {
-        normal: [],
-        quota: []
-    };
+    colOptions = []
     constructor(props) {
         super(props);
+
+        this.options = config[props.type][props.index].options;
     }
     componentWillMount() {
+        this.initCol();
+    }
+    initCol() {
         const { type, index } = this.props;
-        ['normal', 'quota'].forEach(key => {
-            config[type][index].options[key].forEach(item => {
+        for (let i in this.options) {
+            this.options[i].forEach(item => {
                 if (item.checked) {
-                    this.defaultValue[key].push(item.value);
+                    this.colOptions.push(item.value);
                 }
             });
-        });
-        this.onChangeCol();
+        }
+        this.props.changeColOptions(this.colOptions);
     }
-    onChangeCol() {
-        this.props.onChangeCol({
-            col: Array.prototype.concat.call([], this.defaultValue.normal, this.defaultValue.quota)
+    changeColOptions(e) {
+        const checked = e.target.checked;
+        const value = e.target.value;
+        for (let i = this.colOptions.length - 1; i >= 0; i -= 1) {
+            if (checked) {
+                if (this.colOptions[i] === value) {
+                    break;
+                } else {
+                    this.colOptions.push(value);
+                    break;
+                }
+            } else {
+                if (this.colOptions[i] === value) {
+                    delete this.colOptions[i];
+                }
+            }
+        }
+        this.colOptions = _.remove(this.colOptions, function (n) {
+            return n !== undefined
         });
-    }
-    changeColOptions(type, val) {
-        this.defaultValue[type] = val;
-        this.onChangeCol();
+        this.props.changeColOptions(this.colOptions);
     }
     makeOptionsContent() {
         const { type, index } = this.props;
@@ -44,21 +59,31 @@ export default class ControlBar extends React.PureComponent {
             <dl className={styles['col-option']}>
                 <dt>常规</dt>
                 <dd>
-                    <CheckboxGroup
-                        className={styles['checkbox-group']}
-                        defaultValue={this.defaultValue.normal}
-                        options={config[type][index].options.normal}
-                        onChange={this.changeColOptions.bind(this, 'normal')}
-                    />
+                    {this.options.normal.map(item => {
+                        return (
+                            <Checkbox
+                                key={item.value}
+                                defaultChecked={this.colOptions.some(col => col === item.value)}
+                                value={item.value}
+                                disabled={item.disabled}
+                                onChange={this.changeColOptions.bind(this)}
+                            >{item.label}</Checkbox>
+                        );
+                    })}
                 </dd>
                 <dt>指标</dt>
                 <dd>
-                    <CheckboxGroup
-                        className={styles['checkbox-group']}
-                        defaultValue={this.defaultValue.quota}
-                        options={config[type][index].options.quota}
-                        onChange={this.changeColOptions.bind(this, 'quota')}
-                    />
+                    {this.options.quota.map(item => {
+                        return (
+                            <Checkbox
+                                key={item.value}
+                                defaultChecked={this.colOptions.some(col => col === item.value)}
+                                value={item.value}
+                                disabled={item.disabled}
+                                onChange={this.changeColOptions.bind(this)}
+                            >{item.label}</Checkbox>
+                        );
+                    })}
                 </dd>
             </dl>
         );

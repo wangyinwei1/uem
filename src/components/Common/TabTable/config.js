@@ -8,21 +8,21 @@ export default {
                 width: 80,
                 checked: true,
                 disabled: true,
-                fixed: 'left'
+                // fixed: 'left'
             }, {
                 value: 'operType',
                 label: '类型',
                 width: 80,
                 checked: true,
                 disabled: true,
-                fixed: 'left'
+                // fixed: 'left'
             }, {
                 value: 'operName',
                 label: '页面名称',
                 width: 200,
                 checked: true,
                 disabled: true,
-                fixed: 'left'
+                // fixed: 'left'
             }, {
                 value: 'path',
                 label: 'URL',
@@ -101,7 +101,14 @@ export default {
     }, {
         tabName: '未标记',
         options: {
-            normal: [],
+            normal: [{
+                value: 'operType',
+                label: '类型',
+                width: 80,
+                checked: true,
+                disabled: true,
+                // fixed: 'left'
+            }],
             quota: []
         }
     }]

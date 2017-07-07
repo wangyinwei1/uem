@@ -13,38 +13,32 @@ export default class PerformanceBrowse extends React.Component {
         super(props);
     }
     componentDidMount() {
-        const { timeType } = this.props.frameStore;
         const {
-            type,
-            operType,
-            tagType,
-            pageIndex,
-            onChangeTagType,
             onGetOpersList
         } = this.props.performanceBrowseStore;
-        onGetOpersList({
-            type,
-            operType,
-            pageIndex,
-            startTime: moment().subtract(timeType.type, timeType.units).valueOf(),
+        onGetOpersList();
+    }
+    changeTagType(tagType) {
+        const { onChangeTagType } = this.props.performanceBrowseStore;
+        onChangeTagType({
             tagType
         });
     }
+    changeColOptions(colOptions) {
+        const { onChangeColOptions } = this.props.performanceBrowseStore;
+        onChangeColOptions({
+            colOptions
+        });
+    }
     render() {
-        const {
-            dataList,
-            col,
-            onChangeCol,
-            onChangeTagType
-        } = this.props.performanceBrowseStore;
+        const { dataList } = this.props.performanceBrowseStore;
         return (
             <div id="PerformanceBrowse">
-                <TabTable 
+                <TabTable
                     type="PerformanceBrowse"
-                    col={col.toJS()}
-                    onChangeTagType={onChangeTagType}
-                    onChangeCol={onChangeCol}
-                    dataList={dataList.toJS()}
+                    dataList={dataList}
+                    changeTagType={this.changeTagType.bind(this)}
+                    changeColOptions={this.changeColOptions.bind(this)}
                 />
             </div>
         );
