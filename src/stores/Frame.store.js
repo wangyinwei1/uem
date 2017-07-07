@@ -2,8 +2,9 @@ import { observable, action } from 'mobx';
 
 function getTimeType() {
     try {
-        return JSON.parse(sessionStorage.getItem('UEM_timeType'));
+        return JSON.parse(sessionStorage.getItem('UEM_timeType')) ? JSON.parse(sessionStorage.getItem('UEM_timeType')) :  {type: 1, units: 'hours'}
     } catch (e) {
+        debugger
         return {
             type: 1,
             units: 'hours'

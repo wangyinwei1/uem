@@ -3,6 +3,9 @@ export default Immutable.fromJS({
         title: {
             text: '分时趋势图',
         },
+        xAxis: {
+            data: _.range(1, 25)
+        },
         yAxis: {
             // minInterval: 1
         },

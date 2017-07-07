@@ -17,11 +17,6 @@ export default {
         endTime: undefined,
         metrics: JSON.parse(["avgRspTime", "apdex", "errorCount", "clickNum", "pv", "sessionCount"])
         ...payload
-    }),
-    
-    getPerformanceApdex: payload => Request('get','deploy/apdex/view',{
-        
-
     })
     
 };

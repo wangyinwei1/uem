@@ -22,12 +22,10 @@ export default class PerformanceOverview extends React.Component {
         });
     }
     render() {
-        debugger
         const {
             // state
             keyIndicator,
             performanceTrend,
-            performanceApdex,
             mapData,
             // action
             onGetKeyIndicator,
@@ -36,7 +34,6 @@ export default class PerformanceOverview extends React.Component {
             onGetMapData
         } = this.props.performanceOverviewStore;
         const startTime = this.props.frameStore.timeType;
-
         const { loading } = this.state;
         return (
             <div id="PerformanceOverview" >

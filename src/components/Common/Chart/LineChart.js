@@ -30,7 +30,7 @@ const defaultOptions = Immutable.fromJS({
     },
     xAxis: {
         type: 'category',
-        data: _.range(1, 25),
+        data: [],
         axisLine: {
             show: false
         },
@@ -77,6 +77,7 @@ class LineChart extends Chart {
         super(props);
         this.type = 'LineChart';
         this.defaultOptions = defaultOptions;
+        // console.log('[chart props options]:',this.options.toJS());
     }
     // @override
     // draw() {

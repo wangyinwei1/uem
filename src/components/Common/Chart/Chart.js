@@ -116,6 +116,7 @@ class Chart extends Component {
         return globalOptions.mergeDeep(this.defaultOptions.mergeDeep(this.options)).toJS();
     }
     _setOption() {
+        console.log(this.defaultOptions.mergeDeep(this.options).toJS())
         this.chartDom.setOption(this._mergeOptions());
         // setTimeout(() => {
         //     this.chartDom.hideLoading();

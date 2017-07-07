@@ -5,7 +5,7 @@ import { default as CommonService  } from '../services/CommonInterface.service';
 class PerformanceOverviewStore {
     @observable keyIndicator = {};
     @observable performanceTrend = {};
-    @observable performanceApdex = {};
+    // @observable performanceApdex = {};
     @observable mapData = {};
 
     @action onGetKeyIndicator = async payload => {
@@ -30,17 +30,17 @@ class PerformanceOverviewStore {
             throw error;
         }
     }
-    @action onGetPerformanceApdex = async payload => {
-        try {
-            const data = await PerformacneOverviewService.getPerformanceApdex(payload);
-            runInAction(() => {
-                this.performanceApdex = data;
-            });
-            return data;
-        } catch (error) {
-            throw error;
-        }
-    }
+    // @action onGetPerformanceApdex = async payload => {
+    //     try {
+    //         const data = await PerformacneOverviewService.getPerformanceTrend(payload);
+    //         runInAction(() => {
+    //             this.performanceApdex = data;
+    //         });
+    //         return data;
+    //     } catch (error) {
+    //         throw error;
+    //     }
+    // }
     @action onGetMapData = async payload => {
         try {
             const data = await CommonService.getMapData(payload);

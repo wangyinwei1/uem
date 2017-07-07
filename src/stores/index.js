@@ -10,11 +10,7 @@ export default {
     frameStore,
     appListStore,
     overviewStore,
-    performanceBrowse,
     settingStore,
-    performanceOverviewStore
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
+    performanceOverviewStore,
+    performanceBrowseStore
 }
