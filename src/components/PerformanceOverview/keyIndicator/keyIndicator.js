@@ -22,7 +22,7 @@ class KeyIndicator extends Component {
     }
     componentDidMount() {
         const { getKeyIndicator } = this.props;
-        getKeyIndicator({startTime: moment().subtract(this.props.startTime.type, this.props.startTime.units).valueOf()});
+        getKeyIndicator();
     }
     componentWillReceiveProps(nextProps) {
     }

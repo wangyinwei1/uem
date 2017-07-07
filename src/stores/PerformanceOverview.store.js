@@ -1,16 +1,23 @@
 import { observable, action, runInAction } from 'mobx';
 import { default as PerformacneOverviewService  } from '../services/PerformanceOverview.service';
 import { default as CommonService  } from '../services/CommonInterface.service';
+import {
+    getTimeType
+} from '../utils';
 
 class PerformanceOverviewStore {
     @observable keyIndicator = {};
     @observable performanceTrend = {};
     // @observable performanceApdex = {};
     @observable mapData = {};
+    timeType = getTimeType();
 
     @action onGetKeyIndicator = async payload => {
         try {
-            const data = await CommonService.getKeyIndicator(payload);
+            const data = await CommonService.getKeyIndicator({
+                startTime: moment().subtract(this.timeType.type, this.timeType.units).valueOf(),
+                ...payload
+            });
             runInAction(() => {
                 this.keyIndicator = data;
             });
@@ -43,7 +50,10 @@ class PerformanceOverviewStore {
     // }
     @action onGetMapData = async payload => {
         try {
-            const data = await CommonService.getMapData(payload);
+            const data = await CommonService.getMapData({
+                startTime: moment().subtract(this.timeType.type, this.timeType.units).valueOf(),
+                ...payload
+            });
             runInAction(() => {
                 this.mapData = data;
             });
