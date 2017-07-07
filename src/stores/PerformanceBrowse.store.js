@@ -7,6 +7,7 @@ class PerformanceBrowseStore {
     @observable pageIndex = 1;
     @observable operType = 'redirect';
     @observable tagType = 'marked';
+    @observable col = []; 
 
     constructor() {
     }
@@ -16,6 +17,10 @@ class PerformanceBrowseStore {
     }
     @action onChangeTagType = payload => {
         this.tagType = payload.tagType;
+    }
+    @action onChangeCol = payload => {
+        console.log(payload.col)
+        this.col = payload.col;
     }
     @action onGetOpersList = async payload => {
         try {

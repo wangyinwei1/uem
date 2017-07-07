@@ -19,7 +19,7 @@ export default class TabTable extends React.Component {
         });
     }
     render() {
-        const { type, dataList } = this.props;
+        const { type, dataList, col, onChangeCol } = this.props;
         return (
             <Tabs defaultActiveKey="0" onChange={this.changeTab.bind(this)}>
                 {config[type].map((item, index) => {
@@ -28,9 +28,11 @@ export default class TabTable extends React.Component {
                             <ControlBar 
                                 type={type}
                                 index={index}
+                                onChangeCol={onChangeCol}
                             />
                             <Table 
                                 type={type}
+                                col={col}
                                 tabIndex={index}
                                 dataList={dataList}
                             />

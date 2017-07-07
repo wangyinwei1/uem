@@ -26,12 +26,13 @@ import styles from './index.scss';
 //   });
 // }
 
-export default class Table extends React.Component{
+export default class Table extends React.Component {
     columns = [];
     constructor(props) {
         super(props);
 
         this.packColumns();
+        this.getScollX = this.getScollX.bind(this);
     }
     packColumns() {
         const { type, tabIndex } = this.props;
@@ -47,11 +48,24 @@ export default class Table extends React.Component{
             });
         })
     }
+    getScollX() {
+        const { type, tabIndex } = this.props;
+        let xWidth = 0;
+        ['normal', 'quota'].forEach(key => {
+            config[type][tabIndex].options[key].forEach(item => {
+                const { width = 0 } = item;
+                xWidth += width;
+            });
+        });
+        return xWidth;
+    }
     render() {
         const { dataList } = this.props;
         return (
             <div className="table">
-                <AntdTable columns={this.columns} dataSource={dataList} scroll={{ x: 1500 }} />
+                <AntdTable columns={this.columns} dataSource={dataList}
+                    scroll={{ x: this.getScollX() }}
+                />
             </div>
         );
     }
