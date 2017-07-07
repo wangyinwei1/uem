@@ -109,7 +109,43 @@ export default {
                 disabled: true,
                 // fixed: 'left'
             }],
-            quota: []
+            quota: [{
+                value: 'apdex',
+                label: 'Apdex',
+                checked: true,
+                disabled: false,
+                width: 100,
+            }, {
+                value: 'thruput',
+                label: '吞吐率',
+                checked: true,
+                disabled: false,
+                width: 100,
+            }, {
+                value: 'errorCount',
+                label: '错误数',
+                checked: true,
+                disabled: false,
+                width: 100,
+            }, {
+                value: 'avgRspTime',
+                label: '响应时间',
+                checked: true,
+                disabled: false,
+                width: 100,
+            }, {
+                value: 'pv',
+                label: '浏览量PV',
+                checked: true,
+                disabled: false,
+                width: 100,
+            }, {
+                value: 'uv',
+                label: '访问量UV',
+                checked: true,
+                disabled: false,
+                width: 100,
+            }]
         }
     }]
 };
