@@ -4,7 +4,8 @@ import { Spin } from 'antd';
 
 import {
     KeyIndicator,
-    PerformanceTrend
+    PerformanceTrend,
+    PerformanceMapChart
 } from '../components/PerformanceOverview';
 
 @inject('frameStore', 'performanceOverviewStore')
@@ -30,7 +31,6 @@ export default class PerformanceOverview extends React.Component {
             // action
             onGetKeyIndicator,
             onGetPerformanceTrend,
-            onGetPerformanceApdex,
             onGetMapData
         } = this.props.performanceOverviewStore;
         const startTime = this.props.frameStore.timeType;
@@ -48,14 +48,11 @@ export default class PerformanceOverview extends React.Component {
                         getPerformanceTrend={onGetPerformanceTrend}
                         startTime = {startTime}
                     />
-                    {/*<PerformanceApdex
-                        apdex={performanceApdex}
-                        getPerformanceApdex={onGetPerformanceApdex}
-                    />
-                    <PerformanceMapChart
-                        mapData={mapData},
+                     <PerformanceMapChart
+                        mapData={mapData}
                         getMapData={onGetMapData}
-                    />*/}
+                        startTime = {startTime}
+                    />
                 </Spin>
             </div>
         );

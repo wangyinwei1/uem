@@ -26,7 +26,7 @@ export default {
         province: undefined,
         platform: sessionStorage.getItem('UEM_platform'),
         metrics: JSON.stringify(['avgRspTime']),
-        pageindex: 1,
+        pageIndex: 1,
         pageSize: 10,
         sort: 'desc',
         sortKey: undefined,
