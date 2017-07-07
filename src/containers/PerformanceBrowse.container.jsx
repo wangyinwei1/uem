@@ -22,7 +22,6 @@ export default class PerformanceBrowse extends React.Component {
             onChangeTagType,
             onGetOpersList
         } = this.props.performanceBrowseStore;
-        
         onGetOpersList({
             type,
             operType,
