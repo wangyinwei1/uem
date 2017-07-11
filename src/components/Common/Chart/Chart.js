@@ -99,12 +99,17 @@ class Chart extends Component {
             this.chartDom.group = this.group;
             // echarts.connect(this.group);
         }
-        this._setOption();
+        // this._setOption();
         console.log(`[${this.type}]: #${this.chartId} 已渲染`);
         $(window).on('resize', this._resizeChart.bind(this));
     }
     componentWillReceiveProps(nextProps) {
-        this.chartDom.setOption(Immutable.fromJS(this._mergeOptions()).mergeDeep(nextProps.options).toJS());
+        // var s = this.chartDom.dispose();
+        // this.chartDom = echarts.init(document.getElementById(this.chartId));
+        clearTimeout(this.timer);
+        this.timer = setTimeout(() => {
+            this.chartDom.setOption(Immutable.fromJS(this._mergeOptions()).mergeDeep(nextProps.options).toJS());
+        }, 300);
     }
     componentWillUnmount() {
         $(window).off('resize', this._resizeChart.bind(this));
@@ -116,7 +121,6 @@ class Chart extends Component {
         return globalOptions.mergeDeep(this.defaultOptions.mergeDeep(this.options)).toJS();
     }
     _setOption() {
-        console.log(this.defaultOptions.mergeDeep(this.options).toJS())
         this.chartDom.setOption(this._mergeOptions());
         // setTimeout(() => {
         //     this.chartDom.hideLoading();
