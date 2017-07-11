@@ -5,36 +5,36 @@ import {
 } from '../utils';
 
 class PerformanceBrowseStore {
-    @observable data = [];
+    @observable data = [[],[]];
     @observable type = JSON.stringify([0, 1, 2, 3, 4, 5, 6]);
     @observable pageIndex = 1;
     @observable operType = 'redirect';
     @observable tagType = '0';
-    @observable colOptions = [];
+    @observable colOptions = [[],[]];
     timeType = getTimeType();
 
     constructor() {
         autorun(() => {
-            console.log('[tagType]', typeof this.tagType);
-            console.log('[colOptions]', this.colOptions.toJS());
+            // console.log('[tagType]', this.tagType);
+            // console.log('[colOptions]', this.colOptions.toJS());
         });
     }
 
-    get dataList() {
-        return this.data.toJS();
-    }
+    // get dataList() {
+    //     return this.data.toJS();
+    // }
 
-    @action onChangeType = payload => {
-        this.type = payload.type;
-        this.onGetOpersList();
-    }
+    // @action onChangeType = payload => {
+    //     this.type = payload.type;
+    //     this.onGetOpersList();
+    // }
     @action onChangeTagType = payload => {
         this.tagType = payload.tagType;
         this.onGetOpersList();
     }
-    @action onChangeColOptions = payload => {
-        this.colOptions = payload.colOptions;
-    }
+    // @action onChangeColOptions = payload => {
+    //     this.colOptions = payload.colOptions;
+    // }
     @action onGetOpersList = async () => {
         try {
             const data = await Service.getOpersList({

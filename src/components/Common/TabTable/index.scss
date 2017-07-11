@@ -1,3 +1,18 @@
+.tab-table {
+}
+
+.tab-header {
+    height: 40px;
+    background-color: #153253;
+    line-height: 40px;
+    :global {
+        .btn {
+            border-radius: 0;
+            background-color: inherit;
+        }
+    }
+}
+
 .control-bar {
     padding: 0 10px;
     height: 50px;

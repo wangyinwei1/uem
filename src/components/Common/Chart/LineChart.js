@@ -12,22 +12,6 @@ const defaultOptions = Immutable.fromJS({
         left: 15,
         top: 15
     },
-    legend: {
-        itemWidth: 8,
-        itemHeight: 8,
-        data: [{
-            name: '今日',
-            icon: 'circle'
-        }, {
-            name: '昨日',
-            icon: 'circle'
-        }],
-        top: 15,
-        right: 15,
-        textStyle: {
-            color: '#fff'
-        }
-    },
     xAxis: {
         type: 'category',
         data: [],
@@ -52,24 +36,24 @@ const defaultOptions = Immutable.fromJS({
         }
     },
     color: ['#66dc6a', '#00c0ff'],
-    series: [
-        {
-            name: '今日',
-            type: 'line',
-            symbol: 'circle',
-            smooth: true,
-            showSymbol: false,
-            data: []
-        },
-        {
-            name: '昨日',
-            type: 'line',
-            symbol: 'circle',
-            smooth: true,
-            showSymbol: false,
-            data: []
-        }
-    ]
+    // series: [
+    //     {
+    //         name: '今日',
+    //         type: 'line',
+    //         symbol: 'circle',
+    //         smooth: true,
+    //         showSymbol: false,
+    //         data: []
+    //     },
+    //     {
+    //         name: '昨日',
+    //         type: 'line',
+    //         symbol: 'circle',
+    //         smooth: true,
+    //         showSymbol: false,
+    //         data: []
+    //     }
+    // ]
 });
 
 class LineChart extends Chart {

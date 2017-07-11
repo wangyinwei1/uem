@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import echarts from 'echarts';
 
 import '../../../assets/maps/china';
@@ -14,15 +14,15 @@ const globalOptions = Immutable.fromJS({
         left: 15,
         top: 15
     },
-    legend: {
-        itemWidth: 8,
-        itemHeight: 8,
-        top: 15,
-        right: 15,
-        textStyle: {
-            color: '#fff'
-        }
-    },
+    // legend: {
+    //     itemWidth: 8,
+    //     itemHeight: 8,
+    //     top: 15,
+    //     right: 15,
+    //     textStyle: {
+    //         color: '#fff'
+    //     }
+    // },
     grid: {
         left: 20,
         right: 20,
@@ -71,7 +71,7 @@ const globalOptions = Immutable.fromJS({
     }
 });
 
-class Chart extends Component {
+class Chart extends React.PureComponent {
     constructor(props) {
         super(props);
         this.state = {};
@@ -97,15 +97,13 @@ class Chart extends Component {
         if (this.group) {
             // 图表联动
             this.chartDom.group = this.group;
-            // echarts.connect(this.group);
+            echarts.connect(this.group);
         }
         // this._setOption();
         console.log(`[${this.type}]: #${this.chartId} 已渲染`);
         $(window).on('resize', this._resizeChart.bind(this));
     }
     componentWillReceiveProps(nextProps) {
-        // var s = this.chartDom.dispose();
-        // this.chartDom = echarts.init(document.getElementById(this.chartId));
         clearTimeout(this.timer);
         this.timer = setTimeout(() => {
             this.chartDom.setOption(Immutable.fromJS(this._mergeOptions()).mergeDeep(nextProps.options).toJS());
