@@ -80,6 +80,8 @@ class Chart extends React.PureComponent {
         this.options = props.options;
         this.group = props.group;
         this.customOptions = Immutable.fromJS(props.options || {});
+
+        this._resizeChart = this._resizeChart.bind(this);
     }
     componentDidMount() {
         if (!this.chartId) {
@@ -101,7 +103,7 @@ class Chart extends React.PureComponent {
         }
         // this._setOption();
         console.log(`[${this.type}]: #${this.chartId} 已渲染`);
-        $(window).on('resize', this._resizeChart.bind(this));
+        $(window).on('resize', this._resizeChart);
     }
     componentWillReceiveProps(nextProps) {
         clearTimeout(this.timer);
@@ -110,7 +112,8 @@ class Chart extends React.PureComponent {
         }, 300);
     }
     componentWillUnmount() {
-        $(window).off('resize', this._resizeChart.bind(this));
+        clearTimeout(this.timer);
+        $(window).off('resize', this._resizeChart);
     }
     _resizeChart() {
         this.chartDom.resize();

@@ -33,12 +33,14 @@ export default class PerformanceBrowse extends React.Component {
     render() {
         const { 
             dataList,
+            tagType,
             onGetOpersList 
         } = this.props.performanceBrowseStore;
         return (
             <div id="PerformanceBrowse">
                 <TabTable
                     type="PerformanceBrowse"
+                    tagType={tagType}
                     getTableData={onGetOpersList}
                     dataList={dataList}
                     changeTagType={this.changeTagType.bind(this)}

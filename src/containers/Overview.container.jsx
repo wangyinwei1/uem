@@ -42,10 +42,10 @@ export default class Overview extends React.Component {
                         getApdex={onGetApdex}
                         apdex={deploy.apdex}
                     />
-                    <Quotas
+                     <Quotas
                         trend={trend}
                         getTrend={onGetTrend}
-                    />
+                    /> 
                     <Atlas
                         getUserDistribution={onGetUserDistribution}
                     />

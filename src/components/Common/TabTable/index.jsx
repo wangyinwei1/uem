@@ -16,12 +16,18 @@ export default class TabTable extends React.Component {
         this.props.changeTagType(tagType);
     }
     render() {
-        const { type, dataList } = this.props;
+        const { 
+            type, 
+            tagType, 
+            dataList
+        } = this.props;
         return (
             <div className={styles['tab-table']}>
                 <div className={styles['tab-header']}>
                     {config[type].map((item, index) =>
-                        <a href="javascript:;" key={item.tabName} className={cls('btn')} onClick={this.changeTagType.bind(this, index)}>{item.tabName}</a>
+                        <a href="javascript:;" key={item.tabName} className={cls('btn', {
+                            [styles['tab-active']]: tagType === index
+                        })} onClick={this.changeTagType.bind(this, index)}>{item.tabName}</a>
                     )}
                 </div>
             </div>
