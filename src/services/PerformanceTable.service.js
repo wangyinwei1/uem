@@ -11,7 +11,7 @@ export default {
         sort: undefined,
         tagType: undefined,
         operType: undefined,
-        performanceType: 'browse',
+        performanceType: undefined,
         type: undefined,
         ...payload
     })

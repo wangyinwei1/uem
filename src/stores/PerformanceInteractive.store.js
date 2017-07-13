@@ -5,7 +5,7 @@ import {
     getColOptions
 } from '../utils/storage';
 
-class PerformanceBrowseStore {
+class PerformanceInteractiveStore {
     @observable loading = false;
     @observable avgRspTime = undefined;
     @observable data = [];
@@ -15,7 +15,7 @@ class PerformanceBrowseStore {
     @observable operType = 'redirect';
     @observable searchValue = undefined;
     @observable tagType = 0;
-    @observable colOptions = getColOptions('PerformanceBrowse');
+    @observable colOptions = getColOptions('PerformanceInteractive');
     timeType = getTimeType();
 
     get dataList() {
@@ -48,14 +48,14 @@ class PerformanceBrowseStore {
     }
     @action onChangeColOptions = payload => {
         this.colOptions[this.tagType] = payload.colOptions;
-        localStorage.setItem('UEM_colOptions_PerformanceBrowse', JSON.stringify(this.colOptions));
+        localStorage.setItem('UEM_colOptions_PerformanceInteractive', JSON.stringify(this.colOptions));
     }
     @action onGetOpersList = async () => {
         this.timeType = getTimeType();
         this.onLoading();
         try {
             const data = await Service.getOpersList({
-                performanceType: 'browse',
+                performanceType: 'interaction',
                 type: this.type,
                 pageIndex: this.pageIndex,
                 operType: this.operType,
@@ -81,6 +81,6 @@ class PerformanceBrowseStore {
     }
 }
 
-const performanceBrowseStore = new PerformanceBrowseStore();
+const performanceInteractiveStore = new PerformanceInteractiveStore();
 
-export default performanceBrowseStore;
+export default performanceInteractiveStore;

@@ -13,8 +13,9 @@ import {
     Frame,
     AppList,
     Overview,
+    PerformanceOverview,
     PerformanceBrowse,
-    PerformanceOverview
+    PerformanceInteractive,
 } from './containers';
 
 // 样式
@@ -51,10 +52,10 @@ ReactDOM.render(
                     <Route path="/overview" component={Overview} />
                     <Route path="/performance_browse" component={PerformanceBrowse} />
                     <Route path="/performance_overview" component={PerformanceOverview} />
+                    <Route path="/performance_interactive" component={PerformanceInteractive} />
                     {/*<Route component={AppList} />*/}
                 </Switch>
             </Frame>
         </HashRouter >
-    </Provider>
-    , document.getElementById("react")
+    </Provider>, document.getElementById("react")
 );

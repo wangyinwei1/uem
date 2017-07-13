@@ -14,7 +14,7 @@ export function getTimeType() {
 
 export function getColOptions(type) {
     switch (type) {
-        case 'PerformanceBrowse':
+        case 'PerformanceBrowse': {
             const defaultValue = [[
                 "type",
                 "operType",
@@ -41,6 +41,37 @@ export function getColOptions(type) {
             } catch (error) {
                 throw error;
             }
+            break;
+        }
+        case 'PerformanceInteractive': {
+            const defaultValue = [[
+                "type",
+                "operType",
+                "operName",
+                "apdex",
+                "thruput",
+                "errorCount",
+                "avgRspTime",
+                "pv",
+                "uv"
+            ], [
+                "operType",
+                "apdex",
+                "thruput",
+                "errorCount",
+                "avgRspTime",
+                "pv",
+                "uv"
+            ]];
+            try {
+                return JSON.parse(localStorage.getItem('UEM_colOptions_PerformanceInteractive')) === null
+                    ? defaultValue
+                    : JSON.parse(localStorage.getItem('UEM_colOptions_PerformanceInteractive'));
+            } catch (error) {
+                throw error;
+            }
+            break;
+        }
         default:
             throw new Error('type 参数未指定');
     }
