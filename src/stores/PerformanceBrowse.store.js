@@ -8,9 +8,11 @@ import {
 class PerformanceBrowseStore {
     @observable loading = false;
     @observable data = [];
+    @observable total = 0;
     @observable type = JSON.stringify([0, 1, 2, 3, 4, 5, 6]);
     @observable pageIndex = 1;
     @observable operType = 'redirect';
+    @observable searchValue = undefined;
     @observable tagType = 0;
     @observable colOptions = getColOptions('PerformanceBrowse');
     timeType = getTimeType();
@@ -41,9 +43,14 @@ class PerformanceBrowseStore {
     @action onLoaded = () => {
         this.loading = false;
     }
+    @action onSearch = payload => {
+        this.searchValue = payload.searchValue;
+        this.onGetOpersList();
+    }
     @action onChangeTagType = payload => {
         this.tagType = payload.tagType;
         this.data = [];
+        this.searchValue = undefined;
         this.onGetOpersList();
     }
     @action onChangeColOptions = payload => {
@@ -59,13 +66,15 @@ class PerformanceBrowseStore {
                 pageIndex: this.pageIndex,
                 operType: this.operType,
                 tagType: this.tagType === 0 ? 'marked' : 'unmarked',
-                startTime: moment().subtract(this.timeType.type, this.timeType.units).valueOf()
+                startTime: moment().subtract(this.timeType.type, this.timeType.units).valueOf(),
+                operName: this.searchValue
             });
             runInAction(() => {
                 this.data = data.data.map((item, index) => {
                     item.key = index;
                     return item;
                 });
+                this.total = data.total;
                 setTimeout(() => {
                     this.onLoaded()
                 }, 300);

@@ -52,10 +52,13 @@ export default class Table extends React.Component {
         return xWidth;
     }
     render() {
-        const { dataList } = this.props;
+        const { dataList, total } = this.props;
         return (
             <div className="table">
-                <AntdTable columns={this.columns} dataSource={dataList}
+                <AntdTable pagination={{
+                    total,
+                    defaultPageSize: 10
+                }} columns={this.columns} dataSource={dataList}
                     scroll={{ x: this.getScollX() }}
                 />
             </div>

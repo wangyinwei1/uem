@@ -30,13 +30,22 @@ export default class PerformanceBrowse extends React.Component {
             colOptions
         });
     }
+    search(val) {
+        const _val = val.trim() === ''
+            ? undefined
+            : val.trim();
+        this.props.performanceBrowseStore.onSearch({
+            searchValue: _val
+        });
+    }
     render() {
-        const { 
+        const {
             loading,
             columns,
             dataList,
+            total,
             tagType,
-            onGetOpersList 
+            onGetOpersList
         } = this.props.performanceBrowseStore;
         return (
             <div id="PerformanceBrowse">
@@ -46,9 +55,11 @@ export default class PerformanceBrowse extends React.Component {
                     tagType={tagType}
                     columns={columns}
                     dataList={dataList}
+                    total={total}
                     getTableData={onGetOpersList}
                     changeTagType={this.changeTagType.bind(this)}
                     changeColOptions={this.changeColOptions.bind(this)}
+                    search={this.search.bind(this)}
                 />
             </div>
         );

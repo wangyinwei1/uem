@@ -93,7 +93,7 @@ export default class ControlBar extends React.Component {
                     className={cls('search-bar')}
                     placeholder="名称"
                     style={{ width: 200 }}
-                    onSearch={value => console.log(value)}
+                    onSearch={value => this.props.search(value)}
                 />
                 <div className={styles['options']}>
                     <Popover trigger="click" placement="bottomRight" content={this.makeOptionsContent()}>

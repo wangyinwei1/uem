@@ -25,7 +25,8 @@ export default class TabTable extends React.Component {
             type,
             tagType,
             columns,
-            dataList
+            dataList,
+            total
         } = this.props;
         return (
             <div className={styles['tab-table']}>
@@ -42,17 +43,19 @@ export default class TabTable extends React.Component {
                         columns={columns}
                         tagType={tagType}
                         changeColOptions={this.props.changeColOptions}
+                        search={this.props.search}
                     />
                     <Table
                         type={type}
                         columns={columns}
                         tagType={tagType}
                         dataList={dataList}
+                        total={total}
                     />
                 </Spin>
                 {dataList.length === 0 &&
                 <div className={styles['tab-placeholder']}>
-                    <h3>你还没有进行可视化埋点，无法查看埋点数据</h3>
+                    <h2>你还没有进行可视化埋点，无法查看埋点数据</h2>
                 </div>}
             </div>
         );
