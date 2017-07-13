@@ -8,17 +8,15 @@ import config from './config';
 import styles from './index.scss';
 
 const Search = Input.Search;
-// const CheckboxGroup = Checkbox.Group;
 
 export default class ControlBar extends React.Component {
-    colOptions = []
     constructor(props) {
         super(props);
 
         this.options = config[props.type][props.tagType].options;
     }
     componentWillMount() {
-        const {columns } = this.props;
+        const { columns } = this.props;
         this.initCol(columns);
     }
     componentWillReceiveProps(nextProps) {
@@ -49,14 +47,12 @@ export default class ControlBar extends React.Component {
             }
         }
         this.colOptions = _.remove(this.colOptions, function (n) {
-            return n !== undefined
+            return n !== undefined;
         });
         this.props.changeColOptions(this.colOptions);
     }
     makeOptionsContent() {
         const { type, tagType } = this.props;
-
-        // console.log(this.props.tagType)
         return (
             <dl className={styles['col-option']}>
                 <dt>常规</dt>
@@ -92,7 +88,7 @@ export default class ControlBar extends React.Component {
     }
     render() {
         return (
-            <div className={styles['control-bar']}>
+            <div className={styles['control-bar']} key={this.props.tagType}>
                 <Search
                     className={cls('search-bar')}
                     placeholder="名称"

@@ -51,10 +51,9 @@ export default class TabTable extends React.Component {
                     />
                 </Spin>
                 {dataList.length === 0 &&
-                    <div className={styles['tab-placeholder']}>
-                        <h3>你还没有进行可视化埋点，无法查看埋点数据</h3>
-                    </div>
-                }
+                <div className={styles['tab-placeholder']}>
+                    <h3>你还没有进行可视化埋点，无法查看埋点数据</h3>
+                </div>}
             </div>
         );
     }

@@ -16,6 +16,10 @@ class PerformanceBrowseStore {
     timeType = getTimeType();
 
     constructor() {
+        autorun(() => {
+            // console.log(this.colOptions[0].toJS());
+            // console.log(this.colOptions[1].toJS());
+        });
     }
 
     get dataList() {
@@ -23,6 +27,7 @@ class PerformanceBrowseStore {
     }
 
     get columns() {
+        // console.log(this.colOptions[this.tagType].toJS());
         return this.colOptions[this.tagType].toJS();
     }
 
