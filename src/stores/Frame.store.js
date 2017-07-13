@@ -1,10 +1,11 @@
 import { observable, action } from 'mobx';
 import {
     getTimeType
-} from '../utils';
+} from '../utils/storage';
 
 class FrameStore {
 
+    @observable apdex = sessionStorage.getItem('UEM_apdex');
     @observable appId = sessionStorage.getItem('UEM_appId');
     @observable platform = sessionStorage.getItem('UEM_platform');
     @observable lang = localStorage.getItem('UEM_lang');

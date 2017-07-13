@@ -3,7 +3,7 @@ import { default as PerformacneOverviewService  } from '../services/PerformanceO
 import { default as CommonService  } from '../services/CommonInterface.service';
 import {
     getTimeType
-} from '../utils';
+} from '../utils/storage';
 
 class PerformanceOverviewStore {
     @observable keyIndicator = {};

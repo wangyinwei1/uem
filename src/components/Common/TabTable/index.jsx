@@ -26,6 +26,7 @@ export default class TabTable extends React.Component {
             tagType,
             columns,
             dataList,
+            apdexTime,
             total
         } = this.props;
         return (
@@ -41,8 +42,10 @@ export default class TabTable extends React.Component {
                     <ControlBar
                         type={type}
                         columns={columns}
+                        apdexTime={apdexTime}
                         tagType={tagType}
                         changeColOptions={this.props.changeColOptions}
+                        changeResTime={this.props.changeResTime}
                         search={this.props.search}
                     />
                     <Table

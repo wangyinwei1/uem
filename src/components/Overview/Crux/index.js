@@ -36,8 +36,11 @@ class Crux extends Component {
         const { getRealTimeData, getApdex } = this.props;
         getRealTimeData();
         getApdex();
+
+        
     }
     componentWillReceiveProps(nextProps) {
+        this.hackProgress();
     }
     hackDashboard() {
         const title = (
@@ -58,10 +61,23 @@ class Crux extends Component {
             </span>
         );
     }
+    hackProgress() {
+        const apdex = this.apdex;
+        const dashboardText = apdex === null
+            ? '暂无数据'
+            : apdex === 0
+                ? '0'
+                : `${apdex.toFixed(2) || '暂无数据'}`;
+
+        $('.ant-progress-text-hack').remove();
+        $('.ant-progress-text').hide();
+        $('.ant-progress-text').after(`<span class="ant-progress-text-hack">${dashboardText}</span>`);
+    }
     render() {
         const { realTimeData = {}, apdex: apdexT = 2000 } = this.props;
         const T = apdexT / 1000;
         const apdex = realTimeData['apdex'];
+        this.apdex = apdex;
 
         const dashboardText = apdex === null
             ? '暂无数据'
@@ -82,9 +98,9 @@ class Crux extends Component {
             default:
                 dashboardClass = styles['low'];
         }
-        $('.ant-progress-text').html(dashboardText);
+        // $('.ant-progress-text').html(dashboardText);
 
-
+        window.$ = $;
         return (
             <div className={styles['crux']}>
                 <div className={cls('tile-head')}>关键指标</div>
@@ -101,9 +117,9 @@ class Crux extends Component {
                         <Progress className={cls(dashboardClass)} strokeWidth={8} type="dashboard" percent={apdex * 100} />
                         {this.hackDashboard()}
                         <ul className={styles['range']}>
-                            <li><i className={cls('iconfont icon-manyi')}></i><span>{`${realTimeData['sPercentage'] || '--'} 的操作响应快（0 ~ ${T.toFixed(1)}s）`}</span></li>
+                            <li><i className={cls('iconfont icon-manyi')}></i><span>{`${realTimeData['dPercentage'] || '--'} 的操作响应快（0 ~ ${T.toFixed(1)}s）`}</span></li>
                             <li><i className={cls('iconfont icon-yiban')}></i><span>{`${realTimeData['tPercentage'] || '--'} 的操作可接受（${T.toFixed(1)} ~ ${(4 * T).toFixed(1)}s）`}</span></li>
-                            <li><i className={cls('iconfont icon-bumanyi')}></i><span>{`${realTimeData['dPercentage'] || '--'} 的操作响应慢（> ${(4 * T).toFixed(1)}s）`}</span></li>
+                            <li><i className={cls('iconfont icon-bumanyi')}></i><span>{`${realTimeData['sPercentage'] || '--'} 的操作响应慢（> ${(4 * T).toFixed(1)}s）`}</span></li>
                         </ul>
                     </div>
                 </div>

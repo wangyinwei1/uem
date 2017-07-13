@@ -39,6 +39,15 @@
     line-height: 50px;
 }
 
+.filter {
+    // float: right;
+    display: inline-block;
+    margin-right: 10px;
+    height: 30px;
+    font-size: 13px;
+    line-height: 30px;
+}
+
 .options {
     float: right;
     :global {

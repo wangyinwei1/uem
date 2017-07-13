@@ -8,9 +8,14 @@ import {
     HeaderBar
 } from '../components/Common';
 
-@inject('frameStore')
+@inject('frameStore', 'settingStore')
 @observer
 class Frame extends React.Component {
+    componentDidMount() {
+        
+    }
+    componentWillReceiveProps(nextProps) {
+    }
     takeModuleName(path) {
         return path.substr(1, path.length - 1);
     }

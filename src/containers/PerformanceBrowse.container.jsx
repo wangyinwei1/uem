@@ -6,7 +6,7 @@ import {
     TabTable
 } from '../components/Common'
 
-@inject('frameStore', 'performanceBrowseStore')
+@inject('frameStore', 'performanceBrowseStore', 'overviewStore')
 @observer
 export default class PerformanceBrowse extends React.Component {
     constructor(props) {
@@ -30,13 +30,22 @@ export default class PerformanceBrowse extends React.Component {
             colOptions
         });
     }
+    changeResTime(resTime) {
+        const { onChangeResTime } = this.props.performanceBrowseStore;
+        onChangeResTime({
+            resTime
+        });
+    }
     search(val) {
         const _val = val.trim() === ''
             ? undefined
             : val.trim();
-        this.props.performanceBrowseStore.onSearch({
-            searchValue: _val
-        });
+        clearTimeout(this.searchTimer);
+        this.searchTimer = setTimeout(() => {
+            this.props.performanceBrowseStore.onSearch({
+                searchValue: _val
+            });
+        }, 200);
     }
     render() {
         const {
@@ -45,8 +54,11 @@ export default class PerformanceBrowse extends React.Component {
             dataList,
             total,
             tagType,
-            onGetOpersList
+            onGetOpersList,
+            onChangeResTime
         } = this.props.performanceBrowseStore;
+        const { deploy } = this.props.overviewStore;
+        const apdexTime = (deploy.apdex / 1000).toFixed(1);
         return (
             <div id="PerformanceBrowse">
                 <TabTable
@@ -54,10 +66,12 @@ export default class PerformanceBrowse extends React.Component {
                     loading={loading}
                     tagType={tagType}
                     columns={columns}
+                    apdexTime={apdexTime}
                     dataList={dataList}
                     total={total}
                     getTableData={onGetOpersList}
                     changeTagType={this.changeTagType.bind(this)}
+                    changeResTime={this.changeResTime.bind(this)}
                     changeColOptions={this.changeColOptions.bind(this)}
                     search={this.search.bind(this)}
                 />

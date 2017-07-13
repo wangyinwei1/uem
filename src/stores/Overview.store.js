@@ -1,15 +1,39 @@
 import { observable, action, runInAction } from 'mobx';
 import Service from '../services/Overview.service';
+import {
+    getDeploy
+} from '../utils/storage';
 
 class OverviewStore {
-    @observable deploy = {};
+    @observable deploy = getDeploy();
     @observable realTimeData = {
         apdex: 0,
         sPercentage: '--',
         tPercentage: '--',
         dPercentage: '--'
     };
-    @observable trend = {};
+    @observable trend = {
+        pv: {
+            today: [],
+            yesterday: []
+        },
+        uv: {
+            today: [],
+            yesterday: []
+        },
+        clickNum: {
+            today: [],
+            yesterday: []
+        },
+        avgRspTime: {
+            today: [],
+            yesterday: []
+        },
+        errorCount: {
+            today: [],
+            yesterday: []
+        },
+    };
     @observable userDistribution = {};
 
     @action onGetRealTimeData = async payload => {
@@ -28,6 +52,7 @@ class OverviewStore {
             const data = await Service.getApdex(payload);
             runInAction(() => {
                 this.deploy = data;
+                sessionStorage.setItem('UEM_deploy', JSON.stringify(data));
             });
             return data;
         } catch (error) {

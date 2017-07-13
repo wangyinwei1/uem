@@ -1,6 +1,23 @@
 export default {
     PerformanceBrowse: [{
         tabName: '已标记',
+        // filter: [{
+        //     label: 'AJAX',
+        //     checked: true,
+        //     value: 'xhr'
+        // },{
+        //     label: '链接',
+        //     checked: true,
+        //     value: 'link'
+        // },{
+        //     label: '重定向',
+        //     checked: true,
+        //     value: 'redirect'
+        // },{
+        //     label: '表单',
+        //     checked: true,
+        //     value: 'form'
+        // }],
         options: {
             normal: [{
                 value: 'type',

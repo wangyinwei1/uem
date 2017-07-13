@@ -107,9 +107,13 @@ class Chart extends React.PureComponent {
     }
     componentWillReceiveProps(nextProps) {
         clearTimeout(this.timer);
-        this.timer = setTimeout(() => {
-            this.chartDom.setOption(Immutable.fromJS(this._mergeOptions()).mergeDeep(nextProps.options).toJS());
-        }, 300);
+        try {
+            this.timer = setTimeout(() => {
+                this.chartDom.setOption(Immutable.fromJS(this._mergeOptions()).mergeDeep(nextProps.options).toJS());
+            }, 300);
+        } catch(e) {
+            throw e;
+        }
     }
     componentWillUnmount() {
         this.chartDom.clear();

@@ -45,3 +45,19 @@ export function getColOptions(type) {
             throw new Error('type 参数未指定');
     }
 }
+
+export function getDeploy(type) {
+    const defaultValue = {
+        apdex: 100,
+        appId: '2222',
+        reportPeriod: 60000,
+        slowLoadThreshold: 40000
+    };
+    try {
+        return JSON.parse(sessionStorage.getItem('UEM_deploy')) === null
+            ? defaultValue
+            : JSON.parse(sessionStorage.getItem('UEM_deploy'));
+    } catch (error) {
+        throw error;
+    }
+}

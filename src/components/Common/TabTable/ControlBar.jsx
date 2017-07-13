@@ -8,6 +8,7 @@ import config from './config';
 import styles from './index.scss';
 
 const Search = Input.Search;
+const CheckboxGroup = Checkbox.Group;
 
 export default class ControlBar extends React.Component {
     constructor(props) {
@@ -50,6 +51,12 @@ export default class ControlBar extends React.Component {
             return n !== undefined;
         });
         this.props.changeColOptions(this.colOptions);
+    }
+    changeResTime(e) {
+        const resTime = e.target.checked
+            ? this.props.apdexTime
+            : undefined;
+        this.props.changeResTime(resTime);
     }
     makeOptionsContent() {
         const { type, tagType } = this.props;
@@ -96,6 +103,9 @@ export default class ControlBar extends React.Component {
                     onSearch={value => this.props.search(value)}
                 />
                 <div className={styles['options']}>
+                    <div className={styles['filter']}>
+                        <Checkbox value={this.props.apdexTime} onChange={this.changeResTime.bind(this)}>{`响应时间>${this.props.apdexTime}s(4T)`}</Checkbox>
+                    </div>
                     <Popover trigger="click" placement="bottomRight" content={this.makeOptionsContent()}>
                         <a className={cls('btn')} href="javascript:;">
                             <i className="iconfont icon-xiugaishanchuyibiaopankong"></i>

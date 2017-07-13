@@ -3,10 +3,11 @@ import Service from '../services/PerformanceBrowse.service';
 import {
     getTimeType,
     getColOptions
-} from '../utils';
+} from '../utils/storage';
 
 class PerformanceBrowseStore {
     @observable loading = false;
+    @observable avgRspTime = undefined;
     @observable data = [];
     @observable total = 0;
     @observable type = JSON.stringify([0, 1, 2, 3, 4, 5, 6]);
@@ -47,6 +48,10 @@ class PerformanceBrowseStore {
         this.searchValue = payload.searchValue;
         this.onGetOpersList();
     }
+    @action onChangeResTime = payload => {
+        this.avgRspTime = payload.resTime;
+        this.onGetOpersList();
+    }
     @action onChangeTagType = payload => {
         this.tagType = payload.tagType;
         this.data = [];
@@ -67,7 +72,8 @@ class PerformanceBrowseStore {
                 operType: this.operType,
                 tagType: this.tagType === 0 ? 'marked' : 'unmarked',
                 startTime: moment().subtract(this.timeType.type, this.timeType.units).valueOf(),
-                operName: this.searchValue
+                operName: this.searchValue,
+                avgRspTime: this.avgRspTime
             });
             runInAction(() => {
                 this.data = data.data.map((item, index) => {
@@ -76,7 +82,7 @@ class PerformanceBrowseStore {
                 });
                 this.total = data.total;
                 setTimeout(() => {
-                    this.onLoaded()
+                    this.onLoaded();
                 }, 300);
                 return data;
             });
