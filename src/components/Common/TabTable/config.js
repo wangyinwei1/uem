@@ -78,7 +78,7 @@ export default {
                 width: 200,
             }],
             quota: [{
-                value: 'apdex',
+                value: 'apdexD',
                 label: 'Apdex',
                 checked: true,
                 disabled: false,
@@ -127,7 +127,7 @@ export default {
                 // fixed: 'left'
             }],
             quota: [{
-                value: 'apdex',
+                value: 'apdexD',
                 label: 'Apdex',
                 checked: true,
                 disabled: false,
@@ -227,7 +227,7 @@ export default {
                 width: 200,
             }],
             quota: [{
-                value: 'apdex',
+                value: 'apdexD',
                 label: 'Apdex',
                 checked: true,
                 disabled: false,
@@ -276,7 +276,7 @@ export default {
                 // fixed: 'left'
             }],
             quota: [{
-                value: 'apdex',
+                value: 'apdexD',
                 label: 'Apdex',
                 checked: true,
                 disabled: false,
