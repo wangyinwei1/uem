@@ -19,7 +19,7 @@ export default {
             }, {
                 value: 'operName',
                 label: '页面名称',
-                width: 200,
+                width: 400,
                 checked: true,
                 disabled: true,
                 // fixed: 'left'

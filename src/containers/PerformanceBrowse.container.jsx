@@ -13,10 +13,10 @@ export default class PerformanceBrowse extends React.Component {
         super(props);
     }
     componentDidMount() {
-        // const {
-        //     onGetOpersList
-        // } = this.props.performanceBrowseStore;
-        // onGetOpersList();
+        const {
+            onGetOpersList
+        } = this.props.performanceBrowseStore;
+        onGetOpersList();
     }
     changeTagType(tagType) {
         const { onChangeTagType } = this.props.performanceBrowseStore;
@@ -32,6 +32,8 @@ export default class PerformanceBrowse extends React.Component {
     }
     render() {
         const { 
+            loading,
+            columns,
             dataList,
             tagType,
             onGetOpersList 
@@ -40,9 +42,11 @@ export default class PerformanceBrowse extends React.Component {
             <div id="PerformanceBrowse">
                 <TabTable
                     type="PerformanceBrowse"
+                    loading={loading}
                     tagType={tagType}
-                    getTableData={onGetOpersList}
+                    columns={columns}
                     dataList={dataList}
+                    getTableData={onGetOpersList}
                     changeTagType={this.changeTagType.bind(this)}
                     changeColOptions={this.changeColOptions.bind(this)}
                 />

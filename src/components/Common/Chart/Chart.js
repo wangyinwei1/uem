@@ -112,6 +112,7 @@ class Chart extends React.PureComponent {
         }, 300);
     }
     componentWillUnmount() {
+        this.chartDom.clear();
         clearTimeout(this.timer);
         $(window).off('resize', this._resizeChart);
     }

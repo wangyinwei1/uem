@@ -10,26 +10,26 @@ import styles from './index.scss';
 const Search = Input.Search;
 // const CheckboxGroup = Checkbox.Group;
 
-export default class ControlBar extends React.PureComponent {
+export default class ControlBar extends React.Component {
     colOptions = []
     constructor(props) {
         super(props);
 
-        this.options = config[props.type][props.index].options;
+        this.options = config[props.type][props.tagType].options;
     }
     componentWillMount() {
-        this.initCol();
+        const {columns } = this.props;
+        this.initCol(columns);
     }
-    initCol() {
-        const { type, index } = this.props;
-        for (let i in this.options) {
-            this.options[i].forEach(item => {
-                if (item.checked) {
-                    this.colOptions.push(item.value);
-                }
-            });
+    componentWillReceiveProps(nextProps) {
+        const { type, tagType, columns } = nextProps;
+        if (this.props.tagType !== tagType) {
+            this.options = config[type][tagType].options;
+            this.initCol(columns);
         }
-        this.props.changeColOptions(this.colOptions);
+    }
+    initCol(columns) {
+        this.colOptions = columns;
     }
     changeColOptions(e) {
         const checked = e.target.checked;
@@ -54,7 +54,9 @@ export default class ControlBar extends React.PureComponent {
         this.props.changeColOptions(this.colOptions);
     }
     makeOptionsContent() {
-        const { type, index } = this.props;
+        const { type, tagType } = this.props;
+
+        // console.log(this.props.tagType)
         return (
             <dl className={styles['col-option']}>
                 <dt>常规</dt>

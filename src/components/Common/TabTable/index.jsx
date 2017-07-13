@@ -1,5 +1,5 @@
 import React from 'react';
-import { Tabs } from 'antd';
+import { Tabs, Spin } from 'antd';
 import config from './config';
 import ControlBar from './ControlBar';
 import Table from './Table';
@@ -13,12 +13,18 @@ export default class TabTable extends React.Component {
         super(props);
     }
     changeTagType(tagType) {
+        const { tagType: oldTagType } = this.props;
+        if (oldTagType === tagType) {
+            return false;
+        }
         this.props.changeTagType(tagType);
     }
     render() {
-        const { 
-            type, 
-            tagType, 
+        const {
+            loading,
+            type,
+            tagType,
+            columns,
             dataList
         } = this.props;
         return (
@@ -30,25 +36,26 @@ export default class TabTable extends React.Component {
                         })} onClick={this.changeTagType.bind(this, index)}>{item.tabName}</a>
                     )}
                 </div>
+                <Spin spinning={loading}>
+                    <ControlBar
+                        type={type}
+                        columns={columns}
+                        tagType={tagType}
+                        changeColOptions={this.props.changeColOptions}
+                    />
+                    <Table
+                        type={type}
+                        columns={columns}
+                        tagType={tagType}
+                        dataList={dataList}
+                    />
+                </Spin>
+                {dataList.length === 0 &&
+                    <div className={styles['tab-placeholder']}>
+                        <h3>你还没有进行可视化埋点，无法查看埋点数据</h3>
+                    </div>
+                }
             </div>
-            // <Tabs defaultActiveKey='0' onChange={this.changeTagType.bind(this)}>
-            //     {config[type].map((item, index) => {
-            //         return (
-            //             <TabPane tab={item.tabName} key={`${index}`}>
-            //                 <ControlBar 
-            //                     type={type}
-            //                     index={index}
-            //                     changeColOptions={this.props.changeColOptions}
-            //                 />
-            //                 <Table
-            //                     type={type}
-            //                     tabIndex={index}
-            //                     dataList={dataList}
-            //                 />
-            //             </TabPane>
-            //         );
-            //     })}
-            // </Tabs>
         );
     }
 }

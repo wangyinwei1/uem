@@ -1,4 +1,12 @@
+@import "../../../assets/styles/mixin";
+
 .tab-table {
+    position: relative;
+    :global {
+        .ant-table-placeholder {
+            display: none;
+        }
+    }
 }
 
 .tab-header {
@@ -15,6 +23,12 @@
         background-color: #1D6AA7;
         cursor: default;
     }
+}
+
+.tab-placeholder {
+    margin: 20px 0;
+    color: #FFFFFF;
+    text-align: center;
 }
 
 .control-bar {
@@ -46,28 +60,27 @@
 
 .col-option {
     padding: 20px;
+    width: 350px;
     background-color: #226EAF;
     color: #FFFFFF;
-    dt {
-        margin: 10px 0;
-        font-weight: bold;
-        &:first-child {
-            margin-top: 0;
-        }
-    }
-}
-
-.checkbox-group {
-    width: 320px;
     font-size: 12px;
     :global {
         .ant-checkbox-wrapper {
             width: 33.333%;
             height: 25px;
             line-height: 25px;
+
+            @include toe;
             &:not(:last-child) {
                 margin-right: 0;
             }
+        }
+    }
+    dt {
+        margin: 10px 0;
+        font-weight: bold;
+        &:first-child {
+            margin-top: 0;
         }
     }
 }

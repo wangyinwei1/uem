@@ -138,8 +138,10 @@
         }
         & > td {
             padding: 10px;
+            height: 40px;
             border-bottom: 0;
             text-align: center;
+            line-height: 40px;
         }
     }
 }
