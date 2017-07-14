@@ -18,5 +18,9 @@ export default {
     setting: {
         zh_CN: '设置',
         en_US: 'Setting'
+    },
+    help: {
+        zh_CN: '帮助',
+        en_US: 'Help'
     }
 };

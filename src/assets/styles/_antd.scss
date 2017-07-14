@@ -26,6 +26,27 @@
     }
 }
 
+// Select
+.ant-select-selection {
+    border: none;
+    background-color: #1C426B;
+    color: #5E8BBD;
+}
+.ant-select-dropdown {
+    background-color: #1D6AA7;
+}
+.ant-select-dropdown-menu-item {
+    color: #2DB7F5;
+}
+.ant-select-dropdown-menu-item-selected,
+.ant-select-dropdown-menu-item-selected:hover {
+    background-color: transparent;
+    color: #FFFFFF;
+}
+.ant-select-dropdown-menu-item:hover {
+    background-color: #1C426B;
+}
+
 // Popover 
 .ant-popover-inner {
     overflow: hidden;

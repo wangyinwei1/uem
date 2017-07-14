@@ -3,13 +3,6 @@ import {Input, Modal, Select, Table, Row, Col} from 'antd';
 const Option = Select.Option;
 const OptGroup = Select.OptGroup;
 
-const selectFilterInsensitive=(inputValue, option)=>{
-    let string = option.props.children;
-    let isMatchLowerCase = string.toLowerCase().indexOf(inputValue) !== -1;
-    let isMatchUpperCase = string.toUpperCase().indexOf(inputValue) !== -1;
-    return isMatchLowerCase || isMatchUpperCase;
-}
-
 export default React.createClass({
   propTypes: {
     handleOk: PropTypes.func
@@ -177,9 +170,6 @@ export default React.createClass({
                     <Row style={{paddingTop:30}}>
                         <Col span="11">
                             <Select size="large" 
-                                    showSearch
-                                    optionFilterProp="children"
-                                    filterOption={selectFilterInsensitive}
                                     getPopupContainer={(el)=>el}
                                     notFoundContent={$.translate("ticket","create","operate_placeholder")}
                                     placeholder={$.translate("ticket","create","operate_placeholder")}

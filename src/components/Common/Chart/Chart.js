@@ -101,18 +101,21 @@ class Chart extends React.PureComponent {
             this.chartDom.group = this.group;
             echarts.connect(this.group);
         }
-        // this._setOption();
+        this._setOption();
         console.log(`[${this.type}]: #${this.chartId} 已渲染`);
         $(window).on('resize', this._resizeChart);
     }
     componentWillReceiveProps(nextProps) {
         clearTimeout(this.timer);
         try {
+            // this.chartDom.clear();
             this.timer = setTimeout(() => {
                 this.chartDom.setOption(Immutable.fromJS(this._mergeOptions()).mergeDeep(nextProps.options).toJS());
             }, 300);
         } catch(e) {
-            throw e;
+            this.chartDom.clear();
+            this.chartDom.setOption(Immutable.fromJS(this._mergeOptions()).mergeDeep(nextProps.options).toJS());
+            // throw e;
         }
     }
     componentWillUnmount() {
@@ -121,7 +124,11 @@ class Chart extends React.PureComponent {
         $(window).off('resize', this._resizeChart);
     }
     _resizeChart() {
-        this.chartDom.resize();
+        try {
+            this.chartDom.resize();
+        } catch (e) {
+            throw e;
+        }
     }
     _mergeOptions() {
         return globalOptions.mergeDeep(this.defaultOptions.mergeDeep(this.options)).toJS();

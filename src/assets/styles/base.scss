@@ -64,3 +64,15 @@ body {
         padding: 0 20px;
     }
 }
+
+.unexpand {
+    .container {
+        margin-left: 50px;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    .container {
+        margin-left: 50px;
+    }
+}

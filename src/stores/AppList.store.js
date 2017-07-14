@@ -3,6 +3,7 @@ import Service from '../services/AppList.service';
 
 class AppListStore {
     @observable appList = [];
+    @observable appListMenu = [];
     @observable total = 0;
     @observable loading = false;
     @observable pageSize = 9;
@@ -10,8 +11,9 @@ class AppListStore {
     @observable sortKey = 'createTime';
 
     constructor() {
+        
     }
-    
+
     @action onLoading = () => {
         this.loading = true;
     }
@@ -26,25 +28,42 @@ class AppListStore {
         this.sortKey = payload;
         this.onGetApps();
     }
-    @action onGetApps = async () => {
-        this.onLoading();
-        try {
-            const data = await Service.getApps({
-                sortKey: this.sortKey,
-                pageSize: this.pageSize,
-                pageIndex: this.pageIndex
-            });
-            runInAction(() => {
-                this.appList = data.data;
-                this.total = data.total;
-                setTimeout(() => {
-                    this.onLoaded()
-                }, 300);
-                return data;
-            });
-        } catch (error) {
-            this.onLoaded();
-            throw error;
+    @action onGetApps = async (payload, type) => {
+        if (type === 'appListMenu') {
+            try {
+                const data = await Service.getApps({
+                    sortKey: this.sortKey,
+                    pageSize: this.pageSize,
+                    pageIndex: this.pageIndex,
+                    ...payload
+                });
+                runInAction(() => {
+                    this.appListMenu = data.data;
+                    return data;
+                });
+            } catch (error) {
+                throw error;
+            }
+        } else {
+            this.onLoading();
+            try {
+                const data = await Service.getApps({
+                    sortKey: this.sortKey,
+                    pageSize: this.pageSize,
+                    pageIndex: this.pageIndex,
+                });
+                runInAction(() => {
+                    this.appList = data.data;
+                    this.total = data.total;
+                    setTimeout(() => {
+                        this.onLoaded()
+                    }, 300);
+                    return data;
+                });
+            } catch (error) {
+                this.onLoaded();
+                throw error;
+            }
         }
     }
     @action onUpdateApp = async payload => {
