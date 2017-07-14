@@ -91,6 +91,27 @@ export function getColOptions(type) {
             return defaultValue;
             break;
         }
+        case 'UserTable': {
+            const defaultValue = [[
+                'displayName',
+                'firstViewTimestamp',
+                'lastTime',
+                'sessionCount'
+            ], [
+                'displayName',
+                'firstViewTimestamp',
+                'lastTime',
+                'sessionCount'
+            ]];
+            try {
+                return JSON.parse(localStorage.getItem('UEM_colOptions_UserTable')) === null
+                    ? defaultValue
+                    : JSON.parse(localStorage.getItem('UEM_colOptions_UserTable'));
+            } catch (error) {
+                throw error;
+            }
+            break;
+        }
         default:
             throw new Error('type 参数未指定');
     }
@@ -107,6 +128,17 @@ export function getDeploy(type) {
         return JSON.parse(sessionStorage.getItem('UEM_deploy')) === null
             ? defaultValue
             : JSON.parse(sessionStorage.getItem('UEM_deploy'));
+    } catch (error) {
+        throw error;
+    }
+}
+
+export function getTheme() {
+    const defaultValue = 'blue';
+    try {
+        return sessionStorage.getItem('UEM_theme') === null
+            ? defaultValue
+            : sessionStorage.getItem('UEM_theme');
     } catch (error) {
         throw error;
     }

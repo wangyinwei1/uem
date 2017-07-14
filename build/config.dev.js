@@ -56,6 +56,7 @@ module.exports = webpackMerge(config, {
     devServer: {
         host: "0.0.0.0",
         historyApiFallback: true,
+        disableHostCheck: true, // 参考：https://www.213.name/archives/1006
         port: CONST.PORT,
         // compress: true, // 貌似没用，文件大小并不会减小
         // 参考：https://doc.webpack-china.org/configuration/stats/

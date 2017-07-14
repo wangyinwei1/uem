@@ -379,4 +379,59 @@ export default {
             quota: []
         }
     }],
+    UserTable: [{
+        tabName: '已登录',
+        options: {
+            normal: [{
+                label: '用户ID',
+                value: 'displayName',
+                checked: true,
+                disabled: true,
+            },{
+                label: '首次访问时间',
+                value: 'firstViewTimestamp',
+                checked: true,
+                disabled: true,
+            },{
+                label: '最后访问时间',
+                value: 'lastTime',
+                checked: true,
+                disabled: true,
+                sorter: (a, b) => a.lastTime - b.lastTime,
+            },{
+                label: '会话数',
+                value: 'sessionCount',
+                checked: true,
+                sorter: (a, b) => a.sessionCount - b.sessionCount,
+            }],
+            quota: []
+        }
+    }, {
+        tabName: '未登录',
+        options: {
+            normal: [{
+                label: '用户ID',
+                value: 'displayName',
+                checked: true,
+                disabled: true,
+            },{
+                label: '首次访问时间',
+                value: 'firstViewTimestamp',
+                checked: true,
+                disabled: true,
+            },{
+                label: '最后访问时间',
+                value: 'lastTime',
+                checked: true,
+                disabled: true,
+                sorter: (a, b) => a.lastTime - b.lastTime,
+            },{
+                label: '会话数',
+                value: 'sessionCount',
+                checked: true,
+                sorter: (a, b) => a.sessionCount - b.sessionCount,
+            }],
+            quota: []
+        }
+    }],
 };

@@ -5,3 +5,6 @@ export { default as PerformanceOverview } from './PerformanceOverview.container'
 export { default as PerformanceBrowse } from './PerformanceBrowse.container';
 export { default as PerformanceInteractive } from './PerformanceInteractive.container';
 export { default as ErrorTable } from './ErrorTable.container';
+export { default as UserTable } from './UserTable.container';
+export { default as HeatmapList } from './HeatmapList.container';
+export { default as Setting } from './Setting.container';

@@ -76,7 +76,7 @@ export default class ControlBar extends React.Component {
                         );
                     })}
                 </dd>
-                <dt>指标</dt>
+                <dt>{`${type === 'UserTable' ? '自定义属性' : '指标'}`}</dt>
                 <dd>
                     {this.options.quota.map(item => {
                         return (
@@ -109,6 +109,19 @@ export default class ControlBar extends React.Component {
                 );
             }
             return null;
+        }
+
+        if (type === 'UserTable') {
+            return (
+                <div className={styles['options']}>
+                    <Popover trigger="click" placement="bottomRight" content={this.makeOptionsContent()}>
+                        <a className={cls('btn')} href="javascript:;">
+                            <i className="iconfont icon-xiugaishanchuyibiaopankong"></i>
+                            <span>列定制</span>
+                        </a>
+                    </Popover>
+                </div>
+            );
         }
 
         return (

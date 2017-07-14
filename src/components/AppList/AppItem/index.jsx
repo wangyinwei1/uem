@@ -53,7 +53,7 @@ export default class AppItem extends React.PureComponent {
             });
         });
     }
-    deployApp(item, e) {
+    deployApp(e) {
         this.noEvent(e);
         this.context.router.history.push('/setting');
     }
