@@ -11,7 +11,7 @@ export default class HeatmapItem extends React.Component {
                 }}>
                     <div className={styles['banner']}>
                         <h3>{data.name}</h3>
-                        <p>创建时间：{data.createTime}</p>
+                        <p>创建时间：{moment(data.createTime).format('MM-DD')}</p>
                     </div>
                 </a>
             </div>
