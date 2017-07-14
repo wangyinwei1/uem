@@ -51,7 +51,7 @@ export default {
             icon: 'icon-yonghu'
         }, {
             name: '热力图',
-            to: '/heatmap',
+            to: '/heatmap_list',
             icon: 'icon-retu'
         }]
     }]

@@ -93,6 +93,38 @@ export default class ControlBar extends React.Component {
             </dl>
         );
     }
+    switchControl(type) {
+        if (type === 'ErrorTable') {
+            if (this.props.tagType === 0) {
+                return (
+                    <div className={styles['options']}>
+                        <a className={cls('btn', {
+                            [styles['not-allow']]: this.props.rows.length === 0
+                        })} href="javascript:;" onClick={() => {
+                            return this.props.rows.length === 0
+                                ? null
+                                : this.props.resolveRow()
+                        }}>标记为已解决</a>
+                    </div>
+                );
+            }
+            return null;
+        }
+
+        return (
+            <div className={styles['options']}>
+                <div className={styles['filter']}>
+                    <Checkbox value={this.props.apdexTime} onChange={this.changeResTime.bind(this)}>{`响应时间>${this.props.apdexTime}s(4T)`}</Checkbox>
+                </div>
+                <Popover trigger="click" placement="bottomRight" content={this.makeOptionsContent()}>
+                    <a className={cls('btn')} href="javascript:;">
+                        <i className="iconfont icon-xiugaishanchuyibiaopankong"></i>
+                        <span>列定制</span>
+                    </a>
+                </Popover>
+            </div>
+        );
+    }
     render() {
         return (
             <div className={styles['control-bar']} key={this.props.tagType}>
@@ -102,17 +134,7 @@ export default class ControlBar extends React.Component {
                     style={{ width: 200 }}
                     onSearch={value => this.props.search(value)}
                 />
-                <div className={styles['options']}>
-                    <div className={styles['filter']}>
-                        <Checkbox value={this.props.apdexTime} onChange={this.changeResTime.bind(this)}>{`响应时间>${this.props.apdexTime}s(4T)`}</Checkbox>
-                    </div>
-                    <Popover trigger="click" placement="bottomRight" content={this.makeOptionsContent()}>
-                        <a className={cls('btn')} href="javascript:;">
-                            <i className="iconfont icon-xiugaishanchuyibiaopankong"></i>
-                            <span>列定制</span>
-                        </a>
-                    </Popover>
-                </div>
+                {this.switchControl(this.props.type)}
             </div>
         );
     }

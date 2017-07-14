@@ -65,6 +65,11 @@
             }
         }
     }
+
+    .not-allow {
+        background-color: #666666;
+        cursor: not-allowed;
+    }
 }
 
 .col-option {
