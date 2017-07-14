@@ -8,6 +8,7 @@ import errorTableStore from './ErrorTable.store';
 import userTableStore from './UserTable.store';
 import heatmapListStore from './HeatmapList.store';
 import settingStore from './Setting.store';
+import errorOverviewStore from './ErrorOverview.store';
 
 
 export default {
@@ -21,4 +22,5 @@ export default {
     userTableStore,
     heatmapListStore,
     settingStore,
+    errorOverviewStore
 };

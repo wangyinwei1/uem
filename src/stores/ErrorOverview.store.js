@@ -1,18 +1,17 @@
 import { observable, action, runInAction,autorun } from 'mobx';
-// import { default as PerformacneOverviewService  } from '../services/PerformanceOverview.service';
 import { default as CommonService  } from '../services/CommonInterface.service';
 import {
     getTimeType
 } from '../utils/storage';
 
-class PerformanceOverviewStore {
+class ErrorOverviewStore {
     @observable keyIndicator = {};
-    @observable performanceTrend = {};
+    @observable errorTrend = {};
     @observable mapData = {
         yAxis: [],
         series: []
     };
-    timeType = getTimeType();
+    timeType = getTimeType(); 
 
     @action onGetKeyIndicator = async payload => {
         try {
@@ -28,28 +27,19 @@ class PerformanceOverviewStore {
             throw error;
         }
     }
-    @action onGetPerformanceTrend = async payload => {
+
+     @action onGetErrorTrend = async payload => {
         try {
             const data = await CommonService.getTrend(payload);
             runInAction(() => {
-                this.performanceTrend = data;
+                this.errorTrend = data;
             });
             return data;
         } catch (error) {
             throw error;
         }
     }
-    // @action onGetPerformanceApdex = async payload => {
-    //     try {
-    //         const data = await PerformacneOverviewService.getTrend(payload);
-    //         runInAction(() => {
-    //             this.performanceApdex = data;
-    //         });
-    //         return data;
-    //     } catch (error) {
-    //         throw error;
-    //     }
-    // }
+
     @action onGetMapData = async payload => {
         try {
             const datas = await CommonService.getMapData({
@@ -60,7 +50,7 @@ class PerformanceOverviewStore {
                 let yAxisData = [], seriesData = [];
                 datas.data && datas.data.map((item, index) => {
                     yAxisData.push(item.area);
-                    seriesData.push(item.avgRspTime);
+                    seriesData.push(item.occurErrorUserRate);
                 })
                 let tempMapData = { };
                 tempMapData.yAxis = yAxisData;
@@ -74,6 +64,6 @@ class PerformanceOverviewStore {
     }
 }
 
-const performanceOverviewStore = new PerformanceOverviewStore();
+const errorOverviewStore = new ErrorOverviewStore();
 
-export default performanceOverviewStore;
+export default errorOverviewStore;

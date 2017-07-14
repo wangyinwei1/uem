@@ -10,7 +10,7 @@ export default {
         ...payload
     }),
 
-    getPerformanceTrend: payload => Request('get','indexs/trend/view',{
+    getTrend: payload => Request('get','indexs/trend/view',{
         appId: sessionStorage.getItem('UEM_appId'),
         platform: sessionStorage.getItem('UEM_platform'),
         startTime: undefined,

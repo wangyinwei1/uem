@@ -8,3 +8,4 @@ export { default as ErrorTable } from './ErrorTable.container';
 export { default as UserTable } from './UserTable.container';
 export { default as HeatmapList } from './HeatmapList.container';
 export { default as Setting } from './Setting.container';
+export { default as ErrorOverview } from './ErrorOverview.container';

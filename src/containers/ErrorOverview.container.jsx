@@ -4,13 +4,13 @@ import { Spin } from 'antd';
 
 import {
     KeyIndicator,
-    PerformanceTrend,
-    PerformanceMapChart
-} from '../components/PerformanceOverview';
+    ErrorTrend,
+    ErrorMapChart
+} from '../components/ErrorOverview';
 
-@inject('frameStore', 'performanceOverviewStore')
+@inject('frameStore', 'errorOverviewStore')
 @observer
-export default class PerformanceOverview extends React.Component {
+export default class ErrorOverview extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -27,30 +27,30 @@ export default class PerformanceOverview extends React.Component {
         const {
             // state
             keyIndicator,
-            performanceTrend,
+            errorTrend,
             mapData,
             // action
             onGetKeyIndicator,
-            onGetPerformanceTrend,
+            onGetErrorTrend,
             onGetMapData
-        } = this.props.performanceOverviewStore;
+        } = this.props.errorOverviewStore;
 
         const startTime = this.props.frameStore.timeType;
         const { loading } = this.state;
         return (
-            <div id="PerformanceOverview" >
+            <div id="ErrorOverview" >
                 <Spin spinning={loading} size="large">
                     <KeyIndicator
                         keyIndicator={keyIndicator}
                         getKeyIndicator={onGetKeyIndicator}
                         startTime = {startTime}
                     />
-                    <PerformanceTrend
-                        performanceTrend={performanceTrend}
-                        getPerformanceTrend={onGetPerformanceTrend}
+                    <ErrorTrend
+                        errorTrend={errorTrend}
+                        getErrorTrend={onGetErrorTrend}
                         startTime = {startTime}
                     />
-                     <PerformanceMapChart
+                     <ErrorMapChart
                         mapData={mapData}
                         getMapData={onGetMapData}
                         startTime = {startTime}
