@@ -16,6 +16,7 @@ import {
     PerformanceOverview,
     PerformanceBrowse,
     PerformanceInteractive,
+    ErrorTable,
 } from './containers';
 
 // 样式
@@ -53,6 +54,7 @@ ReactDOM.render(
                     <Route path="/performance_browse" component={PerformanceBrowse} />
                     <Route path="/performance_overview" component={PerformanceOverview} />
                     <Route path="/performance_interactive" component={PerformanceInteractive} />
+                    <Route path="/error_table" component={ErrorTable} />
                     {/*<Route component={AppList} />*/}
                 </Switch>
             </Frame>

@@ -23,6 +23,7 @@ export default class TabTable extends React.Component {
         const {
             loading,
             type,
+            rows,
             tagType,
             columns,
             dataList,
@@ -43,9 +44,11 @@ export default class TabTable extends React.Component {
                         type={type}
                         columns={columns}
                         apdexTime={apdexTime}
+                        rows={rows}
                         tagType={tagType}
                         changeColOptions={this.props.changeColOptions}
                         changeResTime={this.props.changeResTime}
+                        resolveRow={this.props.resolveRow}
                         search={this.props.search}
                     />
                     <Table
@@ -54,6 +57,7 @@ export default class TabTable extends React.Component {
                         tagType={tagType}
                         dataList={dataList}
                         total={total}
+                        changeRows={this.props.changeRows}
                     />
                 </Spin>
                 {dataList.length === 0 &&

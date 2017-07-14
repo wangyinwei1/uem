@@ -313,5 +313,70 @@ export default {
                 width: 100,
             }]
         }
-    }]
+    }],
+    ErrorTable: [{
+        tabName: '未解决',
+        options: {
+            normal: [{
+                label: '错误ID',
+                value: 'summaryId',
+                width: '20%',
+            }, {
+                label: '错误类型',
+                value: 'errorType',
+                width: '5%',
+            }, {
+                label: '错误描述',
+                value: 'errorInfo',
+                width: '30%',
+            }, {
+                label: '错误数',
+                value: 'errorCount',
+                width: '10%',
+                sorter: (a, b) => a.errorCount - b.errorCount,
+            }, {
+                label: '趋势',
+                value: 'trend',
+                width: '15%',
+            }, {
+                label: '最近发生时间',
+                value: 'lastTime',
+                width: '20%',
+                sorter: (a, b) => a.lastTime - b.lastTime,
+            }],
+            quota: []
+        }
+    }, {
+        tabName: '已解决',
+        options: {
+            normal: [{
+                label: '错误ID',
+                value: 'summaryId',
+                width: '20%',
+            }, {
+                label: '错误类型',
+                value: 'errorType',
+                width: '5%',
+            }, {
+                label: '错误描述',
+                value: 'errorInfo',
+                width: '30%',
+            }, {
+                label: '错误数',
+                value: 'errorCount',
+                width: '10%',
+                sorter: (a, b) => a.errorCount - b.errorCount,
+            }, {
+                label: '趋势',
+                value: 'trend',
+                width: '15%',
+            }, {
+                label: '最近发生时间',
+                value: 'lastTime',
+                width: '20%',
+                sorter: (a, b) => a.lastTime - b.lastTime,
+            }],
+            quota: []
+        }
+    }],
 };

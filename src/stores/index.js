@@ -4,6 +4,7 @@ import overviewStore from './Overview.store';
 import performanceOverviewStore from './PerformanceOverview.store';
 import performanceBrowseStore from './PerformanceBrowse.store';
 import performanceInteractiveStore from './PerformanceInteractive.store';
+import errorTableStore from './ErrorTable.store';
 import settingStore from './Setting.store';
 
 
@@ -14,5 +15,6 @@ export default {
     performanceOverviewStore,
     performanceBrowseStore,
     performanceInteractiveStore,
+    errorTableStore,
     settingStore,
 }

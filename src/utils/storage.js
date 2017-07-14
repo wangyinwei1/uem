@@ -16,23 +16,23 @@ export function getColOptions(type) {
     switch (type) {
         case 'PerformanceBrowse': {
             const defaultValue = [[
-                "type",
-                "operType",
-                "operName",
-                "apdex",
-                "thruput",
-                "errorCount",
-                "avgRspTime",
-                "pv",
-                "uv"
+                'type',
+                'operType',
+                'operName',
+                'apdex',
+                'thruput',
+                'errorCount',
+                'avgRspTime',
+                'pv',
+                'uv'
             ], [
-                "operType",
-                "apdex",
-                "thruput",
-                "errorCount",
-                "avgRspTime",
-                "pv",
-                "uv"
+                'operType',
+                'apdex',
+                'thruput',
+                'errorCount',
+                'avgRspTime',
+                'pv',
+                'uv'
             ]];
             try {
                 return JSON.parse(localStorage.getItem('UEM_colOptions_PerformanceBrowse')) === null
@@ -45,23 +45,23 @@ export function getColOptions(type) {
         }
         case 'PerformanceInteractive': {
             const defaultValue = [[
-                "type",
-                "operType",
-                "operName",
-                "apdex",
-                "thruput",
-                "errorCount",
-                "avgRspTime",
-                "pv",
-                "uv"
+                'type',
+                'operType',
+                'operName',
+                'apdex',
+                'thruput',
+                'errorCount',
+                'avgRspTime',
+                'pv',
+                'uv'
             ], [
-                "operType",
-                "apdex",
-                "thruput",
-                "errorCount",
-                "avgRspTime",
-                "pv",
-                "uv"
+                'operType',
+                'apdex',
+                'thruput',
+                'errorCount',
+                'avgRspTime',
+                'pv',
+                'uv'
             ]];
             try {
                 return JSON.parse(localStorage.getItem('UEM_colOptions_PerformanceInteractive')) === null
@@ -70,6 +70,25 @@ export function getColOptions(type) {
             } catch (error) {
                 throw error;
             }
+            break;
+        }
+        case 'ErrorTable': {
+            const defaultValue = [[
+                'summaryId',
+                'errorType',
+                'errorInfo',
+                'errorCount',
+                'trend',
+                'lastTime'
+            ], [
+                'summaryId',
+                'errorType',
+                'errorInfo',
+                'errorCount',
+                'trend',
+                'lastTime'
+            ]];
+            return defaultValue;
             break;
         }
         default:

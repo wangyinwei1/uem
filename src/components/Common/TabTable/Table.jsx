@@ -29,13 +29,14 @@ export default class Table extends React.Component {
         columns.forEach(columnName => {
             ['normal', 'quota'].forEach(key => {
                 config[type][tagType].options[key].map(item => {
-                    const { label, value, width, fixed } = item;
+                    const { label, value, width, fixed, sorter } = item;
                     if (columnName === value) {
                         this.columns.push({
                             title: label,
                             dataIndex: value,
                             width,
-                            fixed
+                            fixed,
+                            sorter
                         });
                     }
                 });
@@ -51,14 +52,30 @@ export default class Table extends React.Component {
         });
         return xWidth;
     }
+    selectRow(key, row) {
+        const rows = row.map(item => item.summaryId);
+        console.log(rows);
+        this.props.changeRows(rows);
+    }
+    rowSelection() {
+        const { type, tagType } = this.props;
+        if (type === 'ErrorTable' && tagType === 0) {
+            return {
+                onChange: this.selectRow.bind(this)
+            }
+        }
+
+        return null;
+    }
     render() {
         const { dataList, total } = this.props;
+        const rowSelection = this.rowSelection();
         return (
             <div className="table">
                 <AntdTable pagination={{
                     total,
                     defaultPageSize: 10
-                }} columns={this.columns} dataSource={dataList}
+                }} rowSelection={rowSelection} columns={this.columns} dataSource={dataList}
                     scroll={{ x: this.getScollX() }}
                 />
             </div>
