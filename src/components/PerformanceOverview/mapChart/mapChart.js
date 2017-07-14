@@ -12,9 +12,6 @@ class PerformanceMapChart extends Component {
         this.state = {
             activeMap: 'china'
         };
-        // let yAxis = [];
-        // let series = [];
-        // let configUpdate = {};
     }
     componentDidMount(){
         const { getMapData } = this.props;
@@ -33,17 +30,18 @@ class PerformanceMapChart extends Component {
     }
     componentWillReceiveProps(nextProps){
         // debugger
-        if(nextProps.mapData !== this.props.mapData){
-            this.props.mapData = nextProps.mapData;
-        }
+        // if(nextProps.mapData !== this.props.mapData){
+        //     this.props.mapData = nextProps.mapData;
+        // }
     }
     render() {
+        // debugger
         const { activeMap } = this.state;
-        let configUpdate ;
-        let yAxis = this.props.mapData.yAxis, series = this.props.mapData.series;
-        console.log('[this.props.mapdata]:',this.props.mapData,yAxis,series);
-        configUpdate = config.get('bar').updateIn(['yAxis','data'], value => yAxis).updateIn(['series',0,'data'],value=> series);
-        console.log('[configUpdate]',configUpdate.toJS() );
+        let configUpdate,yAxis,series;
+        yAxis = this.props.mapData.yAxis;
+        series = this.props.mapData.series;
+        configUpdate = config.get('bar').updateIn(['yAxis','data'], () => yAxis).updateIn(['series',0,'data'],()=> series);
+        console.log('[this.props.mapdata]:',this.props.mapData,'\n','[yAxis,series]:',yAxis,series,'\n','[configUpdate]:',configUpdate.toJS());
         return (
             <div className={styles['map-chart']}>
                 <div className={cls('tile-head')}>用户分布</div>

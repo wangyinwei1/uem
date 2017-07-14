@@ -1,4 +1,4 @@
-import { observable, action, runInAction } from 'mobx';
+import { observable, action, runInAction,autorun } from 'mobx';
 import { default as PerformacneOverviewService  } from '../services/PerformanceOverview.service';
 import { default as CommonService  } from '../services/CommonInterface.service';
 import {
@@ -12,6 +12,9 @@ class PerformanceOverviewStore {
     @observable mapData = {};
     timeType = getTimeType();
 
+    constructor(){
+        autorun(() => { console.log('[store -> mapData]:', this.mapData) }) 
+    }
     @action onGetKeyIndicator = async payload => {
         try {
             const data = await CommonService.getKeyIndicator({
@@ -60,8 +63,10 @@ class PerformanceOverviewStore {
                     yAxisData.push(item.area);
                     seriesData.push(item.avgRspTime);
                 })
-                this.mapData.yAxis = yAxisData;
-                this.mapData.series = seriesData;
+                let tempMapData = this.mapData;
+                tempMapData.yAxis = yAxisData;
+                tempMapData.series = seriesData;
+                this.mapData = tempMapData;
             });
             return datas;
         } catch (e) {

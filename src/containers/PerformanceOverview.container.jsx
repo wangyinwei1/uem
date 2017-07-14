@@ -22,6 +22,7 @@ export default class PerformanceOverview extends React.Component {
             loading: false
         });
     }
+
     render() {
         const {
             // state
@@ -33,6 +34,8 @@ export default class PerformanceOverview extends React.Component {
             onGetPerformanceTrend,
             onGetMapData
         } = this.props.performanceOverviewStore;
+
+        console.log('[container里的mapData]:',mapData);
         const startTime = this.props.frameStore.timeType;
         const { loading } = this.state;
         return (
