@@ -19,7 +19,8 @@ import {
     ErrorTable,
     UserTable,
     HeatmapList,
-    Setting
+    Setting,
+    ErrorOverview,
 } from './containers';
 
 // 样式
@@ -61,6 +62,7 @@ ReactDOM.render(
                     <Route path="/user_table" component={UserTable} />
                     <Route path="/heatmap_list" component={HeatmapList} />
                     <Route path="/setting" component={Setting} />
+                    <Route path="/error_overview" component={ErrorOverview} />>
                     {/* <Route component={AppList} /> */}
                 </Switch>
             </Frame>

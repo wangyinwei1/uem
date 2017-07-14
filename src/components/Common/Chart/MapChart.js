@@ -60,19 +60,19 @@ const defaultOptions = Immutable.fromJS({
         showLegendSymbol: false,
         // selectedMode: 'multiple',
         data: [
-            { name: '陕西', value: randomData() },
-            { name: '吉林', value: randomData() },
-            { name: '福建', value: randomData() },
-            { name: '贵州', value: randomData() },
-            { name: '广东', value: randomData() },
-            { name: '青海', value: randomData() },
-            { name: '西藏', value: randomData() },
-            { name: '四川', value: randomData() },
-            { name: '宁夏', value: randomData() },
-            { name: '海南', value: randomData() },
-            { name: '台湾', value: randomData() },
-            { name: '香港', value: randomData() },
-            { name: '澳门', value: randomData() }
+            // { name: '陕西', value: randomData() },
+            // { name: '吉林', value: randomData() },
+            // { name: '福建', value: randomData() },
+            // { name: '贵州', value: randomData() },
+            // { name: '广东', value: randomData() },
+            // { name: '青海', value: randomData() },
+            // { name: '西藏', value: randomData() },
+            // { name: '四川', value: randomData() },
+            // { name: '宁夏', value: randomData() },
+            // { name: '海南', value: randomData() },
+            // { name: '台湾', value: randomData() },
+            // { name: '香港', value: randomData() },
+            // { name: '澳门', value: randomData() }
         ],
         label: {
             normal: {

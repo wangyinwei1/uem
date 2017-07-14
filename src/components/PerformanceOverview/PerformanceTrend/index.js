@@ -3,6 +3,7 @@ import { Row, Col } from 'antd';
 import {
     LineChart
 } from '../../Common/Chart';
+import styles from './index.scss';
 
 // import styles from './index.scss';
 
@@ -200,13 +201,13 @@ class PerformanceTrend extends Component {
         return (
             <div>
                 <Row>
-                    <Col style={{width:'61%',display:'inline-block',marginRight:10}}>
+                    <Col className={styles['performance-trend']}>
                         <div className={cls('tile-head')}>性能趋势</div>
                         <div className={cls('tile-body')}>
                             <LineChart group="PerformanceTrend" chartId="PerformanceTrend" options={options} />
                         </div>
                     </Col>
-                    <Col style={{width:'38%',display:'inline-block'}}>
+                    <Col className={styles['apdex-chart']}>
                         <div className={cls('tile-head')}>Apdex指数</div>
                         <div className={cls('tile-body')}>
                             <LineChart group="apedxTrend" chartId="apedxTrend" options={apdexOptions} />

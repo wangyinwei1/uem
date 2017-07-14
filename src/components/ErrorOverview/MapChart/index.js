@@ -6,7 +6,7 @@ import {
 import config from './config';
 import styles from './index.scss';
 
-class PerformanceMapChart extends Component {
+class ErrorMapChart extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -15,7 +15,9 @@ class PerformanceMapChart extends Component {
     }
     componentDidMount(){
         const { getMapData } = this.props;
-        getMapData();
+        getMapData({
+            metrics: JSON.stringify(['occurErrorUserRate'])
+        });
     }
     changeMap(map) {
         let prevState = this.state.activeMap;
@@ -25,26 +27,31 @@ class PerformanceMapChart extends Component {
         } else {
             this.setState({
                 activeMap: map
-            }, () => this.props.getMapData({ areaType : map == 'china' ? 'province' : 'country'}));
+            }, () => this.props.getMapData({ 
+                areaType : map == 'china' ? 'province' : 'country',
+                metrics: JSON.stringify(['occurErrorUserRate'])
+            }));
         } 
     }
-    componentWillReceiveProps(nextProps){
-        // debugger
-        // if(nextProps.mapData !== this.props.mapData){
-        //     this.props.mapData = nextProps.mapData;
-        // }
-    }
+
     render() {
-        // debugger
         const { activeMap } = this.state;
-        let configUpdate,yAxis,series;
+        let pillarConfig,mapConfig,yAxis,series,mapSeriesData=[];
         yAxis = this.props.mapData.yAxis;
         series = this.props.mapData.series;
-        configUpdate = config.get('bar').updateIn(['yAxis','data'], () => yAxis).updateIn(['series',0,'data'],()=> series);
-        console.log('[this.props.mapdata]:',this.props.mapData,'\n','[yAxis,series]:',yAxis,series,'\n','[configUpdate]:',configUpdate.toJS());
+
+        for(let i = 0 , len = series.length; i < len ; i++){
+            mapSeriesData.push({
+                name: yAxis[i],
+                value: series[i]
+            })
+        }
+        pillarConfig = config.get('bar').updateIn(['yAxis','data'], () => yAxis).updateIn(['series',0,'data'],()=> series);
+        mapConfig = config.get(activeMap).updateIn(['series',0,'data'], ()=> mapSeriesData );
+        console.log('[mapConfig]:',mapConfig.toJS());
         return (
             <div className={styles['map-chart']}>
-                <div className={cls('tile-head')}>用户分布</div>
+                <div className={cls('tile-head')}>地理位置</div>
                 <div className={cls('tile-body')}>
                     <div className={styles['btn-wrap']}>
                         <div className={cls('btn btn-china', {
@@ -55,10 +62,10 @@ class PerformanceMapChart extends Component {
                         })} onClick={this.changeMap.bind(this, 'world')}>世界</div>
                     </div>
                     <MapChart chartId="map" group="atlas" className={styles['map-chart']} 
-                        options={config.get('default').mergeDeep(config.get(activeMap)).toJS()} 
+                        options={config.get('default').mergeDeep(mapConfig).toJS()} 
                     />
                     <BarChart chartId="bar" group="atlas" className={styles['bar-chart']} 
-                        options={config.get('default').mergeDeep(configUpdate).toJS()} 
+                        options={config.get('default').mergeDeep(pillarConfig).toJS()} 
                     />
                 </div>
             </div>
@@ -66,4 +73,4 @@ class PerformanceMapChart extends Component {
     }
 }
 
-export default PerformanceMapChart;
+export default ErrorMapChart;
