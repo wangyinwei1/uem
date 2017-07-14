@@ -50,14 +50,20 @@ class PerformanceOverviewStore {
     // }
     @action onGetMapData = async payload => {
         try {
-            const data = await CommonService.getMapData({
+            const datas = await CommonService.getMapData({
                 startTime: moment().subtract(this.timeType.type, this.timeType.units).valueOf(),
                 ...payload
             });
             runInAction(() => {
-                this.mapData = data;
+                let yAxisData = [], seriesData = [];
+                datas.data && datas.data.map((item, index) => {
+                    yAxisData.push(item.area);
+                    seriesData.push(item.avgRspTime);
+                })
+                this.mapData.yAxis = yAxisData;
+                this.mapData.series = seriesData;
             });
-            return data;
+            return datas;
         } catch (e) {
             throw e;
         }

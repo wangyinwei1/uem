@@ -12,6 +12,9 @@ class PerformanceMapChart extends Component {
         this.state = {
             activeMap: 'china'
         };
+        // let yAxis = [];
+        // let series = [];
+        // let configUpdate = {};
     }
     componentDidMount(){
         const { getMapData } = this.props;
@@ -25,13 +28,22 @@ class PerformanceMapChart extends Component {
         } else {
             this.setState({
                 activeMap: map
-            },this.props.getMapData({ 
-                areaType : map == 'china' ? 'province' : 'country'
-             }));
+            }, () => this.props.getMapData({ areaType : map == 'china' ? 'province' : 'country'}));
         } 
+    }
+    componentWillReceiveProps(nextProps){
+        // debugger
+        if(nextProps.mapData !== this.props.mapData){
+            this.props.mapData = nextProps.mapData;
+        }
     }
     render() {
         const { activeMap } = this.state;
+        let configUpdate ;
+        let yAxis = this.props.mapData.yAxis, series = this.props.mapData.series;
+        console.log('[this.props.mapdata]:',this.props.mapData,yAxis,series);
+        configUpdate = config.get('bar').updateIn(['yAxis','data'], value => yAxis).updateIn(['series',0,'data'],value=> series);
+        console.log('[configUpdate]',configUpdate.toJS() );
         return (
             <div className={styles['map-chart']}>
                 <div className={cls('tile-head')}>用户分布</div>
@@ -48,7 +60,7 @@ class PerformanceMapChart extends Component {
                         options={config.get('default').mergeDeep(config.get(activeMap)).toJS()} 
                     />
                     <BarChart chartId="bar" group="atlas" className={styles['bar-chart']} 
-                        options={config.get('default').mergeDeep(config.get('bar')).toJS()} 
+                        options={config.get('default').mergeDeep(configUpdate).toJS()} 
                     />
                 </div>
             </div>
