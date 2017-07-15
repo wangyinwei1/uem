@@ -4,6 +4,7 @@ import config from './config';
 import styles from './index.scss';
 
 export default class Table extends React.Component {
+    index = null
     columns = [];
     constructor(props) {
         super(props);
@@ -12,6 +13,9 @@ export default class Table extends React.Component {
         this.getScollX = this.getScollX.bind(this);
     }
     componentWillReceiveProps(nextProps) {
+        if (nextProps.tagType !== this.props.tagType) {
+            this.index = null;
+        }
         if (nextProps.columns !== this.props.columns) {
             clearTimeout(this.colTimer);
             this.colTimer = setTimeout(() => {
@@ -54,7 +58,6 @@ export default class Table extends React.Component {
     }
     selectRow(key, row) {
         const rows = row.map(item => item.summaryId);
-        console.log(rows);
         this.props.changeRows(rows);
     }
     rowSelection() {
@@ -67,15 +70,27 @@ export default class Table extends React.Component {
 
         return null;
     }
+    rowClickHandler(record, index, event) {
+        console.log(record, index, event);
+        if (this.index === index) {
+            return false;
+        }
+        this.index = index;
+        this.props.changeCurrentRow({
+            record
+        });
+    }
     render() {
         const { dataList, total } = this.props;
         const rowSelection = this.rowSelection();
         return (
             <div className="table">
-                <AntdTable pagination={{
-                    total,
-                    defaultPageSize: 10
-                }} rowSelection={rowSelection} columns={this.columns} dataSource={dataList}
+                <AntdTable
+                    onRowClick={this.rowClickHandler.bind(this)}
+                    pagination={{
+                        total,
+                        defaultPageSize: 10
+                    }} rowSelection={rowSelection} columns={this.columns} dataSource={dataList}
                     scroll={{ x: this.getScollX() }}
                 />
             </div>

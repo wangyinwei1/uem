@@ -1,4 +1,4 @@
 // 关键指标
-export { default as KeyIndicator } from './KeyIndicator/index';
-export { default as PerformanceTrend } from './PerformanceTrend/index';
-export { default as PerformanceMapChart } from './MapChart/index';
+export { default as KeyIndicator } from './KeyIndicator';
+export { default as PerformanceTrend } from './PerformanceTrend';
+export { default as PerformanceMapChart } from './MapChart';

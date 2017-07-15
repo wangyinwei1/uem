@@ -33,6 +33,7 @@
     position: fixed;
     top: 0;
     left: 0;
+    z-index: 10;
     overflow-y: auto;
     box-sizing: border-box;
     padding-top: 75px;
@@ -52,8 +53,9 @@
                 margin-left: 3px;
                 margin-left: 28px;
                 padding: 10px 0;
-                color: #3887B9;
-                cursor: pointer;
+                color: #48769E;
+                font-size: 13px;
+                cursor: default;
             }
         }
     }

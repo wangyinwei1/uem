@@ -16,7 +16,15 @@ class PerformanceBrowseStore {
     @observable searchValue = undefined;
     @observable tagType = 0;
     @observable colOptions = getColOptions('PerformanceBrowse');
+
+    @observable currentRow = [];
     timeType = getTimeType();
+
+    constructor() {
+        autorun(() => {
+            // console.log(this.currentRow)
+        });
+    }
 
     get dataList() {
         return this.data.toJS();
@@ -52,6 +60,7 @@ class PerformanceBrowseStore {
     }
     @action onGetOpersList = async () => {
         this.timeType = getTimeType();
+        this.currentRow = [];
         this.onLoading();
         try {
             const data = await Service.getOpersList({
@@ -78,6 +87,15 @@ class PerformanceBrowseStore {
         } catch (error) {
             throw error;
         }
+    }
+
+    @action onChangeCurrentRow = payload => {
+        const arr = this.currentRow.toJS();
+        arr.push(payload.record);
+        if (arr.length === 3) {
+            arr.shift();
+        }
+        this.currentRow = arr;
     }
 }
 

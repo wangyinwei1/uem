@@ -1,0 +1,21 @@
+.side-panel {
+    position: fixed;
+    top: 75px;
+    right: -70%;
+    bottom: 0;
+    padding: 20px;
+    width: 70%;
+    background-color: #145E99;
+    box-shadow: 2px 8px 20px -5px #000000;
+    transition: right .65s;
+}
+
+.next {
+    right: 0;
+    z-index: 2;
+}
+
+.prev {
+    right: -70%;
+    z-index: 1;
+}
