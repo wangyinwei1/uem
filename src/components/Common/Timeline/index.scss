@@ -1,0 +1,25 @@
+$iconRadius: 14px; //圆的半径
+.item {
+  margin-left: 35px;
+  width: calc(100% - 35px);
+  border-left: 2px solid#2980bf;
+  .icon {
+    width: $iconRadius * 2;
+    height: $iconRadius * 2;
+    border-radius: $iconRadius;
+    background-color: #2980bf;
+    text-align: center;
+    line-height: $iconRadius * 2;
+    color: #ffffff;
+    position: relative;
+    left: 0;
+    top: 0;
+    transform: translate(-50%, -50%);
+  }
+  .content {
+    position: relative;
+    top: - 2 * $iconRadius;
+    left: calc(55px - #{$iconRadius});
+    width: calc(100% - 55px + #{$iconRadius});
+  }
+}

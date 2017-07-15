@@ -12,3 +12,6 @@ export { default as TabTable } from './TabTable';
 
 // 侧划窗口
 export { default as SidePanel } from './SidePanel';
+
+// 时间线
+export { default as Timeline } from './Timeline';
