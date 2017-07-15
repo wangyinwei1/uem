@@ -9,6 +9,7 @@ import userTableStore from './UserTable.store';
 import heatmapListStore from './HeatmapList.store';
 import settingStore from './Setting.store';
 import errorOverviewStore from './ErrorOverview.store';
+import userOverviewStore from './UserOverview.store';
 
 
 export default {
@@ -22,5 +23,6 @@ export default {
     userTableStore,
     heatmapListStore,
     settingStore,
-    errorOverviewStore
+    errorOverviewStore,
+    userOverviewStore
 };

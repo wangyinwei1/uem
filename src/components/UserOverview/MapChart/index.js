@@ -6,7 +6,7 @@ import {
 import config from './config';
 import styles from './index.scss';
 
-class Atlas extends Component {
+class UserMapChart extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -14,8 +14,10 @@ class Atlas extends Component {
         };
     }
     componentDidMount(){
-        const { getUserDistribution } = this.props;
-        getUserDistribution();
+        const { getMapData } = this.props;
+        getMapData({
+            metrics: JSON.stringify(['occurErrorUserRate'])
+        });
     }
     changeMap(map) {
         let prevState = this.state.activeMap;
@@ -25,14 +27,18 @@ class Atlas extends Component {
         } else {
             this.setState({
                 activeMap: map
-            }, () => this.props.getUserDistribution({ areaType : map == 'china' ? 'province' : 'country'}));
+            }, () => this.props.getMapData({ 
+                areaType : map == 'china' ? 'province' : 'country',
+                metrics: JSON.stringify(['occurErrorUserRate'])
+            }));
         } 
     }
+
     render() {
         const { activeMap } = this.state;
         let pillarConfig,mapConfig,yAxis,series,mapSeriesData=[];
-        yAxis = this.props.userDistribution.yAxis;
-        series = this.props.userDistribution.series;
+        yAxis = this.props.mapData.yAxis;
+        series = this.props.mapData.series;
 
         for(let i = 0 , len = series.length; i < len ; i++){
             mapSeriesData.push({
@@ -42,9 +48,10 @@ class Atlas extends Component {
         }
         pillarConfig = config.get('bar').updateIn(['yAxis','data'], () => yAxis).updateIn(['series',0,'data'],()=> series);
         mapConfig = config.get(activeMap).updateIn(['series',0,'data'], ()=> mapSeriesData );
+        console.log('[mapConfig]:',mapConfig.toJS());
         return (
-            <div className={styles['atlas']}>
-                <div className={cls('tile-head')}>用户分布</div>
+            <div className={styles['map-chart']}>
+                <div className={cls('tile-head')}>地理位置</div>
                 <div className={cls('tile-body')}>
                     <div className={styles['btn-wrap']}>
                         <div className={cls('btn btn-china', {
@@ -66,4 +73,4 @@ class Atlas extends Component {
     }
 }
 
-export default Atlas;
+export default UserMapChart;
