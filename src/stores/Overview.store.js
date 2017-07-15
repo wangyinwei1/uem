@@ -34,7 +34,10 @@ class OverviewStore {
             yesterday: []
         },
     };
-    @observable userDistribution = {};
+    @observable userDistribution = {
+        yAxis: [],
+        series: []
+    };
 
     @action onGetRealTimeData = async payload => {
         try {
@@ -72,11 +75,18 @@ class OverviewStore {
     }
     @action onGetUserDistribution = async payload => {
         try {
-            const data = await Service.getUserDistribution(payload);
+            const datas = await Service.getUserDistribution(payload);
             runInAction(() => {
-                this.userDistribution = data;
+                let yAxisData = [], seriesData = [], tempMapData = {};
+                 datas.data && datas.data.map((item,index) => {
+                    yAxisData.push(item.area);
+                    seriesData.push(item.value);
+                 })
+                tempMapData.yAxis = yAxisData;
+                tempMapData.series = seriesData;
+                this.userDistribution = tempMapData;
             });
-            return data;
+            return datas;
         } catch (e) {
             throw e;
         }

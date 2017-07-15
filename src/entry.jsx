@@ -21,6 +21,7 @@ import {
     HeatmapList,
     Setting,
     ErrorOverview,
+    UserOverview
 } from './containers';
 
 // 样式
@@ -62,7 +63,8 @@ ReactDOM.render(
                     <Route path="/user_table" component={UserTable} />
                     <Route path="/heatmap_list" component={HeatmapList} />
                     <Route path="/setting" component={Setting} />
-                    <Route path="/error_overview" component={ErrorOverview} />>
+                    <Route path="/error_overview" component={ErrorOverview} />
+                    <Route path="/user_overview" component={UserOverview} />
                     {/* <Route component={AppList} /> */}
                 </Switch>
             </Frame>

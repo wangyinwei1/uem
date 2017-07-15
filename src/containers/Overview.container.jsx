@@ -27,6 +27,7 @@ export default class Overview extends React.Component {
             realTimeData,
             deploy,
             trend,
+            userDistribution,
             onGetRealTimeData,
             onGetApdex,
             onGetTrend,
@@ -48,6 +49,7 @@ export default class Overview extends React.Component {
                     /> 
                     <Atlas
                         getUserDistribution={onGetUserDistribution}
+                        userDistribution={userDistribution}
                     />
                 </Spin>
             </div>
