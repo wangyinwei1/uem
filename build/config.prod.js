@@ -8,7 +8,7 @@ var config = require('./config.base');
 var CONST = require('./constants');
 
 module.exports = webpackMerge(config, {
-    devtool: 'source-map',
+    // devtool: 'source-map',
     module: {
         rules: [{
             test: /\.css$/,

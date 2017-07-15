@@ -11,6 +11,9 @@ module.exports = webpackMerge(config, {
     devtool: 'cheap-module-eval-source-map',
     entry: {
         main: [
+            'react-hot-loader/patch',
+            'webpack-dev-server/client?http://localhost:' + CONST.PORT,
+            'webpack/hot/only-dev-server',
             CONST.ENTRY
         ]
     },
@@ -48,6 +51,7 @@ module.exports = webpackMerge(config, {
             }
         }),
         new webpack.HotModuleReplacementPlugin(),
+        new webpack.NamedModulesPlugin(),
         new webpack.NoEmitOnErrorsPlugin(),
         new OpenBrowserPlugin({
             url: 'http://localhost:' + CONST.PORT
@@ -58,6 +62,8 @@ module.exports = webpackMerge(config, {
         historyApiFallback: true,
         disableHostCheck: true, // 参考：https://www.213.name/archives/1006
         port: CONST.PORT,
+        hot: true,
+        // inline: true,
         // compress: true, // 貌似没用，文件大小并不会减小
         // 参考：https://doc.webpack-china.org/configuration/stats/
         stats: {

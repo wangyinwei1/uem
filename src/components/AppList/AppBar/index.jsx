@@ -62,7 +62,7 @@ class AppsBar extends Component {
         const { showAddAppModal } = this.state;
         return (
             <div className={styles['apps-bar']}>
-                <div className={cls('btn', styles['create-app'])} onClick={this.toggleAddAppModal.bind(this)}><i className={cls('fa fa-plus')}></i>新建应用</div>
+                <div className={cls('btn', styles['create-app'])} onClick={this.toggleAddAppModal.bind(this)}><i className={cls('fa fa-plus')}></i>应用</div>
                 <div className={styles['btn-wrapper']}>
                     <Dropdown overlay={(
                         <Menu onSelect={({ key }) => sortBy(key)} selectedKeys={[sortKey]}>
