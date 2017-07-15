@@ -59,7 +59,6 @@ export default class PerformanceBrowse extends React.Component {
             currentRow,
             onGetOpersList,
             onChangeResTime,
-            onChangeCurrentRow,
         } = this.props.performanceBrowseStore;
         const { deploy } = this.props.overviewStore;
         const apdexTime = (deploy.apdex / 1000).toFixed(1);
@@ -77,14 +76,8 @@ export default class PerformanceBrowse extends React.Component {
                     changeTagType={this.changeTagType.bind(this)}
                     changeResTime={this.changeResTime.bind(this)}
                     changeColOptions={this.changeColOptions.bind(this)}
-                    changeCurrentRow={onChangeCurrentRow}
                     search={this.search.bind(this)}
                 />
-                {currentRow.map((item, index) => 
-                    <SidePanel key={this.panelCount += 1} index={index} data={currentRow}>
-                        {item.apdexD}
-                    </SidePanel>
-                )}
             </div>
         );
     }

@@ -8,14 +8,12 @@
     background-color: #145E99;
     box-shadow: 2px 8px 20px -5px #000000;
     transition: right .65s;
-}
-
-.next {
-    right: 0;
-    z-index: 2;
-}
-
-.prev {
-    right: -70%;
-    z-index: 1;
+    &:global(.next) {
+        right: 0;
+        z-index: 2;
+    }
+    &:global(.prev) {
+        right: -70%;
+        z-index: 1;
+    }
 }

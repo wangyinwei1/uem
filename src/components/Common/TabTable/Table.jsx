@@ -75,10 +75,6 @@ export default class Table extends React.Component {
         if (this.index === index) {
             return false;
         }
-        this.index = index;
-        this.props.changeCurrentRow({
-            record
-        });
     }
     render() {
         const { dataList, total } = this.props;

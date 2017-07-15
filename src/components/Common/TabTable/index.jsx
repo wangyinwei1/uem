@@ -58,7 +58,6 @@ export default class TabTable extends React.Component {
                         dataList={dataList}
                         total={total}
                         changeRows={this.props.changeRows}
-                        changeCurrentRow={this.props.changeCurrentRow}
                     />
                 </Spin>
                 {dataList.length === 0 &&
