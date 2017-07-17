@@ -12,7 +12,7 @@ export default class SidePanel extends React.Component {
         return (
             <div className={cls(styles['side-panel-wrap'])}>
                 {panelList.map((item, index) => {
-                    return <SidePanelItem key={item.id} data={item} index={index} module={module} />
+                    return <SidePanelItem key={item.sidePanelId} data={item} length={panelList.length} index={index} module={module} />
                 })}
             </div>
         );

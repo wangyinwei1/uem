@@ -6,9 +6,17 @@ import { observer, inject } from 'mobx-react';
 export default class UserDetail extends React.Component {
     componentDidMount() {
     }
+    shouldComponentUpdate(nextProps) {
+        return nextProps.tag;
+    }
     render() {
         return (
-            <div>UserDetail</div>
+            <div>
+                <h3>UserDetail</h3>
+                <pre>
+                    {JSON.stringify(this.props.data, null, 4)}
+                </pre>
+            </div>
         );
     }
 }
