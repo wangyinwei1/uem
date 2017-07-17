@@ -1,13 +1,20 @@
 .side-panel-wrap {
     position: relative;
+    :global {
+        .tile-head {
+            font-size: 12px;
+        }
+    }
 }
 .side-panel-item {
     position: fixed;
     top: 75px;
     right: -70%;
     bottom: 0;
+    z-index: 9;
     overflow-y: auto;
-    padding: 20px;
+    // padding: 20px;
+    min-width: 840px;
     width: 70%;
     background-color: #145E99;
     box-shadow: 2px 8px 20px -5px #000000;
@@ -15,6 +22,10 @@
     transition: right .7s, opacity .3s;
     &.active {
         right: 0;
+        z-index: 10;
         opacity: 1;
+    }
+    & > div {
+        padding: 20px;
     }
 }

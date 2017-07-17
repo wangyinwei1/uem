@@ -10,8 +10,8 @@ import heatmapListStore from './HeatmapList.store';
 import settingStore from './Setting.store';
 import errorOverviewStore from './ErrorOverview.store';
 import userOverviewStore from './UserOverview.store';
+import performanceDetailStore from './PerformanceDetail.store';
 import sidePanelStore from './SidePanel.store';
-
 
 export default {
     frameStore,
@@ -26,5 +26,6 @@ export default {
     settingStore,
     errorOverviewStore,
     userOverviewStore,
+    performanceDetailStore,
     sidePanelStore
 };

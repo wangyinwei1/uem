@@ -12,7 +12,7 @@ class PerformanceInteractiveStore {
     @observable total = 0;
     @observable type = JSON.stringify([0, 1, 2, 3, 4, 5, 6]);
     @observable pageIndex = 1;
-    @observable operType = 'redirect';
+    @observable operType = 'xhr,form,link';
     @observable searchValue = undefined;
     @observable tagType = 0;
     @observable colOptions = getColOptions('PerformanceInteractive');

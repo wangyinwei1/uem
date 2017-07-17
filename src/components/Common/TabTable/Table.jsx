@@ -1,5 +1,5 @@
 import React from 'react';
-import { Table as AntdTable } from 'antd';
+import { Table as AntdTable, message } from 'antd';
 import config from './config';
 import styles from './index.scss';
 
@@ -84,10 +84,17 @@ export default class Table extends React.Component {
         return null;
     }
     rowClickHandler(record, index, event) {
+        const {type} = this.props;
+        const tag = type === 'PerformanceBrowse' || type === 'PerformanceInteractive';
+        if (!Boolean(record.operType) && tag) {
+            message.warning('暂无数据');
+            return false;
+        }
         if (this.index === index) {
             return false;
         }
         this.index = index;
+        
         this.props.changePanelList({
             panelItem: record
         });
