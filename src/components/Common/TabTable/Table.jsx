@@ -11,6 +11,11 @@ export default class Table extends React.Component {
 
         this.packColumns(props.columns);
         this.getScollX = this.getScollX.bind(this);
+        this.clearIndex = this.clearIndex.bind(this);
+    }
+    componentDidMount() {
+        this.$win = $(window);
+        this.$win.on('click', this.clearIndex);
     }
     componentWillReceiveProps(nextProps) {
         if (nextProps.tagType !== this.props.tagType) {
@@ -26,6 +31,14 @@ export default class Table extends React.Component {
     }
     componentWillUnmount() {
         clearTimeout(this.colTimer);
+        this.$win.off('click', this.clearIndex);
+    }
+    clearIndex(e) {
+        if ($(e.target).parents().hasClass(styles['side-panel-item']) || $(e.target).parents().hasClass('ant-table-tbody')) {
+            
+        } else {
+            this.index = null;
+        }
     }
     packColumns(columns) {
         this.columns = [];
@@ -71,10 +84,13 @@ export default class Table extends React.Component {
         return null;
     }
     rowClickHandler(record, index, event) {
-        console.log(record, index, event);
         if (this.index === index) {
             return false;
         }
+        this.index = index;
+        this.props.changePanelList({
+            panelItem: record
+        });
     }
     render() {
         const { dataList, total } = this.props;

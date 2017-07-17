@@ -6,7 +6,7 @@ import {
     TabTable
 } from '../components/Common'
 
-@inject('frameStore', 'errorTableStore', 'overviewStore')
+@inject('frameStore', 'sidePanelStore', 'errorTableStore', 'overviewStore')
 @observer
 export default class ErrorTable extends React.Component {
     constructor(props) {
@@ -70,6 +70,7 @@ export default class ErrorTable extends React.Component {
             onResolveRow,
         } = this.props.errorTableStore;
         const { deploy } = this.props.overviewStore;
+        const { onChangePanelList } = this.props.sidePanelStore;
         const apdexTime = (deploy.apdex / 1000).toFixed(1);
         return (
             <div id="ErrorTable">
@@ -88,6 +89,7 @@ export default class ErrorTable extends React.Component {
                     changeColOptions={this.changeColOptions.bind(this)}
                     changeRows={this.changeRows.bind(this)}
                     resolveRow={this.resolveRow.bind(this)}
+                    changePanelList={onChangePanelList}
                     search={this.search.bind(this)}
                 />
             </div>

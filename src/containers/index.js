@@ -10,3 +10,8 @@ export { default as HeatmapList } from './HeatmapList.container';
 export { default as Setting } from './Setting.container';
 export { default as ErrorOverview } from './ErrorOverview.container';
 export { default as UserOverview } from './UserOverview.container';
+
+// 详情页
+export { default as PerformanceDetail } from './PerformanceDetail.container';
+export { default as ErrorDetail } from './ErrorDetail.container';
+export { default as UserDetail } from './UserDetail.container';

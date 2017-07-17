@@ -5,10 +5,11 @@ import { withRouter } from 'react-router-dom';
 import {
     Menu,
     Crumb,
-    HeaderBar
+    HeaderBar,
+    SidePanel,
 } from '../components/Common';
 
-@inject('frameStore', 'appListStore', 'settingStore')
+@inject('frameStore', 'sidePanelStore', 'appListStore', 'settingStore')
 @observer
 class Frame extends React.Component {
     componentDidMount() {
@@ -33,6 +34,7 @@ class Frame extends React.Component {
             onChooseTimeType
         } = this.props.frameStore;
         const { appListMenu } = this.props.appListStore;
+        const { panelList } = this.props.sidePanelStore;
         return (
             <div id="Frame">
                 <Menu
@@ -54,6 +56,10 @@ class Frame extends React.Component {
                     <div className="content" key={`${appId}${platform}${timeType.type}${timeType.units}`}>
                         {this.props.children}
                     </div>
+                    <SidePanel
+                        module={module}
+                        panelList={panelList}
+                    />
                 </div>
             </div>
         );

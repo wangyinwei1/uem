@@ -7,7 +7,7 @@ import {
     SidePanel
 } from '../components/Common'
 
-@inject('frameStore', 'performanceBrowseStore', 'overviewStore')
+@inject('frameStore', 'sidePanelStore', 'performanceBrowseStore', 'overviewStore')
 @observer
 export default class PerformanceBrowse extends React.Component {
     panelCount = 0
@@ -61,6 +61,7 @@ export default class PerformanceBrowse extends React.Component {
             onChangeResTime,
         } = this.props.performanceBrowseStore;
         const { deploy } = this.props.overviewStore;
+        const { onChangePanelList } = this.props.sidePanelStore;
         const apdexTime = (deploy.apdex / 1000).toFixed(1);
         return (
             <div id="PerformanceBrowse">
@@ -76,6 +77,7 @@ export default class PerformanceBrowse extends React.Component {
                     changeTagType={this.changeTagType.bind(this)}
                     changeResTime={this.changeResTime.bind(this)}
                     changeColOptions={this.changeColOptions.bind(this)}
+                    changePanelList={onChangePanelList}
                     search={this.search.bind(this)}
                 />
             </div>
