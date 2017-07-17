@@ -6,7 +6,7 @@ import {
     TabTable
 } from '../components/Common'
 
-@inject('frameStore', 'performanceInteractiveStore', 'overviewStore')
+@inject('frameStore', 'sidePanelStore', 'performanceInteractiveStore', 'overviewStore')
 @observer
 export default class PerformanceInteractive extends React.Component {
     constructor(props) {
@@ -58,6 +58,7 @@ export default class PerformanceInteractive extends React.Component {
             onChangeResTime
         } = this.props.performanceInteractiveStore;
         const { deploy } = this.props.overviewStore;
+        const { onChangePanelList } = this.props.sidePanelStore;
         const apdexTime = (deploy.apdex / 1000).toFixed(1);
         return (
             <div id="PerformanceInteractive">
@@ -73,6 +74,7 @@ export default class PerformanceInteractive extends React.Component {
                     changeTagType={this.changeTagType.bind(this)}
                     changeResTime={this.changeResTime.bind(this)}
                     changeColOptions={this.changeColOptions.bind(this)}
+                    changePanelList={onChangePanelList}
                     search={this.search.bind(this)}
                 />
             </div>

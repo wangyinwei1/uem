@@ -10,6 +10,7 @@ import heatmapListStore from './HeatmapList.store';
 import settingStore from './Setting.store';
 import errorOverviewStore from './ErrorOverview.store';
 import userOverviewStore from './UserOverview.store';
+import sidePanelStore from './SidePanel.store';
 
 
 export default {
@@ -24,5 +25,6 @@ export default {
     heatmapListStore,
     settingStore,
     errorOverviewStore,
-    userOverviewStore
+    userOverviewStore,
+    sidePanelStore
 };
