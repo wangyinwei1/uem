@@ -1,6 +1,9 @@
 import React from 'react';
 import { observer, inject } from 'mobx-react';
 import {
+    DetailWrap,
+} from '../components/Common';
+import {
     Metrics,
     Timing,
     Trend,
@@ -37,7 +40,7 @@ export default class PerformanceDetail extends React.Component {
         const { pv, uv, apdex, thruput, bounceRate, operType, url } = info;
 
         return (
-            <div>
+            <DetailWrap>
                 <h3>PerformanceDetail</h3>
                 <Metrics 
                     data={{
@@ -58,7 +61,7 @@ export default class PerformanceDetail extends React.Component {
                 <pre>
                     {JSON.stringify(info, null, 4)}
                 </pre>
-            </div>
+            </DetailWrap>
         );
     }
 }
