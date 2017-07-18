@@ -201,18 +201,18 @@ class PerformanceTrend extends Component {
         return (
             <div>
                 <Row>
-                    <Col className={styles['performance-trend']}>
+                    <Col className={styles['performance-trend']} style={{width:sessionStorage.UEM_platform !== 'pc' ? '100%': '60%'}}>
                         <div className={cls('tile-head')}>性能趋势</div>
                         <div className={cls('tile-body')}>
                             <LineChart group="PerformanceTrend" chartId="PerformanceTrend" options={options} />
                         </div>
                     </Col>
-                    <Col className={styles['apdex-chart']}>
+                    {sessionStorage.UEM_platform == 'pc' && <Col className={styles['apdex-chart']}>
                         <div className={cls('tile-head')}>Apdex指数</div>
                         <div className={cls('tile-body')}>
                             <LineChart group="apedxTrend" chartId="apedxTrend" options={apdexOptions} />
                         </div>
-                    </Col>
+                    </Col>}
                 </Row>
                 
             </div>

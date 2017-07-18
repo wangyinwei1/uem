@@ -67,7 +67,7 @@ class PerformanceOverviewStore {
                 if( metrics == '["avgRspTime"]' ){
                     runInAction(() => {
                         let yAxisData = [], seriesData = [],tempMapData = {};
-                        datas.data && datas.data.map((item, index) => {
+                        datas.data.length > 0 && datas.data.map((item, index) => {
                             yAxisData.push(item.area);
                             seriesData.push(item.avgRspTime);
                         })
@@ -78,7 +78,7 @@ class PerformanceOverviewStore {
                 } else {
                     runInAction(() => {
                         let yAxisData = [], seriesData = [],tempMapData = {};
-                        datas.data && datas.data.map((item, index) => {
+                        datas.data.length > 0 && datas.data.map((item, index) => {
                             yAxisData.push(item.area);
                             seriesData.push(item.apdex);
                         })
@@ -102,7 +102,7 @@ class PerformanceOverviewStore {
                 if( metrics == '["avgRspTime"]' ){
                     runInAction(() => {
                         let yAxisData = [], seriesData = [],tempMapData = {};
-                        datas.data && datas.data.map((item, index) => {
+                        datas.data.length > 0 && datas.data.map((item, index) => {
                             yAxisData.push(item.area);
                             seriesData.push(item.avgRspTime);
                         })
@@ -113,7 +113,7 @@ class PerformanceOverviewStore {
                 } else {
                     runInAction(() => {
                         let yAxisData = [], seriesData = [],tempMapData = {};
-                        datas.data && datas.data.map((item, index) => {
+                        datas.data.length > 0 && datas.data.map((item, index) => {
                             yAxisData.push(item.area);
                             seriesData.push(item.apdex);
                         })
