@@ -9,6 +9,9 @@ import {
 import styles from './index.scss';
 
 export default class SidePanelItem extends React.Component {
+    // state = {
+    //     remove: false
+    // }
     constructor(props) {
         super(props);
 
@@ -26,13 +29,18 @@ export default class SidePanelItem extends React.Component {
     componentWillReceiveProps(nextProps) {
         if(nextProps.index === 0){
             this.$dom.removeClass(styles['active']);
+            // setTimeout(() => {
+            //     this.setState({
+            //         remove: true
+            //     });
+            // }, 1000);
         }
     }
     componentWillUnmount() {
         this.$win.off('click', this.closeSidePanel);
     }
     closeSidePanel(e) {
-        if ($(e.target).parents().hasClass(styles['side-panel-item']) || $(e.target).parents().hasClass('ant-table-tbody')) {
+        if ($(e.target).parents().hasClass(styles['side-panel-wrap']) || $(e.target).parents().hasClass('ant-table-tbody')) {
             
         } else {
             setTimeout(() => {
@@ -40,23 +48,26 @@ export default class SidePanelItem extends React.Component {
             }, 50);
         }
     }
-    renderDetail(module, data) {
+    renderDetail(module, data, index) {
+        const tag = index === 0 ? false : true;
         const components = {
-            performance_browse: <PerformanceDetail data={data} />,
-            performance_interactive: <PerformanceDetail data={data} />,
-            error_table: <ErrorDetail data={data} />,
-            user_table: <UserDetail data={data} />,
+            performance_browse: <PerformanceDetail data={data} type='browse' tag={tag} />,
+            performance_interactive: <PerformanceDetail data={data} type='interaction' tag={tag} />,
+            error_table: <ErrorDetail data={data} tag={tag} />,
+            user_table: <UserDetail data={data} tag={tag} />,
         };
         return components[module];
     }
     render() {
-        return (
-            <div ref='SidePanel' className={cls(styles['side-panel-item'])}>
-                <pre>
-                    {JSON.stringify(this.props.data, null, 4)}
-                </pre>
-                {this.renderDetail(this.module, this.props.data)}
-            </div>
-        );
+        const { index } = this.props;
+        // if (this.state.remove) {
+        //     return null;
+        // } else {
+            return (
+                <div ref='SidePanel' className={cls(styles['side-panel-item'])}>
+                    {this.renderDetail(this.module, this.props.data, index)}
+                </div>
+            );
+        // }
     }
 }

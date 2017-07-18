@@ -149,7 +149,7 @@
     & > tr {
         background-color: #0D3F67;
         &:hover {
-            background-color: #1B3E67;
+            background-color: #1B3E67 !important;
             & > td {
                 background-color: inherit;
             }

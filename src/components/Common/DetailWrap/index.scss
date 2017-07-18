@@ -1,0 +1,13 @@
+.detail-wrap {
+    position: relative;
+    height: 100%;
+}
+
+.detail-content {
+    overflow-y: auto;
+    padding: 0 10px;
+    height: 100%;
+    &::-webkit-scrollbar-track {
+        border-radius: 5px;
+    }
+}

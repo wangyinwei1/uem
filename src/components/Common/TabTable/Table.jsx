@@ -1,5 +1,5 @@
 import React from 'react';
-import { Table as AntdTable } from 'antd';
+import { Table as AntdTable, message } from 'antd';
 import config from './config';
 import styles from './index.scss';
 
@@ -34,8 +34,8 @@ export default class Table extends React.Component {
         this.$win.off('click', this.clearIndex);
     }
     clearIndex(e) {
-        if ($(e.target).parents().hasClass(styles['side-panel-item']) || $(e.target).parents().hasClass('ant-table-tbody')) {
-            
+        if ($(e.target).parents().hasClass(styles['side-panel-wrap']) || $(e.target).parents().hasClass('ant-table-tbody')) {
+
         } else {
             this.index = null;
         }
@@ -46,14 +46,15 @@ export default class Table extends React.Component {
         columns.forEach(columnName => {
             ['normal', 'quota'].forEach(key => {
                 config[type][tagType].options[key].map(item => {
-                    const { label, value, width, fixed, sorter } = item;
+                    const { label, value, width, fixed, sorter, render } = item;
                     if (columnName === value) {
                         this.columns.push({
                             title: label,
                             dataIndex: value,
                             width,
                             fixed,
-                            sorter
+                            sorter,
+                            render
                         });
                     }
                 });
@@ -84,10 +85,17 @@ export default class Table extends React.Component {
         return null;
     }
     rowClickHandler(record, index, event) {
+        const { type } = this.props;
+        const tag = type === 'PerformanceBrowse' || type === 'PerformanceInteractive';
+        if (!Boolean(record.operType) && tag) {
+            message.warning('暂无数据');
+            return false;
+        }
         if (this.index === index) {
             return false;
         }
         this.index = index;
+
         this.props.changePanelList({
             panelItem: record
         });

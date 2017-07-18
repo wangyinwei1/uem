@@ -1,0 +1,56 @@
+.metrics {
+    padding: 20px;
+    background-color: #125389 !important;
+}
+.props {
+    overflow: hidden;
+    margin-bottom: 20px;
+    font-size: 13px;
+    dl {
+        float: left;
+        overflow: hidden;
+        dt,
+        dd {
+            float: left;
+        }
+        &:first-child {
+            width: 30%;
+        }
+        &:last-child {
+            width: 70%;
+            dd {
+                color: #70C3FB;
+            }
+        }
+    }
+}
+.list {
+    overflow: hidden;
+    margin-left: -8px;
+    li {
+        float: left;
+        width: 20%;
+        height: 50px;
+        border-left: 8px solid transparent;
+        line-height: 50px;
+        dl {
+            overflow: hidden;
+            padding: 0 20px;
+            background-color: #0A497B;
+        }
+        .key {
+            float: left;
+            width: 60px;
+            color: #70C3FB;
+            font-size: 14px;
+        }
+        .value {
+            overflow: hidden;
+            margin-left: 60px;
+            text-align: right;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            font-size: 18px;
+        }
+    }
+}

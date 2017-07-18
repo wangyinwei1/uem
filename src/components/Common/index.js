@@ -15,3 +15,6 @@ export { default as SidePanel } from './SidePanel';
 
 // 时间线
 export { default as Timeline } from './Timeline';
+
+// 详情页通用 Wrap 组件
+export { default as DetailWrap } from './DetailWrap';

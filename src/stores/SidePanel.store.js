@@ -6,7 +6,7 @@ class SidePanelStore {
 
     @action onChangePanelList = payload => {
         const panelList = this.panelList.toJS();
-        payload.panelItem.id = this.id ++;
+        payload.panelItem.sidePanelId = this.id ++;
         if (panelList.length === 2) {
             if (panelList[1] !== payload.panelItem) {
                 panelList.push(payload.panelItem);
