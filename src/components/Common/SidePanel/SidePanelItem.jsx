@@ -40,7 +40,7 @@ export default class SidePanelItem extends React.Component {
         this.$win.off('click', this.closeSidePanel);
     }
     closeSidePanel(e) {
-        if ($(e.target).parents().hasClass(styles['side-panel-item']) || $(e.target).parents().hasClass('ant-table-tbody')) {
+        if ($(e.target).parents().hasClass(styles['side-panel-wrap']) || $(e.target).parents().hasClass('ant-table-tbody')) {
             
         } else {
             setTimeout(() => {

@@ -34,8 +34,8 @@ export default class Table extends React.Component {
         this.$win.off('click', this.clearIndex);
     }
     clearIndex(e) {
-        if ($(e.target).parents().hasClass(styles['side-panel-item']) || $(e.target).parents().hasClass('ant-table-tbody')) {
-            
+        if ($(e.target).parents().hasClass(styles['side-panel-wrap']) || $(e.target).parents().hasClass('ant-table-tbody')) {
+
         } else {
             this.index = null;
         }
@@ -84,7 +84,7 @@ export default class Table extends React.Component {
         return null;
     }
     rowClickHandler(record, index, event) {
-        const {type} = this.props;
+        const { type } = this.props;
         const tag = type === 'PerformanceBrowse' || type === 'PerformanceInteractive';
         if (!Boolean(record.operType) && tag) {
             message.warning('暂无数据');
@@ -94,7 +94,7 @@ export default class Table extends React.Component {
             return false;
         }
         this.index = index;
-        
+
         this.props.changePanelList({
             panelItem: record
         });
