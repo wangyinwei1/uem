@@ -7,6 +7,7 @@ import config from './config';
 import styles from './index.scss';
 import { countryNameInCN, countryNameInEN } from '../../Common/Chart/WorldCountryName';
 import { Radio } from 'antd';
+import { NameMap } from '../../Common/Chart/CityName';
 const RadioGroup = Radio.Group;
 
 class UserMapChart extends Component {
@@ -48,6 +49,28 @@ class UserMapChart extends Component {
          }) );
     }
 
+     // 点击中国地图
+    clickUpdateMap(params){
+        if(this.state.activeMap == 'china' && params.componentSubType == 'map' && params.name !== '台湾'){
+            if(this.state.isSelectingCity && typeof params.value != "undefined"  && !isNaN(params.value)){
+                this.setState({isSelectingCity: false}, ()=>this.props.getMapData({
+                    metrics: this.state.activePillar == 'occurErrorUserRate'? JSON.stringify(['occurErrorUserRate']) : JSON.stringify(['effectedUserNum']),
+                    areaType: this.state.activeMap == 'china' ? 'province' : 'country',
+                    province: params.name
+                })) 
+                config.updateIn(['china','series',0,'mapType'], ()=> params.name);
+            }else if(!NameMap[params.name]){
+                this.setState({isSelectingCity: true}, ()=>this.props.getMapData({
+                    metrics: this.state.activePillar == 'occurErrorUserRate'? JSON.stringify(['occurErrorUserRate']) : JSON.stringify(['effectedUserNum']),
+                    areaType: this.state.activeMap == 'china' ? 'province' : 'country',
+                    province: undefined
+                }))
+                config.updateIn(['china','series',0,'mapType'], ()=> 'china');
+            } 
+        }else{
+            console.log('外国和台湾省的二级地区暂无法查看！')
+        } 
+    }
 
     render() {
         const { activeMap } = this.state;
@@ -79,9 +102,12 @@ class UserMapChart extends Component {
                 value: series[i]
             })
         }
-        pillarConfig = config.get('bar').updateIn(['yAxis','data'], () => _yAxis).updateIn(['series',0,'data'],()=> _series);
+        pillarConfig = config.get('bar').updateIn(['yAxis','data'], () => _yAxis)
+            .updateIn(['series',0,'data'],()=> _series)
+            .updateIn(['series',0,'name'], ()=> this.state.activePillar == 'sessionCount'? '会话数':'访客数');
+
         mapConfig = config.get(activeMap).updateIn(['series',0,'data'], ()=> mapSeriesData );
-        console.log('[mapConfig]:',mapConfig.toJS());
+
         return (
             <div className={styles['map-chart']}>
                 <div className={cls('tile-head')}>地理位置</div>
@@ -100,8 +126,11 @@ class UserMapChart extends Component {
                         <Radio value={'uv'}>{'访客数'}</Radio>
                     </RadioGroup>
 
-                    <MapChart chartId="map" group="atlas" className={styles['map-chart']} 
+                    <MapChart 
+                        chartId="map" group="atlas" className={styles['map-chart']} 
                         options={config.get('default').mergeDeep(mapConfig).toJS()} 
+                        clickUpdateMap={this.clickUpdateMap.bind(this)}
+
                     />
                     <BarChart chartId="bar" group="atlas" className={styles['bar-chart']} 
                         options={config.get('default').mergeDeep(pillarConfig).toJS()} 

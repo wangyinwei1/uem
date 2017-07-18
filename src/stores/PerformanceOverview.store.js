@@ -89,9 +89,13 @@ class PerformanceOverviewStore {
                 }
             }else{
                 datas.data && datas.data.map((item,index) => {
-                    for(let n in countryNameInEN){
-                        if(n == item.area){
-                            item.area = countryNameInEN[n]
+                    if(item.area == '-'){
+                        item.area = '未知地域'
+                    }else {
+                        for(let n in countryNameInEN){
+                            if(n == item.area){
+                                item.area = countryNameInEN[n]
+                            }
                         }
                     }
                 })
