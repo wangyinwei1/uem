@@ -46,14 +46,15 @@ export default class Table extends React.Component {
         columns.forEach(columnName => {
             ['normal', 'quota'].forEach(key => {
                 config[type][tagType].options[key].map(item => {
-                    const { label, value, width, fixed, sorter } = item;
+                    const { label, value, width, fixed, sorter, render } = item;
                     if (columnName === value) {
                         this.columns.push({
                             title: label,
                             dataIndex: value,
                             width,
                             fixed,
-                            sorter
+                            sorter,
+                            render
                         });
                     }
                 });

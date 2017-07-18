@@ -1,3 +1,6 @@
+import React from 'react';
+import ColorType from './ColorType';
+
 export default {
     PerformanceBrowse: [{
         tabName: '已标记',
@@ -25,6 +28,9 @@ export default {
                 width: 80,
                 checked: true,
                 disabled: true,
+                render: (text, record, index) => {
+                    return <ColorType type={record.type} />
+                }
                 // fixed: 'left'
             }, {
                 value: 'operType',
