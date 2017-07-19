@@ -74,18 +74,48 @@ class OverviewStore {
         }
     }
     @action onGetUserDistribution = async payload => {
+        const { areaType } = payload;
         try {
             const datas = await Service.getUserDistribution(payload);
-            runInAction(() => {
-                let yAxisData = [], seriesData = [], tempMapData = {};
-                 datas.data && datas.data.map((item,index) => {
-                    yAxisData.push(item.area);
-                    seriesData.push(item.value);
-                 })
-                tempMapData.yAxis = yAxisData;
-                tempMapData.series = seriesData;
-                this.userDistribution = tempMapData;
-            });
+            if( areaType == 'province' ){
+                 datas.data && datas.data.map((item,index)=>{
+                    if(item.area == '-'){
+                        item.area = '未知地址'
+                    }
+                })
+                runInAction(() => {
+                    let yAxisData = [], seriesData = [], tempMapData = {};
+                    datas.data.length > 0  && datas.data.map((item,index) => {
+                        yAxisData.push(item.area);
+                        seriesData.push(item.value);
+                    })
+                    tempMapData.yAxis = yAxisData;
+                    tempMapData.series = seriesData;
+                    this.userDistribution = tempMapData;
+                });
+            }else{
+               datas.data.length > 0 && datas.data.map((item,index) => {
+                    if(item.area == '-'){
+                        item.area = '未知地域'
+                    }else {
+                        for(let n in countryNameInEN){
+                            if(n == item.area){
+                                item.area = countryNameInEN[n]
+                            }
+                        }
+                    }
+                    runInAction(() => {
+                        let yAxisData = [], seriesData = [],tempMapData = {};
+                        datas.data.length > 0 && datas.data.map((item, index) => {
+                            yAxisData.push(item.area);
+                            seriesData.push(item.value);
+                        })
+                        tempMapData.yAxis = yAxisData;
+                        tempMapData.series = seriesData;
+                        this.mapData = tempMapData;
+                    });
+                }) 
+            }
             return datas;
         } catch (e) {
             throw e;

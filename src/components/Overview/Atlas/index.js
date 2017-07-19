@@ -15,7 +15,7 @@ class Atlas extends Component {
     }
     componentDidMount(){
         const { getUserDistribution } = this.props;
-        getUserDistribution();
+        getUserDistribution({areaType: 'province'});
     }
     changeMap(map) {
         let prevState = this.state.activeMap;
@@ -30,9 +30,24 @@ class Atlas extends Component {
     }
     render() {
         const { activeMap } = this.state;
-        let pillarConfig,mapConfig,yAxis,series,mapSeriesData=[];
+        let pillarConfig,mapConfig,yAxis,series,mapSeriesData=[],_yAxis=[],_series=[];
         yAxis = this.props.userDistribution.yAxis;
         series = this.props.userDistribution.series;
+
+        if(activeMap == 'world'){
+            for(let i = 0,len = yAxis.length; i < len; i++){
+                for(let n in countryNameInEN){
+                    if(yAxis[i] == countryNameInEN[n]){
+                        yAxis[i] = countryNameInCN[n]
+                    }
+                }
+            }
+            _yAxis = yAxis;
+            _series = series;
+        }else{
+           _yAxis = yAxis;
+           _series = series;
+        }
 
         for(let i = 0 , len = series.length; i < len ; i++){
             mapSeriesData.push({
@@ -40,8 +55,8 @@ class Atlas extends Component {
                 value: series[i]
             })
         }
-        pillarConfig = config.get('bar').updateIn(['yAxis','data'], () => yAxis)
-            .updateIn(['series',0,'data'],()=> series)
+        pillarConfig = config.get('bar').updateIn(['yAxis','data'], () => _yAxis)
+            .updateIn(['series',0,'data'],()=> _series)
             .updateIn(['series',0,'name'],()=> '用户会话数');
             
         mapConfig = config.get(activeMap).updateIn(['series',0,'data'], ()=> mapSeriesData );
