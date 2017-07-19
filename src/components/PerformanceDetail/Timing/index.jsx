@@ -27,6 +27,13 @@ export default class Timing extends React.Component {
         label: '渲染完成',
         value: 'load'
     }]
+    constructor(props) {
+        super(props);
+    }
+    componentDidMount() {
+        const items = $(`.${styles['timing']}`).find('dl').children('dd').children('span');
+        console.log(items);
+    }
     convertPercent(value) {
         if (value === undefined) {
             return '0%';
@@ -37,8 +44,16 @@ export default class Timing extends React.Component {
         return (
             <svg width="100%" height="120px" xmlns="http://www.w3.org/2000/svg" version="1.1">
                 <g>
-                    {/* <path d="M0,120L200,0" stroke="#fff" strokeWidth="1" fill="none" /> */}
-                    <text>首字节时间</text>
+                    <path d="M0,120A100,20,0,0,1,300,120" stroke="#fff" strokeWidth="1" fill="none" />
+                </g>
+                <g>
+                    <path d="M0,120A100,40,0,0,1,300,120" stroke="#fff" strokeWidth="1" fill="none" /> 
+                </g>
+                <g>
+                    <path d="M0,120A100,60,0,0,1,300,120" stroke="#fff" strokeWidth="1" fill="none" /> 
+                </g>
+                <g>
+                    <path d="M0,120A100,80,0,0,1,300,120" stroke="#fff" strokeWidth="1" fill="none" /> 
                 </g>
             </svg>
         );
@@ -53,7 +68,7 @@ export default class Timing extends React.Component {
             <div className={styles['timgin-col']}>
                 <dl>
                     <dt>
-                        <span>与服务端建立网络连接时间</span>
+                        <span>与服务端建立<br/>网络连接时间</span>
                         <span>{`${netTime.value}s`}</span>
                     </dt>
                     <dd className={styles['col-wrap']}>
@@ -70,7 +85,7 @@ export default class Timing extends React.Component {
                 </dl>
                 <dl>
                     <dt>
-                        <span>服务端处理请求及数据传输时间</span>
+                        <span>服务端处理请求<br/>及数据传输时间</span>
                         <span>{`${serverTime.value}s`}</span>
                     </dt>
                     <dd className={styles['col-wrap']}>

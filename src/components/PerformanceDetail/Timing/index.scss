@@ -35,9 +35,12 @@
         position: relative;
         float: left;
         padding-top: 35px;
-        width: 33.333%;
+        width: 25%;
         border-left: 15px solid transparent;
         font-size: 12px;
+        &:last-child {
+            width: 50%;
+        }
         dt {
             text-align: center;
             span:nth-child(2) {
@@ -75,7 +78,7 @@
             left: 0;
             z-index: 1;
             display: block;
-            width: 100%;
+            width: 99%;
             height: 100%;
             border: 1px dashed #70C3FB;
             content: "";

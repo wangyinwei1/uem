@@ -1,5 +1,6 @@
 import React from 'react';
 import ColorType from './ColorType';
+import OperType from './OperType';
 
 export default {
     PerformanceBrowse: [{
@@ -28,9 +29,7 @@ export default {
                 width: 80,
                 checked: true,
                 disabled: true,
-                render: (text, record, index) => {
-                    return <ColorType type={record.type} />
-                }
+                render: (text, record, index) => <ColorType type={record.type} />,
                 // fixed: 'left'
             }, {
                 value: 'operType',
@@ -39,6 +38,7 @@ export default {
                 checked: true,
                 disabled: true,
                 // fixed: 'left'
+                render: (text, record, index) => <OperType type={record.operType} />,
             }, {
                 value: 'operName',
                 label: '页面名称',
@@ -130,7 +130,8 @@ export default {
                 width: 80,
                 checked: true,
                 disabled: true,
-                // fixed: 'left'
+                // fixed: 'left',
+                render: (text, record, index) =>  <OperType type={record.operType} />
             }],
             quota: [{
                 value: 'apdexD',
@@ -180,14 +181,16 @@ export default {
                 width: 80,
                 checked: true,
                 disabled: true,
-                // fixed: 'left'
+                // fixed: 'left',
+                render: (text, record, index) =>  <ColorType type={record.type} />
             }, {
                 value: 'operType',
                 label: '类型',
                 width: 80,
                 checked: true,
                 disabled: true,
-                // fixed: 'left'
+                // fixed: 'left',
+                render: (text, record, index) => <OperType type={record.operType} />,
             }, {
                 value: 'operName',
                 label: '页面名称',
@@ -279,7 +282,8 @@ export default {
                 width: 80,
                 checked: true,
                 disabled: true,
-                // fixed: 'left'
+                // fixed: 'left',
+                render: (text, record, index) => <OperType type={record.operType} />,
             }],
             quota: [{
                 value: 'apdexD',
