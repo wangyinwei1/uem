@@ -91,7 +91,6 @@ let DateContainer = React.createClass({
         const _l = this.props.items.length > 9 ? this.props.items.length : 9;
         const _width = _l * 58 + 30;
         const ul_width = _l * 58 + 10;
-        console.log(this.props.items);
         return (
             <div className="bat-date-container" style={{ width: _width }}>
                 <div className="bat-date-tags clearfix">

@@ -62,9 +62,9 @@ export default class HeaderBar extends React.PureComponent {
         }, 0);
     }
     takeDefaultValue() {
-        const { type, units } = this.props.timeType;
-        const timeType = `${type}${units}`;
-        switch (timeType) {
+        const { startTime, endTime } = this.props.timeType;
+        const { type, units } = startTime;
+        switch (`${type}${units}`) {
             case '1months':
                 return '最近 1月';
             case '7days':
@@ -80,7 +80,7 @@ export default class HeaderBar extends React.PureComponent {
             case '1hours':
                 return '最近 1小时';
             default:
-                return '最近 1小时'
+                return `${moment().subtract(startTime.type, startTime.units).format('YYYY-MM-DD')} ~ ${moment().subtract(endTime.type, endTime.units).format('YYYY-MM-DD')}`
         }
     }
     render() {
