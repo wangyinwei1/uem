@@ -18,7 +18,8 @@ class ErrorOverviewStore {
     @action onGetKeyIndicator = async payload => {
         try {
             const data = await CommonService.getKeyIndicator({
-                startTime: moment().subtract(this.timeType.type, this.timeType.units).valueOf(),
+                startTime: moment().subtract(this.timeType.startTime.type, this.timeType.startTime.units).valueOf(),
+                endTime: moment().subtract(this.timeType.endTime.type, this.timeType.endTime.units).valueOf(),
                 ...payload
             });
             runInAction(() => {
@@ -46,7 +47,7 @@ class ErrorOverviewStore {
         const { metrics , areaType } = payload;
         try {
             const datas = await CommonService.getMapData({
-                startTime: moment().subtract(this.timeType.type, this.timeType.units).valueOf(),
+                startTime: moment().subtract(this.timeType.startTime.type, this.timeType.startTime.units).valueOf(),
                 ...payload
             });
             if( areaType == 'province'){

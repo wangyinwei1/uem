@@ -2,6 +2,7 @@ import React from 'react';
 import styles from './index.scss';
 
 import DatePicker from "../../Public/components/MomentPicker/DatePicker";
+// import DateContainer from "../../Public/DatePicker/DateContainer";
 
 export default class HeaderBar extends React.PureComponent {
     datePickerDisplay = {
@@ -32,16 +33,30 @@ export default class HeaderBar extends React.PureComponent {
         this.takeDefaultValue = this.takeDefaultValue.bind(this);
     }
     handleSelectTime(obj) {
-        const { type, units } = obj;
-        // const timeType = `${type}${units}`;
+        const startTime = {
+            type: 0,
+            units: 'milliseconds'
+        }, endTime = {
+            type: 0,
+            units: 'milliseconds'
+        };
+
+        if (obj.type === 'custom') {
+            startTime.type = moment().valueOf() - obj.beginTime.valueOf();
+            endTime.type = moment().valueOf() - obj.endTime.valueOf();
+        } else {
+            const { type, units } = obj;
+            startTime.type = type;
+            startTime.units = units;
+        }
 
         clearTimeout(this.timer);
         // 防止 DatePicker 组件触发两次 onChange 事件
         this.timer = setTimeout(() => {
             this.props.chooseTimeType({
                 timeType: {
-                    type,
-                    units
+                    startTime: startTime,
+                    endTime: endTime
                 }
             });
         }, 0);
@@ -49,7 +64,7 @@ export default class HeaderBar extends React.PureComponent {
     takeDefaultValue() {
         const { type, units } = this.props.timeType;
         const timeType = `${type}${units}`;
-        switch(timeType) {
+        switch (timeType) {
             case '1months':
                 return '最近 1月';
             case '7days':
@@ -73,7 +88,7 @@ export default class HeaderBar extends React.PureComponent {
         return (
             <div className={styles['header-bar']}>
                 <DatePicker
-                    format="YYYY-MM-dd"
+                    format="YYYY-MM-DD"
                     dateObj={this.dateSetting}
                     onChange={this.handleSelectTime.bind(this)}
                     defaultValue={this.takeDefaultValue()}

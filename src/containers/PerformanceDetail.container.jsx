@@ -37,25 +37,52 @@ export default class PerformanceDetail extends React.Component {
     }
     render() {
         const { info } = this.props.performanceDetailStore;
-        const { pv, uv, apdex, thruput, bounceRate, operType, url } = info;
+        const {
+            pv,
+            uv,
+            apdex,
+            thruput,
+            bounceRate,
+            operType,
+            url,
+
+            // Timing
+            netTime,
+            serverTime,
+            clientTime,
+            firstByteTime,
+            lastByteTime,
+            domLoadingTime,
+            pageAvgRspTime
+        } = info;
 
         return (
             <DetailWrap>
                 <h3>PerformanceDetail</h3>
-                <Metrics 
+                <Metrics
                     data={{
-                        pv, 
-                        uv, 
-                        apdex, 
-                        thruput, 
+                        pv,
+                        uv,
+                        apdex,
+                        thruput,
                         bounceRate
                     }}
                     props={{
-                        operType, 
+                        operType,
                         url
                     }}
                 />
-                <Timing />
+                <Timing
+                    data={{
+                        netTime,
+                        serverTime,
+                        clientTime,
+                        firstByteTime,
+                        lastByteTime,
+                        domLoadingTime,
+                        pageAvgRspTime
+                    }}
+                />
                 <Trend />
                 <Analysis />
                 <pre>

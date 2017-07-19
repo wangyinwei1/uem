@@ -29,9 +29,6 @@ const dateSetting = localStorage.UYUN_LANGUAGE_CONSTANT == "en_US" ? [
 
 const last = localStorage.UYUN_LANGUAGE_CONSTANT == "en_US" ? "Last" :"最近";
 
-
-
-
 let DatePicker = React.createClass({
     getInitialState: function () {
         return {
@@ -40,14 +37,18 @@ let DatePicker = React.createClass({
             endTime: '',
             num: '',
             units: ''
-        }
+        };
     },
     onDate: function (values) {
         var startText, endText;
         if (typeof this.props.format == 'string' && this.props.format != '') {
-            startText = values.startTime.Format(this.props.format) + '~' + values.endTime.Format(this.props.format);
+            if (values.text == 'custom') {  
+                startText = values.startTime.format(this.props.format) + ' ~ ' + values.endTime.format(this.props.format);
+            } else {
+                startText = moment(values.endTime).format(this.props.format);
+            }
         } else {
-            startText = values.startTime.Format('YYYY-MM-dd hh:mm:ss') + '~' + values.endTime.Format('YYYY-MM-dd hh:mm:ss');
+            startText = values.startTime.format('YYYY-MM-dd hh:mm:ss') + ' ~ ' + values.endTime.format('YYYY-MM-dd hh:mm:ss');
         }
         if (values.text == 'custom') {
             this.setState({text: startText});

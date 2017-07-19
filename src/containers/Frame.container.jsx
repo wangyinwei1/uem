@@ -53,7 +53,7 @@ class Frame extends React.Component {
                         timeType={timeType}
                         chooseTimeType={onChooseTimeType}
                     />
-                    <div className="content" key={`${appId}${platform}${timeType.type}${timeType.units}`}>
+                    <div className="content" key={`${appId}_${platform}_${JSON.stringify(timeType)}`}>
                         {this.props.children}
                     </div>
                     <SidePanel

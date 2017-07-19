@@ -67,7 +67,7 @@ class ErrorTableStore {
             const data = await Service.getErrorsList({
                 pageIndex: this.pageIndex,
                 status: this.tagType,
-                startTime: moment().subtract(this.timeType.type, this.timeType.units).valueOf(),
+                startTime: moment().subtract(this.timeType.startTime.type, this.timeType.startTime.units).valueOf(),
                 searchInfo: this.searchValue
             });
             runInAction(() => {

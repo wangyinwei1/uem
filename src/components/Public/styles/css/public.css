@@ -5,18 +5,19 @@
 a {
     transition: color .1s linear 0s,background-color .1s linear 0s!important;
 }
-.open>.dropdown-menu {
+.open > .dropdown-menu {
     -webkit-animation-name: flipInX;
-    -moz-animation-name: flipInX;
-    -o-animation-name: flipInX;
-    animation-name: flipInX;
+       -moz-animation-name: flipInX;
+         -o-animation-name: flipInX;
+            animation-name: flipInX;
     -webkit-animation-duration: .4s;
-    -moz-animation-duration: .4s;
-    -o-animation-duration: .4s;
-    animation-duration: .4s;
+       -moz-animation-duration: .4s;
+         -o-animation-duration: .4s;
+            animation-duration: .4s;
+
     -webkit-animation-fill-mode: both;
-    -moz-animation-fill-mode: both;
-    -o-animation-fill-mode: both;
-    animation-fill-mode: both;
+       -moz-animation-fill-mode: both;
+         -o-animation-fill-mode: both;
+            animation-fill-mode: both;
 }
 

@@ -25,9 +25,12 @@ class FrameStore {
         sessionStorage.setItem('UEM_platform', payload.platform);
     }
     @action onChooseTimeType = payload => {
-        this.timeType = payload.timeType;
-        console.log(payload.timeType)
-        sessionStorage.setItem('UEM_timeType', JSON.stringify(payload.timeType));
+        // this.timeType = payload.timeType;
+        const timeType = this.timeType;
+        timeType.startTime = payload.timeType.startTime;
+        timeType.endTime = payload.timeType.endTime;
+        this.timeType = timeType;
+        sessionStorage.setItem('UEM_timeType', JSON.stringify(timeType));
     }
 }
 

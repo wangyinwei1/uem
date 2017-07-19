@@ -13,7 +13,7 @@ class PerformanceDetailStore {
     @action onGetOperInfo = async payload => {
         try {
             const data = await Service.getOperInfo({
-                startTime: moment().subtract(this.timeType.type, this.timeType.units).valueOf(),
+                startTime: moment().subtract(this.timeType.startTime.type, this.timeType.startTime.units).valueOf(),
                 ...payload
             });
             runInAction(() => {

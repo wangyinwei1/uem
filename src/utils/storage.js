@@ -1,7 +1,13 @@
 export function getTimeType() {
     const defaultValue = {
-        type: 1,
-        units: 'hours'
+        startTime: {
+            type: 1,
+            units: 'hours'
+        },
+        endTime: {
+            type: 0,
+            units: 'milliseconds'
+        }
     };
     try {
         return JSON.parse(sessionStorage.getItem('UEM_timeType')) === null

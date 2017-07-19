@@ -17,10 +17,10 @@ let DateContainer = React.createClass({
         this.setState({
             visible: false
         });
-        if(value[0] === null){
+        if (value[0] === null) {
             return;
         }
-        const dateObj =  {
+        const dateObj = {
             startTime: value[0],
             endTime: value[1],
             text: 'custom'
@@ -29,9 +29,9 @@ let DateContainer = React.createClass({
         $('.bat-datepicker-selection').click();
     },
     handleClick: function (item, index, e) {
-        this.setState({currentIndex:index, num: 2});
+        this.setState({ currentIndex: index, num: 2 });
         const disabledDate = function (current) {
-            return current && current.getTime() > Date.now();
+            return current && current.valueOf() > Date.now();
         };
         if (item.type == 'custom') {
             if (this.state.visible) {
@@ -42,7 +42,13 @@ let DateContainer = React.createClass({
             } else {
                 this.setState({
                     visible: !this.state.visible,
-                    content: <RangePicker disabledDate={disabledDate} showTime={this.props.showTime} format="yyyy-MM-dd HH:mm:ss" onChange={this.onChange} getCalendarContainer={() => document.getElementById('bat-data-main')} />
+                    content: <RangePicker
+                        disabledDate={disabledDate}
+                        showTime={this.props.showTime}
+                        format="YYYY-MM-DD HH:mm:ss"
+                        onChange={this.onChange}
+                        getCalendarContainer={() => document.getElementById('bat-data-main')}
+                    />
                 })
             }
         } else {
@@ -85,16 +91,17 @@ let DateContainer = React.createClass({
         const _l = this.props.items.length > 9 ? this.props.items.length : 9;
         const _width = _l * 58 + 30;
         const ul_width = _l * 58 + 10;
+        console.log(this.props.items);
         return (
-            <div className="bat-date-container" style={{width:_width}}>
+            <div className="bat-date-container" style={{ width: _width }}>
                 <div className="bat-date-tags clearfix">
                     <ul>
-                        {_.map(this.props.items, function (item, index) {
-                            return <li key={index}><a href="javascript:" className={this.isActive(index)} onClick={this.handleClick.bind(this, item, index)} >{item.text}</a></li>
-                        }.bind(this))}
+                        {this.props.items.map((item, index) => {
+                            return <li key={index}><a href="javascript:;" className={this.isActive(index)} onClick={this.handleClick.bind(this, item, index)} >{item.text}</a></li>
+                        })}
                     </ul>
                 </div>
-                <div className="bat-data-main" id="bat-data-main" style={this.state.visible ? {display:"block"} : {display:"none"}}>
+                <div className="bat-data-main" id="bat-data-main" style={this.state.visible ? { display: "block" } : { display: "none" }}>
                     {this.state.content}
                 </div>
             </div>

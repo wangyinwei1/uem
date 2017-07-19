@@ -67,7 +67,7 @@ class PerformanceBrowseStore {
                 pageIndex: this.pageIndex,
                 operType: this.operType,
                 tagType: this.tagType === 0 ? 'marked' : 'unmarked',
-                startTime: moment().subtract(this.timeType.type, this.timeType.units).valueOf(),
+                startTime: moment().subtract(this.timeType.startTime.type, this.timeType.startTime.units).valueOf(),
                 operName: this.searchValue,
                 avgRspTime: this.avgRspTime
             });
