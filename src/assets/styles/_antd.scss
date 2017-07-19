@@ -47,6 +47,22 @@
     background-color: #1C426B;
 }
 
+// Dropdown
+.ant-dropdown-menu {
+    border-radius: 2px;
+    background-color: #1D6AA7;
+    color: #FFFFFF;
+}
+.ant-dropdown-menu-item {
+    color: inherit;
+    &:hover {
+        background-color: #3092D9;
+    }
+}
+.ant-dropdown-menu-item-selected {
+    background-color: #3092D9;
+}
+
 // Popover 
 .ant-popover-inner {
     overflow: hidden;
