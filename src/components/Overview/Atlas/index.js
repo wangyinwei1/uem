@@ -40,7 +40,10 @@ class Atlas extends Component {
                 value: series[i]
             })
         }
-        pillarConfig = config.get('bar').updateIn(['yAxis','data'], () => yAxis).updateIn(['series',0,'data'],()=> series);
+        pillarConfig = config.get('bar').updateIn(['yAxis','data'], () => yAxis)
+            .updateIn(['series',0,'data'],()=> series)
+            .updateIn(['series',0,'name'],()=> '用户会话数');
+            
         mapConfig = config.get(activeMap).updateIn(['series',0,'data'], ()=> mapSeriesData );
         return (
             <div className={styles['atlas']}>

@@ -106,11 +106,19 @@ const defaultOptions = Immutable.fromJS({
 });
 
 class MapChart extends Chart {
+    updateOptions = {};
     constructor(props) {
         super(props);
         this.type = 'MapChart';
+        // Immutable.fromJS(props.options).updateIn(['series',0,'mapType'],()=>'world').toJS();
         this.defaultOptions = defaultOptions;
     }
+    // @override
+    handleClickEcharts(params){
+        console.log('地图里的params:',params);
+        this.props.clickUpdateMap(params);
+    }
+    
     // @override
     // draw() {
     //     return (

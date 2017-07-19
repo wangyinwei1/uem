@@ -7,7 +7,7 @@ import config from './config';
 import styles from './index.scss';
 import { Radio } from 'antd';
 import { countryNameInCN, countryNameInEN } from '../../Common/Chart/WorldCountryName';
-
+import { NameMap } from '../../Common/Chart/CityName';
 const RadioGroup = Radio.Group;
 
 class ErrorMapChart extends Component {
@@ -15,7 +15,9 @@ class ErrorMapChart extends Component {
         super(props);
         this.state = {
             activeMap: 'china',
-            activePillar: 'occurErrorUserRate'
+            activePillar: 'occurErrorUserRate',
+            activeProvince: undefined,
+            isSelectingCity: true
         };
     }
     componentDidMount(){
@@ -48,6 +50,29 @@ class ErrorMapChart extends Component {
          }) );
     }
 
+    clickUpdateMap(params){
+
+        if(this.state.activeMap == 'china' && params.componentSubType == 'map' && params.name !== '台湾'){
+            if(this.state.isSelectingCity && typeof params.value != "undefined"  && !isNaN(params.value)){
+                this.setState({isSelectingCity: false}, ()=>this.props.getMapData({
+                    metrics: this.state.activePillar == 'occurErrorUserRate'? JSON.stringify(['occurErrorUserRate']) : JSON.stringify(['effectedUserNum']),
+                    areaType: this.state.activeMap == 'china' ? 'province' : 'country',
+                    province: params.name
+                })) 
+                config.updateIn(['china','series',0,'mapType'], ()=> params.name);
+            }else if(!NameMap[params.name]){
+                this.setState({isSelectingCity: true}, ()=>this.props.getMapData({
+                    metrics: this.state.activePillar == 'occurErrorUserRate'? JSON.stringify(['occurErrorUserRate']) : JSON.stringify(['effectedUserNum']),
+                    areaType: this.state.activeMap == 'china' ? 'province' : 'country',
+                    province: undefined
+                }))
+                config.updateIn(['china','series',0,'mapType'], ()=> 'china');
+            } 
+        }else{
+            console.log('外国和台湾省的二级地区暂无法查看！')
+        } 
+    }
+
     render() {
         const { activeMap } = this.state;
         let pillarConfig,mapConfig,yAxis,series,mapSeriesData=[],_yAxis=[],_series=[];
@@ -78,9 +103,11 @@ class ErrorMapChart extends Component {
                 value: series[i]
             })
         }
-        pillarConfig = config.get('bar').updateIn(['yAxis','data'], () => _yAxis).updateIn(['series',0,'data'],()=> _series);
+        pillarConfig = config.get('bar').updateIn(['yAxis','data'], () => _yAxis)
+            .updateIn(['series',0,'data'],()=> _series)
+            .updateIn(['series',0,'name'],()=> this.state.activePillar == 'occurErrorUserRate'? '用户错误率':'影响用户数' );
+
         mapConfig = config.get(activeMap).updateIn(['series',0,'data'], ()=> mapSeriesData );
-        console.log('[mapConfig]:',mapConfig.toJS());
         return (
             <div className={styles['map-chart']}>
                 <div className={cls('tile-head')}>地理位置</div>
@@ -99,10 +126,13 @@ class ErrorMapChart extends Component {
                         <Radio value={'effectedUserNum'}>{'影响用户数'}</Radio>
                     </RadioGroup>
 
-                    <MapChart chartId="map" group="atlas" className={styles['map-chart']} 
-                        options={config.get('default').mergeDeep(mapConfig).toJS()} 
+                    <MapChart 
+                        chartId="map" group="atlas" className={styles['map-chart']} 
+                        options={config.get('default').mergeDeep(mapConfig).toJS()}
+                        clickUpdateMap={this.clickUpdateMap.bind(this)}
                     />
-                    <BarChart chartId="bar" group="atlas" className={styles['bar-chart']} 
+                    <BarChart 
+                        chartId="bar" group="atlas" className={styles['bar-chart']} 
                         options={config.get('default').mergeDeep(pillarConfig).toJS()} 
                     />
                 </div>

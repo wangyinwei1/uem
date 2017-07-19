@@ -102,6 +102,10 @@ class Chart extends React.PureComponent {
             echarts.connect(this.group);
         }
         this._setOption();
+        // 图的点击操作，handleClickEcharts方法在各个子组件重写
+        this.chartDom.on('click', params => {
+            this.handleClickEcharts(params);
+        });
         console.log(`[${this.type}]: #${this.chartId} 已渲染`);
         $(window).on('resize', this._resizeChart);
     }
@@ -131,14 +135,22 @@ class Chart extends React.PureComponent {
         }
     }
     _mergeOptions() {
+        // console.log('222222222222',globalOptions.mergeDeep(this.defaultOptions.mergeDeep(this.options)).toJS());
+        // this.defaultOptions.mergeDeep(this.updateOptions);
         return globalOptions.mergeDeep(this.defaultOptions.mergeDeep(this.options)).toJS();
+        
     }
     _setOption() {
         this.chartDom.setOption(this._mergeOptions());
         // setTimeout(() => {
         //     this.chartDom.hideLoading();
-        // }, 3000);
+        // }, 3000);     
     }
+
+    handleClickEcharts(params){
+        console.log('[charts-params]:',params);
+    }
+
     draw() {
         return (
             <div id={this.chartId} className={cls('chart', this.className)}></div>
