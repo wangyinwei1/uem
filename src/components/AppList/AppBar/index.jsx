@@ -92,6 +92,7 @@ class AppsBar extends Component {
                                     }],
                                 })(<Input placeholder="请输入应用名称" />)}
                             </FormItem>
+                            <div className={styles['create-app-title']}>URL</div>
                             <FormItem>
                                 {getFieldDecorator('url', {
                                     rules: [{
@@ -100,8 +101,10 @@ class AppsBar extends Component {
                                     }],
                                 })(<Input placeholder="请输入Url" />)}
                             </FormItem>
-                            <div className={cls('btn')} onClick={this.addApp.bind(this)}>保存</div>
-                            <div className={cls('btn')} onClick={this.toggleAddAppModal.bind(this)}>取消</div>
+                            <div className={styles['btn-wrap']}>
+                                <div className={cls('btn')} onClick={this.addApp.bind(this)}>保存</div>
+                                <div className={cls('btn')} onClick={this.toggleAddAppModal.bind(this)}>取消</div>
+                            </div>
                         </Form>
                     </div>
                 </Modal>

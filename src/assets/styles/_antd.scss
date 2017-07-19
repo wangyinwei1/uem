@@ -207,3 +207,26 @@
 .ant-tabs-nav-scroll {
     background-color: #153253;
 }
+
+// Modal
+.ant-modal-content {
+    border-radius: 2px;
+    background-color: #1D6AA7;
+    color: #FFFFFF;
+}
+
+.ant-modal-body {
+    padding: 0;
+}
+
+.ant-modal-close {
+    color: inherit;
+    &:hover {
+        color: inherit;
+    }
+}
+
+// Form 
+.ant-form-item {
+    margin-bottom: 0;
+}
