@@ -48,6 +48,7 @@ class ErrorOverviewStore {
         try {
             const datas = await CommonService.getMapData({
                 startTime: moment().subtract(this.timeType.startTime.type, this.timeType.startTime.units).valueOf(),
+                endTime: moment().subtract(this.timeType.endTime.type, this.timeType.endTime.units).valueOf(),
                 ...payload
             });
             if( areaType == 'province'){

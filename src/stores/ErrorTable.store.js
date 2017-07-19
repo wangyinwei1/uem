@@ -68,6 +68,7 @@ class ErrorTableStore {
                 pageIndex: this.pageIndex,
                 status: this.tagType,
                 startTime: moment().subtract(this.timeType.startTime.type, this.timeType.startTime.units).valueOf(),
+                endTime: moment().subtract(this.timeType.endTime.type, this.timeType.endTime.units).valueOf(),
                 searchInfo: this.searchValue
             });
             runInAction(() => {

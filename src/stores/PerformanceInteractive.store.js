@@ -61,6 +61,7 @@ class PerformanceInteractiveStore {
                 operType: this.operType,
                 tagType: this.tagType === 0 ? 'marked' : 'unmarked',
                 startTime: moment().subtract(this.timeType.startTime.type, this.timeType.startTime.units).valueOf(),
+                endTime: moment().subtract(this.timeType.endTime.type, this.timeType.endTime.units).valueOf(),
                 operName: this.searchValue,
                 avgRspTime: this.avgRspTime
             });

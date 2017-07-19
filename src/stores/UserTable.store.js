@@ -56,6 +56,7 @@ class UserTableStore {
                 pageIndex: this.pageIndex,
                 userType: this.tagType === 0 ? 1 : 0,
                 startTime: moment().subtract(this.timeType.startTime.type, this.timeType.startTime.units).valueOf(),
+                endTime: moment().subtract(this.timeType.endTime.type, this.timeType.endTime.units).valueOf(),
                 searchKey: this.searchKey,
                 searchInfo: this.searchValue,
             });
