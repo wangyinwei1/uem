@@ -4,7 +4,7 @@
         position: relative;
         float: left;
         overflow: hidden;
-        padding: 44.5px 500px 44.5px 0;
+        padding: 44.5px 60% 44.5px 0;
         width: 100%;
         height: 155px;
     }
@@ -19,6 +19,30 @@
         }
     }
 }
+
+.box_list {
+    text-align: center;
+    margin-top: 3%;
+    .li{
+        display: inline-block;
+        margin-left: 10px;
+        width: 13%;
+    }
+    .value {
+
+    }
+    .percent {
+
+    } 
+    .key {
+    height: 20px;
+    color: #70C3FB;
+    font-size: 13px;
+    line-height: 20px;
+    } 
+}
+    
+    
 
 .key {
     height: 20px;
@@ -37,15 +61,16 @@
 .apdex {
     position: relative;
     float: left;
-    margin-left: -430px;
+    margin-left: -58%;
     padding: 12.5px 0;
-    width: 430px;
+    width: 58%;
     height: 155px;
     :global {
         .ant-progress {
             float: left;
             width: 130px;
             height: 100%;
+            margin-right: 2%;
         }
         .ant-progress-text-hack {
             position: absolute;
