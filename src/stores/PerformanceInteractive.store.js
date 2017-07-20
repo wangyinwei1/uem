@@ -16,7 +16,6 @@ class PerformanceInteractiveStore {
     @observable searchValue = undefined;
     @observable tagType = 0;
     @observable colOptions = getColOptions('PerformanceInteractive');
-    timeType = getTimeType();
 
     get dataList() {
         return this.data.toJS();
@@ -60,8 +59,8 @@ class PerformanceInteractiveStore {
                 pageIndex: this.pageIndex,
                 operType: this.operType,
                 tagType: this.tagType === 0 ? 'marked' : 'unmarked',
-                startTime: moment().subtract(this.timeType.startTime.type, this.timeType.startTime.units).valueOf(),
-                endTime: moment().subtract(this.timeType.endTime.type, this.timeType.endTime.units).valueOf(),
+                startTime: moment().subtract(getTimeType().startTime.type, getTimeType().startTime.units).valueOf(),
+                endTime: moment().subtract(getTimeType().endTime.type, getTimeType().endTime.units).valueOf(),
                 operName: this.searchValue,
                 avgRspTime: this.avgRspTime
             });

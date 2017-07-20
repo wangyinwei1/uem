@@ -55,8 +55,8 @@ class UserTableStore {
             const data = await Service.getUserList({
                 pageIndex: this.pageIndex,
                 userType: this.tagType === 0 ? 1 : 0,
-                startTime: moment().subtract(this.timeType.startTime.type, this.timeType.startTime.units).valueOf(),
-                endTime: moment().subtract(this.timeType.endTime.type, this.timeType.endTime.units).valueOf(),
+                startTime: moment().subtract(getTimeType().startTime.type, getTimeType().startTime.units).valueOf(),
+                endTime: moment().subtract(getTimeType().endTime.type, getTimeType().endTime.units).valueOf(),
                 searchKey: this.searchKey,
                 searchInfo: this.searchValue,
             });

@@ -22,3 +22,24 @@
     }
 }
 
+.create-app-form-wrap {
+    padding: 20px;
+    :global(.ant-form-item) {
+    }
+}
+
+.create-app-title {
+    line-height: 30px;
+}
+
+.btn-wrap {
+    margin-top: 20px;
+    text-align: center;
+    line-height: 35px;
+    :global(.btn) {
+        margin-left: 20px;
+        &:first-child {
+            margin-left: 0;
+        }
+    }
+}

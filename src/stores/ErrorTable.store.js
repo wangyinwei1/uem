@@ -14,8 +14,6 @@ class ErrorTableStore {
     @observable tagType = 0;
     @observable colOptions = getColOptions('ErrorTable');
     @observable rows = [];
-    timeType = getTimeType();
-
     get dataList() {
         return this.data.toJS();
     }
@@ -67,8 +65,8 @@ class ErrorTableStore {
             const data = await Service.getErrorsList({
                 pageIndex: this.pageIndex,
                 status: this.tagType,
-                startTime: moment().subtract(this.timeType.startTime.type, this.timeType.startTime.units).valueOf(),
-                endTime: moment().subtract(this.timeType.endTime.type, this.timeType.endTime.units).valueOf(),
+                startTime: moment().subtract(getTimeType().startTime.type, getTimeType().startTime.units).valueOf(),
+                endTime: moment().subtract(getTimeType().endTime.type, getTimeType().endTime.units).valueOf(),
                 searchInfo: this.searchValue
             });
             runInAction(() => {

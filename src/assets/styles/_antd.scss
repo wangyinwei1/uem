@@ -47,6 +47,22 @@
     background-color: #1C426B;
 }
 
+// Dropdown
+.ant-dropdown-menu {
+    border-radius: 2px;
+    background-color: #1D6AA7;
+    color: #FFFFFF;
+}
+.ant-dropdown-menu-item {
+    color: inherit;
+    &:hover {
+        background-color: #3092D9;
+    }
+}
+.ant-dropdown-menu-item-selected {
+    background-color: #3092D9;
+}
+
 // Popover 
 .ant-popover-inner {
     overflow: hidden;
@@ -90,6 +106,68 @@
 // Pagination
 .ant-pagination {
     text-align: right;
+}
+
+.ant-pagination-item {
+    border: 1px solid #4386B9;
+    border-radius: 0;
+    background-color: rgba(0,15,30,.4);
+    a {
+        color: #5D8AB9;
+    }
+}
+
+.ant-pagination-prev,
+.ant-pagination-next,
+.ant-pagination-jump-prev,
+.ant-pagination-jump-next {
+    border: 1px solid #4386B9;
+    border-radius: 0;
+    background-color: rgba(0,15,30,.4);
+}
+
+.ant-pagination-item:focus,
+.ant-pagination-item:hover {
+    border-color: #4386B9;
+    a {
+        color: #5D8AB9;
+    }
+}
+
+.ant-pagination-prev a,
+.ant-pagination-next a {
+    color: #5D8AB9;
+}
+
+.ant-pagination-disabled:hover {
+    border-color: #4386B9;
+    a {
+        color: #5D8AB9;
+    }
+}
+
+.ant-pagination-prev:focus,
+.ant-pagination-next:focus,
+.ant-pagination-prev:hover,
+.ant-pagination-next:hover {
+    border-color: #4386B9;
+}
+
+.ant-pagination-prev:focus a,
+.ant-pagination-next:focus a,
+.ant-pagination-prev:hover a,
+.ant-pagination-next:hover a {
+    color: #5D8AB9;
+}
+.ant-pagination-item-active a,
+.ant-pagination-item-active:focus a,
+.ant-pagination-item-active:hover a {
+    color: #FFFFFF;
+}
+
+.ant-pagination-item-active:focus,
+.ant-pagination-item-active:hover {
+    background-color: rgba(0, 15, 30, .4);
 }
 
 // Spin
@@ -206,4 +284,27 @@
 
 .ant-tabs-nav-scroll {
     background-color: #153253;
+}
+
+// Modal
+.ant-modal-content {
+    border-radius: 2px;
+    background-color: #1D6AA7;
+    color: #FFFFFF;
+}
+
+.ant-modal-body {
+    padding: 0;
+}
+
+.ant-modal-close {
+    color: inherit;
+    &:hover {
+        color: inherit;
+    }
+}
+
+// Form 
+.ant-form-item {
+    margin-bottom: 0;
 }

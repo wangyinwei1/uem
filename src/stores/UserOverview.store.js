@@ -13,13 +13,12 @@ class UserOverviewStore {
         yAxis: [],
         series: []
     };
-    timeType = getTimeType(); 
 
     @action onGetKeyIndicator = async payload => {
         try {
             const data = await CommonService.getKeyIndicator({
-                startTime: moment().subtract(this.timeType.startTime.type, this.timeType.startTime.units).valueOf(),
-                endTime: moment().subtract(this.timeType.endTime.type, this.timeType.endTime.units).valueOf(),
+                startTime: moment().subtract(getTimeType().startTime.type, getTimeType().startTime.units).valueOf(),
+                endTime: moment().subtract(getTimeType().endTime.type, getTimeType().endTime.units).valueOf(),
                 ...payload
             });
             runInAction(() => {
@@ -47,8 +46,8 @@ class UserOverviewStore {
         const { metrics , areaType } = payload;
         try {
             const datas = await CommonService.getMapData({
-                startTime: moment().subtract(this.timeType.startTime.type, this.timeType.startTime.units).valueOf(),
-                endTime: moment().subtract(this.timeType.endTime.type, this.timeType.endTime.units).valueOf(),
+                startTime: moment().subtract(getTimeType().startTime.type, getTimeType().startTime.units).valueOf(),
+                endTime: moment().subtract(getTimeType().endTime.type, getTimeType().endTime.units).valueOf(),
                 ...payload
             });
             if( areaType == 'province'){

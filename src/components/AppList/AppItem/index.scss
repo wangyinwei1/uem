@@ -5,6 +5,7 @@
     width: 30.6%;
     border-radius: 8px;
     box-shadow: 5px 5px 10px -8px #000000;
+    transition: .2s;
     &:nth-child(3n+1) {
         margin-left: 0;
     }

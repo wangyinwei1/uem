@@ -1,6 +1,7 @@
 import React from "react";
 import { Provider } from 'mobx-react';
 import { HashRouter, Redirect, Route, Switch, Link } from 'react-router-dom';
+import isRedirect from './utils/isRedirect';
 
 // 容器
 import {
@@ -28,16 +29,56 @@ export default function App() {
                     <Switch>
                         <Redirect exact from="/" to="/app_list" />
                         <Route path="/app_list" component={AppList} />
-                        <Route path="/overview" component={Overview} />
-                        <Route path="/performance_browse" component={PerformanceBrowse} />
-                        <Route path="/performance_overview" component={PerformanceOverview} />
-                        <Route path="/performance_interactive" component={PerformanceInteractive} />
-                        <Route path="/error_table" component={ErrorTable} />
-                        <Route path="/user_table" component={UserTable} />
-                        <Route path="/heatmap_list" component={HeatmapList} />
-                        <Route path="/setting" component={Setting} />
-                        <Route path="/error_overview" component={ErrorOverview} />
-                        <Route path="/user_overview" component={UserOverview} />
+                        <Route path="/overview" render={() => (
+                            isRedirect()
+                            ? <Overview />
+                            : <Redirect to="/app_list" />
+                        )} />
+                        <Route path="/performance_browse" render={() => (
+                            isRedirect()
+                            ? <PerformanceBrowse />
+                            : <Redirect to="/app_list" />
+                        )} />
+                        <Route path="/performance_overview" render={() => (
+                            isRedirect()
+                            ? <PerformanceOverview />
+                            : <Redirect to="/app_list" />
+                        )} />
+                        <Route path="/performance_interactive" render={() => (
+                            isRedirect()
+                            ? <PerformanceInteractive />
+                            : <Redirect to="/app_list" />
+                        )} />
+                        <Route path="/error_table" render={() => (
+                            isRedirect()
+                            ? <ErrorTable />
+                            : <Redirect to="/app_list" />
+                        )} />
+                        <Route path="/user_table" render={() => (
+                            isRedirect()
+                            ? <UserTable />
+                            : <Redirect to="/app_list" />
+                        )} />
+                        <Route path="/heatmap_list" render={() => (
+                            isRedirect()
+                            ? <HeatmapList />
+                            : <Redirect to="/app_list" />
+                        )} />
+                        <Route path="/setting" render={() => (
+                            isRedirect()
+                            ? <Setting />
+                            : <Redirect to="/app_list" />
+                        )} />
+                        <Route path="/error_overview" render={() => (
+                            isRedirect()
+                            ? <ErrorOverview />
+                            : <Redirect to="/app_list" />
+                        )} />
+                        <Route path="/user_overview" render={() => (
+                            isRedirect()
+                            ? <UserOverview />
+                            : <Redirect to="/app_list" />
+                        )} />
                         {/* <Route component={AppList} /> */}
                     </Switch>
                 </Frame>

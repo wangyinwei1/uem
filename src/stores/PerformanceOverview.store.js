@@ -13,7 +13,6 @@ class PerformanceOverviewStore {
         yAxis: [],
         series: []
     };
-    // timeType = getTimeType();
 
     @action onGetKeyIndicator = async payload => {
         try {

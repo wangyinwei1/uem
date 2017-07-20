@@ -35,9 +35,12 @@
         position: relative;
         float: left;
         padding-top: 35px;
-        width: 33.333%;
+        width: 25%;
         border-left: 15px solid transparent;
         font-size: 12px;
+        &:last-child {
+            width: 50%;
+        }
         dt {
             text-align: center;
             span:nth-child(2) {
@@ -75,7 +78,7 @@
             left: 0;
             z-index: 1;
             display: block;
-            width: 100%;
+            width: 99%;
             height: 100%;
             border: 1px dashed #70C3FB;
             content: "";
@@ -106,6 +109,43 @@
         i,
         span {
             vertical-align: middle;
+        }
+    }
+}
+
+.curve {
+    position: relative;
+    height: 140px;
+    font-size: 12px;
+    & > div {
+        position: absolute;
+        left: 0;
+        border-top: 1px solid #70C3FB;
+        border-radius: 100%;
+        text-align: center;
+        line-height: 1;
+        span {
+            position: relative;
+            top: -6px;
+            display: inline-block;
+            padding: 0 5px;
+            background-color: #104B7A;
+        }
+        &:nth-child(1) {
+            top: 115px;
+            height: 50px;
+        }
+        &:nth-child(2) {
+            top: 90px;
+            height: 100px;
+        }
+        &:nth-child(3) {
+            top: 55px;
+            height: 170px;
+        }
+        &:nth-child(4) {
+            top: 25px;
+            height: 230px;
         }
     }
 }
