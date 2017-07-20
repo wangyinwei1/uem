@@ -17,7 +17,6 @@ class PerformanceDetailStore {
                 endTime: moment().subtract(getTimeType().endTime.type, getTimeType().endTime.units).valueOf(),
                 ...payload
             });
-            debugger
             runInAction(() => {
                 this.info = data;
             });
