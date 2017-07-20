@@ -7,7 +7,7 @@ export default class OperType extends React.Component {
     }
     render() {
         return (
-            <div className={styles['oper-type']}>{this.props.type}</div>
+            <div className={styles['oper-type']}>{this.props.type || '--'}</div>
         );
     }
 }
