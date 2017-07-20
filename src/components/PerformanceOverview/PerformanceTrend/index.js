@@ -106,11 +106,11 @@ class PerformanceTrend extends Component {
             legend: {
                 data: [{},{}]
             },
-            grid: {
+            grid: [{
                 left: '-3%',
                 top: '8%',
                 bottom: '8%'
-            },
+            }],
                 // 类目轴
             xAxis: {
                 type : 'category',
@@ -143,7 +143,7 @@ class PerformanceTrend extends Component {
                 }
             },
             // 数值型坐标轴默认参数
-            yAxis: {
+            yAxis: [{
                 type: 'value',
                 max: 1,
                 splitNumber: 10,
@@ -175,7 +175,7 @@ class PerformanceTrend extends Component {
                         ]
                     }
                 }
-            },
+            }],
             line: {
                 symbol: 'circle',  // 拐点图形类型
                 symbolSize: 5   // 拐点图形大小

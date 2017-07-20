@@ -1,14 +1,74 @@
 import React from 'react';
+import {
+    BarChart,
+    LineChart
+} from '../../Common/Chart';
+import config from './config.js';
 import styles from './index.scss';
 
 export default class Trend extends React.Component {
+    trends = [{
+        name: '响应时间趋势图',
+        value: 'avgRspTime'
+    }, {
+        name: '响应时间分析图',
+        value: 'thruput'
+    }, {
+        name: '点击数按满意度分布图',
+        value: 'apdex'
+    }, {
+        name: '吞吐量趋势图',
+        value: 'throughput'
+    }];
+    state = {
+        activeTrend: 0
+    };
+    changeTrend(index) {
+        this.setState({
+            activeTrend: index
+        });
+    }
+    renderTrend() {
+        const { activeTrend } = this.state;
+        const { itemId, trend } = this.props;
+
+        switch (activeTrend) {
+            case 0: return <BarChart
+                chartId={`trend-${itemId}-${activeTrend}`}
+                options={config.get('default').mergeDeep(config.get('avgRspTime'))
+                    .setIn(['xAxis', 'data'], trend.clientTime.map(item => moment(item.startTime).format('HH:mm')))
+                    //.setIn(['series', 0, 'data'], trend.clientTime.map(item => item.value))
+                    //.setIn(['series', 1, 'data'], trend.netTime.map(item => item.value))
+                    //.setIn(['series', 2, 'data'], trend.serverTime.map(item => item.value))
+                    //.setIn(['series', 3, 'data'], trend.clickNum.map(item => item.value))
+                    .toJS()}
+            />;
+
+            case 1: return <LineChart
+                chartId={`trend-${itemId}-${activeTrend}`}
+                options={config.get('default').mergeDeep(config.get('thruput')).toJS()}
+            />;
+            case 2: return <BarChart
+                chartId={`trend-${itemId}-${activeTrend}`}
+                options={config.get('default').mergeDeep(config.get('apdex')).toJS()}
+            />;
+            case 3: return <BarChart
+                chartId={`trend-${itemId}-${activeTrend}`}
+                options={config.get('default').mergeDeep(config.get('throughput')).toJS()}
+            />;
+        }
+    }
     render() {
         const { props } = this.props;
         return (
             <div className={styles['trend']}>
-                <div className='tile-head'>趋势图</div>
-                <div className='tile-body'>
-                    TODO
+                <div className={cls('tile-head', styles['trend-head'])}>
+                    {this.trends.map((item, index) => <div className={cls({
+                        [styles['active']]: this.state.activeTrend === index
+                    })} key={item.name} onClick={this.changeTrend.bind(this, index)}>{item.name}</div>)}
+                </div>
+                <div className={cls('tile-body', styles['trend-body'])} key={this.state.activeTrend}>
+                    {this.renderTrend()}
                 </div>
             </div>
         );

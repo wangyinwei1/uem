@@ -23,12 +23,12 @@ const globalOptions = Immutable.fromJS({
     //         color: '#fff'
     //     }
     // },
-    grid: {
+    grid: [{
         left: 20,
         right: 20,
         bottom: 20,
         containLabel: true
-    },
+    }],
     xAxis: {
         axisLine: {
             lineStyle: {
@@ -41,7 +41,7 @@ const globalOptions = Immutable.fromJS({
             }
         }
     },
-    yAxis: {
+    yAxis: [{
         axisLine: {
             lineStyle: {
                 color: '#70c3fb'
@@ -52,7 +52,7 @@ const globalOptions = Immutable.fromJS({
                 color: '#236592'
             }
         }
-    },
+    }],
     color: ['#195d95', '#1767a2', '#1470ae', '#1275b5', '#0e83c7', '#0a90d6', '#0997de', '#03a9f5'].reverse(),
     tooltip: {
         show: true,
@@ -124,6 +124,7 @@ class Chart extends React.PureComponent {
     }
     componentWillUnmount() {
         this.chartDom.clear();
+        // this.chartDom.dispose();
         clearTimeout(this.timer);
         $(window).off('resize', this._resizeChart);
     }
@@ -135,16 +136,14 @@ class Chart extends React.PureComponent {
         }
     }
     _mergeOptions() {
-        // console.log('222222222222',globalOptions.mergeDeep(this.defaultOptions.mergeDeep(this.options)).toJS());
         // this.defaultOptions.mergeDeep(this.updateOptions);
         return globalOptions.mergeDeep(this.defaultOptions.mergeDeep(this.options)).toJS();
-        
     }
     _setOption() {
         this.chartDom.setOption(this._mergeOptions());
         // setTimeout(() => {
         //     this.chartDom.hideLoading();
-        // }, 3000);     
+        // }, 3000);
     }
 
     handleClickEcharts(params){

@@ -45,11 +45,11 @@ const defaultOptions = Immutable.fromJS({
             show: false
         }
     },
-    yAxis: {
+    yAxis: [{
         axisLine: {
             show: false
         }
-    },
+    }],
     series: [{
         name: '中国',
         type: 'map',

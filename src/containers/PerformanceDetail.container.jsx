@@ -14,7 +14,7 @@ import {
 @observer
 export default class PerformanceDetail extends React.Component {
     componentDidMount() {
-        const { onGetOperInfo } = this.props.performanceDetailStore;
+        const { onGetOperInfo, onGetOperTrend } = this.props.performanceDetailStore;
         const { type } = this.props;
         const {
             operType,
@@ -31,12 +31,20 @@ export default class PerformanceDetail extends React.Component {
             path,
             performanceType: type
         });
+        onGetOperTrend({
+            operType,
+            selector,
+            text,
+            isMarked,
+            path,
+            performanceType: type
+        });
     }
     shouldComponentUpdate(nextProps) {
         return nextProps.tag;
     }
     render() {
-        const { info } = this.props.performanceDetailStore;
+        const { info, trend } = this.props.performanceDetailStore;
         const {
             pv,
             uv,
@@ -55,7 +63,7 @@ export default class PerformanceDetail extends React.Component {
             domLoadingTime,
             pageAvgRspTime
         } = info;
-
+        const { itemId } = this.props;
         return (
             <DetailWrap>
                 <h3>PerformanceDetail</h3>
@@ -83,7 +91,7 @@ export default class PerformanceDetail extends React.Component {
                         pageAvgRspTime
                     }}
                 />
-                <Trend />
+                <Trend itemId={itemId} trend={trend} />
                 <Analysis />
                 <pre>
                     {JSON.stringify(info, null, 4)}

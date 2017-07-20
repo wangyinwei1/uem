@@ -51,10 +51,10 @@ export default class SidePanelItem extends React.Component {
     renderDetail(module, data, index) {
         const tag = index === 0 ? false : true;
         const components = {
-            performance_browse: <PerformanceDetail data={data} type='browse' tag={tag} />,
-            performance_interactive: <PerformanceDetail data={data} type='interaction' tag={tag} />,
-            error_table: <ErrorDetail data={data} tag={tag} />,
-            user_table: <UserDetail data={data} tag={tag} />,
+            performance_browse: <PerformanceDetail data={data} type='browse' tag={tag} itemId={this.props.itemId} />,
+            performance_interactive: <PerformanceDetail data={data} type='interaction' tag={tag} itemId={this.props.itemId} />,
+            error_table: <ErrorDetail data={data} tag={tag} itemId={this.props.itemId} />,
+            user_table: <UserDetail data={data} tag={tag} itemId={this.props.itemId} />,
         };
         return components[module];
     }
