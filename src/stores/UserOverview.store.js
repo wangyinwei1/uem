@@ -18,7 +18,7 @@ class UserOverviewStore {
         try {
             const data = await CommonService.getKeyIndicator({
                 startTime: moment().subtract(getTimeType().startTime.type, getTimeType().startTime.units).valueOf(),
-                endTime: moment().subtract(getTimeType().endTime.type, getTimeType().endTime.units).valueOf(),,
+                endTime: moment().subtract(getTimeType().endTime.type, getTimeType().endTime.units).valueOf(),
                 ...payload
             });
             runInAction(() => {
