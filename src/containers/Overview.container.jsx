@@ -5,7 +5,8 @@ import { Spin } from 'antd';
 import {
     Crux,
     Quotas,
-    Atlas
+    Atlas,
+    CruxMobile
 } from '../components/Overview';
 
 @inject('frameStore', 'overviewStore')
@@ -37,12 +38,18 @@ export default class Overview extends React.Component {
         return (
             <div id="Overview">
                 <Spin spinning={loading} size="large">
+                    {sessionStorage.UEM_platform == 'pc'?
                     <Crux
                         realTimeData={realTimeData}
                         getRealTimeData={onGetRealTimeData}
                         getApdex={onGetApdex}
                         apdex={deploy.apdex}
-                    />
+                    /> : <CruxMobile
+                        realTimeData={realTimeData}
+                        getRealTimeData={onGetRealTimeData}
+                        getApdex={onGetApdex}
+                        apdex={deploy.apdex}
+                    />}
                      <Quotas
                         trend={trend}
                         getTrend={onGetTrend}
