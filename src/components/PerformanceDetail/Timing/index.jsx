@@ -27,12 +27,17 @@ export default class Timing extends React.Component {
         label: '渲染完成',
         value: 'load'
     }]
+    state = {
+        showTimingCurve: false
+    }
     constructor(props) {
         super(props);
     }
     componentDidMount() {
-        const items = $(`.${styles['timing']}`).find('dl').children('dd').children('span');
-        console.log(items);
+        this.items = $(this.refs.timing).find('dl').children('dd').children('span');
+        this.items.map(item => {
+            console.log(item);
+        })
     }
     convertPercent(value) {
         if (value === undefined) {
@@ -65,7 +70,7 @@ export default class Timing extends React.Component {
             clientTime = {},
         } = this.props.data;
         return (
-            <div className={styles['timgin-col']}>
+            <div ref="timing" className={styles['timgin-col']}>
                 <dl>
                     <dt>
                         <span>与服务端建立<br/>网络连接时间</span>
@@ -123,7 +128,7 @@ export default class Timing extends React.Component {
             <div className={styles['timing']}>
                 <div className='tile-head'>响应时间分解图</div>
                 <div className='tile-body'>
-                    {this.timingCurve()}
+                    {this.state.showTimingCurve && this.timingCurve()}
                     {this.timingCol()}
                     <ul className={styles['timeline-list']}>
                         {this.type.map(item => {
