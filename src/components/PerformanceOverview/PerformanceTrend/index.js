@@ -13,10 +13,7 @@ class PerformanceTrend extends Component {
     }
     componentDidMount() {
         const { getPerformanceTrend,getPerformanceApdex } = this.props;
-        getPerformanceTrend({
-            startTime: moment().subtract(this.props.startTime.type, this.props.startTime.units).valueOf(),
-            metrics: JSON.stringify(['pv','clickNum','avgRspTime','apdex'])
-        });
+        getPerformanceTrend();
     }
     render() {
         let trend = this.props.performanceTrend;

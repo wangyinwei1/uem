@@ -9,9 +9,28 @@ export default Immutable.fromJS({
             data: []
         },
         yAxis: [{
+            type: 'value',
             show: true,
             name: '单位：s'
         }, {
+            type: 'value',
+            axisLine: {
+                show: false,
+                lineStyle: {
+                    color: '#70c3fb'
+                }
+            },
+            splitLine: {
+                lineStyle: {
+                    color: '#236592'
+                }
+            },
+            // axisLine: {
+            //     show: false
+            // },
+            // axisTick: {
+            //     show: false
+            // }
             show: true,
             name: '单位：次',
         }],

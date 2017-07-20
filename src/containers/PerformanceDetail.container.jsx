@@ -80,17 +80,19 @@ export default class PerformanceDetail extends React.Component {
                         url
                     }}
                 />
-                <Timing
-                    data={{
-                        netTime,
-                        serverTime,
-                        clientTime,
-                        firstByteTime,
-                        lastByteTime,
-                        domLoadingTime,
-                        pageAvgRspTime
-                    }}
-                />
+                {operType === 'redirect' &&
+                    <Timing
+                        data={{
+                            netTime,
+                            serverTime,
+                            clientTime,
+                            firstByteTime,
+                            lastByteTime,
+                            domLoadingTime,
+                            pageAvgRspTime
+                        }}
+                    />
+                }
                 <Trend itemId={itemId} trend={trend} />
                 <Analysis />
                 <pre>

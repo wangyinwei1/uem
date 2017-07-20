@@ -31,7 +31,12 @@ class PerformanceOverviewStore {
     }
     @action onGetPerformanceTrend = async payload => {
         try {
-            const data = await CommonService.getTrend(payload);
+            const data = await CommonService.getTrend({
+                metrics: JSON.stringify(['pv','clickNum','avgRspTime','apdex']),
+                startTime: moment().subtract(getTimeType().startTime.type, getTimeType().startTime.units).valueOf(),
+                endTime: moment().subtract(getTimeType().endTime.type, getTimeType().endTime.units).valueOf(),
+                ...payload
+            });
             runInAction(() => {
                 this.performanceTrend = data;
             });

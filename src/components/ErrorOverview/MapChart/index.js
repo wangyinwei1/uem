@@ -103,7 +103,7 @@ class ErrorMapChart extends Component {
                 value: series[i]
             })
         }
-        pillarConfig = config.get('bar').updateIn(['yAxis','data'], () => _yAxis)
+        pillarConfig = config.get('bar').updateIn(['yAxis', 0,'data'], () => _yAxis)
             .updateIn(['series',0,'data'],()=> _series)
             .updateIn(['series',0,'name'],()=> this.state.activePillar == 'occurErrorUserRate'? '用户错误率':'影响用户数' );
 
