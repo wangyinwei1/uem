@@ -5,7 +5,7 @@ export default {
         appId: sessionStorage.getItem('UEM_appId'),
         platform: sessionStorage.getItem('UEM_platform'),
         startTime: undefined,
-        endTime: moment().valueOf(),
+        endTime: undefined,
         operType: undefined,
         path: undefined,
         text: undefined,
@@ -18,7 +18,7 @@ export default {
         appId: sessionStorage.getItem('UEM_appId'),
         platform: sessionStorage.getItem('UEM_platform'),
         startTime: undefined,
-        endTime: moment().valueOf(),
+        endTime: undefined,
         text: undefined,
         operType: undefined,
         path: undefined,
@@ -28,4 +28,18 @@ export default {
         performanceType: undefined,
         ...payload
     }),
+    getOperSamplesList: payload => Request('get', 'perfor/oper/samples/list', {
+        appId: sessionStorage.getItem('UEM_appId'),
+        platform: sessionStorage.getItem('UEM_platform'),
+        startTime: undefined,
+        endTime: undefined,
+        text: undefined,
+        operType: undefined,
+        path: undefined,
+        selector: undefined,
+        isMarked: undefined,
+        pageIndex: undefined,
+        ...payload 
+    }),
+    
 };

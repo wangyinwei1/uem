@@ -14,7 +14,7 @@ import {
 @observer
 export default class PerformanceDetail extends React.Component {
     componentDidMount() {
-        const { onGetOperInfo, onGetOperTrend } = this.props.performanceDetailStore;
+        const { onGetOperInfo, onGetOperTrend, onGetOperSamplesList } = this.props.performanceDetailStore;
         const { type } = this.props;
         const {
             operType,
@@ -38,6 +38,13 @@ export default class PerformanceDetail extends React.Component {
             isMarked,
             path,
             performanceType: type
+        });
+        onGetOperSamplesList({
+            operType,
+            selector,
+            text,
+            isMarked,
+            path,
         });
     }
     shouldComponentUpdate(nextProps) {

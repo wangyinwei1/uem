@@ -67,6 +67,7 @@ export default class Trend extends React.Component {
                     .setIn(['series', 2, 'data'], trend.percent5.map(item => item.value))
                     .toJS()}
             />;
+
             case 2:
                 const apdexsArr = [];
                 apdexsArr.push(trend.apdexs['apdexS'] || 0);
@@ -78,6 +79,7 @@ export default class Trend extends React.Component {
                         .setIn(['series', 0, 'data'], apdexsArr)
                         .toJS()}
                 />;
+
             case 3: return <BarChart
                 chartId={`trend-${itemId}-${activeTrend}`}
                 options={config.get('default').mergeDeep(config.get('throughput'))
@@ -91,7 +93,7 @@ export default class Trend extends React.Component {
                     }))
                     .setIn(['series', 0, 'data'], trend.thruput.map(item => item.value))
                     .setIn(['series', 1, 'data'], trend.clickNum.map(item => item.value))
-                .toJS()}
+                    .toJS()}
             />;
         }
     }

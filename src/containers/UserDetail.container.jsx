@@ -3,6 +3,11 @@ import { observer, inject } from 'mobx-react';
 import {
     DetailWrap,
 } from '../components/Common';
+import {
+    BaseInfo,
+    Trend,
+    Trace,
+} from '../components/UserDetail';
 
 @inject('frameStore')
 @observer
@@ -16,6 +21,9 @@ export default class UserDetail extends React.Component {
         return (
             <DetailWrap>
                 <h3>UserDetail</h3>
+                <BaseInfo />
+                <Trend />
+                <Trace />
                 <pre>
                     {JSON.stringify(this.props.data, null, 4)}
                 </pre>

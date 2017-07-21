@@ -23,6 +23,7 @@ export default class Overview extends React.Component {
             loading: false
         });
     }
+
     render() {
         const {
             realTimeData,

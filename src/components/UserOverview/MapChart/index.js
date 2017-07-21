@@ -122,8 +122,8 @@ class UserMapChart extends Component {
                     </div>
 
                     <RadioGroup className={cls('radio')} onChange={this.handleRadioSelect.bind(this)} value={this.state.activePillar}>
-                        <Radio value={'sessionCount'}>{'会话数'}</Radio>
-                        <Radio value={'uv'}>{'访客数'}</Radio>
+                        <Radio value={'sessionCount'}>会话数</Radio>
+                        <Radio value={'uv'}>访客数</Radio>
                     </RadioGroup>
 
                     <MapChart
