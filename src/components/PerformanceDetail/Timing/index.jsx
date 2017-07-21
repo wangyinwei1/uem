@@ -37,12 +37,21 @@ export default class Timing extends React.Component {
         this.items = $(this.refs.timing).find('dl').children('dd').children('span');
     }
     componentWillReceiveProps(nextProps) {
+        const {
+            firstByteTime,
+            lastByteTime,
+            domLoadingTime,
+            pageAvgRspTime
+        } = this.props.data;
         clearTimeout(this.timer);
-        this.timer = setTimeout(() => {
-            this.setState({
-                showTimingCurve: true
-            });
-        }, 1500);
+        const all = firstByteTime + lastByteTime + domLoadingTime + pageAvgRspTime;
+        if (all > 0) {
+            this.timer = setTimeout(() => {
+                this.setState({
+                    showTimingCurve: true
+                });
+            }, 1500);
+        }
     }
     componentWillUnmount() {
         clearTimeout(this.timer);
