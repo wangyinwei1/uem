@@ -18,12 +18,13 @@ export default class Setting extends React.Component {
     }
 
     render() {
-        const { appInfo } = this.props.settingStore;
+        const { appInfo, updateAppInfo, updateAppInfoOnFront } = this.props.settingStore;
+        const deployProps = { appInfo, updateAppInfo, updateAppInfoOnFront };
         return (
             <div id="Setting">
                 <Tabs defaultActiveKey="1" animated={false}>
                     <TabPane tab="部署说明" key="1">
-                        <DeployInstruction appInfo={appInfo} />
+                        <DeployInstruction {...deployProps} />
                     </TabPane>
                     <TabPane tab="参数设置" key="2">2</TabPane>
                     <TabPane tab="用户数据模型" key="3">3</TabPane>

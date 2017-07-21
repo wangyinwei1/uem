@@ -1,29 +1,33 @@
 import React, { Component } from 'react';
-import styles from './index.scss'
+import classnames from 'classnames';
+import styles from './index.scss';
 
 // 自定义的Timeline组件  应用位置: 设置 > 部署说明
 export default class Timeline extends Component {
   render() {
     return (
-      <div >
+      <div>
         {this.props.children}
       </div>
     )
   }
 }
 
-/**
- * hasline: 圆形icon下面是否有一条直线，默认为true
- */
+
+// hasline: 圆形icon下面是否有一条直线，默认为true
 Timeline.Item = class Item extends Component {
   render() {
-    const { iconContent } = this.props;
+    const { iconContent, hasline = true } = this.props;
+    const itemClass = classnames({
+      [styles.item]: true,
+      [styles.noline]: !hasline
+    });
     return (
-      <div className={styles.item}>
+      <div className={itemClass}>
         <div className={styles.icon}>{iconContent}</div>
         <div className={styles.content}>{this.props.children}</div>
       </div>
-    )
+    );
   }
 }
 
