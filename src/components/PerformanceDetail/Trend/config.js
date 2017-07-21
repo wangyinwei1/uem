@@ -14,7 +14,7 @@ export default Immutable.fromJS({
         yAxis: [{
             type: 'value',
             show: true,
-            name: '单位：s'
+            name: '单位：s',
         }, {
             type: 'value',
             axisLine: {
@@ -24,6 +24,7 @@ export default Immutable.fromJS({
                 }
             },
             splitLine: {
+                show: false,
                 lineStyle: {
                     color: '#236592'
                 }
@@ -202,6 +203,7 @@ export default Immutable.fromJS({
                 }
             },
             splitLine: {
+                show: false,
                 lineStyle: {
                     color: '#236592'
                 }
