@@ -3,7 +3,8 @@ import {
     Spin
 } from 'antd';
 import {
-    AppItem
+    AppItem,
+    AppTable
 } from '../';
 import styles from './index.scss';
 
@@ -34,7 +35,9 @@ export default class Apps extends React.Component {
     }
     render() {
         const { currentAppId } = this.state;
+        const { radioStatus } = this.props;
         return (
+            radioStatus == 'chart'?
             <Spin spinning={this.props.loading} size="large" >
                 <ul className={styles['apps']}>
                     {this.props.list.map(item => {
@@ -58,7 +61,11 @@ export default class Apps extends React.Component {
                         );
                     })}
                 </ul>
-            </Spin>
+            </Spin> : <AppTable 
+                        data={this.props.list}
+                        chooseApp={this.props.chooseApp}
+                        choosePlatform={this.props.choosePlatform}
+                      />
         );
     }
 }

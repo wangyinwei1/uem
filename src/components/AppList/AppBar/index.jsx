@@ -6,9 +6,13 @@ import {
     Dropdown,
     Spin,
     Form,
-    Input
+    Input,
+    Radio
 } from 'antd';
 import styles from './index.scss';
+
+const RadioGroup = Radio.Group;
+const RadioButton = Radio.Button;
 
 const FormItem = Form.Item;
 const Item = Menu.Item;
@@ -30,7 +34,8 @@ class AppsBar extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            showAddAppModal: false
+            showAddAppModal: false,
+            activeRadio: 'chart' 
         };
     }
     // 显隐 Modal
@@ -56,13 +61,20 @@ class AppsBar extends Component {
             }
         });
     }
+    handleSelectRadio(e){
+        this.setState({
+            activeRadio : e.target.value
+        }, ()=>{
+            this.props.chartOrTable(e.target.value)
+        })
+    }
     render() {
         const { sortBy, sortKey } = this.props;
         const { getFieldDecorator } = this.props.form;
         const { showAddAppModal } = this.state;
         return (
             <div className={styles['apps-bar']}>
-                <div className={cls('btn', styles['create-app'])} onClick={this.toggleAddAppModal.bind(this)}><i className={cls('fa fa-plus')}></i>应用</div>
+                <div className={cls('btn', styles['create-app'])} onChange={this.toggleAddAppModal.bind(this)}><i className={cls('fa fa-plus')}></i>应用</div>
                 <div className={styles['btn-wrapper']}>
                     <Dropdown overlay={(
                         <Menu onSelect={({ key }) => sortBy(key)} selectedKeys={[sortKey]}>
@@ -80,6 +92,12 @@ class AppsBar extends Component {
                     {/*<div className={cls('btn', styles['tabs-grid'])}>GRID</div>
                     <div className={cls('btn', styles['tabs-table'])}>TABLE</div>*/}
                 </div>
+                <div>
+                    <RadioGroup className={styles['radio_select']} onChange={this.handleSelectRadio.bind(this)} value={this.state.activeRadio}  defaultValue="chart" size="large">
+                        <RadioButton value="chart">图表</RadioButton>
+                        <RadioButton value="table">列表</RadioButton>
+                    </RadioGroup>
+                </div>   
                 <Modal footer={null} visible={showAddAppModal} onCancel={this.toggleAddAppModal.bind(this)}>
                     <div className={styles['create-app-form-wrap']}>
                         <div className={styles['create-app-title']}>应用名称</div>

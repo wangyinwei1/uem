@@ -4,6 +4,30 @@
     line-height: 40px;
 }
 
+.radio_select {
+    margin-left: 74%;
+    // .ant-radio-button-wrapper {
+    //     background: #1d6aa7;
+    //     color:#fff;
+    //     height: 34px;
+    //     line-height: 34px;
+    // }
+    // .ant-radio-button-wrapper:first-child {
+    //     border-radius: 1px 0 0 1px;
+    //     border-left: 1px solid #108ee9;
+    // }
+    // // .ant-radio-button-wrapper:last-child {
+    // //     border-radius: 1px 0 0 1px;
+    // //     border-left: 1px solid #108ee9;
+    // // }
+    // .ant-radio-button-wrapper-checked {
+    //     border-color: #108ee9;
+    //     box-shadow: none!important;
+    //     background: #4082e6;
+    //     color: #fff !important;
+    // }
+}
+
 .create-app {
     float: left;
     height: inherit;
@@ -12,7 +36,7 @@
 }
 
 .sort-app {
-    background-color: #214D81;
+    // background-color: #214D81;
 }
 
 .btn-wrapper {

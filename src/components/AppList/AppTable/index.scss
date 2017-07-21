@@ -1,0 +1,72 @@
+  .oper-wrapper{
+      width: 40px;
+      .setList{
+         position: absolute;
+         overflow: hidden;
+         text-align: center;
+         right: 0;
+         background: #0d60a2;
+         z-index: 99;
+         >li{
+            transition: 0.2s all;
+            width: 145px;
+            height: 0px;
+            line-height: 35px;
+            &:hover{
+               background: #1eb9ef;
+            }
+         }
+      }
+      .set{
+          width: 40px;
+         text-align: center;
+         font-size: 16px;
+         display: inline-block;
+         .fa-caret-down {
+             margin-left: 5px;
+         }
+      }
+      .set:hover {
+          // background: #0d60a2;
+        //   background: map-get($map, color1);
+        //   color: map-get($map, color2);
+      }
+      &.active {
+          .set{
+             background: #0d60a2;
+          }
+          .setList >li{
+             height: 35px;
+          }
+      }
+  }
+  .app-table-dropdown {
+      .set-list{
+           width: 145px;
+           height: 35px;
+           line-height: 35px;
+        //    background-color: map-get($map, color3);
+      }
+      .set-list:hover {
+          background-color: #1eb9ef;
+      }
+  }
+  .ant-dropdown-menu-item {
+      text-align: center;
+      padding: 0;
+      color: #fff;
+  }
+  .ant-dropdown-menu {
+      border: 0;
+      border-radius: 0;
+  }
+  .apps-table {
+      .ant-table {
+          overflow-y: visible!important;
+      }
+      .ant-table-body {
+          >table{
+              overflow-y: visible;
+          }
+      }
+  }
