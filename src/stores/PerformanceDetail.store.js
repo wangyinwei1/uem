@@ -8,6 +8,8 @@ import Service from '../services/PerformanceDetail.service';
 
 class PerformanceDetailStore {
     @observable info = {};
+    @observable samplesList = [];
+    @observable pageIndex = 1;
     @observable trend = {
         "thruput": [],
         "request": [],
@@ -51,6 +53,21 @@ class PerformanceDetailStore {
             });
             runInAction(() => {
                 this.trend = data;
+            });
+        } catch (e) {
+            throw e;
+        }
+    }
+    @action onGetOperSamplesList = async payload => {
+        try {
+            const data = await Service.getOperSamplesList({
+                startTime: moment().subtract(getTimeType().startTime.type, getTimeType().startTime.units).valueOf(),
+                endTime: moment().subtract(getTimeType().endTime.type, getTimeType().endTime.units).valueOf(),
+                pageIndex: this.pageIndex,
+                ...payload
+            });
+            runInAction(() => {
+                this.samplesList = data;
             });
         } catch (e) {
             throw e;

@@ -5,7 +5,7 @@ export default {
         appId: sessionStorage.getItem('UEM_appId'),
         platform: sessionStorage.getItem('UEM_platform'),
         startTime: undefined,
-        endTime: moment().valueOf(),
+        endTime: undefined,
         pageSize: undefined,
         pageIndex: undefined,
         status: undefined,
