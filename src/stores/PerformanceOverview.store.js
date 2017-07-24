@@ -69,11 +69,11 @@ class PerformanceOverviewStore {
                     if(item.area == '-'){
                         item.area = '未知地址'
                     }
-                })
+                }).sort((a,b)=> b.value - a.value);
                 if( metrics == '["avgRspTime"]' ){
                     runInAction(() => {
                         let yAxisData = [], seriesData = [],tempMapData = {};
-                        datas.data.length > 0 && datas.data.map((item, index) => {
+                        datas.data.length > 0 &&  datas.data.filter(item => item.avgRspTime > 0).sort((a,b)=> b.avgRspTime - a.avgRspTime).map((item, index) => {
                             yAxisData.push(item.area);
                             seriesData.push(item.avgRspTime);
                         })
@@ -84,7 +84,7 @@ class PerformanceOverviewStore {
                 } else {
                     runInAction(() => {
                         let yAxisData = [], seriesData = [],tempMapData = {};
-                        datas.data.length > 0 && datas.data.map((item, index) => {
+                        datas.data.length > 0 && datas.data.filter(item => item.apdex > 0).sort((a,b)=> b.apdex - a.apdex).map((item, index) => {
                             yAxisData.push(item.area);
                             seriesData.push(item.apdex);
                         })
@@ -104,11 +104,11 @@ class PerformanceOverviewStore {
                             }
                         }
                     }
-                })
+                }).sort((a,b)=> b.value - a.value);
                 if( metrics == '["avgRspTime"]' ){
                     runInAction(() => {
                         let yAxisData = [], seriesData = [],tempMapData = {};
-                        datas.data.length > 0 && datas.data.map((item, index) => {
+                        datas.data.length > 0 && datas.data.filter(item => item.avgRspTime > 0).sort((a,b)=> b.avgRspTime - a.avgRspTime).map((item, index) => {
                             yAxisData.push(item.area);
                             seriesData.push(item.avgRspTime);
                         })
@@ -119,7 +119,7 @@ class PerformanceOverviewStore {
                 } else {
                     runInAction(() => {
                         let yAxisData = [], seriesData = [],tempMapData = {};
-                        datas.data.length > 0 && datas.data.map((item, index) => {
+                        datas.data.length > 0 && datas.data.filter(item => item.apdex > 0).sort((a,b)=> b.apdex - a.apdex).map((item, index) => {
                             yAxisData.push(item.area);
                             seriesData.push(item.apdex);
                         })

@@ -55,11 +55,11 @@ class ErrorOverviewStore {
                     if(item.area == '-'){
                         item.area = '未知地址'
                     }
-                })
+                });
                 if( metrics == '["occurErrorUserRate"]' ){
                     runInAction(() => {
                         let yAxisData = [], seriesData = [],tempMapData = {};
-                        datas.data && datas.data.map((item, index) => {
+                        datas.data.length > 0 && datas.data.filter(item => item.occurErrorUserRate > 0).sort((a,b)=> b.occurErrorUserRate - a.occurErrorUserRate).map((item, index) => {
                             yAxisData.push(item.area);
                             seriesData.push(item.occurErrorUserRate);
                         })
@@ -70,7 +70,7 @@ class ErrorOverviewStore {
                 } else {
                     runInAction(() => {
                         let yAxisData = [], seriesData = [],tempMapData = {};
-                        datas.data && datas.data.map((item, index) => {
+                        datas.data.length > 0 && datas.data.filter(item => item.effectedUserNum > 0).sort((a,b)=> b.effectedUserNum - a.effectedUserNum).map((item, index) => {
                             yAxisData.push(item.area);
                             seriesData.push(item.effectedUserNum);
                         })
@@ -90,11 +90,11 @@ class ErrorOverviewStore {
                             }
                         }
                     }
-                })
+                }).sort((a,b)=> b.value - a.value);
                 if( metrics == '["occurErrorUserRate"]' ){
                     runInAction(() => {
                         let yAxisData = [], seriesData = [],tempMapData = {};
-                        datas.data && datas.data.map((item, index) => {
+                        datas.data.length > 0 && datas.data.filter(item => item.occurErrorUserRate > 0).sort((a,b)=> b.occurErrorUserRate - a.occurErrorUserRate).map((item, index) => {
                             yAxisData.push(item.area);
                             seriesData.push(item.occurErrorUserRate);
                         })
@@ -105,7 +105,7 @@ class ErrorOverviewStore {
                 } else {
                     runInAction(() => {
                         let yAxisData = [], seriesData = [],tempMapData = {};
-                        datas.data && datas.data.map((item, index) => {
+                        datas.data.length > 0 && datas.data.filter(item => item.effectedUserNum > 0).sort((a,b)=> b.effectedUserNum - a.effectedUserNum).map((item, index) => {
                             yAxisData.push(item.area);
                             seriesData.push(item.effectedUserNum);
                         })

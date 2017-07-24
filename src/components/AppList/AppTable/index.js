@@ -167,8 +167,7 @@ class AppTable extends React.Component {
     componentDidMount() {
 
     }
-    onRowClick(record, index) {
-        debugger
+    onRowClick(record, index) {   
         const { chooseApp, choosePlatform } = this.props;
         chooseApp({
             appId: record.appId

@@ -79,40 +79,42 @@ class OverviewStore {
             const datas = await Service.getUserDistribution(payload);
             if( areaType == 'province' ){
                  datas.data && datas.data.map((item,index)=>{
-                    if(item.area == '-'){
-                        item.area = '未知地址'
+                    if(item.areaName == '-'){
+                        item.areaName = '未知地址'
                     }
                 })
                 runInAction(() => {
                     let yAxisData = [], seriesData = [], tempMapData = {};
                     datas.data.length > 0  && datas.data.map((item,index) => {
-                        yAxisData.push(item.area);
+                        yAxisData.push(item.areaName);
                         seriesData.push(item.value);
                     })
                     tempMapData.yAxis = yAxisData;
                     tempMapData.series = seriesData;
+                    // tempMapData.series.length>0 && tempMapData.sort((a,b)=> b.series - a.series);
                     this.userDistribution = tempMapData;
                 });
             }else{
                datas.data.length > 0 && datas.data.map((item,index) => {
-                    if(item.area == '-'){
-                        item.area = '未知地域'
+                    if(item.areaName === "-"){
+                        item.areaName = '未知地域'
                     }else {
                         for(let n in countryNameInEN){
-                            if(n == item.area){
-                                item.area = countryNameInEN[n]
+                            if(n == item.areaName){
+                                item.areaName = countryNameInEN[n]
                             }
                         }
                     }
                     runInAction(() => {
                         let yAxisData = [], seriesData = [],tempMapData = {};
                         datas.data.length > 0 && datas.data.map((item, index) => {
-                            yAxisData.push(item.area);
+                            yAxisData.push(item.areaName);
                             seriesData.push(item.value);
                         })
                         tempMapData.yAxis = yAxisData;
                         tempMapData.series = seriesData;
-                        this.mapData = tempMapData;
+                        // tempMapData.series.length>0 && tempMapData.sort((a,b)=> b.series - a.series);
+                        this.userDistribution = tempMapData;
                     });
                 }) 
             }

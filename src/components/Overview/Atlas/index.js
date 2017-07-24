@@ -5,6 +5,7 @@ import {
 } from '../../Common/Chart';
 import config from './config';
 import styles from './index.scss';
+import { countryNameInCN, countryNameInEN } from '../../Common/Chart/WorldCountryName';
 
 class Atlas extends Component {
     constructor(props) {
@@ -33,7 +34,7 @@ class Atlas extends Component {
         let pillarConfig,mapConfig,yAxis,series,mapSeriesData=[],_yAxis=[],_series=[];
         yAxis = this.props.userDistribution.yAxis;
         series = this.props.userDistribution.series;
-
+        // debugger
         if(activeMap == 'world'){
             for(let i = 0,len = yAxis.length; i < len; i++){
                 for(let n in countryNameInEN){
@@ -42,11 +43,11 @@ class Atlas extends Component {
                     }
                 }
             }
-            _yAxis = yAxis;
-            _series = series;
+            _yAxis = yAxis.reverse();
+            _series = series.reverse();
         }else{
-           _yAxis = yAxis;
-           _series = series;
+           _yAxis = yAxis.reverse();
+           _series = series.reverse();
         }
 
         for(let i = 0 , len = series.length; i < len ; i++){
@@ -55,10 +56,10 @@ class Atlas extends Component {
                 value: series[i]
             })
         }
-        pillarConfig = config.get('bar').updateIn(['yAxis','data'], () => _yAxis)
+        pillarConfig = config.get('bar').updateIn(['yAxis',0,'data'], () => _yAxis)
             .updateIn(['series',0,'data'],()=> _series)
             .updateIn(['series',0,'name'],()=> '用户会话数');
-            
+        console.log('-----pillarConfig------',pillarConfig.toJS());    
         mapConfig = config.get(activeMap).updateIn(['series',0,'data'], ()=> mapSeriesData );
         return (
             <div className={styles['atlas']}>
