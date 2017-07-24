@@ -3,7 +3,9 @@
 }
 
 .user-list {
-    padding: 0 8px 0 12px;
+    overflow-y: scroll;
+    padding: 0 0 0 12px;
+    height: 350px;
 }
 
 .user-item {

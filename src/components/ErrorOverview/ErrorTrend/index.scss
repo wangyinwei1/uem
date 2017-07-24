@@ -6,6 +6,14 @@
 // }
 
 .error-trend {
-    width: 100%;
     display: inline-block;
+    width: 100%;
+    :global {
+        .tile-body {
+            padding: 0;
+        }
+        .chart {
+            height: 210px;
+        }
+    }
 }
