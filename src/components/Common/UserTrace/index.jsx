@@ -2,6 +2,14 @@ import React from 'react';
 import { Tooltip } from 'antd';
 import styles from './index.scss';
 
+/**
+ * 接收两个参数
+ * data、showBaseInfo
+ * 
+ * @export
+ * @class UserTrace
+ * @extends {React.Component}
+ */
 export default class UserTrace extends React.Component {
     legends = [{
         label: '不满意',
