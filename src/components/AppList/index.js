@@ -6,3 +6,6 @@ export { default as AppBar } from './AppBar';
 
 // 单个应用
 export { default as AppItem } from './AppItem';
+
+// 应用表格形式
+export { default as AppTable } from './AppTable';

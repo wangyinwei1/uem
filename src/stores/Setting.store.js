@@ -8,14 +8,25 @@ class SettingStore {
       const data = await Service.getAppInfo();
       runInAction(() => {
         this.appInfo = data;
-        console.log(data)
-        return data;
-      })
+        return 'abc'
+      });
     } catch (error) {
-      
+      throw erro;
     }
   }
-}
+  @action updateAppInfo = async (appInfo) => {
+    try {
+      const data = await Service.updateAppInfo(appInfo);
+      return data;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  @action updateAppInfoOnFront = (appInfo) => {
+    this.appInfo = appInfo;
+  }
+} 
 
 const settingStore = new SettingStore();
 

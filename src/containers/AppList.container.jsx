@@ -11,6 +11,9 @@ import {
 export default class AppList extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {
+            chartOrTable: 'chart'
+        };
     }
     componentDidMount() {
         const {
@@ -19,6 +22,13 @@ export default class AppList extends React.Component {
 
         onGetApps();
     }
+
+    selectChartOrTable(value){
+        this.setState({
+            chartOrTable: value
+        })
+    }
+
     render() {
         const {
             appId,
@@ -48,6 +58,7 @@ export default class AppList extends React.Component {
                     addApp={onAddApp}
                     sortBy={onSortBy}
                     sortKey={sortKey}
+                    chartOrTable={this.selectChartOrTable.bind(this)}
                 />
                 <Apps
                     loading={loading}
@@ -56,6 +67,7 @@ export default class AppList extends React.Component {
                     delApp={onDelApp}
                     chooseApp={onChooseApp}
                     choosePlatform={onChoosePlatform}
+                    radioStatus={this.state.chartOrTable}
                 />
                 <Pagination
                     showTotal={total => '总共 ' + total + ' 个应用'}
