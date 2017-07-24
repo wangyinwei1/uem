@@ -8,7 +8,6 @@ class SettingStore {
       const data = await Service.getAppInfo();
       runInAction(() => {
         this.appInfo = data;
-        return 'abc'
       });
     } catch (error) {
       throw erro;
@@ -16,8 +15,8 @@ class SettingStore {
   }
   @action updateAppInfo = async (appInfo) => {
     try {
-      const data = await Service.updateAppInfo(appInfo);
-      return data;
+      const result = await Service.updateAppInfo(appInfo);
+      return result;
     } catch (error) {
       throw error;
     }
@@ -25,6 +24,14 @@ class SettingStore {
 
   @action updateAppInfoOnFront = (appInfo) => {
     this.appInfo = appInfo;
+  }
+  @action sendEmail = async (emailObj) => {
+    try {
+      const result = await Service.sendEmail(emailObj);
+      return result;
+    } catch (error) {
+      throw error;
+    }
   }
 } 
 
