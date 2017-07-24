@@ -15,7 +15,9 @@ class PerformanceDetailStore {
         response: []
     };
     @observable sessionTrace = {
-
+        browserBaseInfo: {},
+        detailInfo: {},
+        traceInfo: []
     };
     @observable samplesList = [];
     @observable activeId = '';
@@ -102,8 +104,8 @@ class PerformanceDetailStore {
             });
             runInAction(() => {
                 const _baseInfo = {};
-                for(let i in data) {
-                    if(i === 'userDefined') {
+                for (let i in data) {
+                    if (i === 'userDefined') {
                         const userDefinedArr = [];
                         for (let j in data[i]) {
                             userDefinedArr.push({

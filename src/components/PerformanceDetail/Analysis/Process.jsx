@@ -1,5 +1,8 @@
 import React from 'react';
 import PerformanceAnalyze from './PerformanceAnalyze';
+import {
+    UserTrace
+} from '../../Common';
 import styles from './index.scss';
 
 export default class Process extends React.Component {
@@ -21,7 +24,9 @@ export default class Process extends React.Component {
                 </div>
                 <div className={styles['body']}>
                     {this.state.showUserTrace
-                        ? null
+                        ? <UserTrace  
+                            data={this.props.sessionTrace}
+                        />
                         : <PerformanceAnalyze 
                             analyzeData={this.props.analyzeData}
                             itemId={this.props.itemId}

@@ -2,6 +2,7 @@
     :global(.tile-body) {
         overflow: hidden;
         padding: 0;
+        background-color: #125489;
     }
 }
 
@@ -10,7 +11,7 @@
     padding-right: 230px;
     width: 100%;
     .left-side {
-        min-height: 300px;
+        min-height: 500px;
         border-right: 1px solid #155A92;
     }
 }

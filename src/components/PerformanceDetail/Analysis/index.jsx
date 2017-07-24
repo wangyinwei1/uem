@@ -14,6 +14,7 @@ export default class Analysis extends React.Component {
             samplesList,
             activeId,
             analyzeData,
+            sessionTrace,
         } = this.props;
         if (samplesList.length === 0) {
             return null;
@@ -27,6 +28,7 @@ export default class Analysis extends React.Component {
                             <BaseInfo data={baseInfo} />
                             <Process
                                 itemId={itemId}
+                                sessionTrace={sessionTrace}
                                 analyzeData={analyzeData}
                             />
                         </div>
