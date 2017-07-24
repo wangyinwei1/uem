@@ -29,7 +29,7 @@ const globalOptions = Immutable.fromJS({
         bottom: 20,
         containLabel: true
     }],
-    xAxis: {
+    xAxis: [{
         axisLine: {
             lineStyle: {
                 color: '#70c3fb'
@@ -40,7 +40,7 @@ const globalOptions = Immutable.fromJS({
                 color: '#236592'
             }
         }
-    },
+    }],
     yAxis: [{
         axisLine: {
             lineStyle: {

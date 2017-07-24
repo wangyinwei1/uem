@@ -6,7 +6,7 @@ const defaultOptions = Immutable.fromJS({
     title: {
         text: '柱状图' 
     },
-    xAxis: {
+    xAxis: [{
         type: 'category',
         data: [],
         axisLine: {
@@ -15,7 +15,7 @@ const defaultOptions = Immutable.fromJS({
         axisTick: {
             show: false
         }
-    },
+    }],
     yAxis: [{
         axisLine: {
             show: false

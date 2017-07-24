@@ -3,6 +3,9 @@ $iconRadius: 14px; //圆的半径
   margin-left: 35px;
   width: calc(100% - 35px);
   border-left: 2px solid#2980bf;
+  &.noline{
+    border-left: 0;
+  }
   .icon {
     width: $iconRadius * 2;
     height: $iconRadius * 2;

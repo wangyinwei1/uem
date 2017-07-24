@@ -1,11 +1,16 @@
-.container {
+.setting-container {
+  background-color: rgba(0, 0, 0, .2);
   h3 {
     margin-bottom: 20px;
   }
-  padding: 35px 0 100px 0;
+  padding: 49px 0 100px 0;
+  margin-top: 2px;
+  color: #fff;
+  font-size: 13px;
+  /* -------------------- 部署说明 start --------------------- */
+  
+  // 应用信息
   .app-information {
-    color: #fff;
-    font-size: 13px;
     li {
       margin-bottom: 15px;
       font-size: 12px;
@@ -17,17 +22,122 @@
       cursor: pointer;
     }
   }
-  .code {
-    overflow-y: auto;
-    margin-top: 14px;
-    padding: 5px 7px 25px 10px;
-    width: 100%;
-    height: 125px;
-    border: 1px solid #3998d4;
-    border-radius: 2px;
-    background-color: #0a548a;
-    color: #fff;
-    line-height: 2;
-    resize: none;
+
+  // 应用部署
+  .app-deploy {
+    width: 85%;
+    .code {
+      overflow-y: auto;
+      margin-top: 14px;
+      padding: 5px 7px 25px 10px;
+      width: 100%;
+      height: 125px;
+      border: 1px solid #3998d4;
+      border-radius: 2px;
+      background-color: #0a548a;
+      line-height: 2;
+      resize: none;
+    }
+    .notice-wrapper {
+      margin-top: 10px;
+      color: #3b87bf;
+      line-height: 30px;
+      .notice {
+        font-size: 12px;
+        .link-mv {
+          margin-left: 2px;
+          color: #fff;
+          text-decoration: underline;
+          cursor: pointer;
+        }
+      }
+      .code-copy {
+        overflow: hidden;
+        float: right;
+        width: 85px;
+        height: 30px;
+        border: none;
+        border-radius: 2px;
+        background-color: #0b71b1;
+        color: #f0f0f0;
+        cursor: pointer;
+      }
+    }
+    .for-help {
+      margin-top: 10px;
+      .text-underline {
+        color: #2db7f5;
+        text-decoration: underline;
+        transition: color .3s ease;
+      }
+    }
+  }
+
+  // 查看应用
+  .app-check {
+    .app-btn {
+      width: 111px;
+      height: 39px;
+      border: none;
+      border-radius: 2px;
+      background-color: #1681c4;
+      color: #fff;
+    }
+    .tip{
+      margin-top: 20px;
+    }
+  }
+
+  /* -------------------- 部署说明 end --------------------- */
+
+  /* -------------------- 参数设置 start --------------------- */
+
+
+  /* -------------------- 参数设置 end --------------------- */
+
+
+  /* -------------------- 用户数据模型 start --------------------- */
+
+  /* -------------------- 用户数据模型 end --------------------- */
+
+}
+
+// 部署说明 编辑Modal
+.edit-information-modal {
+  :global(.ant-modal-body) {
+    padding: 40px;
+    :global(.ant-form-item) {
+      margin-bottom: 18px;
+      :global(.ant-form-item-label) {
+        label {
+          color: #ffffff;
+        }
+      }
+    }
+  }
+  .btn-wrapper {
+    margin-top: 20px;
+    text-align: center;
+    button:last-child {
+      margin-left: 20px;
+    }
   }
 }
+
+// 部署说明 发送邮件Modal
+.send-email-modal {
+    :global(.ant-modal-body) {
+    padding: 40px;
+    .send-email-tip{
+      margin-bottom: 10px;
+    }
+    :global(.ant-form-item) {
+      width: 80%;
+      :global(.ant-form-item-control-wrapper) {
+        width: 100%;
+      }
+    }
+  }
+}
+
+  

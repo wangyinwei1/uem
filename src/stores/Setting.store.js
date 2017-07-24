@@ -8,14 +8,32 @@ class SettingStore {
       const data = await Service.getAppInfo();
       runInAction(() => {
         this.appInfo = data;
-        console.log(data)
-        return data;
-      })
+      });
     } catch (error) {
-      
+      throw erro;
     }
   }
-}
+  @action updateAppInfo = async (appInfo) => {
+    try {
+      const result = await Service.updateAppInfo(appInfo);
+      return result;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  @action updateAppInfoOnFront = (appInfo) => {
+    this.appInfo = appInfo;
+  }
+  @action sendEmail = async (emailObj) => {
+    try {
+      const result = await Service.sendEmail(emailObj);
+      return result;
+    } catch (error) {
+      throw error;
+    }
+  }
+} 
 
 const settingStore = new SettingStore();
 

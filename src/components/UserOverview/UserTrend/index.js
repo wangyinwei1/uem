@@ -15,20 +15,20 @@ class UserTrend extends Component {
         const { getUserTrend } = this.props;
         getUserTrend({
             startTime: moment().subtract(this.props.startTime.type, this.props.startTime.units).valueOf(),
-            metrics: JSON.stringify(['pv','clickNum','sessionCount'])
+            metrics: JSON.stringify(['pv', 'clickNum', 'sessionCount'])
         });
     }
     render() {
         const trend = this.props.userTrend;
-        let yAxisMax1,yAxisMax2;
-        if ( trend.clickNum && Math.max.apply(null, trend.clickNum.map((item) => item.value)) < 3) {
+        let yAxisMax1, yAxisMax2;
+        if (trend.clickNum && Math.max.apply(null, trend.clickNum.map((item) => item.value)) < 3) {
             yAxisMax1 = 3;
-        }else{ }
+        } else { }
 
         if (trend.sessionCount && Math.max.apply(null, trend.sessionCount.map((item) => item.value)) < 3) {
             yAxisMax2 = 3;
         } else { }
-        
+
         // 性能趋势的配置
         let options = Immutable.fromJS({
             title: {
@@ -43,7 +43,7 @@ class UserTrend extends Component {
                 }, {
                     name: '点击数',
                     icon: 'circle'
-                },{
+                }, {
                     name: '会话数',
                     icon: 'circle'
                 }],
@@ -53,18 +53,18 @@ class UserTrend extends Component {
                     color: '#fff'
                 }
             },
-            xAxis:{
-                    type : 'category',
-                    data : trend.sessionCount && trend.sessionCount.map((val, i) => {
-                        let selectTime = trend.sessionCount[i].endTime - trend.sessionCount[i].startTime;
-                        if (selectTime <= 1800000) {
-                            //选择一天
-                            return moment(val.startTime).format("HH:mm");
-                        } else {
-                            return moment(val.startTime).format("MM-DD HH:mm");
-                        }
-                    })
-            },
+            xAxis: [{
+                type: 'category',
+                data: trend.sessionCount && trend.sessionCount.map((val, i) => {
+                    let selectTime = trend.sessionCount[i].endTime - trend.sessionCount[i].startTime;
+                    if (selectTime <= 1800000) {
+                        //选择一天
+                        return moment(val.startTime).format("HH:mm");
+                    } else {
+                        return moment(val.startTime).format("MM-DD HH:mm");
+                    }
+                })
+            }],
             // xAxis: {
             //     type: 'category',
             //     data: _.range(1, 25),
@@ -75,7 +75,7 @@ class UserTrend extends Component {
             //         show: false
             //     }
             // },
-            color: ['#ffeb0b','#66dc6a', '#00c0ff'],
+            color: ['#ffeb0b', '#66dc6a', '#00c0ff'],
             series: [
                 {
                     name: '浏览量PV',
@@ -117,7 +117,7 @@ class UserTrend extends Component {
                         </div>
                     </Col>*/}
                 </Row>
-                
+
             </div>
         );
     }

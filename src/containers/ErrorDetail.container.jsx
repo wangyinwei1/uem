@@ -21,7 +21,6 @@ export default class ErrorDetail extends React.Component {
     render() {
         return (
             <DetailWrap>
-                <h3>ErrorDetail</h3>
                 <BaseInfo />
                 <Pie />
                 <Trend />

@@ -35,14 +35,24 @@ export default class Timing extends React.Component {
     }
     componentDidMount() {
         this.items = $(this.refs.timing).find('dl').children('dd').children('span');
+        this.colWraps = $(this.refs.timing).find('dl').children('dd');
     }
     componentWillReceiveProps(nextProps) {
+        const {
+            firstByteTime,
+            lastByteTime,
+            domLoadingTime,
+            pageAvgRspTime
+        } = this.props.data;
         clearTimeout(this.timer);
-        this.timer = setTimeout(() => {
-            this.setState({
-                showTimingCurve: true
-            });
-        }, 1500);
+        const all = firstByteTime + lastByteTime + domLoadingTime + pageAvgRspTime;
+        if (all > 0) {
+            this.timer = setTimeout(() => {
+                this.setState({
+                    showTimingCurve: true
+                });
+            }, 1500);
+        }
     }
     componentWillUnmount() {
         clearTimeout(this.timer);
@@ -64,7 +74,13 @@ export default class Timing extends React.Component {
         this.items.map(item => {
             widths.push($(this.items[item]).width());
         });
-        const firstByteTimeWidth = widths[0] + widths[1] + widths[2] + widths[3] + 15;
+        const firstByteTimeWidth = (() => {
+            const colWrap_1 = widths[0] + widths[1] + widths[2];
+            if (colWrap_1 === 0) {
+                return this.colWraps.eq(1).width() + widths[3] + 15;
+            }
+            return colWrap_1 + widths[3] + 15;
+        })();
         const lastByteTimeWidth = firstByteTimeWidth + widths[4];
         const domLoadingTimeWidth = lastByteTimeWidth + widths[5] + 15;
         const pageAvgRspTimeWidth = domLoadingTimeWidth + widths[6];

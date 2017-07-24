@@ -6,7 +6,7 @@ export default Immutable.fromJS({
             {
                 mapType: 'china',
                 zoom: 1.05,
-                data:[]
+                data: []
             }
         ]
     },
@@ -15,7 +15,7 @@ export default Immutable.fromJS({
             {
                 mapType: 'world',
                 zoom: 0.95,
-                data:[]
+                data: []
             }
         ]
     },
@@ -50,7 +50,7 @@ export default Immutable.fromJS({
             //     right: -20
             // }
         ],
-        xAxis: {
+        xAxis: [{
             type: 'value',
             axisLine: {
                 show: false
@@ -58,7 +58,7 @@ export default Immutable.fromJS({
             axisTick: {
                 show: false
             }
-        },
+        }],
         yAxis: [{
             type: 'category',
             axisLine: {
@@ -69,7 +69,7 @@ export default Immutable.fromJS({
             },
             data: ['巴西', '印尼', '美国', '印度', '中国', '世界人口(万)']
         }],
-        series: 
+        series:
         [
             {
                 type: 'bar',

@@ -18,3 +18,6 @@ export { default as Timeline } from './Timeline';
 
 // 详情页通用 Wrap 组件
 export { default as DetailWrap } from './DetailWrap';
+
+// 详情页用户列表
+export { default as UserList } from './UserList';

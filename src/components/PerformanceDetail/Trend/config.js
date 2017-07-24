@@ -4,12 +4,12 @@ export default Immutable.fromJS({
     },
     avgRspTime: {
         color: ['#6B7BFF', '#90ED7D', '#03B9FF', '#AADF2D'],
-        xAxis: {
+        xAxis: [{
             type: 'category',
             data: []
-        },
+        }],
         grid: [{
-            top: '25%'
+            top: '30%'
         }],
         yAxis: [{
             type: 'value',
@@ -118,6 +118,9 @@ export default Immutable.fromJS({
                 type: 'shadow'
             }
         },
+        xAxis: [{
+            data: []
+        }],
         yAxis: [{
             name: '单位：s',
             //max:1,
@@ -150,10 +153,10 @@ export default Immutable.fromJS({
             minInterval: 0,
             min: 0,
         }],
-        xAxis: {
+        xAxis: [{
             type: 'category',
             data: ['满意', '可接受', '不满意']
-        },
+        }],
         series: [{
             name: '操作数',
             barWidth: 50,
@@ -188,7 +191,10 @@ export default Immutable.fromJS({
             }
         },
         grid: [{
-            top: '25%'
+            top: '30%'
+        }],
+        xAxis: [{
+            data: []
         }],
         yAxis: [{
             name: '单位：rpm',
