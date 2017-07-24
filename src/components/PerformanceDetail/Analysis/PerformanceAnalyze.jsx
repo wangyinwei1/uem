@@ -5,31 +5,32 @@ import {
 } from '../../Common/Chart';
 
 export default class PerformanceAnalyze extends React.Component {
+    id = 0;
     render() {
         const { 
             itemId, 
             analyzeData 
         } = this.props;
         
-        const arr = (() => {
-            const _arr = [];
-            _arr.push(analyzeData.request[0]);
-            _arr.push(analyzeData.response[0]);
-            _arr.push(analyzeData.callback[0]);
-            return _arr.reverse();
+        const bars = (() => {
+            const arr = [];
+            for (let i in analyzeData) {
+                arr.push(i);
+            }
+            return arr;
         })();
-        const arrData = (() => {
-            const _arr = [];
-            _arr.push(analyzeData.request[1]);
-            _arr.push(analyzeData.response[1]);
-            _arr.push(analyzeData.callback[1]);
-            return _arr.reverse();
-        })();
+        const startArr = bars.map(item => {
+            return analyzeData[item][0];
+        });
+        const endArr = bars.map(item => {
+            return analyzeData[item][1];
+        });
         return (
-            <div>
+            <div key={bars.length}>
                 <BarChart chartId={`PerformanceAnalyze-${itemId}`} options={config.get('default').mergeDeep(config.get('analyze'))
-                    .setIn(['series', 0, 'data'], arr)
-                    .setIn(['series', 1, 'data'], arrData)
+                    .setIn(['yAxis', 0, 'data'], bars) 
+                    .setIn(['series', 0, 'data'], startArr)
+                    .setIn(['series', 1, 'data'], endArr) 
                     .toJS()} 
                 />
             </div>

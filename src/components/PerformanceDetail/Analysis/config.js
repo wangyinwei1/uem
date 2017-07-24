@@ -4,7 +4,10 @@ export default Immutable.fromJS({
     },
     analyze: {
         grid: [{
-            top: '0'
+            top: '5%',
+            bottom: '5%',
+            left: '5%',
+            right: '5%'
         }],
         legend: {
             show: false,
@@ -41,7 +44,7 @@ export default Immutable.fromJS({
                     color: '#f2faff'
                 }
             },
-            data: ['request', 'response', 'callback'].reverse()
+            data: []
         }],
         series: [{
             name: '辅助',
@@ -61,6 +64,7 @@ export default Immutable.fromJS({
         }, {
             name: '用时',
             type: 'bar',
+            barWidth: 20,
             label: {
                 normal: {
                     show: true,
@@ -74,89 +78,4 @@ export default Immutable.fromJS({
             data: []
         }]
     }
-    // analyze: {
-    //     xAxis: [{
-    //         type: 'value',
-    //         axisLine: {    // 轴线
-    //             show: false,
-    //             lineStyle: {
-    //                 color: ['#3e7395'],
-    //                 width: 1
-    //             }
-    //         },
-    //         axisTick: {    // 轴标记
-    //             show: false,
-    //         },
-    //         axisLabel: {
-    //             show: true,
-    //             textStyle: {
-    //                 fontSize: 10,
-    //                 color: ['#539fd1'],
-    //             },
-    //             formatter: '{value}ms'
-    //         },
-    //         splitLine: {
-    //             show: true,
-    //             lineStyle: {
-    //                 color: ['#3e7395'],
-    //                 width: 1
-    //             }
-    //         },
-    //         splitArea: {
-    //             show: false,
-    //         },
-    //         splitNumber: 6,
-    //     }, {
-    //         type: 'value',
-    //         axisTick: {    // 轴标记
-    //             show: false,
-    //         },
-    //         axisLine: {    // 轴线
-    //             show: false,
-    //             lineStyle: {
-    //                 color: ['#3e7395'],
-    //                 width: 1
-    //             }
-    //         },
-    //         axisLabel: {
-    //             show: false
-    //         },
-    //         splitLine: {
-    //             show: false,
-    //             lineStyle: {
-    //                 color: ['#3e7395'],
-    //                 width: 1
-    //             }
-    //         },
-    //         splitNumber: 6,
-    //     }],
-    //     yAxis: {
-    //         type: 'category',
-    //         min: 0,
-    //         data: [{
-    //             type: 'value',
-    //             show: true,
-    //             name: '单位：s',
-    //         }, {
-    //             type: 'value',
-    //             axisLine: {
-    //                 show: false,
-    //                 lineStyle: {
-    //                     color: '#70c3fb'
-    //                 }
-    //             },
-    //             splitLine: {
-    //                 show: false,
-    //                 lineStyle: {
-    //                     color: '#236592'
-    //                 }
-    //             },
-    //             axisTick: {
-    //                 show: false
-    //             },
-    //             show: true,
-    //             name: '单位：次',
-    //         }]
-    //     },
-    // }
 })
