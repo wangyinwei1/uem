@@ -54,6 +54,8 @@ export default class UserTable extends React.Component {
             dataList,
             total,
             tagType,
+            pageIndex,
+            pageSize,
             onGetOpersList,
             onChangeResTime,
             onChangePage,
@@ -71,6 +73,8 @@ export default class UserTable extends React.Component {
                     apdexTime={apdexTime}
                     dataList={dataList}
                     total={total}
+                    pageIndex={pageIndex}
+                    pageSize={pageSize}
                     getTableData={onGetOpersList}
                     changeTagType={this.changeTagType.bind(this)}
                     changeResTime={this.changeResTime.bind(this)}

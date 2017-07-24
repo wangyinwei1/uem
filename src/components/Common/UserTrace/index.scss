@@ -84,7 +84,7 @@
 .trace-box {
     // padding-left: 20px;
     // border-left: 3px solid #6AC5FE;
-    .base-item {
+    .base-li {
         display: inline-block;
         overflow: hidden;
         padding-right: 10px;
@@ -138,4 +138,43 @@
 }
 .color-d {
     border-color: #FF5252;
+}
+
+.tooltip {
+    li {
+        word-wrap: break-word;
+    }
+}
+
+.info {
+    position: relative;
+    padding: 20px;
+    padding-right: 110px;
+    border-bottom: 1px solid #155A92;
+    .icons {
+        position: absolute;
+        top: 0;
+        right: 0;
+        padding: 0 20px;
+        width: 110px;
+        height: 63px;
+        text-align: center;
+        line-height: 63px;
+        :global(.iconfont) {
+            margin-right: 2px;
+            font-size: 22px;
+            &:last-child {
+                margin-right: 0;
+            }
+        }
+    }
+}
+.base-item {
+    display: inline-block;
+    overflow: hidden;
+    padding-right: 10px;
+    width: 33.333%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 12px;
 }

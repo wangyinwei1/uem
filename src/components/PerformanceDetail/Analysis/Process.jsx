@@ -26,6 +26,7 @@ export default class Process extends React.Component {
                     {this.state.showUserTrace
                         ? <UserTrace  
                             data={this.props.sessionTrace}
+                            showBaseInfo={false} 
                         />
                         : <PerformanceAnalyze 
                             analyzeData={this.props.analyzeData}

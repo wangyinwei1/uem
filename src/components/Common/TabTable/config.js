@@ -84,11 +84,12 @@ export default {
                 width: 200,
             }],
             quota: [{
-                value: 'apdexD',
+                value: 'apdex',
                 label: 'Apdex',
                 checked: true,
                 disabled: false,
                 width: 100,
+                render: (text, record, index) => text ? text : '--',
             }, {
                 value: 'thruput',
                 label: '吞吐率',
@@ -134,11 +135,12 @@ export default {
                 render: (text, record, index) =>  <OperType type={record.operType} />
             }],
             quota: [{
-                value: 'apdexD',
+                value: 'apdex',
                 label: 'Apdex',
                 checked: true,
                 disabled: false,
                 width: 100,
+                render: (text, record, index) => text ? text : '--',
             }, {
                 value: 'thruput',
                 label: '吞吐率',
@@ -236,11 +238,12 @@ export default {
                 width: 200,
             }],
             quota: [{
-                value: 'apdexD',
+                value: 'apdex',
                 label: 'Apdex',
                 checked: true,
                 disabled: false,
                 width: 100,
+                render: (text, record, index) => text ? text : '--',
             }, {
                 value: 'thruput',
                 label: '吞吐率',
@@ -286,11 +289,12 @@ export default {
                 render: (text, record, index) => <OperType type={record.operType} />,
             }],
             quota: [{
-                value: 'apdexD',
+                value: 'apdex',
                 label: 'Apdex',
                 checked: true,
                 disabled: false,
                 width: 100,
+                render: (text, record, index) => text ? text : '--',
             }, {
                 value: 'thruput',
                 label: '吞吐率',
@@ -343,7 +347,7 @@ export default {
                 label: '错误数',
                 value: 'errorCount',
                 width: '10%',
-                sorter: (a, b) => a.errorCount - b.errorCount,
+                // sorter: (a, b) => a.errorCount - b.errorCount,
             }, {
                 label: '趋势',
                 value: 'trend',
@@ -352,7 +356,7 @@ export default {
                 label: '最近发生时间',
                 value: 'lastTime',
                 width: '20%',
-                sorter: (a, b) => a.lastTime - b.lastTime,
+                // sorter: (a, b) => a.lastTime - b.lastTime,
             }],
             quota: []
         }
@@ -375,7 +379,7 @@ export default {
                 label: '错误数',
                 value: 'errorCount',
                 width: '10%',
-                sorter: (a, b) => a.errorCount - b.errorCount,
+                // sorter: (a, b) => a.errorCount - b.errorCount,
             }, {
                 label: '趋势',
                 value: 'trend',
@@ -384,7 +388,7 @@ export default {
                 label: '最近发生时间',
                 value: 'lastTime',
                 width: '20%',
-                sorter: (a, b) => a.lastTime - b.lastTime,
+                // sorter: (a, b) => a.lastTime - b.lastTime,
             }],
             quota: []
         }
@@ -407,12 +411,12 @@ export default {
                 value: 'lastTime',
                 checked: true,
                 disabled: true,
-                sorter: (a, b) => a.lastTime - b.lastTime,
+                // sorter: (a, b) => a.lastTime - b.lastTime,
             },{
                 label: '会话数',
                 value: 'sessionCount',
                 checked: true,
-                sorter: (a, b) => a.sessionCount - b.sessionCount,
+                // sorter: (a, b) => a.sessionCount - b.sessionCount,
             }],
             quota: []
         }
@@ -434,12 +438,12 @@ export default {
                 value: 'lastTime',
                 checked: true,
                 disabled: true,
-                sorter: (a, b) => a.lastTime - b.lastTime,
+                // sorter: (a, b) => a.lastTime - b.lastTime,
             },{
                 label: '会话数',
                 value: 'sessionCount',
                 checked: true,
-                sorter: (a, b) => a.sessionCount - b.sessionCount,
+                // sorter: (a, b) => a.sessionCount - b.sessionCount,
             }],
             quota: []
         }

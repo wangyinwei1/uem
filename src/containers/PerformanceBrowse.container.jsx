@@ -56,6 +56,8 @@ export default class PerformanceBrowse extends React.Component {
             dataList,
             total,
             tagType,
+            pageIndex,
+            pageSize,
             currentRow,
             onGetOpersList,
             onChangeResTime,
@@ -74,6 +76,8 @@ export default class PerformanceBrowse extends React.Component {
                     apdexTime={apdexTime}
                     dataList={dataList}
                     total={total}
+                    pageIndex={pageIndex}
+                    pageSize={pageSize}
                     getTableData={onGetOpersList}
                     changeTagType={this.changeTagType.bind(this)}
                     changeResTime={this.changeResTime.bind(this)}

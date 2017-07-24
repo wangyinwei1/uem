@@ -65,6 +65,8 @@ export default class ErrorTable extends React.Component {
             total,
             rows,
             tagType,
+            pageIndex,
+            pageSize,
             onGetOpersList,
             onChangeResTime,
             onResolveRow,
@@ -84,6 +86,8 @@ export default class ErrorTable extends React.Component {
                     apdexTime={apdexTime}
                     dataList={dataList}
                     total={total}
+                    pageIndex={pageIndex}
+                    pageSize={pageSize}
                     getTableData={onGetOpersList}
                     changeTagType={this.changeTagType.bind(this)}
                     changeResTime={this.changeResTime.bind(this)}

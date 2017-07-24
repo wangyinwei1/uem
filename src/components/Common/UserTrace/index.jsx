@@ -92,7 +92,7 @@ export default class UserTrace extends React.Component {
     renderTrace(trace) {
         return trace.map(item => {
             const content = (
-                <ul>
+                <ul className={styles['tooltip']}>
                     {this.tips.map(tip => <li key={tip.value}>{`${tip.label}${item[tip.value]}`}</li>)}
                 </ul>
             );
@@ -108,12 +108,79 @@ export default class UserTrace extends React.Component {
             );
         });
     }
+    renderIcons() {
+        const {
+            browser = '',
+            platform = '',
+            os = ''
+        } = this.props.data.browserBaseInfo;
+        const _platform = platform;
+        const _os = (() => {
+            const _os = os.toLowerCase();
+            if (_os.indexOf('windows') >= 0) {
+                return 'windows';
+            }
+            if (_os.indexOf('android') >= 0) {
+                return 'android';
+            }
+            if (_os.indexOf('ios') >= 0) {
+                return 'ios';
+            }
+        })();
+        const _browser = (() => {
+            const _browser = browser.toLowerCase();
+            if (_browser.indexOf('safari') >= 0) {
+                return 'safari';
+            }
+            if (_browser.indexOf('chrome') >= 0) {
+                return 'google';
+            }
+            if (_browser.indexOf('firefox') >= 0) {
+                return 'huohu';
+            }
+            if (_browser.indexOf('internet') >= 0) {
+                return 'ie';
+            }
+            if (_browser.indexOf('opera') >= 0) {
+                return 'opera';
+            }
+        })();
+        return (
+            <div className={styles['icons']}>
+                <i className={cls('iconfont', `icon-${_platform}`)} title={platform}></i>
+                <i className={cls('iconfont', `icon-${_os}`)} title={os}></i>
+                <i className={cls('iconfont', `icon-${_browser}`)} title={browser}></i>
+            </div>
+        );
+    }
+    renderInfo() {
+        const {
+            ip,
+            area,
+            isp
+        } = this.props.data.browserBaseInfo;
+        return (
+            <div className={styles['info']}>
+                <div className={styles['base-item']}>
+                    IP：{ip}
+                </div>
+                <div className={styles['base-item']}>
+                    区域：{area}
+                </div>
+                <div className={styles['base-item']}>
+                    运营商：{isp}
+                </div>
+                {this.renderIcons()}
+            </div>
+        );
+    }
     toggle() {
         this.setState({
             toggleShow: !this.state.toggleShow
         });
     }
     render() {
+        const { showBaseInfo = true } = this.props;
         const {
             browserBaseInfo,
             detailInfo,
@@ -131,8 +198,9 @@ export default class UserTrace extends React.Component {
                     [styles['toggle-show']]: this.state.toggleShow
                 })}>
                     <div className={styles['trace-box-wrap']}>
+                        {showBaseInfo && this.renderInfo()}
                         <div className={cls(styles['base-info'], styles['trace-box'])}>
-                            {this.detailInfo.map(item => <div className={styles['base-item']} title={detailInfo[item.value]}>{`${item.label}${detailInfo[item.value]}`}</div>)}
+                            {this.detailInfo.map(item => <div key={item.value} className={styles['base-li']} title={detailInfo[item.value]}>{`${item.label}${detailInfo[item.value]}`}</div>)}
                         </div>
                         <i className={cls('iconfont', styles['toggle-btn'], {
                             'icon-shanjian': this.state.toggleShow,
