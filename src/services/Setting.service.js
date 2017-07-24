@@ -11,5 +11,7 @@ export default {
         platform: sessionStorage.getItem('UEM_platform')
     }),
 
-    updateAppInfo: payload => Request('post', 'app/update', payload)
+    updateAppInfo: payload => Request('post', 'app/update', payload),
+
+    sendEmail: payload => Request('post', 'mail/send', payload)
 };
