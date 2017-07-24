@@ -15,6 +15,9 @@
     }
     .trend-body {
         padding: 0;
+        :global(.chart) {
+            height: 230px;
+        }
     }
 }
 

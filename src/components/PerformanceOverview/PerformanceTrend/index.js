@@ -12,20 +12,20 @@ class PerformanceTrend extends Component {
         super(props);
     }
     componentDidMount() {
-        const { getPerformanceTrend,getPerformanceApdex } = this.props;
+        const { getPerformanceTrend, getPerformanceApdex } = this.props;
         getPerformanceTrend();
     }
     render() {
         let trend = this.props.performanceTrend;
-        let yAxisMax1,yAxisMax2;
-        if ( trend.clickNum && Math.max.apply(null, trend.clickNum.map((item) => item.value)) < 3) {
+        let yAxisMax1, yAxisMax2;
+        if (trend.clickNum && Math.max.apply(null, trend.clickNum.map((item) => item.value)) < 3) {
             yAxisMax1 = 3;
-        }else{ }
+        } else { }
 
         if (trend.avgRspTime && Math.max.apply(null, trend.avgRspTime.map((item) => item.value)) < 1) {
             yAxisMax2 = 1;
         } else { }
-        
+
         // 性能趋势的配置
         let options = Immutable.fromJS({
             title: {
@@ -40,7 +40,7 @@ class PerformanceTrend extends Component {
                 }, {
                     name: '点击数',
                     icon: 'circle'
-                },{
+                }, {
                     name: '响应时间',
                     icon: 'circle'
                 }],
@@ -50,18 +50,18 @@ class PerformanceTrend extends Component {
                     color: '#fff'
                 }
             },
-            xAxis:{
-                    type : 'category',
-                    data : trend.avgRspTime && trend.avgRspTime.map((val, i) => {
-                        let selectTime = trend.avgRspTime[i].endTime - trend.avgRspTime[i].startTime;
-                        if (selectTime <= 1800000) {
-                            //选择一天
-                            return moment(val.startTime).format("HH:mm");
-                        } else {
-                            return moment(val.startTime).format("MM-DD HH:mm");
-                        }
-                    })
-            },
+            xAxis: [{
+                type: 'category',
+                data: trend.avgRspTime && trend.avgRspTime.map((val, i) => {
+                    let selectTime = trend.avgRspTime[i].endTime - trend.avgRspTime[i].startTime;
+                    if (selectTime <= 1800000) {
+                        //选择一天
+                        return moment(val.startTime).format("HH:mm");
+                    } else {
+                        return moment(val.startTime).format("MM-DD HH:mm");
+                    }
+                })
+            }],
             // xAxis: {
             //     type: 'category',
             //     data: _.range(1, 25),
@@ -72,7 +72,7 @@ class PerformanceTrend extends Component {
             //         show: false
             //     }
             // },
-            color: ['#ffeb0b','#66dc6a', '#00c0ff'],
+            color: ['#ffeb0b', '#66dc6a', '#00c0ff'],
             series: [
                 {
                     name: '浏览量PV',
@@ -101,17 +101,17 @@ class PerformanceTrend extends Component {
         let apdexOptions = Immutable.fromJS({
             title: { text: '' },
             legend: {
-                data: [{},{}]
+                data: [{}, {}]
             },
             grid: [{
                 left: '-3%',
                 top: '8%',
                 bottom: '8%'
             }],
-                // 类目轴
-            xAxis: {
-                type : 'category',
-                data : trend.apdex && trend.apdex.map((val, i) => {
+            // 类目轴
+            xAxis: [{
+                type: 'category',
+                data: trend.apdex && trend.apdex.map((val, i) => {
                     let selectTime = trend.apdex[i].endTime - trend.apdex[i].startTime;
                     if (selectTime <= 1800000) {
                         //选择一天
@@ -126,8 +126,8 @@ class PerformanceTrend extends Component {
                         width: 1
                     },
                 },
-                axisTick : {
-                    show : false
+                axisTick: {
+                    show: false
                 },
                 splitLine: {
                     show: false
@@ -138,7 +138,7 @@ class PerformanceTrend extends Component {
                         color: '#ffffff',
                     }
                 }
-            },
+            }],
             // 数值型坐标轴默认参数
             yAxis: [{
                 type: 'value',
@@ -147,7 +147,7 @@ class PerformanceTrend extends Component {
                 minInterval: 0.1,
                 min: 0,
                 axisLabel: {
-                    formatter: function(value) {
+                    formatter: function (value) {
                         let showVal = [1, 0.5, 0.8, 0];
                         return showVal.filter(val => {
                             return value == val;
@@ -162,13 +162,13 @@ class PerformanceTrend extends Component {
                     color: '#ffffff'
                 },
                 splitNumber: 10,
-                splitArea : {
+                splitArea: {
                     show: true,
-                    areaStyle:{
-                        color:[
-                        'rgba(66,60,83,0.8)','rgba(66,60,83,0.8)','rgba(66,60,83,0.8)', 'rgba(66,60,83,0.8)', 'rgba(66,60,83,0.8)',
-                        'rgba(65,89,77,0.8)', 'rgba(65,89,77,0.8)','rgba(65,89,77,0.8)',
-                        'rgba(29,75,76,0.8)', 'rgba(29,75,76,0.8)','rgba(29,75,76,0.8)'
+                    areaStyle: {
+                        color: [
+                            'rgba(66,60,83,0.8)', 'rgba(66,60,83,0.8)', 'rgba(66,60,83,0.8)', 'rgba(66,60,83,0.8)', 'rgba(66,60,83,0.8)',
+                            'rgba(65,89,77,0.8)', 'rgba(65,89,77,0.8)', 'rgba(65,89,77,0.8)',
+                            'rgba(29,75,76,0.8)', 'rgba(29,75,76,0.8)', 'rgba(29,75,76,0.8)'
                         ]
                     }
                 }
@@ -177,7 +177,7 @@ class PerformanceTrend extends Component {
                 symbol: 'circle',  // 拐点图形类型
                 symbolSize: 5   // 拐点图形大小
             },
-            color: ['yellow',''],
+            color: ['yellow', ''],
             series: [
                 {
                     name: '',
@@ -198,7 +198,7 @@ class PerformanceTrend extends Component {
         return (
             <div>
                 <Row>
-                    <Col className={styles['performance-trend']} style={{width:sessionStorage.UEM_platform !== 'pc' ? '100%': '60%'}}>
+                    <Col className={styles['performance-trend']} style={{ width: sessionStorage.UEM_platform !== 'pc' ? '100%' : '60%' }}>
                         <div className={cls('tile-head')}>性能趋势</div>
                         <div className={cls('tile-body')}>
                             <LineChart group="PerformanceTrend" chartId="PerformanceTrend" options={options} />
@@ -211,7 +211,7 @@ class PerformanceTrend extends Component {
                         </div>
                     </Col>}
                 </Row>
-                
+
             </div>
         );
     }

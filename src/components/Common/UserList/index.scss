@@ -1,0 +1,70 @@
+.user-list-wrap {
+    padding: 20px 0;
+}
+
+.user-list {
+    padding: 0 8px 0 12px;
+}
+
+.user-item {
+    position: relative;
+    right: 0;
+    padding: 6px;
+    height: 38px;
+    font-size: 0;
+    line-height: 26px;
+    cursor: pointer;
+    transition: .2s;
+    &:hover {
+        right: 0;
+    }
+    &:nth-child(odd) {
+        background-color: #0B4371;
+    }
+    &:nth-child(even) {
+        background-color: #093B64;
+    }
+    & > i,
+    & > span {
+        vertical-align: middle;
+    }
+    & > span {
+        display: inline-block;
+        font-size: 12px;
+    }
+    &.active {
+        position: relative;
+        background-color: #115FA2;
+        cursor: default;
+        &:before {
+            position: absolute;
+            top: 12px;
+            left: -20px;
+            display: block;
+            width: 0;
+            height: 0;
+            border-width: 8px 10px;
+            border-style: solid;
+            border-color: transparent #115FA2 transparent transparent;
+            content: "";
+        }
+    }
+    :global {
+        .iconfont {
+            margin-right: 5px;
+            font-size: 24px;
+        }
+    }
+}
+
+.user {
+    overflow: hidden;
+    width: 95px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.time {
+    float: right;
+    color: #52A9F6;
+}

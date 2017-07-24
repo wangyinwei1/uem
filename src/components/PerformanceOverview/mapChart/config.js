@@ -50,7 +50,7 @@ export default Immutable.fromJS({
             //     right: -20
             // }
         ],
-        xAxis: {
+        xAxis: [{
             type: 'value',
             axisLine: {
                 show: false
@@ -58,7 +58,7 @@ export default Immutable.fromJS({
             axisTick: {
                 show: false
             }
-        },
+        }],
         yAxis: [{
             type: 'category',
             axisLine: {

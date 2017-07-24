@@ -40,11 +40,11 @@ const defaultOptions = Immutable.fromJS({
         trigger: 'item',
         formatter: '{b}'
     },
-    xAxis: {
+    xAxis: [{
         axisLine: {
             show: false
         }
-    },
+    }],
     yAxis: [{
         axisLine: {
             show: false

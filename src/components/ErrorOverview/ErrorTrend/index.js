@@ -53,7 +53,7 @@ class ErrorTrend extends Component {
                     color: '#fff'
                 }
             },
-            xAxis:{
+            xAxis: [{
                     type : 'category',
                     data : trend.errorCount && trend.errorCount.map((val, i) => {
                         let selectTime = trend.errorCount[i].endTime - trend.errorCount[i].startTime;
@@ -64,17 +64,7 @@ class ErrorTrend extends Component {
                             return moment(val.startTime).format("MM-DD HH:mm");
                         }
                     })
-            },
-            // xAxis: {
-            //     type: 'category',
-            //     data: _.range(1, 25),
-            //     axisLine: {
-            //         show: false
-            //     },
-            //     axisTick: {
-            //         show: false
-            //     }
-            // },
+            }],
             color: ['#ffeb0b','#66dc6a', '#00c0ff'],
             series: [
                 {

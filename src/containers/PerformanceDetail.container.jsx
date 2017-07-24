@@ -51,7 +51,15 @@ export default class PerformanceDetail extends React.Component {
         return nextProps.tag;
     }
     render() {
-        const { info, trend } = this.props.performanceDetailStore;
+        const { 
+            info, 
+            baseInfo,
+            trend,
+            samplesList,
+            activeId,
+            analyzeData,
+            onChangeUser,
+        } = this.props.performanceDetailStore;
         const {
             pv,
             uv,
@@ -73,7 +81,6 @@ export default class PerformanceDetail extends React.Component {
         const { itemId } = this.props;
         return (
             <DetailWrap>
-                <h3>PerformanceDetail</h3>
                 <Metrics
                     data={{
                         pv,
@@ -101,10 +108,14 @@ export default class PerformanceDetail extends React.Component {
                     />
                 }
                 <Trend itemId={itemId} trend={trend} />
-                <Analysis />
-                <pre>
-                    {JSON.stringify(info, null, 4)}
-                </pre>
+                <Analysis 
+                    itemId={itemId}
+                    baseInfo={baseInfo}
+                    samplesList={samplesList}
+                    activeId={activeId}
+                    analyzeData={analyzeData}
+                    changeUser={onChangeUser}
+                />
             </DetailWrap>
         );
     }

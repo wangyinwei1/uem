@@ -20,7 +20,6 @@ export default class UserDetail extends React.Component {
     render() {
         return (
             <DetailWrap>
-                <h3>UserDetail</h3>
                 <BaseInfo />
                 <Trend />
                 <Trace />

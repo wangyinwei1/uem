@@ -33,7 +33,7 @@ const defaultOptions = Immutable.fromJS({
         //     return lineBarFormatter(params, ticket, callback)
         // },
     // },
-    xAxis: {
+    xAxis: [{
         type: 'category',
         data: [],
         axisLine: {
@@ -42,7 +42,7 @@ const defaultOptions = Immutable.fromJS({
         axisTick: {
             show: false
         }
-    },
+    }],
     yAxis: [{
         type: 'value',
         splitLine: {

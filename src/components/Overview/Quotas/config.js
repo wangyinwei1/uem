@@ -19,9 +19,9 @@ export default Immutable.fromJS({
                 color: '#fff'
             }
         },
-        xAxis: {
+        xAxis: [{
             data: _.range(1, 25)
-        },
+        }],
         yAxis: {
             // minInterval: 1
         },
