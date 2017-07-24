@@ -59,25 +59,25 @@ class UserOverviewStore {
                 if( metrics == '["sessionCount"]' ){
                     runInAction(() => {
                         let yAxisData = [], seriesData = [],tempMapData = {};
-                        datas.data && datas.data.map((item, index) => {
+                        datas.data.length > 0 && datas.data.filter(item => item.sessionCount > 0).sort((a,b)=> b.sessionCount - a.sessionCount).map((item, index) => {
                             yAxisData.push(item.area);
                             seriesData.push(item.sessionCount);
                         })
                         tempMapData.yAxis = yAxisData;
                         tempMapData.series = seriesData;
-                        tempMapData.length>0 && tempMapData.sort((a,b)=> b.series - a.series);
+                        // tempMapData.series.length>0 && tempMapData.sort((a,b)=> b.series - a.series);
                         this.mapData = tempMapData;
                     });
                 } else {
                     runInAction(() => {
                         let yAxisData = [], seriesData = [],tempMapData = {};
-                        datas.data && datas.data.map((item, index) => {
+                        datas.data.length > 0 && datas.data.filter(item => item.uv > 0).sort((a,b)=> b.uv - a.uv).map((item, index) => {
                             yAxisData.push(item.area);
                             seriesData.push(item.uv);
                         })
                         tempMapData.yAxis = yAxisData;
                         tempMapData.series = seriesData;
-                        tempMapData.length>0 && tempMapData.sort((a,b)=> b.series - a.series);
+                        // tempMapData.series.length>0 && tempMapData.sort((a,b)=> b.series - a.series);
                         this.mapData = tempMapData;
                     });
                 }
@@ -96,25 +96,25 @@ class UserOverviewStore {
                 if( metrics == '["sessionCount"]' ){
                     runInAction(() => {
                         let yAxisData = [], seriesData = [],tempMapData = {};
-                        datas.data && datas.data.map((item, index) => {
+                        datas.data.length > 0 && datas.data.filter(item => item.sessionCount > 0).sort((a,b)=> b.sessionCount - a.sessionCount).map((item, index) => {
                             yAxisData.push(item.area);
                             seriesData.push(item.sessionCount);
                         })
                         tempMapData.yAxis = yAxisData;
                         tempMapData.series = seriesData;
-                        tempMapData.length>0 && tempMapData.sort((a,b)=> b.series - a.series);
+                        // tempMapData.series.length>0 && tempMapData.sort((a,b)=> b.series - a.series);
                         this.mapData = tempMapData;
                     });
                 } else {
                     runInAction(() => {
                         let yAxisData = [], seriesData = [],tempMapData = {};
-                        datas.data && datas.data.map((item, index) => {
+                        datas.data.length > 0 && datas.data.filter(item => item.uv > 0).sort((a,b)=> b.uv - a.uv).map((item, index) => {
                             yAxisData.push(item.area);
                             seriesData.push(item.uv);
                         })
                         tempMapData.yAxis = yAxisData;
                         tempMapData.series = seriesData;
-                        tempMapData.length>0 && tempMapData.sort((a,b)=> b.series - a.series);
+                        // tempMapData.series.length>0 && tempMapData.sort((a,b)=> b.series - a.series);
                         this.mapData = tempMapData;
                     });
                 }

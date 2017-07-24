@@ -57,7 +57,7 @@ export default Immutable.fromJS({
                 show: false
             }
         }],
-        yAxis: {
+        yAxis: [{
             type: 'category',
             axisLine: {
                 show: false
@@ -66,7 +66,7 @@ export default Immutable.fromJS({
                 show: false
             },
             data: ['巴西', '印尼', '美国', '印度', '中国', '世界人口(万)']
-        },
+        }],
         series: [
             {
                 type: 'bar',

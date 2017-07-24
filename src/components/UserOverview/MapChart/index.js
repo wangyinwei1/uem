@@ -89,11 +89,11 @@ class UserMapChart extends Component {
                     }
                 }
             }
-            _yAxis = yAxis;
-            _series = series;
+            _yAxis = yAxis.reverse();
+            _series = series.reverse();
         } else {
-            _yAxis = yAxis;
-            _series = series;
+            _yAxis = yAxis.reverse();
+            _series = series.reverse();
         }
         // 地图渲染需要的格式[{name:xx,value:xx},{name:xx,value:xx}]
         for (let i = 0, len = series.length; i < len; i++) {

@@ -91,11 +91,12 @@ class OverviewStore {
                     })
                     tempMapData.yAxis = yAxisData;
                     tempMapData.series = seriesData;
+                    // tempMapData.series.length>0 && tempMapData.sort((a,b)=> b.series - a.series);
                     this.userDistribution = tempMapData;
                 });
             }else{
                datas.data.length > 0 && datas.data.map((item,index) => {
-                    if(item.areaName == '-'){
+                    if(item.areaName === "-"){
                         item.areaName = '未知地域'
                     }else {
                         for(let n in countryNameInEN){
@@ -112,7 +113,8 @@ class OverviewStore {
                         })
                         tempMapData.yAxis = yAxisData;
                         tempMapData.series = seriesData;
-                        this.mapData = tempMapData;
+                        // tempMapData.series.length>0 && tempMapData.sort((a,b)=> b.series - a.series);
+                        this.userDistribution = tempMapData;
                     });
                 }) 
             }
