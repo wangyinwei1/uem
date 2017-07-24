@@ -9,7 +9,7 @@ import {
     Trace,
 } from '../components/UserDetail';
 
-@inject('frameStore')
+@inject('frameStore', 'userDetailStore')
 @observer
 export default class UserDetail extends React.Component {
     componentDidMount() {
@@ -18,10 +18,18 @@ export default class UserDetail extends React.Component {
         return nextProps.tag;
     }
     render() {
+        const {
+            displayName,
+            userId,
+        } = this.props.data;
         return (
             <DetailWrap>
-                <BaseInfo />
-                <Trend />
+                <BaseInfo 
+                    displayName={displayName}
+                    userId={userId}
+                />
+                <Trend 
+                />
                 <Trace />
                 <pre>
                     {JSON.stringify(this.props.data, null, 4)}

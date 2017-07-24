@@ -11,6 +11,7 @@ import settingStore from './Setting.store';
 import errorOverviewStore from './ErrorOverview.store';
 import userOverviewStore from './UserOverview.store';
 import performanceDetailStore from './PerformanceDetail.store';
+import userDetailStore from './UserDetail.store';
 import sidePanelStore from './SidePanel.store';
 
 export default {
@@ -27,5 +28,6 @@ export default {
     errorOverviewStore,
     userOverviewStore,
     performanceDetailStore,
+    userDetailStore,
     sidePanelStore
 };

@@ -132,7 +132,7 @@ export default {
                 checked: true,
                 disabled: true,
                 // fixed: 'left',
-                render: (text, record, index) =>  <OperType type={record.operType} />
+                render: (text, record, index) => <OperType type={record.operType} />
             }],
             quota: [{
                 value: 'apdex',
@@ -184,7 +184,7 @@ export default {
                 checked: true,
                 disabled: true,
                 // fixed: 'left',
-                render: (text, record, index) =>  <ColorType type={record.type} />
+                render: (text, record, index) => <ColorType type={record.type} />
             }, {
                 value: 'operType',
                 label: '类型',
@@ -397,26 +397,31 @@ export default {
         tabName: '已登录',
         options: {
             normal: [{
-                label: '用户ID',
+                label: '用户名',
                 value: 'displayName',
                 checked: true,
                 disabled: true,
-            },{
+            }, {
                 label: '首次访问时间',
                 value: 'firstViewTimestamp',
                 checked: true,
                 disabled: true,
-            },{
+            }, {
                 label: '最后访问时间',
                 value: 'lastTime',
                 checked: true,
                 disabled: true,
                 // sorter: (a, b) => a.lastTime - b.lastTime,
-            },{
+            }, {
                 label: '会话数',
                 value: 'sessionCount',
                 checked: true,
                 // sorter: (a, b) => a.sessionCount - b.sessionCount,
+            }, {
+                label: '用户ID',
+                value: 'userId',
+                checked: false,
+                disabled: false,
             }],
             quota: []
         }
@@ -424,7 +429,7 @@ export default {
         tabName: '未登录',
         options: {
             normal: [{
-                label: '用户ID',
+                label: '用户名',
                 value: 'displayName',
                 checked: true,
                 disabled: true,
@@ -433,17 +438,22 @@ export default {
                 value: 'firstViewTimestamp',
                 checked: true,
                 disabled: true,
-            },{
+            }, {
                 label: '最后访问时间',
                 value: 'lastTime',
                 checked: true,
                 disabled: true,
                 // sorter: (a, b) => a.lastTime - b.lastTime,
-            },{
+            }, {
                 label: '会话数',
                 value: 'sessionCount',
                 checked: true,
                 // sorter: (a, b) => a.sessionCount - b.sessionCount,
+            }, {
+                label: '用户ID',
+                value: 'userId',
+                checked: false,
+                disabled: false,
             }],
             quota: []
         }
