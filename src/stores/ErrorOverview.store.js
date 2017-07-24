@@ -65,6 +65,7 @@ class ErrorOverviewStore {
                         })
                         tempMapData.yAxis = yAxisData;
                         tempMapData.series = seriesData;
+                        tempMapData.length>0 && tempMapData.sort((a,b)=> b.series - a.series);
                         this.mapData = tempMapData;
                     });
                 } else {
@@ -76,6 +77,7 @@ class ErrorOverviewStore {
                         })
                         tempMapData.yAxis = yAxisData;
                         tempMapData.series = seriesData;
+                        tempMapData.length>0 && tempMapData.sort((a,b)=> b.series - a.series);
                         this.mapData = tempMapData;
                     });
                 }
@@ -100,6 +102,7 @@ class ErrorOverviewStore {
                         })
                         tempMapData.yAxis = yAxisData;
                         tempMapData.series = seriesData;
+                        tempMapData.length>0 && tempMapData.sort((a,b)=> b.series - a.series);
                         this.mapData = tempMapData;
                     });
                 } else {
@@ -111,6 +114,7 @@ class ErrorOverviewStore {
                         })
                         tempMapData.yAxis = yAxisData;
                         tempMapData.series = seriesData;
+                        tempMapData.length>0 && tempMapData.sort((a,b)=> b.series - a.series);
                         this.mapData = tempMapData;
                     });
                 }

@@ -23,6 +23,21 @@ const defaultOptions = Immutable.fromJS({
         axisTick: {
             show: false
         }
+    }],
+    series: [{
+        // name: this.pillarState == 'avgRspTime' ? UEM_i18n.average_response_time[UEM_lang] : 'Apdex',
+        type: 'bar',
+        barWidth: 20,
+        // itemStyle: {
+        //     normal: {
+        //         color: function (value) {
+        //             debugger
+        //             // let opacity = Number((value.data / maxUv).toFixed(2));
+        //             // return UYUN.getTheme('performance-pillar1') + opacity + ")";
+        //         }
+        //     }
+        // },
+
     }]
 });
 

@@ -105,7 +105,12 @@ class ErrorMapChart extends Component {
         }
         pillarConfig = config.get('bar').updateIn(['yAxis', 0,'data'], () => _yAxis)
             .updateIn(['series',0,'data'],()=> _series)
-            .updateIn(['series',0,'name'],()=> this.state.activePillar == 'occurErrorUserRate'? '用户错误率':'影响用户数' );
+            .updateIn(['series',0,'name'],()=> this.state.activePillar == 'occurErrorUserRate'? '用户错误率':'影响用户数' )
+            .updateIn(['series', 0, 'itemStyle','normal','color'], () => function(value){
+                    let maxUv = Math.max.apply(null, _series);
+                    let opacity = Number((value.data / maxUv).toFixed(2));
+                    return 'rgba(255,122,63,' + opacity + ")";
+            });
 
         mapConfig = config.get(activeMap).updateIn(['series',0,'data'], ()=> mapSeriesData );
         return (

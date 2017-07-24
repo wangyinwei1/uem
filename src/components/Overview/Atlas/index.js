@@ -5,6 +5,7 @@ import {
 } from '../../Common/Chart';
 import config from './config';
 import styles from './index.scss';
+import { countryNameInCN, countryNameInEN } from '../../Common/Chart/WorldCountryName';
 
 class Atlas extends Component {
     constructor(props) {
@@ -33,7 +34,7 @@ class Atlas extends Component {
         let pillarConfig,mapConfig,yAxis,series,mapSeriesData=[],_yAxis=[],_series=[];
         yAxis = this.props.userDistribution.yAxis;
         series = this.props.userDistribution.series;
-
+        // debugger
         if(activeMap == 'world'){
             for(let i = 0,len = yAxis.length; i < len; i++){
                 for(let n in countryNameInEN){

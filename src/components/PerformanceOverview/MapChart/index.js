@@ -89,11 +89,11 @@ class PerformanceMapChart extends Component {
                     }
                 }
             }
-            _yAxis = yAxis;
-            _series = series;
+            _yAxis = yAxis.reverse();
+            _series = series.reverse();
         } else {
-            _yAxis = yAxis;
-            _series = series;
+            _yAxis = yAxis.reverse();
+            _series = series.reverse();
         }
         // 地图渲染需要的格式[{name:xx,value:xx},{name:xx,value:xx}]
         for (let i = 0, len = series.length; i < len; i++) {
@@ -102,9 +102,15 @@ class PerformanceMapChart extends Component {
                 value: series[i]
             })
         }
+        // 需要更新的配置在这里给进去
         pillarConfig = config.get('bar').updateIn(['yAxis', 0, 'data'], () => _yAxis)
             .updateIn(['series', 0, 'data'], () => _series)
-            .updateIn(['series', 0, 'name'], () => this.state.activePillar == 'avgRspTime' ? '平均响应时间' : 'Apdex');
+            .updateIn(['series', 0, 'name'], () => this.state.activePillar == 'avgRspTime' ? '平均响应时间' : 'Apdex')
+            .updateIn(['series', 0, 'itemStyle','normal','color'], () => function(value){
+                    let maxUv = Math.max.apply(null, _series);
+                    let opacity = Number((value.data / maxUv).toFixed(2));
+                    return 'rgba(102,220,108,' + opacity + ")";
+            });
 
         mapConfig = config.get(activeMap).updateIn(['series', 0, 'data'], () => mapSeriesData);
         return (

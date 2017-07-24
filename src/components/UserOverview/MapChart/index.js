@@ -104,7 +104,12 @@ class UserMapChart extends Component {
         }
         pillarConfig = config.get('bar').updateIn(['yAxis', 0, 'data'], () => _yAxis)
             .updateIn(['series', 0, 'data'], () => _series)
-            .updateIn(['series', 0, 'name'], () => this.state.activePillar == 'sessionCount' ? '会话数' : '访客数');
+            .updateIn(['series', 0, 'name'], () => this.state.activePillar == 'sessionCount' ? '会话数' : '访客数')
+            .updateIn(['series', 0, 'itemStyle','normal','color'], () => function(value){
+                    let maxUv = Math.max.apply(null, _series);
+                    let opacity = Number((value.data / maxUv).toFixed(2));
+                    return 'rgba(3,169,245,' + opacity + ")";
+            });
 
         mapConfig = config.get(activeMap).updateIn(['series', 0, 'data'], () => mapSeriesData);
 
