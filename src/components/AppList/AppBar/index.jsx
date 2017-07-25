@@ -93,7 +93,7 @@ class AppsBar extends Component {
                     <div className={cls('btn', styles['tabs-table'])}>TABLE</div>*/}
                 </div>
                 <div>
-                    <RadioGroup className={styles['radio_select']} onChange={this.handleSelectRadio.bind(this)} value={this.state.activeRadio}  defaultValue="chart" size="large">
+                    <RadioGroup onChange={this.handleSelectRadio.bind(this)} value={this.state.activeRadio}  defaultValue="chart" size="large">
                         <RadioButton value="chart">图表</RadioButton>
                         <RadioButton value="table">列表</RadioButton>
                     </RadioGroup>

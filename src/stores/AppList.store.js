@@ -93,6 +93,15 @@ class AppListStore {
             throw error;
         }
     }
+    // @action onStartApp = async payload => {
+    //     try{
+    //         const data = await Service.startOrStopApp(payload);
+    //         this.onGetApps();
+    //         return data;
+    //     } catch(e){
+    //         console.log(e)
+    //     }
+    // }
 }
 
 const appListStore = new AppListStore();
