@@ -65,9 +65,12 @@ export default class ErrorTable extends React.Component {
             total,
             rows,
             tagType,
+            pageIndex,
+            pageSize,
             onGetOpersList,
             onChangeResTime,
             onResolveRow,
+            onChangePage,
         } = this.props.errorTableStore;
         const { deploy } = this.props.overviewStore;
         const { onChangePanelList } = this.props.sidePanelStore;
@@ -83,6 +86,8 @@ export default class ErrorTable extends React.Component {
                     apdexTime={apdexTime}
                     dataList={dataList}
                     total={total}
+                    pageIndex={pageIndex}
+                    pageSize={pageSize}
                     getTableData={onGetOpersList}
                     changeTagType={this.changeTagType.bind(this)}
                     changeResTime={this.changeResTime.bind(this)}
@@ -90,6 +95,7 @@ export default class ErrorTable extends React.Component {
                     changeRows={this.changeRows.bind(this)}
                     resolveRow={this.resolveRow.bind(this)}
                     changePanelList={onChangePanelList}
+                    changePage={onChangePage}
                     search={this.search.bind(this)}
                 />
             </div>

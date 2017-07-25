@@ -2,7 +2,7 @@
 export { default as Crux } from './Crux';
 
 // 移动端关键指标
-export { default as CruxMobile } from './Crux_mobile/';
+export { default as CruxMobile } from './CruxMobile';
 
 // 指标趋势图
 export { default as Quotas } from './Quotas';

@@ -40,7 +40,6 @@ class PerformanceDetailStore {
         "netTime": [],
         "clientTime": []
     };
-    timeType = getTimeType();
 
     @action onChangeUser = payload => {
         this.activeId = payload.activeId;
@@ -80,6 +79,7 @@ class PerformanceDetailStore {
                 startTime: moment().subtract(getTimeType().startTime.type, getTimeType().startTime.units).valueOf(),
                 endTime: moment().subtract(getTimeType().endTime.type, getTimeType().endTime.units).valueOf(),
                 pageIndex: this.pageIndex,
+                pageSize: 100,
                 ...payload
             });
             runInAction(() => {

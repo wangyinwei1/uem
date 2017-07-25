@@ -100,8 +100,14 @@ export default class Table extends React.Component {
             panelItem: record
         });
     }
+    changePage(page, pageSize) {
+        this.props.changePage({
+            page,
+            pageSize
+        });
+    }
     render() {
-        const { dataList, total } = this.props;
+        const { dataList, total, pageIndex, pageSize } = this.props;
         const rowSelection = this.rowSelection();
         return (
             <div className="table">
@@ -109,7 +115,9 @@ export default class Table extends React.Component {
                     onRowClick={this.rowClickHandler.bind(this)}
                     pagination={{
                         total,
-                        defaultPageSize: 10
+                        current: pageIndex,
+                        pageSize: pageSize,
+                        onChange: this.changePage.bind(this)
                     }} rowSelection={rowSelection} columns={this.columns} dataSource={dataList}
                     scroll={{ x: this.getScollX() }}
                 />

@@ -92,12 +92,12 @@ class AppsBar extends Component {
                     {/*<div className={cls('btn', styles['tabs-grid'])}>GRID</div>
                     <div className={cls('btn', styles['tabs-table'])}>TABLE</div>*/}
                 </div>
-                <div>
-                    <RadioGroup className={styles['radio_select']} onChange={this.handleSelectRadio.bind(this)} value={this.state.activeRadio}  defaultValue="chart" size="large">
+                
+                    <RadioGroup onChange={this.handleSelectRadio.bind(this)} value={this.state.activeRadio}  defaultValue="chart" size="large">
                         <RadioButton value="chart">图表</RadioButton>
                         <RadioButton value="table">列表</RadioButton>
                     </RadioGroup>
-                </div>   
+                   
                 <Modal footer={null} visible={showAddAppModal} onCancel={this.toggleAddAppModal.bind(this)}>
                     <div className={styles['create-app-form-wrap']}>
                         <div className={styles['create-app-title']}>应用名称</div>

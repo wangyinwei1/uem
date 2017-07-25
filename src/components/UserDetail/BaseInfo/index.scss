@@ -1,0 +1,10 @@
+.base-info {
+    .list {
+        overflow: hidden;
+        & > div {
+            float: left;
+            padding: 0 10px;
+            width: 33.333%;
+        }
+    }
+}

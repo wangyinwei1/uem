@@ -12,6 +12,7 @@ class PerformanceInteractiveStore {
     @observable total = 0;
     @observable type = JSON.stringify([0, 1, 2, 3, 4, 5, 6]);
     @observable pageIndex = 1;
+    @observable pageSize = 10;
     @observable operType = 'xhr,form,link';
     @observable searchValue = undefined;
     @observable tagType = 0;
@@ -33,6 +34,11 @@ class PerformanceInteractiveStore {
     }
     @action onSearch = payload => {
         this.searchValue = payload.searchValue;
+        this.onGetOpersList();
+    }
+    @action onChangePage = payload => {
+        this.pageIndex = payload.page;
+        this.pageSize = payload.pageSize;
         this.onGetOpersList();
     }
     @action onChangeResTime = payload => {

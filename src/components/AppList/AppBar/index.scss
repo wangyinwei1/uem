@@ -2,30 +2,20 @@
     margin: 20px 0;
     height: 40px;
     line-height: 40px;
-}
-
-.radio_select {
-    margin-left: 74%;
-    // .ant-radio-button-wrapper {
-    //     background: #1d6aa7;
-    //     color:#fff;
-    //     height: 34px;
-    //     line-height: 34px;
-    // }
-    // .ant-radio-button-wrapper:first-child {
-    //     border-radius: 1px 0 0 1px;
-    //     border-left: 1px solid #108ee9;
-    // }
-    // // .ant-radio-button-wrapper:last-child {
-    // //     border-radius: 1px 0 0 1px;
-    // //     border-left: 1px solid #108ee9;
-    // // }
-    // .ant-radio-button-wrapper-checked {
-    //     border-color: #108ee9;
-    //     box-shadow: none!important;
-    //     background: #4082e6;
-    //     color: #fff !important;
-    // }
+     :global {
+        .ant-radio-group {
+            float: right;
+            padding-right: 15px;
+            font-size: 14px;
+            .ant-radio-button-wrapper {
+                color: black;
+            }
+            .ant-radio-button-wrapper-checked {
+                color: white;
+                background: #1681C4;
+            }
+        }
+    }
 }
 
 .create-app {
@@ -41,15 +31,14 @@
 
 .btn-wrapper {
     float: right;
-    & > div {
+    &>div {
         display: inline-block;
     }
 }
 
 .create-app-form-wrap {
     padding: 20px;
-    :global(.ant-form-item) {
-    }
+     :global(.ant-form-item) {}
 }
 
 .create-app-title {
@@ -60,7 +49,7 @@
     margin-top: 20px;
     text-align: center;
     line-height: 35px;
-    :global(.btn) {
+     :global(.btn) {
         margin-left: 20px;
         &:first-child {
             margin-left: 0;

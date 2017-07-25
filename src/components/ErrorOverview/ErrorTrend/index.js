@@ -65,6 +65,9 @@ class ErrorTrend extends Component {
                         }
                     })
             }],
+            yAxis: [{
+                minInterval: 1,
+            }],
             color: ['#ffeb0b','#66dc6a', '#00c0ff'],
             series: [
                 {
