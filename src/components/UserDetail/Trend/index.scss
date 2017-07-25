@@ -1,0 +1,11 @@
+.trend {
+    :global {
+        .tile-body {
+            padding: 0;
+            background-color: transparent;
+        }
+        .chart {
+            height: 250px;
+        }
+    }
+}

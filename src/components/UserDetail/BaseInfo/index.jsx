@@ -13,7 +13,7 @@ export default class BaseInfo extends React.Component {
         return (
             <div className={styles['base-info']}>
                 <div className={cls('tile-body', styles['list'])}>
-                    {this.list.map(item => <div>{`${item.label}${this.props[item.value]}`}</div>)}
+                    {this.list.map(item => <div key={item.value}>{`${item.label}${this.props[item.value]}`}</div>)}
                 </div>
             </div>
         );

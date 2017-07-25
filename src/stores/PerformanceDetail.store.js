@@ -40,7 +40,6 @@ class PerformanceDetailStore {
         "netTime": [],
         "clientTime": []
     };
-    timeType = getTimeType();
 
     @action onChangeUser = payload => {
         this.activeId = payload.activeId;

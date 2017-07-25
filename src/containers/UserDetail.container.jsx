@@ -13,15 +13,30 @@ import {
 @observer
 export default class UserDetail extends React.Component {
     componentDidMount() {
+        const {
+            userId,
+        } = this.props.data;
+        const {
+            onChangeUID
+        } = this.props.userDetailStore;
+        onChangeUID({
+            uId: userId
+        });
     }
     shouldComponentUpdate(nextProps) {
         return nextProps.tag;
     }
     render() {
         const {
+            trace,
+            sessionCount,
+            onChangeCurrent,
+        } = this.props.userDetailStore;
+        const {
             displayName,
             userId,
         } = this.props.data;
+        const { itemId } = this.props;
         return (
             <DetailWrap>
                 <BaseInfo 
@@ -29,11 +44,13 @@ export default class UserDetail extends React.Component {
                     userId={userId}
                 />
                 <Trend 
+                    sessionCount={sessionCount}
+                    itemId={itemId}
+                    changeCurrent={onChangeCurrent}
                 />
-                <Trace />
-                <pre>
-                    {JSON.stringify(this.props.data, null, 4)}
-                </pre>
+                <Trace 
+                    data={trace}
+                />
             </DetailWrap>
         );
     }
