@@ -27,29 +27,29 @@ export default Immutable.fromJS({
             bottom: 15,
             right: 60
         }],
-        dataZoom: [
-            {
-                type: 'inside',
-                orient: 'vertical',
-                throttle: 300
-            }
-            // {
-            //     type: 'slider',
-            //     orient: 'vertical',
-            //     textStyle: {
-            //         color: '#fff'
-            //     },
-            //     backgroundColor: 'rgba(0,0,0,.2)',
-            //     fillerColor: '#2378C3',
-            //     borderColor: 'transparent',
-            //     showDetail: false,
-            //     handleStyle: {
-            //         opacity: 0
-            //     },
-            //     realtime: false,
-            //     right: -20
-            // }
-        ],
+        // dataZoom: [
+        //     {
+        //         type: 'inside',
+        //         orient: 'vertical',
+        //         throttle: 300
+        //     }
+        //     // {
+        //     //     type: 'slider',
+        //     //     orient: 'vertical',
+        //     //     textStyle: {
+        //     //         color: '#fff'
+        //     //     },
+        //     //     backgroundColor: 'rgba(0,0,0,.2)',
+        //     //     fillerColor: '#2378C3',
+        //     //     borderColor: 'transparent',
+        //     //     showDetail: false,
+        //     //     handleStyle: {
+        //     //         opacity: 0
+        //     //     },
+        //     //     realtime: false,
+        //     //     right: -20
+        //     // }
+        // ],
         xAxis: [{
             type: 'value',
             axisLine: {

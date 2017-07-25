@@ -22,9 +22,9 @@ export default Immutable.fromJS({
         xAxis: [{
             data: _.range(1, 25)
         }],
-        yAxis: {
-            // minInterval: 1
-        },
+        yAxis: [{
+            minInterval: 1
+        }],
         series: [{
             name: '今日',
             type: 'line',

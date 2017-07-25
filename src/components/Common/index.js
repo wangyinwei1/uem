@@ -21,3 +21,6 @@ export { default as DetailWrap } from './DetailWrap';
 
 // 详情页用户列表
 export { default as UserList } from './UserList';
+
+// 用户轨迹
+export { default as UserTrace } from './UserTrace';

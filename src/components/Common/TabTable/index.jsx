@@ -53,7 +53,9 @@ export default class TabTable extends React.Component {
             columns,
             dataList,
             apdexTime,
-            total
+            total,
+            pageIndex,
+            pageSize,
         } = this.props;
         return (
             <div className={styles['tab-table']}>
@@ -81,9 +83,12 @@ export default class TabTable extends React.Component {
                         columns={columns}
                         tagType={tagType}
                         dataList={dataList}
+                        pageIndex={pageIndex}
+                        pageSize={pageSize}
                         total={total}
                         changeRows={this.props.changeRows}
                         changePanelList={this.props.changePanelList}
+                        changePage={this.props.changePage}
                     />
                 </Spin>
                 {dataList.length === 0 && this.noData()}

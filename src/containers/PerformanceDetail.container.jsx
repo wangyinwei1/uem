@@ -56,6 +56,7 @@ export default class PerformanceDetail extends React.Component {
             baseInfo,
             trend,
             samplesList,
+            sessionTrace,
             activeId,
             analyzeData,
             onChangeUser,
@@ -113,6 +114,7 @@ export default class PerformanceDetail extends React.Component {
                     baseInfo={baseInfo}
                     samplesList={samplesList}
                     activeId={activeId}
+                    sessionTrace={sessionTrace}
                     analyzeData={analyzeData}
                     changeUser={onChangeUser}
                 />

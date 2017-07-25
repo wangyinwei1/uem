@@ -10,6 +10,7 @@ class UserTableStore {
     @observable data = [];
     @observable total = 0;
     @observable pageIndex = 1;
+    @observable pageSize = 10;
     @observable searchKey = 'display_name';
     @observable searchValue = undefined;
     @observable tagType = 0;
@@ -32,6 +33,11 @@ class UserTableStore {
     }
     @action onSearch = payload => {
         this.searchValue = payload.searchValue;
+        this.onGetOpersList();
+    }
+    @action onChangePage = payload => {
+        this.pageIndex = payload.page;
+        this.pageSize = payload.pageSize;
         this.onGetOpersList();
     }
     @action onChangeResTime = payload => {

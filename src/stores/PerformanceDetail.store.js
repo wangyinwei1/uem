@@ -15,7 +15,9 @@ class PerformanceDetailStore {
         response: []
     };
     @observable sessionTrace = {
-
+        browserBaseInfo: {},
+        detailInfo: {},
+        traceInfo: []
     };
     @observable samplesList = [];
     @observable activeId = '';
@@ -38,7 +40,6 @@ class PerformanceDetailStore {
         "netTime": [],
         "clientTime": []
     };
-    timeType = getTimeType();
 
     @action onChangeUser = payload => {
         this.activeId = payload.activeId;
@@ -78,6 +79,7 @@ class PerformanceDetailStore {
                 startTime: moment().subtract(getTimeType().startTime.type, getTimeType().startTime.units).valueOf(),
                 endTime: moment().subtract(getTimeType().endTime.type, getTimeType().endTime.units).valueOf(),
                 pageIndex: this.pageIndex,
+                pageSize: 100,
                 ...payload
             });
             runInAction(() => {
@@ -102,8 +104,8 @@ class PerformanceDetailStore {
             });
             runInAction(() => {
                 const _baseInfo = {};
-                for(let i in data) {
-                    if(i === 'userDefined') {
+                for (let i in data) {
+                    if (i === 'userDefined') {
                         const userDefinedArr = [];
                         for (let j in data[i]) {
                             userDefinedArr.push({

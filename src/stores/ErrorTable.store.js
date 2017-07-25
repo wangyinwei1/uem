@@ -10,6 +10,7 @@ class ErrorTableStore {
     @observable data = [];
     @observable total = 0;
     @observable pageIndex = 1;
+    @observable pageSize = 10;
     @observable searchValue = undefined;
     @observable tagType = 0;
     @observable colOptions = getColOptions('ErrorTable');
@@ -30,6 +31,11 @@ class ErrorTableStore {
     }
     @action onSearch = payload => {
         this.searchValue = payload.searchValue;
+        this.onGetOpersList();
+    }
+    @action onChangePage = payload => {
+        this.pageIndex = payload.page;
+        this.pageSize = payload.pageSize;
         this.onGetOpersList();
     }
     @action onChangeRows = payload => {

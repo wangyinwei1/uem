@@ -1,11 +1,30 @@
 .apdex-chart {
+    display: inline-block;
+    display: inline-block;
     width: 40%;
-    display: inline-block;
     border-left: 20px solid transparent;
-    display: inline-block;
 }
 
 .performance-trend {
-    width: 60%;
     display: inline-block;
+    width: 60%;
+    :global {
+        .tile-body {
+            padding: 0;
+        }
+        .chart {
+            height: 210px;
+        }
+    }
+}
+
+.apdex-chart {
+    :global {
+        .tile-body {
+            padding: 0;
+        }
+        .chart {
+            height: 210px;
+        }
+    }
 }
