@@ -1,4 +1,4 @@
-.setting-container {
+.depoly-container {
   background-color: rgba(0, 0, 0, .2);
   h3 {
     margin-bottom: 20px;
@@ -7,7 +7,6 @@
   margin-top: 2px;
   color: #fff;
   font-size: 13px;
-  /* -------------------- 部署说明 start --------------------- */
   
   // 应用信息
   .app-information {
@@ -87,22 +86,9 @@
       margin-top: 20px;
     }
   }
-
-  /* -------------------- 部署说明 end --------------------- */
-
-  /* -------------------- 参数设置 start --------------------- */
-
-
-  /* -------------------- 参数设置 end --------------------- */
-
-
-  /* -------------------- 用户数据模型 start --------------------- */
-
-  /* -------------------- 用户数据模型 end --------------------- */
-
 }
 
-// 部署说明 编辑Modal
+// 编辑Modal
 .edit-information-modal {
   :global(.ant-modal-body) {
     padding: 40px;

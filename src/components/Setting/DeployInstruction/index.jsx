@@ -20,9 +20,12 @@ class DeployInstruction extends Component {
     this.openSendEmailModal = this.openSendEmailModal.bind(this);
     this.handleEmailOk = this.handleEmailOk.bind(this);
     this.handleSendEmailCancel = this.handleSendEmailCancel.bind(this);
+    this.openVideoModal = this.openVideoModal.bind(this);
+    this.handleVideoCancel = this.handleVideoCancel.bind(this);
     this.state = {
       editVisible: false,
-      sendEmailVisible: false
+      sendEmailVisible: false,
+      videoVisible: false
     }
     // ${this.code.slice(8).slice(0,-9)}
     this.code = `<script>(function(win,doc){win.YYRUM={};YYRUM.info={appId:${this.props.appInfo.appId},beacon:'http://web.uyundev.cn/connect',agent:'http://web.uyundev.cn/buriedPoint/YYRUM.js'};var loadSource={createScript:function(src){var d=doc,f=d.getElementsByTagName('script')[0],s=d.createElement('script');s.type='text/javascript';s.src=src; f.parentNode.insertBefore(s,f);return s;}};var script=loadSource.createScript(YYRUM.info.agent);win.onerror=function(msg, url,line,col,error){YYRUM.info.errorData={msg:msg,url:url,line:line,col:col,error:error}};if(script.readyState){script.onreadystatechange=function(){if(script.readyState=='loaded'||script.readyState=='complete'){script.onreadystatechange=null; YYRUM.report.installGlobalHandler()}};}else{script.onload=function(){YYRUM.report.installGlobalHandler()};}})(window,document)</script>`;
@@ -114,11 +117,17 @@ class DeployInstruction extends Component {
     this.toggleSendEmailModal(false);
     this.sendEmailForm.setFieldsValue({ emailAddress: '' });
   }
+  openVideoModal() {
+    this.setState({videoVisible: true})
+  }
+  handleVideoCancel(){
+    this.setState({videoVisible: false});
+  }
 
   render() {
     const { appInfo } = this.props;
     return (
-      <div className={styles['setting-container']}>
+      <div className={styles['depoly-container']}>
         <Timeline>
           <Item iconContent="1">
             <div className={styles['app-information']}>
@@ -137,7 +146,7 @@ class DeployInstruction extends Component {
               <textarea className={styles.code} readOnly ref={input => this.input = input} defaultValue={this.code} />
               <div className={styles['notice-wrapper']}>
                 <span className={styles.notice}>为保证数据采集的正确进行，请将代码部署到head标签之内，最好在head标签内的所有script标签之前
-                  <span className={styles['link-mv']}>视频帮助</span>
+                  <span className={styles['link-mv']} onClick={this.openVideoModal}>视频帮助</span>
                 </span>
                 <button className={styles['code-copy']} onClick={this.copyCode}>复制</button>
               </div>
@@ -165,6 +174,16 @@ class DeployInstruction extends Component {
           handleEmailOk={this.handleEmailOk}
           ref={form => { this.sendEmailForm = form }}
         />
+        <Modal
+          visible={this.state.videoVisible}
+          onCancel={this.handleVideoCancel}
+          footer={null}
+          width={600}
+        >
+          <video src="http://web.uyundev.cn/movie/deploy.mp4" width="600" height="400" controls>
+            您的浏览器不支持Video标签。
+          </video>
+        </Modal>
       </div >
 
     )
