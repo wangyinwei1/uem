@@ -4,7 +4,8 @@
     line-height: 40px;
      :global {
         .ant-radio-group {
-            margin-left: 74%;
+            float: right;
+            padding-right: 15px;
             font-size: 14px;
             .ant-radio-button-wrapper {
                 color: black;
