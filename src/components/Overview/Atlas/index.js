@@ -58,8 +58,7 @@ class Atlas extends Component {
         }
         pillarConfig = config.get('bar').updateIn(['yAxis',0,'data'], () => _yAxis)
             .updateIn(['series',0,'data'],()=> _series)
-            .updateIn(['series',0,'name'],()=> '用户会话数');
-        console.log('-----pillarConfig------',pillarConfig.toJS());    
+            .updateIn(['series',0,'name'],()=> '用户会话数');   
         mapConfig = config.get(activeMap).updateIn(['series',0,'data'], ()=> mapSeriesData );
         return (
             <div className={styles['atlas']}>

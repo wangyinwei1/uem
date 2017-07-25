@@ -69,7 +69,7 @@ class ErrorMapChart extends Component {
                 config.updateIn(['china','series',0,'mapType'], ()=> 'china');
             } 
         }else{
-            console.log('外国和台湾省的二级地区暂无法查看！')
+            console.log('外国和台湾省的次级地区暂无法查看！')
         } 
     }
 

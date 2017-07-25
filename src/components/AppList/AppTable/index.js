@@ -1,8 +1,9 @@
-import { Table, Menu, Dropdown } from 'antd';
+import { Table, Menu, Dropdown, Modal } from 'antd';
 import { Link } from 'react-router-dom';
 import React from 'react';
 import './index.scss';
 import moment from 'moment';
+import styles from './index';
 const setList = {
     0: [{
         name: '删除应用',
@@ -34,6 +35,15 @@ function stopPropagation(e) {
 class AppTable extends React.Component {
     defaultProps = {
         data: []
+    }
+    constructor(props){
+        super(props);
+        this.state={
+            showDelModal: false,
+            // countDown: 3,
+            confirmLoading: false
+        };
+        let currentRecord = {};
     }
     static contextTypes = {
         router: React.PropTypes.object.isRequired
@@ -114,7 +124,7 @@ class AppTable extends React.Component {
                                 const { action } = val;
                                 return (
                                     <Menu.Item key={index}>
-                                        <div className="set-list" key={val.action} action={val.action} onClick={this.handelByApp.bind(this, action, dataIndex)}>{val.name}</div>
+                                        <div className="set-list" key={val.action} action={val.action} onClick={this.handelByApp.bind(this, action, dataIndex,record)}>{val.name}</div>
                                     </Menu.Item>
                                 )
                             })
@@ -136,11 +146,59 @@ class AppTable extends React.Component {
             }.bind(this)
         }]
     }
-    handelByApp(action, index, e) {
+
+    confirmDeleteApp(){
+        // this.props.delApp({ appId: this.currentRecord.appId }).then(res => { setTimeout( ()=> {
+        //         this.setState({
+        //         showDelModal: false
+        //     });}, 5000)  
+        // })
+
+        // if(this.state.showDelModal){
+        //     setInterval( () => {
+        //     if(this.state.countDown > 0) {
+        //           this.setState({countDown: --this.state.countDown})
+        //     }else {
+        //           this.setState({ showDelModal: false })
+        //           clearInterval()
+        //     }
+        // },1000)}
+        this.setState({ confirmLoading: true })
+        setTimeout(() => {
+            this.setState({
+                showDelModal: false,
+                confirmLoading: false,
+            }, ()=>this.props.delApp({ appId: this.currentRecord.appId }) );
+        }, 1000);
+    }
+
+    cancelDeleteApp(){
+        this.setState({
+            showDelModal: false,
+        });     
+    }
+
+    handelByApp(action, index, record, e) {
         /**
-         *  '删除应用','停止监控','应用部署'
-         *  返回索引
+         *  '删除应用','停止监控','应用部署'，'启动监控'
          */
+
+        this.currentRecord = record ;
+        if(action === 'deleteAppConfirm' ){
+            this.setState({
+                showDelModal: true
+            });  
+        }
+        if(action === 'startApp' || 'stopApp' ){
+            // stopPropagation();
+            this.props.updateApp({
+                appId: record.appId,
+                status: record.status == 0 ? 1 : 0
+            })
+        }
+        if( action === 'deployApp' ){
+            this.context.router.history.push('/setting');
+        }
     }
     componentWillUnmount() {
         $('body').unbind('.appTableOperDropdown');
@@ -194,18 +252,6 @@ class AppTable extends React.Component {
                 });
         }
         this.context.router.history.push('/overview');
-        console.log('[this.context.router]:',this.context.router);
-    
-        // this.context.router.push({
-        //     pathname: '/overview',
-        //     query: {
-        //         appId: record.appId,
-        //         module: 'overview',
-        //         theme: 'blue'
-        //     }
-        // });
-
-
     }
     saveAccessRecord(data) {
 
@@ -213,13 +259,29 @@ class AppTable extends React.Component {
     render() {
         const data = this.props.data;
         return (
-            <Table
-                dataSource={data}
-                onRowClick={this.onRowClick.bind(this)}
-                columns={this.getColumns()}
-                pagination={false}
-                rowKey={record => record.appId}
-                className='common-tab apps-table' />
+            <div>
+                <Table
+                    dataSource={data}
+                    onRowClick={this.onRowClick.bind(this)}
+                    columns={this.getColumns()}
+                    pagination={false}
+                    rowKey={record => record.appId}
+                    />
+                <Modal
+                    className={styles['confirm_modal']}  
+                    title='确认删除？'
+                    visible={this.state.showDelModal}  
+                    onCancel={this.cancelDeleteApp.bind(this)}
+                    onOk={this.confirmDeleteApp.bind(this)}
+                    confirmLoading={this.state.confirmLoading} 
+                    okText='确认'
+                    cancelText='取消'
+                    >
+                    {/*<div className='info-wrapper'>
+                        
+                    </div>*/}
+                </Modal>    
+            </div>
         )
     }
     componentDidMount() {
