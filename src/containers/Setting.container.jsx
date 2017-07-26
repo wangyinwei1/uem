@@ -17,7 +17,7 @@ export default class Setting extends React.Component {
         this.handleSave = this.handleSave.bind(this);
         this.handleNotSave = this.handleNotSave.bind(this);
         this.state = {
-            activeKey: 'ParamSetting',
+            activeKey: 'UserDataModel',
             // 用来在TabChange时暂存activeKey的值
             nextActiveKey: '',
             visible: false
@@ -66,7 +66,7 @@ export default class Setting extends React.Component {
         this.setState({ visible });
     }
     handleSave() {
-        const { saveSetting } = this.paramSetting;
+        const { saveSetting, form } = this.paramSetting;
         saveSetting();
         form.setFieldsValue({ url: undefined });
         this.toggleModal(false);
@@ -97,11 +97,13 @@ export default class Setting extends React.Component {
         const { activeKey, visible } = this.state;
         const {
             appInfo, updateAppInfo, updateAppInfoOnFront, sendEmail,
-            config, selectPeriod, updateConfig, getConfig
+            config, selectPeriod, updateConfig, getConfig,
+            userDataModelList, getUserDataModelList
         } = this.props.settingStore;
 
         const deployProps = { appInfo, updateAppInfo, updateAppInfoOnFront, sendEmail };
         const paramProps = { config, updateConfig, getConfig };
+        const userDataProps = { userDataModelList, getUserDataModelList }
         const platform = sessionStorage.getItem('UEM_platform');
         return (
             <div id="Setting">
@@ -113,7 +115,7 @@ export default class Setting extends React.Component {
                         {platform === 'pc' ? <ParamSetting {...paramProps} ref={component => { this.paramSetting = component }} /> : null}
                     </TabPane>
                     <TabPane tab="用户数据模型" key="UserDataModel">
-                        {platform === 'pc' ? <UserDataModel /> : null}
+                        {platform === 'pc' ? <UserDataModel {...userDataProps} /> : null}
                     </TabPane>
                     {
                         platform === 'pc' ? null :

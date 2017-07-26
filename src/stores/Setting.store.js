@@ -4,6 +4,7 @@ import Service from '../services/Setting.service';
 class SettingStore {
   @observable appInfo = {};
   @observable config = {};
+  @observable userDataModelList = [];
 
   @action getAppInfo = async () => {
     try {
@@ -58,7 +59,19 @@ class SettingStore {
       throw error;
     }
   }
+
+  @action getUserDataModelList = async () => {
+    try {
+      const result = await Service.getUserDataModelList();
+      runInAction(() => {
+        this.userDataModelList = result.data;
+      })
+    } catch (error) {
+      throw error;
+    }
+  }
 }
+
 
 const settingStore = new SettingStore();
 

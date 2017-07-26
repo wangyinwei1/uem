@@ -20,5 +20,11 @@ export default {
         ...payload,
         appId: sessionStorage.getItem('UEM_appId'),
         platform: sessionStorage.getItem('UEM_platform'),
-    }), { contentType: 'application/json' })
+    }), { contentType: 'application/json' }),
+
+    getUserDataModelList: () => Request('get', 'userDefine/keys/list', {
+        appId: sessionStorage.getItem('UEM_appId'),
+        platform: sessionStorage.getItem('UEM_platform')
+    })
+
 };

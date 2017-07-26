@@ -101,7 +101,7 @@
   width: 500px;
 }
 
-// 离开该组件时的弹出框
+// 离开该组件时的弹出框，用于Setting.container组件
 .leave-modal {
   :global(.ant-modal-body) {
     padding: 40px;
