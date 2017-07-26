@@ -9,7 +9,7 @@ const FormItem = Form.Item;
 
 
 
-class DeployInstruction extends Component {
+export default class DeployInstruction extends Component {
   constructor(props) {
     super(props);
     this.copyCode = this.copyCode.bind(this);
@@ -245,5 +245,3 @@ const SendEmailModal = Form.create()(({ sendEmailVisible, handleSendEmailCancel,
     </Modal>
   )
 })
-
-export default DeployInstruction;

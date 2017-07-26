@@ -8,7 +8,8 @@ var config = require('./config.base');
 var CONST = require('./constants');
 
 module.exports = webpackMerge(config, {
-    devtool: 'cheap-module-eval-source-map',
+    // devtool: 'cheap-module-eval-source-map',
+    devtool: 'source-map',
     entry: {
         main: [
             'react-hot-loader/patch',

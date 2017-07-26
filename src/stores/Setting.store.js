@@ -1,8 +1,10 @@
-import { observable, runInAction, action, computed } from 'mobx';
+import { observable, runInAction, action, computed, toJS } from 'mobx';
 import Service from '../services/Setting.service';
 
 class SettingStore {
   @observable appInfo = {};
+  @observable config = {};
+
   @action getAppInfo = async () => {
     try {
       const data = await Service.getAppInfo();
@@ -10,13 +12,12 @@ class SettingStore {
         this.appInfo = data;
       });
     } catch (error) {
-      throw erro;
+      throw error;
     }
   }
   @action updateAppInfo = async (appInfo) => {
     try {
-      const result = await Service.updateAppInfo(appInfo);
-      return result;
+      return await Service.updateAppInfo(appInfo);
     } catch (error) {
       throw error;
     }
@@ -27,13 +28,37 @@ class SettingStore {
   }
   @action sendEmail = async (emailObj) => {
     try {
-      const result = await Service.sendEmail(emailObj);
+      return await Service.sendEmail(emailObj);
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  @action getConfig = async () => {
+    try {
+      const data = await Service.getConfig();
+      runInAction(() => {
+        this.config = data;
+      });
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  @action updateConfig = async (payload) => {
+    try {
+      const { slowLoadThreshold } = this.config;
+      const result = await Service.updateConfig({
+        ...payload,
+        slowLoadThreshold,
+      })
+      this.getConfig();
       return result;
     } catch (error) {
       throw error;
     }
   }
-} 
+}
 
 const settingStore = new SettingStore();
 
