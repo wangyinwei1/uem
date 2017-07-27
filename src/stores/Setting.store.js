@@ -70,7 +70,29 @@ class SettingStore {
       throw error;
     }
   }
+
+  // 用户数据模型
+  @action deleteUserDataModel = async (payload) => {
+    try {
+      const result = await Service.deleteUserDataModel(payload);
+      this.getUserDataModelList();
+      return result;
+    } catch (error) {
+      throw error.responseJSON;
+    }
+  }
+
+  @action saveUserDataModel = async (payload) => {
+    try {
+      const result = await Service.saveUserDataModel(payload);
+      this.getUserDataModelList();
+      return result;
+    } catch (error) {
+      throw error.responseJSON;
+    }
+  }
 }
+
 
 
 const settingStore = new SettingStore();

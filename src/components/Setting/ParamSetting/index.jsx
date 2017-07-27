@@ -88,7 +88,6 @@ class ParamSetting extends Component {
   }
 
   render() {
-
     const { selectedRowKeys, urls, reportPeriod, apdex } = this.state;
     const dataSource = urls.map((url, index) => ({ key: index, url }));
     const rowSelection = {
@@ -170,7 +169,7 @@ const ParamSettingForm = Form.create()((props) => {
                   { type: 'url', message: '请输入正确的域名' }
                 ]
               })(<Input placeholder="请输入域名" />)}
-              <button className={styles['common-btn']} onClick={addToWhiteList} > 添加到白名单</button>
+              <button className={styles['common-btn']} onClick={addToWhiteList}>添加到白名单</button>
             </div>
           </FormItem>
           {

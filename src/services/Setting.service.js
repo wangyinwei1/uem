@@ -22,7 +22,20 @@ export default {
         platform: sessionStorage.getItem('UEM_platform'),
     }), { contentType: 'application/json' }),
 
+    // 用户数据模型
     getUserDataModelList: () => Request('get', 'userDefine/keys/list', {
+        appId: sessionStorage.getItem('UEM_appId'),
+        platform: sessionStorage.getItem('UEM_platform')
+    }),
+
+    deleteUserDataModel: payload => Request('post', 'userDefine/keys/delete', JSON.stringify({
+        ...payload,
+        appId: sessionStorage.getItem('UEM_appId'),
+        platform: sessionStorage.getItem('UEM_platform')
+    })),
+
+    saveUserDataModel: payload => Request('post', 'userDefine/keys/save', {
+        ...payload,
         appId: sessionStorage.getItem('UEM_appId'),
         platform: sessionStorage.getItem('UEM_platform')
     })

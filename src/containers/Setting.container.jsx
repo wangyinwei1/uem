@@ -41,7 +41,7 @@ export default class Setting extends React.Component {
         }
     }
     handleTabChange(key) {
-        if (this.state.activeKey === 'ParamSetting') {
+        if (this.state.activeKey === 'ParamSetting' && this.paramSetting) {
             const { state, props, form, saveSetting, setConfigToState } = this.paramSetting;
             const newConfig = {
                 ...state,
@@ -80,8 +80,7 @@ export default class Setting extends React.Component {
         const oldConfig = props.config;
         setConfigToState(oldConfig);
         // 输入框的值被form接管后，只能调用该方法，不能设置state来改变它的值
-        form.setFieldsValue({ apdex: oldConfig.apdex });
-        form.setFieldsValue({ url: undefined });
+        form.setFieldsValue({ apdex: oldConfig.apdex, url: undefined });
         this.toggleModal(false);
         this.setState((prevState) => ({
             activeKey: prevState.nextActiveKey,
@@ -98,18 +97,18 @@ export default class Setting extends React.Component {
         const {
             appInfo, updateAppInfo, updateAppInfoOnFront, sendEmail,
             config, selectPeriod, updateConfig, getConfig,
-            userDataModelList, getUserDataModelList
+            userDataModelList, getUserDataModelList, deleteUserDataModel, saveUserDataModel
         } = this.props.settingStore;
 
         const deployProps = { appInfo, updateAppInfo, updateAppInfoOnFront, sendEmail };
         const paramProps = { config, updateConfig, getConfig };
-        const userDataProps = { userDataModelList, getUserDataModelList }
+        const userDataProps = { userDataModelList, getUserDataModelList, deleteUserDataModel, saveUserDataModel }
         const platform = sessionStorage.getItem('UEM_platform');
         return (
             <div id="Setting">
                 <Tabs activeKey={activeKey} animated={false} onChange={this.handleTabChange}>
                     <TabPane tab="部署说明" key="DeployInstruction">
-                        {platform === 'pc' ? <DeployInstruction {...deployProps} ref={component => { this.deployInstruction = component }} /> : null}
+                        {platform === 'pc' ? <DeployInstruction {...deployProps} /> : null}
                     </TabPane>
                     <TabPane tab="参数设置" key="ParamSetting">
                         {platform === 'pc' ? <ParamSetting {...paramProps} ref={component => { this.paramSetting = component }} /> : null}
