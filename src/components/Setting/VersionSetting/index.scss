@@ -1,0 +1,34 @@
+.version-setting-container {
+  background-color: rgba(0, 0, 0, .2);
+  padding: 30px 50px 125px 55px;
+  margin-top: 2px;
+  color: #fff;
+  .uploadBtn {
+    cursor: pointer;
+    padding: 5px;
+    font-size: 12px;
+    background: #1681c4;
+    outline: none;
+    border: none;
+    line-height: 1;
+    border-radius: 3px;
+  }
+  :global(.ant-switch) {
+    border-color: #183860;
+    background-color: #183860;
+    &:after {
+      background-color: #1f497a
+    }
+    &:global(.ant-switch-checked) {
+      border-color: #3f83d2;
+      background-color: #3f83d2;
+    }
+  }
+  :global(.ant-table-placeholder) {
+      border-bottom: 1px solid #5085c3;
+      color: #4f8cd4;
+      font-size: 14px;
+      line-height: 112px;
+      background-color: #24548D;
+  }
+}
