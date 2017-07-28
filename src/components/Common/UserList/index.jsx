@@ -16,7 +16,8 @@ export default class UserList extends React.Component {
             return false;
         } 
         changeUser({
-            activeId: item.sampleId
+            activeId: item.sampleId,
+            time: item.time
         });
     }
     makeIcon(manufacturer) {

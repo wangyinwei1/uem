@@ -21,6 +21,7 @@ class ErrorOverviewStore {
                 endTime: moment().subtract(getTimeType().endTime.type, getTimeType().endTime.units).valueOf(),
                 ...payload
             });
+            let aa = 'test';
             runInAction(() => {
                 this.keyIndicator = data;
             });

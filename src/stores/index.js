@@ -13,6 +13,7 @@ import userOverviewStore from './UserOverview.store';
 import performanceDetailStore from './PerformanceDetail.store';
 import userDetailStore from './UserDetail.store';
 import sidePanelStore from './SidePanel.store';
+import errorDetailStore from './ErrorDetail.store';
 
 export default {
     frameStore,
@@ -29,5 +30,6 @@ export default {
     userOverviewStore,
     performanceDetailStore,
     userDetailStore,
-    sidePanelStore
+    sidePanelStore,
+    errorDetailStore
 };

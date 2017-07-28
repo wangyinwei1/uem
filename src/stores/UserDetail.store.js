@@ -74,7 +74,7 @@ class UserDetailStore {
                 const trace = this.trace.toJS();
                 trace.push(data);
                 this.trace = trace;
-                console.log(this.trace);
+                // console.log(this.trace);
             });
         } catch (e) {
             throw e;

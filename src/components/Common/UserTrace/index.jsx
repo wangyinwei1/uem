@@ -193,7 +193,7 @@ export default class UserTrace extends React.Component {
             browserBaseInfo,
             detailInfo,
             traceInfo
-        } = this.props.data;
+        } = this.props.data;      
         return (
             <div className={styles['user-trace']}>
                 <div className={styles['legend']}>

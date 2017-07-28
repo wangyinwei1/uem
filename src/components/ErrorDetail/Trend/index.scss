@@ -1,0 +1,15 @@
+.trend {
+    display: inline-block;
+    width: 100%;
+    // :global {
+    //     .tile-body {
+    //         padding: 0;
+    //     }
+    //     .chart {
+    //         height: 230px;
+    //     }
+    // }
+    :global(.chart) {
+            height: 230px;
+    }
+}

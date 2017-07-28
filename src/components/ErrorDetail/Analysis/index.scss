@@ -1,0 +1,133 @@
+.analysis {
+    :global(.tile-body) {
+        overflow: hidden;
+        padding: 0;
+        background-color: #125489;
+    }
+}
+
+.left-side-wrap {
+    float: left;
+    padding-right: 230px;
+    width: 100%;
+    .left-side {
+        min-height: 500px;
+        border-right: 1px solid #155A92;
+    }
+}
+.right-side-wrap {
+    float: left;
+    margin-left: -230px;
+    width: 230px;
+}
+
+.base-info-wrap {
+    overflow: hidden;
+    & > div {
+        padding: 20px;
+    }
+    .base {
+        border-bottom: 1px solid #155A92;
+    }
+    .info {
+        position: relative;
+        padding-right: 10px;
+        border-bottom: 1px solid #155A92;
+        .icons {
+            position: absolute;
+            top: 0;
+            right: 0;
+            padding: 0 20px;
+            width: 110px;
+            height: 63px;
+            text-align: center;
+            line-height: 63px;
+            :global(.iconfont) {
+                margin-right: 2px;
+                font-size: 22px;
+                &:last-child {
+                    margin-right: 0;
+                }
+            }
+        }
+    }
+    .base-item {
+        display: inline-block;
+        overflow: hidden;
+        padding-right: 10px;
+        width: 33.333%;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        font-size: 12px;
+    }
+    // dl {
+    //     float: left;
+    //     overflow: hidden;
+    //     padding: 0 10px;
+    //     width: 25%;
+    //     height: 60px;
+    //     text-align: center;
+    //     dt {
+    //         color: #70C3FB;
+    //         font-size: 12px;
+    //         line-height: 30px;
+    //     }
+    //     dd {
+    //         overflow: hidden;
+    //         color: #FFFFFF;
+    //         text-overflow: ellipsis;
+    //         white-space: nowrap;
+    //         font-size: 16px;
+    //         line-height: 30px;
+    //     }
+    // }
+}
+
+.process {
+    .head {
+        overflow: hidden;
+        // height: 60px;
+        // line-height: 60px;
+        padding: 10px;
+        height: 50px;
+        line-height: 50px;
+        :global(.btn) {
+            float: right;
+            padding: 0 10px;
+            height: 30px;
+            border: 1px solid #0DE717;
+            border-radius: 5px;
+            background-color: #127B55;
+            color: #FFFFFF;
+            vertical-align: middle;
+            text-align: center;
+            line-height: 28px;
+            cursor: pointer;
+        }
+    }
+    .body {
+    }
+}
+
+.error-info{
+     .error-header-title{
+        height: 50px;
+        >span{
+           display: block;
+        }
+        .error-type,.error-file{
+            float: left;
+            width: 40%;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            padding-left: 15px;
+        }
+     }
+     .error-content{
+        padding: 15px;
+        height: 300px;
+        overflow: auto;
+        background: #123d60;
+     }
+  }
