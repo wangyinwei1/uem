@@ -44,10 +44,20 @@
           cursor: pointer;
         }
       }
+      
+      // 表格没数据时的样式覆盖
+      :global(.ant-table-placeholder) {
+        border-bottom: 1px solid #5085c3;
+        color: #4f8cd4;
+        font-size: 14px;
+        line-height: 112px;
+        background-color: #24548D;
+      }
     }
   }
 
 }
+
 
 .delete-modal {
   :global(.ant-modal-body) {
@@ -76,7 +86,17 @@
   }
 }
 
+
 .opeartion-modal {
+  :global(.ant-modal-header) {
+    background-color: inherit;
+    border: none;
+    text-align: center;
+    :global(.ant-modal-title) {
+      color: #ffffff;
+      font-size: 17px;
+    }
+  }
   :global(.ant-modal-body) {
     padding: 40px;
     :global(.ant-form-item) {
@@ -112,6 +132,7 @@
     }
   }
 }
+
 
 .override-dropdown {
   :global(.ant-select-dropdown-menu-item-active) {

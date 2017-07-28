@@ -22,6 +22,7 @@ export default class DeployInstruction extends Component {
     this.handleSendEmailCancel = this.handleSendEmailCancel.bind(this);
     this.openVideoModal = this.openVideoModal.bind(this);
     this.handleVideoCancel = this.handleVideoCancel.bind(this);
+    this.getDeployChunk = this.getDeployChunk.bind(this);
     this.state = {
       editVisible: false,
       sendEmailVisible: false,
@@ -118,14 +119,51 @@ export default class DeployInstruction extends Component {
     this.sendEmailForm.setFieldsValue({ emailAddress: '' });
   }
   openVideoModal() {
-    this.setState({videoVisible: true})
+    this.setState({ videoVisible: true })
   }
-  handleVideoCancel(){
-    this.setState({videoVisible: false});
+  handleVideoCancel() {
+    this.setState({ videoVisible: false });
+  }
+
+  getDeployChunk() {
+    const platform = sessionStorage.getItem('UEM_platform');
+    if (platform === 'pc') {
+      return (
+        <div>
+          <span>如果您是技术人员，拷贝以下代码到您的Web项目中：</span>
+          <textarea className={styles.code} readOnly ref={input => this.input = input} defaultValue={this.code} />
+          <div className={styles['notice-wrapper']}>
+            <span className={styles.notice}>为保证数据采集的正确进行，请将代码部署到head标签之内，最好在head标签内的所有script标签之前
+                        <span className={styles['link-mv']} onClick={this.openVideoModal}>视频帮助</span>
+            </span>
+            <button className={styles['code-copy']} onClick={this.copyCode}>复制</button>
+          </div>
+          <p className={styles['for-help']}>我不是技术人员，部署有困难，发邮件给我公司的<a className={styles['text-underline']} onClick={this.openSendEmailModal}>技术工程师</a>帮忙部署</p>
+        </div>
+      )
+    } else {
+      return (
+        <div className={styles['deploy-mobile']}>
+          <span className={styles.sdk}>SDK:</span>
+          {
+            platform === 'android' ?
+              <a className={styles['download-btn']} href="http://web.uyundev.cn/buriedPointMobile/sdk/android-sdk.zip" download="android-sdk.zip">
+                <Icon type="android" /> UYUN_Android_Agent
+              </a> :
+              <a className={styles['download-btn']} href="http://web.uyundev.cn/buriedPointMobile/sdk/ios-sdk.zip" download="ios-sdk.zip">
+                <Icon type="apple" /> UYUN_IOS_Agent
+              </a>
+          }
+          <a href="/src/help/132-部署agent-sdk.html" className={styles['deploy-ducument']} target="_blank">Deploy Document</a>
+        </div>
+      )
+    }
   }
 
   render() {
     const { appInfo } = this.props;
+
+
     return (
       <div className={styles['depoly-container']}>
         <Timeline>
@@ -142,15 +180,7 @@ export default class DeployInstruction extends Component {
           <Item iconContent="2">
             <div className={styles['app-deploy']}>
               <h3>应用部署</h3>
-              <span>如果您是技术人员，拷贝以下代码到您的Web项目中：</span>
-              <textarea className={styles.code} readOnly ref={input => this.input = input} defaultValue={this.code} />
-              <div className={styles['notice-wrapper']}>
-                <span className={styles.notice}>为保证数据采集的正确进行，请将代码部署到head标签之内，最好在head标签内的所有script标签之前
-                  <span className={styles['link-mv']} onClick={this.openVideoModal}>视频帮助</span>
-                </span>
-                <button className={styles['code-copy']} onClick={this.copyCode}>复制</button>
-              </div>
-              <p className={styles['for-help']}>我不是技术人员，部署有困难，发邮件给我公司的<a className={styles['text-underline']} onClick={this.openSendEmailModal}>技术工程师</a>帮忙部署</p>
+              {this.getDeployChunk()}
             </div>
           </Item>
           <Item iconContent="3" hasline={false}>

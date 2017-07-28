@@ -36,6 +36,17 @@ export default {
 
     saveUserDataModel: payload => Request('post', 'userDefine/keys/save', {
         ...payload,
+
+    }),
+
+    // 版本控制
+    getVersionSettings: () => Request('get', 'versionSettings/list', {
+        appId: sessionStorage.getItem('UEM_appId'),
+        platform: sessionStorage.getItem('UEM_platform')
+    }),
+
+    updateVersionStatus: (payload) => Request('post', 'versionSettings/status/update', {
+        ...payload,
         appId: sessionStorage.getItem('UEM_appId'),
         platform: sessionStorage.getItem('UEM_platform')
     })

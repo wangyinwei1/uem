@@ -159,6 +159,7 @@ const OpeartionFormModal = Form.create()(props => {
       maskClosable={false}
       wrapClassName={styles['opeartion-modal']}
       width="390px"
+      title={title}
     >
       <Form>
         <FormItem label="属性">
@@ -175,7 +176,7 @@ const OpeartionFormModal = Form.create()(props => {
           {getFieldDecorator('typeOfData')(
             <Select dropdownClassName={styles['override-dropdown']}>
               <Option value="text">文本</Option>
-              <Option value="nubmer">数字</Option>
+              <Option value="number">数字</Option>
             </Select>
           )}
         </FormItem>

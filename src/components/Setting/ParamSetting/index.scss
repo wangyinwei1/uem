@@ -7,6 +7,14 @@
   margin-top: 2px;
   color: #fff;
   font-size: 13px;
+  // 表格没数据时的样式覆盖
+  :global(.ant-table-placeholder) {
+      border-bottom: 1px solid #5085c3;
+      color: #4f8cd4;
+      font-size: 14px;
+      line-height: 112px;
+      background-color: #24548D;
+  }
 }
 
 .chunk {
