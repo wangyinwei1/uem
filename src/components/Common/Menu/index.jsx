@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import { Message, Select } from 'antd';
 import i18n from './locale';
 import config from './config';
@@ -32,17 +32,23 @@ export default class Menu extends React.Component {
     }
     // 创建菜单列表
     makeMenus = (menus) => {
+        const { platform } = this.props;
         return menus.map(menu => (
             <ul className={styles['menu-list']} key={menu.name}>
                 <li>{i18n[menu.name][localStorage.getItem('UEM_lang')]}</li>
                 {
-                    menu.list.map(item => (
-                        <li key={item.name} >
-                            <NavLink exact onClick={this.checkApp.bind(this)} activeClassName={styles['current']} replace to={item.to}>
-                                <i className={cls('iconfont', item.icon)}></i><span>{item.name}</span>
-                            </NavLink>
-                        </li>
-                    ))
+                    menu.list.map(item => {
+                        if (item.pcOnly && platform.toLowerCase() !== 'pc') {
+                            return null;
+                        }
+                        return (
+                            <li key={item.name} >
+                                <NavLink exact onClick={this.checkApp.bind(this)} activeClassName={styles['current']} replace to={item.to}>
+                                    <i className={cls('iconfont', item.icon)}></i><span>{item.name}</span>
+                                </NavLink>
+                            </li>
+                        );
+                    })
                 }
             </ul>
         ));
@@ -83,36 +89,39 @@ export default class Menu extends React.Component {
         const $body = $('body');
         const $win = $(window);
         $body.toggleClass('unexpand');
-        $win.trigger("resize");
+        $win.trigger('resize');
     }
     render() {
         const { appId } = this.props;
         return (
-            <div className={styles['menu']} id="Menu">
-                <NavLink exact activeClassName={styles['current']} replace to="/app_list"><i className="iconfont icon-qiehuanyingyong"></i>{i18n.apps[localStorage.getItem('UEM_lang')]}</NavLink>
+            <div className={styles['menu']} id='Menu'>
+                <NavLink exact activeClassName={styles['current']} replace to='/app_list'><i className='iconfont icon-qiehuanyingyong'></i>{i18n.apps[localStorage.getItem('UEM_lang')]}</NavLink>
                 {this.appSelect()}
                 <ul className={styles['platform']}>
                     {config.platform.map(item => {
                         return (
-                            <li className={cls({
-                                [styles['active']]: item.name === this.props.platform
-                            })}
-                                onClick={this.choosePlatform.bind(this, item.name)}
-                                key={item.name}
-                                title={item.name === 'android'
-                                    ? 'Android'
-                                    : item.name.toUpperCase()}
+                            <Link to='/overview' 
+                                className={cls({
+                                    [styles['active']]: item.name === this.props.platform
+                                })}
                             >
-                                <i className={cls('iconfont', item.icon)}></i>
-                            </li>
+                                <li onClick={this.choosePlatform.bind(this, item.name)}
+                                    key={item.name}
+                                    title={item.name === 'android'
+                                        ? 'Android'
+                                        : item.name.toUpperCase()}
+                                >
+                                    <i className={cls('iconfont', item.icon)}></i>
+                                </li>
+                            </Link>
                         );
                     })}
                 </ul>
                 {this.makeMenus(config.menus)}
                 <div className={styles['setting-other-wrap']}>
-                    <div className={styles['setting-expand']}><i className="fa fa-fw fa-chevron-left" onClick={this.expand.bind(this)}></i></div>
-                    <NavLink exact onClick={this.checkApp.bind(this)} activeClassName={styles['current']} replace to="/setting"><i className="iconfont icon-xiugaishanchuyibiaopankong"></i>{i18n.setting[localStorage.getItem('UEM_lang')]}</NavLink>
-                    <a href="./src/help/index.html" target="_blank"><i className="iconfont icon-bangzhu"></i>帮助</a>
+                    <div className={styles['setting-expand']}><i className='fa fa-fw fa-chevron-left' onClick={this.expand.bind(this)}></i></div>
+                    <NavLink exact onClick={this.checkApp.bind(this)} activeClassName={styles['current']} replace to='/setting'><i className='iconfont icon-xiugaishanchuyibiaopankong'></i>{i18n.setting[localStorage.getItem('UEM_lang')]}</NavLink>
+                    <a href='./src/help/index.html' target='_blank'><i className='iconfont icon-bangzhu'></i>帮助</a>
                 </div>
             </div>
         );

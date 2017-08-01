@@ -33,7 +33,8 @@ export default {
         list: [{
             name: '页面浏览',
             to: '/performance_browse',
-            icon: 'icon-xingneng'
+            icon: 'icon-yemianliulan',
+            pcOnly: true,
         }, {
             name: '页面交互',
             to: '/performance_interactive',

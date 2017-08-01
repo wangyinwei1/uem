@@ -50,23 +50,25 @@ class PerformanceDetailStore {
     get sampleAnalyzeData() {
         return {
             data: this.sampleAnalyze.data,
-            total: this.sampleAnalyze.total
+            total: this.sampleAnalyze.total,
+            pageIndex: this.sampleAnalyzePageIndex,
         };
     }
 
     @action onChangeUser = payload => {
         this.activeId = payload.activeId;
+        this.sampleAnalyzePageIndex = 1;
         this.onGetOperBaseInfo();
     }
 
     @action onChangeType = payload => {
         this.type = payload.type;
-        this.sampleAnalyze.pageIndex = 1;
+        this.sampleAnalyzePageIndex = 1;
         this.onGetSampleAnalyze();
     }
 
     @action onChangeResourcePage = payload => {
-        this.sampleAnalyze.pageIndex = payload.pageIndex;
+        this.sampleAnalyzePageIndex = payload.pageIndex;
         this.onGetSampleAnalyze();
     }
 
@@ -196,7 +198,7 @@ class PerformanceDetailStore {
             const data = await Service.getSampleAnalyze({
                 startTime: moment().subtract(getTimeType().startTime.type, getTimeType().startTime.units).valueOf(),
                 endTime: moment().subtract(getTimeType().endTime.type, getTimeType().endTime.units).valueOf(),
-                pageIndex: this.sampleAnalyze.pageIndex,
+                pageIndex: this.sampleAnalyzePageIndex,
                 sampleId: this.activeId,
                 type: this.type,
                 ...payload

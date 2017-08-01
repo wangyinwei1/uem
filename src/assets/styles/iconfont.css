@@ -1,4 +1,3 @@
-
 @font-face {
     font-family: "iconfont";
     src: url("../fonts/iconfont/iconfont.eot?t=1496999563804"); /* IE9*/
@@ -327,5 +326,9 @@
 
 .icon-UEM:before {
     content: "\e8ce";
+}
+
+.icon-yemianliulan:before {
+    content: "\e96f";
 }
 

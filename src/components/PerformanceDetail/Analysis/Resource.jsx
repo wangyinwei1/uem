@@ -43,7 +43,8 @@ export default class Resource extends React.Component {
         } = this.props;
         const {
             data,
-            total
+            total,
+            pageIndex,
         } = this.props.data;
         return (
             <div className={styles['resource']}>
@@ -66,6 +67,7 @@ export default class Resource extends React.Component {
                         columns={tableConfig.columns}
                         dataSource={data.toJS()}
                         pagination={{
+                            current: pageIndex,
                             total: total,
                             onChange: this.changePageIndex.bind(this)
                         }}

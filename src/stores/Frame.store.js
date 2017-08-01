@@ -8,7 +8,7 @@ class FrameStore {
 
     @observable apdex = sessionStorage.getItem('UEM_apdex');
     @observable appId = sessionStorage.getItem('UEM_appId');
-    @observable platform = sessionStorage.getItem('UEM_platform');
+    @observable platform = sessionStorage.getItem('UEM_platform') || 'pc';
     @observable lang = localStorage.getItem('UEM_lang');
     @observable theme = getTheme();
     @observable timeType = getTimeType();
