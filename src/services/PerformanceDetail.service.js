@@ -39,7 +39,7 @@ export default {
         selector: undefined,
         isMarked: undefined,
         pageIndex: undefined,
-        ...payload 
+        ...payload
     }),
     getOperBaseInfo: payload => Request('get', 'perfor/oper/sample/baseinfo/view', {
         appId: sessionStorage.getItem('UEM_appId'),
@@ -66,6 +66,17 @@ export default {
         endTime: undefined,
         sampleId: undefined,
         operType: undefined,
+        ...payload
+    }),
+    getSampleAnalyze: payload => Request('get', 'perfor/oper/sample/res/analyze', {
+        appId: sessionStorage.getItem('UEM_appId'),
+        platform: sessionStorage.getItem('UEM_platform'),
+        startTime: undefined,
+        endTime: undefined,
+        sampleId: undefined,
+        type: undefined,
+        sort: undefined,
+        pageIndex: undefined,
         ...payload
     }),
 };

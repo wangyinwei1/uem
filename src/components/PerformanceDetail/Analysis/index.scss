@@ -108,3 +108,38 @@
     .body {
     }
 }
+
+.resource {
+    padding: 20px;
+    .title {
+        height: 32px;
+        line-height: 32px;
+        & > span {
+            display: inline-block;
+        }
+    }
+    .main {
+        margin-top: 20px;
+    }
+    .btns {
+        float: right;
+        .active {
+            border: 1px solid #2987AB;
+            background-color: #174964;
+            cursor: default;
+        }
+        li {
+            display: inline-block;
+            margin-left: 6px;
+            width: 66px;
+            height: 28px;
+            border: 1px solid #535B5D;
+            border-radius: 5px;
+            background-color: #394B57;
+            color: #FFFFFF;
+            text-align: center;
+            line-height: 26px;
+            cursor: pointer;
+        }
+    }
+}

@@ -9,6 +9,7 @@ import styles from './index.scss';
 export default class Analysis extends React.Component {
     render() {
         const {
+            type,
             itemId,
             baseInfo,
             samplesList,
@@ -27,9 +28,13 @@ export default class Analysis extends React.Component {
                         <div className={styles['left-side']}>
                             <BaseInfo data={baseInfo} />
                             <Process
+                                type={type}
                                 itemId={itemId}
                                 sessionTrace={sessionTrace}
                                 analyzeData={analyzeData}
+                                sampleAnalyzeData={this.props.sampleAnalyzeData}
+                                changeType={this.props.changeType}
+                                changeResourcePage={this.props.changeResourcePage}
                             />
                         </div>
                     </div>

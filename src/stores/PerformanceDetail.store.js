@@ -1,4 +1,4 @@
-import { observable, action, runInAction } from 'mobx';
+import { observable, action, runInAction, autorun } from 'mobx';
 import {
     getTimeType,
     getTheme,
@@ -40,11 +40,36 @@ class PerformanceDetailStore {
         "netTime": [],
         "clientTime": []
     };
+    @observable type = 'all';
+    @observable sampleAnalyzePageIndex = 1;
+    @observable sampleAnalyze = {
+        total: 0,
+        data: []
+    };
+
+    get sampleAnalyzeData() {
+        return {
+            data: this.sampleAnalyze.data,
+            total: this.sampleAnalyze.total
+        };
+    }
 
     @action onChangeUser = payload => {
         this.activeId = payload.activeId;
         this.onGetOperBaseInfo();
     }
+
+    @action onChangeType = payload => {
+        this.type = payload.type;
+        this.sampleAnalyze.pageIndex = 1;
+        this.onGetSampleAnalyze();
+    }
+
+    @action onChangeResourcePage = payload => {
+        this.sampleAnalyze.pageIndex = payload.pageIndex;
+        this.onGetSampleAnalyze();
+    }
+
     @action onGetOperInfo = async payload => {
         try {
             const data = await Service.getOperInfo({
@@ -59,6 +84,7 @@ class PerformanceDetailStore {
             throw e;
         }
     }
+
     @action onGetOperTrend = async payload => {
         try {
             const data = await Service.getOperTrend({
@@ -73,6 +99,7 @@ class PerformanceDetailStore {
             throw e;
         }
     }
+
     @action onGetOperSamplesList = async payload => {
         try {
             const data = await Service.getOperSamplesList({
@@ -93,6 +120,7 @@ class PerformanceDetailStore {
             throw e;
         }
     }
+
     @action onGetOperBaseInfo = async payload => {
         try {
             const data = await Service.getOperBaseInfo({
@@ -124,11 +152,13 @@ class PerformanceDetailStore {
                     sessionId: data.sessionId,
                     time: data.timestamp
                 });
+                this.onGetSampleAnalyze();
             });
         } catch (e) {
             throw e;
         }
     }
+
     @action onGetOperAnalyze = async payload => {
         try {
             const data = await Service.getOperAnalyze({
@@ -145,6 +175,7 @@ class PerformanceDetailStore {
             throw e;
         }
     }
+
     @action onGetSessionTrace = async payload => {
         try {
             const data = await Service.getSessionTrace({
@@ -154,6 +185,24 @@ class PerformanceDetailStore {
             });
             runInAction(() => {
                 this.sessionTrace = data;
+            });
+        } catch (e) {
+            throw e;
+        }
+    }
+
+    @action onGetSampleAnalyze = async payload => {
+        try {
+            const data = await Service.getSampleAnalyze({
+                startTime: moment().subtract(getTimeType().startTime.type, getTimeType().startTime.units).valueOf(),
+                endTime: moment().subtract(getTimeType().endTime.type, getTimeType().endTime.units).valueOf(),
+                pageIndex: this.sampleAnalyze.pageIndex,
+                sampleId: this.activeId,
+                type: this.type,
+                ...payload
+            });
+            runInAction(() => {
+                this.sampleAnalyze = data;
             });
         } catch (e) {
             throw e;

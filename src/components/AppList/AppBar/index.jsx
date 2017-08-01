@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {
     Modal,
     Menu,
-    Message,
+    message,
     Dropdown,
     Spin,
     Form,
@@ -35,7 +35,7 @@ class AppsBar extends Component {
         super(props);
         this.state = {
             showAddAppModal: false,
-            activeRadio: 'chart' 
+            activeRadio: 'chart'
         };
     }
     // 显隐 Modal
@@ -52,19 +52,19 @@ class AppsBar extends Component {
             if (!err) {
                 addApp(values).then(res => {
                     if (res.isExists || res.isExists === 'true') {
-                        Message.error('应用已存在');
+                        message.error('应用已存在');
                     } else {
-                        // Message.success('应用创建成功');
+                        // message.success('应用创建成功');
                         this.toggleAddAppModal();
                     }
                 });
             }
         });
     }
-    handleSelectRadio(e){
+    handleSelectRadio(e) {
         this.setState({
-            activeRadio : e.target.value
-        }, ()=>{
+            activeRadio: e.target.value
+        }, () => {
             this.props.chartOrTable(e.target.value)
         })
     }
@@ -89,15 +89,13 @@ class AppsBar extends Component {
                     )} trigger={['click']}>
                         <div className={cls('btn', styles['sort-app'])}><i className={cls('fa fa-sort-amount-desc')}></i></div>
                     </Dropdown>
-                    {/*<div className={cls('btn', styles['tabs-grid'])}>GRID</div>
-                    <div className={cls('btn', styles['tabs-table'])}>TABLE</div>*/}
                 </div>
-                
-                    <RadioGroup onChange={this.handleSelectRadio.bind(this)} value={this.state.activeRadio}  defaultValue="chart" size="large">
-                        <RadioButton value="chart">图表</RadioButton>
-                        <RadioButton value="table">列表</RadioButton>
-                    </RadioGroup>
-                   
+
+                <RadioGroup onChange={this.handleSelectRadio.bind(this)} value={this.state.activeRadio} defaultValue="chart" size="large">
+                    <RadioButton value="chart">图表</RadioButton>
+                    <RadioButton value="table">列表</RadioButton>
+                </RadioGroup>
+
                 <Modal footer={null} visible={showAddAppModal} onCancel={this.toggleAddAppModal.bind(this)}>
                     <div className={styles['create-app-form-wrap']}>
                         <div className={styles['create-app-title']}>应用名称</div>

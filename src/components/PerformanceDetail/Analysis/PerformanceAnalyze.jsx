@@ -1,5 +1,6 @@
 import React from 'react';
 import config from './config';
+import Resource from './Resource';
 import {
     BarChart
 } from '../../Common/Chart';
@@ -7,7 +8,7 @@ import {
 export default class PerformanceAnalyze extends React.Component {
     id = 0;
     render() {
-        const { 
+        const {
             itemId, 
             analyzeData 
         } = this.props;
@@ -32,6 +33,12 @@ export default class PerformanceAnalyze extends React.Component {
                     .setIn(['series', 0, 'data'], startArr)
                     .setIn(['series', 1, 'data'], endArr) 
                     .toJS()} 
+                />
+                <Resource 
+                    data={this.props.sampleAnalyzeData} 
+                    type={this.props.type}
+                    changeType={this.props.changeType}
+                    changeResourcePage={this.props.changeResourcePage}
                 />
             </div>
         );

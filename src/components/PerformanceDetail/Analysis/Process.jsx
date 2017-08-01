@@ -29,7 +29,11 @@ export default class Process extends React.Component {
                             showBaseInfo={false} 
                         />
                         : <PerformanceAnalyze 
+                            type={this.props.type}
                             analyzeData={this.props.analyzeData}
+                            sampleAnalyzeData={this.props.sampleAnalyzeData}
+                            changeType={this.props.changeType}
+                            changeResourcePage={this.props.changeResourcePage}
                             itemId={this.props.itemId}
                         />
                     }

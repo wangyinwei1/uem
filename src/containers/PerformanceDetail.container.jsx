@@ -13,6 +13,17 @@ import {
 @inject('frameStore', 'performanceDetailStore')
 @observer
 export default class PerformanceDetail extends React.Component {
+    // static childContextTypes = {
+    //     type: React.PropTypes.string.isRequired,
+    // }
+    // getChildContext() {
+    //     const {
+    //         type,
+    //     } = this.props.performanceDetailStore;
+    //     return {
+    //         type,
+    //     };
+    // }
     componentDidMount() {
         const { onGetOperInfo, onGetOperTrend, onGetOperSamplesList } = this.props.performanceDetailStore;
         const { type } = this.props;
@@ -51,15 +62,19 @@ export default class PerformanceDetail extends React.Component {
         return nextProps.tag;
     }
     render() {
-        const { 
-            info, 
+        const {
+            info,
             baseInfo,
             trend,
             samplesList,
             sessionTrace,
             activeId,
             analyzeData,
+            type,
+            sampleAnalyzeData,
+            onChangeResourcePage,
             onChangeUser,
+            onChangeType,
         } = this.props.performanceDetailStore;
         const {
             pv,
@@ -109,7 +124,9 @@ export default class PerformanceDetail extends React.Component {
                     />
                 }
                 <Trend itemId={itemId} trend={trend} />
-                <Analysis 
+                <Analysis
+                    sampleAnalyzeData={sampleAnalyzeData}
+                    type={type}
                     itemId={itemId}
                     baseInfo={baseInfo}
                     samplesList={samplesList}
@@ -117,6 +134,8 @@ export default class PerformanceDetail extends React.Component {
                     sessionTrace={sessionTrace}
                     analyzeData={analyzeData}
                     changeUser={onChangeUser}
+                    changeType={onChangeType}
+                    changeResourcePage={onChangeResourcePage}
                 />
             </DetailWrap>
         );

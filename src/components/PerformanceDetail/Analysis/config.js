@@ -78,4 +78,17 @@ export default Immutable.fromJS({
             data: []
         }]
     }
-})
+});
+
+export const tableConfig = {
+    columns: [{
+        title: 'URL/PATH',
+        dataIndex: 'resName',
+        key: 'resName',
+    }, {
+        title: '耗时',
+        dataIndex: 'time',
+        key: 'time',
+        width: 150
+    }],
+};
