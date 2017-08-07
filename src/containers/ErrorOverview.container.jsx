@@ -5,7 +5,8 @@ import { Spin } from 'antd';
 import {
     KeyIndicator,
     ErrorTrend,
-    ErrorMapChart
+    ErrorMapChart,
+    ErrorModalChart
 } from '../components/ErrorOverview';
 
 @inject('frameStore', 'errorOverviewStore')
@@ -17,10 +18,14 @@ export default class ErrorOverview extends React.Component {
             loading: true
         };
     }
+    pillarStatus = 'occurErrorUserRate';
     componentDidMount() {
         this.setState({
             loading: false
         });
+    }
+    pillarSelectStatus(pillarStatus){
+            this.pillarStatus = pillarStatus
     }
 
     render() {
@@ -54,6 +59,11 @@ export default class ErrorOverview extends React.Component {
                         mapData={mapData}
                         getMapData={onGetMapData}
                         startTime = {startTime}
+                        pillarSelectStatus={this.pillarSelectStatus.bind(this)}
+                    />
+                    <ErrorModalChart
+                        mapData={mapData}
+                        pillarState={this.pillarStatus}
                     />
                 </Spin>
             </div>

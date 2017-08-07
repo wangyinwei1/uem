@@ -47,6 +47,7 @@ class UserMapChart extends Component {
             areaType: this.state.activeMap == 'china' ? 'province' : 'country',
             metrics: e.target.value == 'sessionCount' ? JSON.stringify(['sessionCount']) : JSON.stringify(['uv'])
         }));
+        this.props.pillarSelectStatus(e.target.value);
     }
 
     // 点击中国地图

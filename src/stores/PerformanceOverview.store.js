@@ -11,7 +11,8 @@ class PerformanceOverviewStore {
     @observable performanceTrend = {};
     @observable mapData = {
         yAxis: [],
-        series: []
+        series: [],
+        total: 1
     };
 
     @action onGetKeyIndicator = async payload => {
@@ -62,6 +63,7 @@ class PerformanceOverviewStore {
             const datas = await CommonService.getMapData({
                 startTime: moment().subtract(getTimeType().startTime.type, getTimeType().startTime.units).valueOf(),
                 endTime: moment().subtract(getTimeType().endTime.type, getTimeType().endTime.units).valueOf(),
+                sortKey: metrics == '["avgRspTime"]' ? "avgRspTime" :"apdex",
                 ...payload
             });
             if( areaType == 'province'){
@@ -73,23 +75,27 @@ class PerformanceOverviewStore {
                 if( metrics == '["avgRspTime"]' ){
                     runInAction(() => {
                         let yAxisData = [], seriesData = [],tempMapData = {};
-                        datas.data.length > 0 &&  datas.data.filter(item => item.avgRspTime > 0).sort((a,b)=> b.avgRspTime - a.avgRspTime).map((item, index) => {
+                        datas.data.length > 0 &&  datas.data.filter(item => item.avgRspTime > 0).map((item, index) => {
                             yAxisData.push(item.area);
                             seriesData.push(item.avgRspTime);
                         })
+                        let total = yAxisData.length;
                         tempMapData.yAxis = yAxisData;
                         tempMapData.series = seriesData;
+                        tempMapData.total = total;
                         this.mapData = tempMapData;
                     });
                 } else {
                     runInAction(() => {
                         let yAxisData = [], seriesData = [],tempMapData = {};
-                        datas.data.length > 0 && datas.data.filter(item => item.apdex > 0).sort((a,b)=> b.apdex - a.apdex).map((item, index) => {
+                        datas.data.length > 0 && datas.data.filter(item => item.apdex > 0).map((item, index) => {
                             yAxisData.push(item.area);
                             seriesData.push(item.apdex);
                         })
+                        let total = yAxisData.length;
                         tempMapData.yAxis = yAxisData;
                         tempMapData.series = seriesData;
+                        tempMapData.total = total;
                         this.mapData = tempMapData;
                     });
                 }
@@ -108,23 +114,27 @@ class PerformanceOverviewStore {
                 if( metrics == '["avgRspTime"]' ){
                     runInAction(() => {
                         let yAxisData = [], seriesData = [],tempMapData = {};
-                        datas.data.length > 0 && datas.data.filter(item => item.avgRspTime > 0).sort((a,b)=> b.avgRspTime - a.avgRspTime).map((item, index) => {
+                        datas.data.length > 0 && datas.data.filter(item => item.avgRspTime > 0).map((item, index) => {
                             yAxisData.push(item.area);
                             seriesData.push(item.avgRspTime);
                         })
+                        let total = yAxisData.length;
                         tempMapData.yAxis = yAxisData;
                         tempMapData.series = seriesData;
+                        tempMapData.total = total;
                         this.mapData = tempMapData;
                     });
                 } else {
                     runInAction(() => {
                         let yAxisData = [], seriesData = [],tempMapData = {};
-                        datas.data.length > 0 && datas.data.filter(item => item.apdex > 0).sort((a,b)=> b.apdex - a.apdex).map((item, index) => {
+                        datas.data.length > 0 && datas.data.filter(item => item.apdex > 0).map((item, index) => {
                             yAxisData.push(item.area);
                             seriesData.push(item.apdex);
                         })
+                        let total = yAxisData.length;
                         tempMapData.yAxis = yAxisData;
                         tempMapData.series = seriesData;
+                        tempMapData.total = total;
                         this.mapData = tempMapData;
                     });
                 }

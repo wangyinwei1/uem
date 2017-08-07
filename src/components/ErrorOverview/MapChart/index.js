@@ -48,6 +48,7 @@ class ErrorMapChart extends Component {
             areaType: this.state.activeMap == 'china' ? 'province' : 'country',
             metrics: e.target.value == 'occurErrorUserRate' ? JSON.stringify(['occurErrorUserRate']) : JSON.stringify(['effectedUserNum']) 
          }) );
+        this.props.pillarSelectStatus(e.target.value);
     }
 
     clickUpdateMap(params){

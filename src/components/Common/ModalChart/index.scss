@@ -1,0 +1,53 @@
+.check-all {
+    font-size: 12px;
+    border: none;
+    color: #70c3fb;
+    // z-index: 999;
+    cursor: pointer;
+    position: absolute;
+    right: 28px;
+    bottom: 30px;
+}
+
+ :global {
+    .ant-modal {
+        height: 680px;
+        width: 678px !important;
+        top: 18%;
+        padding-bottom: 0px;
+    }
+    .ant-modal-content {
+        .ant-modal-header {
+            background: #1d6aa7;
+            height: 50px;
+            border-bottom: 1px solid #135991;
+            .ant-modal-title {
+                color: #fff;
+            }
+        }
+        .ant-modal-body {
+            height: 630px;
+            .modal-chartPillar {
+                height: 560px;
+            }
+            .ant-pagination {
+                text-align: right;
+                margin-right: 24px;
+                margin-bottom: 60px;
+            }
+        }
+    }
+} 
+// .modal-Chart {
+//     .modalChart-pillar {
+//         width: 680px !important;
+//         :global{
+//             .ant-modal-content {
+//             height: 678px;
+//             .ant-modal-header {
+//                 background: red;
+//             }
+//         }
+//         }
+//     }
+// }

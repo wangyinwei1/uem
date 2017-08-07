@@ -24,3 +24,6 @@ export { default as UserList } from './UserList';
 
 // 用户轨迹
 export { default as UserTrace } from './UserTrace';
+
+// 查看更多弹窗 modalChart
+export { default as ModalChart } from './ModalChart';

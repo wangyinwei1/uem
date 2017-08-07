@@ -5,7 +5,8 @@ import { Spin } from 'antd';
 import {
     KeyIndicator,
     UserTrend,
-    UserMapChart
+    UserMapChart,
+    UserModalChart
 } from '../components/UserOverview';
 
 @inject('frameStore', 'userOverviewStore')
@@ -17,10 +18,15 @@ export default class UserOverview extends React.Component {
             loading: true
         };
     }
+    pillarStatus = 'sessionCount';
     componentDidMount() {
         this.setState({
             loading: false
         });
+    }
+
+    pillarSelectStatus(pillarStatus){
+            this.pillarStatus = pillarStatus
     }
 
     render() {
@@ -54,6 +60,11 @@ export default class UserOverview extends React.Component {
                         mapData={mapData}
                         getMapData={onGetMapData}
                         startTime = {startTime}
+                        pillarSelectStatus={this.pillarSelectStatus.bind(this)}
+                    />
+                    <UserModalChart 
+                        mapData={mapData}
+                        pillarState={this.pillarStatus}
                     />
                 </Spin>
             </div>

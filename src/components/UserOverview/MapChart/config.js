@@ -24,7 +24,7 @@ export default Immutable.fromJS({
             show: false
         },
         grid: [{
-            bottom: 15,
+            bottom: 60,
             right: 60
         }],
         xAxis: [{
