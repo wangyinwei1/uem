@@ -104,9 +104,9 @@ export default class Menu extends React.Component {
                                 className={cls({
                                     [styles['active']]: item.name === this.props.platform
                                 })}
+                                key={item.name}
                             >
                                 <li onClick={this.choosePlatform.bind(this, item.name)}
-                                    key={item.name}
                                     title={item.name === 'android'
                                         ? 'Android'
                                         : item.name.toUpperCase()}
