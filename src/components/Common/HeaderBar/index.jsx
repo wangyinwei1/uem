@@ -19,13 +19,13 @@ export default class HeaderBar extends React.PureComponent {
         setting: false
     }
     dateSetting = [
-        { text: '1月', value: 1, type: 'months' },
-        { text: '7天', value: 7, type: 'days' },
-        { text: '3天', value: 3, type: 'days' },
-        { text: '1天', value: 1, type: 'days' },
-        { text: '12小时', value: 12, type: 'hours' },
-        { text: '6小时', value: 6, type: 'hours' },
-        { text: '1小时', value: 1, type: 'hours' },
+        { text: locale('1月'), value: 1, type: 'months' },
+        { text: locale('7天'), value: 7, type: 'days' },
+        { text: locale('3天'), value: 3, type: 'days' },
+        { text: locale('1天'), value: 1, type: 'days' },
+        { text: locale('12小时'), value: 12, type: 'hours' },
+        { text: locale('6小时'), value: 6, type: 'hours' },
+        { text: locale('1小时'), value: 1, type: 'hours' },
     ]
     constructor(props) {
         super(props);
@@ -66,19 +66,19 @@ export default class HeaderBar extends React.PureComponent {
         const { type, units } = startTime;
         switch (`${type}${units}`) {
             case '1months':
-                return '最近 1月';
+                return `${locale('最近')} ${locale('1月')}`;
             case '7days':
-                return '最近 7天';
+                return `${locale('最近')} ${locale('7天')}`;
             case '3days':
-                return '最近 3天';
+                return `${locale('最近')} ${locale('3天')}`;
             case '1days':
-                return '最近 1天';
+                return `${locale('最近')} ${locale('1天')}`;
             case '12hours':
-                return '最近 12小时';
+                return `${locale('最近')} ${locale('12小时')}`;
             case '6hours':
-                return '最近 6小时';
+                return `${locale('最近')} ${locale('6小时')}`;
             case '1hours':
-                return '最近 1小时';
+                return `${locale('最近')} ${locale('1小时')}`;
             default:
                 return `${moment().subtract(startTime.type, startTime.units).format('YYYY-MM-DD')} ~ ${moment().subtract(endTime.type, endTime.units).format('YYYY-MM-DD')}`
         }

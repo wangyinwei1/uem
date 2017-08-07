@@ -9,6 +9,10 @@ var MODULES = path.resolve(ROOT, '../node_modules/');
 // 入口 
 var ENTRY = path.resolve(SRC, './entry');
 
+// 国际化
+var locale = path.resolve(SRC, './utils/locale');
+var i18n = path.resolve(SRC, './assets/i18n');
+
 // 端口
 var PORT = 2333;
 
@@ -18,5 +22,7 @@ module.exports = {
     DIST,
     MODULES,
     PORT,
-    ENTRY
+    ENTRY,
+    i18n,
+    locale,
 };

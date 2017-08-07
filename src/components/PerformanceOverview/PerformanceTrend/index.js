@@ -35,13 +35,13 @@ class PerformanceTrend extends Component {
                 itemWidth: 8,
                 itemHeight: 8,
                 data: [{
-                    name: '浏览量PV',
+                    name: locale('浏览量PV'),
                     icon: 'circle'
                 }, {
-                    name: '点击数',
+                    name: locale('点击数'),
                     icon: 'circle'
                 }, {
-                    name: '响应时间',
+                    name: locale('响应时间'),
                     icon: 'circle'
                 }],
                 top: 15,
@@ -75,21 +75,21 @@ class PerformanceTrend extends Component {
             color: ['#ffeb0b', '#66dc6a', '#00c0ff'],
             series: [
                 {
-                    name: '浏览量PV',
+                    name: locale('浏览量PV'),
                     type: 'line',
                     symbol: 'circle',
                     showSymbol: false,
                     data: trend.pv
                 },
                 {
-                    name: '点击数',
+                    name: locale('点击数'),
                     type: 'line',
                     symbol: 'circle',
                     showSymbol: false,
                     data: trend.clickNum
                 },
                 {
-                    name: '响应时间',
+                    name: locale('响应时间'),
                     type: 'line',
                     symbol: 'circle',
                     showSymbol: false,
@@ -199,13 +199,13 @@ class PerformanceTrend extends Component {
             <div>
                 <Row>
                     <Col className={styles['performance-trend']} style={{ width: sessionStorage.UEM_platform !== 'pc' ? '100%' : '60%' }}>
-                        <div className={cls('tile-head')}>性能趋势</div>
+                        <div className={cls('tile-head')}>{locale('性能趋势')}</div>
                         <div className={cls('tile-body')}>
                             <LineChart group="performance" chartId="PerformanceTrend" options={options} />
                         </div>
                     </Col>
                     {sessionStorage.UEM_platform == 'pc' && <Col className={styles['apdex-chart']}>
-                        <div className={cls('tile-head')}>Apdex指数</div>
+                        <div className={cls('tile-head')}>{locale('Apdex 指数')}</div>
                         <div className={cls('tile-body')}>
                             <LineChart group="performance" chartId="apedxTrend" options={apdexOptions} />
                         </div>

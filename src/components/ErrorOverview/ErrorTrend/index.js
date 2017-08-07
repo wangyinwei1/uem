@@ -32,19 +32,19 @@ class ErrorTrend extends Component {
         // 性能趋势的配置
         let options = Immutable.fromJS({
             title: {
-                text: '错误趋势图',
+                text: locale('错误趋势图'),
             },
             legend: {
                 itemWidth: 8,
                 itemHeight: 8,
                 data: [{
-                    name: '浏览量PV',
+                    name: locale('浏览量PV'),
                     icon: 'circle'
                 }, {
-                    name: '点击数',
+                    name: locale('点击数'),
                     icon: 'circle'
                 },{
-                    name: '出错次数',
+                    name: locale('出错次数'),
                     icon: 'circle'
                 }],
                 top: 15,
@@ -71,21 +71,21 @@ class ErrorTrend extends Component {
             color: ['#ffeb0b','#66dc6a', '#00c0ff'],
             series: [
                 {
-                    name: '浏览量PV',
+                    name: locale('浏览量PV'),
                     type: 'line',
                     symbol: 'circle',
                     showSymbol: false,
                     data: trend.pv
                 },
                 {
-                    name: '点击数',
+                    name: locale('点击数'),
                     type: 'line',
                     symbol: 'circle',
                     showSymbol: false,
                     data: trend.clickNum
                 },
                 {
-                    name: '出错次数',
+                    name: locale('出错次数'),
                     type: 'line',
                     symbol: 'circle',
                     showSymbol: false,
@@ -98,7 +98,7 @@ class ErrorTrend extends Component {
             <div>
                 <Row>
                     <Col className={styles['error-trend']}>
-                        <div className={cls('tile-head')}>错误趋势</div>
+                        <div className={cls('tile-head')}>{locale('错误趋势')}</div>
                         <div className={cls('tile-body')}>
                             <LineChart group="ErrorTrend" chartId="ErrorTrend" options={options} />
                         </div>

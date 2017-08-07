@@ -88,7 +88,7 @@ export default class Table extends React.Component {
         const { type } = this.props;
         const tag = type === 'PerformanceBrowse' || type === 'PerformanceInteractive';
         if (!Boolean(record.operType) && tag) {
-            message.warning('暂无数据');
+            message.warning(locale('暂无数据'));
             return false;
         }
         if (this.index === index) {

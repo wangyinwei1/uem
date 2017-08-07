@@ -26,19 +26,19 @@ export default class TabTable extends React.Component {
             case 'ErrorTable':
                 return (
                     <div className={styles['tab-placeholder']}>
-                        <h2>暂时没发现错误哦，我们也支持自定义错误接入，请查阅帮助文档二次开发API的相关说明</h2>
+                        <h2>{locale('暂时没发现错误哦，我们也支持自定义错误接入，请查阅帮助文档二次开发API的相关说明')}</h2>
                     </div>
                 );
             case 'UserTable':
                 return (
                     <div className={styles['tab-placeholder']}>
-                        <h2>暂时没有用户哦，我们也支持接入真实用户，请查阅帮助文档二次开发API的相关说明</h2>
+                        <h2>{locale('暂时没有用户哦，我们也支持接入真实用户，请查阅帮助文档二次开发API的相关说明')}</h2>
                     </div>
                 );
             default: 
                 return (
                     <div className={styles['tab-placeholder']}>
-                        <h2>你还没有进行可视化埋点，无法查看埋点数据</h2>
+                        <h2>{locale('你还没有进行可视化埋点，无法查看埋点数据')}</h2>
                     </div>
                 );   
         }

@@ -52,7 +52,7 @@ class AppsBar extends Component {
             if (!err) {
                 addApp(values).then(res => {
                     if (res.isExists || res.isExists === 'true') {
-                        message.error('应用已存在');
+                        message.error(locale('应用已存在'));
                     } else {
                         // message.success('应用创建成功');
                         this.toggleAddAppModal();
@@ -74,14 +74,14 @@ class AppsBar extends Component {
         const { showAddAppModal } = this.state;
         return (
             <div className={styles['apps-bar']}>
-                <div className={cls('btn', styles['create-app'])} onClick={this.toggleAddAppModal.bind(this)}><i className={cls('fa fa-plus')}></i>应用</div>
+                <div className={cls('btn', styles['create-app'])} onClick={this.toggleAddAppModal.bind(this)}><i className={cls('fa fa-plus')}></i>{locale('应用')}</div>
                 <div className={styles['btn-wrapper']}>
                     <Dropdown overlay={(
                         <Menu onSelect={({ key }) => sortBy(key)} selectedKeys={[sortKey]}>
                             {
                                 menuList.map((item, index) => {
                                     return (
-                                        <Item key={item.sortKey}>{item.name}</Item>
+                                        <Item key={item.sortKey}>{locale(item.name)}</Item>
                                     );
                                 })
                             }
@@ -92,34 +92,34 @@ class AppsBar extends Component {
                 </div>
 
                 <RadioGroup onChange={this.handleSelectRadio.bind(this)} value={this.state.activeRadio} defaultValue="chart" size="large">
-                    <RadioButton value="chart">图表</RadioButton>
-                    <RadioButton value="table">列表</RadioButton>
+                    <RadioButton value="chart">{locale('图表')}</RadioButton>
+                    <RadioButton value="table">{locale('列表')}</RadioButton>
                 </RadioGroup>
 
                 <Modal footer={null} visible={showAddAppModal} onCancel={this.toggleAddAppModal.bind(this)}>
                     <div className={styles['create-app-form-wrap']}>
-                        <div className={styles['create-app-title']}>应用名称</div>
+                        <div className={styles['create-app-title']}>{locale('应用名称')}</div>
                         <Form className={styles['create-app-form']}>
                             <FormItem>
                                 {getFieldDecorator('appName', {
                                     rules: [{
                                         required: true,
-                                        message: '请输入应用名称'
+                                        message: locale('请输入应用名称')
                                     }],
-                                })(<Input placeholder="请输入应用名称" />)}
+                                })(<Input placeholder={locale("请输入应用名称")} />)}
                             </FormItem>
                             <div className={styles['create-app-title']}>URL</div>
                             <FormItem>
                                 {getFieldDecorator('url', {
                                     rules: [{
                                         required: true,
-                                        message: '请输入Url'
+                                        message: locale('请输入Url')
                                     }],
-                                })(<Input placeholder="请输入Url" />)}
+                                })(<Input placeholder={locale("请输入Url")} />)}
                             </FormItem>
                             <div className={styles['btn-wrap']}>
-                                <div className={cls('btn')} onClick={this.addApp.bind(this)}>保存</div>
-                                <div className={cls('btn')} onClick={this.toggleAddAppModal.bind(this)}>取消</div>
+                                <div className={cls('btn')} onClick={this.addApp.bind(this)}>{locale('保存')}</div>
+                                <div className={cls('btn')} onClick={this.toggleAddAppModal.bind(this)}>{locale('取消')}</div>
                             </div>
                         </Form>
                     </div>

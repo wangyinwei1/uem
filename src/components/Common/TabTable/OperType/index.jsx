@@ -29,7 +29,7 @@ export default class OperType extends React.Component {
                 return '--';
         }
         return (
-            <Tooltip placement="right" title={title}>
+            <Tooltip placement="right" title={locale(title)}>
                 <i className={cls('iconfont', icon, styles['icon'])}></i>
             </Tooltip>
         );

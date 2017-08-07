@@ -25,6 +25,9 @@
     color: #70C3FB;
     font-size: 13px;
     line-height: 20px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .value {

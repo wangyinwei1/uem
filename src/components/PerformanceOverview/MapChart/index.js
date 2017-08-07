@@ -107,7 +107,7 @@ class PerformanceMapChart extends Component {
         // 需要更新的配置在这里给进去
         pillarConfig = config.get('bar').updateIn(['yAxis', 0, 'data'], () => _yAxis)
             .updateIn(['series', 0, 'data'], () => _series)
-            .updateIn(['series', 0, 'name'], () => this.state.activePillar == 'avgRspTime' ? '平均响应时间' : 'Apdex')
+            .updateIn(['series', 0, 'name'], () => this.state.activePillar == 'avgRspTime' ? locale('平均响应时间') : 'Apdex')
             .updateIn(['series', 0, 'itemStyle','normal','color'], () => function(value){
                     let maxUv = Math.max.apply(null, _series);
                     let opacity = Number((value.data / maxUv).toFixed(2));
@@ -117,20 +117,20 @@ class PerformanceMapChart extends Component {
         mapConfig = config.get(activeMap).updateIn(['series', 0, 'data'], () => mapSeriesData);
         return (
             <div className={styles['map-chart']}>
-                <div className={cls('tile-head')}>用户分布</div>
+                <div className={cls('tile-head')}>{locale('用户分布')}</div>
                 <div className={cls('tile-body')}>
                     <div className={styles['btn-wrap']}>
                         <div className={cls('btn btn-china', {
                             'not-active': activeMap === 'china' ? false : true
-                        })} onClick={this.changeMap.bind(this, 'china')}>中国</div>
+                        })} onClick={this.changeMap.bind(this, 'china')}>{locale('中国')}</div>
                         <div className={cls('btn btn-world', {
                             'not-active': activeMap === 'world' ? false : true
-                        })} onClick={this.changeMap.bind(this, 'world')}>世界</div>
+                        })} onClick={this.changeMap.bind(this, 'world')}>{locale('世界')}</div>
                     </div>
 
                     <RadioGroup className={cls('radio')} onChange={this.handleRadioSelect.bind(this)} value={this.state.activePillar}>
-                        <Radio value={'avgRspTime'}>{'平均响应时间'}</Radio>
-                        <Radio value={'apdex'}>{'Apdex'}</Radio>
+                        <Radio value={'avgRspTime'}>{locale('平均响应时间')}</Radio>
+                        <Radio value={'apdex'}>Apdex</Radio>
                     </RadioGroup>
 
                     <MapChart
