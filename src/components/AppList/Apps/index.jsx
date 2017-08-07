@@ -37,37 +37,42 @@ export default class Apps extends React.Component {
         const { currentAppId } = this.state;
         const { radioStatus } = this.props;
         return (
-            radioStatus == 'chart'?
-            <Spin spinning={this.props.loading} size="large" >
-                <ul className={styles['apps']}>
-                    {this.props.list.map(item => {
-                        return (
-                            <AppItem
-                                key={item.appId}
-                                itemAppId={item.appId}
-                                currentAppId={currentAppId}
-                                title={item.appName}
-                                uv={item.uv}
-                                clickNum={item.clickNum}
-                                errorCount={item.errorCount}
-                                status={item.status}
-                                toggleOptionList={this.toggleOptionList.bind(this)}
-                                updateApp={this.props.updateApp}
-                                delApp={this.props.delApp}
-                                appUse={item.appUse}
-                                chooseApp={this.props.chooseApp}
-                                choosePlatform={this.props.choosePlatform}
-                            />
-                        );
-                    })}
-                </ul>
-            </Spin> : <AppTable 
+            radioStatus == 'chart'
+                ? (
+                    <Spin spinning={this.props.loading} size="large" >
+                        <ul className={styles['apps']}>
+                            {this.props.list.map(item => {
+                                return (
+                                    <AppItem
+                                        key={item.appId}
+                                        itemAppId={item.appId}
+                                        currentAppId={currentAppId}
+                                        title={item.appName}
+                                        uv={item.uv}
+                                        clickNum={item.clickNum}
+                                        errorCount={item.errorCount}
+                                        status={item.status}
+                                        toggleOptionList={this.toggleOptionList.bind(this)}
+                                        updateApp={this.props.updateApp}
+                                        delApp={this.props.delApp}
+                                        appUse={item.appUse}
+                                        chooseApp={this.props.chooseApp}
+                                        choosePlatform={this.props.choosePlatform}
+                                    />
+                                );
+                            })}
+                        </ul>
+                    </Spin>
+                )
+                : (
+                    <AppTable
                         data={this.props.list}
                         chooseApp={this.props.chooseApp}
                         choosePlatform={this.props.choosePlatform}
                         updateApp={this.props.updateApp}
-                        delApp={this.props.delApp}                    
-                      />
+                        delApp={this.props.delApp}
+                    />
+                )
         );
     }
 }

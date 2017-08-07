@@ -62,7 +62,7 @@ export default class ControlBar extends React.Component {
         const { type, tagType } = this.props;
         return (
             <dl className={styles['col-option']}>
-                <dt>常规</dt>
+                <dt>{locale('常规')}</dt>
                 <dd>
                     {this.options.normal.map(item => {
                         return (
@@ -76,7 +76,7 @@ export default class ControlBar extends React.Component {
                         );
                     })}
                 </dd>
-                <dt>{`${type === 'UserTable' ? '自定义属性' : '指标'}`}</dt>
+                <dt>{`${type === 'UserTable' ? locale('自定义属性') : locale('指标')}`}</dt>
                 <dd>
                     {this.options.quota.map(item => {
                         return (
@@ -104,7 +104,7 @@ export default class ControlBar extends React.Component {
                             return this.props.rows.length === 0
                                 ? null
                                 : this.props.resolveRow()
-                        }}>标记为已解决</a>
+                        }}>{locale('标记为已解决')}</a>
                     </div>
                 );
             }
@@ -117,7 +117,7 @@ export default class ControlBar extends React.Component {
                     <Popover trigger="click" placement="bottomRight" content={this.makeOptionsContent()}>
                         <a className={cls('btn')} href="javascript:;">
                             <i className="iconfont icon-xiugaishanchuyibiaopankong"></i>
-                            <span>列定制</span>
+                            <span>{locale('列定制')}</span>
                         </a>
                     </Popover>
                 </div>
@@ -127,12 +127,12 @@ export default class ControlBar extends React.Component {
         return (
             <div className={styles['options']}>
                 <div className={styles['filter']}>
-                    <Checkbox value={this.props.apdexTime} onChange={this.changeResTime.bind(this)}>{`响应时间>${this.props.apdexTime}s(4T)`}</Checkbox>
+                    <Checkbox value={this.props.apdexTime} onChange={this.changeResTime.bind(this)}>{`${locale('响应时间')}>${this.props.apdexTime}s(4T)`}</Checkbox>
                 </div>
                 <Popover trigger="click" placement="bottomRight" content={this.makeOptionsContent()}>
                     <a className={cls('btn')} href="javascript:;">
                         <i className="iconfont icon-xiugaishanchuyibiaopankong"></i>
-                        <span>列定制</span>
+                        <span>{locale('列定制')}</span>
                     </a>
                 </Popover>
             </div>
@@ -143,7 +143,7 @@ export default class ControlBar extends React.Component {
             <div className={styles['control-bar']} key={this.props.tagType}>
                 <Search
                     className={cls('search-bar')}
-                    placeholder="名称"
+                    placeholder={locale("名称")}
                     style={{ width: 200 }}
                     onSearch={value => this.props.search(value)}
                 />

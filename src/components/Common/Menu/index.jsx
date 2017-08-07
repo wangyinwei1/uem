@@ -26,7 +26,7 @@ export default class Menu extends React.Component {
     checkApp(e) {
         const { appId } = this.props;
         if (!appId) {
-            Message.error('请先选择应用');
+            Message.error(locale('请先选择应用'));
             this.noEvent(e);
         }
     }
@@ -44,7 +44,7 @@ export default class Menu extends React.Component {
                         return (
                             <li key={item.name} >
                                 <NavLink exact onClick={this.checkApp.bind(this)} activeClassName={styles['current']} replace to={item.to}>
-                                    <i className={cls('iconfont', item.icon)}></i><span>{item.name}</span>
+                                    <i className={cls('iconfont', item.icon)}></i><span>{locale(item.name)}</span>
                                 </NavLink>
                             </li>
                         );
@@ -62,7 +62,7 @@ export default class Menu extends React.Component {
     choosePlatform(platform, e) {
         const { appId, choosePlatform } = this.props;
         if (!appId) {
-            Message.error('请先选择应用');
+            Message.error(locale('请先选择应用'));
             return false;
         }
 
@@ -95,7 +95,7 @@ export default class Menu extends React.Component {
         const { appId } = this.props;
         return (
             <div className={styles['menu']} id='Menu'>
-                <NavLink exact activeClassName={styles['current']} replace to='/app_list'><i className='iconfont icon-qiehuanyingyong'></i>{i18n.apps[localStorage.getItem('UEM_lang')]}</NavLink>
+                <NavLink exact activeClassName={styles['current']} replace to='/app_list'><i className='iconfont icon-qiehuanyingyong'></i>{locale('所有应用')}</NavLink>
                 {this.appSelect()}
                 <ul className={styles['platform']}>
                     {config.platform.map(item => {
@@ -120,8 +120,8 @@ export default class Menu extends React.Component {
                 {this.makeMenus(config.menus)}
                 <div className={styles['setting-other-wrap']}>
                     <div className={styles['setting-expand']}><i className='fa fa-fw fa-chevron-left' onClick={this.expand.bind(this)}></i></div>
-                    <NavLink exact onClick={this.checkApp.bind(this)} activeClassName={styles['current']} replace to='/setting'><i className='iconfont icon-xiugaishanchuyibiaopankong'></i>{i18n.setting[localStorage.getItem('UEM_lang')]}</NavLink>
-                    <a href='./src/help/index.html' target='_blank'><i className='iconfont icon-bangzhu'></i>帮助</a>
+                    <NavLink exact onClick={this.checkApp.bind(this)} activeClassName={styles['current']} replace to='/setting'><i className='iconfont icon-xiugaishanchuyibiaopankong'></i>{locale('设置')}</NavLink>
+                    <a href='./src/help/index.html' target='_blank'><i className='iconfont icon-bangzhu'></i>{locale('帮助')}</a>
                 </div>
             </div>
         );

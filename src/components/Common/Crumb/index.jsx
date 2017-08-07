@@ -3,7 +3,7 @@ import styles from './index.scss';
 
 export default class Crumb extends React.PureComponent {
     crumbText = {
-        app_list: '应用列表',
+        app_list: '所有应用',
         overview: '今日概况',
         performance_overview: '性能概况',
         error_overview: '错误概况',
@@ -20,7 +20,7 @@ export default class Crumb extends React.PureComponent {
     }
     render() {
         return (
-            <div className={styles['crumb']}>{this.crumbText[this.props.module]}</div>
+            <div className={styles['crumb']}>{locale(this.crumbText[this.props.module])}</div>
         );
     }
 }

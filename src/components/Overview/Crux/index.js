@@ -64,10 +64,10 @@ class Crux extends Component {
     hackProgress() {
         const apdex = this.apdex;
         const dashboardText = apdex === null
-            ? '暂无数据'
+            ? locale('暂无数据')
             : apdex === 0
                 ? '0'
-                : `${apdex.toFixed(2) || '暂无数据'}`;
+                : `${apdex.toFixed(2) || locale('暂无数据')}`;
 
         $('.ant-progress-text-hack').remove();
         $('.ant-progress-text').hide();
@@ -80,10 +80,10 @@ class Crux extends Component {
         this.apdex = apdex;
 
         const dashboardText = apdex === null
-            ? '暂无数据'
+            ? locale('暂无数据')
             : apdex === 0
                 ? '0'
-                : `${apdex.toFixed(2) || '暂无数据'}`;
+                : `${apdex.toFixed(2) || locale('暂无数据')}`;
         let dashboardClass;
         switch (true) {
             case apdex === null:
@@ -103,12 +103,12 @@ class Crux extends Component {
         window.$ = $;
         return (
             <div className={styles['crux']}>
-                <div className={cls('tile-head')}>关键指标</div>
+                <div className={cls('tile-head')}>{locale('关键指标')}</div>
                 <div className={cls('tile-body')}>
                     <ul className={styles['list']}>
                         {dataEnum.map(item => (
                             <li key={item.name} className={styles['item']}>
-                                <div className={styles['key']}>{item.name}</div>
+                                <div className={styles['key']}>{locale(item.name)}</div>
                                 <div className={cls('toe', styles['value'])}>{_.isNull(realTimeData[item.key]) ? '--' : realTimeData[item.key]}</div>
                             </li>
                         ))}
@@ -117,9 +117,9 @@ class Crux extends Component {
                         <Progress className={cls(dashboardClass)} strokeWidth={8} type="dashboard" percent={apdex * 100} />
                         {this.hackDashboard()}
                         <ul className={styles['range']}>
-                            <li><i className={cls('iconfont icon-manyi')}></i><span>{`${realTimeData['dPercentage'] || '--'} 的操作响应快（0 ~ ${T.toFixed(1)}s）`}</span></li>
-                            <li><i className={cls('iconfont icon-yiban')}></i><span>{`${realTimeData['tPercentage'] || '--'} 的操作可接受（${T.toFixed(1)} ~ ${(4 * T).toFixed(1)}s）`}</span></li>
-                            <li><i className={cls('iconfont icon-bumanyi')}></i><span>{`${realTimeData['sPercentage'] || '--'} 的操作响应慢（> ${(4 * T).toFixed(1)}s）`}</span></li>
+                            <li><i className={cls('iconfont icon-manyi')}></i><span>{`${realTimeData['dPercentage'] || '--'} ${locale('的操作响应快')}（0 ~ ${T.toFixed(1)}s）`}</span></li>
+                            <li><i className={cls('iconfont icon-yiban')}></i><span>{`${realTimeData['tPercentage'] || '--'} ${locale('的操作可接受')}（${T.toFixed(1)} ~ ${(4 * T).toFixed(1)}s）`}</span></li>
+                            <li><i className={cls('iconfont icon-bumanyi')}></i><span>{`${realTimeData['sPercentage'] || '--'} ${locale('的操作响应慢')}（> ${(4 * T).toFixed(1)}s）`}</span></li>
                         </ul>
                     </div>
                 </div>

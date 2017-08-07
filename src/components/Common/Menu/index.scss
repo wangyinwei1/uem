@@ -13,6 +13,7 @@
     }
     .platform {
         a {
+            padding-left: 0;
             margin-left: 0;
             &:not(.active) {
                 display: none;
@@ -48,6 +49,11 @@
     // }
     .menu-list {
         li {
+            a {
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
             &:first-child {
                 display: block;
                 margin-left: 3px;

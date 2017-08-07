@@ -197,9 +197,9 @@ export default class UserTrace extends React.Component {
         return (
             <div className={styles['user-trace']}>
                 <div className={styles['legend']}>
-                    {this.legends.map(item => <span key={item.label}>
+                    {this.legends.map(item => <span key={locale(item.label)}>
                         <i className={cls(styles['icon'], styles[`${item.color}`])}></i>
-                        <span>{item.label}</span>
+                        <span>{locale(item.label)}</span>
                     </span>)}
                 </div>
                 <div className={cls(styles['trace-wrap'], {
@@ -208,7 +208,7 @@ export default class UserTrace extends React.Component {
                     <div className={styles['trace-box-wrap']}>
                         {showBaseInfo && this.renderInfo()}
                         <div className={cls(styles['base-info'], styles['trace-box'])}>
-                            {this.detailInfo.map(item => <div key={item.value} className={styles['base-li']} title={detailInfo[item.value]}>{`${item.label}${detailInfo[item.value]}`}</div>)}
+                            {this.detailInfo.map(item => <div key={item.value} className={styles['base-li']} title={detailInfo[item.value]}>{`${locale(item.label)}${detailInfo[item.value]}`}</div>)}
                         </div>
                         <i className={cls('iconfont', styles['toggle-btn'], {
                             'icon-shanjian': this.state.toggleShow,

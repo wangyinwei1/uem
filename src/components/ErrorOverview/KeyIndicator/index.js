@@ -35,12 +35,12 @@ class KeyIndicator extends Component {
 
         return (
             <div className={styles['key-indicator']}>
-                <div className={cls('tile-head')}>关键指标</div>
+                <div className={cls('tile-head')}>{locale('关键指标')}</div>
                 <div className={cls('tile-body')}>
                     <ul className={styles['list']}>
                         {indicatorEnum.map(item => (
                             <li key={item.name} className={styles['item']}>
-                                <div className={styles['key']}>{item.name}</div>
+                                <div className={styles['key']}>{locale(item.name)}</div>
                                 <div className={cls('toe', styles['value'])}>{_.isNull(keyIndicator[item.key]) ? '--' : keyIndicator[item.key]}</div>
                             </li>
                         ))}

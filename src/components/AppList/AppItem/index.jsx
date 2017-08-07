@@ -94,7 +94,7 @@ export default class AppItem extends React.PureComponent {
                             <i className={cls(
                                 styles['tag'],
                                 styles[`tag-${this.props.status}`]
-                            )}>{this.statusText[this.props.status]}</i>
+                            )}>{locale(this.statusText[this.props.status])}</i>
                             <span>{this.props.title}</span>
                             <i className={cls('fa fa-cog', styles['option'], {
                                 [styles['active']]: this.props.currentAppId === this.props.itemAppId
@@ -102,26 +102,26 @@ export default class AppItem extends React.PureComponent {
                             <ul className={cls(styles['list'], {
                                 [styles['active']]: this.props.currentAppId === this.props.itemAppId
                             })}>
-                                <li onClick={this.toggleDelAppModal.bind(this)}>删除应用</li>
+                                <li onClick={this.toggleDelAppModal.bind(this)}>{locale('删除应用')}</li>
                                 <li onClick={this.updateApp.bind(this, this.props.status)}>
                                     {this.props.status === 1
-                                        ? '停止监控'
-                                        : '启动监控'}
+                                        ? locale('停止监控')
+                                        : locale('启动监控')}
                                 </li>
-                                <li onClick={this.deployApp.bind(this)}>应用部署</li>
+                                <li onClick={this.deployApp.bind(this)}>{locale('应用部署')}</li>
                             </ul>
                         </dt>
                         <dd className={styles['content']}>
                             <dl>
-                                <dt>访问用户</dt>
+                                <dt>{locale('访问用户')}</dt>
                                 <dd>{this.props.uv}</dd>
                             </dl>
                             <dl>
-                                <dt>点击数</dt>
+                                <dt>{locale('点击数')}</dt>
                                 <dd>{this.props.clickNum}</dd>
                             </dl>
                             <dl>
-                                <dt>错误数</dt>
+                                <dt>{locale('错误数')}</dt>
                                 <dd>{this.props.errorCount}</dd>
                             </dl>
                         </dd>
@@ -129,9 +129,9 @@ export default class AppItem extends React.PureComponent {
                 </Link>
                 <Modal footer={null} visible={showDelAppModal} onCancel={this.toggleDelAppModal.bind(this)}>
                     <div className={styles['del-app-wrap']}>
-                        <p>删除应用之后数据无法恢复，您确认删除该应用吗？</p>
-                        <div className={cls('btn')} onClick={this.delApp.bind(this)}>确定</div>
-                        <div className={cls('btn')} onClick={this.toggleDelAppModal.bind(this)}>取消</div>
+                        <p>{locale('删除应用之后数据无法恢复，您确认删除该应用吗？')}</p>
+                        <div className={cls('btn')} onClick={this.delApp.bind(this)}>{locale('确定')}</div>
+                        <div className={cls('btn')} onClick={this.toggleDelAppModal.bind(this)}>{locale('取消')}</div>
                     </div>
                 </Modal>
             </li>

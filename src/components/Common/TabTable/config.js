@@ -4,7 +4,7 @@ import OperType from './OperType';
 
 export default {
     PerformanceBrowse: [{
-        tabName: '已标记',
+        tabName: locale('已标记'),
         // filter: [{
         //     label: 'AJAX',
         //     checked: true,
@@ -25,7 +25,7 @@ export default {
         options: {
             normal: [{
                 value: 'type',
-                label: '标识',
+                label: locale('标识'),
                 width: 80,
                 checked: true,
                 disabled: true,
@@ -33,7 +33,7 @@ export default {
                 // fixed: 'left'
             }, {
                 value: 'operType',
-                label: '类型',
+                label: locale('类型'),
                 width: 80,
                 checked: true,
                 disabled: true,
@@ -41,7 +41,7 @@ export default {
                 render: (text, record, index) => <OperType type={record.operType} />,
             }, {
                 value: 'operName',
-                label: '页面名称',
+                label: locale('页面名称'),
                 width: 400,
                 checked: true,
                 disabled: true,
@@ -54,31 +54,31 @@ export default {
                 width: 400,
             }, {
                 value: 'match',
-                label: 'URL规则',
+                label: locale('URL规则'),
                 checked: false,
                 disabled: false,
                 width: 400,
             }, {
                 value: 'creator',
-                label: '创建人',
+                label: locale('创建人'),
                 checked: false,
                 disabled: false,
                 width: 200,
             }, {
                 value: 'createTime',
-                label: '创建时间',
+                label: locale('创建时间'),
                 checked: false,
                 disabled: false,
                 width: 200,
             }, {
                 value: 'updator',
-                label: '修改人',
+                label: locale('修改人'),
                 checked: false,
                 disabled: false,
                 width: 200,
             }, {
                 value: 'updateTime',
-                label: '最后修改时间',
+                label: locale('最后修改时间'),
                 checked: false,
                 disabled: false,
                 width: 200,
@@ -92,42 +92,42 @@ export default {
                 render: (text, record, index) => text ? text : '--',
             }, {
                 value: 'thruput',
-                label: '吞吐率',
+                label: locale('吞吐率'),
                 checked: true,
                 disabled: false,
                 width: 100,
             }, {
                 value: 'errorCount',
-                label: '错误数',
+                label: locale('错误数'),
                 checked: true,
                 disabled: false,
                 width: 100,
             }, {
                 value: 'avgRspTime',
-                label: '响应时间',
+                label: locale('响应时间'),
                 checked: true,
                 disabled: false,
                 width: 100,
             }, {
                 value: 'pv',
-                label: '浏览量PV',
+                label: locale('浏览量PV'),
                 checked: true,
                 disabled: false,
                 width: 100,
             }, {
                 value: 'uv',
-                label: '访问量UV',
+                label: locale('访问量UV'),
                 checked: true,
                 disabled: false,
                 width: 100,
             }]
         }
     }, {
-        tabName: '未标记',
+        tabName: locale('未标记'),
         options: {
             normal: [{
                 value: 'operType',
-                label: '类型',
+                label: locale('类型'),
                 width: 80,
                 checked: true,
                 disabled: true,
@@ -143,31 +143,31 @@ export default {
                 render: (text, record, index) => text ? text : '--',
             }, {
                 value: 'thruput',
-                label: '吞吐率',
+                label: locale('吞吐率'),
                 checked: true,
                 disabled: false,
                 width: 100,
             }, {
                 value: 'errorCount',
-                label: '错误数',
+                label: locale('错误数'),
                 checked: true,
                 disabled: false,
                 width: 100,
             }, {
                 value: 'avgRspTime',
-                label: '响应时间',
+                label: locale('响应时间'),
                 checked: true,
                 disabled: false,
                 width: 100,
             }, {
                 value: 'pv',
-                label: '浏览量PV',
+                label: locale('浏览量PV'),
                 checked: true,
                 disabled: false,
                 width: 100,
             }, {
                 value: 'uv',
-                label: '访问量UV',
+                label: locale('访问量UV'),
                 checked: true,
                 disabled: false,
                 width: 100,
@@ -175,11 +175,11 @@ export default {
         }
     }],
     PerformanceInteractive: [{
-        tabName: '已标记',
+        tabName: locale('已标记'),
         options: {
             normal: [{
                 value: 'type',
-                label: '标识',
+                label: locale('标识'),
                 width: 80,
                 checked: true,
                 disabled: true,
@@ -187,7 +187,7 @@ export default {
                 render: (text, record, index) => <ColorType type={record.type} />
             }, {
                 value: 'operType',
-                label: '类型',
+                label: locale('类型'),
                 width: 80,
                 checked: true,
                 disabled: true,
@@ -195,7 +195,7 @@ export default {
                 render: (text, record, index) => <OperType type={record.operType} />,
             }, {
                 value: 'operName',
-                label: '页面名称',
+                label: locale('页面名称'),
                 width: 400,
                 checked: true,
                 disabled: true,
@@ -208,31 +208,31 @@ export default {
                 width: 400,
             }, {
                 value: 'match',
-                label: 'URL规则',
+                label: locale('URL规则'),
                 checked: false,
                 disabled: false,
                 width: 400,
             }, {
                 value: 'creator',
-                label: '创建人',
+                label: locale('创建人'),
                 checked: false,
                 disabled: false,
                 width: 200,
             }, {
                 value: 'createTime',
-                label: '创建时间',
+                label: locale('创建时间'),
                 checked: false,
                 disabled: false,
                 width: 200,
             }, {
                 value: 'updator',
-                label: '修改人',
+                label: locale('修改人'),
                 checked: false,
                 disabled: false,
                 width: 200,
             }, {
                 value: 'updateTime',
-                label: '最后修改时间',
+                label: locale('最后修改时间'),
                 checked: false,
                 disabled: false,
                 width: 200,
@@ -246,42 +246,42 @@ export default {
                 render: (text, record, index) => text ? text : '--',
             }, {
                 value: 'thruput',
-                label: '吞吐率',
+                label: locale('吞吐率'),
                 checked: true,
                 disabled: false,
                 width: 100,
             }, {
                 value: 'errorCount',
-                label: '错误数',
+                label: locale('错误数'),
                 checked: true,
                 disabled: false,
                 width: 100,
             }, {
                 value: 'avgRspTime',
-                label: '响应时间',
+                label: locale('响应时间'),
                 checked: true,
                 disabled: false,
                 width: 100,
             }, {
                 value: 'pv',
-                label: '浏览量PV',
+                label: locale('浏览量PV'),
                 checked: true,
                 disabled: false,
                 width: 100,
             }, {
                 value: 'uv',
-                label: '访问量UV',
+                label: locale('访问量UV'),
                 checked: true,
                 disabled: false,
                 width: 100,
             }]
         }
     }, {
-        tabName: '未标记',
+        tabName: locale('未标记'),
         options: {
             normal: [{
                 value: 'operType',
-                label: '类型',
+                label: locale('类型'),
                 width: 80,
                 checked: true,
                 disabled: true,
@@ -297,31 +297,31 @@ export default {
                 render: (text, record, index) => text ? text : '--',
             }, {
                 value: 'thruput',
-                label: '吞吐率',
+                label: locale('吞吐率'),
                 checked: true,
                 disabled: false,
                 width: 100,
             }, {
                 value: 'errorCount',
-                label: '错误数',
+                label: locale('错误数'),
                 checked: true,
                 disabled: false,
                 width: 100,
             }, {
                 value: 'avgRspTime',
-                label: '响应时间',
+                label: locale('响应时间'),
                 checked: true,
                 disabled: false,
                 width: 100,
             }, {
                 value: 'pv',
-                label: '浏览量PV',
+                label: locale('浏览量PV'),
                 checked: true,
                 disabled: false,
                 width: 100,
             }, {
                 value: 'uv',
-                label: '访问量UV',
+                label: locale('访问量UV'),
                 checked: true,
                 disabled: false,
                 width: 100,
@@ -329,31 +329,31 @@ export default {
         }
     }],
     ErrorTable: [{
-        tabName: '未解决',
+        tabName: locale('未解决'),
         options: {
             normal: [{
-                label: '错误ID',
+                label: locale('错误ID'),
                 value: 'summaryId',
                 width: '20%',
             }, {
-                label: '错误类型',
+                label: locale('错误类型'),
                 value: 'errorType',
                 width: '5%',
             }, {
-                label: '错误描述',
+                label: locale('错误描述'),
                 value: 'errorInfo',
                 width: '30%',
             }, {
-                label: '错误数',
+                label: locale('错误数'),
                 value: 'errorCount',
                 width: '10%',
                 // sorter: (a, b) => a.errorCount - b.errorCount,
             }, {
-                label: '趋势',
+                label: locale('趋势'),
                 value: 'trend',
                 width: '15%',
             }, {
-                label: '最近发生时间',
+                label: locale('最近发生时间'),
                 value: 'lastTime',
                 width: '20%',
                 // sorter: (a, b) => a.lastTime - b.lastTime,
@@ -361,31 +361,31 @@ export default {
             quota: []
         }
     }, {
-        tabName: '已解决',
+        tabName: locale('已解决'),
         options: {
             normal: [{
-                label: '错误ID',
+                label: locale('错误ID'),
                 value: 'summaryId',
                 width: '20%',
             }, {
-                label: '错误类型',
+                label: locale('错误类型'),
                 value: 'errorType',
                 width: '5%',
             }, {
-                label: '错误描述',
+                label: locale('错误描述'),
                 value: 'errorInfo',
                 width: '30%',
             }, {
-                label: '错误数',
+                label: locale('错误数'),
                 value: 'errorCount',
                 width: '10%',
                 // sorter: (a, b) => a.errorCount - b.errorCount,
             }, {
-                label: '趋势',
+                label: locale('趋势'),
                 value: 'trend',
                 width: '15%',
             }, {
-                label: '最近发生时间',
+                label: locale('最近发生时间'),
                 value: 'lastTime',
                 width: '20%',
                 // sorter: (a, b) => a.lastTime - b.lastTime,
@@ -394,31 +394,31 @@ export default {
         }
     }],
     UserTable: [{
-        tabName: '已登录',
+        tabName: locale('已登录'),
         options: {
             normal: [{
-                label: '用户名',
+                label: locale('用户名'),
                 value: 'displayName',
                 checked: true,
                 disabled: true,
             }, {
-                label: '首次访问时间',
+                label: locale('首次访问时间'),
                 value: 'firstViewTimestamp',
                 checked: true,
                 disabled: true,
             }, {
-                label: '最后访问时间',
+                label: locale('最后访问时间'),
                 value: 'lastTime',
                 checked: true,
                 disabled: true,
                 // sorter: (a, b) => a.lastTime - b.lastTime,
             }, {
-                label: '会话数',
+                label: locale('会话数'),
                 value: 'sessionCount',
                 checked: true,
                 // sorter: (a, b) => a.sessionCount - b.sessionCount,
             }, {
-                label: '用户ID',
+                label: locale('用户ID'),
                 value: 'userId',
                 checked: false,
                 disabled: false,
@@ -426,31 +426,31 @@ export default {
             quota: []
         }
     }, {
-        tabName: '未登录',
+        tabName: locale('未登录'),
         options: {
             normal: [{
-                label: '用户名',
+                label: locale('用户名'),
                 value: 'displayName',
                 checked: true,
                 disabled: true,
             },{
-                label: '首次访问时间',
+                label: locale('首次访问时间'),
                 value: 'firstViewTimestamp',
                 checked: true,
                 disabled: true,
             }, {
-                label: '最后访问时间',
+                label: locale('最后访问时间'),
                 value: 'lastTime',
                 checked: true,
                 disabled: true,
                 // sorter: (a, b) => a.lastTime - b.lastTime,
             }, {
-                label: '会话数',
+                label: locale('会话数'),
                 value: 'sessionCount',
                 checked: true,
                 // sorter: (a, b) => a.sessionCount - b.sessionCount,
             }, {
-                label: '用户ID',
+                label: locale('用户ID'),
                 value: 'userId',
                 checked: false,
                 disabled: false,

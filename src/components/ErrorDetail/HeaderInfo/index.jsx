@@ -12,7 +12,7 @@ export default class headerInfo extends React.Component {
         return (
             <div className={styles['base-info']}>
                 <div className={cls('tile-body')}>
-                    {this.indexEnum.map(item => <div className={styles['title-body-inner']} key={item.value}>{`${item.label}${this.props[item.value]}`}</div>)}
+                    {this.indexEnum.map(item => <div className={styles['title-body-inner']} key={item.value}>{`${locale(item.label)}${this.props[item.value]}`}</div>)}
                 </div>
             </div>
         );

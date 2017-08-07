@@ -6,10 +6,10 @@ import { UserList } from '../../Common';
 import { Process } from '../index';
 
 export default class Analysis extends React.Component {
-    constructor(props){
-        super(props);    
+    constructor(props) {
+        super(props);
     }
-    componentDidMount(){
+    componentDidMount() {
         this.props.onGetSampleInfo({
             errorId: this.props.errorId
         });
@@ -21,18 +21,18 @@ export default class Analysis extends React.Component {
             summary: this.props.errorId,
             sessionId: this.props.sampleInfo.sessionId,
             time: this.props.time
-        }) : message.warning('参数sessioId未定义！')
+        }) : message.warning(locale('参数 sessioId 未定义'))
     }
     render() {
-        const { sampleInfo,sampleList,sessionTrace,activeId } = this.props;
+        const { sampleInfo, sampleList, sessionTrace, activeId } = this.props;
         return (
             <div className={styles['analysis']}>
-                <div className={cls('tile-head')}>错误分析</div>
+                <div className={cls('tile-head')}>{locale('错误分析')}</div>
                 <div className={cls('tile-body')}>
                     <div className={styles['left-side-wrap']}>
                         <div className={styles['left-side']}>
                             <BaseInfo sampleInfo={sampleInfo} />
-                            <Process  sessionTrace={sessionTrace} sampleInfo={sampleInfo}/>
+                            <Process sessionTrace={sessionTrace} sampleInfo={sampleInfo} />
                         </div>
                     </div>
                     <div className={styles['right-side-wrap']}>
@@ -41,7 +41,7 @@ export default class Analysis extends React.Component {
                             list={sampleList}
                             changeUser={this.props.changeUser}
                         />
-                    </div>        
+                    </div>
                 </div>
             </div>
         );

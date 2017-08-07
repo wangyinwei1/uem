@@ -1,16 +1,16 @@
 export default Immutable.fromJS({
     default: {
         title: {
-            text: '分时趋势图',
+            text: locale('分时趋势图'),
         },
         legend: {
             itemWidth: 8,
             itemHeight: 8,
             data: [{
-                name: '今日',
+                name: locale('今日'),
                 icon: 'circle'
             }, {
-                name: '昨日',
+                name: locale('昨日'),
                 icon: 'circle'
             }],
             top: 15,
@@ -26,14 +26,14 @@ export default Immutable.fromJS({
             minInterval: 1
         }],
         series: [{
-            name: '今日',
+            name: locale('今日'),
             type: 'line',
             symbol: 'circle',
             smooth: true,
             showSymbol: false,
             data: []
         }, {
-            name: '昨日',
+            name: locale('昨日'),
             type: 'line',
             symbol: 'circle',
             smooth: true,

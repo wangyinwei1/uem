@@ -50,7 +50,7 @@ class AppTable extends React.Component {
     }
     getColumns() {
         return [{
-            title: '应用名称',
+            title: locale('应用名称'),
             dataIndex: 'appName',
             key: 'appName',
             render: function (appName) {
@@ -59,7 +59,7 @@ class AppTable extends React.Component {
                 return <span>{show}</span>;
             }
         }, {
-            title: '访问用户',
+            title: locale('访问用户'),
             dataIndex: 'uv',
             key: 'uv',
             render(uv) {
@@ -68,7 +68,7 @@ class AppTable extends React.Component {
                 return <span>{show}</span>;
             }
         }, {
-            title: '操作数',
+            title: locale('操作数'),
             dataIndex: 'operCount',
             key: 'operCount',
             render(operCount) {
@@ -78,7 +78,7 @@ class AppTable extends React.Component {
             }
         },
         {
-            title: '错误数',
+            title: locale('错误数'),
             dataIndex: 'errorCount',
             key: 'errorCount',
             render(errorCount) {
@@ -88,20 +88,20 @@ class AppTable extends React.Component {
             }
         },
         {
-            title: '状态',
+            title: locale('状态'),
             dataIndex: 'status',
             key: 'status',
             render(status) {
                 const statusMap = {
-                    '-1': '未部署',
-                    '0': '未监控',
-                    '1': '监控中'
+                    '-1': locale('未部署'),
+                    '0': locale('未监控'),
+                    '1': locale('监控中')
                 }
                 return <span>{statusMap[status]}</span>;
             }
         },
         {
-            title: '创建时间',
+            title: locale('创建时间'),
             dataIndex: 'createTime',
             key: 'createTime',
             render(createTime) {
@@ -111,7 +111,7 @@ class AppTable extends React.Component {
             }
         },
         {
-            title: '操作',
+            title: locale('操作'),
             key: 'oper',
             render: function (oper, record, dataIndex) {
                 const status = record.status;
@@ -124,7 +124,7 @@ class AppTable extends React.Component {
                                 const { action } = val;
                                 return (
                                     <Menu.Item key={index}>
-                                        <div className="set-list" key={val.action} action={val.action} onClick={this.handelByApp.bind(this, action, dataIndex,record)}>{val.name}</div>
+                                        <div className="set-list" key={val.action} action={val.action} onClick={this.handelByApp.bind(this, action, dataIndex,record)}>{locale(val.name)}</div>
                                     </Menu.Item>
                                 )
                             })
@@ -269,13 +269,13 @@ class AppTable extends React.Component {
                     />
                 <Modal
                     className={styles['confirm_modal']}  
-                    title='确认删除？'
+                    title={locale('确认删除？')}
                     visible={this.state.showDelModal}  
                     onCancel={this.cancelDeleteApp.bind(this)}
                     onOk={this.confirmDeleteApp.bind(this)}
                     confirmLoading={this.state.confirmLoading} 
-                    okText='确认'
-                    cancelText='取消'
+                    okText={locale('确认')}
+                    cancelText={locale('取消')}
                     >
                     {/*<div className='info-wrapper'>
                         

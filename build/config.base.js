@@ -15,7 +15,11 @@ module.exports = {
             'moment',
             'immutable'
         ],
-        main: CONST.ENTRY
+        i18n: [
+            CONST.i18n,
+            CONST.locale
+        ],
+        main: CONST.ENTRY,
     },
     plugins: [
         new webpack.ProvidePlugin({
@@ -38,7 +42,7 @@ module.exports = {
         }),
         new webpack.optimize.CommonsChunkPlugin({
             // webpack 是从右到左读取
-            name: ['vendor', 'polyfills']
+            name: ['i18n', 'vendor', 'polyfills']
         })
     ],
     output: {

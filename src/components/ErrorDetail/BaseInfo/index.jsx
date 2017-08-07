@@ -77,20 +77,20 @@ export default class BaseInfo extends React.Component {
                     IP：{ip}
                 </div>
                 <div className={styles['base-item']}>
-                    区域：{area}
+                    {locale('区域')}：{area}
                 </div>
                 <div className={styles['base-item']}>
-                    运营商：{isp}
+                    {locale('运营商')}：{isp}
                 </div>
                 {this.renderIcons()}
                 <div className={styles['base-item']}>
-                    浏览器：{browser}
+                    {locale('浏览器')}：{browser}
                 </div>
                 <div className={styles['base-item']}>
-                    操作系统：{os}
+                    {locale('操作系统')}：{os}
                 </div>
                 <div className={styles['base-item']}>
-                    平台：{platform}
+                    {locale('平台')}：{platform}
                 </div>
             </div>
         );
