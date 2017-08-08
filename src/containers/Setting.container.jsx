@@ -131,23 +131,23 @@ export default class Setting extends React.Component {
         return (
             <div id="Setting">
                 <Tabs activeKey={activeKey} animated={false} onChange={this.handleTabChange}>
-                    <TabPane tab="部署说明" key="DeployInstruction">
+                    <TabPane tab={locale("部署说明")} key="DeployInstruction">
                         {/* {platform === 'pc' ? <DeployInstruction {...deployProps} /> : null} */}
                         <DeployInstruction {...deployProps} />
                     </TabPane>
-                    <TabPane tab="参数设置" key="ParamSetting">
+                    <TabPane tab={locale("参数设置")} key="ParamSetting">
                         {
                             platform === 'pc' ?
                                 <ParamSetting {...paramProps} ref={component => { this.paramSetting = component }} /> :
                                 <ParamSettingMobile {...paramProps} ref={component => { this.paramSettingMobile = component }} />
                         }
                     </TabPane>
-                    <TabPane tab="用户数据模型" key="UserDataModel">
+                    <TabPane tab={locale("用户数据模型")} key="UserDataModel">
                         {platform === 'pc' ? <UserDataModel {...userDataProps} /> : <UserDataModel {...userDataProps} />}
                     </TabPane>
                     {
                         platform === 'pc' ? null :
-                            <TabPane tab="版本设置" key="VersionSetting">
+                            <TabPane tab={locale("版本设置")} key="VersionSetting">
                                 <VersionSetting {...versionProps} />
                             </TabPane>
                     }
@@ -160,11 +160,11 @@ export default class Setting extends React.Component {
                     maskClosable={false}
                     wrapClassName={styles['leave-modal']}
                 >
-                    <h2 className={styles['title']}>你的设置有修改是否保存？</h2>
+                    <h2 className={styles['title']}>{locale('是否保存修改？')}</h2>
                     <div className={styles['btn-wrapper']}>
-                        <Button key="save" size="large" type="primary" onClick={this.handleSave}>保存</Button>
-                        <Button key="notSave" size="large" type="primary" onClick={this.handleNotSave}>不保存</Button>
-                        <Button key="cancel" type="primary" size="large" onClick={this.handleCancel}>取消</Button>
+                        <Button key="save" size="large" type="primary" onClick={this.handleSave}>{locale('保存')}</Button>
+                        <Button key="notSave" size="large" type="primary" onClick={this.handleNotSave}>{locale('不保存')}</Button>
+                        <Button key="cancel" type="primary" size="large" onClick={this.handleCancel}>{locale('取消')}</Button>
                     </div>
                 </Modal>
             </div>

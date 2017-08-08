@@ -29,7 +29,7 @@ export default class Metrics extends React.Component {
         return arr.map(item => 
             <li key={item.label}>
                 <dl>
-                    <dt className={styles['key']}>{this.metrics[item.label]}</dt>
+                    <dt className={styles['key']}>{locale(this.metrics[item.label])}</dt>
                     <dd title={item.value} className={styles['value']}>{item.value}</dd>
                 </dl>
             </li>
@@ -41,8 +41,8 @@ export default class Metrics extends React.Component {
             <div className={cls('tile-body', styles['metrics'])}>
                 <div className={styles['props']}>
                     <dl>
-                        <dt>操作类型：</dt>
-                        <dd>{this.type[props.operType]}</dd>
+                        <dt>{locale('操作类型')}：</dt>
+                        <dd>{locale(this.type[props.operType])}</dd>
                     </dl>
                     <dl>
                         <dt>URL：</dt>

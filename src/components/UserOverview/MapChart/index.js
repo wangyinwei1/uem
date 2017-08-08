@@ -105,11 +105,11 @@ class UserMapChart extends Component {
         }
         pillarConfig = config.get('bar').updateIn(['yAxis', 0, 'data'], () => _yAxis)
             .updateIn(['series', 0, 'data'], () => _series)
-            .updateIn(['series', 0, 'name'], () => this.state.activePillar == 'sessionCount' ? '会话数' : '访客数')
-            .updateIn(['series', 0, 'itemStyle','normal','color'], () => function(value){
-                    let maxUv = Math.max.apply(null, _series);
-                    let opacity = Number((value.data / maxUv).toFixed(2));
-                    return 'rgba(3,169,245,' + opacity + ")";
+            .updateIn(['series', 0, 'name'], () => this.state.activePillar == 'sessionCount' ? locale('会话数') : locale('访客数'))
+            .updateIn(['series', 0, 'itemStyle', 'normal', 'color'], () => function (value) {
+                let maxUv = Math.max.apply(null, _series);
+                let opacity = Number((value.data / maxUv).toFixed(2));
+                return 'rgba(3,169,245,' + opacity + ")";
             });
 
         mapConfig = config.get(activeMap).updateIn(['series', 0, 'data'], () => mapSeriesData).updateIn(['visualMap',0,'max'], ()=> series.length > 0 ? Math.max.apply(null, series) : 1)
@@ -117,27 +117,26 @@ class UserMapChart extends Component {
 
         return (
             <div className={styles['map-chart']}>
-                <div className={cls('tile-head')}>地理位置</div>
+                <div className={cls('tile-head')}>{locale('地理位置')}</div>
                 <div className={cls('tile-body')}>
                     <div className={styles['btn-wrap']}>
                         <div className={cls('btn btn-china', {
                             'not-active': activeMap === 'china' ? false : true
-                        })} onClick={this.changeMap.bind(this, 'china')}>中国</div>
+                        })} onClick={this.changeMap.bind(this, 'china')}>{locale('中国')}</div>
                         <div className={cls('btn btn-world', {
                             'not-active': activeMap === 'world' ? false : true
-                        })} onClick={this.changeMap.bind(this, 'world')}>世界</div>
+                        })} onClick={this.changeMap.bind(this, 'world')}>{locale('世界')}</div>
                     </div>
 
                     <RadioGroup className={cls('radio')} onChange={this.handleRadioSelect.bind(this)} value={this.state.activePillar}>
-                        <Radio value={'sessionCount'}>会话数</Radio>
-                        <Radio value={'uv'}>访客数</Radio>
+                        <Radio value={'sessionCount'}>{locale('会话数')}</Radio>
+                        <Radio value={'uv'}>{locale('访客数')}</Radio>
                     </RadioGroup>
 
                     <MapChart
                         chartId="map" group="atlas" className={styles['map-chart']}
                         options={config.get('default').mergeDeep(mapConfig).toJS()}
                         clickUpdateMap={this.clickUpdateMap.bind(this)}
-
                     />
                     <BarChart chartId="bar" group="atlas" className={styles['bar-chart']}
                         options={config.get('default').mergeDeep(pillarConfig).toJS()}

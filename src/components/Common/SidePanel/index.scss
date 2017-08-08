@@ -16,14 +16,16 @@
     min-width: 840px;
     width: 70%;
     background-color: #145E99;
-    box-shadow: 2px 8px 20px -5px #000000;
-    opacity: 0;
-    transition: right .7s, opacity .3s;
+    
+    // opacity: 0;
+    transition: right .7s, opacity .7s;
     &.active {
+        box-shadow: 2px 8px 20px -5px #000000;
         right: 0;
         z-index: 10;
-        opacity: 1;
+        // opacity: 1;
     }
+
     & > div {
         padding: 40px 10px 20px 10px;
     }
