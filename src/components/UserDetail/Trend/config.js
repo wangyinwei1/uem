@@ -5,7 +5,7 @@ export default Immutable.fromJS({
     trend: {
         color: ['#66dc6b', '#AADF2D'],
         title: {
-            text: '最近一个月访问情况',
+            text: locale('最近一个月访问情况'),
             textStyle: {
                 color: '#ffffff',
                 fontSize: 12
@@ -19,7 +19,7 @@ export default Immutable.fromJS({
             data: []
         }],
         yAxis: [{
-            name: '单位：次',
+            name: locale('单位：次'),
             min: 0,
             minInterval: 1,
             nameTextStyle: {
@@ -30,7 +30,7 @@ export default Immutable.fromJS({
             },
         }],
         series: [{
-            name: '会话次数',
+            name: locale('会话数'),
             type: 'bar',
             itemStyle: {
                 normal: {

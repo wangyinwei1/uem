@@ -70,10 +70,10 @@ export default class BaseInfo extends React.Component {
                     IP：{ip}
                 </div>
                 <div className={styles['base-item']}>
-                    区域：{area}
+                    {locale('区域')}：{area}
                 </div>
                 <div className={styles['base-item']}>
-                    运营商：{isp}
+                    {locale('运营商')}：{isp}
                 </div>
                 {this.renderIcons()}
             </div>

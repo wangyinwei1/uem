@@ -13,7 +13,7 @@ export default class Metrics extends React.Component {
         redirect: '重定向',
         xhr: 'AJAX',
         form: '表单',
-        link: '超链接'
+        link: '链接'
     }
     _render () {
         const { data } = this.props;

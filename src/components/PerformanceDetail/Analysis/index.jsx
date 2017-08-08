@@ -22,7 +22,7 @@ export default class Analysis extends React.Component {
         }
         return (
             <div className={styles['analysis']}>
-                <div className='tile-head'>不满意用户分析</div>
+                <div className='tile-head'>{locale('不满意用户分析')}</div>
                 <div className='tile-body'>
                     <div className={styles['left-side-wrap']}>
                         <div className={styles['left-side']}>

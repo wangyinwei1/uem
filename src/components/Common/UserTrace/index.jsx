@@ -25,32 +25,32 @@ export default class UserTrace extends React.Component {
         color: 'gray'
     }];
     tips = [{
-        label: '请求时间：',
+        label: '请求时间',
         value: 'reqTime'
     }, {
-        label: '请求类型：',
+        label: '请求类型',
         value: 'reqType'
     }, {
-        label: '请求URL：',
+        label: '请求URL',
         value: 'reqUrl'
     }, {
-        label: '响应时间：',
+        label: '响应时间',
         value: 'rspTime'
     }]; 
     detailInfo = [{
-        label: '入口来源：',
+        label: '入口来源',
         value: 'referrer'
     }, {
-        label: '会话时间：',
+        label: '会话时间',
         value: 'sessionTime'
     }, {
-        label: '入口来源：',
+        label: '入口来源',
         value: 'landingPage'
     }, {
-        label: '点击数：',
+        label: '点击数',
         value: 'clickNum'
     }, {
-        label: '平均响应时间：',
+        label: '平均响应时间',
         value: 'avgRspTime'
     }];
     state = {
@@ -101,7 +101,7 @@ export default class UserTrace extends React.Component {
         return trace.map(item => {
             const content = (
                 <ul className={styles['tooltip']}>
-                    {this.tips.map(tip => <li key={tip.value}>{`${tip.label}${item[tip.value]}`}</li>)}
+                    {this.tips.map(tip => <li key={tip.value}>{`${locale(tip.label)}：${item[tip.value]}`}</li>)}
                 </ul>
             );
             return (
@@ -173,10 +173,10 @@ export default class UserTrace extends React.Component {
                     IP：{ip}
                 </div>
                 <div className={styles['base-item']}>
-                    区域：{area}
+                    {locale('区域')}：{area}
                 </div>
                 <div className={styles['base-item']}>
-                    运营商：{isp}
+                    {locale('运营商')}：{isp}
                 </div>
                 {this.renderIcons()}
             </div>
@@ -208,7 +208,7 @@ export default class UserTrace extends React.Component {
                     <div className={styles['trace-box-wrap']}>
                         {showBaseInfo && this.renderInfo()}
                         <div className={cls(styles['base-info'], styles['trace-box'])}>
-                            {this.detailInfo.map(item => <div key={item.value} className={styles['base-li']} title={detailInfo[item.value]}>{`${locale(item.label)}${detailInfo[item.value]}`}</div>)}
+                            {this.detailInfo.map(item => <div key={item.value} className={styles['base-li']} title={detailInfo[item.value]}>{`${locale(item.label)}：${detailInfo[item.value]}`}</div>)}
                         </div>
                         <i className={cls('iconfont', styles['toggle-btn'], {
                             'icon-shanjian': this.state.toggleShow,

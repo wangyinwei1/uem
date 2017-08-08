@@ -86,7 +86,7 @@ export const tableConfig = {
         dataIndex: 'resName',
         key: 'resName',
     }, {
-        title: '耗时',
+        title: locale('耗时'),
         dataIndex: 'time',
         key: 'time',
         width: 150

@@ -49,7 +49,7 @@ export default class Resource extends React.Component {
         return (
             <div className={styles['resource']}>
                 <div className={styles['title']}>
-                    <span>慢交互资源分解图</span>
+                    <span>{locale('慢交互资源分解图')}</span>
                     <ul className={styles['btns']}>
                         {this.btn.map(item =>
                             <li
