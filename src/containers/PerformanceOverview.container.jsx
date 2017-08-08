@@ -5,7 +5,8 @@ import { Spin } from 'antd';
 import {
     KeyIndicator,
     PerformanceTrend,
-    PerformanceMapChart
+    PerformanceMapChart,
+    PerformanceModalChart
 } from '../components/PerformanceOverview';
 
 @inject('frameStore', 'performanceOverviewStore')
@@ -17,12 +18,16 @@ export default class PerformanceOverview extends React.Component {
             loading: true
         };
     }
+    pillarStatus = 'avgRspTime'
     componentDidMount() {
         this.setState({
             loading: false
         });
     }
 
+    pillarSelectStatus(pillarStatus){
+        this.pillarStatus = pillarStatus
+    }
     render() {
         const {
             // state
@@ -34,7 +39,7 @@ export default class PerformanceOverview extends React.Component {
             onGetPerformanceTrend,
             onGetMapData
         } = this.props.performanceOverviewStore;
-
+        
         const startTime = this.props.frameStore.timeType;
         const { loading } = this.state;
         return (
@@ -54,6 +59,11 @@ export default class PerformanceOverview extends React.Component {
                         mapData={mapData}
                         getMapData={onGetMapData}
                         startTime = {startTime}
+                        pillarSelectStatus={this.pillarSelectStatus.bind(this)}
+                    />
+                    <PerformanceModalChart 
+                        mapData={mapData}
+                        pillarState={this.pillarStatus}
                     />
                 </Spin>
             </div>

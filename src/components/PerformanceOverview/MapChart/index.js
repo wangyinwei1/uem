@@ -48,6 +48,7 @@ class PerformanceMapChart extends Component {
             areaType: this.state.activeMap == 'china' ? 'province' : 'country',
             metrics: e.target.value == 'avgRspTime' ? JSON.stringify(['avgRspTime']) : JSON.stringify(['apdex'])
         }));
+        this.props.pillarSelectStatus(e.target.value);
     }
     // 点击中国地图
     clickUpdateMap(params) {

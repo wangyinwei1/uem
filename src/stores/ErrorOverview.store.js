@@ -11,7 +11,8 @@ class ErrorOverviewStore {
     @observable errorTrend = {};
     @observable mapData = {
         yAxis: [],
-        series: []
+        series: [],
+        total: 1
     };
 
     @action onGetKeyIndicator = async payload => {
@@ -21,7 +22,6 @@ class ErrorOverviewStore {
                 endTime: moment().subtract(getTimeType().endTime.type, getTimeType().endTime.units).valueOf(),
                 ...payload
             });
-            let aa = 'test';
             runInAction(() => {
                 this.keyIndicator = data;
             });
@@ -49,6 +49,7 @@ class ErrorOverviewStore {
             const datas = await CommonService.getMapData({
                 startTime: moment().subtract(getTimeType().startTime.type, getTimeType().startTime.units).valueOf(),
                 endTime: moment().subtract(getTimeType().endTime.type, getTimeType().endTime.units).valueOf(),
+                sortKey: metrics == '["occurErrorUserRate"]' ? "occurErrorUserRate" : "effectedUserNum",
                 ...payload
             });
             if( areaType == 'province'){
@@ -60,23 +61,27 @@ class ErrorOverviewStore {
                 if( metrics == '["occurErrorUserRate"]' ){
                     runInAction(() => {
                         let yAxisData = [], seriesData = [],tempMapData = {};
-                        datas.data.length > 0 && datas.data.filter(item => item.occurErrorUserRate > 0).sort((a,b)=> b.occurErrorUserRate - a.occurErrorUserRate).map((item, index) => {
+                        datas.data.length > 0 && datas.data.filter(item => item.occurErrorUserRate > 0).map((item, index) => {
                             yAxisData.push(item.area);
                             seriesData.push(item.occurErrorUserRate);
                         })
+                        let total = yAxisData.length;
                         tempMapData.yAxis = yAxisData;
                         tempMapData.series = seriesData;
+                        tempMapData.total = total;
                         this.mapData = tempMapData;
                     });
                 } else {
                     runInAction(() => {
                         let yAxisData = [], seriesData = [],tempMapData = {};
-                        datas.data.length > 0 && datas.data.filter(item => item.effectedUserNum > 0).sort((a,b)=> b.effectedUserNum - a.effectedUserNum).map((item, index) => {
+                        datas.data.length > 0 && datas.data.filter(item => item.effectedUserNum > 0).map((item, index) => {
                             yAxisData.push(item.area);
                             seriesData.push(item.effectedUserNum);
                         })
+                        let total = yAxisData.length;
                         tempMapData.yAxis = yAxisData;
                         tempMapData.series = seriesData;
+                        tempMapData.total = total;
                         this.mapData = tempMapData;
                     });
                 }
@@ -95,23 +100,27 @@ class ErrorOverviewStore {
                 if( metrics == '["occurErrorUserRate"]' ){
                     runInAction(() => {
                         let yAxisData = [], seriesData = [],tempMapData = {};
-                        datas.data.length > 0 && datas.data.filter(item => item.occurErrorUserRate > 0).sort((a,b)=> b.occurErrorUserRate - a.occurErrorUserRate).map((item, index) => {
+                        datas.data.length > 0 && datas.data.filter(item => item.occurErrorUserRate > 0).map((item, index) => {
                             yAxisData.push(item.area);
                             seriesData.push(item.occurErrorUserRate);
                         })
+                        let total = yAxisData.length;
                         tempMapData.yAxis = yAxisData;
                         tempMapData.series = seriesData;
+                        tempMapData.total = total;
                         this.mapData = tempMapData;
                     });
                 } else {
                     runInAction(() => {
                         let yAxisData = [], seriesData = [],tempMapData = {};
-                        datas.data.length > 0 && datas.data.filter(item => item.effectedUserNum > 0).sort((a,b)=> b.effectedUserNum - a.effectedUserNum).map((item, index) => {
+                        datas.data.length > 0 && datas.data.filter(item => item.effectedUserNum > 0).map((item, index) => {
                             yAxisData.push(item.area);
                             seriesData.push(item.effectedUserNum);
                         })
+                        let total = yAxisData.length;
                         tempMapData.yAxis = yAxisData;
                         tempMapData.series = seriesData;
+                        tempMapData.total = total;
                         this.mapData = tempMapData;
                     });
                 }
