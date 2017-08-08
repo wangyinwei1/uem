@@ -221,7 +221,8 @@
     color: #57C5F7;
     text-align: center;
     font-weight: bold;
-    line-height: 50px;
+    white-space: nowrap;
+    line-height: 1.5;
 }
 .ant-table-tbody {
     & > tr {
@@ -237,12 +238,13 @@
         }
         & > td {
             padding: 10px;
-            height: 40px;
+            height: 60px;
             border-bottom: 0;
             text-align: center;
-            line-height: 40px;
+            // line-height: 40px;
             // padding: 20px 10px;
-            // line-height: 1.5;
+            line-height: 1.5;
+            word-break: normal;
         }
     }
 }

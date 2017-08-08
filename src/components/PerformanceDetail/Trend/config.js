@@ -14,7 +14,7 @@ export default Immutable.fromJS({
         yAxis: [{
             type: 'value',
             show: true,
-            name: '单位：s',
+            name: locale('单位：s'),
         }, {
             type: 'value',
             axisLine: {
@@ -33,22 +33,22 @@ export default Immutable.fromJS({
                 show: false
             },
             show: true,
-            name: '单位：次',
+            name: locale('单位：次'),
         }],
         legend: {
             itemWidth: 8,
             itemHeight: 8,
             data: [{
-                name: '客户端',
+                name: locale('客户端'),
                 icon: 'rect'
             }, {
-                name: '网络传输',
+                name: locale('网络传输'),
                 icon: 'rect'
             }, {
-                name: '服务器',
+                name: locale('服务器'),
                 icon: 'rect'
             }, {
-                name: '点击次数',
+                name: locale('点击数'),
                 icon: 'circle'
             }],
             top: 15,
@@ -58,25 +58,25 @@ export default Immutable.fromJS({
             }
         },
         series: [{
-            name: '客户端',
+            name: locale('客户端'),
             type: 'bar',
             stack: '总量',
             data: []
             // data: _.range(Math.random() * 100, Math.random * 300)
         }, {
-            name: '网络传输',
+            name: locale('网络传输'),
             type: 'bar',
             stack: '总量',
             data: []
             // data: _.range(Math.random() * 100, Math.random * 300)
         }, {
-            name: '服务器',
+            name: locale('服务器'),
             type: 'bar',
             stack: '总量',
             data: []
             // data: _.range(Math.random() * 100, Math.random * 300)
         }, {
-            name: '点击次数',
+            name: locale('点击数'),
             type: 'line',
             smooth: true,
             data: [],
@@ -90,13 +90,13 @@ export default Immutable.fromJS({
             itemWidth: 8,
             itemHeight: 8,
             data: [{
-                name: '中位数',
+                name: locale('中位数'),
                 icon: 'circle'
             }, {
-                name: '平均值',
+                name: locale('平均值'),
                 icon: 'circle'
             }, {
-                name: '最慢5%趋势',
+                name: locale('最慢5%趋势'),
                 icon: 'circle'
             }],
             top: 15,
@@ -122,7 +122,7 @@ export default Immutable.fromJS({
             data: []
         }],
         yAxis: [{
-            name: '单位：s',
+            name: locale('单位：s'),
             //max:1,
             min: 0,
             minInterval: 0,
@@ -131,17 +131,17 @@ export default Immutable.fromJS({
             },
         }],
         series: [{
-            name: '中位数',
+            name: locale('中位数'),
             type: 'line',
             smooth: true,
             data: []
         }, {
-            name: '平均值',
+            name: locale('平均值'),
             type: 'line',
             smooth: true,
             data: []
         }, {
-            name: '最慢5%趋势',
+            name: locale('最慢5%趋势'),
             type: 'line',
             smooth: true,
             data: []
@@ -149,16 +149,16 @@ export default Immutable.fromJS({
     },
     apdex: {
         yAxis: [{
-            name: '单位：次',
+            name: locale('单位：次'),
             minInterval: 0,
             min: 0,
         }],
         xAxis: [{
             type: 'category',
-            data: ['满意', '可接受', '不满意']
+            data: [locale('满意'), locale('可接受'), locale('不满意')]
         }],
         series: [{
-            name: '操作数',
+            name: locale('点击数'),
             barWidth: 50,
             type: 'bar',
             itemStyle: {
@@ -178,10 +178,10 @@ export default Immutable.fromJS({
             itemWidth: 8,
             itemHeight: 8,
             data: [{
-                name: '吞吐率',
+                name: locale('吞吐率'),
                 icon: 'rect'
             }, {
-                name: '点击次数',
+                name: locale('点击数'),
                 icon: 'circle'
             }],
             top: 15,
@@ -197,11 +197,11 @@ export default Immutable.fromJS({
             data: []
         }],
         yAxis: [{
-            name: '单位：rpm',
+            name: locale('单位：rpm'),
             minInterval: 0,
             min: 0,
         }, {
-            name: '单位：次',
+            name: locale('单位：次'),
             axisLine: {
                 show: false,
                 lineStyle: {
@@ -221,11 +221,11 @@ export default Immutable.fromJS({
             min: 0
         }],
         series: [{
-            name: '吞吐率',
+            name: locale('吞吐率'),
             type: 'bar',
             data: []
         }, {
-            name: '点击次数',
+            name: locale('点击数'),
             type: 'line',
             smooth: true,
             data: [],

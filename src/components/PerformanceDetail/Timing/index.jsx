@@ -24,7 +24,7 @@ export default class Timing extends React.Component {
         label: 'DOM内容加载',
         value: 'domComplete'
     }, {
-        label: '渲染完成',
+        label: '页面渲染',
         value: 'load'
     }]
     state = {
@@ -89,22 +89,22 @@ export default class Timing extends React.Component {
                 <div style={{
                     width: firstByteTimeWidth + 'px'
                 }}>
-                    <span>首字节时间 {firstByteTime}s</span>
+                    <span>{locale('首字节时间')} {firstByteTime}s</span>
                 </div>
                 <div style={{
                     width: lastByteTimeWidth + 'px'
                 }}>
-                    <span>末字节时间 {lastByteTime}s</span>
+                    <span>{locale('末字节时间')} {lastByteTime}s</span>
                 </div>
                 <div style={{
                     width: domLoadingTimeWidth + 'px'
                 }}>
-                    <span>DOM加载时间 {domLoadingTime}s</span>
+                    <span>{locale('DOM加载时间')} {domLoadingTime}s</span>
                 </div>
                 <div style={{
                     width: pageAvgRspTimeWidth + 'px'
                 }}>
-                    <span>页面平均响应时间 {pageAvgRspTime}s</span>
+                    <span>{locale('页面平均响应时间')} {pageAvgRspTime}s</span>
                 </div>
             </div>
         );
@@ -119,7 +119,7 @@ export default class Timing extends React.Component {
             <div ref="timing" className={styles['timgin-col']}>
                 <dl>
                     <dt>
-                        <span>与服务端建立<br />网络连接时间</span>
+                        <span>{locale('与服务端建立')}<br />{locale('网络连接时间')}</span>
                         <span>{`${netTime.value}s`}</span>
                     </dt>
                     <dd className={styles['col-wrap']}>
@@ -136,7 +136,7 @@ export default class Timing extends React.Component {
                 </dl>
                 <dl>
                     <dt>
-                        <span>服务端处理请求<br />及数据传输时间</span>
+                        <span>{locale('服务端处理请求')}<br />{locale('及数据传输时间')}</span>
                         <span>{`${serverTime.value}s`}</span>
                     </dt>
                     <dd className={styles['col-wrap']}>
@@ -150,7 +150,7 @@ export default class Timing extends React.Component {
                 </dl>
                 <dl>
                     <dt>
-                        <span>客户端加载和渲染时间</span>
+                        <span>{locale('客户端加载和渲染时间')}</span>
                         <span>{`${clientTime.value}s`}</span>
                     </dt>
                     <dd className={styles['col-wrap']}>
@@ -172,13 +172,13 @@ export default class Timing extends React.Component {
         const { data } = this.props;
         return (
             <div className={styles['timing']}>
-                <div className='tile-head'>响应时间分解图</div>
+                <div className='tile-head'>{locale('响应时间分解图')}</div>
                 <div className='tile-body'>
                     {this.state.showTimingCurve && this.timingCurve()}
                     {this.timingCol()}
                     <ul className={styles['timeline-list']}>
                         {this.type.map(item => {
-                            return <li key={item.label}><i className={styles[item.value]}></i><span>{item.label}</span></li>
+                            return <li key={item.label}><i className={styles[item.value]}></i><span>{locale(item.label)}</span></li>
                         })}
                     </ul>
                 </div>

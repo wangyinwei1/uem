@@ -15,20 +15,20 @@ class ErrorTrend extends Component {
         const { getErrorTrend } = this.props;
         getErrorTrend({
             startTime: moment().subtract(this.props.startTime.type, this.props.startTime.units).valueOf(),
-            metrics: JSON.stringify(['pv','clickNum','errorCount'])
+            metrics: JSON.stringify(['pv', 'clickNum', 'errorCount'])
         });
     }
     render() {
         const trend = this.props.errorTrend;
-        let yAxisMax1,yAxisMax2;
-        if ( trend.clickNum && Math.max.apply(null, trend.clickNum.map((item) => item.value)) < 3) {
+        let yAxisMax1, yAxisMax2;
+        if (trend.clickNum && Math.max.apply(null, trend.clickNum.map((item) => item.value)) < 3) {
             yAxisMax1 = 3;
-        }else{ }
+        } else { }
 
         if (trend.errorCount && Math.max.apply(null, trend.errorCount.map((item) => item.value)) < 1) {
             yAxisMax2 = 1;
         } else { }
-        
+
         // 性能趋势的配置
         let options = Immutable.fromJS({
             title: {
@@ -43,7 +43,7 @@ class ErrorTrend extends Component {
                 }, {
                     name: locale('点击数'),
                     icon: 'circle'
-                },{
+                }, {
                     name: locale('出错次数'),
                     icon: 'circle'
                 }],
@@ -54,21 +54,21 @@ class ErrorTrend extends Component {
                 }
             },
             xAxis: [{
-                    type : 'category',
-                    data : trend.errorCount && trend.errorCount.map((val, i) => {
-                        let selectTime = trend.errorCount[i].endTime - trend.errorCount[i].startTime;
-                        if (selectTime <= 1800000) {
-                            //选择一天
-                            return moment(val.startTime).format("HH:mm");
-                        } else {
-                            return moment(val.startTime).format("MM-DD HH:mm");
-                        }
-                    })
+                type: 'category',
+                data: trend.errorCount && trend.errorCount.map((val, i) => {
+                    let selectTime = trend.errorCount[i].endTime - trend.errorCount[i].startTime;
+                    if (selectTime <= 1800000) {
+                        //选择一天
+                        return moment(val.startTime).format("HH:mm");
+                    } else {
+                        return moment(val.startTime).format("MM-DD HH:mm");
+                    }
+                })
             }],
             yAxis: [{
                 minInterval: 1,
             }],
-            color: ['#ffeb0b','#66dc6a', '#00c0ff'],
+            color: ['#ffeb0b', '#66dc6a', '#00c0ff'],
             series: [
                 {
                     name: locale('浏览量PV'),
@@ -110,7 +110,7 @@ class ErrorTrend extends Component {
                         </div>
                     </Col>*/}
                 </Row>
-                
+
             </div>
         );
     }

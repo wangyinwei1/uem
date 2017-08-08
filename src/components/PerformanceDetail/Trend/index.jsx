@@ -17,7 +17,7 @@ export default class Trend extends React.Component {
         name: '点击数按满意度分布图',
         value: 'apdex'
     }, {
-        name: '吞吐量趋势图',
+        name: '吞吐率趋势图',
         value: 'throughput'
     }];
     state = {
@@ -104,7 +104,7 @@ export default class Trend extends React.Component {
                 <div className={cls('tile-head', styles['trend-head'])}>
                     {this.trends.map((item, index) => <div className={cls({
                         [styles['active']]: this.state.activeTrend === index
-                    })} key={item.name} onClick={this.changeTrend.bind(this, index)}>{item.name}</div>)}
+                    })} key={item.name} onClick={this.changeTrend.bind(this, index)}>{locale(item.name)}</div>)}
                 </div>
                 <div className={cls('tile-body', styles['trend-body'])} key={this.state.activeTrend}>
                     {this.renderTrend()}

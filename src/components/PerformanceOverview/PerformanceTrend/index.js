@@ -29,7 +29,7 @@ class PerformanceTrend extends Component {
         // 性能趋势的配置
         let options = Immutable.fromJS({
             title: {
-                text: '性能趋势图',
+                text: locale('性能趋势图'),
             },
             legend: {
                 itemWidth: 8,

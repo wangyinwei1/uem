@@ -9,7 +9,7 @@ const indicatorEnum = [{
     name: '错误页面数',
     key: 'wrongPageNum'
 }, {
-    name: '影响的用户', 
+    name: '影响用户数', 
     key: 'effectedUserNum'
 }, {
     name: '用户错误率',
