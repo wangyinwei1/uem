@@ -55,7 +55,6 @@ class ErrorTrend extends Component {
                 data: trend.errorCount && trend.errorCount.map((val, i) => {
                     let selectTime = trend.errorCount[i].endTime - trend.errorCount[i].startTime;
                     if (selectTime <= 1800000) {
-                        debugger
                         //选择一天
                         return moment(val.startTime).format("HH:mm");
                     } else {

@@ -18,7 +18,7 @@ export default {
     getUserDistribution: payload => Request('get', 'app/userDistribution/overview', {
         appId: sessionStorage.getItem('UEM_appId'),
         platform: sessionStorage.getItem('UEM_platform'),
-        dataNum: 100,
+        pageSize: 100,
         pageIndex: 1,
         areaType: 'province',
         ...payload

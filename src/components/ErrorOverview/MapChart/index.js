@@ -76,7 +76,7 @@ class ErrorMapChart extends Component {
 
     render() {
         const { activeMap } = this.state;
-        let pillarConfig, mapConfig, yAxis, series, mapSeriesData = [], _yAxis = [], _series = [];
+        let pillarConfig, mapConfig, yAxis, series,yAxisInCN=[], mapSeriesData = [], _yAxis = [], _series = [];
         yAxis = this.props.mapData.yAxis;
         series = this.props.mapData.series;
         /**
@@ -87,15 +87,16 @@ class ErrorMapChart extends Component {
             for (let i = 0, len = yAxis.length; i < len; i++) {
                 for (let n in countryNameInEN) {
                     if (yAxis[i] == countryNameInEN[n]) {
-                        yAxis[i] = countryNameInCN[n]
+                        yAxis[i] = countryNameInEN[n]
+                        yAxisInCN.push(countryNameInCN[n])
                     }
                 }
             }
-            _yAxis = yAxis.reverse();
-            _series = series.reverse();
+            // _yAxis = yAxis.reverse();
+            // _series = series.reverse();
         } else {
-            _yAxis = yAxis.reverse();
-            _series = series.reverse();
+            // _yAxis = yAxis.reverse();
+            // _series = series.reverse();
         }
         // 地图渲染需要的格式[{name:xx,value:xx},{name:xx,value:xx}]
         for (let i = 0, len = series.length; i < len; i++) {
@@ -104,11 +105,11 @@ class ErrorMapChart extends Component {
                 value: series[i]
             })
         }
-        pillarConfig = config.get('bar').updateIn(['yAxis', 0, 'data'], () => _yAxis)
-            .updateIn(['series', 0, 'data'], () => _series)
+        pillarConfig = config.get('bar').updateIn(['yAxis', 0, 'data'], () => activeMap == 'china'? yAxis.splice(0,10).reverse() : yAxisInCN.splice(0,10).reverse())
+            .updateIn(['series', 0, 'data'], () => series.splice(0,10).reverse())
             .updateIn(['series', 0, 'name'], () => this.state.activePillar == 'occurErrorUserRate' ? locale('用户错误率') : locale('影响用户数'))
             .updateIn(['series', 0, 'itemStyle', 'normal', 'color'], () => function (value) {
-                let maxUv = Math.max.apply(null, _series);
+                let maxUv = Math.max.apply(null, series);
                 let opacity = Number((value.data / maxUv).toFixed(2));
                 return 'rgba(255,122,63,' + opacity + ")";
             });

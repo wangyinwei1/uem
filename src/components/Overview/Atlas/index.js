@@ -31,7 +31,7 @@ class Atlas extends Component {
     }
     render() {
         const { activeMap } = this.state;
-        let pillarConfig, mapConfig, yAxis, series, mapSeriesData = [], _yAxis = [], _series = [];
+        let pillarConfig, mapConfig, yAxis, series,yAxisInCN=[], mapSeriesData = [], _yAxis = [], _series = [];
         yAxis = this.props.userDistribution.yAxis;
         series = this.props.userDistribution.series;
         // debugger
@@ -39,15 +39,12 @@ class Atlas extends Component {
             for (let i = 0, len = yAxis.length; i < len; i++) {
                 for (let n in countryNameInEN) {
                     if (yAxis[i] == countryNameInEN[n]) {
-                        yAxis[i] = countryNameInCN[n]
+                        yAxis[i] = countryNameInEN[n],
+                        yAxisInCN.push(countryNameInCN[n])
                     }
                 }
             }
-            _yAxis = yAxis.reverse();
-            _series = series.reverse();
         } else {
-            _yAxis = yAxis.reverse();
-            _series = series.reverse();
         }
 
         for (let i = 0, len = series.length; i < len; i++) {
@@ -56,8 +53,8 @@ class Atlas extends Component {
                 value: series[i]
             })
         }
-        pillarConfig = config.get('bar').updateIn(['yAxis', 0, 'data'], () => _yAxis)
-            .updateIn(['series', 0, 'data'], () => _series)
+        pillarConfig = config.get('bar').updateIn(['yAxis', 0, 'data'], () => activeMap == 'china'? yAxis.splice(0,10).reverse() : yAxisInCN.splice(0,10).reverse())
+            .updateIn(['series', 0, 'data'], () => series.splice(0,10).reverse())
             .updateIn(['series', 0, 'name'], () => locale('用户会话数'));
 
         mapConfig = config.get(activeMap).updateIn(['series', 0, 'data'], () => mapSeriesData).updateIn(['visualMap',0,'max'], ()=> series.length > 0 ? Math.max.apply(null, series) : 1)

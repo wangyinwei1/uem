@@ -53,6 +53,7 @@ class ErrorOverviewStore {
             const datas = await CommonService.getMapData({
                 startTime: moment().subtract(getTimeType().startTime.type, getTimeType().startTime.units).valueOf(),
                 endTime: moment().subtract(getTimeType().endTime.type, getTimeType().endTime.units).valueOf(),
+                pageSize: areaType == 'province' ? 100 : 300,
                 sortKey: metrics == '["occurErrorUserRate"]' ? "occurErrorUserRate" : "effectedUserNum",
                 ...payload
             });

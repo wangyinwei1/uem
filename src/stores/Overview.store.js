@@ -3,6 +3,7 @@ import Service from '../services/Overview.service';
 import {
     getDeploy
 } from '../utils/storage';
+import { countryNameInCN, countryNameInEN } from '../components/Common/Chart/WorldCountryName';
 
 class OverviewStore {
     @observable deploy = getDeploy();

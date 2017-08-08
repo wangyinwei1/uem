@@ -90,7 +90,7 @@ export default class ModalChart extends React.Component {
                     onCancel={this.handleModalCancel}
                 >
                     <div id="modal-chartPillar" style={{height: 542}}></div>
-                    <Pagination defaultCurrent={1}  current={this.state.defaultCurrent}  total={this.total} onChange={this.onChange.bind(this)} />
+                    <Pagination current={this.state.defaultCurrent}  total={this.total} onChange={this.onChange.bind(this)} />
                 </Modal>
             </div> 
         )

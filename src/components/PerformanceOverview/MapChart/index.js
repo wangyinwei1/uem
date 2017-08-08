@@ -40,6 +40,12 @@ class PerformanceMapChart extends Component {
             }));
         }
     }
+    
+    componentWillReceiveProps(nextprops){
+        if(this.props.mapData !== nextprops.mapData ){
+            this.porps = nextprops;
+        }
+    }
 
     handleRadioSelect(e) {
         this.setState({
@@ -75,12 +81,11 @@ class PerformanceMapChart extends Component {
 
     render() {
         const { activeMap } = this.state;
-        let pillarConfig, mapConfig, yAxis, series, mapSeriesData = [], _yAxis = [], _series = [];
+        let pillarConfig, mapConfig, yAxis,yAxisInCN=[], series=[], mapSeriesData = [], _yAxis=[], _series=[];
         yAxis = this.props.mapData.yAxis;
         series = this.props.mapData.series;
-        
         //  性能地图左下角的dataRange
-        let apdex = Number((window.apdex / 1000).toFixed(1));
+        let apdex = Number(( JSON.parse(sessionStorage.UEM_deploy).apdex / 1000).toFixed(1));
         let apdex_4 = apdex*4;
         // if(sessionStorage.getItem('UEM_platform') == 'pc'){
         let splitListForRepTime = [
@@ -100,18 +105,17 @@ class PerformanceMapChart extends Component {
          * 世界地图需要国家名称的英文名字来渲染，条形图国家名需要中文展示，在这里进行转换。
          */
         if (activeMap == 'world') {
-            for (let i = 0, len = yAxis.length; i < len; i++) {
-                for (let n in countryNameInEN) {
-                    if (yAxis[i] == countryNameInEN[n]) {
-                        yAxis[i] = countryNameInCN[n]
+            if( yAxis.length > 0 ){
+                for (let i = 0, len = yAxis.length; i < len; i++) {
+                    for (let n in countryNameInEN) {
+                        if ( countryNameInEN[n] == yAxis[i]) {
+                            yAxis[i] = countryNameInEN[n],
+                            yAxisInCN.push(countryNameInCN[n])
+                        }
                     }
                 }
             }
-            _yAxis = yAxis.reverse();
-            _series = series.reverse();
         } else {
-            _yAxis = yAxis.reverse();
-            _series = series.reverse();
         }
         // 地图渲染需要的格式[{name:xx,value:xx},{name:xx,value:xx}]
         for (let i = 0, len = series.length; i < len; i++) {
@@ -121,16 +125,16 @@ class PerformanceMapChart extends Component {
             })
         }
         // 需要更新的配置在这里给进去.当需要更新的数据很多，用mergeDeep会更直观
-        pillarConfig = config.get('bar').updateIn(['yAxis', 0, 'data'], () => _yAxis)
-            .updateIn(['series', 0, 'data'], () => _series)
+        pillarConfig = config.get('bar').updateIn(['yAxis', 0, 'data'], () => activeMap == 'china'? yAxis.splice(0,10).reverse() : yAxisInCN.splice(0,10).reverse())
+            .updateIn(['series', 0, 'data'], () => series.splice(0,10).reverse())
             .updateIn(['series', 0, 'name'], () => this.state.activePillar == 'avgRspTime' ? locale('平均响应时间') : 'Apdex')
             .updateIn(['series', 0, 'itemStyle','normal','color'], () => function(value){
-                    let maxUv = Math.max.apply(null, _series);
+                    let maxUv = Math.max.apply(null, series);
                     let opacity = Number((value.data / maxUv).toFixed(2));
                     return 'rgba(102,220,108,' + opacity + ")";
             });
 
-        mapConfig = config.get(activeMap).updateIn(['series', 0, 'data'], () => mapSeriesData).updateIn(['dataRange',0,'splitList'],()=> this.state.activePillar == 'avgRspTime' ? splitListForRepTime : splitListForApdex);
+        mapConfig = config.get(activeMap).updateIn(['series', 0, 'data'], () => mapSeriesData ).updateIn(['dataRange',0,'splitList'],()=> this.state.activePillar == 'avgRspTime' ? splitListForRepTime : splitListForApdex);
         return (
             <div className={styles['map-chart']}>
                 <div className={cls('tile-head')}>{locale('用户分布')}</div>
