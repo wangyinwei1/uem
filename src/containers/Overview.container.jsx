@@ -36,6 +36,8 @@ export default class Overview extends React.Component {
             onGetTrend,
             onGetUserDistribution
         } = this.props.overviewStore;
+        // 其他也有用到apdex的地方
+        window.apdex =  deploy.apdex ;
         const { loading } = this.state;
         return (
             <div id="Overview">

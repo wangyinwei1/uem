@@ -2,6 +2,11 @@ export default Immutable.fromJS({
     default: {
     },
     china: {
+        visualMap: [{
+            type: 'continuous',
+            min:0,
+            max: 1000,
+        }],
         series: [
             {
                 mapType: 'china',
@@ -10,6 +15,10 @@ export default Immutable.fromJS({
         ]
     },
     world: {
+        visualMap: [{
+            min:0,
+            max: 1000
+        }],
         series: [
             {
                 mapType: 'world',
@@ -21,10 +30,10 @@ export default Immutable.fromJS({
         title: {
             show: false
         },
-        grid: {
-            bottom: 15,
+        grid: [{
+            bottom: 60,
             right: 60
-        },
+        }],
         dataZoom: [
             {
                 type: 'inside',
@@ -55,7 +64,8 @@ export default Immutable.fromJS({
             },
             axisTick: {
                 show: false
-            }
+            },
+            minInterval:1
         }],
         yAxis: [{
             type: 'category',

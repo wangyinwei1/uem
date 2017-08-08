@@ -59,7 +59,10 @@ class Atlas extends Component {
         pillarConfig = config.get('bar').updateIn(['yAxis', 0, 'data'], () => _yAxis)
             .updateIn(['series', 0, 'data'], () => _series)
             .updateIn(['series', 0, 'name'], () => locale('用户会话数'));
-        mapConfig = config.get(activeMap).updateIn(['series', 0, 'data'], () => mapSeriesData);
+
+        mapConfig = config.get(activeMap).updateIn(['series', 0, 'data'], () => mapSeriesData).updateIn(['visualMap',0,'max'], ()=> series.length > 0 ? Math.max.apply(null, series) : 1)
+            .updateIn(['visualMap',0,'text'], ()=> [locale('用户会话数')]);
+
         return (
             <div className={styles['atlas']}>
                 <div className={cls('tile-head')}>{locale('用户分布')}</div>

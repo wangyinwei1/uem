@@ -42,7 +42,7 @@ class CruxMobile extends Component {
         // );
         return (
             <span id="dashboard-text" className={cls(styles['dashborad-text'])}>
-                <h2 style={{ display: 'block', textAlign: 'center' }}>{totalScore ? Number(totalScore.split('%')[0].split(',').join('')) * 0.01 : '暂无数据'} </h2>
+                {/* <h2 style={{ display: 'block', textAlign: 'center' }}>{totalScore ? Number(totalScore.split('%')[0].split(',').join('')) * 0.01 : '暂无数据'} </h2> */}
                 <span>应用健康度</span>
             </span>
         );

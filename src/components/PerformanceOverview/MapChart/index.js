@@ -78,8 +78,25 @@ class PerformanceMapChart extends Component {
         let pillarConfig, mapConfig, yAxis, series, mapSeriesData = [], _yAxis = [], _series = [];
         yAxis = this.props.mapData.yAxis;
         series = this.props.mapData.series;
+        
+        //  性能地图左下角的dataRange
+        let apdex = Number((window.apdex / 1000).toFixed(1));
+        let apdex_4 = apdex*4;
+        // if(sessionStorage.getItem('UEM_platform') == 'pc'){
+        let splitListForRepTime = [
+                { start:apdex_4, label: `不满意 (响应时间 >${apdex_4}s)`,color: '#ff5251' },
+                { start:apdex, end:apdex_4, label: `可接受 (响应时间 ${apdex}-${apdex_4}s)`,color:'#ffec0b' },
+                { start:0, end:apdex, label: `满意 (响应时间 0-${apdex}s)`, color:'#66dc6b' },
+            ];
+        let splitListForApdex = [
+                { start: 0.8, end: 1, label: '满意', color:'#66dc6b'},
+                { start: 0.5, end: 0.8, label: '可接受', color:'#ffec0b' },
+                { start: 0, end: 0.5, label: '不满意', color: '#ff5251' }
+            ];
+        // }
+         
         /**
-         * 从store获得的地图数据用来地图和条形图的展示。但在世界地图的数据有个名称对应的问题。
+         * 从store获得的地图数据用来地图和条形图的展示。但在世界地图的数据有名称对应问题。
          * 世界地图需要国家名称的英文名字来渲染，条形图国家名需要中文展示，在这里进行转换。
          */
         if (activeMap == 'world') {
@@ -103,7 +120,7 @@ class PerformanceMapChart extends Component {
                 value: series[i]
             })
         }
-        // 需要更新的配置在这里给进去
+        // 需要更新的配置在这里给进去.当需要更新的数据很多，用mergeDeep会更直观
         pillarConfig = config.get('bar').updateIn(['yAxis', 0, 'data'], () => _yAxis)
             .updateIn(['series', 0, 'data'], () => _series)
             .updateIn(['series', 0, 'name'], () => this.state.activePillar == 'avgRspTime' ? locale('平均响应时间') : 'Apdex')
@@ -113,7 +130,7 @@ class PerformanceMapChart extends Component {
                     return 'rgba(102,220,108,' + opacity + ")";
             });
 
-        mapConfig = config.get(activeMap).updateIn(['series', 0, 'data'], () => mapSeriesData);
+        mapConfig = config.get(activeMap).updateIn(['series', 0, 'data'], () => mapSeriesData).updateIn(['dataRange',0,'splitList'],()=> this.state.activePillar == 'avgRspTime' ? splitListForRepTime : splitListForApdex);
         return (
             <div className={styles['map-chart']}>
                 <div className={cls('tile-head')}>{locale('用户分布')}</div>
