@@ -15,7 +15,7 @@ export default Immutable.fromJS({
         grid: {
             right: '5%',
             bottom: '10%',
-            left: 30,
+            left: 50,
             containLabel: true
         },
         xAxis: {
@@ -24,6 +24,7 @@ export default Immutable.fromJS({
             splitLine: { show: false },
             axisTick: { show: false },
             axisLabel: { textStyle: { color: '#fff' } },
+            minInterval : 1
         },
         yAxis: [
             {
@@ -31,7 +32,7 @@ export default Immutable.fromJS({
                 axisTick: { show: false },
                 axisLine: { lineStyle: { color: '#3479b0' } },
                 axisLabel: { textStyle: { color: '#fff', baseline: 'bottom' } },
-                offset: 30,
+                offset: 40,
                 // data: this.yAxisDatasLocal.slice((currentPage - 1) * 10, currentPage * 10).reverse()
                 data: []
             },

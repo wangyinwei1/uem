@@ -2,6 +2,10 @@ export default Immutable.fromJS({
     default: {
     },
     china: {
+        visualMap:[{
+            max:1,
+            text:[]
+        }],
         series: [
             {
                 mapType: 'china',
@@ -11,6 +15,10 @@ export default Immutable.fromJS({
         ]
     },
     world: {
+        visualMap:[{
+            max:1,
+            text:[]
+        }],
         series: [
             {
                 mapType: 'world',

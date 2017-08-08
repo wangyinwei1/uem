@@ -15,7 +15,7 @@ const defaultOptions = Immutable.fromJS({
     //     min: 1,
     //     max: 2
     // },
-    visualMap: {
+    visualMap: [{
         itemWidth: 9,
         itemHeight: 118,
         min: 0,
@@ -30,12 +30,14 @@ const defaultOptions = Immutable.fromJS({
         },
         left: 15,
         bottom: 15,
+        itemWidth: 10,
+        itemHeight: 118,
         // inRange: {
         //     color: [, , '#000'],
         //     symbolSize: [60, 200]
         // },
         calculable: false
-    },
+    }],
     tooltip: {
         trigger: 'item',
         formatter: '{b}'

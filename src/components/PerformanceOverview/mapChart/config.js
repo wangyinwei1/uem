@@ -2,6 +2,14 @@ export default Immutable.fromJS({
     default: {
     },
     china: {
+        dataRange:[{
+            x: 'left',
+            y: 'bottom',
+            splitList: [ ],
+            itemWidth: 10,
+            itemHeight: 10,
+            textStyle: {color: '#fff'}
+        }],
         series: [
             {
                 mapType: 'china',

@@ -112,7 +112,8 @@ class UserMapChart extends Component {
                 return 'rgba(3,169,245,' + opacity + ")";
             });
 
-        mapConfig = config.get(activeMap).updateIn(['series', 0, 'data'], () => mapSeriesData);
+        mapConfig = config.get(activeMap).updateIn(['series', 0, 'data'], () => mapSeriesData).updateIn(['visualMap',0,'max'], ()=> series.length > 0 ? Math.max.apply(null, series) : 1)
+            .updateIn(['visualMap',0,'text'], ()=> this.state.activePillar == 'sessionCount' ? ['会话数'] : ['访客数']);
 
         return (
             <div className={styles['map-chart']}>
