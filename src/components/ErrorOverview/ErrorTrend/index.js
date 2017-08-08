@@ -14,7 +14,6 @@ class ErrorTrend extends Component {
     componentDidMount() {
         const { getErrorTrend } = this.props;
         getErrorTrend({
-            startTime: moment().subtract(this.props.startTime.type, this.props.startTime.units).valueOf(),
             metrics: JSON.stringify(['pv', 'clickNum', 'errorCount'])
         });
     }
@@ -23,12 +22,10 @@ class ErrorTrend extends Component {
         let yAxisMax1, yAxisMax2;
         if (trend.clickNum && Math.max.apply(null, trend.clickNum.map((item) => item.value)) < 3) {
             yAxisMax1 = 3;
-        } else { }
-
+        }
         if (trend.errorCount && Math.max.apply(null, trend.errorCount.map((item) => item.value)) < 1) {
             yAxisMax2 = 1;
-        } else { }
-
+        }
         // 性能趋势的配置
         let options = Immutable.fromJS({
             title: {
@@ -58,6 +55,7 @@ class ErrorTrend extends Component {
                 data: trend.errorCount && trend.errorCount.map((val, i) => {
                     let selectTime = trend.errorCount[i].endTime - trend.errorCount[i].startTime;
                     if (selectTime <= 1800000) {
+                        debugger
                         //选择一天
                         return moment(val.startTime).format("HH:mm");
                     } else {

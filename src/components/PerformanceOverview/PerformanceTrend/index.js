@@ -62,6 +62,9 @@ class PerformanceTrend extends Component {
                     }
                 })
             }],
+            yAxis: [{
+                minInterval: 1,
+            }],
             // xAxis: {
             //     type: 'category',
             //     data: _.range(1, 25),

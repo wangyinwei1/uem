@@ -14,7 +14,6 @@ class UserTrend extends Component {
     componentDidMount() {
         const { getUserTrend } = this.props;
         getUserTrend({
-            startTime: moment().subtract(this.props.startTime.type, this.props.startTime.units).valueOf(),
             metrics: JSON.stringify(['pv', 'clickNum', 'sessionCount'])
         });
     }
