@@ -13,7 +13,6 @@ const RadioGroup = Radio.Group;
 
 class PerformanceMapChart extends Component {
     constructor(props) {
-        debugger
         super(props);
         this.state = {
             activeMap: 'china',

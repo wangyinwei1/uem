@@ -36,7 +36,8 @@ class OverviewStore {
     };
     @observable userDistribution = {
         yAxis: [],
-        series: []
+        series: [],
+        total:1
     };
 
     @action onGetRealTimeData = async payload => {
@@ -89,8 +90,10 @@ class OverviewStore {
                         yAxisData.push(item.areaName);
                         seriesData.push(item.value);
                     })
+                    let total = yAxisData.length;
                     tempMapData.yAxis = yAxisData;
                     tempMapData.series = seriesData;
+                    tempMapData.total = total;
                     // tempMapData.series.length>0 && tempMapData.sort((a,b)=> b.series - a.series);
                     this.userDistribution = tempMapData;
                 });
@@ -111,9 +114,10 @@ class OverviewStore {
                             yAxisData.push(item.areaName);
                             seriesData.push(item.value);
                         })
+                        let total = yAxisData.length;
                         tempMapData.yAxis = yAxisData;
                         tempMapData.series = seriesData;
-                        // tempMapData.series.length>0 && tempMapData.sort((a,b)=> b.series - a.series);
+                        tempMapData.total = total;
                         this.userDistribution = tempMapData;
                     });
                 }) 

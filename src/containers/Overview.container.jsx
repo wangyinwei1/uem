@@ -6,7 +6,8 @@ import {
     Crux,
     Quotas,
     Atlas,
-    CruxMobile
+    CruxMobile,
+    OverviewModalChart
 } from '../components/Overview';
 
 @inject('frameStore', 'overviewStore')
@@ -58,6 +59,10 @@ export default class Overview extends React.Component {
                     <Atlas
                         getUserDistribution={onGetUserDistribution}
                         userDistribution={userDistribution}
+                    />
+                    <OverviewModalChart 
+                        mapData={userDistribution}
+                        pillarState={'userDistribution'}
                     />
                 </Spin>
             </div>

@@ -38,7 +38,6 @@ export default class ModalChart extends React.Component {
 
     displayModalChart(){
         // 子组件里重写
-        debugger
     }
 
     handleModalCancel = (e) => {

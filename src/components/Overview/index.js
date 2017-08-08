@@ -9,3 +9,5 @@ export { default as Quotas } from './Quotas';
 
 // 用户分布
 export { default as Atlas } from './Atlas';
+// 弹窗
+export { default as OverviewModalChart } from './OverviewModalChart';
