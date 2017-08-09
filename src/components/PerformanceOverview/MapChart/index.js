@@ -12,13 +12,17 @@ import { NameMap } from '../../Common/Chart/CityName';
 const RadioGroup = Radio.Group;
 
 class PerformanceMapChart extends Component {
+
     constructor(props) {
         super(props);
         this.state = {
             activeMap: 'china',
-            activePillar: 'avgRspTime'
+            activePillar: 'avgRspTime',
+            activeProvince: undefined,
+            isSelectingCity: true
         };
     }
+    tempConfig = config;
     componentDidMount() {
         const { getMapData } = this.props;
         getMapData({
@@ -36,9 +40,18 @@ class PerformanceMapChart extends Component {
                 activeMap: map
             }, () => this.props.getMapData({
                 areaType: map == 'china' ? 'province' : 'country',
-                metrics: this.state.activePillar == 'avgRspTime' ? JSON.stringify(['avgRspTime']) : JSON.stringify(['apdex'])
+                metrics: this.state.activePillar == 'avgRspTime' ? JSON.stringify(['avgRspTime']) : JSON.stringify(['apdex']),
+                province: undefined
             }));
+            if(this.state.activeProvince != undefined){
+                this.setState({
+                    isSelectingCity: true,
+                    activeProvince: undefined
+                });
+                this.tempConfig = config;
+            }
         }
+        
         this.props.selectStatus(this.state.activePillar,map);
     }
     
@@ -53,7 +66,8 @@ class PerformanceMapChart extends Component {
             activePillar: e.target.value
         }, () => this.props.getMapData({
             areaType: this.state.activeMap == 'china' ? 'province' : 'country',
-            metrics: e.target.value == 'avgRspTime' ? JSON.stringify(['avgRspTime']) : JSON.stringify(['apdex'])
+            metrics: e.target.value == 'avgRspTime' ? JSON.stringify(['avgRspTime']) : JSON.stringify(['apdex']),
+            province: this.state.activeProvince
         }));
         this.props.selectStatus(e.target.value,this.state.activeMap);
     }
@@ -63,19 +77,19 @@ class PerformanceMapChart extends Component {
     clickUpdateMap(params) {
         if (this.state.activeMap == 'china' && params.componentSubType == 'map' && params.name !== '台湾') {
             if (this.state.isSelectingCity && typeof params.value != "undefined" && !isNaN(params.value)) {
-                this.setState({ isSelectingCity: false }, () => this.props.getMapData({
-                    metrics: this.state.activePillar == 'occurErrorUserRate' ? JSON.stringify(['occurErrorUserRate']) : JSON.stringify(['effectedUserNum']),
-                    areaType: this.state.activeMap == 'china' ? 'province' : 'country',
+                this.setState({ isSelectingCity: false, activeProvince:params.name }, () => this.props.getMapData({
+                    metrics: this.state.activePillar == 'avgRspTime' ? JSON.stringify(['avgRspTime']) : JSON.stringify(['apdex']),
+                    areaType: 'province',
                     province: params.name
                 }))
-                config.updateIn(['china', 'series', 0, 'mapType'], () => params.name);
+                this.tempConfig = config.updateIn(['china','series',0,'mapType'], () => params.name);
             } else if (!NameMap[params.name]) {
-                this.setState({ isSelectingCity: true }, () => this.props.getMapData({
-                    metrics: this.state.activePillar == 'occurErrorUserRate' ? JSON.stringify(['occurErrorUserRate']) : JSON.stringify(['effectedUserNum']),
-                    areaType: this.state.activeMap == 'china' ? 'province' : 'country',
+                this.setState({ isSelectingCity: true, activeProvince:undefined }, () => this.props.getMapData({
+                    metrics: this.state.activePillar == 'avgRspTime' ? JSON.stringify(['avgRspTime']) : JSON.stringify(['apdex']),
+                    areaType: 'province',
                     province: undefined
                 }))
-                config.updateIn(['china', 'series', 0, 'mapType'], () => 'china');
+                this.tempConfig = config.updateIn(['china', 'series', 0, 'mapType'], () => 'china');
             }
         } else {
             console.log('外国和台湾省的次级地区暂无法查看！')
@@ -102,7 +116,7 @@ class PerformanceMapChart extends Component {
                 { start: 0, end: 0.5, label: '不满意', color: '#ff5251' }
             ];
         // }
-         
+
         /**
          * 从store获得的地图数据用来地图和条形图的展示。但在世界地图的数据有名称对应问题。
          * 世界地图需要国家名称的英文名字来渲染，条形图国家名需要中文展示，在这里进行转换。
@@ -128,7 +142,7 @@ class PerformanceMapChart extends Component {
             })
         }
         // 需要更新的配置在这里给进去.当需要更新的数据很多，用mergeDeep会更直观
-        pillarConfig = config.get('bar').updateIn(['yAxis', 0, 'data'], () => activeMap == 'china'? yAxis.slice(0,10).reverse() : yAxisInCN.slice(0,10).reverse())
+        pillarConfig = this.tempConfig.get('bar').updateIn(['yAxis', 0, 'data'], () => activeMap == 'china'? yAxis.slice(0,10).reverse() : yAxisInCN.slice(0,10).reverse())
             .updateIn(['series', 0, 'data'], () => series.slice(0,10).reverse())
             .updateIn(['series', 0, 'name'], () => this.state.activePillar == 'avgRspTime' ? locale('平均响应时间') : 'Apdex')
             .updateIn(['series', 0, 'itemStyle','normal','color'], () => function(value){
@@ -138,7 +152,7 @@ class PerformanceMapChart extends Component {
                     return color + opacity + ")";
             });
 
-        mapConfig = config.get(activeMap).updateIn(['series', 0, 'data'], () => mapSeriesData ).updateIn(['dataRange',0,'splitList'],()=> this.state.activePillar == 'avgRspTime' ? splitListForRepTime : splitListForApdex);
+        mapConfig = this.tempConfig.get(activeMap).updateIn(['series', 0, 'data'], () => mapSeriesData ).updateIn(['dataRange',0,'splitList'],()=> this.state.activePillar == 'avgRspTime' ? splitListForRepTime : splitListForApdex);
         return (
             <div className={styles['map-chart']}>
                 <div className={cls('tile-head')}>{locale('用户分布')}</div>

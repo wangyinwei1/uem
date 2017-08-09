@@ -117,7 +117,6 @@ class MapChart extends Chart {
     }
     // @override
     handleClickEcharts(params){
-        console.log('地图里的params:',params);
         if( typeof this.props.clickUpdateMap == 'function' ){
             this.props.clickUpdateMap(params);
         }else{

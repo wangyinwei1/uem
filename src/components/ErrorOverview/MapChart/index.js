@@ -20,9 +20,11 @@ class ErrorMapChart extends Component {
             isSelectingCity: true
         };
     }
+    tempConfig = config;
     componentDidMount() {
         const { getMapData } = this.props;
         getMapData({
+            areaType: 'province',
             metrics: JSON.stringify(['occurErrorUserRate'])
         });
     }
@@ -36,9 +38,17 @@ class ErrorMapChart extends Component {
                 activeMap: map
             }, () => this.props.getMapData({
                 areaType: map == 'china' ? 'province' : 'country',
-                metrics: this.state.activePillar == 'occurErrorUserRate' ? JSON.stringify(['occurErrorUserRate']) : JSON.stringify(['effectedUserNum'])
+                metrics: this.state.activePillar == 'occurErrorUserRate' ? JSON.stringify(['occurErrorUserRate']) : JSON.stringify(['effectedUserNum']),
+                province: undefined
             }));
             this.props.selectStatus(this.state.activePillar,map);
+        }
+        if(this.state.activeProvince != undefined){
+            this.setState({
+                isSelectingCity: true,
+                activeProvince: undefined
+            });
+            this.tempConfig = config;
         }
     }
 
@@ -47,28 +57,28 @@ class ErrorMapChart extends Component {
             activePillar: e.target.value
         }, () => this.props.getMapData({
             areaType: this.state.activeMap == 'china' ? 'province' : 'country',
-            metrics: e.target.value == 'occurErrorUserRate' ? JSON.stringify(['occurErrorUserRate']) : JSON.stringify(['effectedUserNum']) 
+            metrics: e.target.value == 'occurErrorUserRate' ? JSON.stringify(['occurErrorUserRate']) : JSON.stringify(['effectedUserNum']),
+            province: this.state.activeProvince
          }) );
         this.props.selectStatus(e.target.value,this.state.activeMap);
     }
 
     clickUpdateMap(params) {
-
         if (this.state.activeMap == 'china' && params.componentSubType == 'map' && params.name !== '台湾') {
             if (this.state.isSelectingCity && typeof params.value != "undefined" && !isNaN(params.value)) {
-                this.setState({ isSelectingCity: false }, () => this.props.getMapData({
+                this.setState({ isSelectingCity: false,activeProvince:params.name }, () => this.props.getMapData({
                     metrics: this.state.activePillar == 'occurErrorUserRate' ? JSON.stringify(['occurErrorUserRate']) : JSON.stringify(['effectedUserNum']),
                     areaType: this.state.activeMap == 'china' ? 'province' : 'country',
                     province: params.name
                 }))
-                config.updateIn(['china', 'series', 0, 'mapType'], () => params.name);
+                this.tempConfig = config.updateIn(['china', 'series', 0, 'mapType'], () => params.name);
             } else if (!NameMap[params.name]) {
-                this.setState({ isSelectingCity: true }, () => this.props.getMapData({
+                this.setState({ isSelectingCity: true,activeProvince:undefined }, () => this.props.getMapData({
                     metrics: this.state.activePillar == 'occurErrorUserRate' ? JSON.stringify(['occurErrorUserRate']) : JSON.stringify(['effectedUserNum']),
                     areaType: this.state.activeMap == 'china' ? 'province' : 'country',
                     province: undefined
                 }))
-                config.updateIn(['china', 'series', 0, 'mapType'], () => 'china');
+                this.tempConfig = config.updateIn(['china', 'series', 0, 'mapType'], () => 'china');
             }
         } else {
             console.log('外国和台湾省的次级地区暂无法查看')
@@ -106,7 +116,7 @@ class ErrorMapChart extends Component {
                 value: series[i]
             })
         }
-        pillarConfig = config.get('bar').updateIn(['yAxis', 0, 'data'], () => activeMap == 'china'? yAxis.slice(0,10).reverse() : yAxisInCN.slice(0,10).reverse())
+        pillarConfig = this.tempConfig.get('bar').updateIn(['yAxis', 0, 'data'], () => activeMap == 'china'? yAxis.slice(0,10).reverse() : yAxisInCN.slice(0,10).reverse())
             .updateIn(['series', 0, 'data'], () => series.slice(0,10).reverse())
             .updateIn(['series', 0, 'name'], () => this.state.activePillar == 'occurErrorUserRate' ? locale('用户错误率') : locale('影响用户数'))
             .updateIn(['series', 0, 'itemStyle', 'normal', 'color'], () => function (value) {
@@ -115,7 +125,7 @@ class ErrorMapChart extends Component {
                 return 'rgba(255,122,63,' + opacity + ")";
             });
 
-        mapConfig = config.get(activeMap).updateIn(['series', 0, 'data'], () => mapSeriesData).updateIn(['visualMap',0,'max'], ()=> series.length > 0 ? Math.max.apply(null, series) : 1)
+        mapConfig = this.tempConfig.get(activeMap).updateIn(['series', 0, 'data'], () => mapSeriesData).updateIn(['visualMap',0,'max'], ()=> series.length > 0 ? Math.max.apply(null, series) : 1)
             .updateIn(['visualMap',0,'text'], ()=> this.state.activePillar == 'occurErrorUserRate' ? [locale('用户错误率')] : [locale('影响用户数')])
             .updateIn(['visualMap',0,'inRange','color'], ()=> ["#564e60","#78575a","#915e55","#ab6450","#c66b4b","#de7146","#f17642","#fe7a3f"]);
 
