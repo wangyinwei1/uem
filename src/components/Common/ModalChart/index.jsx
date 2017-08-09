@@ -3,6 +3,7 @@ import { Map, is, fromJS } from 'immutable'
 import modalChartConfig from './config'
 import { Radio, Modal, Button, Pagination } from 'antd'
 import styles from './index.scss'
+import { countryNameInCN, countryNameInEN } from '../Chart/WorldCountryName'
 
 export default class ModalChart extends React.Component {
     // static defaultProps ={
@@ -11,8 +12,9 @@ export default class ModalChart extends React.Component {
     // total: 1
     // }
     pillarState = 'avgRspTime';
+    mapState = 'china';
     isFirstShowModal = true;
-    state = { modalVisible: false, defaultCurrent: 1 };
+    // state = { modalVisible: false, defaultCurrent: 1 };
     echart = null;
     total = 1;
     yAxisDatas = [];
@@ -20,20 +22,36 @@ export default class ModalChart extends React.Component {
     config = modalChartConfig;
     constructor(props) {
         super(props);
+        this.state = { 
+            modalVisible: false, 
+            defaultCurrent: 1 
+        };
         this.componentWillReceiveProps(props);
+
     }
 
     componentWillReceiveProps(nextprops) {
+        let yAxisTemp = nextprops.mapData.yAxis;
+        if(nextprops.mapStatus && nextprops.mapStatus == 'world'){
+            for(let i =0, len = yAxisTemp.length; i< len; i++ ){
+                for(let n in countryNameInEN){
+                    if( yAxisTemp[i] == countryNameInEN[n]){
+                        yAxisTemp[i] = countryNameInCN[n];
+                    }
+                }
+            }
+            this.yAxisDatasLocal = yAxisTemp;
+        } else{
+            this.yAxisDatasLocal = nextprops.mapData.yAxis;
+        }
         this.seriesDatasLocal = nextprops.mapData.series;
-        this.yAxisDatasLocal = nextprops.mapData.yAxis;
         this.total = nextprops.mapData.total;
-        // let maxUv = nextprops.mapData.series ? Math.max.apply(null, nextprops.mapData.series) : 100;
-        // let maxPageNum = Math.ceil(nextprops.mapData.total / 10);
         this.pillarState = nextprops.pillarState;
         this.displayModalChart();
-        if (this.echart) {
-            this.echart.setOption(this.state.option);
-        }
+
+        // if (this.echart) {
+        //     this.echart.setOption(this.state.option);
+        // }
     }
 
     displayModalChart(){
@@ -49,7 +67,7 @@ export default class ModalChart extends React.Component {
     showModal = () => {
         this.setState({
             modalVisible: true
-        })
+        },() => this.onChange(1))
     }
 
     onChange(page){
@@ -68,7 +86,6 @@ export default class ModalChart extends React.Component {
     }
 
     render(){
-
         const pillarStateEnum = {
             'avgRspTime': '平均响应时间',
             'apdex': 'Apdex',
@@ -90,7 +107,7 @@ export default class ModalChart extends React.Component {
                     onCancel={this.handleModalCancel}
                 >
                     <div id="modal-chartPillar" style={{height: 542}}></div>
-                    <Pagination current={this.state.defaultCurrent}  total={this.total} onChange={this.onChange.bind(this)} />
+                    <Pagination defaultCurrent={1} current={this.state.defaultCurrent}  total={this.total} onChange={this.onChange.bind(this)} />
                 </Modal>
             </div> 
         )

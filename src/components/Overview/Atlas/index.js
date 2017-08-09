@@ -28,6 +28,7 @@ class Atlas extends Component {
                 activeMap: map
             }, () => this.props.getUserDistribution({ areaType: map == 'china' ? 'province' : 'country' }));
         }
+        this.props.selectStatus(map);
     }
     render() {
         const { activeMap } = this.state;
@@ -39,12 +40,11 @@ class Atlas extends Component {
             for (let i = 0, len = yAxis.length; i < len; i++) {
                 for (let n in countryNameInEN) {
                     if (yAxis[i] == countryNameInEN[n]) {
-                        yAxis[i] = countryNameInEN[n],
-                        yAxisInCN.push(countryNameInCN[n])
+                        yAxis[i] = countryNameInEN[n];
+                        yAxisInCN[i] = countryNameInCN[n];
                     }
                 }
             }
-        } else {
         }
 
         for (let i = 0, len = series.length; i < len; i++) {
@@ -53,8 +53,8 @@ class Atlas extends Component {
                 value: series[i]
             })
         }
-        pillarConfig = config.get('bar').updateIn(['yAxis', 0, 'data'], () => activeMap == 'china'? yAxis.splice(0,10).reverse() : yAxisInCN.splice(0,10).reverse())
-            .updateIn(['series', 0, 'data'], () => series.splice(0,10).reverse())
+        pillarConfig = config.get('bar').updateIn(['yAxis', 0, 'data'], () => activeMap == 'china'? yAxis.slice(0,10).reverse() : yAxisInCN.slice(0,10).reverse())
+            .updateIn(['series', 0, 'data'], () => series.slice(0,10).reverse())
             .updateIn(['series', 0, 'name'], () => locale('用户会话数'));
 
         mapConfig = config.get(activeMap).updateIn(['series', 0, 'data'], () => mapSeriesData).updateIn(['visualMap',0,'max'], ()=> series.length > 0 ? Math.max.apply(null, series) : 1)

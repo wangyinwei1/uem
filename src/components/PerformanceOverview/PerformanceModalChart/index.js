@@ -6,9 +6,6 @@ export default class PerformanceModalChart extends ModalChart {
     state = {
         // 组件内的一些状态
     }
-    constructor(props){
-        super(props)
-    }
 
     displayModalChart(){
         let maxQuota = this.seriesDatasLocal ? Math.max.apply(null, this.seriesDatasLocal) : 100;
@@ -31,7 +28,7 @@ export default class PerformanceModalChart extends ModalChart {
                                     color: function (value) {
                                         let pillarColor;
                                         pillarColor = value.seriesName == '平均响应时间' ? 'rgba(255,235,11,' : 'rgba(102,220,108,';
-                                        let opacity = Number((value.data / maxQuota).toFixed(2)) * (1 - 0.5) + 0.5;
+                                        let opacity = Number((value.data / maxQuota).toFixed(2)) * (1 - window.colorOpacity) + window.colorOpacity;
                                         return pillarColor + opacity + ")"
                                         // // return '#fff';
                                         // console.log(value)
@@ -59,7 +56,7 @@ export default class PerformanceModalChart extends ModalChart {
                                 color: function (value) {
                                     let pillarColor;
                                     pillarColor = value.seriesName == '平均响应时间' ? 'rgba(255,235,11,' : 'rgba(102,220,108,';
-                                    let opacity = Number((value.data / maxQuota).toFixed(2)) * (1 - 0.5) + 0.5;
+                                    let opacity = Number((value.data / maxQuota).toFixed(2)) * (1 - window.colorOpacity) + window.colorOpacity;
                                     return pillarColor + opacity + ")"
                                 }
                             }

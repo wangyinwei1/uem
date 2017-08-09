@@ -19,13 +19,15 @@ export default class ErrorOverview extends React.Component {
         };
     }
     pillarStatus = 'occurErrorUserRate';
+    mapStatus = 'china';
     componentDidMount() {
         this.setState({
             loading: false
         });
     }
-    pillarSelectStatus(pillarStatus){
-            this.pillarStatus = pillarStatus
+    selectStatus(pillarStatus, mapStatus){
+            this.pillarStatus = pillarStatus;
+            this.mapStatus = mapStatus;
     }
 
     render() {
@@ -59,11 +61,12 @@ export default class ErrorOverview extends React.Component {
                         mapData={mapData}
                         getMapData={onGetMapData}
                         startTime = {startTime}
-                        pillarSelectStatus={this.pillarSelectStatus.bind(this)}
+                        selectStatus={this.selectStatus.bind(this)}
                     />
                     <ErrorModalChart
                         mapData={mapData}
                         pillarState={this.pillarStatus}
+                        mapStatus={this.mapStatus}
                     />
                 </Spin>
             </div>

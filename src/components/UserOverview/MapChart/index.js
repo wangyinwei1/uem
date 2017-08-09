@@ -38,6 +38,7 @@ class UserMapChart extends Component {
                 metrics: this.state.activePillar == 'sessionCount' ? JSON.stringify(['sessionCount']) : JSON.stringify(['uv'])
             }));
         }
+        this.props.selectStatus(this.state.activePillar,map);
     }
 
     handleRadioSelect(e) {
@@ -47,7 +48,7 @@ class UserMapChart extends Component {
             areaType: this.state.activeMap == 'china' ? 'province' : 'country',
             metrics: e.target.value == 'sessionCount' ? JSON.stringify(['sessionCount']) : JSON.stringify(['uv'])
         }));
-        this.props.pillarSelectStatus(e.target.value);
+        this.props.selectStatus(e.target.value,this.state.activeMap);
     }
 
     // 点击中国地图
@@ -74,7 +75,7 @@ class UserMapChart extends Component {
     }
 
     render() {
-        const { activeMap } = this.state;
+        const { activeMap,activePillar } = this.state;
         let pillarConfig, mapConfig, yAxis, series, yAxisInCN=[],mapSeriesData = [], _yAxis = [], _series = [];
         yAxis = this.props.mapData.yAxis;
         series = this.props.mapData.series;
@@ -101,12 +102,12 @@ class UserMapChart extends Component {
                 value: series[i]
             })
         }
-        pillarConfig = config.get('bar').updateIn(['yAxis', 0, 'data'], () => activeMap == "china" ? yAxis.splice(0,10).reverse() : yAxisInCN.splice(0,10).reverse())
-            .updateIn(['series', 0, 'data'], () => series.splice(0,10).reverse())
-            .updateIn(['series', 0, 'name'], () => this.state.activePillar == 'sessionCount' ? locale('会话数') : locale('访客数'))
+        pillarConfig = config.get('bar').updateIn(['yAxis', 0, 'data'], () => activeMap == "china" ? yAxis.slice(0,10).reverse() : yAxisInCN.slice(0,10).reverse())
+            .updateIn(['series', 0, 'data'], () => series.slice(0,10).reverse())
+            .updateIn(['series', 0, 'name'], () => activePillar == 'sessionCount' ? locale('会话数') : locale('访客数'))
             .updateIn(['series', 0, 'itemStyle', 'normal', 'color'], () => function (value) {
                 let maxUv = Math.max.apply(null, series);
-                let opacity = Number((value.data / maxUv).toFixed(2));
+                let opacity = Number((value.data / maxUv).toFixed(2))*(1-window.colorOpacity) + window.colorOpacity;
                 return 'rgba(3,169,245,' + opacity + ")";
             });
 

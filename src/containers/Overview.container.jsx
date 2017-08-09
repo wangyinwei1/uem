@@ -19,12 +19,15 @@ export default class Overview extends React.Component {
             loading: true
         };
     }
+    mapStatus = 'china';
     componentDidMount() {
         this.setState({
             loading: false
         });
     }
-
+    selectStatus(mapStatus){
+        this.mapStatus = mapStatus;
+    }
     render() {
         const {
             realTimeData,
@@ -61,10 +64,12 @@ export default class Overview extends React.Component {
                     <Atlas
                         getUserDistribution={onGetUserDistribution}
                         userDistribution={userDistribution}
+                        selectStatus={this.selectStatus.bind(this)}
                     />
                     <OverviewModalChart 
                         mapData={userDistribution}
                         pillarState={'userDistribution'}
+                        mapStatus={this.mapStatus}
                     />
                 </Spin>
             </div>

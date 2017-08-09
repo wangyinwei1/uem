@@ -28,6 +28,7 @@ if (process.env.NODE_ENV === 'development') {
 
 if (true) {
     localStorage.setItem('UEM_lang', 'zh_CN');
+    window.colorOpacity = 0.3;
 }
 
 const render = (Component) => {

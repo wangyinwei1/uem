@@ -38,6 +38,7 @@ class ErrorMapChart extends Component {
                 areaType: map == 'china' ? 'province' : 'country',
                 metrics: this.state.activePillar == 'occurErrorUserRate' ? JSON.stringify(['occurErrorUserRate']) : JSON.stringify(['effectedUserNum'])
             }));
+            this.props.selectStatus(this.state.activePillar,map);
         }
     }
 
@@ -48,7 +49,7 @@ class ErrorMapChart extends Component {
             areaType: this.state.activeMap == 'china' ? 'province' : 'country',
             metrics: e.target.value == 'occurErrorUserRate' ? JSON.stringify(['occurErrorUserRate']) : JSON.stringify(['effectedUserNum']) 
          }) );
-        this.props.pillarSelectStatus(e.target.value);
+        this.props.selectStatus(e.target.value,this.state.activeMap);
     }
 
     clickUpdateMap(params) {
@@ -87,8 +88,8 @@ class ErrorMapChart extends Component {
             for (let i = 0, len = yAxis.length; i < len; i++) {
                 for (let n in countryNameInEN) {
                     if (yAxis[i] == countryNameInEN[n]) {
-                        yAxis[i] = countryNameInEN[n]
-                        yAxisInCN.push(countryNameInCN[n])
+                        yAxis[i] = countryNameInEN[n];
+                        yAxisInCN[i] = countryNameInCN[n];
                     }
                 }
             }
@@ -105,12 +106,12 @@ class ErrorMapChart extends Component {
                 value: series[i]
             })
         }
-        pillarConfig = config.get('bar').updateIn(['yAxis', 0, 'data'], () => activeMap == 'china'? yAxis.splice(0,10).reverse() : yAxisInCN.splice(0,10).reverse())
-            .updateIn(['series', 0, 'data'], () => series.splice(0,10).reverse())
+        pillarConfig = config.get('bar').updateIn(['yAxis', 0, 'data'], () => activeMap == 'china'? yAxis.slice(0,10).reverse() : yAxisInCN.slice(0,10).reverse())
+            .updateIn(['series', 0, 'data'], () => series.slice(0,10).reverse())
             .updateIn(['series', 0, 'name'], () => this.state.activePillar == 'occurErrorUserRate' ? locale('用户错误率') : locale('影响用户数'))
             .updateIn(['series', 0, 'itemStyle', 'normal', 'color'], () => function (value) {
                 let maxUv = Math.max.apply(null, series);
-                let opacity = Number((value.data / maxUv).toFixed(2));
+                let opacity = Number((value.data / maxUv).toFixed(2))*(1-window.colorOpacity) + window.colorOpacity;
                 return 'rgba(255,122,63,' + opacity + ")";
             });
 

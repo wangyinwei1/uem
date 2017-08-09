@@ -39,6 +39,7 @@ class PerformanceMapChart extends Component {
                 metrics: this.state.activePillar == 'avgRspTime' ? JSON.stringify(['avgRspTime']) : JSON.stringify(['apdex'])
             }));
         }
+        this.props.selectStatus(this.state.activePillar,map);
     }
     
     componentWillReceiveProps(nextprops){
@@ -54,8 +55,10 @@ class PerformanceMapChart extends Component {
             areaType: this.state.activeMap == 'china' ? 'province' : 'country',
             metrics: e.target.value == 'avgRspTime' ? JSON.stringify(['avgRspTime']) : JSON.stringify(['apdex'])
         }));
-        this.props.pillarSelectStatus(e.target.value);
+        this.props.selectStatus(e.target.value,this.state.activeMap);
     }
+
+
     // 点击中国地图
     clickUpdateMap(params) {
         if (this.state.activeMap == 'china' && params.componentSubType == 'map' && params.name !== '台湾') {
@@ -80,10 +83,10 @@ class PerformanceMapChart extends Component {
     }
 
     render() {
-        const { activeMap } = this.state;
-        let pillarConfig, mapConfig, yAxis,yAxisInCN=[], series=[], mapSeriesData = [], _yAxis=[], _series=[];
-        yAxis = this.props.mapData.yAxis;
-        series = this.props.mapData.series;
+        const { activeMap,activePillar } = this.state;
+        let pillarConfig, mapConfig, yAxisInCN=[],mapSeriesData = [];
+        const yAxis = this.props.mapData.yAxis;
+        const series = this.props.mapData.series;
         //  性能地图左下角的dataRange
         let apdex = Number(( JSON.parse(sessionStorage.UEM_deploy).apdex / 1000).toFixed(1));
         let apdex_4 = apdex*4;
@@ -125,13 +128,14 @@ class PerformanceMapChart extends Component {
             })
         }
         // 需要更新的配置在这里给进去.当需要更新的数据很多，用mergeDeep会更直观
-        pillarConfig = config.get('bar').updateIn(['yAxis', 0, 'data'], () => activeMap == 'china'? yAxis.splice(0,10).reverse() : yAxisInCN.splice(0,10).reverse())
-            .updateIn(['series', 0, 'data'], () => series.splice(0,10).reverse())
+        pillarConfig = config.get('bar').updateIn(['yAxis', 0, 'data'], () => activeMap == 'china'? yAxis.slice(0,10).reverse() : yAxisInCN.slice(0,10).reverse())
+            .updateIn(['series', 0, 'data'], () => series.slice(0,10).reverse())
             .updateIn(['series', 0, 'name'], () => this.state.activePillar == 'avgRspTime' ? locale('平均响应时间') : 'Apdex')
             .updateIn(['series', 0, 'itemStyle','normal','color'], () => function(value){
                     let maxUv = Math.max.apply(null, series);
-                    let opacity = Number((value.data / maxUv).toFixed(2));
-                    return 'rgba(102,220,108,' + opacity + ")";
+                    let opacity = Number((value.data / maxUv).toFixed(2))*(1-window.colorOpacity) + window.colorOpacity;
+                    let color = activePillar == 'avgRspTime' ? 'rgba(255,235,11,' : 'rgba(102,220,108,';
+                    return color + opacity + ")";
             });
 
         mapConfig = config.get(activeMap).updateIn(['series', 0, 'data'], () => mapSeriesData ).updateIn(['dataRange',0,'splitList'],()=> this.state.activePillar == 'avgRspTime' ? splitListForRepTime : splitListForApdex);

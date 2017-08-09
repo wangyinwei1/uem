@@ -18,15 +18,17 @@ export default class PerformanceOverview extends React.Component {
             loading: true
         };
     }
-    pillarStatus = 'avgRspTime'
+    pillarStatus = 'avgRspTime';
+    mapStatus = 'china';
     componentDidMount() {
         this.setState({
             loading: false
         });
     }
 
-    pillarSelectStatus(pillarStatus){
-        this.pillarStatus = pillarStatus
+    selectStatus(pillarStatus,mapStatus){
+        this.pillarStatus = pillarStatus;
+        this.mapStatus = mapStatus;
     }
     render() {
         const {
@@ -39,7 +41,6 @@ export default class PerformanceOverview extends React.Component {
             onGetPerformanceTrend,
             onGetMapData
         } = this.props.performanceOverviewStore;
-        
         const startTime = this.props.frameStore.timeType;
         const { loading } = this.state;
         return (
@@ -55,14 +56,15 @@ export default class PerformanceOverview extends React.Component {
                         getPerformanceTrend={onGetPerformanceTrend}
                         startTime = {startTime}
                     />
-                     <PerformanceMapChart
+                    <PerformanceMapChart
                         mapData={mapData}
                         getMapData={onGetMapData}
                         startTime = {startTime}
-                        pillarSelectStatus={this.pillarSelectStatus.bind(this)}
+                        selectStatus={this.selectStatus.bind(this)}
                     />
                     <PerformanceModalChart 
                         mapData={mapData}
+                        mapStatus={this.mapStatus}
                         pillarState={this.pillarStatus}
                     />
                 </Spin>
