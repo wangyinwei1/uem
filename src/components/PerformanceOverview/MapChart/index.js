@@ -185,11 +185,11 @@ class PerformanceMapChart extends Component {
 
                     <MapChart
                         mapState={this.state.activeMap}
-                        chartId="map" group="atlas" className={styles['map-chart']}
+                        chartId="map"  className={styles['map-chart']}
                         options={config.get('default').mergeDeep(mapConfig).toJS()}
                         clickUpdateMap={this.clickUpdateMap.bind(this)}
                     />
-                    <BarChart chartId="bar" group="atlas" className={styles['bar-chart']}
+                    <BarChart chartId="bar"  className={styles['bar-chart']}
                         options={config.get('default').mergeDeep(pillarConfig).toJS()}
                     />
                 </div>
