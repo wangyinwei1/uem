@@ -87,18 +87,18 @@ export default class ModalChart extends React.Component {
 
     render(){
         const pillarStateEnum = {
-            'avgRspTime': '平均响应时间',
+            'avgRspTime': locale('平均响应时间'),
             'apdex': 'Apdex',
-            'occurErrorUserRate': '用户错误率',
-            'effectedUserNum' : '影响用户数',
-            'sessionCount': '会话数',
-            'uv':'访客数',
-            'userDistribution': '用户分布数据'
+            'occurErrorUserRate': locale('用户错误率'),
+            'effectedUserNum' : locale('影响用户数'),
+            'sessionCount': locale('会话数'),
+            'uv':locale('访客数'),
+            'userDistribution': locale('用户分布数据')
         }
         // console.log('-----config', modalChartConfig);
         return (
            <div className={styles["modal-chart"]}>
-                {this.total > 10 && <div onClick={this.showModal} className={styles['check-all']}>查看更多>></div>}
+                {this.total > 10 && <div onClick={this.showModal} className={styles['check-all']}>{locale('查看全部')}</div>}
                 <Modal
                     title={pillarStateEnum[this.pillarState]}
                     className={styles['modalChart-pillar']}
