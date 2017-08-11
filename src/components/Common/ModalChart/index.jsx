@@ -98,7 +98,7 @@ export default class ModalChart extends React.Component {
         // console.log('-----config', modalChartConfig);
         return (
            <div className={styles["modal-chart"]}>
-                <div onClick={this.showModal} className={styles['check-all']}>查看更多>></div>
+                {this.total > 10 && <div onClick={this.showModal} className={styles['check-all']}>查看更多>></div>}
                 <Modal
                     title={pillarStateEnum[this.pillarState]}
                     className={styles['modalChart-pillar']}
