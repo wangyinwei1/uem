@@ -1,5 +1,5 @@
-import { observable, action, runInAction,autorun } from 'mobx';
-import { default as CommonService  } from '../services/CommonInterface.service';
+import { observable, action, runInAction, autorun } from 'mobx';
+import { default as CommonService } from '../services/CommonInterface.service';
 import {
     getTimeType
 } from '../utils/storage';
@@ -31,7 +31,7 @@ class ErrorOverviewStore {
         }
     }
 
-     @action onGetErrorTrend = async payload => {
+    @action onGetErrorTrend = async payload => {
         try {
             const data = await CommonService.getTrend({
                 startTime: moment().subtract(getTimeType().startTime.type, getTimeType().startTime.units).valueOf(),
@@ -48,7 +48,7 @@ class ErrorOverviewStore {
     }
 
     @action onGetMapData = async payload => {
-        const { metrics , areaType } = payload;
+        const { metrics, areaType } = payload;
         try {
             const datas = await CommonService.getMapData({
                 startTime: moment().subtract(getTimeType().startTime.type, getTimeType().startTime.units).valueOf(),
@@ -57,15 +57,15 @@ class ErrorOverviewStore {
                 sortKey: metrics == '["occurErrorUserRate"]' ? "occurErrorUserRate" : "effectedUserNum",
                 ...payload
             });
-            if( areaType == 'province'){
-                datas.data && datas.data.map((item,index)=>{
-                    if(item.area == '-'){
+            if (areaType == 'province') {
+                datas.data && datas.data.map((item, index) => {
+                    if (item.area == '-') {
                         item.area = '未知地址'
                     }
                 });
-                if( metrics == '["occurErrorUserRate"]' ){
+                if (metrics == '["occurErrorUserRate"]') {
                     runInAction(() => {
-                        let yAxisData = [], seriesData = [],tempMapData = {};
+                        let yAxisData = [], seriesData = [], tempMapData = {};
                         datas.data.length > 0 && datas.data.filter(item => item.occurErrorUserRate > 0).map((item, index) => {
                             yAxisData.push(item.area);
                             seriesData.push(item.occurErrorUserRate);
@@ -78,7 +78,7 @@ class ErrorOverviewStore {
                     });
                 } else {
                     runInAction(() => {
-                        let yAxisData = [], seriesData = [],tempMapData = {};
+                        let yAxisData = [], seriesData = [], tempMapData = {};
                         datas.data.length > 0 && datas.data.filter(item => item.effectedUserNum > 0).map((item, index) => {
                             yAxisData.push(item.area);
                             seriesData.push(item.effectedUserNum);
@@ -90,17 +90,17 @@ class ErrorOverviewStore {
                         this.mapData = tempMapData;
                     });
                 }
-            }else{
-                datas.data && datas.data.map((item,index) => {
-                    for(let n in countryNameInEN){
-                        if(n == item.area){
+            } else {
+                datas.data && datas.data.map((item, index) => {
+                    for (let n in countryNameInEN) {
+                        if (n == item.area) {
                             item.area = countryNameInEN[n]
                         }
                     }
-                }).sort((a,b)=> b.value - a.value);
-                if( metrics == '["occurErrorUserRate"]' ){
+                }).sort((a, b) => b.value - a.value);
+                if (metrics == '["occurErrorUserRate"]') {
                     runInAction(() => {
-                        let yAxisData = [], seriesData = [],tempMapData = {};
+                        let yAxisData = [], seriesData = [], tempMapData = {};
                         datas.data.length > 0 && datas.data.filter(item => item.occurErrorUserRate > 0).map((item, index) => {
                             yAxisData.push(item.area);
                             seriesData.push(item.occurErrorUserRate);
@@ -113,7 +113,7 @@ class ErrorOverviewStore {
                     });
                 } else {
                     runInAction(() => {
-                        let yAxisData = [], seriesData = [],tempMapData = {};
+                        let yAxisData = [], seriesData = [], tempMapData = {};
                         datas.data.length > 0 && datas.data.filter(item => item.effectedUserNum > 0).map((item, index) => {
                             yAxisData.push(item.area);
                             seriesData.push(item.effectedUserNum);

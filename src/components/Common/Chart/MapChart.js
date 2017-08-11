@@ -1,9 +1,59 @@
 import React from 'react';
 import Chart from './Chart';
+// import { countryNameInCN,countryNameInEN } from './WorldCountryName'
 
 function randomData() {
     return Math.round(Math.random() * 1000);
 }
+// export function mapTooltipFormatter(params, ticket, callback) {
+//         if (isNaN(params.value)) {
+//             params.value = UEM_i18n.no_data[UEM_lang];
+//             return "";
+//         }
+//         if (!params.data.hasOwnProperty('operCount')) {
+//             params.data.operCount = "";
+//         }
+//         const paramsCg = [
+//             { key: "name", name: UEM_i18n.regions[UEM_lang] },
+//             { key: "apdex", name: UEM_i18n.apdex[UEM_lang] },
+//             // { key: "operCount", name: UEM_i18n.actions[UEM_lang] },
+//             { key: "errorCount", name: UEM_i18n.err_count[UEM_lang] },
+//             { key: "sessionCount", name: UEM_i18n.sessions[UEM_lang] },
+//             { key: 'avgRspTime', name: UEM_i18n.average_response_time[UEM_lang] },
+//             { key: 'occurErrorUserRate', name: UEM_i18n.user_error_rate[UEM_lang] },
+//             { key: 'effectedUserNum', name: UEM_i18n.impacted_users[UEM_lang] },
+//             { key: 'uv', name: UEM_i18n.uv[UEM_lang] },
+//         ];
+//         return paramsCg.map(val => {
+
+//             return typeof params.data[val.key] != 'undefined' ? `${val.name} : ${params.data[val.key]} <br>` : ``;
+//         }).join(' ')
+//     }
+
+// export function mapTooltipFormatterForWorldMap(params, ticket, callback) {
+//         if (isNaN(params.value)) {
+//             params.value = UEM_i18n.no_data[UEM_lang];
+//             return "";
+//         }
+//         for (let i in countryNameInEN) {
+//             if (countryNameInEN[i] == params.name) {
+//                 params.data.name = countryNameInCN[i]
+//             }
+//         }
+//         const paramsCg = [
+//             { key: "name", name: UEM_i18n.regions[UEM_lang] },
+//             { key: "apdex", name: UEM_i18n.apdex[UEM_lang] },
+//             { key: "errorCount", name: UEM_i18n.err_count[UEM_lang] },
+//             { key: "sessionCount", name: UEM_i18n.sessions[UEM_lang] },
+//             { key: 'avgRspTime', name: UEM_i18n.average_response_time[UEM_lang] },
+//             { key: 'occurErrorUserRate', name: UEM_i18n.user_error_rate[UEM_lang] },
+//             { key: 'effectedUserNum', name: UEM_i18n.impacted_users[UEM_lang] },
+//             { key: 'uv', name: UEM_i18n.uvs[UEM_lang] },
+//         ];
+//         return paramsCg.map(val => {
+//             return typeof params.data[val.key] != 'undefined' ? `${val.name} : ${params.data[val.key]} <br>` : ``;
+//         }).join(' ')
+//     }
 
 // 全局地图图表配置
 const defaultOptions = Immutable.fromJS({
@@ -40,7 +90,6 @@ const defaultOptions = Immutable.fromJS({
     }],
     tooltip: {
         trigger: 'item',
-        formatter: '{b}'
     },
     xAxis: [{
         axisLine: {
@@ -61,21 +110,7 @@ const defaultOptions = Immutable.fromJS({
         top: 'center',
         showLegendSymbol: false,
         // selectedMode: 'multiple',
-        data: [
-            // { name: '陕西', value: randomData() },
-            // { name: '吉林', value: randomData() },
-            // { name: '福建', value: randomData() },
-            // { name: '贵州', value: randomData() },
-            // { name: '广东', value: randomData() },
-            // { name: '青海', value: randomData() },
-            // { name: '西藏', value: randomData() },
-            // { name: '四川', value: randomData() },
-            // { name: '宁夏', value: randomData() },
-            // { name: '海南', value: randomData() },
-            // { name: '台湾', value: randomData() },
-            // { name: '香港', value: randomData() },
-            // { name: '澳门', value: randomData() }
-        ],
+        data: [ ],
         label: {
             normal: {
                 textStyle: {
@@ -115,6 +150,15 @@ class MapChart extends Chart {
         // Immutable.fromJS(props.options).updateIn(['series',0,'mapType'],()=>'world').toJS();
         this.defaultOptions = defaultOptions;
     }
+
+    // componentWillReceiveProps(nextprops){
+    //     debugger
+    //     console.log('nextprops',nextprops);
+    //         this.props = nextprops;
+    //         this.defaultOptions = this.defaultOptions.mergeDeep({
+    //             tooltip: {formatter: nextprops.mapState == 'china' ? mapTooltipFormatter : mapTooltipFormatterForWorldMap }
+    //         })
+    // }
     // @override
     handleClickEcharts(params){
         if( typeof this.props.clickUpdateMap == 'function' ){

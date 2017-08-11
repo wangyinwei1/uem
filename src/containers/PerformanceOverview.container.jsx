@@ -61,6 +61,7 @@ export default class PerformanceOverview extends React.Component {
                         getMapData={onGetMapData}
                         startTime = {startTime}
                         selectStatus={this.selectStatus.bind(this)}
+                        mapStatus={this.mapStatus}
                     />
                     <PerformanceModalChart 
                         mapData={mapData}

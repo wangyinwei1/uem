@@ -50,7 +50,8 @@ class Atlas extends Component {
         for (let i = 0, len = series.length; i < len; i++) {
             mapSeriesData.push({
                 name: yAxis[i],
-                value: series[i]
+                value: series[i],
+                sessionCount: series[i]
             })
         }
         pillarConfig = config.get('bar').updateIn(['yAxis', 0, 'data'], () => activeMap == 'china'? yAxis.slice(0,10).reverse() : yAxisInCN.slice(0,10).reverse())
@@ -72,7 +73,9 @@ class Atlas extends Component {
                             'not-active': activeMap === 'world' ? false : true
                         })} onClick={this.changeMap.bind(this, 'world')}>{locale('世界')}</div>
                     </div>
-                    <MapChart chartId="map" group="atlas" className={styles['map-chart']}
+                    <MapChart 
+                        mapState={this.state.activeMap}
+                        chartId="map" group="atlas" className={styles['map-chart']}
                         options={config.get('default').mergeDeep(mapConfig).toJS()}
                     />
                     <BarChart chartId="bar" group="atlas" className={styles['bar-chart']}

@@ -55,11 +55,11 @@ class PerformanceMapChart extends Component {
         this.props.selectStatus(this.state.activePillar,map);
     }
     
-    componentWillReceiveProps(nextprops){
-        if(this.props.mapData !== nextprops.mapData ){
-            this.porps = nextprops;
-        }
-    }
+    // componentWillReceiveProps(nextprops){
+    //     if(this.props.mapData !== nextprops.mapData ){
+    //         this.props = nextprops;
+    //     }
+    // }
 
     handleRadioSelect(e) {
         this.setState({
@@ -138,21 +138,33 @@ class PerformanceMapChart extends Component {
         for (let i = 0, len = series.length; i < len; i++) {
             mapSeriesData.push({
                 name: yAxis[i],
-                value: series[i]
+                value: series[i],
+                avgRspTime: this.state.activePillar == 'avgRspTime' ? series[i] : undefined,
+                apdex: this.state.activePillar == 'avgRspTime' ? undefined : series[i]
             })
         }
         // 需要更新的配置在这里给进去.当需要更新的数据很多，用mergeDeep会更直观
-        pillarConfig = this.tempConfig.get('bar').updateIn(['yAxis', 0, 'data'], () => activeMap == 'china'? yAxis.slice(0,10).reverse() : yAxisInCN.slice(0,10).reverse())
-            .updateIn(['series', 0, 'data'], () => series.slice(0,10).reverse())
-            .updateIn(['series', 0, 'name'], () => this.state.activePillar == 'avgRspTime' ? locale('平均响应时间') : 'Apdex')
-            .updateIn(['series', 0, 'itemStyle','normal','color'], () => function(value){
-                    let maxUv = Math.max.apply(null, series);
-                    let opacity = Number((value.data / maxUv).toFixed(2))*(1-window.colorOpacity) + window.colorOpacity;
-                    let color = activePillar == 'avgRspTime' ? 'rgba(255,235,11,' : 'rgba(102,220,108,';
-                    return color + opacity + ")";
-            });
+        pillarConfig = this.tempConfig.get('bar').mergeDeep({
+            yAxis: [{ data: activeMap == 'china' ? yAxis.slice(0, 10).reverse() : yAxisInCN.slice(0, 10).reverse() }],
+            series: [{
+                data: series.slice(0, 10).reverse(),
+                name: this.state.activePillar == 'avgRspTime' ? locale('平均响应时间') : 'Apdex',
+                itemStyle: {
+                    normal: {
+                        color: function (value) {
+                            let maxUv = Math.max.apply(null, series);
+                            let opacity = Number((value.data / maxUv).toFixed(2)) * (1 - window.colorOpacity) + window.colorOpacity;
+                            let color = activePillar == 'avgRspTime' ? 'rgba(255,235,11,' : 'rgba(102,220,108,';
+                            return color + opacity + ")";
+                        }
+                    }
+                }
+            }]
+        })
 
-        mapConfig = this.tempConfig.get(activeMap).updateIn(['series', 0, 'data'], () => mapSeriesData ).updateIn(['dataRange',0,'splitList'],()=> this.state.activePillar == 'avgRspTime' ? splitListForRepTime : splitListForApdex);
+        mapConfig = this.tempConfig.get(activeMap).updateIn(['series', 0, 'data'], () => mapSeriesData )
+        .updateIn(['dataRange',0,'splitList'],()=> this.state.activePillar == 'avgRspTime' ? splitListForRepTime : splitListForApdex);
+
         return (
             <div className={styles['map-chart']}>
                 <div className={cls('tile-head')}>{locale('用户分布')}</div>
@@ -172,6 +184,7 @@ class PerformanceMapChart extends Component {
                     </RadioGroup>
 
                     <MapChart
+                        mapState={this.state.activeMap}
                         chartId="map" group="atlas" className={styles['map-chart']}
                         options={config.get('default').mergeDeep(mapConfig).toJS()}
                         clickUpdateMap={this.clickUpdateMap.bind(this)}

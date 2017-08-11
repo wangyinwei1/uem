@@ -113,7 +113,9 @@ class ErrorMapChart extends Component {
         for (let i = 0, len = series.length; i < len; i++) {
             mapSeriesData.push({
                 name: yAxis[i],
-                value: series[i]
+                value: series[i],
+                occurErrorUserRate: this.state.activePillar == 'occurErrorUserRate' ? series[i] : undefined,
+                effectedUserNum: this.state.activePillar == 'effectedUserNum' ? series[i] :  undefined
             })
         }
         pillarConfig = this.tempConfig.get('bar').updateIn(['yAxis', 0, 'data'], () => activeMap == 'china'? yAxis.slice(0,10).reverse() : yAxisInCN.slice(0,10).reverse())
@@ -148,6 +150,7 @@ class ErrorMapChart extends Component {
                     </RadioGroup>
 
                     <MapChart
+                        mapState={this.state.activeMap}
                         chartId="map" group="atlas" className={styles['map-chart']}
                         options={config.get('default').mergeDeep(mapConfig).toJS()}
                         clickUpdateMap={this.clickUpdateMap.bind(this)}

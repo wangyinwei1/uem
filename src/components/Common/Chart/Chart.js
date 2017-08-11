@@ -1,5 +1,6 @@
 import React from 'react';
 import echarts from 'echarts';
+import { countryNameInCN,countryNameInEN } from './WorldCountryName'
 
 // import '../../../assets/maps/china';
 // import '../../../assets/maps/world';
@@ -107,6 +108,55 @@ const globalOptions = Immutable.fromJS({
     }
 });
 
+function mapTooltipFormatter(params, ticket, callback) {
+        if (isNaN(params.value)) {
+            params.value = '暂无数据';
+            return "";
+        }
+        if (!params.data.hasOwnProperty('operCount')) {
+            params.data.operCount = "";
+        }
+        const paramsCg = [
+            { key: "name", name: '地域' },
+            { key: "apdex", name: 'apdex' },
+            // { key: "operCount", name: UEM_i18n.actions[UEM_lang] },
+            { key: "errorCount", name: '错误数' },
+            { key: "sessionCount", name: '会话数' },
+            { key: 'avgRspTime', name: '平均响应时间' },
+            { key: 'occurErrorUserRate', name: '用户错误率' },
+            { key: 'effectedUserNum', name: '影响用户数' },
+            { key: 'uv', name: '访客数' },
+        ];
+        return paramsCg.map(val => {
+
+            return typeof params.data[val.key] != 'undefined' ? `${val.name} : ${params.data[val.key]} <br>` : ``;
+        }).join(' ')
+    }
+
+function mapTooltipFormatterForWorldMap(params, ticket, callback) {
+        if (isNaN(params.value)) {
+            params.value = '暂无数据';
+            return "";
+        }
+        for (let i in countryNameInEN) {
+            if (countryNameInEN[i] == params.name) {
+                params.data.name = countryNameInCN[i]
+            }
+        }
+        const paramsCg = [
+            { key: "name", name: "地域" },
+            { key: "apdex", name: 'apdex' },
+            { key: "errorCount", name: '错误数' },
+            { key: "sessionCount", name:  '会话数'},
+            { key: 'avgRspTime', name: '平均响应时间'},
+            { key: 'occurErrorUserRate', name: '用户错误率' },
+            { key: 'effectedUserNum', name: '影响用户数' },
+            { key: 'uv', name: '访客数' },
+        ];
+        return paramsCg.map(val => {
+            return typeof params.data[val.key] != 'undefined' ? `${val.name} : ${params.data[val.key]} <br>` : ``;
+        }).join(' ')
+    }
 class Chart extends React.PureComponent {
     constructor(props) {
         super(props);
@@ -172,7 +222,12 @@ class Chart extends React.PureComponent {
         }
     }
     _mergeOptions() {
-        // this.defaultOptions.mergeDeep(this.updateOptions);
+        // 地图的tooltip是在这里进行mergeDeep的
+        if(this.props.chartId == 'map' && this.props.mapState ){
+            this.defaultOptions = this.defaultOptions.mergeDeep({
+                tooltip: {formatter: this.props.mapState == 'china' ? mapTooltipFormatter : mapTooltipFormatterForWorldMap }
+            })
+        }
         return globalOptions.mergeDeep(this.defaultOptions.mergeDeep(this.options)).toJS();
     }
     _setOption() {
