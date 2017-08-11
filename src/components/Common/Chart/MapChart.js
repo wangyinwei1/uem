@@ -1,59 +1,9 @@
 import React from 'react';
 import Chart from './Chart';
-// import { countryNameInCN,countryNameInEN } from './WorldCountryName'
 
 function randomData() {
     return Math.round(Math.random() * 1000);
 }
-// export function mapTooltipFormatter(params, ticket, callback) {
-//         if (isNaN(params.value)) {
-//             params.value = UEM_i18n.no_data[UEM_lang];
-//             return "";
-//         }
-//         if (!params.data.hasOwnProperty('operCount')) {
-//             params.data.operCount = "";
-//         }
-//         const paramsCg = [
-//             { key: "name", name: UEM_i18n.regions[UEM_lang] },
-//             { key: "apdex", name: UEM_i18n.apdex[UEM_lang] },
-//             // { key: "operCount", name: UEM_i18n.actions[UEM_lang] },
-//             { key: "errorCount", name: UEM_i18n.err_count[UEM_lang] },
-//             { key: "sessionCount", name: UEM_i18n.sessions[UEM_lang] },
-//             { key: 'avgRspTime', name: UEM_i18n.average_response_time[UEM_lang] },
-//             { key: 'occurErrorUserRate', name: UEM_i18n.user_error_rate[UEM_lang] },
-//             { key: 'effectedUserNum', name: UEM_i18n.impacted_users[UEM_lang] },
-//             { key: 'uv', name: UEM_i18n.uv[UEM_lang] },
-//         ];
-//         return paramsCg.map(val => {
-
-//             return typeof params.data[val.key] != 'undefined' ? `${val.name} : ${params.data[val.key]} <br>` : ``;
-//         }).join(' ')
-//     }
-
-// export function mapTooltipFormatterForWorldMap(params, ticket, callback) {
-//         if (isNaN(params.value)) {
-//             params.value = UEM_i18n.no_data[UEM_lang];
-//             return "";
-//         }
-//         for (let i in countryNameInEN) {
-//             if (countryNameInEN[i] == params.name) {
-//                 params.data.name = countryNameInCN[i]
-//             }
-//         }
-//         const paramsCg = [
-//             { key: "name", name: UEM_i18n.regions[UEM_lang] },
-//             { key: "apdex", name: UEM_i18n.apdex[UEM_lang] },
-//             { key: "errorCount", name: UEM_i18n.err_count[UEM_lang] },
-//             { key: "sessionCount", name: UEM_i18n.sessions[UEM_lang] },
-//             { key: 'avgRspTime', name: UEM_i18n.average_response_time[UEM_lang] },
-//             { key: 'occurErrorUserRate', name: UEM_i18n.user_error_rate[UEM_lang] },
-//             { key: 'effectedUserNum', name: UEM_i18n.impacted_users[UEM_lang] },
-//             { key: 'uv', name: UEM_i18n.uvs[UEM_lang] },
-//         ];
-//         return paramsCg.map(val => {
-//             return typeof params.data[val.key] != 'undefined' ? `${val.name} : ${params.data[val.key]} <br>` : ``;
-//         }).join(' ')
-//     }
 
 // 全局地图图表配置
 const defaultOptions = Immutable.fromJS({
@@ -118,6 +68,7 @@ const defaultOptions = Immutable.fromJS({
                 }
             },
             emphasis: {
+                show: false,
                 textStyle: {
                     color: '#fff'
                 }
