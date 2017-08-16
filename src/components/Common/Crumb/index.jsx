@@ -18,9 +18,13 @@ export default class Crumb extends React.PureComponent {
     constructor(props) {
         super(props);
     }
-    render() {
+
+
+   render() {
         return (
-            <div className={styles['crumb']}>{locale(this.crumbText[this.props.module])}</div>
+            <div>
+                <div className={styles['crumb']}>{locale(this.crumbText[this.props.module])}</div>
+            </div>
         );
     }
 }

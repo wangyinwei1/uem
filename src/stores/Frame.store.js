@@ -9,9 +9,11 @@ class FrameStore {
     @observable apdex = sessionStorage.getItem('UEM_apdex');
     @observable appId = sessionStorage.getItem('UEM_appId');
     @observable platform = sessionStorage.getItem('UEM_platform') || 'pc';
+    @observable appVersion = sessionStorage.getItem('UEM_appVersion') || '' ;
     @observable lang = localStorage.getItem('UEM_lang');
     @observable theme = getTheme();
     @observable timeType = getTimeType();
+    // @observable versions = [];
 
     constructor() {
     }
@@ -31,6 +33,10 @@ class FrameStore {
         timeType.endTime = payload.timeType.endTime;
         this.timeType = timeType;
         sessionStorage.setItem('UEM_timeType', JSON.stringify(timeType));
+    }
+    @action onChooseVersion = payload => {
+        this.appVersion = payload.version;
+        sessionStorage.setItem('UEM_appVersion', payload.version);
     }
 }
 

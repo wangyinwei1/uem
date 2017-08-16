@@ -4,8 +4,8 @@ import {
     LineChart
 } from '../../Common/Chart';
 import styles from './index.scss';
+// import './index.scss';
 
-// import styles from './index.scss';
 
 class ErrorTrend extends Component {
     constructor(props) {

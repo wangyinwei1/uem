@@ -7,6 +7,7 @@ import {
     AppTable
 } from '../';
 import styles from './index.scss';
+// import './index'
 
 export default class Apps extends React.Component {
     state = {

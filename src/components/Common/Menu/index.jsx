@@ -91,6 +91,13 @@ export default class Menu extends React.Component {
         $body.toggleClass('unexpand');
         $win.trigger('resize');
     }
+
+    setTheme(){
+        console.log('localStorage',localStorage.getItem('UEM_skin'));
+        localStorage.setItem('UEM_skin', localStorage.getItem('UEM_skin') && localStorage.getItem('UEM_skin') == 'blue' ? 'white' : 'blue');
+        document.getElementsByTagName("html")[0].className = localStorage.getItem('UEM_skin');
+
+    }
     render() {
         const { appId } = this.props;
         return (
@@ -120,6 +127,7 @@ export default class Menu extends React.Component {
                 {this.makeMenus(config.menus)}
                 <div className={styles['setting-other-wrap']}>
                     <div className={styles['setting-expand']}><i className='fa fa-fw fa-chevron-left' onClick={this.expand.bind(this)}></i></div>
+                    <div onClick={this.setTheme.bind(this)} className={styles['changeTheme']}> <i className='iconfont icon-xiugaishanchuyibiaopankong'></i>换肤</div>
                     <NavLink exact onClick={this.checkApp.bind(this)} activeClassName={styles['current']} replace to='/setting'><i className='iconfont icon-xiugaishanchuyibiaopankong'></i>{locale('设置')}</NavLink>
                     <a href='./src/help/index.html' target='_blank'><i className='iconfont icon-bangzhu'></i>{locale('帮助')}</a>
                 </div>

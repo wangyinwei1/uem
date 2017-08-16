@@ -142,9 +142,9 @@ export function getDeploy(type) {
 export function getTheme() {
     const defaultValue = 'blue';
     try {
-        return sessionStorage.getItem('UEM_theme') === null
+        return sessionStorage.getItem('UEM_skin') === null
             ? defaultValue
-            : sessionStorage.getItem('UEM_theme');
+            : sessionStorage.getItem('UEM_skin');
     } catch (error) {
         throw error;
     }

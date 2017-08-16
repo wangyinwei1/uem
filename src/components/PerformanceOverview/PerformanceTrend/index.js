@@ -4,6 +4,7 @@ import {
     LineChart
 } from '../../Common/Chart';
 import styles from './index.scss';
+import basicConfig from './basicConfig';
 
 // import styles from './index.scss';
 
@@ -17,41 +18,21 @@ class PerformanceTrend extends Component {
     }
     render() {
         let trend = this.props.performanceTrend;
-        let yAxisMax1, yAxisMax2;
-        if (trend.clickNum && Math.max.apply(null, trend.clickNum.map((item) => item.value)) < 3) {
-            yAxisMax1 = 3;
-        } else { }
+        let platform = this.props.platform;
+        // let yAxisMax1, yAxisMax2;
+        // if (trend.clickNum && Math.max.apply(null, trend.clickNum.map((item) => item.value)) < 3) {
+        //     yAxisMax1 = 3;
+        // } else { }
+        // if (trend.avgRspTime && Math.max.apply(null, trend.avgRspTime.map((item) => item.value)) < 1) {
+        //     yAxisMax2 = 1;
+        // } else { }
 
-        if (trend.avgRspTime && Math.max.apply(null, trend.avgRspTime.map((item) => item.value)) < 1) {
-            yAxisMax2 = 1;
-        } else { }
-
-        // 性能趋势的配置
-        let options = Immutable.fromJS({
-            title: {
-                text: locale('性能趋势图'),
-            },
+        // pc性能趋势的配置
+        let options = basicConfig.mergeDeep({
             legend: {
-                itemWidth: 8,
-                itemHeight: 8,
-                data: [{
-                    name: locale('浏览量PV'),
-                    icon: 'circle'
-                }, {
-                    name: locale('点击数'),
-                    icon: 'circle'
-                }, {
-                    name: locale('响应时间'),
-                    icon: 'circle'
-                }],
-                top: 15,
-                right: 15,
-                textStyle: {
-                    color: '#fff'
-                }
+                data: [{name:locale('浏览量PV')},{name: locale('点击数')},{name: locale('响应时间')}]
             },
             xAxis: [{
-                type: 'category',
                 data: trend.avgRspTime && trend.avgRspTime.map((val, i) => {
                     let selectTime = trend.avgRspTime[i].endTime - trend.avgRspTime[i].startTime;
                     if (selectTime <= 1800000) {
@@ -62,42 +43,10 @@ class PerformanceTrend extends Component {
                     }
                 })
             }],
-            yAxis: [{
-                minInterval: 1,
-            }],
-            // xAxis: {
-            //     type: 'category',
-            //     data: _.range(1, 25),
-            //     axisLine: {
-            //         show: false
-            //     },
-            //     axisTick: {
-            //         show: false
-            //     }
-            // },
-            color: ['#ffeb0b', '#66dc6a', '#00c0ff'],
             series: [
-                {
-                    name: locale('浏览量PV'),
-                    type: 'line',
-                    symbol: 'circle',
-                    showSymbol: false,
-                    data: trend.pv
-                },
-                {
-                    name: locale('点击数'),
-                    type: 'line',
-                    symbol: 'circle',
-                    showSymbol: false,
-                    data: trend.clickNum
-                },
-                {
-                    name: locale('响应时间'),
-                    type: 'line',
-                    symbol: 'circle',
-                    showSymbol: false,
-                    data: trend.avgRspTime
-                }
+                {name: locale('浏览量PV'),data: trend.pv},
+                {name: locale('点击数'),data: trend.clickNum},
+                {name: locale('响应时间'), data: trend.avgRspTime}
             ]
         })
         // apdex的配置
@@ -197,24 +146,56 @@ class PerformanceTrend extends Component {
             // backgroundColor: 'rgba(0,0,0,0.2)',
         })
 
-
+        // mobile性能趋势的配置
+        let mobileOptions = basicConfig.mergeDeep({
+            legend: {
+                data: [{name:locale('平均UI响应时间')},{name: locale('平均HTTP响应时间')},{name: locale('吞吐率')}]
+            },
+            xAxis: [{
+                data: []
+                // trend.avgRspTime && trend.avgRspTime.map((val, i) => {
+                //     let selectTime = trend.avgRspTime[i].endTime - trend.avgRspTime[i].startTime;
+                //     if (selectTime <= 1800000) {
+                //         //选择一天
+                //         return moment(val.startTime).format("HH:mm");
+                //     } else {
+                //         return moment(val.startTime).format("MM-DD HH:mm");
+                //     }
+                // })
+            }],
+            series: [
+                {name: locale('平均UI响应时间'),data:[]},
+                {name: locale('平均HTTP响应时间'),data: []},
+                {name: locale('吞吐率'), data: []}
+            ]
+        })
+        
         return (
             <div>
-                <Row>
-                    <Col className={styles['performance-trend']} style={{ width: sessionStorage.UEM_platform !== 'pc' ? '100%' : '60%' }}>
-                        <div className={cls('tile-head')}>{locale('性能趋势')}</div>
-                        <div className={cls('tile-body')}>
-                            <LineChart group="performance" chartId="PerformanceTrend" options={options} />
-                        </div>
-                    </Col>
-                    {sessionStorage.UEM_platform == 'pc' && <Col className={styles['apdex-chart']}>
-                        <div className={cls('tile-head')}>{locale('Apdex 指数')}</div>
-                        <div className={cls('tile-body')}>
-                            <LineChart group="performance" chartId="apedxTrend" options={apdexOptions} />
-                        </div>
-                    </Col>}
-                </Row>
-
+                {platform == 'pc' ? 
+                    <Row>  
+                        <Col className={styles['performance-trend']} style={{ width:'60%'}}>
+                            <div className={cls('tile-head')}>{locale('性能趋势')}</div>
+                            <div className={cls('tile-body')}>
+                                <LineChart group="performance" chartId="PerformanceTrend" options={options} />
+                            </div>
+                        </Col>
+                        <Col className={styles['apdex-chart']}>
+                            <div className={cls('tile-head')}>{locale('Apdex 指数')}</div>
+                            <div className={cls('tile-body')}>
+                                <LineChart group="performance" chartId="apedxTrend" options={apdexOptions} />
+                            </div>
+                        </Col> 
+                    </Row> : 
+                    <Row>
+                        <Col className={styles['performance-trend']} style={{ width: '100%'}}>
+                            <div className={cls('tile-head')}>{locale('性能趋势')}</div>
+                            <div className={cls('tile-body')}>
+                                <LineChart group="performance" chartId="PerformanceTrend" options={mobileOptions} />
+                            </div>
+                        </Col>
+                    </Row>
+                }
             </div>
         );
     }

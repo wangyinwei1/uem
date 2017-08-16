@@ -31,10 +31,12 @@ class Frame extends React.Component {
             timeType,
             onChooseApp,
             onChoosePlatform,
-            onChooseTimeType
+            onChooseTimeType,
+            onChooseVersion
         } = this.props.frameStore;
         const { appListMenu } = this.props.appListStore;
         const { panelList } = this.props.sidePanelStore;
+        const { versionSettings, getVersionSettings } = this.props.settingStore;
         return (
             <div id="Frame">
                 <Menu
@@ -52,6 +54,10 @@ class Frame extends React.Component {
                         module={module}
                         timeType={timeType}
                         chooseTimeType={onChooseTimeType}
+                        versionSettings={versionSettings}
+                        getVersionSettings={getVersionSettings}
+                        onChooseVersion={onChooseVersion}
+                        platform={platform}
                     />
                     <div className="content" key={`${appId}_${platform}_${JSON.stringify(timeType)}`}>
                         {this.props.children}

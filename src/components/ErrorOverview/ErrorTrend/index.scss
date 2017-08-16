@@ -4,16 +4,24 @@
 //     border-left: 20px solid transparent;
 //     display: inline-block;
 // }
-
-.error-trend {
-    display: inline-block;
-    width: 100%;
-    :global {
-        .tile-body {
-            padding: 0;
-        }
-        .chart {
-            height: 210px;
+// 测试下换肤功能 错误概况->错误趋势
+@import '../../../assets/styles/mixin';
+$var_default: ( color1:opacity);
+$var_white: ( color1: #fff);
+@mixin getTheme($map) {
+    .error-trend {
+        background-color: map-get($map,color1);
+        display: inline-block;
+            width: 100%;
+            // background: map-get($map, color1); 
+            // :global {
+            .tile-body {
+                padding: 0;
+            }
+            .chart {
+                height: 210px;
+            }
         }
     }
-}
+
+@include setTheme($var_default, $var_white);

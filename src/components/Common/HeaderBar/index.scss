@@ -10,3 +10,33 @@
 .date-picker {
     margin-bottom: 10px;
 }
+
+.version-picker {
+    margin-bottom: 10px;
+    min-width: 120px;
+    height: 30px;
+    display: inline-block;
+    line-height: 30px;
+    border-radius: 0px;
+    margin-left: 20px;
+    font-size: 14px;
+    vertical-align: -webkit-baseline-middle;
+    :global {
+        .ant-select-selection {
+            border: none;
+            background-color: #1d4676;
+            color: #5E8BBD;
+        }
+        .ant-select-selection--single {
+            height: 30px;
+            position: relative;
+            // cursor: pointer;
+            line-height: 30px;
+            border-radius: 0px;
+        }    
+        .ant-select-selection__placeholder {
+            color: #5e8bbd;
+            margin-top: -8px;
+        }
+    }
+}

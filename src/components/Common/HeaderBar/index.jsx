@@ -1,9 +1,10 @@
 import React from 'react';
 import styles from './index.scss';
-
+import { Select } from 'antd';
 import DatePicker from "../../Public/components/MomentPicker/DatePicker";
 // import DateContainer from "../../Public/DatePicker/DateContainer";
 
+const Option = Select.Option;
 export default class HeaderBar extends React.PureComponent {
     datePickerDisplay = {
         app_list: false,
@@ -29,7 +30,7 @@ export default class HeaderBar extends React.PureComponent {
     ]
     constructor(props) {
         super(props);
-
+        this.props.getVersionSettings();
         this.takeDefaultValue = this.takeDefaultValue.bind(this);
     }
     handleSelectTime(obj) {
@@ -83,8 +84,22 @@ export default class HeaderBar extends React.PureComponent {
                 return `${moment().subtract(startTime.type, startTime.units).format('YYYY-MM-DD')} ~ ${moment().subtract(endTime.type, endTime.units).format('YYYY-MM-DD')}`
         }
     }
+    // 切换版本，存在sessionStorage里
+    handleChange(value){
+        this.props.onChooseVersion({
+            version: value
+        });
+    }
     render() {
-        const { module } = this.props;
+        // const platform = sessionStorage.getItem('UEM_platform');
+        const { module,versionSettings } = this.props;
+        let versions = [];
+        if(versionSettings.length > 0){
+            versionSettings.map(item => {
+                versions.push(item.version)
+            })
+        }
+        console.log('versionSettings',versionSettings,this.props.platform);
         return (
             <div className={styles['header-bar']}>
                 <DatePicker
@@ -96,6 +111,18 @@ export default class HeaderBar extends React.PureComponent {
                         'dn': !this.datePickerDisplay[module]
                     })}
                 />
+                <Select
+                    onChange={::this.handleChange}
+                    className={cls(styles['version-picker'], {
+                        'dn': !this.datePickerDisplay[module] || this.props.platform == 'pc'
+                    })}
+                    placeholder="所有版本"
+                >
+                {versions.map(item => {
+                    return <Option value={item}>{item}</Option>
+                })}
+                <Option value={'test'}>Test</Option>
+                </Select>
             </div>
         );
     }

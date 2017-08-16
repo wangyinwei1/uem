@@ -42,6 +42,7 @@ export default class PerformanceOverview extends React.Component {
             onGetMapData
         } = this.props.performanceOverviewStore;
         const startTime = this.props.frameStore.timeType;
+        const { platform } = this.props.frameStore;
         const { loading } = this.state;
         return (
             <div id="PerformanceOverview" >
@@ -50,11 +51,13 @@ export default class PerformanceOverview extends React.Component {
                         keyIndicator={keyIndicator}
                         getKeyIndicator={onGetKeyIndicator}
                         startTime = {startTime}
+                        platform={platform}
                     />
                     <PerformanceTrend
                         performanceTrend={performanceTrend}
                         getPerformanceTrend={onGetPerformanceTrend}
                         startTime = {startTime}
+                        platform={platform}
                     />
                     <PerformanceMapChart
                         mapData={mapData}
@@ -62,6 +65,7 @@ export default class PerformanceOverview extends React.Component {
                         startTime = {startTime}
                         selectStatus={this.selectStatus.bind(this)}
                         mapStatus={this.mapStatus}
+                        platform={platform}
                     />
                     <PerformanceModalChart 
                         mapData={mapData}

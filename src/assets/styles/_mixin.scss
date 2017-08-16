@@ -4,3 +4,22 @@
     white-space: nowrap;
     word-wrap: normal;
 }
+
+@mixin setTheme($var_default, $var_white){
+    $theme_default: (blue, $var_default);
+    $theme_white: (white, $var_white);
+    @each $theme, $var in $theme_default, $theme_white {
+        @if $theme == blue {
+            // :global(.#{$theme}) {
+                :global(.blue) {
+                @include getTheme($var);
+            }
+        }
+        @else {
+            // :global(.#{$theme}) {
+                :global(.white) {
+                @include getTheme($var);
+            }
+        }
+    }
+}

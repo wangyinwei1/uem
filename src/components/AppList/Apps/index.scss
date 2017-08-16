@@ -1,5 +1,12 @@
-.apps {
+
+// @import "../../../assets/styles/mixin";
+// $var_default: ( color1: #0C5087);
+// $var_white: ( color1: red);
+// @mixin getTheme($map){
+    .apps {
     overflow: hidden;
     padding-left: 8px;
     height: 600px;
-}
+    }
+// }
+// @include setTheme($var_default, $var_white);

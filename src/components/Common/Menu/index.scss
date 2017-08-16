@@ -155,6 +155,14 @@
     position: absolute;
     bottom: 20px;
     width: 100%;
+    .changeTheme{
+        background: #183a61; 
+        height: 25px;
+        font-size:15px;
+        color: #74afd9;
+        padding-left: 40px;
+        margin-bottom: 6px;
+    }
     .setting-expand {
         margin-bottom: 25px;
         height: 1px;
@@ -175,6 +183,7 @@
                 cursor: pointer;
             }
         }
+
     }
 }
 
@@ -210,6 +219,7 @@
             transform: rotate(180deg);
         }
     }
+
 }
 
 @media screen and (max-height: 720px) {

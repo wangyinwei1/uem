@@ -16,6 +16,17 @@ const indicatorEnum = [{
     key: 'avgClientTime'
 }];
 
+const indicatorEnumMobile = [{
+        name: '平均UI响应时间',
+        key: ''
+    }, {
+        name: '平均HTTP响应时间',
+        key: ''
+    }, {
+        name: '吞吐率',
+        key: ''
+}];
+
 class KeyIndicator extends Component {
     constructor(props) {
         super(props);
@@ -28,7 +39,7 @@ class KeyIndicator extends Component {
     }
 
     render() {
-        
+        let platform = this.props.platform;
         let keyIndicator = this.props.keyIndicator;
 
         return (
@@ -36,12 +47,22 @@ class KeyIndicator extends Component {
                 <div className={cls('tile-head')}>{locale('关键指标')}</div>
                 <div className={cls('tile-body')}>
                     <ul className={styles['list']}>
-                        {indicatorEnum.map(item => (
-                            <li key={item.name} className={styles['item']}>
-                                <div className={styles['key']}>{locale(item.name)}</div>
-                                <div className={cls('toe', styles['value'])}>{_.isNull(keyIndicator[item.key]) ? '--' : keyIndicator[item.key]}</div>
-                            </li>
-                        ))}
+                        { platform == 'pc' ?
+                            indicatorEnum.map(item => (
+                                <li key={item.name} className={styles['item']}>
+                                    <div className={styles['key']}>{locale(item.name)}</div>
+                                    <div className={cls('toe', styles['value'])}>{_.isNull(keyIndicator[item.key]) ? '--' : keyIndicator[item.key]}</div>
+                                </li>
+                            )) :
+                            indicatorEnumMobile.map(item => (
+                                <li key={item.name} className={styles['item-mobile']}>
+                                    <div className={styles['key']}>{locale(item.name)}</div>
+                                    <div className={cls('toe', styles['value'])}>{_.isNull(keyIndicator[item.key]) ? '--' : keyIndicator[item.key]}</div>
+                                </li>
+                            ))
+                        
+                        }
+
                     </ul>
                 </div>
             </div>

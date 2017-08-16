@@ -298,5 +298,8 @@
     "undefined": "undefined",
     "PV": "PV",
     "DNS": "DNS",
-    "参数 sessioId 未定义":"Parameter sessioId not defined"
+    "参数 sessioId 未定义":"参数 sessioId 未定义",
+    "平均UI响应时间": "平均UI响应时间",
+    "平均HTTP响应时间": "平均HTTP响应时间"
+
 }
