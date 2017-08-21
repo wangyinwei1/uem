@@ -49,7 +49,7 @@ class PerformanceTrend extends Component {
                 {name: locale('响应时间'), data: trend.avgRspTime}
             ]
         })
-        // apdex的配置
+        // pc的apdex的配置
         let apdexOptions = Immutable.fromJS({
             title: { text: '' },
             legend: {

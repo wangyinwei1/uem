@@ -119,9 +119,8 @@ export default class HeaderBar extends React.PureComponent {
                     placeholder="所有版本"
                 >
                 {versions.map(item => {
-                    return <Option value={item}>{item}</Option>
+                    return <Option key={item} value={item}>{item}</Option>
                 })}
-                <Option value={'test'}>Test</Option>
                 </Select>
             </div>
         );

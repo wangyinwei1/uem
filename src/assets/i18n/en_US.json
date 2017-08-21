@@ -300,7 +300,15 @@
     "DNS": "DNS",
     "参数 sessioId 未定义":"Parameter sessioId not defined",
     "平均UI响应时间": "Average UI response time",
-    "平均HTTP响应时间": "Average HTTP response time"
+    "平均HTTP响应时间": "Average HTTP response time",
+    "原生界面响应时间阈值":"Native interface response time threshold",
+    "H5界面响应时间阈值": "H5 interface response time threshold",
+    "是否保存修改？": "Do you want to save the changes?",
+    "不保存": "Do not save",
+    "启动次数": "Number of application starts",
+    "独立设备数": "Independent number of devices"
+
+
 
 
 

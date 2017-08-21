@@ -6,9 +6,6 @@ const indicatorEnum = [{
     name: '错误数',
     key: 'errorCount'
 }, {
-    name: '错误页面数',
-    key: 'wrongPageNum'
-}, {
     name: '影响用户数', 
     key: 'effectedUserNum'
 }, {

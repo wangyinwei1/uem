@@ -16,7 +16,8 @@ class ParamSettingMobile extends Component {
             reportPeriod: null,
             urls: [],
             apdex: null,
-            selectedRowKeys: []
+            selectedRowKeys: [],
+            inputValue: 1000
         }
     }
     componentWillReceiveProps(nextProps) {
@@ -53,11 +54,24 @@ class ParamSettingMobile extends Component {
             }
         })
     }
-
+    onPressEnter(e){
+        console.log('设置阈值的方法还需要完善！')
+        this.setState({
+            inputValue: e
+        })
+    }
     render() {
         const { reportPeriod } = this.state;
         return (
             <div className={styles['param-container']}>
+                <div style={{marginBottom:30}}> 
+                        <span className={styles.inputlabel}>{locale('原生界面响应时间阈值')}:</span>
+                        <Input type='text' ref='apdexInput' defaultValue={this.state.inputValue} validate={{positiveInt: true,require: true}} onPressEnter={::this.onPressEnter}  />&nbsp;&nbsp;&nbsp;ms
+                </div> 
+                <div> 
+                        <span className={styles.inputlabel}>{locale('H5界面响应时间阈值')}:</span>
+                        <Input type='text' ref='apdexInput' defaultValue={this.state.inputValue} validate={{positiveInt: true,require: true}} onPressEnter={::this.onPressEnter}  />&nbsp;&nbsp;&nbsp;ms
+                </div>  
                 <div className={styles.chunk}>
                     <span className={styles.label}>{locale('数据上报周期')}: </span>
                     <div className={styles.content}>
@@ -70,6 +84,7 @@ class ParamSettingMobile extends Component {
                         <button className={styles['save-setting-btn']} style={{ marginTop: '70px' }} onClick={this.saveSetting}>{locale('保存设置')}</button>
                     </div>
                 </div>
+                
             </div>
         )
     }

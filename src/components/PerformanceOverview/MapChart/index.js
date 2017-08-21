@@ -17,7 +17,7 @@ class PerformanceMapChart extends Component {
         super(props);
         this.state = {
             activeMap: 'china',
-            activePillar: 'avgRspTime',
+            activePillar: sessionStorage.getItem('UEM_platform')=='pc' ?'avgRspTime':'avgUIRspTime',
             activeProvince: undefined,
             isSelectingCity: true
         };
@@ -27,7 +27,7 @@ class PerformanceMapChart extends Component {
         const { getMapData } = this.props;
         getMapData({
             areaType: 'province',
-            metrics: JSON.stringify(['avgRspTime'])
+            metrics: sessionStorage.getItem('UEM_platform')=='pc' ? JSON.stringify(['avgRspTime']):JSON.stringify(['avgUIRspTime'])
         });
     }
     changeMap(map) {
@@ -66,7 +66,7 @@ class PerformanceMapChart extends Component {
             activePillar: e.target.value
         }, () => this.props.getMapData({
             areaType: this.state.activeMap == 'china' ? 'province' : 'country',
-            metrics: e.target.value == 'avgRspTime' ? JSON.stringify(['avgRspTime']) : JSON.stringify(['apdex']),
+            metrics: JSON.stringify([e.target.value]),
             province: this.state.activeProvince
         }));
         this.props.selectStatus(e.target.value,this.state.activeMap);
@@ -94,6 +94,23 @@ class PerformanceMapChart extends Component {
         } else {
             console.log('外国和台湾省的次级地区暂无法查看！')
         }
+    }
+
+    // 选择pc端还是移动端的radioGroup
+    chooseRadioGroupForPlatform(){
+        let platform = sessionStorage.getItem('UEM_platform');
+        return (
+            platform == 'pc' ?
+                <RadioGroup className={cls('radio')} onChange={this.handleRadioSelect.bind(this)} value={this.state.activePillar}>
+                    <Radio value={'avgRspTime'}>{locale('平均响应时间')}</Radio>
+                    <Radio value={'apdex'}>Apdex</Radio>
+                </RadioGroup>:
+                <RadioGroup className={cls('radio')} onChange={this.handleRadioSelect.bind(this)} value={this.state.activePillar}>
+                    <Radio value={'avgUIRspTime'}>{locale('平均UI响应时间')}</Radio>
+                    <Radio value={'avgHttpRspTime'}>{locale('平均HTTP响应时间')}</Radio>
+                </RadioGroup>
+                    
+        )
     }
 
     render() {
@@ -177,12 +194,17 @@ class PerformanceMapChart extends Component {
                             'not-active': activeMap === 'world' ? false : true
                         })} onClick={this.changeMap.bind(this, 'world')}>{locale('世界')}</div>
                     </div>
-
-                    <RadioGroup className={cls('radio')} onChange={this.handleRadioSelect.bind(this)} value={this.state.activePillar}>
-                        <Radio value={'avgRspTime'}>{locale('平均响应时间')}</Radio>
-                        <Radio value={'apdex'}>Apdex</Radio>
-                    </RadioGroup>
-
+                    {/* {sessionStorage.getItem('UEM_platform') == 'pc' ?
+                        <RadioGroup className={cls('radio')} onChange={this.handleRadioSelect.bind(this)} value={this.state.activePillar}>
+                            <Radio value={'avgRspTime'}>{locale('平均响应时间')}</Radio>
+                            <Radio value={'apdex'}>Apdex</Radio>
+                        </RadioGroup>:
+                        <RadioGroup className={cls('radio')} onChange={this.handleRadioSelect.bind(this)} value={this.state.activePillar}>
+                            <Radio value={'avgUIRspTime'}>{locale('平均UI响应时间')}</Radio>
+                            <Radio value={'avgHttpRspTime'}>{locale('平均HTTP响应时间')}</Radio>
+                        </RadioGroup>
+                    } */}
+                    {this.chooseRadioGroupForPlatform()}
                     <MapChart
                         mapState={this.state.activeMap}
                         chartId="map"  className={styles['map-chart']}

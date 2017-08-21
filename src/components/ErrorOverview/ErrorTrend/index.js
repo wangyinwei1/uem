@@ -4,6 +4,7 @@ import {
     LineChart
 } from '../../Common/Chart';
 import styles from './index.scss';
+import basicConfig from './basicConfig';
 // import './index.scss';
 
 
@@ -27,31 +28,17 @@ class ErrorTrend extends Component {
             yAxisMax2 = 1;
         }
         // 性能趋势的配置
-        let options = Immutable.fromJS({
-            title: {
-                text: locale('错误趋势图'),
-            },
+        let optionsPC = basicConfig.mergeDeep({
             legend: {
-                itemWidth: 8,
-                itemHeight: 8,
                 data: [{
-                    name: locale('浏览量PV'),
-                    icon: 'circle'
+                    name: locale('浏览量PV')
                 }, {
-                    name: locale('点击数'),
-                    icon: 'circle'
+                    name: locale('点击数')
                 }, {
-                    name: locale('出错次数'),
-                    icon: 'circle'
+                    name: locale('出错次数')
                 }],
-                top: 15,
-                right: 15,
-                textStyle: {
-                    color: '#fff'
-                }
             },
             xAxis: [{
-                type: 'category',
                 data: trend.errorCount && trend.errorCount.map((val, i) => {
                     let selectTime = trend.errorCount[i].endTime - trend.errorCount[i].startTime;
                     if (selectTime <= 1800000) {
@@ -62,35 +49,53 @@ class ErrorTrend extends Component {
                     }
                 })
             }],
-            yAxis: [{
-                minInterval: 1,
-            }],
-            color: ['#ffeb0b', '#66dc6a', '#00c0ff'],
             series: [
                 {
                     name: locale('浏览量PV'),
-                    type: 'line',
-                    symbol: 'circle',
-                    showSymbol: false,
                     data: trend.pv
                 },
                 {
                     name: locale('点击数'),
-                    type: 'line',
-                    symbol: 'circle',
-                    showSymbol: false,
                     data: trend.clickNum
                 },
                 {
                     name: locale('出错次数'),
-                    type: 'line',
-                    symbol: 'circle',
-                    showSymbol: false,
                     data: trend.errorCount
                 }
             ]
         })
 
+        let optionsMobile = basicConfig.mergeDeep({
+            legend: {
+                data: [{
+                    name: locale('错误数')
+                }, {
+                    name: locale('点击数')
+                }],
+            },
+            xAxis: [{
+                data: trend.errorCount && trend.errorCount.map((val, i) => {
+                    let selectTime = trend.errorCount[i].endTime - trend.errorCount[i].startTime;
+                    if (selectTime <= 1800000) {
+                        //选择一天
+                        return moment(val.startTime).format("HH:mm");
+                    } else {
+                        return moment(val.startTime).format("MM-DD HH:mm");
+                    }
+                })
+            }],
+            series: [
+                {
+                    name: locale('错误数'),
+                    data: trend.errorCount
+                },
+                {
+                    name: locale('点击数'),
+                    data: trend.clickNum
+                }
+            ]
+        })
+        let options = sessionStorage.getItem('UEM_platfrom') == 'pc' ? optionsPC : optionsMobile;
         return (
             <div>
                 <Row>

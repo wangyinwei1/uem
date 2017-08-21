@@ -2,20 +2,6 @@ import React, { Component } from 'react';
 import { Tooltip, Progress } from 'antd';
 import styles from './index.scss';
 
-const dataEnum = [{
-    name: '访问用户',
-    key: 'uv'
-}, {
-    name: '操作数/分',
-    key: 'operCountPerMin'
-}, {
-    name: '错误数/操作数', // ?
-    key: 'errorCountPerOperCount'
-}, {
-    name: '平均响应时间',
-    key: 'avgRspTime'
-}];
-
 class CruxMobile extends Component {
     constructor(props) {
         super(props);
@@ -60,7 +46,6 @@ class CruxMobile extends Component {
         $('.ant-progress-text').after(`<span class="ant-progress-text-hack">${dashboardText}</span>`);
     }
     mobileIndicatorList() {
-
         let realTimeData = this.props.realTimeData;
         let score = [
             { key: '响应时间', value: realTimeData.avgRspTime },
@@ -105,16 +90,43 @@ class CruxMobile extends Component {
             </div>
         )
     }
-    render() {
-        // const { realTimeData = {}, apdex: apdexT = 2000 } = this.props;
-        // const T = apdexT / 1000;
-        // const apdex = realTimeData['apdex'];
-        // this.apdex = apdex;
+    render() {   
+        // const dataEnum = [{
+        //     name: '访问用户',
+        //     key: 'uv'
+        // }, {
+        //     name: '操作数/分',
+        //     key: 'operCountPerMin'
+        // }, {
+        //     name: '错误数/操作数', // ?
+        //     key: 'errorCountPerOperCount'
+        // }, {
+        //     name: '平均响应时间',
+        //     key: 'avgRspTime'
+        // }];
+        const dataEnum = [{
+            name: '启动次数',
+            key: ''
+        }, {
+            name: '点击数',
+            key: ''
+        }, {
+            name: '平均UI响应时时间', 
+            key: ''
+        }, {
+            name: '平均HTTP响应时间',
+            key: ''
+        },{
+            name: '平均访问时长',
+            key: ''
+        },{
+            name: '用户错误率',
+            key: ''
+        }];
         const { realTimeData = {} } = this.props;
         let totalScore = realTimeData['totalScore'];
         // debugger
         totalScore = totalScore == undefined  ? null : Number((totalScore.split('%')[0].split(',').join('')) * 0.01)
-
         const dashboardText = totalScore === null
             ? '暂无数据'
             : totalScore === 0
