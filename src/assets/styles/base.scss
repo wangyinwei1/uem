@@ -2,6 +2,7 @@
 @import "antd";
 @import "mixin";
 @import "tool";
+@import  "./_mixin";
 
 /*
 ::-webkit-scrollbar 滚动条整体部分
@@ -12,76 +13,80 @@
 ::-webkit-scrollbar-corner 边角，即两个滚动条的交汇处
 ::-webkit-resizer 两个滚动条的交汇处上用于通过拖动调整元素大小的小控件
 */
-
-::-webkit-scrollbar {
-    width: 10px;
-    height: 10px;
-}
-
-::-webkit-scrollbar-corner {
-    background-color: #1E3E64;
-}
-
-::-webkit-scrollbar-thumb {
-    border: 3px solid #1E3E64;
-    border-radius: 5px;
-    background: #2378C3;
-    background-clip: content-box;
-}
-
-::-webkit-scrollbar-track {
-    background: #1E3E64;
-}
-
-
-/* 选择区域 */
-::selection {
-    background: #2DB7F5;
-    color: #FFFFFF;
-}
-
-/* 页面主体 */
-body {
-    // overflow-x: hidden;
-    min-width: 1200px;
-    background-color: #245893;
-    font-size: 12px;
-    font-family: "微软雅黑", "Helvetica Neue", Helvetica, STHeiTi, Arial, sans-serif;
-}
-
-.react {
-    box-sizing: border-box;
-    padding-top: 55px;
-    width: 100%;
-    height: 100%;
-    color: #FFFFFF;
-}
-
-.container {
-    margin-left: 160px;
-    padding-bottom: 40px;
-    .content {
-        padding: 0 20px;
+$var_default: ( color1:#245893);
+$var_white: ( color1: #edf2f7);
+@mixin getTheme($map){
+    ::-webkit-scrollbar {
+        width: 10px;
+        height: 10px;
     }
-}
-
-.unexpand {
+    
+    ::-webkit-scrollbar-corner {
+        background-color: #1E3E64;
+    }
+    
+    ::-webkit-scrollbar-thumb {
+        border: 3px solid #1E3E64;
+        border-radius: 5px;
+        background: #2378C3;
+        background-clip: content-box;
+    }
+    
+    ::-webkit-scrollbar-track {
+        background: #1E3E64;
+    }
+    
+    
+    /* 选择区域 */
+    ::selection {
+        background: #2DB7F5;
+        color: #FFFFFF;
+    }
+    
+    /* 页面主体 */
+    body {
+        // overflow-x: hidden;
+        min-width: 1200px;
+        background-color: map-get($map,color1);
+        font-size: 12px;
+        font-family: "微软雅黑", "Helvetica Neue", Helvetica, STHeiTi, Arial, sans-serif;
+    }
+    
+    .react {
+        box-sizing: border-box;
+        padding-top: 55px;
+        width: 100%;
+        height: 100%;
+        color: #FFFFFF;
+    }
+    
     .container {
-        margin-left: 50px;
+        margin-left: 160px;
+        padding-bottom: 40px;
+        .content {
+            padding: 0 20px;
+        }
+    }
+    
+    .unexpand {
+        .container {
+            margin-left: 50px;
+        }
+    }
+    
+    #background {
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: -10;
+    }
+    
+    @media screen and (max-width: 1200px) {
+        .container {
+            margin-left: 50px;
+        }
     }
 }
-
-#background {
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    z-index: -10;
-}
-
-@media screen and (max-width: 1200px) {
-    .container {
-        margin-left: 50px;
-    }
-}
+@include setTheme($var_default, $var_white)

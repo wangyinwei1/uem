@@ -4,7 +4,8 @@ import { useStrict } from 'mobx';
 import { message } from 'antd';
 
 import { AppContainer } from 'react-hot-loader';
-import App from './App'
+import App from './App';
+import echartsColor from './assets/styles/echartsColors'
 
 // 样式
 import './assets/styles/fontawesome.css';
@@ -35,6 +36,13 @@ if (true) {
     localStorage.setItem('UEM_skin', theme)
     localStorage.setItem('UEM_lang', language);
     window.colorOpacity = 0.3;
+    // echarts的换肤方法
+    window.changeEchartTheme = (name) => {
+        if(!echartsColor[name]){
+           throw `没有找到相对应的颜色变量 ···  请在theme 中设置对应 的 ${name} 颜色字段`;
+        }
+        return echartsColor[name][localStorage.getItem('UEM_skin')];
+    }
 }
 
 const render = (Component) => {

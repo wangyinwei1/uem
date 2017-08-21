@@ -1,14 +1,19 @@
+@import './_mixin';
 // i.fa,
 // i.iconfont {
 //     vertical-align: middle;
 // }
 
-// 按钮
+$var_default: (color1:#1681C4,color2: #10335B, color3: #ffffff,color4: rgba(0, 0, 0, .2), color5: none);
+$var_white: (color1: #4082e6,color2:#ffffff,color3: #6c7480,color4: #fff, color5: 1px solid #e4e7ec);
+
+@mixin getTheme($map){
+    // 按钮
 .btn {
     display: inline-block;
     padding: 0 20px;
     border-radius: 2px;
-    background-color: #1681C4;
+    background-color: map-get($map,color1);
     color: #FFFFFF;
     cursor: pointer;
     transition: .2s;
@@ -45,16 +50,18 @@
 .tile-head {
     padding: 0 20px;
     height: 40px;
-    background-color: #10335B;
-    color: #FFFFFF;
+    background-color: map-get($map,color2);
+    color: map-get($map,color3);
     font-size: 13px;
     line-height: 40px;
+    border: map-get($map, color5);
 }
 
 .tile-body {
     margin-bottom: 20px;
     padding: 15px 20px;
-    background-color: rgba(0, 0, 0, .2);
+    background-color: map-get($map,color4);
+    border:map-get($map, color5);
 }
 
 // 搜索框
@@ -70,3 +77,5 @@
     right: 2%;
     z-index: 9;
 }
+}
+@include setTheme($var_default,$var_white);
