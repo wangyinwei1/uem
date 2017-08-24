@@ -1,8 +1,16 @@
-.crumb {
-    box-sizing: border-box;
-    padding: 0 20px;
-    height: 40px;
-    border-bottom: 1px solid transparent;
-    font-size: 15px;
-    line-height: 40px;
+@import '../../../assets/styles/_mixin';
+$var_default: (color1: #fff);
+$var_white: (color1: #6c7480);
+
+@mixin getTheme($map){
+    .crumb {
+        box-sizing: border-box;
+        padding: 0 20px;
+        height: 40px;
+        border-bottom: 1px solid transparent;
+        font-size: 15px;
+        line-height: 40px;
+        color: map-get($map,color1);
+    }
 }
+@include setTheme($var_default, $var_white);

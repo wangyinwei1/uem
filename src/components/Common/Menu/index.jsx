@@ -1,13 +1,19 @@
 import React from 'react';
 import { NavLink, Link } from 'react-router-dom';
+import { observer, inject } from 'mobx-react';
 import { Message, Select } from 'antd';
 import i18n from './locale';
 import config from './config';
 import styles from './index.scss';
 
 const Option = Select.Option;
-
+@inject('frameStore') 
+@observer
 export default class Menu extends React.Component {
+    // 通过context取router，暂时没用到
+    // static contextTypes = {
+    //     router: React.PropTypes.object.isRequired
+    // }
     state = {
         collapsed: false
     };
@@ -93,10 +99,13 @@ export default class Menu extends React.Component {
     }
 
     setTheme(){
-        console.log('localStorage',localStorage.getItem('UEM_skin'));
+        const { theme, onChangeTheme } = this.props.frameStore;
         localStorage.setItem('UEM_skin', localStorage.getItem('UEM_skin') && localStorage.getItem('UEM_skin') == 'blue' ? 'white' : 'blue');
         document.getElementsByTagName("html")[0].className = localStorage.getItem('UEM_skin');
+        // action 改变theme，被监听.
+        // onChangeTheme(localStorage.getItem('UEM_skin'));
 
+        // this.context.router.history.push('./performance_overview');
     }
     render() {
         const { appId } = this.props;

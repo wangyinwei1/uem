@@ -1,54 +1,61 @@
-.atlas {
-    .chart {
-        height: 410px;
-    }
-    .map-chart {
-        float: left;
-        width: 48%;
-    }
-    .bar-chart {
-        float: left;
-        width: 52%;
-    }
-    .btn-wrap {
-        position: absolute;
-        top: 15px;
-        left: 20px;
-        z-index: 1;
-    }
-    :global {
-        .tile-body {
-            position: relative;
-            overflow: hidden;
-            margin: 0;
-            padding: 0;
-        }
+@import '../../../assets/styles/_mixin';
+$var_default: ();
+$var_white: ();
+
+@mixin getTheme($map){
+    .atlas {
         .chart {
-            height: 450px;
+            height: 410px;
         }
-        .btn {
-            padding: 0 15px;
-            height: 30px;
-            font-size: 13px;
-            line-height: 30px;
-            cursor: default;
-            &:not(.not-active):active {
-                box-shadow: none;
+        .map-chart {
+            float: left;
+            width: 48%;
+        }
+        .bar-chart {
+            float: left;
+            width: 52%;
+        }
+        .btn-wrap {
+            position: absolute;
+            top: 15px;
+            left: 20px;
+            z-index: 1;
+        }
+        :global {
+            .tile-body {
+                position: relative;
+                overflow: hidden;
+                margin: 0;
+                padding: 0;
             }
-            &:first-child {
-                border-top-right-radius: 0;
-                border-bottom-right-radius: 0;
+            .chart {
+                height: 450px;
             }
-            &:last-child {
-                border-top-left-radius: 0;
-                border-bottom-left-radius: 0;
-            }
-            &.not-active {
-                padding: 0 10px;
-                background-color: #113860;
-                color: #5E8BBD;
-                cursor: pointer;
+            .btn {
+                padding: 0 15px;
+                height: 30px;
+                font-size: 13px;
+                line-height: 30px;
+                cursor: default;
+                &:not(.not-active):active {
+                    box-shadow: none;
+                }
+                &:first-child {
+                    border-top-right-radius: 0;
+                    border-bottom-right-radius: 0;
+                }
+                &:last-child {
+                    border-top-left-radius: 0;
+                    border-bottom-left-radius: 0;
+                }
+                &.not-active {
+                    padding: 0 10px;
+                    background-color: #113860;
+                    color: #5E8BBD;
+                    cursor: pointer;
+                }
             }
         }
     }
 }
+@include setTheme($var_default, $var_white)

@@ -17,8 +17,14 @@ module.exports = {
         ],
         i18n: [
             CONST.i18n,
-            CONST.locale
+            CONST.locale,
+            CONST.colorChangeTest,
+            CONST.echartColor
         ],
+        // echartColor: [
+        //     CONST.colorChangeTest,
+        //     CONST.echartColor
+        // ],
         main: CONST.ENTRY,
     },
     plugins: [

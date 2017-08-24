@@ -1,3 +1,8 @@
+@import '../../../assets/styles/_mixin';
+$var_default: (color1:#70C3FB,color2: #fff );
+$var_white: (color1: #6c7480, color2: #4182e6);
+
+@mixin getTheme($map){
 .key-indicator {
     overflow: hidden;
     .list {
@@ -35,7 +40,7 @@
 
 .key {
     height: 20px;
-    color: #70C3FB;
+    color: map-get($map,color1);
     font-size: 13px;
     line-height: 20px;
 }
@@ -45,4 +50,7 @@
     height: 45px;
     font-size: 30px;
     line-height: 45px;
+    color: map-get($map,color2);
 }
+}
+@include setTheme($var_default, $var_white);

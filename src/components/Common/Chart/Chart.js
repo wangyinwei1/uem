@@ -1,6 +1,9 @@
 import React from 'react';
 import echarts from 'echarts';
-import { countryNameInCN,countryNameInEN } from './WorldCountryName'
+// import { observable, reaction} from 'mobx';
+import { observer, inject } from 'mobx-react';
+import { countryNameInCN,countryNameInEN } from './WorldCountryName';
+import {setTheme} from './SetTheme';
 
 // import '../../../assets/maps/china';
 // import '../../../assets/maps/world';
@@ -131,7 +134,7 @@ function mapTooltipFormatter(params, ticket, callback) {
 
             return typeof params.data[val.key] != 'undefined' ? `${val.name} : ${params.data[val.key]} <br>` : ``;
         }).join(' ')
-    }
+    };
 
 function mapTooltipFormatterForWorldMap(params, ticket, callback) {
         if (isNaN(params.value)) {
@@ -156,7 +159,10 @@ function mapTooltipFormatterForWorldMap(params, ticket, callback) {
         return paramsCg.map(val => {
             return typeof params.data[val.key] != 'undefined' ? `${val.name} : ${params.data[val.key]} <br>` : ``;
         }).join(' ')
-    }
+    };
+
+// @inject('frameStore')
+// @observer
 class Chart extends React.PureComponent {
     constructor(props) {
         super(props);
@@ -166,22 +172,21 @@ class Chart extends React.PureComponent {
         this.options = props.options;
         this.group = props.group;
         this.customOptions = Immutable.fromJS(props.options || {});
-
         this._resizeChart = this._resizeChart.bind(this);
+        // new setTheme(props.frameStore.theme);
     }
+    
     componentDidMount() {
         if (!this.chartId) {
             console.log(this.chartId)
             throw new Error('chartID 未定义!');
         }
-        this.chartDom = echarts.init(document.getElementById(this.chartId));
-        // this.chartDom.showLoading('default', {
-        //     text: '载入中...',
-        //     color: '#fff',
-        //     textColor: '#fff',
-        //     maskColor: 'rgba(0, 0, 0, 0)',
-        //     zlevel: 0
-        // });
+        // reaction(()=>mobxListener.get("theme"), theme=> {
+        //     // new setTheme(theme);
+        //     // this.chartDom = echarts.init(document.getElementById(this.chartId));
+        //     console.log('22222222222222',this);
+        // })   
+        this.chartDom = echarts.init(document.getElementById(this.chartId));   
         if (this.group) {
             // 图表联动
             this.chartDom.group = this.group;
@@ -194,6 +199,28 @@ class Chart extends React.PureComponent {
         });
         console.log(`[${this.type}]: #${this.chartId} 已渲染`);
         $(window).on('resize', this._resizeChart);
+        // this.chartDom.showLoading('default', {
+        //     text: '载入中...',
+        //     color: '#fff',
+        //     textColor: '#fff',
+        //     maskColor: 'rgba(0, 0, 0, 0)',
+        //     zlevel: 0
+        // });
+
+
+        // this.chartDom = echarts.init(document.getElementById(this.chartId));
+        // if (this.group) {
+        //     // 图表联动
+        //     this.chartDom.group = this.group;
+        //     echarts.connect(this.group);
+        // }
+        // this._setOption();
+        // // 图的点击操作，handleClickEcharts方法在各个子组件重写
+        // this.chartDom.on('click', params => {
+        //     this.handleClickEcharts(params);
+        // });
+        // console.log(`[${this.type}]: #${this.chartId} 已渲染`);
+        // $(window).on('resize', this._resizeChart);
     }
     componentWillReceiveProps(nextProps) {
         clearTimeout(this.timer);
@@ -222,6 +249,7 @@ class Chart extends React.PureComponent {
         }
     }
     _mergeOptions() {
+        
         // 地图的tooltip是在这里进行mergeDeep的
         if(this.props.chartId == 'map' && this.props.mapState ){
             this.defaultOptions = this.defaultOptions.mergeDeep({

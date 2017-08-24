@@ -23,7 +23,7 @@ import stores from './stores';
 
 export default function App() {
     return (
-        <Provider {...stores}>
+        <Provider {...stores} >
             <HashRouter>
                 <Frame>
                     <Switch>

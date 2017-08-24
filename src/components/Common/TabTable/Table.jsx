@@ -87,6 +87,7 @@ export default class Table extends React.Component {
     rowClickHandler(record, index, event) {
         const { type } = this.props;
         const tag = type === 'PerformanceBrowse' || type === 'PerformanceInteractive';
+        // 调试用，正式情况下取消注释
         if (!Boolean(record.operType) && tag) {
             message.warning(locale('暂无数据'));
             return false;

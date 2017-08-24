@@ -1,11 +1,27 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { useStrict } from 'mobx';
+import { useStrict, observable, reaction } from 'mobx';
 import { message } from 'antd';
 
 import { AppContainer } from 'react-hot-loader';
 import App from './App';
 import echartsColor from './assets/styles/echartsColors'
+
+// window.mobxListener = observable.shallowMap({
+//     theme: 'blue'
+// })
+// mobxListener.set('theme', document.getElementsByTagName("html")[0].className)
+// class Chart {
+//     componentDidMount() {
+//         reaction(
+//             () => mobxListener.get("theme"),
+//             setSkin => {
+//                 new Chart.init("dom", theme)
+//             }
+//         )      
+//     }
+// }
+// ob.set("theme", "blue")
 
 // 样式
 import './assets/styles/fontawesome.css';
@@ -13,7 +29,7 @@ import './assets/styles/iconfont.css';
 import './assets/styles/base.scss';
 import './assets/styles/common.scss';
 
-useStrict(true);
+// useStrict(true);
 
 // antd 全局设置
 message.config({

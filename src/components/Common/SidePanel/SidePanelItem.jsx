@@ -17,6 +17,7 @@ export default class SidePanelItem extends React.Component {
 
         this.module = props.module;
         this.closeSidePanel = this.closeSidePanel.bind(this);
+        console.log('---this.module---',this.module);
     }
     componentDidMount() {
         setTimeout(() => {

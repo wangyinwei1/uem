@@ -63,7 +63,9 @@ export default class PerformanceInteractive extends React.Component {
         const { deploy } = this.props.overviewStore;
         const { onChangePanelList } = this.props.sidePanelStore;
         const apdexTime = (deploy.apdex / 1000).toFixed(1);
+        const platfrom = localStorage.getItem('UEM_platfrom');
         return (
+            // platfrom == 'pc' ?
             <div id="PerformanceInteractive">
                 <TabTable
                     type="PerformanceInteractive"
@@ -83,7 +85,28 @@ export default class PerformanceInteractive extends React.Component {
                     changePage={onChangePage}
                     search={this.search.bind(this)}
                 />
-            </div>
+            </div> 
+            // :
+            // <div id="PerformanceInteractiveMobile">
+            //     <TabTable
+            //         type="PerformanceInteractiveMobile"
+            //         loading={loading}
+            //         tagType={tagType}
+            //         columns={columns}
+            //         apdexTime={apdexTime}
+            //         dataList={dataList}
+            //         total={total}
+            //         pageIndex={pageIndex}
+            //         pageSize={pageSize}
+            //         getTableData={onGetOpersList}
+            //         changeTagType={this.changeTagType.bind(this)}
+            //         changeResTime={this.changeResTime.bind(this)}
+            //         changeColOptions={this.changeColOptions.bind(this)}
+            //         changePanelList={onChangePanelList}
+            //         changePage={onChangePage}
+            //         search={this.search.bind(this)}
+            //     />
+            // </div>
         );
     }
 }

@@ -25,6 +25,8 @@ class UserMapChart extends Component {
         const { getMapData } = this.props;
         getMapData({
             areaType: 'province',
+            // pc和移动端的进入时参数不同
+            // metrics: sessionStorage.getItem('UEM_platform') == 'pc' ?JSON.stringify(['sessionCount']) : JSON.stringify(['   ']) ,
             metrics: JSON.stringify(['sessionCount']),
             province: undefined
         });
@@ -60,7 +62,7 @@ class UserMapChart extends Component {
             activePillar: e.target.value
         }, () => this.props.getMapData({
             areaType: this.state.activeMap == 'china' ? 'province' : 'country',
-            metrics: e.target.value == 'sessionCount' ? JSON.stringify(['sessionCount']) : JSON.stringify(['uv']),
+            metrics: JSON.stringify([e.target.value]),
              province: this.state.activeProvince
         }));
         this.props.selectStatus(e.target.value,this.state.activeMap);
@@ -87,6 +89,22 @@ class UserMapChart extends Component {
         } else {
             console.log('外国和台湾省的次级地区暂无法查看！')
         }
+    }
+
+     // 选择pc端还是移动端的radioGroup
+     chooseRadioGroupForPlatform(){
+        let platform = sessionStorage.getItem('UEM_platform');
+        return (
+            platform == 'pc' ?
+                <RadioGroup className={cls('radio')} onChange={this.handleRadioSelect.bind(this)} value={this.state.activePillar}>
+                        <Radio value={'sessionCount'}>{locale('会话数')}</Radio>
+                        <Radio value={'uv'}>{locale('访客数')}</Radio>
+                </RadioGroup>:
+                <RadioGroup className={cls('radio')} onChange={this.handleRadioSelect.bind(this)} value={this.state.activePillar}>
+                    <Radio value={'  '}>{locale('启动次数')}</Radio>
+                    <Radio value={'  '}>{locale('独立设备数')}</Radio>
+                </RadioGroup>      
+        )
     }
 
     render() {
@@ -144,10 +162,7 @@ class UserMapChart extends Component {
                         })} onClick={this.changeMap.bind(this, 'world')}>{locale('世界')}</div>
                     </div>
 
-                    <RadioGroup className={cls('radio')} onChange={this.handleRadioSelect.bind(this)} value={this.state.activePillar}>
-                        <Radio value={'sessionCount'}>{locale('会话数')}</Radio>
-                        <Radio value={'uv'}>{locale('访客数')}</Radio>
-                    </RadioGroup>
+                    { this.chooseRadioGroupForPlatform()}
 
                     <MapChart
                         mapState={this.state.activeMap}

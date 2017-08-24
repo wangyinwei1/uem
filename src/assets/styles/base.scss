@@ -13,8 +13,8 @@
 ::-webkit-scrollbar-corner 边角，即两个滚动条的交汇处
 ::-webkit-resizer 两个滚动条的交汇处上用于通过拖动调整元素大小的小控件
 */
-$var_default: ( color1:#245893);
-$var_white: ( color1: #edf2f7);
+$var_default: ( color1:#245893,color2:#1E3E64,color3:#2378C3);
+$var_white: ( color1: #edf2f7,color2:#fff,color3:#a5a8ac);
 @mixin getTheme($map){
     ::-webkit-scrollbar {
         width: 10px;
@@ -26,14 +26,14 @@ $var_white: ( color1: #edf2f7);
     }
     
     ::-webkit-scrollbar-thumb {
-        border: 3px solid #1E3E64;
+        border: 3px solid map-get($map,color2);
         border-radius: 5px;
-        background: #2378C3;
+        background: map-get($map,color3);
         background-clip: content-box;
     }
     
     ::-webkit-scrollbar-track {
-        background: #1E3E64;
+        background: map-get($map,color2);
     }
     
     

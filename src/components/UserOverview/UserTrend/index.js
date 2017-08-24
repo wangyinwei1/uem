@@ -4,6 +4,7 @@ import {
     LineChart
 } from '../../Common/Chart';
 import styles from './index.scss';
+import baseConfig from './basicConfig';
 
 // import styles from './index.scss';
 
@@ -28,32 +29,18 @@ class UserTrend extends Component {
             yAxisMax2 = 3;
         } else { }
 
-        // 性能趋势的配置
-        let options = Immutable.fromJS({
-            title: {
-                text: locale('错误趋势图'),
-            },
+        // pc性能趋势的配置
+        let optionsPC = baseConfig.mergeDeep({
             legend: {
-                itemWidth: 8,
-                itemHeight: 8,
                 data: [{
                     name: locale('浏览量PV'),
-                    icon: 'circle'
                 }, {
                     name: locale('点击数'),
-                    icon: 'circle'
                 }, {
                     name: locale('会话数'),
-                    icon: 'circle'
-                }],
-                top: 15,
-                right: 15,
-                textStyle: {
-                    color: '#fff'
-                }
+                }]
             },
             xAxis: [{
-                type: 'category',
                 data: trend.sessionCount && trend.sessionCount.map((val, i) => {
                     let selectTime = trend.sessionCount[i].endTime - trend.sessionCount[i].startTime;
                     if (selectTime <= 1800000) {
@@ -64,45 +51,59 @@ class UserTrend extends Component {
                     }
                 })
             }],
-            yAxis: [{
-                minInterval: 1,
-            }],
-            // xAxis: {
-            //     type: 'category',
-            //     data: _.range(1, 25),
-            //     axisLine: {
-            //         show: false
-            //     },
-            //     axisTick: {
-            //         show: false
-            //     }
-            // },
-            color: ['#ffeb0b', '#66dc6a', '#00c0ff'],
             series: [
                 {
                     name: locale('浏览量PV'),
-                    type: 'line',
-                    symbol: 'circle',
-                    showSymbol: false,
                     data: trend.pv
                 },
                 {
                     name: locale('点击数'),
-                    type: 'line',
-                    symbol: 'circle',
-                    showSymbol: false,
                     data: trend.clickNum
                 },
                 {
                     name: locale('会话数'),
-                    type: 'line',
-                    symbol: 'circle',
-                    showSymbol: false,
                     data: trend.sessionCount
                 }
             ]
         })
-
+        // mobile性能趋势的配置
+        let optionsMobile = baseConfig.mergeDeep({
+            legend: {
+                data: [{
+                    name: locale('点击数'),
+                }, {
+                    name: locale('独立设备数'),
+                }, {
+                    name: locale('启动数'),
+                }]
+            },
+            xAxis: [{
+                data: trend.clickCount && trend.clickCount.map((val, i) => {
+                    let selectTime = trend.clickCount[i].endTime - trend.clickCount[i].startTime;
+                    if (selectTime <= 1800000) {
+                        //选择一天
+                        return moment(val.startTime).format("HH:mm");
+                    } else {
+                        return moment(val.startTime).format("MM-DD HH:mm");
+                    }
+                })
+            }],
+            series: [
+                {
+                    name: locale('点击数'),
+                    data: []
+                },
+                {
+                    name: locale('独立设备数'),
+                    data: []
+                },
+                {
+                    name: locale('启动数'),
+                    data: []
+                }
+            ]
+        })
+        let options = sessionStorage.getItem('UEM_platform') == 'pc' ? optionsPC : optionsMobile;
         return (
             <div>
                 <Row>

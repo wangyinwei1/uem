@@ -12,6 +12,8 @@ var ENTRY = path.resolve(SRC, './entry');
 // 国际化
 var locale = path.resolve(SRC, './utils/locale');
 var i18n = path.resolve(SRC, './assets/i18n');
+var echartColor = path.resolve(SRC, './assets/echartColor');
+var colorChangeTest = path.resolve(SRC, './utils/colorChange');
 
 // 端口
 var PORT = 2333;
@@ -25,4 +27,6 @@ module.exports = {
     ENTRY,
     i18n,
     locale,
+    colorChangeTest,
+    echartColor
 };

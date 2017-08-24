@@ -14,5 +14,4 @@ function locale(text) {
         return text;
     }
 }
-
 window.locale = locale;

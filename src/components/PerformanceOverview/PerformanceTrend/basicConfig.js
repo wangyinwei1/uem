@@ -25,7 +25,7 @@ export default Immutable.fromJS({
             yAxis: [{
                 minInterval: 1,
             }],
-            color: ['#ffeb0b', '#66dc6a', '#00c0ff'],
+            color: ['#ffeb0b', '#66dc6a', colorChangeTest("test")],
             series: [
                 {   
                     type: 'line',

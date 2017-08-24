@@ -13,6 +13,7 @@ class FrameStore {
     @observable lang = localStorage.getItem('UEM_lang');
     @observable theme = getTheme();
     @observable timeType = getTimeType();
+    @observable theme = 'blue';
     // @observable versions = [];
 
     constructor() {
@@ -37,6 +38,9 @@ class FrameStore {
     @action onChooseVersion = payload => {
         this.appVersion = payload.version;
         sessionStorage.setItem('UEM_appVersion', payload.version);
+    }
+    @action onChangeTheme = payload => {
+        this.theme = payload;
     }
 }
 

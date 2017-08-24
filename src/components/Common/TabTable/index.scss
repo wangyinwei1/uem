@@ -1,105 +1,186 @@
 @import "../../../assets/styles/mixin";
+$var_default: (color1: #153253,color2: #1D6AA7, color3: none,color4: #fff,color5: #1C426E,
+color6:#0D5990,color7: #41A4E2,color8:#1E76AE, color9:#07476F,color10:#0D3F67,color11:#153253,
+color12:#57C5F7,color13:#1B3E67,color14:#4386B9,color15:rgba(0, 15, 30, 0.4),color16:#108ee9,
+color17:#108ee9,color18:#226EAF,color19:#07476F,color20:#276490,color21:#2277C3,
+);
+$var_white: (color1: #f6f9fb,color2:#fff,color3: 1px solid #d5ddeb,color4: #6c7480,color5:#fff,
+color6:#fff,color7: #d5ddeb,color8:#acb3bf, color9:#e9edf2,color10:#fff,color11:#fff,
+color12:#6c7480,color13: #f2f7ff,color14:#d5ddeb,color15:#fff,color16:#fff,
+color17:#4082e6,color18:#fff,color19:#4082e6,color20:#adb3bf,color21:#4082e6
+);
 
-.tab-table {
-    position: relative;
-    :global {
-        .ant-table-placeholder {
-            display: none;
-        }
-        .ant-table-tbody > tr > td {
-            text-align: center;
-            cursor: pointer;
-        }
-    }
-}
-
-.tab-header {
-    height: 40px;
-    background-color: #153253;
-    line-height: 40px;
-    :global {
-        .btn {
-            border-radius: 0;
-            background-color: inherit;
-        }
-    }
-    .tab-active {
-        background-color: #1D6AA7;
-        cursor: default;
-    }
-}
-
-.tab-placeholder {
-    margin: 20px 0;
-    color: #FFFFFF;
-    text-align: center;
-}
-
-.control-bar {
-    padding: 0 10px;
-    height: 50px;
-    background-color: #1C426E;
-    color: #FFFFFF;
-    line-height: 50px;
-}
-
-.filter {
-    // float: right;
-    display: inline-block;
-    margin-right: 10px;
-    height: 30px;
-    font-size: 13px;
-    line-height: 30px;
-}
-
-.options {
-    float: right;
-    :global {
-        .btn {
-            padding: 0 10px;
-            height: 30px;
-            font-size: 13px;
-            line-height: 30px;
-            i,
-            span {
-                vertical-align: middle;
+@mixin getTheme($map){
+    .tab-table {
+        position: relative;
+        :global {
+            .ant-table-placeholder {
+                display: none;
             }
-            .iconfont {
-                color: inherit;
+            .ant-table-tbody > tr {
+                background-color: map-get($map,color10);
+            }
+            .ant-table-tbody > tr:hover {
+                background-color: map-get($map,color13) !important;
+            }
+            .ant-table-tbody > tr > td {
+                text-align: center;
+                cursor: pointer;
+                border-bottom: map-get($map,color3);
+                color: map-get($map,color4);
+            }
+            .ant-table-thead > tr > th {
+                background: map-get($map,color11);
+                color: map-get($map,color12);
+                border-bottom: map-get($map,color3);
+            }
+            .ant-pagination-prev,.ant-pagination-item,.ant-pagination-next {
+                border: 1px solid map-get($map,color14);
+                border-radius: 0;
+                background-color: map-get($map,color15);
+            }
+            .ant-pagination-item-active a{
+                color:map-get($map,color4);
+            }
+            .ant-pagination-item-active{
+                background-color:map-get($map,color16);
+                border-color: map-get($map,color17);
+            }
+            .ant-checkbox-disabled .ant-checkbox-inner {
+                border-color: map-get($map,color8) !important;
+                background-color: map-get($map,color9);
             }
         }
     }
-
-    .not-allow {
-        background-color: #666666;
-        cursor: not-allowed;
+    
+    .tab-header {
+        height: 40px;
+        background-color: map-get($map,color1);
+        line-height: 40px;
+        border: map-get($map,color3);
+        color: map-get($map,color4);
+        // font-weight: bold;
+        :global {
+            .btn {
+                border-radius: 0;
+                background-color: inherit;
+                color:map-get($map,color4);
+            }
+        }
+        .tab-active {
+            background-color: map-get($map,color2);;
+            cursor: default;
+            border: map-get($map,color3);
+        }
     }
-}
-
-.col-option {
-    padding: 20px;
-    width: 350px;
-    background-color: #226EAF;
-    color: #FFFFFF;
-    font-size: 12px;
-    :global {
-        .ant-checkbox-wrapper {
-            width: 33.333%;
-            height: 25px;
-            line-height: 25px;
-
-            @include toe;
-            &:not(:last-child) {
-                margin-right: 0;
+    
+    .tab-placeholder {
+        margin: 20px 0;
+        color: map-get($map,color4);
+        text-align: center;
+    }
+    
+    .control-bar {
+        padding: 0 10px;
+        height: 50px;
+        background-color: map-get($map,color5);
+        color: map-get($map,color4);
+        line-height: 49px;
+        border: map-get($map,color3);
+        :global{
+            .ant-input {
+                border: 1px solid map-get($map,color7);
+                border-radius: 2px;
+                background-color: map-get($map,color6);
+                color: map-get($map,color4);
             }
         }
     }
-    dt {
-        margin: 10px 0;
-        font-weight: bold;
-        &:first-child {
-            margin-top: 0;
+    
+    .filter {
+        // float: right;
+        display: inline-block;
+        margin-right: 10px;
+        height: 30px;
+        font-size: 13px;
+        line-height: 30px;
+        :global{
+            .ant-checkbox-inner {
+                border: 1px solid map-get($map,color8);
+                background-color: map-get($map,color9);
+            }
+            .ant-checkbox-checked .ant-checkbox-inner {
+                border-color: map-get($map,color20) !important;
+                background-color: map-get($map,color21) !important;
+            }
         }
     }
+    
+    .options {
+        float: right;
+        :global {
+            .btn {
+                padding: 0 10px;
+                height: 30px;
+                font-size: 13px;
+                line-height: 30px;
+                color:#fff;
+                i,
+                span {
+                    vertical-align: middle;
+                }
+                .iconfont {
+                    color: inherit;
+                }
+            }
+        }
+    
+        .not-allow {
+            background-color: #666666;
+            cursor: not-allowed;
+        }
+    }
+    
+    .col-option {
+        padding: 20px;
+        width: 350px;
+        background-color: map-get($map,color18);
+        color:  map-get($map,color4);
+        font-size: 12px;
+        :global {
+            .ant-checkbox-wrapper {
+                width: 33.333%;
+                height: 25px;
+                line-height: 25px;
+    
+                @include toe;
+                &:not(:last-child) {
+                    margin-right: 0;
+                }
+            }
+            .ant-checkbox-inner{
+                border: 1px solid map-get($map,color9);
+                background-color: map-get($map,color19);
+            }
+            .ant-checkbox-disabled .ant-checkbox-inner{
+                background-color:map-get($map,color19);
+                border-color:map-get($map,color9);
+            }
+            .ant-checkbox-checked .ant-checkbox-inner {
+                background-color:map-get($map,color19);
+                border-color:map-get($map,color9);
+            }
+        }
+        dt {
+            margin: 10px 0;
+            font-weight: bold;
+            &:first-child {
+                margin-top: 0;
+            }
+        }
+    }
+    
+    
 }
+@include setTheme($var_default, $var_white);
 

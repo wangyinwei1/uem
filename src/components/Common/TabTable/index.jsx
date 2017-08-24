@@ -57,6 +57,7 @@ export default class TabTable extends React.Component {
             pageIndex,
             pageSize,
         } = this.props;
+        console.log('----------type-----------',this.props);
         return (
             <div className={styles['tab-table']}>
                 <div className={styles['tab-header']}>
