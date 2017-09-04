@@ -33,7 +33,6 @@ class PerformanceOverviewStore {
     @action onGetPerformanceTrend = async payload => {
         try {
             const data = await CommonService.getTrend({
-                metrics: JSON.stringify(['pv','clickNum','avgRspTime','apdex']),
                 startTime: moment().subtract(getTimeType().startTime.type, getTimeType().startTime.units).valueOf(),
                 endTime: moment().subtract(getTimeType().endTime.type, getTimeType().endTime.units).valueOf(),
                 ...payload
@@ -64,7 +63,7 @@ class PerformanceOverviewStore {
                 startTime: moment().subtract(getTimeType().startTime.type, getTimeType().startTime.units).valueOf(),
                 endTime: moment().subtract(getTimeType().endTime.type, getTimeType().endTime.units).valueOf(),
                 pageSize: areaType == 'province' ? 100 : 300,
-                sortKey: metrics == '["avgRspTime"]' ? "avgRspTime" :"apdex",
+                sortKey: JSON.parse(metrics)[0],
                 ...payload
             });
             if( areaType == 'province'){

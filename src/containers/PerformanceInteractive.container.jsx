@@ -85,6 +85,7 @@ export default class PerformanceInteractive extends React.Component {
                     changePage={onChangePage}
                     search={this.search.bind(this)}
                 />
+                
             </div> 
             // :
             // <div id="PerformanceInteractiveMobile">

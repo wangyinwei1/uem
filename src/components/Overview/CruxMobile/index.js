@@ -8,6 +8,7 @@ class CruxMobile extends Component {
     }
     componentDidMount() {
         const { getRealTimeData, getApdex } = this.props;
+        // 获取移动端30分钟指标
         getRealTimeData({ indexs: '' });
         getApdex();
 
@@ -48,11 +49,9 @@ class CruxMobile extends Component {
     mobileIndicatorList() {
         let realTimeData = this.props.realTimeData;
         let score = [
-            { key: '响应时间', value: realTimeData.avgRspTime },
-            { key: 'http错误率', value: realTimeData.httpErrorRate },
-            { key: '异常率', value: realTimeData.exceptionRate },
-            { key: '崩溃率', value: realTimeData.crashRate },
-            { key: '卡顿率', value: realTimeData.anrRate }
+            { key: '原生响应时间', value: realTimeData.avgUiRspTime },
+            { key: 'H5响应时间', value: realTimeData.avgRspTime },
+            { key: '用户错误率', value: realTimeData.errorRate }
         ];
         let lostScore = realTimeData.lostScore || [];
         if (lostScore.length === 5) {
@@ -67,13 +66,15 @@ class CruxMobile extends Component {
                 <ul key={`list-${Math.random()}`} className={styles['box_list']}>
                     {
                         score.map((item, index) => {
-                            if (item.key === '响应时间') {
-                                if (item.value == null) {
+                            if (item.key === '原生响应时间' || 'H5响应时间' ) {
+                                if (item.value == null || undefined) {
                                     item.value = '--';
                                 } else if (item.value < 1 && item.value != 0) {
                                     item.value = parseInt(item.value.toFixed(3).substr(2, 3)) + 'ms'
-                                } else {
+                                } else if(item.value > 1) {
                                     item.value = item.value.toFixed(1) + 's';
+                                } else {
+                                    item.value = item.value.toFixed(1) + '%';
                                 }
                             }
                             return (
@@ -106,22 +107,28 @@ class CruxMobile extends Component {
         // }];
         const dataEnum = [{
             name: '启动次数',
-            key: ''
+            key: 'sessionCount',
+            unit: '次'
         }, {
             name: '点击数',
-            key: ''
+            key: 'clickNum',
+            unit: '次',
         }, {
-            name: '平均UI响应时时间', 
-            key: ''
+            name: '原生UI平均响应时时间', 
+            key: 'avgUiRspTime',
+            unit: '秒'
         }, {
-            name: '平均HTTP响应时间',
-            key: ''
+            name: 'H5平均响应时间',
+            key: 'avgRspTime',
+            unit: '秒'
         },{
             name: '平均访问时长',
-            key: ''
+            key: 'avgAccessTime',
+            unit: '秒'
         },{
             name: '用户错误率',
-            key: ''
+            key: 'errorRate',
+            unit: '%'
         }];
         const { realTimeData = {} } = this.props;
         let totalScore = realTimeData['totalScore'];
@@ -157,7 +164,7 @@ class CruxMobile extends Component {
                         {dataEnum.map(item => (
                             <li key={item.name} className={styles['item']}>
                                 <div className={styles['key']}>{item.name}</div>
-                                <div className={cls('toe', styles['value'])}>{_.isNull(realTimeData[item.key]) ? '--' : realTimeData[item.key]}</div>
+                                <div className={cls('toe', styles['value'])}>{_.isNull(realTimeData[item.key]) ? '--' : realTimeData[item.key]}<span className={styles["percent"]}>{item.unit}</span></div>
                             </li>
                         ))}
                     </ul>

@@ -17,9 +17,9 @@ export default class Analysis extends React.Component {
             analyzeData,
             sessionTrace,
         } = this.props;
-        if (samplesList.length === 0) {
-            return null;
-        }
+        // if (samplesList.length === 0) {
+        //     return null;
+        // }
         return (
             <div className={styles['analysis']}>
                 <div className='tile-head'>{locale('不满意用户分析')}</div>

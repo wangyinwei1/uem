@@ -29,9 +29,17 @@ export default class HeaderBar extends React.PureComponent {
         { text: locale('1小时'), value: 1, type: 'hours' },
     ]
     constructor(props) {
-        super(props);
-        this.props.getVersionSettings();
+        super(props); 
         this.takeDefaultValue = this.takeDefaultValue.bind(this);
+    }
+    componentDidMount(){
+        // 获取版本
+        // this.props.getVersionSettings();
+        console.log('获取到的是：', this.refs.version_picker.props.className);
+        if(this.refs.version_picker.props.className.indexOf('dn') == -1){
+            // 在显示version的组件显示的时候进行获取
+            this.props.getVersionSettings();
+        }
     }
     handleSelectTime(obj) {
         const startTime = {
@@ -112,7 +120,8 @@ export default class HeaderBar extends React.PureComponent {
                     })}
                 />
                 <Select
-                    onChange={::this.handleChange}
+                    ref='version_picker'
+                    onChange={this.handleChange.bind(this)}
                     className={cls(styles['version-picker'], {
                         'dn': !this.datePickerDisplay[module] || this.props.platform == 'pc'
                     })}

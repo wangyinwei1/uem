@@ -38,13 +38,13 @@ class KeyIndicator extends Component {
             key: ''
         },{
             name: '独立设备数',
-            key: ''
+            key: 'uv'
         },{
             name: '点击数',
-            key: ''
+            key: 'clickNum'
         },{
             name: '平均访问时长',
-            key: ''
+            key: 'avgAccessTime'
         }];
         let keyIndicator = this.props.keyIndicator;
         let indicatorEnum = platform == 'pc' ? indicatorEnumPC : indicatorEnumMobile

@@ -13,8 +13,10 @@ class PerformanceTrend extends Component {
         super(props);
     }
     componentDidMount() {
-        const { getPerformanceTrend, getPerformanceApdex } = this.props;
-        getPerformanceTrend();
+        const { getPerformanceTrend } = this.props;
+        getPerformanceTrend({
+            metrics: sessionStorage.getItem('UEM_platform') == 'pc' ? JSON.stringify(['pv','clickNum','avgRspTime','apdex']) : JSON.stringify(['avgUiRspTime','avgRspTime','thruput'])
+        });
     }
     render() {
         let trend = this.props.performanceTrend;
@@ -164,9 +166,9 @@ class PerformanceTrend extends Component {
                 // })
             }],
             series: [
-                {name: locale('平均UI响应时间'),data:[]},
-                {name: locale('平均HTTP响应时间'),data: []},
-                {name: locale('吞吐率'), data: []}
+                {name: locale('平均UI响应时间'),data:trend.avgUiRspTime},
+                {name: locale('平均HTTP响应时间'),data: trend.avgRspTime},
+                {name: locale('吞吐率'), data: trend.thruput}
             ]
         })
         
@@ -191,7 +193,7 @@ class PerformanceTrend extends Component {
                         <Col className={styles['performance-trend']} style={{ width: '100%'}}>
                             <div className={cls('tile-head')}>{locale('性能趋势')}</div>
                             <div className={cls('tile-body')}>
-                                <LineChart group="performance" chartId="PerformanceTrend" options={mobileOptions} />
+                                <LineChart group="performance" chartId="PerformanceTrendMobile" options={mobileOptions} />
                             </div>
                         </Col>
                     </Row>

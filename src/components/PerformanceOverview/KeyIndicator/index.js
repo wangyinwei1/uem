@@ -18,13 +18,13 @@ const indicatorEnum = [{
 
 const indicatorEnumMobile = [{
         name: '平均UI响应时间',
-        key: ''
+        key: 'avgUiRspTime'
     }, {
         name: '平均HTTP响应时间',
-        key: ''
+        key: 'avgRspTime'
     }, {
         name: '吞吐率',
-        key: ''
+        key: 'thruput'
 }];
 
 class KeyIndicator extends Component {
@@ -33,7 +33,9 @@ class KeyIndicator extends Component {
     }
     componentDidMount() {
         const { getKeyIndicator } = this.props;
-        getKeyIndicator();
+        getKeyIndicator({
+            metrics: sessionStorage.getItem('UEM_paltform') == 'pc' ? JSON.stringify(["avgRspTime","avgNetworkTime","avgServerTime","avgClientTime"]) : JSON.stringify(["avgUiRspTime","avgRspTime","thruput"])
+        });
     }
     componentWillReceiveProps(nextProps) {
     }

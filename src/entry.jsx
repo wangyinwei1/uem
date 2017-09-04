@@ -53,12 +53,17 @@ if (true) {
     localStorage.setItem('UEM_lang', language);
     window.colorOpacity = 0.3;
     // echarts的换肤方法
-    window.changeEchartTheme = (name) => {
-        if(!echartsColor[name]){
-           throw `没有找到相对应的颜色变量 ···  请在theme 中设置对应 的 ${name} 颜色字段`;
-        }
-        return echartsColor[name][localStorage.getItem('UEM_skin')];
-    }
+    // window.changeEchartTheme = (name) => {
+    //     if(!echartsColor[name]){
+    //        throw `没有找到相对应的颜色变量 ···  请在theme 中设置对应 的 ${name} 颜色字段`;
+    //     }
+    //     return echartsColor[name][localStorage.getItem('UEM_skin')];
+    // }
+    //放到dev环境下用的，实际上线，这个要注释掉。这是由由租户控制的，挂在window下
+    window.USER_INFO = {
+        tenantId: 'e0a67e986a594a61b3d1e523a0a39c77',
+        userId: 'e0a67e986a594a61b3d1e523a0a39c77'
+    };
 }
 
 const render = (Component) => {

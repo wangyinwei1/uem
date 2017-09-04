@@ -6,7 +6,8 @@ export default {
         platform: sessionStorage.getItem('UEM_platform'),
         startTime: undefined,
         endTime: moment().valueOf(),
-        metrics: JSON.stringify(["avgRspTime", "avgClientTime", "avgNetworkTime", "avgServerTime", "errorCount", "wrongPageNum", "effectedUserNum", "occurErrorUserRate", "sessionCount", "uv", "pv", "avgPvNum", "avgClickNum", "avgAccessTime"]),
+        metrics: JSON.stringify(["avgRspTime", "avgClientTime", "avgNetworkTime", "avgServerTime", "errorCount"]),
+        version: sessionStorage.getItem('UEM_platform') == 'pc' ? JSON.stringify(' ') : sessionStorage.getItem('UEM_appVersion') ? sessionStorage.getItem('UEM_appVersion') : 'global',
         ...payload
     }),
 
@@ -16,6 +17,7 @@ export default {
         startTime: undefined,
         endTime: moment().valueOf(),
         metrics: JSON.stringify(["avgRspTime", "apdex", "errorCount", "clickNum", "pv", "sessionCount"]),
+        version: sessionStorage.getItem('UEM_platform') == 'pc' ? JSON.stringify(' ') : 'global',
         ...payload
     }),
 
@@ -31,6 +33,7 @@ export default {
         sort: 'desc',
         sortKey: undefined,
         areaType: 'province',
+        version: sessionStorage.getItem('UEM_platform') == 'pc' ? JSON.stringify(' ') : sessionStorage.getItem('UEM_appVersion') ? sessionStorage.getItem('UEM_appVersion') : 'global',
         ...payload
     })
    

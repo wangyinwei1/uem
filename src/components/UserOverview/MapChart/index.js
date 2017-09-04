@@ -25,8 +25,6 @@ class UserMapChart extends Component {
         const { getMapData } = this.props;
         getMapData({
             areaType: 'province',
-            // pc和移动端的进入时参数不同
-            // metrics: sessionStorage.getItem('UEM_platform') == 'pc' ?JSON.stringify(['sessionCount']) : JSON.stringify(['   ']) ,
             metrics: JSON.stringify(['sessionCount']),
             province: undefined
         });
@@ -42,7 +40,7 @@ class UserMapChart extends Component {
                 activeMap: map
             }, () => this.props.getMapData({
                 areaType: map == 'china' ? 'province' : 'country',
-                metrics: this.state.activePillar == 'sessionCount' ? JSON.stringify(['sessionCount']) : JSON.stringify(['uv']),
+                metrics: JSON.stringify([this.state.activePillar]),
                 province: undefined
             }));
             if(this.state.activeProvince != undefined){
@@ -73,14 +71,14 @@ class UserMapChart extends Component {
         if (this.state.activeMap == 'china' && params.componentSubType == 'map' && params.name !== '台湾') {
             if (this.state.isSelectingCity && typeof params.value != "undefined" && !isNaN(params.value)) {
                 this.setState({ isSelectingCity: false, activeProvince : params.name }, () => this.props.getMapData({
-                    metrics: this.state.activePillar == 'sessionCount' ? JSON.stringify(['sessionCount']) : JSON.stringify(['uv']),
+                    metrics: JSON.stringify([this.state.activePillar]),
                     areaType: 'province',
                     province: params.name
                 }))
                 this.tempConfig = config.updateIn(['china', 'series', 0, 'mapType'], () => params.name);
             } else if (!NameMap[params.name]) {
                 this.setState({ isSelectingCity: true,activeProvince:undefined }, () => this.props.getMapData({
-                    metrics: this.state.activePillar == 'sessionCount' ? JSON.stringify(['sessionCount']) : JSON.stringify(['uv']),
+                    metrics: JSON.stringify([this.state.activePillar]),
                     areaType: 'province',
                     province: undefined
                 }))
@@ -101,8 +99,8 @@ class UserMapChart extends Component {
                         <Radio value={'uv'}>{locale('访客数')}</Radio>
                 </RadioGroup>:
                 <RadioGroup className={cls('radio')} onChange={this.handleRadioSelect.bind(this)} value={this.state.activePillar}>
-                    <Radio value={'  '}>{locale('启动次数')}</Radio>
-                    <Radio value={'  '}>{locale('独立设备数')}</Radio>
+                    <Radio value={'sessionCount'}>{locale('启动次数')}</Radio>
+                    <Radio value={'uv'}>{locale('独立设备数')}</Radio>
                 </RadioGroup>      
         )
     }

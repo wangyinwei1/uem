@@ -35,6 +35,28 @@ class OverviewStore {
             yesterday: []
         },
     };
+    @observable trendMobile = {
+        sessionCount: {
+            today: [],
+            yesterday: []
+        },
+        avgUiRspTime: {
+            today: [],
+            yesterday: []
+        },
+        clickNum: {
+            today: [],
+            yesterday: []
+        },
+        avgRspTime: {
+            today: [],
+            yesterday: []
+        },
+        errorCount: {
+            today: [],
+            yesterday: []
+        },
+    }
     @observable userDistribution = {
         yAxis: [],
         series: [],
@@ -67,9 +89,13 @@ class OverviewStore {
     @action onGetTrend = async payload => {
         try {
             const data = await Service.getTrend(payload);
-            runInAction(() => {
+            if(sessionStorage.getItem('UEM_platform') == 'pc' ){
+                runInAction(() => {
                 this.trend = data;
             });
+        }else {
+            this.trendMobile = data;
+        }
             return data;
         } catch (error) {
             throw error;

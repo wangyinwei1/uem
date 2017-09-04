@@ -11,7 +11,7 @@ function colorChangeTest(colorName){
             return colorName;
         }
     } else {
-        return text;
+        return colorName;
     }
 }
 window.colorChangeTest = colorChangeTest;

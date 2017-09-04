@@ -25,7 +25,7 @@ const dataEnum = [{
     key: 'avgClickNum'
 }, {
     name: '用户错误率',
-    key: 'errorCountPerUv'
+    key: 'errorRate'
 }];
 
 class Crux extends Component {

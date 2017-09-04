@@ -17,7 +17,7 @@ class PerformanceMapChart extends Component {
         super(props);
         this.state = {
             activeMap: 'china',
-            activePillar: sessionStorage.getItem('UEM_platform')=='pc' ?'avgRspTime':'avgUIRspTime',
+            activePillar: sessionStorage.getItem('UEM_platform')=='pc' ?'avgRspTime':'avgUiRspTime',
             activeProvince: undefined,
             isSelectingCity: true
         };
@@ -27,7 +27,8 @@ class PerformanceMapChart extends Component {
         const { getMapData } = this.props;
         getMapData({
             areaType: 'province',
-            metrics: sessionStorage.getItem('UEM_platform')=='pc' ? JSON.stringify(['avgRspTime']):JSON.stringify(['avgUIRspTime'])
+            metrics: sessionStorage.getItem('UEM_platform')=='pc' ? JSON.stringify(['avgRspTime']):JSON.stringify(['avgUiRspTime'])
+            
         });
     }
     changeMap(map) {
@@ -92,7 +93,7 @@ class PerformanceMapChart extends Component {
                 this.tempConfig = config.updateIn(['china', 'series', 0, 'mapType'], () => 'china');
             }
         } else {
-            console.log('外国和台湾省的次级地区暂无法查看！')
+            console.log('该地区暂无法查看！')
         }
     }
 
@@ -106,7 +107,7 @@ class PerformanceMapChart extends Component {
                     <Radio value={'apdex'}>Apdex</Radio>
                 </RadioGroup>:
                 <RadioGroup className={cls('radio')} onChange={this.handleRadioSelect.bind(this)} value={this.state.activePillar}>
-                    <Radio value={'avgUIRspTime'}>{locale('平均UI响应时间')}</Radio>
+                    <Radio value={'avgUiRspTime'}>{locale('平均UI响应时间')}</Radio>
                     <Radio value={'avgHttpRspTime'}>{locale('平均HTTP响应时间')}</Radio>
                 </RadioGroup>
                     

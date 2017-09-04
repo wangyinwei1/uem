@@ -33,6 +33,9 @@ export default class Overview extends React.Component {
             realTimeData,
             deploy,
             trend,
+            // 移动端的五个趋势图
+            trendMobile,
+
             userDistribution,
             onGetRealTimeData,
             onGetApdex,
@@ -59,6 +62,7 @@ export default class Overview extends React.Component {
                     />}
                      <Quotas
                         trend={trend}
+                        trendMobile={trendMobile}
                         getTrend={onGetTrend}
                     /> 
                     <Atlas

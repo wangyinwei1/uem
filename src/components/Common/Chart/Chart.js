@@ -3,7 +3,7 @@ import echarts from 'echarts';
 // import { observable, reaction} from 'mobx';
 import { observer, inject } from 'mobx-react';
 import { countryNameInCN,countryNameInEN } from './WorldCountryName';
-import {setTheme} from './SetTheme';
+// import {setTheme} from './SetTheme';
 
 // import '../../../assets/maps/china';
 // import '../../../assets/maps/world';

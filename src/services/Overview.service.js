@@ -7,12 +7,16 @@ export default {
         startTime: moment().subtract(30, 'minutes').valueOf(),
         endTime: moment().valueOf(),
         indexes: 'sessionCount,operCountPerMin,errorCount/operCount,apdex,percentage',
+        // 增加version字段
+        version: sessionStorage.getItem('UEM_platform') == 'pc' ? JSON.stringify(' ') : 'global',
         ...payload
     }),
     getTrend: payload => Request('get', 'app/countAndTrend/overview', {
         appId: sessionStorage.getItem('UEM_appId'),
         platform: sessionStorage.getItem('UEM_platform'),
-        metrics: JSON.stringify(['pv', 'uv', 'errorCount', 'clickNum', 'avgRspTime']),
+        metrics: sessionStorage.getItem('UEM_platform') == 'pc' ? JSON.stringify(['pv', 'uv', 'errorCount', 'clickNum', 'avgRspTime']) :  JSON.stringify(['sessionCount', 'clickNum', 'avgUiRspTime', 'errorCount', 'avgRspTime']),
+        // 增加version字段
+        version: sessionStorage.getItem('UEM_platform') == 'pc' ? JSON.stringify(' ') : 'global',
         ...payload
     }),
     getUserDistribution: payload => Request('get', 'app/userDistribution/overview', {
@@ -21,6 +25,8 @@ export default {
         pageSize: 100,
         pageIndex: 1,
         areaType: 'province',
+         // 增加version字段
+         version: sessionStorage.getItem('UEM_platform') == 'pc' ? JSON.stringify(' ') : 'global',
         ...payload
     }),
     getApdex: payload => Request('get', 'app/deploy/apdex/view', {

@@ -8,6 +8,8 @@ import {
     Timing,
     Trend,
     Analysis,
+    TimingMobile,
+    FlowChart
 } from '../components/PerformanceDetail';
 
 @inject('frameStore', 'performanceDetailStore')
@@ -62,6 +64,7 @@ export default class PerformanceDetail extends React.Component {
         return nextProps.tag;
     }
     render() {
+        const platform = sessionStorage.getItem('UEM_platform');
         const {
             info,
             baseInfo,
@@ -92,7 +95,10 @@ export default class PerformanceDetail extends React.Component {
             firstByteTime,
             lastByteTime,
             domLoadingTime,
-            pageAvgRspTime
+            pageAvgRspTime,
+            // 移动端h5
+            domReady,
+            avgRspTime
         } = info;
         const { itemId } = this.props;
         return (
@@ -110,19 +116,33 @@ export default class PerformanceDetail extends React.Component {
                         url
                     }}
                 />
-                {operType === 'redirect' &&
-                    <Timing
-                        data={{
-                            netTime,
-                            serverTime,
-                            clientTime,
-                            firstByteTime,
-                            lastByteTime,
-                            domLoadingTime,
-                            pageAvgRspTime
-                        }}
-                    />
+                {platform == 'pc' ?
+                    operType === 'redirect' &&
+                        <Timing
+                            data={{
+                                netTime,
+                                serverTime,
+                                clientTime,
+                                firstByteTime,
+                                lastByteTime,
+                                domLoadingTime,
+                                pageAvgRspTime
+                            }}
+                        />
+                    :<TimingMobile
+                            data={{
+                                netTime,
+                                serverTime,
+                                clientTime,
+                                firstByteTime,
+                                lastByteTime,
+                                domReady,
+                                avgRspTime
+                            }}
+                        />
+
                 }
+                <FlowChart />
                 <Trend itemId={itemId} trend={trend} />
                 <Analysis
                     sampleAnalyzeData={sampleAnalyzeData}

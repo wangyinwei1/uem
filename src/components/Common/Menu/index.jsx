@@ -7,8 +7,8 @@ import config from './config';
 import styles from './index.scss';
 
 const Option = Select.Option;
-@inject('frameStore') 
-@observer
+// @inject('frameStore') 
+// @observer
 export default class Menu extends React.Component {
     // 通过context取router，暂时没用到
     // static contextTypes = {
@@ -99,7 +99,7 @@ export default class Menu extends React.Component {
     }
 
     setTheme(){
-        const { theme, onChangeTheme } = this.props.frameStore;
+        // const { theme, onChangeTheme } = this.props.frameStore;
         localStorage.setItem('UEM_skin', localStorage.getItem('UEM_skin') && localStorage.getItem('UEM_skin') == 'blue' ? 'white' : 'blue');
         document.getElementsByTagName("html")[0].className = localStorage.getItem('UEM_skin');
         // action 改变theme，被监听.

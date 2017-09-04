@@ -15,7 +15,7 @@ class UserTrend extends Component {
     componentDidMount() {
         const { getUserTrend } = this.props;
         getUserTrend({
-            metrics: JSON.stringify(['pv', 'clickNum', 'sessionCount'])
+            metrics: sessionStorage.getItem('UEM_platform') == 'pc' ? JSON.stringify(['pv', 'clickNum', 'sessionCount']) : JSON.stringify(['clickNum', 'uv', 'sessionCount'])
         });
     }
     render() {
@@ -78,8 +78,8 @@ class UserTrend extends Component {
                 }]
             },
             xAxis: [{
-                data: trend.clickCount && trend.clickCount.map((val, i) => {
-                    let selectTime = trend.clickCount[i].endTime - trend.clickCount[i].startTime;
+                data: trend.clickNum && trend.clickNum.map((val, i) => {
+                    let selectTime = trend.clickNum[i].endTime - trend.clickNum[i].startTime;
                     if (selectTime <= 1800000) {
                         //选择一天
                         return moment(val.startTime).format("HH:mm");
@@ -91,15 +91,15 @@ class UserTrend extends Component {
             series: [
                 {
                     name: locale('点击数'),
-                    data: []
+                    data: trend.clickNum
                 },
                 {
                     name: locale('独立设备数'),
-                    data: []
+                    data: trend.uv
                 },
                 {
                     name: locale('启动数'),
-                    data: []
+                    data: trend.sessionCount
                 }
             ]
         })

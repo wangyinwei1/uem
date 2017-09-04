@@ -1,5 +1,7 @@
 import React from 'react';
 import styles from './index.scss';
+import { Select } from 'antd';
+const Option = Select.Option;
 
 export default class Metrics extends React.Component {
     metrics = {
@@ -14,6 +16,21 @@ export default class Metrics extends React.Component {
         xhr: 'AJAX',
         form: '表单',
         link: '链接'
+    }
+    // 字段需要后端提供
+    mobileMetrics = {
+        clickNum: '点击数',
+        'apdexD(>2s clickNum)': '响应时间>2s的点击数',
+        'thruput': '吞吐率'
+    }
+    mobileType = {
+        // UIType ?
+        'html': 'HTML',
+        'native': '原生',
+
+    }
+    handleSelectChange(e){
+        // 切换url应有的操作
     }
     _render () {
         const { data } = this.props;
@@ -36,23 +53,45 @@ export default class Metrics extends React.Component {
         );
     }
     render() {
+        const platform = sessionStorage.getItem('UEM_platform');
         const { props } = this.props;
         return (
-            <div className={cls('tile-body', styles['metrics'])}>
-                <div className={styles['props']}>
-                    <dl>
-                        <dt>{locale('操作类型')}：</dt>
-                        <dd>{locale(this.type[props.operType])}</dd>
-                    </dl>
-                    <dl>
-                        <dt>URL：</dt>
-                        <dd>{props.url}</dd>
-                    </dl>
+            platform == 'pc'?
+                <div className={cls('tile-body', styles['metrics'])}>
+                    <div className={styles['props']}>
+                        <dl>
+                            <dt>{locale('操作类型')}：</dt>
+                            <dd>{locale(this.type[props.operType])}</dd>
+                        </dl>                     
+                        <dl>
+                            <dt>URL：</dt>
+                            <dd>{props.url}</dd>
+                        </dl>         
+                    </div>
+                    <ul className={styles['list']}>
+                        {this._render()}
+                    </ul>
                 </div>
-                <ul className={styles['list']}>
-                    {this._render()}
-                </ul>
-            </div>
+                :
+                 <div className={cls('tile-body', styles['metrics'])}>
+                    <div className={styles['props']}>
+                        <dl>
+                            <dt>{locale('UI类型')}：</dt>
+                            <dd>{ '  ' }</dd>
+                        </dl>                     
+                        <dl>
+                             <dt>URL:</dt>
+                             <dd>
+                                 <Select defaultValue={props.url} style={{ width: 120 }} onChange={this.handleSelectChange.bind(this)}>
+                                    <Option value={props.url}>{props.url}</Option>
+                                 </Select>
+                             </dd>
+                         </dl>         
+                    </div>
+                    <ul className={styles['list']}>
+                        {this._render()}
+                    </ul>
+                </div> 
         );
     }
 }

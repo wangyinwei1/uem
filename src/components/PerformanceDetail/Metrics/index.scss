@@ -20,6 +20,16 @@
             width: 70%;
             dd {
                 color: #70C3FB;
+                :global {
+                    .ant-select-selection {
+                    margin-left: 12px;
+                    width: 260px;
+                    }
+                    .ant-select-dropdown {
+                        width: 260px !important;
+                        // margin-left: 12px;
+                    }
+                }
             }
         }
     }

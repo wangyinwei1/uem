@@ -1,0 +1,140 @@
+$arrowColor: #5d8dbd;
+$rectColor: transparent;
+$rectBackground: #9cf;
+
+.lee {
+    // float: left;
+    width: 100px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    border: 3px solid $rectColor;
+    margin-left: 80px;
+    color: black;
+    background: $rectBackground;
+    border-radius: 10px;
+
+}
+// .arrow-right{  
+//     width: 0;  
+//     height: 0;  
+//     border-width: 20px;  
+//     border-color: transparent #ddd transparent transparent;  
+//     border-style: dashed solid dashed dashed; 
+//     &:before {
+//         border: none;
+//         background-color: #555;
+//         height: 2px;
+//         width: 100px;
+//         top: 35%;
+//         left: 0;
+//     } 
+// } 
+.arrow-right {
+    position: relative;
+    left: 260px;
+    bottom: 32px;
+    &:before {
+        width: 80px;
+        height: 2px;
+        position: absolute;
+        content: ' ';
+        margin-left: -80px;
+        top: 5px;
+        background: $arrowColor;
+        left: 0px;
+    }
+    &:after {
+        border: 6px solid transparent;
+        border-left: 10px solid $arrowColor;
+        width: 0;
+        height: 0;
+        position: absolute;
+        content: ' '
+    }
+}
+
+.fulei {
+    position: relative;
+}
+
+.wrap {
+    position: relative;
+    margin-left: 10px;
+    display: inline-block;
+}
+
+.lee .miaoshu {
+    display: inline-block;
+    color: #76a3d1;
+}
+
+.shangmiande {
+    border: 2px solid $rectColor;
+    height: 50px;
+    line-height: 50px;
+    width: 100px;
+    position: relative;
+    left: 280px;
+    top: 62px;
+    text-align: center;
+    color:black;
+    background: $rectBackground; 
+    border-radius: 10px;
+}
+
+.shangmiande .miaoshu {
+    display: inline-block;
+    position: relative;
+    top: -92px;
+    color: #76a3d1;
+}
+
+.shuxian {
+    height: 70px;
+    width: 2px;
+    background: $arrowColor;
+    position: relative;
+    left: 520px;
+}
+
+.shuxian-down {
+    height: 40px;
+    background: $arrowColor;
+    width: 2px;
+    position: relative;
+    top: 62px;
+    left: 330px;
+    
+     &:after {
+        border: 6px solid transparent;
+        border-top: 10px solid $arrowColor;
+        width: 0;
+        height: 0;
+        position: absolute;
+        content: ' ';
+        top:40px;
+        left:-5px;
+    }
+}
+
+.hengxian {
+    width: 140px;
+    height: 2px;
+    position: relative;
+    // display: inline-block;
+    margin-left: 382px;
+    top: 0px;
+    background:$arrowColor;
+    /* margin: 10px 10px; */
+    &:after {
+        border: 6px solid transparent;
+        border-right: 10px solid $arrowColor;
+        width: 0;
+        height: 0;
+        position: absolute;
+        content: ' ';
+        top: -5px;
+        left: -7px;
+    }
+}

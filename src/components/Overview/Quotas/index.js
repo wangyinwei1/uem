@@ -16,12 +16,11 @@ class Quotas extends Component {
         getTrend();
     }
     quotasMobile(){
-        // 后端字段未定，这里用的还是pc端的字段名称。
         const options={};
-        ['avgRspTime','clickNum','errorCount','pv','uv'].forEach(type => {
+        ['avgRspTime','clickNum','errorCount','sessionCount','avgUiRspTime'].forEach(type => {
             options[type]= config.get('default').mergeDeep(config.get(type))
-            .setIn(['series', 0, 'data'], this.props.trend[type]['today'])
-            .setIn(['series', 1, 'data'], this.props.trend[type]['yesterday']);
+            .setIn(['series', 0, 'data'], this.props.trendMobile[type]['today'])
+            .setIn(['series', 1, 'data'], this.props.trendMobile[type]['yesterday']);
         })
         return (
             <div className={styles['quotas']}>
@@ -29,25 +28,25 @@ class Quotas extends Component {
                     <Col span={8}>
                         <div className={cls('tile-head')}>{locale('启动次数')}</div>
                         <div className={cls('tile-body')}>
-                            <LineChart group="quotas" chartId="pv" options={options.pv.toJS()} />
+                            <LineChart group="quotas" chartId="sessionCount" options={options.sessionCount.toJS()} />
                         </div>
                     </Col>
                     <Col span={8}>
                         <div className={cls('tile-head')}>{locale('点击数')}</div>
                         <div className={cls('tile-body')}>
-                            <LineChart group="quotas" chartId="uv" options={options.uv.toJS()} />
+                            <LineChart group="quotas" chartId="cliclNum" options={options.clickNum.toJS()} />
                         </div>
                     </Col>
                     <Col span={8}>
-                        <div className={cls('tile-head')}>{locale('平均UI响应时间')}</div>
+                        <div className={cls('tile-head')}>{locale('原生UI平均响应时间')}</div>
                         <div className={cls('tile-body')}>
-                            <LineChart group="quotas" chartId="clickNum" options={options.clickNum.toJS()} />
+                            <LineChart group="quotas" chartId="avgUiRspTime" options={options.avgUiRspTime.toJS()} />
                         </div>
                     </Col>
                 </Row>
                 <Row>
                     <Col span={12}>
-                        <div className={cls('tile-head')}>{locale('平均HTTP响应时间')}</div>
+                        <div className={cls('tile-head')}>{locale('H5平均响应时间')}</div>
                         <div className={cls('tile-body')}>
                             <LineChart group="quotas" chartId="avgRspTime" options={options.avgRspTime.toJS()} />
                         </div>
