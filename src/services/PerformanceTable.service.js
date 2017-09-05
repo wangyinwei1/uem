@@ -1,4 +1,5 @@
 import Request from '../utils/request';
+import { getVersion } from '../utils/storage';
 
 export default {
     getOpersList: payload => Request('get', 'perfor/opers/list', {
@@ -13,6 +14,7 @@ export default {
         operType: undefined,
         performanceType: undefined,
         type: undefined,
+        version: getVersion(),
         ...payload
     })
 };

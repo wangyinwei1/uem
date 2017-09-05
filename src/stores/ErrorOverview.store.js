@@ -1,7 +1,8 @@
 import { observable, action, runInAction, autorun } from 'mobx';
 import { default as CommonService } from '../services/CommonInterface.service';
 import {
-    getTimeType
+    getTimeType,
+    getVersion
 } from '../utils/storage';
 import { countryNameInCN, countryNameInEN } from '../components/Common/Chart/WorldCountryName';
 
@@ -15,11 +16,12 @@ class ErrorOverviewStore {
         total: 1
     };
 
-    @action onGetKeyIndicator = async payload => {
+    @action onGetKeyIndicator = async payload => {        
         try {
             const data = await CommonService.getKeyIndicator({
                 startTime: moment().subtract(getTimeType().startTime.type, getTimeType().startTime.units).valueOf(),
                 endTime: moment().subtract(getTimeType().endTime.type, getTimeType().endTime.units).valueOf(),
+                version: getVersion(),
                 ...payload
             });
             runInAction(() => {
@@ -54,7 +56,7 @@ class ErrorOverviewStore {
                 startTime: moment().subtract(getTimeType().startTime.type, getTimeType().startTime.units).valueOf(),
                 endTime: moment().subtract(getTimeType().endTime.type, getTimeType().endTime.units).valueOf(),
                 pageSize: areaType == 'province' ? 100 : 300,
-                sortKey: metrics == '["occurErrorUserRate"]' ? "occurErrorUserRate" : "effectedUserNum",
+                sortKey: JSON.parse(metrics)[0],
                 ...payload
             });
             if (areaType == 'province') {

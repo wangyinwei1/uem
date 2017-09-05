@@ -20,11 +20,18 @@ class KeyIndicator extends Component {
     componentDidMount() {
         const { getKeyIndicator } = this.props;
         getKeyIndicator({
-            metrics: JSON.stringify(['errorCount','wrongPageNum','effectedUserNum','occurErrorUserRate'])
+            metrics: JSON.stringify(['errorCount','wrongPageNum','effectedUserNum','occurErrorUserRate']),
         });
     }
-    componentWillReceiveProps(nextProps) {
-    }
+    // componentWillReceiveProps(nextProps) {
+    //     if(this.props.version !== nextProps.version){
+    //         nextProps.getKeyIndicator({
+    //             metrics: JSON.stringify(['errorCount','wrongPageNum','effectedUserNum','occurErrorUserRate']),
+    //             version: nextProps.version
+    //         });
+    //     }
+        
+    // }
 
     render() {
         

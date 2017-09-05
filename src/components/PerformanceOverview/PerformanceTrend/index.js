@@ -15,7 +15,7 @@ class PerformanceTrend extends Component {
     componentDidMount() {
         const { getPerformanceTrend } = this.props;
         getPerformanceTrend({
-            metrics: sessionStorage.getItem('UEM_platform') == 'pc' ? JSON.stringify(['pv','clickNum','avgRspTime','apdex']) : JSON.stringify(['avgUiRspTime','avgRspTime','thruput'])
+            metrics: sessionStorage.getItem('UEM_platform') == 'pc' ? JSON.stringify(['pv','clickNum','avgRspTime','apdex']) : JSON.stringify(['avgUiRspTime','avgRspTime','clickNum'])
         });
     }
     render() {
@@ -151,7 +151,7 @@ class PerformanceTrend extends Component {
         // mobile性能趋势的配置
         let mobileOptions = basicConfig.mergeDeep({
             legend: {
-                data: [{name:locale('平均UI响应时间')},{name: locale('平均HTTP响应时间')},{name: locale('吞吐率')}]
+                data: [{name:locale('平均UI响应时间')},{name: locale('平均HTTP响应时间')},{name: locale('点击数')}]
             },
             xAxis: [{
                 data: []
@@ -168,7 +168,7 @@ class PerformanceTrend extends Component {
             series: [
                 {name: locale('平均UI响应时间'),data:trend.avgUiRspTime},
                 {name: locale('平均HTTP响应时间'),data: trend.avgRspTime},
-                {name: locale('吞吐率'), data: trend.thruput}
+                {name: locale('点击数'), data: trend.clickNum}
             ]
         })
         

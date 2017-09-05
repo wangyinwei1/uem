@@ -9,7 +9,7 @@ class CruxMobile extends Component {
     componentDidMount() {
         const { getRealTimeData, getApdex } = this.props;
         // 获取移动端30分钟指标
-        getRealTimeData({ indexs: '' });
+        getRealTimeData({indexs: 'sessionCount,clickNum,avgUiRspTime,avgRspTime,avgAccessTime,errorRate'});
         getApdex();
 
     }

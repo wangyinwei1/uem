@@ -41,26 +41,27 @@ export default class ErrorOverview extends React.Component {
             onGetErrorTrend,
             onGetMapData
         } = this.props.errorOverviewStore;
+        // const startTime = this.props.frameStore.timeType;
 
-        const startTime = this.props.frameStore.timeType;
+
+        const { appVersion } = this.props.frameStore;
+        console.log('appversion是',appVersion);
         const { loading } = this.state;
         return (
-            <div id="ErrorOverview" >
+            <div id="ErrorOverview" key={appVersion}>
                 <Spin spinning={loading} size="large">
                     <KeyIndicator
                         keyIndicator={keyIndicator}
                         getKeyIndicator={onGetKeyIndicator}
-                        startTime = {startTime}
+                        version={appVersion}
                     />
                     <ErrorTrend
                         errorTrend={errorTrend}
                         getErrorTrend={onGetErrorTrend}
-                        startTime = {startTime}
                     />
                      <ErrorMapChart
                         mapData={mapData}
                         getMapData={onGetMapData}
-                        startTime = {startTime}
                         selectStatus={this.selectStatus.bind(this)}
                     />
                     <ErrorModalChart

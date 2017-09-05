@@ -1,4 +1,5 @@
 import Request from '../utils/request';
+import { getVersion } from '../utils/storage';
 
 export default {
     getKeyIndicator: payload => Request('get', 'indicators/get', {
@@ -7,7 +8,7 @@ export default {
         startTime: undefined,
         endTime: moment().valueOf(),
         metrics: JSON.stringify(["avgRspTime", "avgClientTime", "avgNetworkTime", "avgServerTime", "errorCount"]),
-        version: sessionStorage.getItem('UEM_platform') == 'pc' ? JSON.stringify(' ') : sessionStorage.getItem('UEM_appVersion') ? sessionStorage.getItem('UEM_appVersion') : 'global',
+        version: getVersion(),
         ...payload
     }),
 
@@ -17,7 +18,7 @@ export default {
         startTime: undefined,
         endTime: moment().valueOf(),
         metrics: JSON.stringify(["avgRspTime", "apdex", "errorCount", "clickNum", "pv", "sessionCount"]),
-        version: sessionStorage.getItem('UEM_platform') == 'pc' ? JSON.stringify(' ') : 'global',
+        version: getVersion(),
         ...payload
     }),
 
@@ -33,7 +34,13 @@ export default {
         sort: 'desc',
         sortKey: undefined,
         areaType: 'province',
-        version: sessionStorage.getItem('UEM_platform') == 'pc' ? JSON.stringify(' ') : sessionStorage.getItem('UEM_appVersion') ? sessionStorage.getItem('UEM_appVersion') : 'global',
+        version: getVersion(),
+        ...payload
+    }),
+
+    getAppVersion: payload => Request('get','versions/get',{
+        appId: sessionStorage.getItem('UEM_appId'),
+        platform: sessionStorage.getItem('UEM_platform'),
         ...payload
     })
    

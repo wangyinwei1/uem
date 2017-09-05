@@ -25,7 +25,7 @@ class ErrorMapChart extends Component {
         const { getMapData } = this.props;
         getMapData({
             areaType: 'province',
-            metrics: JSON.stringify(['occurErrorUserRate'])
+            metrics: JSON.stringify([this.state.activePillar])
         });
     }
     changeMap(map) {
@@ -38,7 +38,7 @@ class ErrorMapChart extends Component {
                 activeMap: map
             }, () => this.props.getMapData({
                 areaType: map == 'china' ? 'province' : 'country',
-                metrics: this.state.activePillar == 'occurErrorUserRate' ? JSON.stringify(['occurErrorUserRate']) : JSON.stringify(['effectedUserNum']),
+                metrics: JSON.stringify([this.state.activePillar]),
                 province: undefined
             }));
             this.props.selectStatus(this.state.activePillar,map);
@@ -57,7 +57,7 @@ class ErrorMapChart extends Component {
             activePillar: e.target.value
         }, () => this.props.getMapData({
             areaType: this.state.activeMap == 'china' ? 'province' : 'country',
-            metrics: e.target.value == 'occurErrorUserRate' ? JSON.stringify(['occurErrorUserRate']) : JSON.stringify(['effectedUserNum']),
+            metrics: JSON.stringify([e.target.value]),
             province: this.state.activeProvince
          }) );
         this.props.selectStatus(e.target.value,this.state.activeMap);

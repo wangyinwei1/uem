@@ -9,7 +9,7 @@ class KeyIndicator extends Component {
     componentDidMount() {
         const { getKeyIndicator } = this.props;
         getKeyIndicator({
-            metrics: JSON.stringify(['sessionCount','uv','avgClickNum','avgAccessTime','avgPvNum'])
+            metrics: JSON.stringify(['sessionCount','uv','avgClickNum','avgAccessTime','avgPvNum',"clickNum"])
         });
     }
     componentWillReceiveProps(nextProps) {
@@ -35,7 +35,7 @@ class KeyIndicator extends Component {
         }];
         const indicatorEnumMobile = [{
             name: '启动次数',
-            key: ''
+            key: 'sessionCount'
         },{
             name: '独立设备数',
             key: 'uv'

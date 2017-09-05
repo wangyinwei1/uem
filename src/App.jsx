@@ -24,7 +24,7 @@ import stores from './stores';
 export default function App() {
     return (
         <Provider {...stores} >
-            <HashRouter>
+            <HashRouter >
                 <Frame>
                     <Switch>
                         <Redirect exact from="/" to="/app_list" />

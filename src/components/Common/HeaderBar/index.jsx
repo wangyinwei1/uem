@@ -38,7 +38,7 @@ export default class HeaderBar extends React.PureComponent {
         console.log('获取到的是：', this.refs.version_picker.props.className);
         if(this.refs.version_picker.props.className.indexOf('dn') == -1){
             // 在显示version的组件显示的时候进行获取
-            this.props.getVersionSettings();
+            this.props.onGetAppVersion();
         }
     }
     handleSelectTime(obj) {
@@ -70,6 +70,7 @@ export default class HeaderBar extends React.PureComponent {
             });
         }, 0);
     }
+
     takeDefaultValue() {
         const { startTime, endTime } = this.props.timeType;
         const { type, units } = startTime;
@@ -97,17 +98,16 @@ export default class HeaderBar extends React.PureComponent {
         this.props.onChooseVersion({
             version: value
         });
+        // clearTimeout(this.timer);
+        // this.timer = setTimeout(() => {
+        //     this.props.onChooseVersion({
+        //         version: value
+        //     });
+        // }, 0);
     }
     render() {
         // const platform = sessionStorage.getItem('UEM_platform');
-        const { module,versionSettings } = this.props;
-        let versions = [];
-        if(versionSettings.length > 0){
-            versionSettings.map(item => {
-                versions.push(item.version)
-            })
-        }
-        console.log('versionSettings',versionSettings,this.props.platform);
+        const { module,appAllVersions } = this.props;
         return (
             <div className={styles['header-bar']}>
                 <DatePicker
@@ -126,10 +126,12 @@ export default class HeaderBar extends React.PureComponent {
                         'dn': !this.datePickerDisplay[module] || this.props.platform == 'pc'
                     })}
                     placeholder="所有版本"
+                    defaultValue={sessionStorage.getItem('UEM_appVersion')}
                 >
-                {versions.map(item => {
+                {appAllVersions.map((item,index) => {
                     return <Option key={item} value={item}>{item}</Option>
                 })}
+                <Option key='global' value='global'>所有版本</Option>
                 </Select>
             </div>
         );

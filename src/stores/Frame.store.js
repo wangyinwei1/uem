@@ -1,20 +1,21 @@
-import { observable, action } from 'mobx';
+import { observable, action, runInAction,autorun } from 'mobx';
+import { default as CommonService  } from '../services/CommonInterface.service';
 import {
     getTimeType,
     getTheme,
+    getVersion
 } from '../utils/storage';
 
 class FrameStore {
-
     @observable apdex = sessionStorage.getItem('UEM_apdex');
     @observable appId = sessionStorage.getItem('UEM_appId');
     @observable platform = sessionStorage.getItem('UEM_platform') || 'pc';
-    @observable appVersion = sessionStorage.getItem('UEM_appVersion') || '' ;
+    @observable appVersion = getVersion();
     @observable lang = localStorage.getItem('UEM_lang');
     @observable theme = getTheme();
     @observable timeType = getTimeType();
     @observable theme = 'blue';
-    // @observable versions = [];
+    @observable appAllVersions = [];
 
     constructor() {
     }
@@ -36,11 +37,24 @@ class FrameStore {
         sessionStorage.setItem('UEM_timeType', JSON.stringify(timeType));
     }
     @action onChooseVersion = payload => {
-        this.appVersion = payload.version;
-        sessionStorage.setItem('UEM_appVersion', payload.version);
+        this.appVersion =  payload.version;
+        sessionStorage.setItem('UEM_appVersion', this.appVersion);
     }
     @action onChangeTheme = payload => {
         this.theme = payload;
+    }
+    @action onGetAppVersion = async payload => {
+        try{
+            const data = await CommonService.getAppVersion({
+                ...payload
+            });
+            runInAction(() => {
+                this.appAllVersions = data;
+            });
+            return data;
+        }catch(e){
+            throw e;
+        }
     }
 }
 

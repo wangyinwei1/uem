@@ -17,7 +17,7 @@ class PerformanceMapChart extends Component {
         super(props);
         this.state = {
             activeMap: 'china',
-            activePillar: sessionStorage.getItem('UEM_platform')=='pc' ?'avgRspTime':'avgUiRspTime',
+            activePillar: sessionStorage.getItem('UEM_platform') == 'pc' ? 'avgRspTime' : 'avgUiRspTime',
             activeProvince: undefined,
             isSelectingCity: true
         };
@@ -27,8 +27,7 @@ class PerformanceMapChart extends Component {
         const { getMapData } = this.props;
         getMapData({
             areaType: 'province',
-            metrics: sessionStorage.getItem('UEM_platform')=='pc' ? JSON.stringify(['avgRspTime']):JSON.stringify(['avgUiRspTime'])
-            
+            metrics: JSON.stringify([this.state.activePillar])
         });
     }
     changeMap(map) {
@@ -41,7 +40,7 @@ class PerformanceMapChart extends Component {
                 activeMap: map
             }, () => this.props.getMapData({
                 areaType: map == 'china' ? 'province' : 'country',
-                metrics: this.state.activePillar == 'avgRspTime' ? JSON.stringify(['avgRspTime']) : JSON.stringify(['apdex']),
+                metrics: JSON.stringify([this.state.activePillar]),
                 province: undefined
             }));
             if(this.state.activeProvince != undefined){
@@ -108,7 +107,7 @@ class PerformanceMapChart extends Component {
                 </RadioGroup>:
                 <RadioGroup className={cls('radio')} onChange={this.handleRadioSelect.bind(this)} value={this.state.activePillar}>
                     <Radio value={'avgUiRspTime'}>{locale('平均UI响应时间')}</Radio>
-                    <Radio value={'avgHttpRspTime'}>{locale('平均HTTP响应时间')}</Radio>
+                    <Radio value={'avgRspTime'}>{locale('平均HTTP响应时间')}</Radio>
                 </RadioGroup>
                     
         )

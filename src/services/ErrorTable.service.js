@@ -1,4 +1,5 @@
 import Request from '../utils/request';
+import { getVersion } from '../utils/storage';
 
 export default {
     getErrorsList: payload => Request('get', 'errors/list', {
@@ -11,6 +12,7 @@ export default {
         status: undefined,
         sort: undefined,
         sortKey: undefined,
+        version: getVersion(),
         ...payload
     }),
     resolveRow: payload => Request('post', 'errorStatus/update', {
