@@ -12,7 +12,7 @@ function lineBarFormatter(params, ticket, callback) {
              ${params.map((val, index) => {
             return `<li>
                     <span style="background:${val.color};display:inline-block;height:10px;width:10px;border-radius:50%"></span>
-                    <span>${val.seriesName} : ${val.value == null ? locale("没有数据") : val.value}</span>
+                    <span>${val.seriesName} : ${val.value == null ? locale("暂无数据") : val.value}</span>
                  </li>`
         }).join('')}
          </ul>`;

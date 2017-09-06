@@ -150,16 +150,15 @@ class PerformanceTrend extends Component {
                 data: [{name:locale('平均UI响应时间')},{name: locale('平均HTTP响应时间')},{name: locale('点击数')}]
             },
             xAxis: [{
-                data: []
-                // trend.avgRspTime && trend.avgRspTime.map((val, i) => {
-                //     let selectTime = trend.avgRspTime[i].endTime - trend.avgRspTime[i].startTime;
-                //     if (selectTime <= 1800000) {
-                //         //选择一天
-                //         return moment(val.startTime).format("HH:mm");
-                //     } else {
-                //         return moment(val.startTime).format("MM-DD HH:mm");
-                //     }
-                // })
+                data : trend.avgRspTime && trend.avgRspTime.map((val, i) => {
+                    let selectTime = trend.avgRspTime[i].endTime - trend.avgRspTime[i].startTime;
+                    if (selectTime <= 1800000) {
+                        //选择一天
+                        return moment(val.startTime).format("HH:mm");
+                    } else {
+                        return moment(val.startTime).format("MM-DD HH:mm");
+                    }
+                })
             }],
             series: [
                 {name: locale('平均UI响应时间'),data:trend.avgUiRspTime},
