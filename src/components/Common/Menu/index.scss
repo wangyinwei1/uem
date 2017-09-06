@@ -1,6 +1,12 @@
 @import '../../../assets/styles/_mixin';
-$var_default: ();
-$var_white: ();
+$var_default: (color1:#183A61, color2:#74AFD9,color3:#153454,color4:#fff,color5:#74AFD9,color6:#6CA4CD,color7:#fff,color8:#14507E,color9:#03A9F3,color10:#163457,
+color11: #122A46,color12:#132E4E,color13: #163457,color14:#1d4676,color15:#5E8BBD,color16:rgba(22,69,118,.9),
+color17:#224872,color18:#4D77BC
+);
+$var_white: (color1: #fff, color2:#828b99,color3:#f2f7ff,color4:#4082e6,color5:#acb3bf,color6:#4082e6,color7:#9ea0b5,color8:#3e7fe5,color9:#326fdf,color10:#c5d9f7,
+color11: #ebeef1,color12:f3f5f9, color13:#e1e4e9,color14:#fff,color15:#4082e6,color16:#e9edf2,
+color17:#e9edf2,color18:#828b99
+);
 
 @mixin getTheme($map){
     :global(.unexpand) {
@@ -46,7 +52,7 @@ $var_white: ();
         width: 160px;
         height: 100%;
         border-right: 1px solid transparent;
-        background-color: #183A61;
+        background-color: map-get($map, color1);
         // & > a {
         //     &:first-child {
         //         margin-bottom: 20px;
@@ -64,7 +70,7 @@ $var_white: ();
                     margin-left: 3px;
                     margin-left: 28px;
                     padding: 10px 0;
-                    color: #48769E;
+                    color: map-get($map,color5);
                     font-size: 13px;
                     cursor: default;
                 }
@@ -75,7 +81,7 @@ $var_white: ();
             // text-align: center;
             padding-left: 36px;
             height: 30px;
-            color: #74AFD9;
+            color: map-get($map, color2);
             font-size: 14px;
             line-height: 30px;
             transition: background .2s;
@@ -85,7 +91,8 @@ $var_white: ();
             }
             &.current {
                 position: relative;
-                background-color: #153454;
+                background-color: map-get($map,color3);
+                color: map-get($map,color4);
                 &:before {
                     position: absolute;
                     top: 0;
@@ -98,8 +105,8 @@ $var_white: ();
                 }
             }
             &:hover {
-                background-color: #153454;
-                color: #6CA4CD;
+                background-color: map-get($map,color3);
+                color: map-get($map,color6);
             }
             :global {
                 .iconfont {
@@ -112,6 +119,24 @@ $var_white: ();
     .apps-select {
         padding: 10px 0;
         text-align: center;
+        :global {
+            .ant-select-selection {
+                border: none;
+                background-color: map-get($map,color14);
+                color: map-get($map,color15);
+            }
+            .ant-select-selection--single {
+                height: 30px;
+                position: relative;
+                // cursor: pointer;
+                line-height: 30px;
+                border-radius: 0px;
+            }    
+            .ant-select-selection__placeholder {
+                color: #5e8bbd;
+                margin-top: -8px;
+            }
+        }
     }
     
     
@@ -121,7 +146,7 @@ $var_white: ();
         text-align: center;
         :global {
             .iconfont {
-                color: #FFFFFF;
+                color: map-get($map, color7);
             }
         }
         a {
@@ -130,10 +155,10 @@ $var_white: ();
             padding-left: 0;
             width: 30px;
             height: 30px;
-            border: 2px solid #122A46;
+            border: 2px solid map-get($map,color11);
             border-radius: 50%;
-            background: #132E4E;
-            box-shadow: 0 0 0 4px #163457;
+            background:  map-get($map,color12);
+            box-shadow: 0 0 0 4px map-get($map,color13);
             text-align: center;
             line-height: 26px;
             cursor: pointer;
@@ -146,9 +171,14 @@ $var_white: ();
                 cursor: default;
             }
             &.active {
-                border: 2px solid #03A9F3;
-                background: #14507E;
-                box-shadow: 0 0 0 4px #163457;
+                border: 2px solid map-get($map,color9);
+                background: map-get($map,color8);
+                box-shadow: 0 0 0 4px map-get($map,color10);
+                :global{
+                    .iconfont {
+                        color:#fff;
+                    }
+                }
             }
             i {
                 margin-right: 0 !important;
@@ -162,10 +192,10 @@ $var_white: ();
         bottom: 20px;
         width: 100%;
         .changeTheme{
-            background: #183a61; 
+            background: map-get($map,color1); 
             height: 25px;
             font-size:15px;
-            color: #74afd9;
+            color: map-get($map,color2);
             padding-left: 40px;
             margin-bottom: 6px;
             // display: none;
@@ -173,7 +203,7 @@ $var_white: ();
         .setting-expand {
             margin-bottom: 25px;
             height: 1px;
-            background-color: rgba(22,69,118,.9);
+            background-color: map-get($map,color16);
             text-align: center;
             :global {
                 .fa {
@@ -182,8 +212,8 @@ $var_white: ();
                     width: 20px;
                     height: 20px;
                     border-radius: 50%;
-                    background: #224872;
-                    color: #4D77BC;
+                    background: map-get($map,color17);
+                    color: map-get($map,color18);
                     text-align: center;
                     font-size: 10px;
                     line-height: 20px;
