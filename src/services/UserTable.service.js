@@ -1,4 +1,5 @@
 import Request from '../utils/request';
+import { getVersion } from '../utils/storage';
 
 export default {
     getUserList: payload => Request('get', 'user/list', {
@@ -12,6 +13,7 @@ export default {
         sort: undefined,
         sortKey: undefined,
         searchKey: undefined,
+        version: getVersion(),
         ...payload
     }),
 };

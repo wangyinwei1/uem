@@ -4,14 +4,15 @@ import Chart from './Chart';
 function lineBarFormatter(params, ticket, callback) {
     const description = params[0].data.description;
     const text = (description === undefined ? '时间段:' : description);
-    const ntimesParse = params[0].data.timesParse;
+    // const ntimesParse = params[0].data.timesParse;
+    const ntimeParse =  (`${moment(params[0].data.startTime).format("MM-DD HH:mm")} ${locale('至')} ${moment(params[0].data.endTime).format("MM-DD HH:mm")}`)
     return `
          <ul>
-             <li><span>  ${ ntimesParse && typeof ntimesParse != "undefined" ? text + ' ' + params[0].data.timesParse : ""} </span></li>
+             <li><span>  ${ ntimeParse && typeof ntimeParse !== "undefined" ? text + ' ' + ntimeParse : ""} </span></li>
              ${params.map((val, index) => {
             return `<li>
                     <span style="background:${val.color};display:inline-block;height:10px;width:10px;border-radius:50%"></span>
-                    <span>${val.seriesName} : ${val.value == null ? "没有数据" : val.value}</span>
+                    <span>${val.seriesName} : ${val.value == null ? locale("没有数据") : val.value}</span>
                  </li>`
         }).join('')}
          </ul>`;
@@ -28,11 +29,11 @@ const defaultOptions = Immutable.fromJS({
         left: 15,
         top: 15
     },
-    // tooltip: {
-        // formatter: function (params, ticket, callback) {
-        //     return lineBarFormatter(params, ticket, callback)
-        // },
-    // },
+    tooltip: {
+        formatter: function (params, ticket, callback) {
+            return lineBarFormatter(params, ticket, callback)
+        },
+    },
     xAxis: [{
         type: 'category',
         data: [],

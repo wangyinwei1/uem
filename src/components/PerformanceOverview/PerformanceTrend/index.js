@@ -134,16 +134,12 @@ class PerformanceTrend extends Component {
             color: ['yellow', ''],
             series: [
                 {
-                    name: '',
+                    name: 'Apdex',
                     type: 'line',
                     symbol: 'circle',
                     smooth: true,
                     showSymbol: false,
                     data: trend.apdex
-                },
-                {
-                    name: '',
-                    type: 'line',
                 }],
             // backgroundColor: 'rgba(0,0,0,0.2)',
         })

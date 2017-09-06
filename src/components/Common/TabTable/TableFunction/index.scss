@@ -1,0 +1,44 @@
+.tableProgress {
+    >.title {
+        width: 50px;
+        float: left;
+    }
+    >.progress {
+        float: left;
+        .per {
+            display: inline-block;
+            overflow: hidden;
+            height: 10px;
+        }
+    }
+}
+
+.overlay {
+    .popover {
+        height: 25px;
+        line-height: 25px;
+        .marker-colol {
+            height: 15px;
+            width: 5px;
+            display: inline-block;
+            margin: -3px 7px;
+        }
+        .marker-title span {
+            margin-right: 10px;
+            float: right;
+        }
+    }
+}
+
+.error-list {
+    .bar {
+        float: left;
+        position: relative;
+        width: 2px;
+        margin-right: 2px;
+        background-color: map-get($map, color1);
+    }
+}
+.mr20 {
+    
+}

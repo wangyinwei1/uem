@@ -48,7 +48,7 @@ export default class Menu extends React.Component {
                             return null;
                         }
                         return (
-                            <li key={item.name} >
+                            <li key={item.name}>
                                 <NavLink exact onClick={this.checkApp.bind(this)} activeClassName={styles['current']} replace to={item.to}>
                                     <i className={cls('iconfont', item.icon)}></i><span>{locale(item.name)}</span>
                                 </NavLink>
@@ -104,8 +104,6 @@ export default class Menu extends React.Component {
         document.getElementsByTagName("html")[0].className = localStorage.getItem('UEM_skin');
         // action 改变theme，被监听.
         // onChangeTheme(localStorage.getItem('UEM_skin'));
-
-        // this.context.router.history.push('./performance_overview');
     }
     render() {
         const { appId } = this.props;

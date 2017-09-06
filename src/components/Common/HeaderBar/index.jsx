@@ -32,13 +32,18 @@ export default class HeaderBar extends React.PureComponent {
         super(props); 
         this.takeDefaultValue = this.takeDefaultValue.bind(this);
     }
-    componentDidMount(){
-        // 获取版本
-        // this.props.getVersionSettings();
-        console.log('获取到的是：', this.refs.version_picker.props.className);
-        if(this.refs.version_picker.props.className.indexOf('dn') == -1){
-            // 在显示version的组件显示的时候进行获取
-            this.props.onGetAppVersion();
+    // componentDidMount(){
+        // if(this.refs.version_picker.props.className.indexOf('dn') == -1){
+        //     // 在显示version的组件显示的时候进行获取
+        //     this.props.onGetAppVersion();
+        // }
+    // }
+    componentWillReceiveProps(nextProps){
+        if(this.props.module !== nextProps.module){
+            // 通过判断 'dn' 属性存在与否来决定是否发送请求，在显示version的组件的时候进行获取
+            if(!(!this.datePickerDisplay[nextProps.module] || this.props.platform == 'pc')){
+            nextProps.onGetAppVersion();
+        }
         }
     }
     handleSelectTime(obj) {
@@ -98,12 +103,6 @@ export default class HeaderBar extends React.PureComponent {
         this.props.onChooseVersion({
             version: value
         });
-        // clearTimeout(this.timer);
-        // this.timer = setTimeout(() => {
-        //     this.props.onChooseVersion({
-        //         version: value
-        //     });
-        // }, 0);
     }
     render() {
         // const platform = sessionStorage.getItem('UEM_platform');

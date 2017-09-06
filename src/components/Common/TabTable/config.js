@@ -1,6 +1,7 @@
 import React from 'react';
 import ColorType from './ColorType';
 import OperType from './OperType';
+import TableFunction from './TableFunction/index';
 
 export default {
     PerformanceBrowse: [{
@@ -89,31 +90,55 @@ export default {
                 checked: true,
                 disabled: false,
                 width: 100,
-                render: (text, record, index) => text ? text : '--',
+                // render: (text, record, index) => text ? text : '--',
+                render(text, record, index) {
+                    // const config = UYUN.getTheme("performanceChart-table1");
+                    const config = [
+                        {
+                            color: "#ff5252",
+                            text: locale('不满意')
+                        }, {
+                            color: "#ffec0c",
+                            text: locale('可接受')
+                        }, {
+                            color: "#66dc6b",
+                            text: locale('满意')
+                        }
+                    ];
+                    return TableFunction.tableProgress(record.apdex, record.satisfactionIndex, config);
+                }
             }, {
                 value: 'thruput',
                 label: locale('吞吐率'),
                 checked: true,
                 disabled: false,
                 width: 100,
+                sorter: (a, b) => a.thruput - b.thruput,
             }, {
                 value: 'errorCount',
                 label: locale('错误数'),
                 checked: true,
                 disabled: false,
                 width: 100,
+                sorter: (a,b) => a.errorCount - b.errorCount
             }, {
                 value: 'avgRspTime',
                 label: locale('响应时间'),
                 checked: true,
                 disabled: false,
                 width: 100,
+                sorter: (a, b) => a.avgRspTime - b.avgRspTime,
+                render(text, record, index){
+                    const config = [{ color: "#03a9f4", text: locale('客户端') }, { color: "#91eb7c", text: locale('网络传输') }, { color: "#6270ef", text: locale('服务器') }]
+                    return TableFunction.tableProgress(record.avgRspTime, record.avgRspTimes, config, locale('平均响应时间'));
+                } 
             }, {
                 value: 'pv',
                 label: locale('浏览量PV'),
                 checked: true,
                 disabled: false,
                 width: 100,
+                sorter: (a,b) => a.pc - b.pv
             }, {
                 value: 'uv',
                 label: locale('访问量UV'),
@@ -147,24 +172,28 @@ export default {
                 checked: true,
                 disabled: false,
                 width: 100,
+                sorter: (a,b) => a.thruput - b.thruput
             }, {
                 value: 'errorCount',
                 label: locale('错误数'),
                 checked: true,
                 disabled: false,
                 width: 100,
+                sorter: (a,b) => a.errorCount - b.errorCount
             }, {
                 value: 'avgRspTime',
                 label: locale('响应时间'),
                 checked: true,
                 disabled: false,
                 width: 100,
+                sorter: (a,b) => a.avgRspTime - b.avgRspTime
             }, {
                 value: 'pv',
                 label: locale('浏览量PV'),
                 checked: true,
                 disabled: false,
                 width: 100,
+                sorter: (a,b) => a.pv - b.pv
             }, {
                 value: 'uv',
                 label: locale('访问量UV'),
@@ -250,31 +279,37 @@ export default {
                 checked: true,
                 disabled: false,
                 width: 100,
+                sorter: (a,b) => a.thruput - b.thruput
             }, {
                 value: 'errorCount',
                 label: locale('错误数'),
                 checked: true,
                 disabled: false,
                 width: 100,
+                sorter: (a,b) => a.errorCount - b.errorCount
             }, {
                 value: 'avgRspTime',
                 label: locale('响应时间'),
                 checked: true,
                 disabled: false,
                 width: 100,
+                sorter: (a,b) => a.avgRspTime - b.avgRspTime
             }, {
                 value: 'pv',
                 label: locale('浏览量PV'),
                 checked: true,
                 disabled: false,
                 width: 100,
-            }, {
-                value: 'uv',
-                label: locale('访问量UV'),
-                checked: true,
-                disabled: false,
-                width: 100,
-            }]
+            },
+            // 高保真有矛盾 
+            // {
+            //     value: 'uv',
+            //     label: locale('访问量UV'),
+            //     checked: true,
+            //     disabled: false,
+            //     width: 100,
+            // }
+        ]
         }
     }, {
         tabName: locale('未标记'),
@@ -294,38 +329,62 @@ export default {
                 checked: true,
                 disabled: false,
                 width: 100,
-                render: (text, record, index) => text ? text : '--',
+                render(text, record, index) {
+                    // const config = UYUN.getTheme("performanceChart-table1");
+                    const config = [
+                        {
+                            color: "#ff5252",
+                            text: locale('不满意')
+                        }, {
+                            color: "#ffec0c",
+                            text: locale('可接受')
+                        }, {
+                            color: "#66dc6b",
+                            text: locale('满意')
+                        }
+                    ];
+                    return TableFunction.tableProgress(record.apdex, record.satisfactionIndex, config);
+                }
             }, {
                 value: 'thruput',
                 label: locale('吞吐率'),
                 checked: true,
                 disabled: false,
                 width: 100,
+                sorter: (a,b) => a.thruput - b.thruput
             }, {
                 value: 'errorCount',
                 label: locale('错误数'),
                 checked: true,
                 disabled: false,
                 width: 100,
+                sorter: (a,b) => a.errorCount - b.errorCount
             }, {
                 value: 'avgRspTime',
                 label: locale('响应时间'),
                 checked: true,
                 disabled: false,
                 width: 100,
+                sorter: (a, b) => a.avgRspTime - b.avgRspTime,
+                render(text, record, index){
+                    const config = [{ color: "#03a9f4", text: locale('客户端') }, { color: "#91eb7c", text: locale('网络传输') }, { color: "#6270ef", text: locale('服务器') }]
+                    return TableFunction.tableProgress(record.avgRspTime, record.avgRspTimes, config, locale('平均响应时间'));
+                }
             }, {
                 value: 'pv',
                 label: locale('浏览量PV'),
                 checked: true,
                 disabled: false,
                 width: 100,
-            }, {
+            }, 
+            {
                 value: 'uv',
                 label: locale('访问量UV'),
                 checked: true,
                 disabled: false,
                 width: 100,
-            }]
+            }
+        ]
         }
     }],
 
@@ -564,11 +623,18 @@ export default {
                 label: locale('趋势'),
                 value: 'trend',
                 width: '15%',
+                render(text, record, index) {
+                    return TableFunction.errorTableTrend(text, record, index);
+                }
             }, {
                 label: locale('最近发生时间'),
                 value: 'lastTime',
                 width: '20%',
-                // sorter: (a, b) => a.lastTime - b.lastTime,
+                sorter: (a, b) => a.lastTime - b.lastTime,
+                render(text, record, index) {
+                    const time = moment(Number(text)).format("YYYY-MM-DD HH:mm");
+                    return time == "Invalid date" ? "--" : time;
+                }
             }],
             quota: []
         }
@@ -591,16 +657,23 @@ export default {
                 label: locale('错误数'),
                 value: 'errorCount',
                 width: '10%',
-                // sorter: (a, b) => a.errorCount - b.errorCount,
+                sorter: (a, b) => a.errorCount - b.errorCount,
             }, {
                 label: locale('趋势'),
                 value: 'trend',
                 width: '15%',
+                render(text, record, index) {
+                    return TableFunction.errorTableTrend(text, record, index);
+                }
             }, {
                 label: locale('最近发生时间'),
                 value: 'lastTime',
                 width: '20%',
-                // sorter: (a, b) => a.lastTime - b.lastTime,
+                sorter: (a, b) => a.lastTime - b.lastTime,
+                render(text, record, index) {
+                    const time = moment(Number(text)).format("YYYY-MM-DD HH:mm");
+                    return time == "Invalid date" ? "--" : time;
+                }
             }],
             quota: []
         }
@@ -623,12 +696,12 @@ export default {
                 value: 'lastTime',
                 checked: true,
                 disabled: true,
-                // sorter: (a, b) => a.lastTime - b.lastTime,
+                sorter: (a, b) => a.lastTime - b.lastTime,
             }, {
                 label: locale('会话数'),
                 value: 'sessionCount',
                 checked: true,
-                // sorter: (a, b) => a.sessionCount - b.sessionCount,
+                sorter: (a, b) => a.sessionCount - b.sessionCount,
             }, {
                 label: locale('用户ID'),
                 value: 'userId',
@@ -655,12 +728,12 @@ export default {
                 value: 'lastTime',
                 checked: true,
                 disabled: true,
-                // sorter: (a, b) => a.lastTime - b.lastTime,
+                sorter: (a, b) => a.lastTime - b.lastTime,
             }, {
                 label: locale('会话数'),
                 value: 'sessionCount',
                 checked: true,
-                // sorter: (a, b) => a.sessionCount - b.sessionCount,
+                sorter: (a, b) => a.sessionCount - b.sessionCount,
             }, {
                 label: locale('用户ID'),
                 value: 'userId',

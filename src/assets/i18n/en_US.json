@@ -306,8 +306,13 @@
     "是否保存修改？": "Do you want to save the changes?",
     "不保存": "Do not save",
     "启动次数": "Number of application starts",
-    "独立设备数": "Independent number of devices"
-
+    "独立设备数": "Independent number of devices",
+    "用户趋势图": "User Trend",
+    "启动数" : "Starts",
+    "原生UI平均响应时间": "Native UI average response time",
+    "H5平均响应时间" : "H5 average response time"
+    
+    
 
 
 
