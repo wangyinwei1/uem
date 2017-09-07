@@ -2,32 +2,6 @@ import React, { Component } from 'react';
 import { Tooltip, Progress } from 'antd';
 import styles from './index.scss';
 
-const dataEnum = [{
-    name: '浏览量PV',
-    key: 'pv'
-}, {
-    name: '平均访问页数',
-    key: 'avgNoPv'
-}, {
-    name: '点击数', // ?
-    key: 'clickNum'
-}, {
-    name: '平均响应时间',
-    key: 'avgRspTime'
-}, {
-    name: '访问量UV', // ? 
-    key: 'uv'
-}, {
-    name: '平均访问时长', // ? 
-    key: 'avgRspTime'
-}, {
-    name: '平均点击数',
-    key: 'avgClickNum'
-}, {
-    name: '用户错误率',
-    key: 'errorRate'
-}];
-
 class Crux extends Component {
     constructor(props) {
         super(props);
@@ -37,7 +11,7 @@ class Crux extends Component {
         getRealTimeData();
         getApdex();
 
-        
+
     }
     componentWillReceiveProps(nextProps) {
         this.hackProgress();
@@ -99,8 +73,91 @@ class Crux extends Component {
                 dashboardClass = styles['low'];
         }
         // $('.ant-progress-text').html(dashboardText);
-
         window.$ = $;
+        const dataEnum = [{
+            name: '浏览量PV',
+            key: 'pv',
+            value: _.isNull(realTimeData['pv']) ? '--' : realTimeData['pv']            
+        }, {
+            name: '平均访问页数',
+            key: 'avgNoPv',
+            value: _.isNull(realTimeData['avgNoPv']) ? '--' : realTimeData['avgNoPv'] 
+        }, {
+            name: '点击数', // ?
+            key: 'clickNum',
+            value: _.isNull(realTimeData['clickNum']) ? '--' : realTimeData['clickNum']
+        }, {
+            name: '平均响应时间',
+            key: 'avgRspTime',
+            value: _.isNull(realTimeData['avgRspTime']) ? '--' : window.timeFormat(realTimeData['avgRspTime'])            
+        }, {
+            name: '访问量UV', // ? 
+            key: 'uv',
+            value: _.isNull(realTimeData['uv']) ? '--' : realTimeData['uv']
+        }, {
+            name: '平均访问时长', // ? 
+            key: 'avgUseTime',
+            value: _.isNull(realTimeData['avgUseTime']) ? '--' : window.timeFormat(realTimeData['avgUseTime'])            
+        }, {
+            name: '平均点击数',
+            key: 'avgClickNum',
+            value: _.isNull(realTimeData['avgClickNum']) ? '--' : realTimeData['avgClickNum']
+        }, {
+            name: '用户错误率',
+            key: 'errorRate',
+            value: _.isNull(realTimeData['errorRate']) ? '--' : parseFloat(realTimeData['errorRate'] * 100).toFixed(1) + '%'            
+        }];
+        // dataEnum.map((item, index) => {
+        //     switch (item.key) {
+        //         case "pv": if (realTimeData['pv'] == null) {
+        //             item.value = '--'
+        //         } else {
+        //             item.value = realTimeData['pv']
+        //         }
+        //             break;
+        //         case 'avgNoPv': if (realTimeData['avgNoPv'] == null) {
+        //             item.value = '--';
+        //         } else {
+        //             item.value = parseFloat(realTimeData['avgNoPv']).toFixed(1);
+        //         }
+        //             break;
+        //         case 'clickNum': if (realTimeData['clickNum'] == null) {
+        //             item.value = '--';
+        //         } else {
+        //             item.value = realTimeData['clickNum'];
+        //         }
+        //             break;
+        //         case 'uv': if (realTimeData['uv'] == null) {
+        //             item.value = '--';
+        //         } else {
+        //             item.value = realTimeData['uv'];
+        //         }
+        //             break;
+        //         case 'avgRspTime': if (realTimeData['avgRspTime'] == null) {
+        //             item.value = '--';
+        //         } else {
+        //             item.value = window.timeFormat(realTimeData['avgRspTime']);
+        //         }
+        //             break;
+        //         case 'avgUseTime': if (realTimeData['avgUseTime'] == null) {
+        //             item.value = '--';
+        //         } else {
+        //             item.value = window.timeFormat(realTimeData['avgUseTime']);
+        //         }
+        //             break;
+        //         case 'avgClickNum': if (realTimeData['avgClickNum'] == null) {
+        //             item.value = '--';
+        //         } else {
+        //             item.value = parseFloat(realTimeData['avgClickNum']).toFixed(1);
+        //         }
+        //             break;
+        //         case 'errorRate': if (realTimeData['errorRate'] == null) {
+        //             item.value = '--';
+        //         } else {
+        //             item.value = parseFloat(realTimeData['errorRate'] * 100).toFixed(1) + '%';
+        //         }
+        //     }
+        // })
         return (
             <div className={styles['crux']}>
                 <div className={cls('tile-head')}>{locale('关键指标')}</div>
@@ -109,7 +166,7 @@ class Crux extends Component {
                         {dataEnum.map(item => (
                             <li key={item.name} className={styles['item']}>
                                 <div className={styles['key']}>{locale(item.name)}</div>
-                                <div className={cls('toe', styles['value'])}>{_.isNull(realTimeData[item.key]) ? '--' : realTimeData[item.key]}</div>
+                                <div className={cls('toe', styles['value'])}>{item.value}</div>
                             </li>
                         ))}
                     </ul>

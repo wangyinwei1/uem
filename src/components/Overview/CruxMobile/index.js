@@ -9,7 +9,7 @@ class CruxMobile extends Component {
     componentDidMount() {
         const { getRealTimeData, getApdex } = this.props;
         // 获取移动端30分钟指标
-        getRealTimeData({indexs: 'sessionCount,clickNum,avgUiRspTime,avgRspTime,avgAccessTime,errorRate'});
+        getRealTimeData({ indexs: 'sessionCount,clickNum,avgUiRspTime,avgRspTime,avgAccessTime,errorRate' });
         getApdex();
 
     }
@@ -35,7 +35,7 @@ class CruxMobile extends Component {
         );
     }
     hackProgress() {
-        const totalScore = this.props.realTimeData.totalScore && this.props.realTimeData.totalScore !==''  ? this.props.realTimeData.totalScore : null;
+        const totalScore = this.props.realTimeData.totalScore && this.props.realTimeData.totalScore !== '' ? this.props.realTimeData.totalScore : null;
         const dashboardText = totalScore === null
             ? '暂无数据'
             : totalScore === 0
@@ -49,9 +49,9 @@ class CruxMobile extends Component {
     mobileIndicatorList() {
         let realTimeData = this.props.realTimeData;
         let score = [
-            { key: '原生响应时间', value: realTimeData.avgUiRspTime },
-            { key: 'H5响应时间', value: realTimeData.avgRspTime },
-            { key: '用户错误率', value: realTimeData.errorRate }
+            { key: '原生响应时间', value: _.isNull(realTimeData['avgUiRspTime']) ? '--' : window.timeFormat(realTimeData['avgUiRspTime']) },
+            { key: 'H5响应时间', value:  _.isNull(realTimeData['avgRspTime']) ? '--' : window.timeFormat(realTimeData['avgRspTime']) },
+            { key: '用户错误率', value: _.isNull(realTimeData['errorRate']) ? '--' : parseFloat(realTimeData['errorRate'] * 100).toFixed(1) + '%' }
         ];
         let lostScore = realTimeData.lostScore || [];
         if (lostScore.length === 5) {
@@ -66,74 +66,50 @@ class CruxMobile extends Component {
                 <ul key={`list-${Math.random()}`} className={styles['box_list']}>
                     {
                         score.map((item, index) => {
-                            if (item.key === '原生响应时间' || 'H5响应时间' ) {
-                                if (item.value == null || undefined) {
-                                    item.value = '--';
-                                } else if (item.value < 1 && item.value != 0) {
-                                    item.value = parseInt(item.value.toFixed(3).substr(2, 3)) + 'ms'
-                                } else if(item.value > 1) {
-                                    item.value = item.value.toFixed(1) + 's';
-                                } else {
-                                    item.value = item.value.toFixed(1) + '%';
-                                }
-                            }
                             return (
-                                    <li key={index+'score'} className={styles['li']}>
-                                            <div className={styles["value"]}>-{lostScore[index] || '0'}<em>分</em></div>
-                                            <div className={styles["percent"]}>{item.value}</div>
-                                            <div className={styles["key"]}>{item.key}</div>
-                                    </li>
+                                <li key={index + 'score'} className={styles['li']}>
+                                    <div className={styles["value"]}>-{lostScore[index] || '0'}<em>分</em></div>
+                                    <div className={styles["percent"]}>{item.value}</div>
+                                    <div className={styles["key"]}>{item.key}</div>
+                                </li>
                             )
-                            
+
                         })
                     }
                 </ul>
             </div>
         )
     }
-    render() {   
-        // const dataEnum = [{
-        //     name: '访问用户',
-        //     key: 'uv'
-        // }, {
-        //     name: '操作数/分',
-        //     key: 'operCountPerMin'
-        // }, {
-        //     name: '错误数/操作数', // ?
-        //     key: 'errorCountPerOperCount'
-        // }, {
-        //     name: '平均响应时间',
-        //     key: 'avgRspTime'
-        // }];
+    render() {
+        const { realTimeData = {} } = this.props;
         const dataEnum = [{
             name: '启动次数',
             key: 'sessionCount',
-            unit: '次'
+            value: _.isNull(realTimeData['sessionCount']) ? '--' : realTimeData['sessionCount']
         }, {
             name: '点击数',
             key: 'clickNum',
-            unit: '次',
+            value: _.isNull(realTimeData['clickNum']) ? '--' : realTimeData['clickNum']
         }, {
-            name: '原生UI平均响应时时间', 
+            name: '原生UI平均响应时时间',
             key: 'avgUiRspTime',
-            unit: '秒'
+            value: _.isNull(realTimeData['avgUiRspTime']) ? '--' : window.timeFormat(realTimeData['avgUiRspTime'])            
         }, {
             name: 'H5平均响应时间',
             key: 'avgRspTime',
-            unit: '秒'
-        },{
+            value: _.isNull(realTimeData['avgRspTime']) ? '--' : window.timeFormat(realTimeData['avgRspTime'])
+        }, {
             name: '平均访问时长',
             key: 'avgAccessTime',
-            unit: '秒'
-        },{
+            value: _.isNull(realTimeData['avgAccessTime']) ? '--' : window.timeFormat(realTimeData['avgAccessTime'])
+        }, {
             name: '用户错误率',
             key: 'errorRate',
-            unit: '%'
+            value: _.isNull(realTimeData['errorRate']) ? '--' : parseFloat(realTimeData['errorRate'] * 100).toFixed(1) + '%'            
         }];
-        const { realTimeData = {} } = this.props;
         let totalScore = realTimeData['totalScore'];
         // debugger
-        totalScore = totalScore == undefined  ? null : Number((totalScore.split('%')[0].split(',').join('')) * 0.01)
+        totalScore = totalScore == undefined ? null : Number((totalScore.split('%')[0].split(',').join('')) * 0.01)
         const dashboardText = totalScore === null
             ? '暂无数据'
             : totalScore === 0
@@ -153,8 +129,6 @@ class CruxMobile extends Component {
             default:
                 dashboardClass = styles['low'];
         }
-        // $('.ant-progress-text').html(dashboardText);
-
         window.$ = $;
         return (
             <div className={styles['crux']}>
@@ -164,12 +138,12 @@ class CruxMobile extends Component {
                         {dataEnum.map(item => (
                             <li key={item.name} className={styles['item']}>
                                 <div className={styles['key']}>{item.name}</div>
-                                <div className={cls('toe', styles['value'])}>{_.isNull(realTimeData[item.key]) ? '--' : realTimeData[item.key]}<span className={styles["percent"]}>{item.unit}</span></div>
+                                <div className={cls('toe', styles['value'])}>{item.value}</div>
                             </li>
                         ))}
                     </ul>
                     <div className={styles['apdex']}>
-                        <Progress className={cls(dashboardClass)} strokeWidth={8} type="dashboard" percent={totalScore ? totalScore : 0 } />
+                        <Progress className={cls(dashboardClass)} strokeWidth={8} type="dashboard" percent={totalScore ? totalScore : 0} />
                         {this.hackDashboard()}
                         {this.mobileIndicatorList()}
                         {/*<ul className={styles['range']}>
@@ -177,7 +151,7 @@ class CruxMobile extends Component {
                             <li><i className={cls('iconfont icon-yiban')}></i><span>{`${realTimeData['tPercentage'] || '--'} 的操作可接受（${T.toFixed(1)} ~ ${(4 * T).toFixed(1)}s）`}</span></li>
                             <li><i className={cls('iconfont icon-bumanyi')}></i><span>{`${realTimeData['sPercentage'] || '--'} 的操作响应慢（> ${(4 * T).toFixed(1)}s）`}</span></li>
                         </ul>*/}
-                    </div>                    
+                    </div>
                 </div>
             </div>
         );

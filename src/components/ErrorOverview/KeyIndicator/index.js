@@ -2,17 +2,6 @@ import React, { Component } from 'react';
 import { Tooltip, Progress } from 'antd';
 import styles from './index.scss'; 
 
-const indicatorEnum = [{
-    name: '错误数',
-    key: 'errorCount'
-}, {
-    name: '影响用户数', 
-    key: 'effectedUserNum'
-}, {
-    name: '用户错误率',
-    key: 'occurErrorUserRate'
-}];
-
 class KeyIndicator extends Component {
     constructor(props) {
         super(props);
@@ -36,6 +25,19 @@ class KeyIndicator extends Component {
     render() {
         
         let keyIndicator = this.props.keyIndicator;
+        const indicatorEnum = [{
+            name: '错误数',
+            key: 'errorCount',
+            value: _.isNull(keyIndicator['errorCount']) ? '--' : keyIndicator['errorCount']
+        }, {
+            name: '影响用户数', 
+            key: 'effectedUserNum',
+            value: _.isNull(keyIndicator['effectedUserNum']) ? '--' : keyIndicator['effectedUserNum']            
+        }, {
+            name: '用户错误率',
+            key: 'occurErrorUserRate',
+            value: _.isNull(keyIndicator['occurErrorUserRate']) ? '--' : parseFloat(keyIndicator['occurErrorUserRate'] * 100).toFixed(1) + '%'
+        }];
 
         return (
             <div className={styles['key-indicator']}>
@@ -45,7 +47,7 @@ class KeyIndicator extends Component {
                         {indicatorEnum.map(item => (
                             <li key={item.name} className={styles['item']}>
                                 <div className={styles['key']}>{locale(item.name)}</div>
-                                <div className={cls('toe', styles['value'])}>{_.isNull(keyIndicator[item.key]) ? '--' : keyIndicator[item.key]}</div>
+                                <div className={cls('toe', styles['value'])}>{item.value}</div>
                             </li>
                         ))}
                     </ul>

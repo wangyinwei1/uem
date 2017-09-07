@@ -42,10 +42,7 @@ export default class ErrorOverview extends React.Component {
             onGetMapData
         } = this.props.errorOverviewStore;
         // const startTime = this.props.frameStore.timeType;
-
-
         const { appVersion } = this.props.frameStore;
-        console.log('appversion是',appVersion);
         const { loading } = this.state;
         return (
             <div id="ErrorOverview" key={appVersion}>

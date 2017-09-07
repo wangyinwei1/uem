@@ -17,36 +17,46 @@ class KeyIndicator extends Component {
 
     render() {
         const platform = sessionStorage.getItem('UEM_platform');
+        let keyIndicator = this.props.keyIndicator;
         const indicatorEnumPC = [{
             name: '会话数',
-            key: 'sessionCount'
+            key: 'sessionCount',
+            value: _.isNull(keyIndicator['sessionCount']) ? '--' : keyIndicator['sessionCount']
         }, {
             name: '访问量UV',
-            key: 'uv'
+            key: 'uv',
+            value: _.isNull(keyIndicator['uv']) ? '--' : keyIndicator['uv']
         }, {
             name: '平均访问页数', 
-            key: 'avgPVNum'
+            key: 'avgPVNum',
+            value: _.isNull(keyIndicator['avgPVNum']) ? '--' : keyIndicator['avgPVNum']
         }, {
             name: '平均点击数',
-            key: 'avgClickNum'
+            key: 'avgClickNum',
+            value: _.isNull(keyIndicator['avgClickNum']) ? '--' : keyIndicator['avgClickNum']
         },{
             name: '平均访问时长',
-            key: 'avgAccessTime'
+            key: 'avgAccessTime',
+            value: _.isNull(keyIndicator['avgAccessTime']) ? '--' : window.timeFormat(keyIndicator['avgAccessTime'])
         }];
         const indicatorEnumMobile = [{
             name: '启动次数',
-            key: 'sessionCount'
+            key: 'sessionCount',
+            value: _.isNull(keyIndicator['sessionCount']) ? '--' : keyIndicator['sessionCount']
         },{
             name: '独立设备数',
-            key: 'uv'
+            key: 'uv',
+            value: _.isNull(keyIndicator['uv']) ? '--' : keyIndicator['uv']
         },{
             name: '点击数',
-            key: 'clickNum'
+            key: 'clickNum',
+            value: _.isNull(keyIndicator['clickNum']) ? '--' : keyIndicator['clickNum']
         },{
             name: '平均访问时长',
-            key: 'avgAccessTime'
+            key: 'avgAccessTime',
+            value: _.isNull(keyIndicator['avgAccessTime']) ? '--' : window.timeFormat(keyIndicator['avgAccessTime'])            
         }];
-        let keyIndicator = this.props.keyIndicator;
+
         let indicatorEnum = platform == 'pc' ? indicatorEnumPC : indicatorEnumMobile
         return (
             <div className={styles['key-indicator']}>
@@ -56,7 +66,7 @@ class KeyIndicator extends Component {
                         {indicatorEnum.map(item => (
                             <li key={item.name} className={platform == 'pc' ? styles['item'] :  styles['item-mobile']}>
                                 <div className={styles['key']}>{locale(item.name)}</div>
-                                <div className={cls('toe', styles['value'])}>{_.isNull(keyIndicator[item.key]) ? '--' : keyIndicator[item.key]}</div>
+                                <div className={cls('toe', styles['value'])}>{item.value}</div>
                             </li>
                         ))}
                     </ul>
