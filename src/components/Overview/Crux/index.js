@@ -30,7 +30,7 @@ class Crux extends Component {
             <span id="dashboard-text" className={cls(styles['dashborad-text'])}>
                 <span>Apdex</span>
                 <Tooltip placement="bottom" title={title}>
-                    <i className={cls('iconfont icon-bangzhu')}></i>
+                    <i className='iconfont icon-bangzhu'></i>
                 </Tooltip>
             </span>
         );
@@ -97,7 +97,9 @@ class Crux extends Component {
         }, {
             name: '平均访问时长', // ? 
             key: 'avgUseTime',
-            value: _.isNull(realTimeData['avgUseTime']) ? '--' : window.timeFormat(realTimeData['avgUseTime'])            
+            value: _.isNull(realTimeData['avgUseTime']) ? '--' : window.timeFormat(realTimeData['avgUseTime']),
+            tooltip: true,
+            tooltipText: '平均每次访问在网站上的停留时长'
         }, {
             name: '平均点击数',
             key: 'avgClickNum',
@@ -105,59 +107,11 @@ class Crux extends Component {
         }, {
             name: '用户错误率',
             key: 'errorRate',
-            value: _.isNull(realTimeData['errorRate']) ? '--' : parseFloat(realTimeData['errorRate'] * 100).toFixed(1) + '%'            
+            value: _.isNull(realTimeData['errorRate']) ? '--' : parseFloat(realTimeData['errorRate'] * 100).toFixed(1) + '%',
+            tooltip: true,
+            tooltipText: '出错用户数/UV'
         }];
-        // dataEnum.map((item, index) => {
-        //     switch (item.key) {
-        //         case "pv": if (realTimeData['pv'] == null) {
-        //             item.value = '--'
-        //         } else {
-        //             item.value = realTimeData['pv']
-        //         }
-        //             break;
-        //         case 'avgNoPv': if (realTimeData['avgNoPv'] == null) {
-        //             item.value = '--';
-        //         } else {
-        //             item.value = parseFloat(realTimeData['avgNoPv']).toFixed(1);
-        //         }
-        //             break;
-        //         case 'clickNum': if (realTimeData['clickNum'] == null) {
-        //             item.value = '--';
-        //         } else {
-        //             item.value = realTimeData['clickNum'];
-        //         }
-        //             break;
-        //         case 'uv': if (realTimeData['uv'] == null) {
-        //             item.value = '--';
-        //         } else {
-        //             item.value = realTimeData['uv'];
-        //         }
-        //             break;
-        //         case 'avgRspTime': if (realTimeData['avgRspTime'] == null) {
-        //             item.value = '--';
-        //         } else {
-        //             item.value = window.timeFormat(realTimeData['avgRspTime']);
-        //         }
-        //             break;
-        //         case 'avgUseTime': if (realTimeData['avgUseTime'] == null) {
-        //             item.value = '--';
-        //         } else {
-        //             item.value = window.timeFormat(realTimeData['avgUseTime']);
-        //         }
-        //             break;
-        //         case 'avgClickNum': if (realTimeData['avgClickNum'] == null) {
-        //             item.value = '--';
-        //         } else {
-        //             item.value = parseFloat(realTimeData['avgClickNum']).toFixed(1);
-        //         }
-        //             break;
-        //         case 'errorRate': if (realTimeData['errorRate'] == null) {
-        //             item.value = '--';
-        //         } else {
-        //             item.value = parseFloat(realTimeData['errorRate'] * 100).toFixed(1) + '%';
-        //         }
-        //     }
-        // })
+
         return (
             <div className={styles['crux']}>
                 <div className={cls('tile-head')}>{locale('关键指标')}</div>
@@ -165,7 +119,11 @@ class Crux extends Component {
                     <ul className={styles['list']}>
                         {dataEnum.map(item => (
                             <li key={item.name} className={styles['item']}>
-                                <div className={styles['key']}>{locale(item.name)}</div>
+                                <div className={styles['key']}>{locale(item.name)}
+                                    {item.tooltip && <Tooltip placement="bottom" title={item.tooltipText}>
+                                        <i className={cls('iconfont icon-bangzhu')}></i>
+                                        </Tooltip>  }
+                                </div>
                                 <div className={cls('toe', styles['value'])}>{item.value}</div>
                             </li>
                         ))}

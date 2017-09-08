@@ -28,15 +28,19 @@ class KeyIndicator extends Component {
         const indicatorEnum = [{
             name: '错误数',
             key: 'errorCount',
-            value: _.isNull(keyIndicator['errorCount']) ? '--' : keyIndicator['errorCount']
+            value: _.isNull(keyIndicator['errorCount']) ? '--' : keyIndicator['errorCount'],
+            tooltip: false
         }, {
             name: '影响用户数', 
             key: 'effectedUserNum',
-            value: _.isNull(keyIndicator['effectedUserNum']) ? '--' : keyIndicator['effectedUserNum']            
+            value: _.isNull(keyIndicator['effectedUserNum']) ? '--' : keyIndicator['effectedUserNum'],
+            tooltip: false            
         }, {
             name: '用户错误率',
             key: 'occurErrorUserRate',
-            value: _.isNull(keyIndicator['occurErrorUserRate']) ? '--' : parseFloat(keyIndicator['occurErrorUserRate'] * 100).toFixed(1) + '%'
+            value: _.isNull(keyIndicator['occurErrorUserRate']) ? '--' : parseFloat(keyIndicator['occurErrorUserRate'] * 100).toFixed(1) + '%',
+            tooltip: true,
+            tooltipText: '出错用户数/UV'
         }];
 
         return (
@@ -46,7 +50,13 @@ class KeyIndicator extends Component {
                     <ul className={styles['list']}>
                         {indicatorEnum.map(item => (
                             <li key={item.name} className={styles['item']}>
-                                <div className={styles['key']}>{locale(item.name)}</div>
+                                <div className={styles['key']}>{locale(item.name)}
+                                {
+                                    item.tooltip && <Tooltip placement="bottom" title={item.tooltipText}>
+                                        <i className={cls('iconfont icon-bangzhu')}></i>
+                                    </Tooltip>
+                                }
+                                </div>
                                 <div className={cls('toe', styles['value'])}>{item.value}</div>
                             </li>
                         ))}
