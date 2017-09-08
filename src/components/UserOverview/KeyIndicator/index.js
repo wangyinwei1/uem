@@ -19,48 +19,48 @@ class KeyIndicator extends Component {
         const platform = sessionStorage.getItem('UEM_platform');
         let keyIndicator = this.props.keyIndicator;
         const indicatorEnumPC = [{
-            name: '会话数',
+            name: locale('会话数'),
             key: 'sessionCount',
             value: _.isNull(keyIndicator['sessionCount']) ? '--' : keyIndicator['sessionCount'],
             tooltip: false
         }, {
-            name: '访问量UV',
+            name: locale('访问量UV'),
             key: 'uv',
             value: _.isNull(keyIndicator['uv']) ? '--' : keyIndicator['uv'],
             tooltip: false
         }, {
-            name: '平均访问页数', 
+            name: locale('平均访问页数'), 
             key: 'avgPVNum',
             value: _.isNull(keyIndicator['avgPVNum']) ? '--' : keyIndicator['avgPVNum'],
             tooltip:true,
-            tooltipText: '平均每次访问浏览的页面数量，平均访问页数=浏览量/访问次数'
+            tooltipText: locale('平均每次访问浏览的页面数量，平均访问页数=浏览量/访问次数')
         }, {
-            name: '平均点击数',
+            name: locale('平均点击数'),
             key: 'avgClickNum',
             value: _.isNull(keyIndicator['avgClickNum']) ? '--' : keyIndicator['avgClickNum'],
             tooltip: true,
-            tooltipText: '平均每次访问点击的http可交互元素数量'
+            tooltipText: locale('平均每次访问点击的http可交互元素数量')
         },{
-            name: '平均访问时长',
+            name: locale('平均访问时长'),
             key: 'avgAccessTime',
             value: _.isNull(keyIndicator['avgAccessTime']) ? '--' : window.timeFormat(keyIndicator['avgAccessTime']),
             tooltip: true,
-            tooltipText: '平均每次访问在网站上的停留时长'
+            tooltipText: locale('平均每次访问在网站上的停留时长')
         }];
         const indicatorEnumMobile = [{
-            name: '启动次数',
+            name: locale('启动次数'),
             key: 'sessionCount',
             value: _.isNull(keyIndicator['sessionCount']) ? '--' : keyIndicator['sessionCount']
         },{
-            name: '独立设备数',
+            name: locale('独立设备数'),
             key: 'uv',
             value: _.isNull(keyIndicator['uv']) ? '--' : keyIndicator['uv']
         },{
-            name: '点击数',
+            name: locale('点击数'),
             key: 'clickNum',
             value: _.isNull(keyIndicator['clickNum']) ? '--' : keyIndicator['clickNum']
         },{
-            name: '平均访问时长',
+            name: locale('平均访问时长'),
             key: 'avgAccessTime',
             value: _.isNull(keyIndicator['avgAccessTime']) ? '--' : window.timeFormat(keyIndicator['avgAccessTime'])            
         }];

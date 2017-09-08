@@ -19,40 +19,40 @@ class KeyIndicator extends Component {
         let platform = this.props.platform;
         let keyIndicator = this.props.keyIndicator;
         const indicatorEnumPC = [{
-            name: '平均响应时间',
+            name: locale('平均响应时间'),
             key: 'avgRspTime',
             value: _.isNull(keyIndicator['avgRspTime']) ? '--' : window.timeFormat(keyIndicator['avgRspTime']),
             tooltip: false
         }, {
-            name: '平均与服务端建立网络连接时间',
+            name: locale('平均与服务端建立网络连接时间'),
             key: 'avgNetworkTime',
             value: _.isNull(keyIndicator['avgNetworkTime']) ? '--' : window.timeFormat(keyIndicator['avgNetworkTime']),
             tooltip: true,
-            tooltipText: '平均与服务端建立网络连接时间 = 重定向时间 + DNS时间 + 建立连接时间'            
+            tooltipText: locale('平均与服务端建立网络连接时间 = 重定向时间 + DNS时间 + 建立连接时间')            
         }, {
-            name: '平均服务端处理请求和数据传输时间', // ?
+            name: locale('平均服务端处理请求和数据传输时间'), // ?
             key: 'avgServerTime',
             value: _.isNull(keyIndicator['avgServerTime']) ? '--' : window.timeFormat(keyIndicator['avgServerTime']),
             tooltip: true,
-            tooltipText: '平均服务端处理请求和数据传输时间 = 请求文档时间 + 响应并传输数据时间'                        
+            tooltipText: locale('平均服务端处理请求和数据传输时间 = 请求文档时间 + 响应并传输数据时间')                        
         }, {
-            name: '平均客户端和渲染时间',
+            name: locale('平均客户端和渲染时间'),
             key: 'avgClientTime',
             value: _.isNull(keyIndicator['avgClientTime']) ? '--' : window.timeFormat(keyIndicator['avgClientTime']),
             tooltip: true,
-            tooltipText:'平均客户端加载和渲染时间 = Dom 加载时间 + DOM 内容加载时间 + 页面渲染时间'                                    
+            tooltipText:locale('平均客户端加载和渲染时间 = Dom 加载时间 + DOM 内容加载时间 + 页面渲染时间')                                    
         }];
         
         const indicatorEnumMobile = [{
-                name: '平均UI响应时间',
+                name: locale('平均UI响应时间'),
                 key: 'avgUiRspTime',
                 value: _.isNull(keyIndicator['avgUiRspTime']) ? '--' : window.timeFormat(keyIndicator['avgUiRspTime'])                                                    
             }, {
-                name: '平均HTTP响应时间',
+                name: locale('平均HTTP响应时间'),
                 key: 'avgRspTime',
                 value: _.isNull(keyIndicator['avgRspTime']) ? '--' : window.timeFormat(keyIndicator['avgRspTime'])                                                                    
             }, {
-                name: '吞吐率',
+                name: locale('吞吐率'),
                 key: 'thruput',
                 value: _.isNull(keyIndicator['thruput']) ? '--' : parseFloat(keyIndicator['thruput'] * 100).toFixed(1) + '%'                                                                                    
         }];
@@ -63,7 +63,7 @@ class KeyIndicator extends Component {
                 <div className={cls('tile-body')}>
                     <ul className={styles['list']}>
                             {indicatorEnum.map(item => (
-                                <li key={item.name} className={styles['item']}>
+                                <li key={item.name} className={ platform == 'pc' ? styles['item'] : styles['item-mobile']}>
                                     <div className={styles['key']}>{locale(item.name)}
                                     {
                                     item.tooltip && <Tooltip placement="bottom" title={item.tooltipText}>

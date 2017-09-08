@@ -75,41 +75,41 @@ class Crux extends Component {
         // $('.ant-progress-text').html(dashboardText);
         window.$ = $;
         const dataEnum = [{
-            name: '浏览量PV',
+            name: locale('浏览量PV'),
             key: 'pv',
             value: _.isNull(realTimeData['pv']) ? '--' : realTimeData['pv']            
         }, {
-            name: '平均访问页数',
+            name: locale('平均访问页数'),
             key: 'avgNoPv',
             value: _.isNull(realTimeData['avgNoPv']) ? '--' : realTimeData['avgNoPv'] 
         }, {
-            name: '点击数', // ?
+            name: locale('点击数'), // ?
             key: 'clickNum',
             value: _.isNull(realTimeData['clickNum']) ? '--' : realTimeData['clickNum']
         }, {
-            name: '平均响应时间',
+            name: locale('平均响应时间'),
             key: 'avgRspTime',
             value: _.isNull(realTimeData['avgRspTime']) ? '--' : window.timeFormat(realTimeData['avgRspTime'])            
         }, {
-            name: '访问量UV', // ? 
+            name: locale('访问量UV'), // ? 
             key: 'uv',
             value: _.isNull(realTimeData['uv']) ? '--' : realTimeData['uv']
         }, {
-            name: '平均访问时长', // ? 
+            name: locale('平均访问时长'), // ? 
             key: 'avgUseTime',
             value: _.isNull(realTimeData['avgUseTime']) ? '--' : window.timeFormat(realTimeData['avgUseTime']),
             tooltip: true,
-            tooltipText: '平均每次访问在网站上的停留时长'
+            tooltipText: locale('平均每次访问在网站上的停留时长')
         }, {
-            name: '平均点击数',
+            name: locale('平均点击数'),
             key: 'avgClickNum',
             value: _.isNull(realTimeData['avgClickNum']) ? '--' : realTimeData['avgClickNum']
         }, {
-            name: '用户错误率',
+            name: locale('用户错误率'),
             key: 'errorRate',
             value: _.isNull(realTimeData['errorRate']) ? '--' : parseFloat(realTimeData['errorRate'] * 100).toFixed(1) + '%',
             tooltip: true,
-            tooltipText: '出错用户数/UV'
+            tooltipText: locale('出错用户数/UV')
         }];
 
         return (

@@ -19,28 +19,27 @@ class KeyIndicator extends Component {
     //             version: nextProps.version
     //         });
     //     }
-        
     // }
 
     render() {
         
         let keyIndicator = this.props.keyIndicator;
         const indicatorEnum = [{
-            name: '错误数',
+            name: locale('错误数'),
             key: 'errorCount',
             value: _.isNull(keyIndicator['errorCount']) ? '--' : keyIndicator['errorCount'],
             tooltip: false
         }, {
-            name: '影响用户数', 
+            name: locale('影响用户数'), 
             key: 'effectedUserNum',
             value: _.isNull(keyIndicator['effectedUserNum']) ? '--' : keyIndicator['effectedUserNum'],
             tooltip: false            
         }, {
-            name: '用户错误率',
+            name: locale('用户错误率'),
             key: 'occurErrorUserRate',
             value: _.isNull(keyIndicator['occurErrorUserRate']) ? '--' : parseFloat(keyIndicator['occurErrorUserRate'] * 100).toFixed(1) + '%',
             tooltip: true,
-            tooltipText: '出错用户数/UV'
+            tooltipText: locale('出错用户数/UV')
         }];
 
         return (
