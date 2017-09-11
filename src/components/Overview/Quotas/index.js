@@ -63,20 +63,41 @@ class Quotas extends Component {
     }
     // 今日概况几个指标图的params的格式和其他地方不一样，单独的formatter 
     formatterForOverview(params, ticket, callback){
-        const description = params[0].data.description;
-        const text = (description === undefined ? '时间段:' : description);
-        // const ntimesParse = params[0].data.timesParse;
-        const ntimeParse =  (`${moment(params[0].data.time).format("MM-DD HH:mm")} ${locale('至')} ${moment(params[0].data.time+3600000).format("MM-DD HH:mm")}`);
-        return `
-             <ul>
-                 <li><span>  ${ ntimeParse && typeof ntimeParse !== "undefined" ? text + ' ' + ntimeParse : ""} </span></li>
-                 ${params.map((val, index) => {
-                return `<li>
-                        <span style="background:${val.color};display:inline-block;height:10px;width:10px;border-radius:50%"></span>
-                        <span>${val.seriesName} : ${val.value == null ? locale("暂无数据") : val.value}</span>
-                     </li>`
-            }).join('')}
-             </ul>`; 
+        let relVal = params[0].dataIndex + ":00" + " - " + (parseInt(params[0].dataIndex) + 1) + `:00${locale('数据')}<br />`;
+        if ((parseInt(params[0].dataIndex) + 1) > 24) {
+            relVal = (params[0].dataIndex) + ":00" + " - " + `1:00${locale('数据')}<br />`;
+        }
+        let days = [{
+            "day": locale('今日'),
+            'color': '#66dc6a',
+            'value':  params.filter(item =>{ return item['seriesName'] == locale('今日') }).length == 0 ?  locale('暂无数据'): params.filter(item =>{return item['seriesName'] == locale('今日') })[0]['value']
+        }, {
+            "day": locale('昨日'),
+            'color': '#00c0ff',
+            'value':  params.filter(item =>{return item['seriesName'] == locale('昨日') }).length == 0 ?  locale('暂无数据') : params.filter(item =>{return item['seriesName'] == locale('昨日') })[0]['value']
+        }];
+        let val = [];
+
+        days.map((item, index) => {
+            let text = item['value'] == undefined ? locale('暂无数据'): item['value'];
+            relVal += "<i style='display:inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 5px; background-color:" + item['color'] + ";'></i>" + item['day'] + " " + text + "<br />";
+        });
+        return relVal;
+        
+        // const description = params[0].data.description;
+        // const text = (description === undefined ? '时间段:' : description);
+        // // const ntimesParse = params[0].data.timesParse;
+        // const ntimeParse =  (`${moment(params[0].data.time).format("MM-DD HH:mm")} ${locale('至')} ${moment(params[0].data.time+3600000).format("MM-DD HH:mm")}`);
+        // return `
+        //      <ul>
+        //          <li><span>  ${ ntimeParse && typeof ntimeParse !== "undefined" ? text + ' ' + ntimeParse : ""} </span></li>
+        //          ${params.map((val, index) => {
+        //         return `<li>
+        //                 <span style="background:${val.color};display:inline-block;height:10px;width:10px;border-radius:50%"></span>
+        //                 <span>${val.seriesName} : ${val.value == null ? locale("暂无数据") : val.value}</span>
+        //              </li>`
+        //     }).join('')}
+        //      </ul>`; 
     }
     render() {
         const { trend } = this.props;
