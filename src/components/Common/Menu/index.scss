@@ -40,7 +40,7 @@ color17:#e9edf2,color18:#828b99
             }
         }
     }
-    
+        
     .menu {
         position: fixed;
         top: 0;
@@ -115,6 +115,8 @@ color17:#e9edf2,color18:#828b99
             }
         }
     }
+
+   
     
     .apps-select {
         padding: 10px 0;
@@ -225,9 +227,15 @@ color17:#e9edf2,color18:#828b99
     }
     
     @media screen and (max-width: 1200px) {
+        // .setting-other-wrap {
+        //     a:first-child {
+        //         display: none;
+        //     }
+        // }    
         .setting-expand {
             display: none;
         }
+    
         .menu {
             width: 50px;
             a {
@@ -256,6 +264,7 @@ color17:#e9edf2,color18:#828b99
                 transform: rotate(180deg);
             }
         }
+
     
     }
     

@@ -5,6 +5,7 @@ import { Message, Select } from 'antd';
 import i18n from './locale';
 import config from './config';
 import styles from './index.scss';
+import PointButton from "./buriedPointButton";
 
 const Option = Select.Option;
 // @inject('frameStore') 
@@ -54,8 +55,8 @@ export default class Menu extends React.Component {
                                 </NavLink>
                             </li>
                         );
-                    })
-                }
+                    })  
+                } 
             </ul>
         ));
     }
@@ -106,7 +107,7 @@ export default class Menu extends React.Component {
         // onChangeTheme(localStorage.getItem('UEM_skin'));
     }
     render() {
-        const { appId } = this.props;
+        const { appId,platform } = this.props;
         return (
             <div className={styles['menu']} id='Menu'>
                 <NavLink exact activeClassName={styles['current']} replace to='/app_list'><i className='iconfont icon-qiehuanyingyong'></i>{locale('所有应用')}</NavLink>
@@ -132,9 +133,10 @@ export default class Menu extends React.Component {
                     })}
                 </ul>
                 {this.makeMenus(config.menus)}
+                {appId && <PointButton appId={appId} platform={platform} theme={localStorage.getItem('UEM_skin')}><span>可视化埋点</span></PointButton>} 
                 <div className={styles['setting-other-wrap']}>
                     <div className={styles['setting-expand']}><i className='fa fa-fw fa-chevron-left' onClick={this.expand.bind(this)}></i></div>
-                    <div onClick={this.setTheme.bind(this)} className={styles['changeTheme']}> <i className='iconfont icon-xiugaishanchuyibiaopankong'></i>换肤</div>
+                    <a target='_blank' onClick={this.setTheme.bind(this)}> <i className='iconfont icon-xiugaishanchuyibiaopankong'></i>{locale('换肤')}</a>
                     <NavLink exact onClick={this.checkApp.bind(this)} activeClassName={styles['current']} replace to='/setting'><i className='iconfont icon-xiugaishanchuyibiaopankong'></i>{locale('设置')}</NavLink>
                     <a href='./src/help/index.html' target='_blank'><i className='iconfont icon-bangzhu'></i>{locale('帮助')}</a>
                 </div>
