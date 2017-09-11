@@ -16,7 +16,8 @@ export default class Menu extends React.Component {
     //     router: React.PropTypes.object.isRequired
     // }
     state = {
-        collapsed: false
+        collapsed: false,
+        itemTo: ''
     };
     constructor(props) {
         super(props);
@@ -30,11 +31,15 @@ export default class Menu extends React.Component {
         e.stopPropagation();
         e.preventDefault();
     }
-    checkApp(e) {
+    checkApp(path,e) {
         const { appId } = this.props;
         if (!appId) {
             Message.error(locale('请先选择应用'));
             this.noEvent(e);
+        }else{
+            this.setState({
+                itemTo: path
+            })
         }
     }
     // 创建菜单列表
@@ -50,7 +55,7 @@ export default class Menu extends React.Component {
                         }
                         return (
                             <li key={item.name}>
-                                <NavLink exact onClick={this.checkApp.bind(this)} activeClassName={styles['current']} replace to={item.to}>
+                                <NavLink exact onClick={this.checkApp.bind(this,item.to)} activeClassName={styles['current']} replace to={item.to}>
                                     <i className={cls('iconfont', item.icon)}></i><span>{locale(item.name)}</span>
                                 </NavLink>
                             </li>
@@ -115,7 +120,7 @@ export default class Menu extends React.Component {
                 <ul className={styles['platform']}>
                     {config.platform.map(item => {
                         return (
-                            <Link to='/overview' 
+                            <Link to={this.state.itemTo != '' ? this.state.itemTo : '/overview'}
                                 className={cls({
                                     [styles['active']]: item.name === this.props.platform
                                 })}

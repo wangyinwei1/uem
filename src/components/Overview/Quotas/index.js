@@ -20,7 +20,7 @@ class Quotas extends Component {
         ['avgRspTime','clickNum','errorCount','sessionCount','avgUiRspTime'].forEach(type => {
             options[type]= config.get('default').mergeDeep(config.get(type))
             .setIn(['series', 0, 'data'], this.props.trendMobile[type]['today'])
-            .setIn(['series', 1, 'data'], this.props.trendMobile[type]['yesterday']);
+            .setIn(['series', 1, 'data'], this.props.trendMobile[type]['yesterday']).setIn(['tooltip','formatter'],this.formatterForOverview);
         })
         return (
             <div className={styles['quotas']}>
@@ -61,13 +61,30 @@ class Quotas extends Component {
             </div>
         )
     }
+    // 今日概况几个指标图的params的格式和其他地方不一样，单独的formatter 
+    formatterForOverview(params, ticket, callback){
+        const description = params[0].data.description;
+        const text = (description === undefined ? '时间段:' : description);
+        // const ntimesParse = params[0].data.timesParse;
+        const ntimeParse =  (`${moment(params[0].data.time).format("MM-DD HH:mm")} ${locale('至')} ${moment(params[0].data.time+3600000).format("MM-DD HH:mm")}`);
+        return `
+             <ul>
+                 <li><span>  ${ ntimeParse && typeof ntimeParse !== "undefined" ? text + ' ' + ntimeParse : ""} </span></li>
+                 ${params.map((val, index) => {
+                return `<li>
+                        <span style="background:${val.color};display:inline-block;height:10px;width:10px;border-radius:50%"></span>
+                        <span>${val.seriesName} : ${val.value == null ? locale("暂无数据") : val.value}</span>
+                     </li>`
+            }).join('')}
+             </ul>`; 
+    }
     render() {
         const { trend } = this.props;
         const options = {};
         ['pv', 'uv', 'clickNum', 'avgRspTime', 'errorCount'].forEach(type => {
             options[type] = config.get('default').mergeDeep(config.get(type))
                 .setIn(['series', 0, 'data'], trend[type]['today'])
-                .setIn(['series', 1, 'data'], trend[type]['yesterday']);
+                .setIn(['series', 1, 'data'], trend[type]['yesterday']).setIn(['tooltip','formatter'],this.formatterForOverview);
         });
         // const optionsMobile = {};
         // ['']

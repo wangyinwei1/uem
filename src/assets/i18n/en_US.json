@@ -313,8 +313,16 @@
     "H5平均响应时间" : "H5 average response time",
     "平均每次访问在网站上的停留时长": "Average length of stay per visit on the site",
     "平均每次访问浏览的页面数量，平均访问页数=浏览量/访问次数" : "The average number of pages viewed per visit, the average number of pages visited = Views / Visits",
-    "平均每次访问点击的http可交互元素数量" : "The average number of clicks per visit http interactive elements"    
-    
+    "平均每次访问点击的http可交互元素数量" : "The average number of clicks per visit http interactive elements",
+    "换肤":"Skinning",
+    "图表": "chart",
+    "列表": "List",
+    "请输入Url": "Please enter the Url",
+    "删除应用之后数据无法恢复，您确认删除该应用吗？": "After deleting the app, the data can not be restored. Are you sure you want to delete the app?",
+    "确定" : "Yes",
+    "操作数" : "Operand",
+    "确认删除？" : "confirm deletion?",
+    "确认" : "confirm"
     
 
 
