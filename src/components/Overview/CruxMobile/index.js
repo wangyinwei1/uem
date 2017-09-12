@@ -40,7 +40,7 @@ class CruxMobile extends Component {
             ? '暂无数据'
             : totalScore === 0
                 ? '0'
-                : `${Number(totalScore.split('%')[0].split(',').join('')) * 0.01 || '暂无数据'}`;
+                : `${Number(totalScore.split('%')[0].split(',').join(''))  || '暂无数据'}`;
 
         $('.ant-progress-text-hack').remove();
         $('.ant-progress-text').hide();
@@ -109,7 +109,7 @@ class CruxMobile extends Component {
         }];
         let totalScore = realTimeData['totalScore'];
         // debugger
-        totalScore = totalScore == undefined ? null : Number((totalScore.split('%')[0].split(',').join('')) * 0.01)
+        totalScore = totalScore == undefined ? null : Number((totalScore.split('%')[0].split(',').join('')) );
         const dashboardText = totalScore === null
             ? '暂无数据'
             : totalScore === 0

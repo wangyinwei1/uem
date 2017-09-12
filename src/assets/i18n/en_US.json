@@ -322,7 +322,9 @@
     "确定" : "Yes",
     "操作数" : "Operand",
     "确认删除？" : "confirm deletion?",
-    "确认" : "confirm"
+    "确认" : "confirm",
+    "请输入应用名称，并且名称长度应小于50":"Please enter the application name, and the name length should be less than 50",
+    "请输入正确的Url": "Please enter the correct Url"
     
 
 
