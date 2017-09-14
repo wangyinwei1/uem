@@ -11,6 +11,7 @@ export default {
         text: undefined,
         selector: undefined,
         isMarked: undefined,
+        displayType: undefined,
         performanceType: undefined,
         ...payload
     }),

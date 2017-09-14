@@ -46,6 +46,11 @@ class PerformanceDetailStore {
         total: 0,
         data: []
     };
+    @observable displayType={
+        "pc":"page,xhr",
+        "android": "page,xhr,activity",
+        "ios": "page,xhr,view_controller,view"
+    }
 
     get sampleAnalyzeData() {
         return {
@@ -73,8 +78,11 @@ class PerformanceDetailStore {
     }
 
     @action onGetOperInfo = async payload => {
+        const platform = sessionStorage.getItem('UEM_platform');
         try {
             const data = await Service.getOperInfo({
+                // 增加displayType字段
+                displayType: this.displayType[platform],
                 startTime: moment().subtract(getTimeType().startTime.type, getTimeType().startTime.units).valueOf(),
                 endTime: moment().subtract(getTimeType().endTime.type, getTimeType().endTime.units).valueOf(),
                 ...payload

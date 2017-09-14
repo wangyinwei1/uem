@@ -32,12 +32,13 @@ export default class HeaderBar extends React.PureComponent {
         super(props); 
         this.takeDefaultValue = this.takeDefaultValue.bind(this);
     }
-    // componentDidMount(){
-        // if(this.refs.version_picker.props.className.indexOf('dn') == -1){
-        //     // 在显示version的组件显示的时候进行获取
-        //     this.props.onGetAppVersion();
-        // }
-    // }
+    componentDidMount(){
+            // 解决刷新不重新请求版本的问题，在组件显示并且处于移动端的时候，请求版本信息
+            if(this.datePickerDisplay[this.props.module] && this.props.platform !== 'pc'){
+            // 在显示version的组件显示的时候进行获取
+            this.props.onGetAppVersion();
+        }
+    }
     componentWillReceiveProps(nextProps){
         if(this.props.module !== nextProps.module){
             // 通过判断 'dn' 属性存在与否来决定是否发送请求，在显示version的组件的时候进行获取
@@ -100,6 +101,7 @@ export default class HeaderBar extends React.PureComponent {
     }
     // 切换版本，存在sessionStorage里
     handleChange(value){
+        debugger
         this.props.onChooseVersion({
             version: value
         });
