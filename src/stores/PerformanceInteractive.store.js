@@ -13,7 +13,11 @@ class PerformanceInteractiveStore {
     @observable type = JSON.stringify([0, 1, 2, 3, 4, 5, 6]);
     @observable pageIndex = 1;
     @observable pageSize = 10;
-    @observable operType = 'xhr,form,link';
+    @observable operType = {
+        "pc":'xhr,form,link',
+        "ios": "click,longClick,slide,other",
+        "android": "click,longClick,slide,other"
+    }
     @observable searchValue = undefined;
     @observable tagType = 0;
     @observable colOptions = getColOptions('PerformanceInteractive');
@@ -58,12 +62,13 @@ class PerformanceInteractiveStore {
     @action onGetOpersList = async () => {
         this.timeType = getTimeType();
         this.onLoading();
+        const platform = sessionStorage.getItem('UEM_platform');
         try {
             const data = await Service.getOpersList({
                 performanceType: 'interaction',
                 type: this.type,
                 pageIndex: this.pageIndex,
-                operType: this.operType,
+                operType: this.operType[platform],
                 tagType: this.tagType === 0 ? 'marked' : 'unmarked',
                 startTime: moment().subtract(getTimeType().startTime.type, getTimeType().startTime.units).valueOf(),
                 endTime: moment().subtract(getTimeType().endTime.type, getTimeType().endTime.units).valueOf(),

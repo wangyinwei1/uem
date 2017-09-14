@@ -32,7 +32,7 @@ class Atlas extends Component {
     }
     render() {
         const { activeMap } = this.state;
-        let pillarConfig, mapConfig, yAxis, series,yAxisInCN=[], mapSeriesData = [], _yAxis = [], _series = [];
+        let pillarConfig, mapConfig, yAxis, series, yAxisInCN = [], mapSeriesData = [], _yAxis = [], _series = [];
         yAxis = this.props.userDistribution.yAxis;
         series = this.props.userDistribution.series;
         // debugger
@@ -54,12 +54,12 @@ class Atlas extends Component {
                 sessionCount: series[i]
             })
         }
-        pillarConfig = config.get('bar').updateIn(['yAxis', 0, 'data'], () => activeMap == 'china'? yAxis.slice(0,10).reverse() : yAxisInCN.slice(0,10).reverse())
-            .updateIn(['series', 0, 'data'], () => series.slice(0,10).reverse())
+        pillarConfig = config.get('bar').updateIn(['yAxis', 0, 'data'], () => activeMap == 'china' ? yAxis.slice(0, 10).reverse() : yAxisInCN.slice(0, 10).reverse())
+            .updateIn(['series', 0, 'data'], () => series.slice(0, 10).reverse())
             .updateIn(['series', 0, 'name'], () => locale('用户会话数'));
 
-        mapConfig = config.get(activeMap).updateIn(['series', 0, 'data'], () => mapSeriesData).updateIn(['visualMap',0,'max'], ()=> series.length > 0 ? Math.max.apply(null, series) : 1)
-            .updateIn(['visualMap',0,'text'], ()=> [locale('用户会话数')]);
+        mapConfig = config.get(activeMap).updateIn(['series', 0, 'data'], () => mapSeriesData).updateIn(['visualMap', 0, 'max'], () => series.length > 0 ? Math.max.apply(null, series) : 1)
+            .updateIn(['visualMap', 0, 'text'], () => [locale('用户会话数')]);
 
         return (
             <div className={styles['atlas']}>
@@ -73,7 +73,7 @@ class Atlas extends Component {
                             'not-active': activeMap === 'world' ? false : true
                         })} onClick={this.changeMap.bind(this, 'world')}>{locale('世界')}</div>
                     </div>
-                    <MapChart 
+                    <MapChart
                         mapState={this.state.activeMap}
                         chartId="map" className={styles['map-chart']}
                         options={config.get('default').mergeDeep(mapConfig).toJS()}

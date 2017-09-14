@@ -1,5 +1,9 @@
-import styles from "./index";
+/*
+* 页面交互/页面浏览/错误概况/用户详情表格中的条形图等
+*/
+import styles from "./index.scss";
 import { Popover } from 'antd';
+import React from 'react';
 
 export function tableProgress(avgRsp = 0, avgRsps = [0, 0, 0], config = [{ color: "#ffec0c", text: locale('可接受') }, { color: "#ff5252", text: locale('不满意') }, { color: "#66dc6b", text: locale('满意') }], isShowAvgRsp = true) {
     const width = '101px';
@@ -14,7 +18,7 @@ export function tableProgress(avgRsp = 0, avgRsps = [0, 0, 0], config = [{ color
     });
     let type = arguments[3];
     const overlay = (
-        <div className="overlay">
+        <div className={styles["overlay"]}>
             {
                 newConfig.map((val, i) => {
                     return (
@@ -77,7 +81,7 @@ export function errorTableTrend(text, record, index) {
                     const _top = top[index] || 0;
 
                     return (
-                        <Popover content={content} trigger="hover" placement="rightBottom" className={styles['common-pop']} key={index}>
+                        <Popover content={content} trigger="hover" placement="rightBottom" skey={index}>
                             <div className={styles['bar']}style={{ height: _height, top: _top }}></div>
                         </Popover>
                     )

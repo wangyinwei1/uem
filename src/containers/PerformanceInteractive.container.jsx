@@ -1,7 +1,6 @@
 import React from 'react';
 import { observer, inject } from 'mobx-react';
 import { Spin } from 'antd';
-
 import {
     TabTable
 } from '../components/Common'
@@ -84,8 +83,7 @@ export default class PerformanceInteractive extends React.Component {
                     changePanelList={onChangePanelList}
                     changePage={onChangePage}
                     search={this.search.bind(this)}
-                />
-                
+                />    
             </div> 
             // :
             // <div id="PerformanceInteractiveMobile">

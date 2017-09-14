@@ -1,4 +1,13 @@
 .tableProgress {
+    // .common-popover{
+    //     :global{
+    //         .ant-popover{
+    //             .ant-popover-inner{
+    //                 background: red;
+    //             }
+    //         }
+    //     }
+    // }
     >.title {
         width: 50px;
         float: left;
@@ -36,7 +45,7 @@
         position: relative;
         width: 2px;
         margin-right: 2px;
-        background-color: map-get($map, color1);
+        background-color: #fff;
     }
 }
 .mr20 {

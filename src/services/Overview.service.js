@@ -5,9 +5,9 @@ export default {
     getRealTimeData: payload => Request('get', 'app/realTimeData/overview', {
         appId: sessionStorage.getItem('UEM_appId'),
         platform: sessionStorage.getItem('UEM_platform'),
-        startTime: moment().subtract(30, 'minutes').valueOf(),
-        endTime: moment().valueOf(),
-        indexs: 'sessionCount,operCountPerMin,errorCount/operCount,apdex,percentage',
+        // startTime: moment().subtract(30, 'minutes').valueOf(),
+        // endTime: moment().valueOf(),
+        // indexs: 'sessionCount,operCountPerMin,errorCount/operCount,apdex,percentage',
         // 增加version字段
         version: getVersion(),
         ...payload

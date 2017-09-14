@@ -1,7 +1,7 @@
 import React from 'react';
 import ColorType from './ColorType';
 import OperType from './OperType';
-import TableFunction from './TableFunction/index';
+import { tableProgress, errorTableTrend } from './TableFunction/index';
 
 export default {
     PerformanceBrowse: [{
@@ -105,7 +105,7 @@ export default {
                             text: locale('满意')
                         }
                     ];
-                    return TableFunction.tableProgress(record.apdex, record.satisfactionIndex, config);
+                    return tableProgress(record.apdex, record.satisfactionIndex, config);
                 }
             }, {
                 value: 'thruput',
@@ -130,7 +130,7 @@ export default {
                 sorter: (a, b) => a.avgRspTime - b.avgRspTime,
                 render(text, record, index){
                     const config = [{ color: "#03a9f4", text: locale('客户端') }, { color: "#91eb7c", text: locale('网络传输') }, { color: "#6270ef", text: locale('服务器') }]
-                    return TableFunction.tableProgress(record.avgRspTime, record.avgRspTimes, config, locale('平均响应时间'));
+                    return tableProgress(record.avgRspTime, record.avgRspTimes, config, locale('平均响应时间'));
                 } 
             }, {
                 value: 'pv',
@@ -322,6 +322,24 @@ export default {
                 disabled: true,
                 // fixed: 'left',
                 render: (text, record, index) => <OperType type={record.operType} />,
+            },{
+                value: 'operName',
+                label: locale('名称'),
+                checked: true,
+                disabled: true,
+                width: 100,
+            },{
+                value: 'srcName',
+                label: locale('所在界面'),
+                checked: true,
+                disabled: true,
+                width: 100,
+            },{
+                value: 'page',
+                label: locale('目标URL'),
+                checked: true,
+                disabled: false,
+                width: 100,
             }],
             quota: [{
                 value: 'apdex',
@@ -343,7 +361,7 @@ export default {
                             text: locale('满意')
                         }
                     ];
-                    return TableFunction.tableProgress(record.apdex, record.satisfactionIndex, config);
+                    return tableProgress(record.apdex, record.satisfactionIndex, config);
                 }
             }, {
                 value: 'thruput',
@@ -368,22 +386,15 @@ export default {
                 sorter: (a, b) => a.avgRspTime - b.avgRspTime,
                 render(text, record, index){
                     const config = [{ color: "#03a9f4", text: locale('客户端') }, { color: "#91eb7c", text: locale('网络传输') }, { color: "#6270ef", text: locale('服务器') }]
-                    return TableFunction.tableProgress(record.avgRspTime, record.avgRspTimes, config, locale('平均响应时间'));
+                    return tableProgress(record.avgRspTime, record.avgRspTimes, config, locale('平均响应时间'));
                 }
             }, {
-                value: 'pv',
-                label: locale('浏览量PV'),
+                value: 'clickNum',
+                label: locale('点击数'),
                 checked: true,
                 disabled: false,
                 width: 100,
             }, 
-            {
-                value: 'uv',
-                label: locale('访问量UV'),
-                checked: true,
-                disabled: false,
-                width: 100,
-            }
         ]
         }
     }],
@@ -624,7 +635,7 @@ export default {
                 value: 'trend',
                 width: '15%',
                 render(text, record, index) {
-                    return TableFunction.errorTableTrend(text, record, index);
+                    return errorTableTrend(text, record, index);
                 }
             }, {
                 label: locale('最近发生时间'),
@@ -663,7 +674,7 @@ export default {
                 value: 'trend',
                 width: '15%',
                 render(text, record, index) {
-                    return TableFunction.errorTableTrend(text, record, index);
+                    return errorTableTrend(text, record, index);
                 }
             }, {
                 label: locale('最近发生时间'),
