@@ -1,5 +1,6 @@
 import React from 'react';
 import { observer, inject } from 'mobx-react';
+import { message } from 'antd';
 import {
     DetailWrap,
 } from '../components/Common';
@@ -12,7 +13,7 @@ import {
     FlowChart
 } from '../components/PerformanceDetail';
 
-@inject('frameStore', 'performanceDetailStore')
+@inject('frameStore', 'performanceDetailStore','performanceInteractiveStore')
 @observer
 export default class PerformanceDetail extends React.Component {
     // static childContextTypes = {
@@ -29,34 +30,37 @@ export default class PerformanceDetail extends React.Component {
     componentDidMount() {
         const { onGetOperInfo, onGetOperTrend, onGetOperSamplesList } = this.props.performanceDetailStore;
         const { type } = this.props;
+        // debugger
         const {
             operType,
             selector,
             text,
-            isMarked,
+            // isMarked,
             path
         } = this.props.data;
+        const { tagType } = this.props.performanceInteractiveStore;
         onGetOperInfo({
             operType,
             selector,
             text,
-            isMarked,
+            "isMarked":tagType,
             path,
             performanceType: type
         });
-        onGetOperTrend({
+
+        path == '' || undefined ? message.info('path字段为空'):onGetOperTrend({
             operType,
             selector,
             text,
-            isMarked,
+            "isMarked":tagType,
             path,
             performanceType: type
         });
-        onGetOperSamplesList({
+        path == '' || undefined ? message.info('path字段为空') : onGetOperSamplesList({
             operType,
             selector,
             text,
-            isMarked,
+            "isMarked":tagType,
             path,
         });
     }

@@ -13,6 +13,7 @@ class PerformanceInteractiveStore {
     @observable type = JSON.stringify([0, 1, 2, 3, 4, 5, 6]);
     @observable pageIndex = 1;
     @observable pageSize = 10;
+    // @observable platform = sessionStorage.getItem('UEM_platform');
     @observable operType = {
         "pc":'xhr,form,link',
         "ios": "click,longClick,slide,other",
@@ -21,13 +22,19 @@ class PerformanceInteractiveStore {
     @observable searchValue = undefined;
     @observable tagType = 0;
     @observable colOptions = getColOptions('PerformanceInteractive');
+    @observable colOptionsMobile =  getColOptions('PerformanceInteractiveMobile');
+//    constructor(){
+//     autorun(() => 
+//         console.log('111111111111111',this.columns)
+//     )
+//    }
 
     get dataList() {
         return this.data.toJS();
     }
 
     get columns() {
-        return this.colOptions[this.tagType].toJS();
+        return sessionStorage.getItem('UEM_platform') == 'pc' ? this.colOptions[this.tagType].toJS() :  this.colOptionsMobile[this.tagType].toJS();
     }
 
     @action onLoading = () => {
@@ -50,15 +57,22 @@ class PerformanceInteractiveStore {
         this.onGetOpersList();
     }
     @action onChangeTagType = payload => {
+        // debugger
         this.tagType = payload.tagType;
         this.data = [];
         this.searchValue = undefined;
         this.onGetOpersList();
     }
     @action onChangeColOptions = payload => {
-        this.colOptions[this.tagType] = payload.colOptions;
-        localStorage.setItem('UEM_colOptions_PerformanceInteractive', JSON.stringify(this.colOptions));
-    }
+        if(sessionStorage.getItem('UEM_platform') == 'pc' ){
+            this.colOptions[this.tagType] = payload.colOptions;
+            localStorage.setItem('UEM_colOptions_PerformanceInteractive', JSON.stringify(this.colOptions));
+        }else{
+            this.colOptionsMobile[this.tagType] = payload.colOptions;
+            localStorage.setItem('UEM_colOptions_PerformanceInteractiveMobile', JSON.stringify(this.colOptionsMobile));
+        }
+        }
+       
     @action onGetOpersList = async () => {
         this.timeType = getTimeType();
         this.onLoading();

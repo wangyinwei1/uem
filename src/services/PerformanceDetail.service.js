@@ -1,4 +1,5 @@
 import Request from '../utils/request';
+import { getVersion } from '../utils/storage';
 
 export default {
     getOperInfo: payload => Request('get', 'perfor/oper/info/view', {
@@ -13,6 +14,8 @@ export default {
         isMarked: undefined,
         displayType: undefined,
         performanceType: undefined,
+        // 增加version
+        version: getVersion(),
         ...payload
     }),
     getOperTrend: payload => Request('get', 'perfor/oper/trend/show', {
@@ -27,6 +30,9 @@ export default {
         isMarked: undefined,
         columnCode: JSON.stringify(['clickNum', 'apdexs', 'median', 'rspTime', 'percent5', 'thruput', 'clientTime', 'serverTime', 'netTime', 'request', 'response', 'callback']),
         performanceType: undefined,
+        // 增加displayType和 version
+        displayType: undefined,
+        version: getVersion(),
         ...payload
     }),
     getOperSamplesList: payload => Request('get', 'perfor/oper/samples/list', {
@@ -40,6 +46,7 @@ export default {
         selector: undefined,
         isMarked: undefined,
         pageIndex: undefined,
+        version: getVersion(),
         ...payload
     }),
     getOperBaseInfo: payload => Request('get', 'perfor/oper/sample/baseinfo/view', {

@@ -209,36 +209,38 @@ export default {
             normal: [{
                 value: 'type',
                 label: locale('标识'),
-                width: 80,
+                width: 100,
                 checked: true,
                 disabled: true,
                 // fixed: 'left',
                 render: (text, record, index) => <ColorType type={record.type} />
-            }, {
-                value: 'operType',
-                label: locale('类型'),
-                width: 80,
-                checked: true,
-                disabled: true,
-                // fixed: 'left',
-                render: (text, record, index) => <OperType type={record.operType} />,
-            }, {
+            }, 
+            // {
+            //     value: 'operType',
+            //     label: locale('类型'),
+            //     width: 80,
+            //     checked: true,
+            //     disabled: true,
+            //     // fixed: 'left',
+            //     render: (text, record, index) => <OperType type={record.operType} />,
+            // }, 
+            {
                 value: 'operName',
                 label: locale('页面名称'),
-                width: 400,
+                width: 200,
                 checked: true,
                 disabled: true,
                 // fixed: 'left'
             }, {
                 value: 'path',
                 label: 'URL',
-                checked: false,
+                checked: true,
                 disabled: false,
                 width: 400,
             }, {
                 value: 'match',
                 label: locale('URL规则'),
-                checked: false,
+                checked: true,
                 disabled: false,
                 width: 400,
             }, {
@@ -326,13 +328,13 @@ export default {
                 value: 'operName',
                 label: locale('名称'),
                 checked: true,
-                disabled: true,
+                disabled: false,
                 width: 100,
             },{
                 value: 'srcName',
                 label: locale('所在界面'),
                 checked: true,
-                disabled: true,
+                disabled: false,
                 width: 100,
             },{
                 value: 'page',
@@ -399,215 +401,217 @@ export default {
         }
     }],
 
-    // PerformanceInteractiveMobile: [{
-    //     tabName: locale('已标记'),
-    //     options: {
-    //         normal: [{
-    //             value: 'type',
-    //             label: locale('标识'),
-    //             width: 80,
-    //             checked: true,
-    //             disabled: true,
-    //             // fixed: 'left',
-    //             render: (text, record, index) => <ColorType type={record.type} />
-    //         }, 
-    //         // {
-    //         //     value: 'operType',
-    //         //     label: locale('类型'),
-    //         //     width: 80,
-    //         //     checked: true,
-    //         //     disabled: true,
-    //         //     // fixed: 'left',
-    //         //     render: (text, record, index) => <OperType type={record.operType} />,
-    //         // }, 
-    //         {
-    //             value: ' ',
-    //             label: locale('手势'),
-    //             width: 400,
-    //             checked: true,
-    //             disabled: false,
-    //             // fixed: 'left'
-    //         }, {
-    //             value: ' ',
-    //             label: locale('UI类型'),
-    //             checked: false,
-    //             disabled: false,
-    //             width: 400,
-    //         }, {
-    //             value: '',
-    //             label: locale('名称'),
-    //             checked: false,
-    //             disabled: false,
-    //             width: 400,
-    //         },
-    //         {
-    //             value: '',
-    //             label: locale('点击数'),
-    //             checked: false,
-    //             disabled: false,
-    //             width: 200,
-    //         }, {
-    //             value: '',
-    //             label: locale('满意度'),
-    //             checked: false,
-    //             disabled: false,
-    //             width: 200,
-    //         }, {
-    //             value: '',
-    //             label: locale('平均响应时间(s)'),
-    //             checked: false,
-    //             disabled: false,
-    //             width: 200,
-    //         }, {
-    //             value: '',
-    //             label: locale('吞吐率(rmp)'),
-    //             checked: false,
-    //             disabled: false,
-    //             width: 200,
-    //         }, {
-    //             value: ' ',
-    //             label: locale('错误数'),
-    //             checked: false,
-    //             disabled: false,
-    //             width: 200,
-    //         }],
-    //         quota: [
-    //         // {
-    //         //     value: 'apdex',
-    //         //     label: 'Apdex',
-    //         //     checked: true,
-    //         //     disabled: false,
-    //         //     width: 100,
-    //         //     render: (text, record, index) => text ? text : '--',
-    //         // }, {
-    //         //     value: 'thruput',
-    //         //     label: locale('吞吐率'),
-    //         //     checked: true,
-    //         //     disabled: false,
-    //         //     width: 100,
-    //         // }, {
-    //         //     value: 'errorCount',
-    //         //     label: locale('错误数'),
-    //         //     checked: true,
-    //         //     disabled: false,
-    //         //     width: 100,
-    //         // }, {
-    //         //     value: 'avgRspTime',
-    //         //     label: locale('响应时间'),
-    //         //     checked: true,
-    //         //     disabled: false,
-    //         //     width: 100,
-    //         // }, {
-    //         //     value: 'pv',
-    //         //     label: locale('浏览量PV'),
-    //         //     checked: true,
-    //         //     disabled: false,
-    //         //     width: 100,
-    //         // }, {
-    //         //     value: 'uv',
-    //         //     label: locale('访问量UV'),
-    //         //     checked: true,
-    //         //     disabled: false,
-    //         //     width: 100,
-    //         // }
-    //     ]
-    //     }
-    // }, {
-    //     tabName: locale('未标记'),
-    //     options: {
-    //         normal: [{
-    //             value: '',
-    //             label: locale('手势'),
-    //             width: 80,
-    //             checked: true,
-    //             disabled: true,
-    //             // fixed: 'left',
-    //             // render: (text, record, index) => <OperType type={record.operType} />,
-    //         }, {
-    //             value: ' ',
-    //             label: locale('UI类型'),
-    //             checked: false,
-    //             disabled: false,
-    //             width: 400,
-    //         }, {
-    //             value: '',
-    //             label: locale('名称'),
-    //             checked: false,
-    //             disabled: false,
-    //             width: 400,
-    //         }, {
-    //             value: '',
-    //             label: locale('点击数'),
-    //             checked: false,
-    //             disabled: false,
-    //             width: 200,
-    //         },{
-    //             value: '',
-    //             label: locale('满意度'),
-    //             checked: false,
-    //             disabled: false,
-    //             width: 200,
-    //         }, {
-    //             value: '',
-    //             label: locale('平均响应时间(s)'),
-    //             checked: false,
-    //             disabled: false,
-    //             width: 200,
-    //         }, {
-    //             value: '',
-    //             label: locale('吞吐率(rmp)'),
-    //             checked: false,
-    //             disabled: false,
-    //             width: 200,
-    //         }, {
-    //             value: ' ',
-    //             label: locale('错误数'),
-    //             checked: false,
-    //             disabled: false,
-    //             width: 200,
-    //         }],
-    //         quota: [
-    //         // {
-    //         //     value: 'apdex',
-    //         //     label: 'Apdex',
-    //         //     checked: true,
-    //         //     disabled: false,
-    //         //     width: 100,
-    //         //     render: (text, record, index) => text ? text : '--',
-    //         // }, {
-    //         //     value: 'thruput',
-    //         //     label: locale('吞吐率'),
-    //         //     checked: true,
-    //         //     disabled: false,
-    //         //     width: 100,
-    //         // }, {
-    //         //     value: 'errorCount',
-    //         //     label: locale('错误数'),
-    //         //     checked: true,
-    //         //     disabled: false,
-    //         //     width: 100,
-    //         // }, {
-    //         //     value: 'avgRspTime',
-    //         //     label: locale('响应时间'),
-    //         //     checked: true,
-    //         //     disabled: false,
-    //         //     width: 100,
-    //         // }, {
-    //         //     value: 'pv',
-    //         //     label: locale('浏览量PV'),
-    //         //     checked: true,
-    //         //     disabled: false,
-    //         //     width: 100,
-    //         // }, {
-    //         //     value: 'uv',
-    //         //     label: locale('访问量UV'),
-    //         //     checked: true,
-    //         //     disabled: false,
-    //         //     width: 100,
-    //         // }
-    //     ]
-    //     }
-    // }],
+    PerformanceInteractiveMobile: [{
+        tabName: locale('已标记'),
+        options: {
+            normal: [{
+                value: 'type',
+                label: locale('标识'),
+                width: 80,
+                checked: true,
+                disabled: true,
+                // fixed: 'left',
+                render: (text, record, index) => <ColorType type={record.type} />
+            }, 
+            // {
+            //     value: 'operType',
+            //     label: locale('类型'),
+            //     width: 80,
+            //     checked: true,
+            //     disabled: true,
+            //     // fixed: 'left',
+            //     render: (text, record, index) => <OperType type={record.operType} />,
+            // }, 
+            {
+                value: 'operType',
+                label: locale('手势'),
+                width: 200,
+                checked: true,
+                disabled: true,
+                // fixed: 'left'
+            }, {
+                value: 'uiType',
+                label: locale('UI类型'),
+                checked: true,
+                disabled: true,
+                width: 200,
+            }, {
+                value: 'name',
+                label: locale('名称'),
+                checked: true,
+                disabled: true,
+                width: 250,
+            },
+            ],
+            quota: [
+                {
+                    value: 'clickNum',
+                    label: locale('点击数'),
+                    checked: false,
+                    disabled: false,
+                    width: 200,
+                }, {
+                    value: 'apdex',
+                    label: locale('满意度'),
+                    checked: false,
+                    disabled: false,
+                    width: 300,
+                }, {
+                    value: 'avgRspTime',
+                    label: locale('平均响应时间(s)'),
+                    checked: false,
+                    disabled: false,
+                    width: 200,
+                }, {
+                    value: 'thruput',
+                    label: locale('吞吐率(rmp)'),
+                    checked: false,
+                    disabled: false,
+                    width: 200,
+                }, {
+                    value: 'errorCount',
+                    label: locale('错误数'),
+                    checked: false,
+                    disabled: false,
+                    width: 200,
+                }
+            // {
+            //     value: 'apdex',
+            //     label: 'Apdex',
+            //     checked: true,
+            //     disabled: false,
+            //     width: 100,
+            //     render: (text, record, index) => text ? text : '--',
+            // }, {
+            //     value: 'thruput',
+            //     label: locale('吞吐率'),
+            //     checked: true,
+            //     disabled: false,
+            //     width: 100,
+            // }, {
+            //     value: 'errorCount',
+            //     label: locale('错误数'),
+            //     checked: true,
+            //     disabled: false,
+            //     width: 100,
+            // }, {
+            //     value: 'avgRspTime',
+            //     label: locale('响应时间'),
+            //     checked: true,
+            //     disabled: false,
+            //     width: 100,
+            // }, {
+            //     value: 'pv',
+            //     label: locale('浏览量PV'),
+            //     checked: true,
+            //     disabled: false,
+            //     width: 100,
+            // }, {
+            //     value: 'uv',
+            //     label: locale('访问量UV'),
+            //     checked: true,
+            //     disabled: false,
+            //     width: 100,
+            // }
+        ]
+        }
+    }, {
+        tabName: locale('未标记'),
+        options: {
+            normal: [{
+                value: 'operType',
+                label: locale('手势'),
+                width: 200,
+                checked: true,
+                disabled: true,
+                // fixed: 'left',
+                // render: (text, record, index) => <OperType type={record.operType} />,
+            }, {
+                value: 'uiType',
+                label: locale('UI类型'),
+                checked: true,
+                disabled: true,
+                width: 200,
+            }, {
+                value: 'name',
+                label: locale('名称'),
+                checked: true,
+                disabled: true,
+                width: 200,
+            }, ],
+            quota: [
+                {
+                    value: 'clickNum',
+                    label: locale('点击数'),
+                    checked: false,
+                    disabled: false,
+                    width: 200,
+                },{
+                    value: 'apdex',
+                    label: locale('满意度'),
+                    checked: false,
+                    disabled: false,
+                    width: 200,
+                }, {
+                    value: 'avgRspTime',
+                    label: locale('平均响应时间(s)'),
+                    checked: false,
+                    disabled: false,
+                    width: 200,
+                }, {
+                    value: 'thruput',
+                    label: locale('吞吐率(rmp)'),
+                    checked: false,
+                    disabled: false,
+                    width: 200,
+                }, {
+                    value: 'errorCount',
+                    label: locale('错误数'),
+                    checked: false,
+                    disabled: false,
+                    width: 200,
+                }
+            // {
+            //     value: 'apdex',
+            //     label: 'Apdex',
+            //     checked: true,
+            //     disabled: false,
+            //     width: 100,
+            //     render: (text, record, index) => text ? text : '--',
+            // }, {
+            //     value: 'thruput',
+            //     label: locale('吞吐率'),
+            //     checked: true,
+            //     disabled: false,
+            //     width: 100,
+            // }, {
+            //     value: 'errorCount',
+            //     label: locale('错误数'),
+            //     checked: true,
+            //     disabled: false,
+            //     width: 100,
+            // }, {
+            //     value: 'avgRspTime',
+            //     label: locale('响应时间'),
+            //     checked: true,
+            //     disabled: false,
+            //     width: 100,
+            // }, {
+            //     value: 'pv',
+            //     label: locale('浏览量PV'),
+            //     checked: true,
+            //     disabled: false,
+            //     width: 100,
+            // }, {
+            //     value: 'uv',
+            //     label: locale('访问量UV'),
+            //     checked: true,
+            //     disabled: false,
+            //     width: 100,
+            // }
+        ]
+        }
+    }],
 
 
     ErrorTable: [{

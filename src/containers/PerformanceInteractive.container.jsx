@@ -62,12 +62,12 @@ export default class PerformanceInteractive extends React.Component {
         const { deploy } = this.props.overviewStore;
         const { onChangePanelList } = this.props.sidePanelStore;
         const apdexTime = (deploy.apdex / 1000).toFixed(1);
-        const platfrom = localStorage.getItem('UEM_platfrom');
+        // const platfrom = localStorage.getItem('UEM_platfrom');
         return (
             // platfrom == 'pc' ?
             <div id="PerformanceInteractive">
                 <TabTable
-                    type="PerformanceInteractive"
+                    type={sessionStorage.getItem('UEM_platform') == 'pc' ? "PerformanceInteractive" : "PerformanceInteractiveMobile"}
                     loading={loading}
                     tagType={tagType}
                     columns={columns}

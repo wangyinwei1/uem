@@ -78,6 +78,36 @@ export function getColOptions(type) {
             }
             break;
         }
+        case 'PerformanceInteractiveMobile': {
+            const defaultValue = [[
+                'type',
+                'operType',
+                'uiType',
+                'name',
+                'clickNum',
+                'apdex',
+                'avgRspTime',
+                'thruput',
+                'errorCount'
+            ], [
+                'operType',
+                'uiType',
+                'name',
+                'clickNum',
+                'apdex',
+                'avgRspTime',
+                'thruput',
+                'errorCount'
+            ]];
+            try {
+                return JSON.parse(localStorage.getItem('UEM_colOptions_PerformanceInteractiveMobile')) === null
+                    ? defaultValue
+                    : JSON.parse(localStorage.getItem('UEM_colOptions_PerformanceInteractiveMobile'));
+            } catch (error) {
+                throw error;
+            }
+            break;
+        }
         case 'ErrorTable': {
             const defaultValue = [[
                 'summaryId',

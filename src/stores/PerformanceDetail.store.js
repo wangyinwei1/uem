@@ -96,8 +96,10 @@ class PerformanceDetailStore {
     }
 
     @action onGetOperTrend = async payload => {
+        const platform = sessionStorage.getItem('UEM_platform');
         try {
             const data = await Service.getOperTrend({
+                displayType: this.displayType[platform],
                 startTime: moment().subtract(getTimeType().startTime.type, getTimeType().startTime.units).valueOf(),
                 endTime: moment().subtract(getTimeType().endTime.type, getTimeType().endTime.units).valueOf(),
                 ...payload

@@ -101,7 +101,6 @@ export default class HeaderBar extends React.PureComponent {
     }
     // 切换版本，存在sessionStorage里
     handleChange(value){
-        debugger
         this.props.onChooseVersion({
             version: value
         });

@@ -5,6 +5,7 @@ class SidePanelStore {
     @observable panelList = [];
 
     @action onChangePanelList = payload => {
+        // debugger
         const panelList = this.panelList.toJS();
         payload.panelItem.sidePanelId = this.id ++;
         if (panelList.length === 2) {
