@@ -24,7 +24,6 @@ class PerformanceDetailStore {
     @observable pageIndex = 1;
     @observable trend = {
         "thruput": [],
-        "request": [],
         "percent5": [],
         "median": [],
         "apdexs": {
@@ -32,12 +31,13 @@ class PerformanceDetailStore {
             "apdexT": 0,
             "apdexS": 0
         },
-        "response": [],
-        "callback": [],
-        "rspTime": [],
+        // "request": [],
+        // "response": [],
+        // "callback": [],
+        "avgRspTime": [],
         "clickNum": [],
         "serverTime": [],
-        "netTime": [],
+        "netWorkTime": [],
         "clientTime": []
     };
     @observable type = 'all';
@@ -46,11 +46,11 @@ class PerformanceDetailStore {
         total: 0,
         data: []
     };
-    @observable displayType={
-        "pc":"page,xhr",
-        "android": "page,xhr,activity",
-        "ios": "page,xhr,view_controller,view"
-    }
+    // @observable displayType={
+    //     "pc":"page,xhr",
+    //     "android": "page,xhr,activity",
+    //     "ios": "page,xhr,view_controller,view"
+    // }
 
     get sampleAnalyzeData() {
         return {
@@ -82,7 +82,7 @@ class PerformanceDetailStore {
         try {
             const data = await Service.getOperInfo({
                 // 增加displayType字段
-                displayType: this.displayType[platform],
+                // displayType: this.displayType[platform],
                 startTime: moment().subtract(getTimeType().startTime.type, getTimeType().startTime.units).valueOf(),
                 endTime: moment().subtract(getTimeType().endTime.type, getTimeType().endTime.units).valueOf(),
                 ...payload
@@ -99,7 +99,7 @@ class PerformanceDetailStore {
         const platform = sessionStorage.getItem('UEM_platform');
         try {
             const data = await Service.getOperTrend({
-                displayType: this.displayType[platform],
+                // displayType: this.displayType[platform],
                 startTime: moment().subtract(getTimeType().startTime.type, getTimeType().startTime.units).valueOf(),
                 endTime: moment().subtract(getTimeType().endTime.type, getTimeType().endTime.units).valueOf(),
                 ...payload

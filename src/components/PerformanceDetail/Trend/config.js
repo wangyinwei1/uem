@@ -84,6 +84,69 @@ export default Immutable.fromJS({
             // data: _.range(Math.random() * 100, Math.random * 300)
         }]
     },
+    avgRspTimeMobile: {
+        color: ['#6B7BFF', '#ffeb0b'],
+        xAxis: [{
+            type: 'category',
+            data: []
+        }],
+        grid: [{
+            top: '30%'
+        }],
+        yAxis: [{
+            type: 'value',
+            show: true,
+            name: locale('单位：s'),
+        }, {
+            type: 'value',
+            axisLine: {
+                show: false,
+                lineStyle: {
+                    color: '#70c3fb'
+                }
+            },
+            splitLine: {
+                show: false,
+                lineStyle: {
+                    color: '#236592'
+                }
+            },
+            axisTick: {
+                show: false
+            },
+            show: true,
+            name: locale('单位：次'),
+        }],
+        legend: {
+            itemWidth: 8,
+            itemHeight: 8,
+            data: [{
+                name: locale('响应时间'),
+                icon: 'rect'
+            }, {
+                name: locale('点击数'),
+                icon: 'rect'
+            }],
+            top: 15,
+            right: 15,
+            textStyle: {
+                color: '#fff'
+            }
+        },
+        series: [{
+            name: locale('响应时间'),
+            type: 'bar',
+            stack: '总量',
+            data: []
+            // data: _.range(Math.random() * 100, Math.random * 300)
+        }, {
+            name: locale('点击数'),
+            type: 'line',
+            stack: '总量',
+            data: []
+            // data: _.range(Math.random() * 100, Math.random * 300)
+        }]
+    },
     thruput: {
         color: ['#90ec7d', '#03a9f3', 'rgb(254,226,92)'],
         legend: {

@@ -4,9 +4,9 @@ $rectBackground: #9cf;
 
 .lee {
     // float: left;
-    width: 100px;
-    height: 50px;
-    line-height: 50px;
+    width: 120px;
+    height: 40px;
+    line-height: 40px;
     text-align: center;
     border: 3px solid $rectColor;
     margin-left: 80px;
@@ -32,15 +32,15 @@ $rectBackground: #9cf;
 // } 
 .arrow-right {
     position: relative;
-    left: 260px;
-    bottom: 32px;
+    left: 280px;
+    bottom: 20px;
     &:before {
         width: 80px;
         height: 2px;
         position: absolute;
         content: ' ';
         margin-left: -80px;
-        top: 5px;
+        top: 0px;
         background: $arrowColor;
         left: 0px;
     }
@@ -50,12 +50,16 @@ $rectBackground: #9cf;
         width: 0;
         height: 0;
         position: absolute;
-        content: ' '
+        content: ' ';
+        top: -5px;
     }
 }
 
 .fulei {
     position: relative;
+    .container{
+        display: inline-block;
+    }
 }
 
 .wrap {

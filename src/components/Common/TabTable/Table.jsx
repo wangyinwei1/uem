@@ -96,7 +96,6 @@ export default class Table extends React.Component {
             return false;
         }
         this.index = index;
-
         this.props.changePanelList({
             panelItem: record
         });

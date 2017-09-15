@@ -30,10 +30,27 @@ export default class Trend extends React.Component {
     }
     renderTrend() {
         const { activeTrend } = this.state;
-        const { itemId, trend } = this.props;
-
+        const { itemId, trend, uiType } = this.props;
+        const platform = sessionStorage.getItem('UEM_platform');   
         switch (activeTrend) {
-            case 0: return <BarChart
+            case 0: return (
+            platform !== 'pc' && uiType == 'NATIVE' ?
+            <BarChart
+                chartId={`trend-${itemId}-${activeTrend}`}
+                options={config.get('default').mergeDeep(config.get('avgRspTimeMobile'))
+                    .setIn(['xAxis', 0, 'data'], trend.avgRspTime.map(item => {
+                        const timeDiff = item.endTime - item.startTime;
+                        if (timeDiff <= 1800000) {
+                            return moment(item.startTime).format('HH:mm');
+                        } else {
+                            return moment(item.startTime).format('MM-DD HH:mm');
+                        }
+                    }))
+                    .setIn(['series', 0, 'data'], trend.avgRspTime.map(item => item.value))
+                    .setIn(['series', 1, 'data'], trend.clickNum.map(item => item.value))
+                    .toJS()}
+            /> :
+            <BarChart
                 chartId={`trend-${itemId}-${activeTrend}`}
                 options={config.get('default').mergeDeep(config.get('avgRspTime'))
                     .setIn(['xAxis', 0, 'data'], trend.clientTime.map(item => {
@@ -45,11 +62,13 @@ export default class Trend extends React.Component {
                         }
                     }))
                     .setIn(['series', 0, 'data'], trend.clientTime.map(item => item.value))
-                    .setIn(['series', 1, 'data'], trend.netTime.map(item => item.value))
+                    .setIn(['series', 1, 'data'], trend.netWorkTime.map(item => item.value))
                     .setIn(['series', 2, 'data'], trend.serverTime.map(item => item.value))
                     .setIn(['series', 3, 'data'], trend.clickNum.map(item => item.value))
                     .toJS()}
-            />;
+            />
+            )
+            ;
 
             case 1: return <LineChart
                 chartId={`trend-${itemId}-${activeTrend}`}
@@ -63,7 +82,7 @@ export default class Trend extends React.Component {
                         }
                     }))
                     .setIn(['series', 0, 'data'], trend.median.map(item => item.value))
-                    .setIn(['series', 1, 'data'], trend.rspTime.map(item => item.value))
+                    .setIn(['series', 1, 'data'], trend.avgRspTime.map(item => item.value))
                     .setIn(['series', 2, 'data'], trend.percent5.map(item => item.value))
                     .toJS()}
             />;

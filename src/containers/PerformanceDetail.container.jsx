@@ -13,7 +13,7 @@ import {
     FlowChart
 } from '../components/PerformanceDetail';
 
-@inject('frameStore', 'performanceDetailStore','performanceInteractiveStore')
+@inject('frameStore', 'performanceDetailStore','performanceInteractiveStore','sidePanelStore')
 @observer
 export default class PerformanceDetail extends React.Component {
     // static childContextTypes = {
@@ -28,40 +28,51 @@ export default class PerformanceDetail extends React.Component {
     //     };
     // }
     componentDidMount() {
+        const platform = sessionStorage.getItem('UEM_platform');
         const { onGetOperInfo, onGetOperTrend, onGetOperSamplesList } = this.props.performanceDetailStore;
         const { type } = this.props;
-        // debugger
         const {
-            operType,
+            operType = 'click',
             selector,
             text,
             // isMarked,
-            path
+            path,
+            displayType
         } = this.props.data;
         const { tagType } = this.props.performanceInteractiveStore;
+        // uitype 第一次点击获取不到， mark
+        const { panelList }  = this.props.sidePanelStore;
+        const { uiType } = panelList[panelList.length - 1];
         onGetOperInfo({
             operType,
             selector,
             text,
             "isMarked":tagType,
             path,
-            performanceType: type
+            performanceType: type,
+            displayType,
+            // columnCode: JSON.stringify(['clientTime', 'serverTime'])
         });
-
-        path == '' || undefined ? message.info('path字段为空'):onGetOperTrend({
+        platform == 'pc' && path == '' || undefined ? message.info('path字段为空'):onGetOperTrend({
             operType,
             selector,
             text,
             "isMarked":tagType,
             path,
-            performanceType: type
+            performanceType: type,
+            displayType,
+            columnCode: uiType === "NATIVE" ? 
+            JSON.stringify(['avgRspTime', 'clickNum','thruput','apdexs', 'median','netWorkTime','clientTime', 'serverTime','percent5']) :
+            JSON.stringify(['clickNum', 'apdexs', 'median', 'avgRspTime', 'percent5', 'thruput', 'clientTime', 'serverTime', 'netWorkTime']),
+            
         });
-        path == '' || undefined ? message.info('path字段为空') : onGetOperSamplesList({
+        platform == 'pc' && path == '' || undefined ? message.info('path字段为空') : onGetOperSamplesList({
             operType,
             selector,
             text,
             "isMarked":tagType,
             path,
+            displayType,
         });
     }
     shouldComponentUpdate(nextProps) {
@@ -69,6 +80,28 @@ export default class PerformanceDetail extends React.Component {
     }
     render() {
         const platform = sessionStorage.getItem('UEM_platform');
+        // const quotaEnum = {
+        //     "pv": "",
+        //     "uv": "",
+        //     "apdex": "",
+        //     "thruput": "",
+        //     "bounceRate": "",
+        //     "operType": "",
+        //     "url": "",
+
+        //     // Timing
+        //     "netTime":"",
+        //     "serverTime":"",
+        //     "clientTime":"",
+        //     "firstByteTime":"",
+        //     "lastByteTime":"",
+        //     "domLoadingTime":"",
+        //     "pageAvgRspTime":"",
+        //     // 移动端h5
+        //     "domReady":"",
+        //     "avgRspTime":""
+            
+        // };
         const {
             info,
             baseInfo,
@@ -133,7 +166,7 @@ export default class PerformanceDetail extends React.Component {
                                 pageAvgRspTime
                             }}
                         />
-                    :<TimingMobile
+                    : info.uiType !== 'NATIVE' && <TimingMobile
                             data={{
                                 netTime,
                                 serverTime,
@@ -146,8 +179,8 @@ export default class PerformanceDetail extends React.Component {
                         />
 
                 }
-                <FlowChart />
-                <Trend itemId={itemId} trend={trend} />
+                <FlowChart threadInfo = {info} />
+                <Trend itemId={itemId} trend={trend} uiType={info.uiType} />
                 <Analysis
                     sampleAnalyzeData={sampleAnalyzeData}
                     type={type}

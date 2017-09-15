@@ -28,7 +28,7 @@ export default {
         path: undefined,
         selector: undefined,
         isMarked: undefined,
-        columnCode: JSON.stringify(['clickNum', 'apdexs', 'median', 'rspTime', 'percent5', 'thruput', 'clientTime', 'serverTime', 'netTime', 'request', 'response', 'callback']),
+        columnCode:JSON.stringify(['clickNum', 'apdexs', 'median', 'rspTime', 'percent5', 'thruput', 'clientTime', 'serverTime', 'netTime', 'request', 'response', 'callback']),
         performanceType: undefined,
         // 增加displayType和 version
         displayType: undefined,
