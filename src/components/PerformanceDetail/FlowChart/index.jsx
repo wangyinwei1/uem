@@ -36,7 +36,7 @@ export default class FlowChart extends React.Component {
                     <div className={styles['fulei']}>
                         {method.map((item, index) => {
                             if (item.name == "onReStart") {
-                                debugger
+                                {/* debugger */}
                                 return
                                 <div className={styles['container']}>
                                     test111111
