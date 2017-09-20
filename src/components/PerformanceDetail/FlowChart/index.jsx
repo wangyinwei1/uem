@@ -27,7 +27,6 @@ export default class FlowChart extends React.Component {
                 }
             }
         }
-        console.log('1111111111111', method);
         // 需要计算某些height和width
         return (
             <div>
@@ -36,16 +35,15 @@ export default class FlowChart extends React.Component {
                     <div className={styles['fulei']}>
                         {method.map((item, index) => {
                             if (item.name == "onReStart") {
-                                {/* debugger */}
                                 return
-                                <div className={styles['container']}>
-                                    test111111
+                                <div styles={{width:'200px',height: "100px"}}>
+                                    test
+                                </div>
                                     {/* <div className={styles["shangmiande"]}>{item.name}<span className={styles['miaoshu']}>{item.value}</span></div> */}
                                     {/* <div className={styles["shuxian-down"]}></div>
                                     <div className={styles['hengxian']}></div> */}
                                     {/* <div className={styles['shuxian']}></div> */}
-                                </div>
-                            } else if (item.name !== "onReStart" && index != method.length - 1) {
+                            } else if (index != method.length - 1) {
                                 return <div className={styles['container']}>
                                     <dl className={styles['wrap']}>
                                         <div className={styles["lee"]}>{item.name}<span className={styles['miaoshu']}>{`平均执行时间${item.value}ms`}</span></div>

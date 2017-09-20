@@ -8,7 +8,8 @@ import {
     BaseInfo,
     Pie,
     Trend,
-    Analysis
+    Analysis,
+    PieMobile
 } from '../components/ErrorDetail';
 
 @inject('frameStore','errorDetailStore')
@@ -26,6 +27,8 @@ export default class ErrorDetail extends React.Component {
             browser,
             os,
             isp,
+            app_version,
+            model,
             errorDetailTrend,
             sampleInfo,
             sampleList,
@@ -50,11 +53,15 @@ export default class ErrorDetail extends React.Component {
         const { itemId } = this.props;
         firstTime = new Date(firstTime).toLocaleString('chinese',{hour12:false}).replace(/[/]/g,'-');
         lastTime = new Date(lastTime).toLocaleString('chinese',{hour12:false}).replace(/[/]/g,'-');
-        // console.log('this.props--------',this.props);
+        const platform = sessionStorage.getItem('UEM_platform');
         return (
             <DetailWrap>
                 <HeaderInfo firstTime={firstTime} lastTime={lastTime} firstPage={firstPage} />
+                {platform == 'pc' ?
                 <Pie os={os} browser={browser} isp={isp} summaryId={summaryId} onGetErrorTopView={onGetErrorTopView} itemId={itemId} />
+                :
+                <PieMobile os={os} app_version={app_version} model={model} summaryId={summaryId} onGetErrorTopView={onGetErrorTopView} itemId={itemId} />
+                }
                 <Trend 
                     errorDetailTrend={errorDetailTrend} 
                     onGetErrorDetailTrend={onGetErrorDetailTrend}

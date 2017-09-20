@@ -2,17 +2,19 @@ import React from 'react';
 import styles from './index.scss';
 import config from './config.js';
 import { PieChart } from '../../Common/Chart';
-
-export default class Pie extends React.Component {
+/*
+* 错误列表详情页移动端的三个饼图 
+*/ 
+export default class PieMobile extends React.Component {
     constructor(props) {
         super(props);
-        const paramsList = ['isp','os','browser'];
+        const paramsList = ['app_version','os','model'];
         paramsList.forEach((value, index, arr) => {
             this.props.onGetErrorTopView({
                 // targetDimension: value,
                 // metrics: 'errorCount'
                 summaryId: this.props.summaryId,
-                dimension: value
+                dimension: JSON.stringify([value])
   
             })
         })
@@ -23,18 +25,18 @@ export default class Pie extends React.Component {
 
     render() {
         const {
-            os, isp, browser, itemId
+            os, app_version, model,itemId
         } = this.props;
-        let browserLegendData = [], browserSeriesData = [], ispLegendData = [], ispSeriesData = [], osLegendData = [], osSeriesData = [];
-        browser.map((item, index) => {
-            browserLegendData.push(item.name);
-            browserSeriesData.push({
+        let osLegendData = [], osSeriesData = [], app_versionLegendData = [], app_versionSeriesData = [], modelLegendData = [], modelSeriesData = [];
+        app_version.map((item, index) => {
+            app_versionLegendData.push(item.name);
+            app_versionSeriesData.push({
                 name: item.name, value: item.value
             })
         });
-        isp.map((item, index) => {
-            ispLegendData.push(item.name);
-            ispSeriesData.push({
+        model.map((item, index) => {
+            modelLegendData.push(item.name);
+            modelSeriesData.push({
                 name: item.name, value: item.value
             })
         });
@@ -44,15 +46,15 @@ export default class Pie extends React.Component {
                 name: item.name, value: item.value
             })
         });
-        let browserConfig = config.updateIn(['title', 'text'], () => locale('浏览器分布情况')).updateIn(['legend', 'data'], () => browserLegendData).updateIn(['series', 0, 'data'], () => browserSeriesData);
+        let app_versionConfig = config.updateIn(['title', 'text'], () => locale('版本分布情况')).updateIn(['legend', 'data'], () => app_versionLegendData).updateIn(['series', 0, 'data'], () => app_versionSeriesData);
         let osConfig = config.updateIn(['title', 'text'], () => locale('操作系统分布情况')).updateIn(['legend', 'data'], () => osLegendData).updateIn(['series', 0, 'data'], () => osSeriesData);
-        let ispConfig = config.updateIn(['title', 'text'], () => locale('网络分布情况')).updateIn(['legend', 'data'], () => ispLegendData).updateIn(['series', 0, 'data'], () => ispSeriesData);
+        let modelConfig = config.updateIn(['title', 'text'], () => locale('设备分布情况')).updateIn(['legend', 'data'], () => modelLegendData).updateIn(['series', 0, 'data'], () => modelSeriesData);
         return (
             <div className={styles['pie']}>
                 <div className={cls('tile-body')}>
                     <PieChart
                         chartId={`pie_1_${itemId}`} group="pieChart" className={styles['pie-chart']}
-                        options={browserConfig.toJS()}
+                        options={app_versionConfig.toJS()}
                     />
                     <PieChart
                         chartId={`pie_2_${itemId}`} group="pieChart" className={styles['pie-chart']}
@@ -60,7 +62,7 @@ export default class Pie extends React.Component {
                     />
                     <PieChart
                         chartId={`pie_3_${itemId}`} group="pieChart" className={styles['pie-chart']}
-                        options={ispConfig.toJS()}
+                        options={modelConfig.toJS()}
                     />
                 </div>
             </div>

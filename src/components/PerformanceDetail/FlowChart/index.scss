@@ -74,17 +74,19 @@ $rectBackground: #9cf;
 }
 
 .shangmiande {
-    border: 2px solid $rectColor;
-    height: 50px;
-    line-height: 50px;
-    width: 100px;
-    position: relative;
-    left: 280px;
-    top: 62px;
-    text-align: center;
-    color:black;
-    background: $rectBackground; 
-    border-radius: 10px;
+    // border: 2px solid $rectColor;
+    // height: 50px;
+    // line-height: 50px;
+    // width: 100px;
+    // position: relative;
+    // left: 280px;
+    // top: 62px;
+    // text-align: center;
+    // color:black;
+    // background: $rectBackground; 
+    // border-radius: 10px;
+    height: 20px;
+    width:30px;
 }
 
 .shangmiande .miaoshu {

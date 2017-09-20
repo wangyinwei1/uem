@@ -6,9 +6,11 @@ export default {
         platform: sessionStorage.getItem('UEM_platform'),
         startTime: undefined,
         endTime: undefined,
-        targetDimension: undefined,
-        metrics: undefined,
+        // targetDimension: undefined,
+        // metrics: undefined,
+        dimension: undefined,
         summaryId: undefined,
+        version: undefined,
         ...payload
     }),
     getSamplesList: payload => Request('get','error/samples/list',{

@@ -324,10 +324,13 @@
     "确认删除？" : "confirm deletion?",
     "确认" : "confirm",
     "请输入应用名称，并且名称长度应小于50":"Please enter the application name, and the name length should be less than 50",
-    "请输入正确的Url": "Please enter the correct Url"
+    "请输入正确的Url": "Please enter the correct Url",
+    "版本分布情况": "Version distribution",
+    "设备分布情况": "Device Distribution",
+    "手势":"Gestures",
+    "UI类型": "UI type",
+    "平均响应时间(s)": "Average response time (s)",
+    "吞吐率(rmp)": "Throughput (rpm)"
     
-
-
-
 
 }

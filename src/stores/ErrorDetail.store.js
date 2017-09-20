@@ -2,7 +2,7 @@ import { observable, action, runInAction,autorun } from 'mobx';
 import { message } from 'antd';
 // import { default as CommonService  } from '../services/CommonInterface.service';
 import {
-    getTimeType
+    getTimeType,getVersion
 } from '../utils/storage';
 import Service from '../services/ErrorDetail.service';
 
@@ -10,6 +10,8 @@ class ErrorDetailStore {
     @observable browser = [];
     @observable os = [];
     @observable isp = [];
+    @observable app_version = [];
+    @observable model = [];
     @observable errorDetailTrend = {};
     @observable sampleInfo = [];
     @observable sampleList = [];
@@ -24,12 +26,13 @@ class ErrorDetailStore {
     }
 
     @action onGetErrorTopView = async payload => {
-        const { targetDimension } = payload;
-        let params = targetDimension.split(':')[0];
+        const { dimension } = payload;
+        let params = dimension.split(':')[0];
         try{
             const data = await Service.getErrorTopView({
                 startTime: moment().subtract(getTimeType().startTime.type, getTimeType().startTime.units).valueOf(),
                 endTime: moment().subtract(getTimeType().endTime.type, getTimeType().endTime.units).valueOf(),
+                version: getVersion(),
                 ...payload
             });
             runInAction( ()=>{
@@ -45,6 +48,7 @@ class ErrorDetailStore {
             const datas = await Service.getSamplesList({
                 startTime: moment().subtract(getTimeType().startTime.type, getTimeType().startTime.units).valueOf(),
                 endTime: moment().subtract(getTimeType().endTime.type, getTimeType().endTime.units).valueOf(),
+                version: getVersion(),
                 ...payload
             });
             runInAction( ()=>{
@@ -60,6 +64,7 @@ class ErrorDetailStore {
             const data = await Service.getErrorDetailTrend({
                 startTime: moment().subtract(getTimeType().startTime.type, getTimeType().startTime.units).valueOf(),
                 endTime: moment().subtract(getTimeType().endTime.type, getTimeType().endTime.units).valueOf(),
+                version: getVersion(),
                 ...payload
             });
             runInAction( () => {
@@ -76,8 +81,10 @@ class ErrorDetailStore {
                 startTime: moment().subtract(getTimeType().startTime.type, getTimeType().startTime.units).valueOf(),
                 endTime: moment().subtract(getTimeType().endTime.type, getTimeType().endTime.units).valueOf(),
                 errorId: this.activeId,
+                version: getVersion(),
                 ...payload
             });
+            
             runInAction( () =>{
                 const _baseInfo = {};
                 for (let i in data) {

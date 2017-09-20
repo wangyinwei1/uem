@@ -1,0 +1,11 @@
+.pie {
+    .pie-chart{
+        display: inline-block;
+        width: 33.33%;
+    }
+    :global(.chart) {
+        height: 200px;
+        width: 33.33% !important;
+    }
+}
+ 
