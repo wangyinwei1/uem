@@ -21,7 +21,6 @@ export default class TabTable extends React.Component {
     }
     noData() {
         const { type } = this.props;
-        console.log(type);
         switch(type) {
             case 'ErrorTable':
                 return (
