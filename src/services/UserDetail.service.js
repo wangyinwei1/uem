@@ -17,6 +17,7 @@ export default {
         uId: undefined,
         pageIndex: undefined,
         pageSize: undefined,
+        version: undefined,
         ...payload
     }),
     getSessionTrace: payload => Request('get', 'session/trace/show', {

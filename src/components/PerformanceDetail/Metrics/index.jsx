@@ -19,20 +19,21 @@ export default class Metrics extends React.Component {
     }
     // 字段需要后端提供
     mobileMetrics = {
-        clickNum: '点击数',
-        'apdexD(>2s clickNum)': '响应时间>2s的点击数',
-        'thruput': '吞吐率'
+        'avgRspTime': '平均响应时间',
+        'apdexD': '响应时间 > 1s的次数'
     }
     mobileType = {
         // UIType ?
         'html': 'HTML',
-        'native': '原生',
+        'native': 'NATIVE',
 
     }
     handleSelectChange(e){
         // 切换url应有的操作
     }
     _render () {
+        const platform = sessionStorage.getItem('UEM_platform');
+        if(platform == 'pc'){
         const { data } = this.props;
         let arr = [];
         for (let i in data) {
@@ -51,12 +52,32 @@ export default class Metrics extends React.Component {
                 </dl>
             </li>
         );
+        }else{
+            const { data } = this.props;
+            let arr = [];
+            for (let i in data) {
+                const o = {};
+                o.label = i;
+                o.value = data[i];
+                if (o.value !== undefined) {
+                    arr.push(o);
+                }
+            }
+            return arr.map(item => 
+                <li key={item.label}>
+                    <dl>
+                        <dt className={styles['key']}>{locale(this.mobileMetrics[item.label])}</dt>
+                        <dd title={item.value} className={styles['value']}>{item.value}</dd>
+                    </dl>
+                </li>
+            );
+        }
     }
     render() {
         const platform = sessionStorage.getItem('UEM_platform');
         const { props } = this.props;
         return (
-            platform == 'pc'?
+            platform == 'pc' || props.uiType != 'NATIVE' ?
                 <div className={cls('tile-body', styles['metrics'])}>
                     <div className={styles['props']}>
                         <dl>
@@ -77,15 +98,17 @@ export default class Metrics extends React.Component {
                     <div className={styles['props']}>
                         <dl>
                             <dt>{locale('UI类型')}：</dt>
-                            <dd>{ '  ' }</dd>
+                            <dd>{props.uiType}</dd>
                         </dl>                     
                         <dl>
-                             <dt>URL:</dt>
-                             <dd>
+                             <dt>名称:</dt>
+                             <dd>{props.operName}</dd>
+
+                             {/* <dd>
                                  <Select defaultValue={props.url} style={{ width: 120 }} onChange={this.handleSelectChange.bind(this)}>
                                     <Option value={props.url}>{props.url}</Option>
                                  </Select>
-                             </dd>
+                             </dd> */}
                          </dl>         
                     </div>
                     <ul className={styles['list']}>

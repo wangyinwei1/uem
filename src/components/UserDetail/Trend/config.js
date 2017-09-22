@@ -3,7 +3,7 @@ export default Immutable.fromJS({
         // title: null
     },
     trend: {
-        color: ['#66dc6b', '#AADF2D'],
+        // color: ['#66dc6b', '#AADF2D'],
         title: {
             text: locale('最近一个月访问情况'),
             textStyle: {

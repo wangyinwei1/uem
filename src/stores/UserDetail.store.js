@@ -3,6 +3,7 @@ import Service from '../services/UserDetail.service';
 import {
     getTimeType,
     getTheme,
+    getVersion
 } from '../utils/storage';
 
 class UserDetailStore {
@@ -30,9 +31,13 @@ class UserDetailStore {
     @action onGetSessionCount = async payload => {
         try {
             const data = await Service.getUserTrend({
-                startTime: moment().subtract(getTimeType().startTime.type, getTimeType().startTime.units).valueOf(),
-                endTime: moment().subtract(getTimeType().endTime.type, getTimeType().endTime.units).valueOf(),
+                // startTime: moment().subtract(getTimeType().startTime.type, getTimeType().startTime.units).valueOf(),
+                // endTime: moment().subtract(getTimeType().endTime.type, getTimeType().endTime.units).valueOf(),
+                // 近一个月的访问情况，不能用时间组件选择的时间
+                startTime : Date.now()-(30*24*60*60*1000),
+                endTime : Date.now(),
                 uId: this.uId,
+                version: getVersion(),
                 ...payload
             });
             runInAction(() => {
@@ -48,10 +53,11 @@ class UserDetailStore {
                 uId: this.uId,
                 pageIndex: this.pageIndex,
                 pageSize: this.pageSize,
+                version: getVersion(),
                 ...payload
             });
             runInAction(() => {
-                this.sessionList = data.data;
+                this.sessionList = data;
                 this.sessionList.forEach(item => {
                     this.onGetTrace({
                         sessionId: item.sessionId,

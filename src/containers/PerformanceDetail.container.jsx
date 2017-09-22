@@ -39,15 +39,16 @@ export default class PerformanceDetail extends React.Component {
             path,
             displayType
         } = this.props.data;
+        // 点击tabTable的时候，是按 已标记0 未标记1 传的，需要反过来
         const { tagType } = this.props.performanceInteractiveStore;
         // uitype 第一次点击获取不到， mark
         const { panelList }  = this.props.sidePanelStore;
-        const { uiType } = panelList[panelList.length - 1];
+        const { uiType,clickNum,thruput } = panelList[panelList.length - 1];
         onGetOperInfo({
             operType,
             selector,
             text,
-            "isMarked":tagType,
+            "isMarked":tagType == 0 ? 1 : 0,
             path,
             performanceType: type,
             displayType,
@@ -57,7 +58,7 @@ export default class PerformanceDetail extends React.Component {
             operType,
             selector,
             text,
-            "isMarked":tagType,
+            "isMarked":tagType == 0 ? 1 : 0,
             path,
             performanceType: type,
             displayType,
@@ -70,7 +71,7 @@ export default class PerformanceDetail extends React.Component {
             operType,
             selector,
             text,
-            "isMarked":tagType,
+            "isMarked":tagType == 0 ? 1 : 0,
             path,
             displayType,
         });
@@ -80,28 +81,6 @@ export default class PerformanceDetail extends React.Component {
     }
     render() {
         const platform = sessionStorage.getItem('UEM_platform');
-        // const quotaEnum = {
-        //     "pv": "",
-        //     "uv": "",
-        //     "apdex": "",
-        //     "thruput": "",
-        //     "bounceRate": "",
-        //     "operType": "",
-        //     "url": "",
-
-        //     // Timing
-        //     "netTime":"",
-        //     "serverTime":"",
-        //     "clientTime":"",
-        //     "firstByteTime":"",
-        //     "lastByteTime":"",
-        //     "domLoadingTime":"",
-        //     "pageAvgRspTime":"",
-        //     // 移动端h5
-        //     "domReady":"",
-        //     "avgRspTime":""
-            
-        // };
         const {
             info,
             baseInfo,
@@ -124,7 +103,9 @@ export default class PerformanceDetail extends React.Component {
             bounceRate,
             operType,
             url,
-
+            uiType,
+            apdexD,
+            operName,
             // Timing
             netTime,
             serverTime,
@@ -146,11 +127,16 @@ export default class PerformanceDetail extends React.Component {
                         uv,
                         apdex,
                         thruput,
-                        bounceRate
+                        bounceRate,
+                        apdexD,
+                        avgRspTime
                     }}
+                    
                     props={{
                         operType,
-                        url
+                        url,
+                        uiType,
+                        operName
                     }}
                 />
                 {platform == 'pc' ?
@@ -177,7 +163,6 @@ export default class PerformanceDetail extends React.Component {
                                 avgRspTime
                             }}
                         />
-
                 }
                 <FlowChart threadInfo = {info} />
                 <Trend itemId={itemId} trend={trend} uiType={info.uiType} />
@@ -185,7 +170,7 @@ export default class PerformanceDetail extends React.Component {
                     sampleAnalyzeData={sampleAnalyzeData}
                     type={type}
                     itemId={itemId}
-                    baseInfo={baseInfo}
+                    baseInfo={sessionTrace.baseInfo}
                     samplesList={samplesList}
                     activeId={activeId}
                     sessionTrace={sessionTrace}

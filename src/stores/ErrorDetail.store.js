@@ -84,7 +84,6 @@ class ErrorDetailStore {
                 version: getVersion(),
                 ...payload
             });
-            
             runInAction( () =>{
                 const _baseInfo = {};
                 for (let i in data) {

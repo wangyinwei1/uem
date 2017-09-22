@@ -40,7 +40,7 @@ class CruxMobile extends Component {
             ? '暂无数据'
             : totalScore === 0
                 ? '0'
-                : `${Number(totalScore.split('%')[0].split(',').join(''))  || '暂无数据'}`;
+                : `${Number(totalScore.split('%')[0].split(',').join(''))}`;
 
         $('.ant-progress-text-hack').remove();
         $('.ant-progress-text').hide();
@@ -49,9 +49,9 @@ class CruxMobile extends Component {
     mobileIndicatorList() {
         let realTimeData = this.props.realTimeData;
         let score = [
-            { key: '原生响应时间', value: _.isNull(realTimeData['avgUiRspTime']) ? '--' : window.timeFormat(realTimeData['avgUiRspTime']) },
-            { key: 'H5响应时间', value:  _.isNull(realTimeData['avgRspTime']) ? '--' : window.timeFormat(realTimeData['avgRspTime']) },
-            { key: '用户错误率', value: _.isNull(realTimeData['errorRate']) ? '--' : parseFloat(realTimeData['errorRate'] * 100).toFixed(1) + '%' }
+            { key: '原生响应时间',location:0, value: _.isNull(realTimeData['avgUiRspTime']) ? '--' : window.timeFormat(realTimeData['avgUiRspTime']) },
+            { key: 'H5响应时间', location:5, value:  _.isNull(realTimeData['avgRspTime']) ? '--' : window.timeFormat(realTimeData['avgRspTime']) },
+            { key: '用户错误率', location:6, value: _.isNull(realTimeData['errorRate']) ? '--' : parseFloat(realTimeData['errorRate'] * 100).toFixed(1) + '%' }
         ];
         let lostScore = realTimeData.lostScore || [];
         if (lostScore.length === 5) {
@@ -68,7 +68,7 @@ class CruxMobile extends Component {
                         score.map((item, index) => {
                             return (
                                 <li key={index + 'score'} className={styles['li']}>
-                                    <div className={styles["value"]}>-{lostScore[index] || '0'}<em>分</em></div>
+                                    <div className={styles["value"]}>-{lostScore[item.location] || '0'}<em>分</em></div>
                                     <div className={styles["percent"]}>{item.value}</div>
                                     <div className={styles["key"]}>{item.key}</div>
                                 </li>
@@ -108,7 +108,6 @@ class CruxMobile extends Component {
             value: _.isNull(realTimeData['errorRate']) ? '--' : parseFloat(realTimeData['errorRate'] * 100).toFixed(1) + '%'            
         }];
         let totalScore = realTimeData['totalScore'];
-        // debugger
         totalScore = totalScore == undefined ? null : Number((totalScore.split('%')[0].split(',').join('')) );
         const dashboardText = totalScore === null
             ? '暂无数据'

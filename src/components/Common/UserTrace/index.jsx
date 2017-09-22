@@ -121,7 +121,7 @@ export default class UserTrace extends React.Component {
             browser = '',
             platform = '',
             os = ''
-        } = this.props.data.browserBaseInfo;
+        } = this.props.data.baseInfo;
         const _platform = platform;
         const _os = (() => {
             const _os = os.toLowerCase();
@@ -162,11 +162,12 @@ export default class UserTrace extends React.Component {
         );
     }
     renderInfo() {
+        console.log('111111111111111',this.props.data)
         const {
             ip,
             area,
             isp
-        } = this.props.data.browserBaseInfo;
+        } = this.props.data.baseInfo;
         return (
             <div className={styles['info']}>
                 <div className={styles['base-item']}>
@@ -190,7 +191,7 @@ export default class UserTrace extends React.Component {
     render() {
         const { showBaseInfo = true } = this.props;
         const {
-            browserBaseInfo,
+            baseInfo,
             detailInfo,
             traceInfo
         } = this.props.data;      
@@ -223,166 +224,166 @@ export default class UserTrace extends React.Component {
 }
 
 // 模拟数据
-UserTrace.mockData = {
-    "browserBaseInfo": {
-        "area": "- 保留地址 保留地址",
-        "browser": "Chrome 58",
-        "ip": "10.1.11.28",
-        "isp": "-",
-        "os": "Windows 7",
-        "platform": "pc",
-        "sessionId": "ffb9443a-ee7a-4a6c-a11c-dc30281ec251",
-        "timestamp": 0,
-        "userDefined": {},
-        "userId": ""
-    },
-    "detailInfo": {
-        "avgRspTime": 0.49,
-        "clickNum": 13,
-        "landingPage": "http://10.1.51.113:8080/kb/dashboard.action",
-        "referrer": "http://web.uyundev.cn/buriedPoint/visual.html?protocol=http&theme=blue",
-        "sessionTime": 22605.021
-    },
-    "traceInfo": [
-        {
-            "page": "主页面 - 优云软件知识共享系统",
-            "path": "http://10.1.51.113:8080/kb/dashboard.action",
-            "time": 1499948915200,
-            "trace": [
-                {
-                    "apdex": "D",
-                    "dataChanel": "browser",
-                    "operName": "主页面 - 优云软件知识共享系统",
-                    "operType": "redirect",
-                    "reqTime": 1499948915200,
-                    "reqType": "GET",
-                    "reqUrl": "http://10.1.51.113:8080/kb/dashboard.action",
-                    "rspTime": 0.662,
-                    "txIds": [
-                        "15d3babe5389700448fd3ae5b244474f0820"
-                    ]
-                }
-            ]
-        },
-        {
-            "page": "主页面 - 优云软件知识共享系统",
-            "path": "http://10.1.51.113:8080/kb/dashboard.action",
-            "time": 1499936450071,
-            "trace": [
-                {
-                    "apdex": "D",
-                    "dataChanel": "browser",
-                    "operName": "主页面 - 优云软件知识共享系统",
-                    "operType": "redirect",
-                    "reqTime": 1499936450071,
-                    "reqType": "GET",
-                    "reqUrl": "http://10.1.51.113:8080/kb/dashboard.action",
-                    "rspTime": 0.816,
-                    "txIds": [
-                        "15d3a9c2585dad071879678f5bfd474f0820"
-                    ]
-                }
-            ]
-        },
-        {
-            "page": "主页面 - 优云软件知识共享系统",
-            "path": "http://10.1.51.113:8080/kb/dashboard.action",
-            "time": 1499926705058,
-            "trace": [
-                {
-                    "apdex": "S",
-                    "dataChanel": "browser",
-                    "operName": "主页面 - 优云软件知识共享系统",
-                    "operType": "redirect",
-                    "reqTime": 1499926705058,
-                    "reqType": "GET",
-                    "reqUrl": "http://10.1.51.113:8080/kb/dashboard.action",
-                    "rspTime": 0.421,
-                    "txIds": [
-                        ""
-                    ]
-                }
-            ]
-        },
-        {
-            "page": "主页面 - 优云软件知识共享系统",
-            "path": "http://10.1.51.113:8080/kb/dashboard.action",
-            "time": 1499926525060,
-            "trace": [
-                {
-                    "apdex": "S",
-                    "dataChanel": "browser",
-                    "operName": "主页面 - 优云软件知识共享系统",
-                    "operType": "redirect",
-                    "reqTime": 1499926525060,
-                    "reqType": "GET",
-                    "reqUrl": "http://10.1.51.113:8080/kb/dashboard.action",
-                    "rspTime": 0,
-                    "txIds": [
-                        "15d3a96f7c51af804f073abc6ac2d474f0820"
-                    ]
-                }
-            ]
-        },
-        {
-            "page": "主页面 - 优云软件知识共享系统",
-            "path": "http://10.1.51.113:8080/kb/dashboard.action",
-            "time": 1499926505057,
-            "trace": [
-                {
-                    "apdex": "S",
-                    "dataChanel": "browser",
-                    "operName": "主页面 - 优云软件知识共享系统",
-                    "operType": "redirect",
-                    "reqTime": 1499926505057,
-                    "reqType": "GET",
-                    "reqUrl": "http://10.1.51.113:8080/kb/dashboard.action",
-                    "rspTime": 0,
-                    "txIds": [
-                        "15d3a969094594034623f645815e474f0820"
-                    ]
-                }
-            ]
-        },
-        {
-            "page": "主页面 - 优云软件知识共享系统",
-            "path": "http://10.1.51.113:8080/kb/dashboard.action",
-            "time": 1499926420083,
-            "trace": [
-                {
-                    "apdex": "S",
-                    "dataChanel": "browser",
-                    "operName": "主页面 - 优云软件知识共享系统",
-                    "operType": "redirect",
-                    "reqTime": 1499926420083,
-                    "reqType": "GET",
-                    "reqUrl": "http://10.1.51.113:8080/kb/dashboard.action",
-                    "rspTime": 0,
-                    "txIds": [
-                        "15d3a9553ba26e9099cc174ea10bb474f0820"
-                    ]
-                }
-            ]
-        },
-        {
-            "page": "主页面 - 优云软件知识共享系统",
-            "path": "http://10.1.51.113:8080/kb/dashboard.action",
-            "time": 1499926310179,
-            "trace": [
-                {
-                    "apdex": "S",
-                    "dataChanel": "browser",
-                    "operName": "主页面 - 优云软件知识共享系统",
-                    "operType": "redirect",
-                    "reqTime": 1499926310179,
-                    "reqType": "GET",
-                    "reqUrl": "http://10.1.51.113:8080/kb/dashboard.action",
-                    "rspTime": 0.504,
-                    "txIds": [
-                        ""
-                    ]
-                }
-            ]
-        }
-    ]
-};
+// UserTrace.mockData = {
+//     "baseInfo": {
+//         "area": "- 保留地址 保留地址",
+//         "browser": "Chrome 58",
+//         "ip": "10.1.11.28",
+//         "isp": "-",
+//         "os": "Windows 7",
+//         "platform": "pc",
+//         "sessionId": "ffb9443a-ee7a-4a6c-a11c-dc30281ec251",
+//         "timestamp": 0,
+//         "userDefined": {},
+//         "userId": ""
+//     },
+//     "detailInfo": {
+//         "avgRspTime": 0.49,
+//         "clickNum": 13,
+//         "landingPage": "http://10.1.51.113:8080/kb/dashboard.action",
+//         "referrer": "http://web.uyundev.cn/buriedPoint/visual.html?protocol=http&theme=blue",
+//         "sessionTime": 22605.021
+//     },
+//     "traceInfo": [
+//         {
+//             "page": "主页面 - 优云软件知识共享系统",
+//             "path": "http://10.1.51.113:8080/kb/dashboard.action",
+//             "time": 1499948915200,
+//             "trace": [
+//                 {
+//                     "apdex": "D",
+//                     "dataChanel": "browser",
+//                     "operName": "主页面 - 优云软件知识共享系统",
+//                     "operType": "redirect",
+//                     "reqTime": 1499948915200,
+//                     "reqType": "GET",
+//                     "reqUrl": "http://10.1.51.113:8080/kb/dashboard.action",
+//                     "rspTime": 0.662,
+//                     "txIds": [
+//                         "15d3babe5389700448fd3ae5b244474f0820"
+//                     ]
+//                 }
+//             ]
+//         },
+//         {
+//             "page": "主页面 - 优云软件知识共享系统",
+//             "path": "http://10.1.51.113:8080/kb/dashboard.action",
+//             "time": 1499936450071,
+//             "trace": [
+//                 {
+//                     "apdex": "D",
+//                     "dataChanel": "browser",
+//                     "operName": "主页面 - 优云软件知识共享系统",
+//                     "operType": "redirect",
+//                     "reqTime": 1499936450071,
+//                     "reqType": "GET",
+//                     "reqUrl": "http://10.1.51.113:8080/kb/dashboard.action",
+//                     "rspTime": 0.816,
+//                     "txIds": [
+//                         "15d3a9c2585dad071879678f5bfd474f0820"
+//                     ]
+//                 }
+//             ]
+//         },
+//         {
+//             "page": "主页面 - 优云软件知识共享系统",
+//             "path": "http://10.1.51.113:8080/kb/dashboard.action",
+//             "time": 1499926705058,
+//             "trace": [
+//                 {
+//                     "apdex": "S",
+//                     "dataChanel": "browser",
+//                     "operName": "主页面 - 优云软件知识共享系统",
+//                     "operType": "redirect",
+//                     "reqTime": 1499926705058,
+//                     "reqType": "GET",
+//                     "reqUrl": "http://10.1.51.113:8080/kb/dashboard.action",
+//                     "rspTime": 0.421,
+//                     "txIds": [
+//                         ""
+//                     ]
+//                 }
+//             ]
+//         },
+//         {
+//             "page": "主页面 - 优云软件知识共享系统",
+//             "path": "http://10.1.51.113:8080/kb/dashboard.action",
+//             "time": 1499926525060,
+//             "trace": [
+//                 {
+//                     "apdex": "S",
+//                     "dataChanel": "browser",
+//                     "operName": "主页面 - 优云软件知识共享系统",
+//                     "operType": "redirect",
+//                     "reqTime": 1499926525060,
+//                     "reqType": "GET",
+//                     "reqUrl": "http://10.1.51.113:8080/kb/dashboard.action",
+//                     "rspTime": 0,
+//                     "txIds": [
+//                         "15d3a96f7c51af804f073abc6ac2d474f0820"
+//                     ]
+//                 }
+//             ]
+//         },
+//         {
+//             "page": "主页面 - 优云软件知识共享系统",
+//             "path": "http://10.1.51.113:8080/kb/dashboard.action",
+//             "time": 1499926505057,
+//             "trace": [
+//                 {
+//                     "apdex": "S",
+//                     "dataChanel": "browser",
+//                     "operName": "主页面 - 优云软件知识共享系统",
+//                     "operType": "redirect",
+//                     "reqTime": 1499926505057,
+//                     "reqType": "GET",
+//                     "reqUrl": "http://10.1.51.113:8080/kb/dashboard.action",
+//                     "rspTime": 0,
+//                     "txIds": [
+//                         "15d3a969094594034623f645815e474f0820"
+//                     ]
+//                 }
+//             ]
+//         },
+//         {
+//             "page": "主页面 - 优云软件知识共享系统",
+//             "path": "http://10.1.51.113:8080/kb/dashboard.action",
+//             "time": 1499926420083,
+//             "trace": [
+//                 {
+//                     "apdex": "S",
+//                     "dataChanel": "browser",
+//                     "operName": "主页面 - 优云软件知识共享系统",
+//                     "operType": "redirect",
+//                     "reqTime": 1499926420083,
+//                     "reqType": "GET",
+//                     "reqUrl": "http://10.1.51.113:8080/kb/dashboard.action",
+//                     "rspTime": 0,
+//                     "txIds": [
+//                         "15d3a9553ba26e9099cc174ea10bb474f0820"
+//                     ]
+//                 }
+//             ]
+//         },
+//         {
+//             "page": "主页面 - 优云软件知识共享系统",
+//             "path": "http://10.1.51.113:8080/kb/dashboard.action",
+//             "time": 1499926310179,
+//             "trace": [
+//                 {
+//                     "apdex": "S",
+//                     "dataChanel": "browser",
+//                     "operName": "主页面 - 优云软件知识共享系统",
+//                     "operType": "redirect",
+//                     "reqTime": 1499926310179,
+//                     "reqType": "GET",
+//                     "reqUrl": "http://10.1.51.113:8080/kb/dashboard.action",
+//                     "rspTime": 0.504,
+//                     "txIds": [
+//                         ""
+//                     ]
+//                 }
+//             ]
+//         }
+//     ]
+// };

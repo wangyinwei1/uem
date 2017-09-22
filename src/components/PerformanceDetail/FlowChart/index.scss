@@ -57,6 +57,9 @@ $rectBackground: #9cf;
 
 .fulei {
     position: relative;
+    margin-left: 50px;
+    margin-top: -20px;
+    margin-bottom: 15px;
     .container{
         display: inline-block;
     }
@@ -75,9 +78,9 @@ $rectBackground: #9cf;
 
 .shangmiande {
     // border: 2px solid $rectColor;
-    // height: 50px;
-    // line-height: 50px;
-    // width: 100px;
+    // height: 40px;
+    // line-height: 40px;
+    // width: 110px;
     // position: relative;
     // left: 280px;
     // top: 62px;
@@ -85,14 +88,23 @@ $rectBackground: #9cf;
     // color:black;
     // background: $rectBackground; 
     // border-radius: 10px;
-    height: 20px;
-    width:30px;
+    border: 2px solid transparent;
+    height: 40px;
+    line-height: 40px;
+    width: 120px;
+    position: relative;
+    left: 300px;
+    top: 62px;
+    text-align: center;
+    color: black;
+    background: #9cf;
+    border-radius: 10px;
 }
 
 .shangmiande .miaoshu {
     display: inline-block;
     position: relative;
-    top: -92px;
+    top: -80px;
     color: #76a3d1;
 }
 
@@ -101,7 +113,7 @@ $rectBackground: #9cf;
     width: 2px;
     background: $arrowColor;
     position: relative;
-    left: 520px;
+    left: 988px;
 }
 
 .shuxian-down {
@@ -110,7 +122,7 @@ $rectBackground: #9cf;
     width: 2px;
     position: relative;
     top: 62px;
-    left: 330px;
+    left: 360px;
     
      &:after {
         border: 6px solid transparent;
@@ -125,11 +137,11 @@ $rectBackground: #9cf;
 }
 
 .hengxian {
-    width: 140px;
+    width: 570px;
     height: 2px;
     position: relative;
     // display: inline-block;
-    margin-left: 382px;
+    margin-left: 420px;
     top: 0px;
     background:$arrowColor;
     /* margin: 10px 10px; */

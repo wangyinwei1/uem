@@ -1,4 +1,5 @@
 import { observable, action, runInAction, autorun } from 'mobx';
+import { observer, inject } from 'mobx-react';
 import {
     getTimeType,
     getTheme,
@@ -15,12 +16,14 @@ class PerformanceDetailStore {
         response: []
     };
     @observable sessionTrace = {
-        browserBaseInfo: {},
+        baseInfo: {},
         detailInfo: {},
         traceInfo: []
     };
     @observable samplesList = [];
     @observable activeId = '';
+    @observable time = new Date();
+    @observable displayType = '';
     @observable pageIndex = 1;
     @observable trend = {
         "thruput": [],
@@ -46,11 +49,6 @@ class PerformanceDetailStore {
         total: 0,
         data: []
     };
-    // @observable displayType={
-    //     "pc":"page,xhr",
-    //     "android": "page,xhr,activity",
-    //     "ios": "page,xhr,view_controller,view"
-    // }
 
     get sampleAnalyzeData() {
         return {
@@ -79,10 +77,9 @@ class PerformanceDetailStore {
 
     @action onGetOperInfo = async payload => {
         const platform = sessionStorage.getItem('UEM_platform');
+        this.displayType = payload.displayType;
         try {
             const data = await Service.getOperInfo({
-                // 增加displayType字段
-                // displayType: this.displayType[platform],
                 startTime: moment().subtract(getTimeType().startTime.type, getTimeType().startTime.units).valueOf(),
                 endTime: moment().subtract(getTimeType().endTime.type, getTimeType().endTime.units).valueOf(),
                 ...payload
@@ -96,10 +93,10 @@ class PerformanceDetailStore {
     }
 
     @action onGetOperTrend = async payload => {
+
         const platform = sessionStorage.getItem('UEM_platform');
         try {
             const data = await Service.getOperTrend({
-                // displayType: this.displayType[platform],
                 startTime: moment().subtract(getTimeType().startTime.type, getTimeType().startTime.units).valueOf(),
                 endTime: moment().subtract(getTimeType().endTime.type, getTimeType().endTime.units).valueOf(),
                 ...payload
@@ -125,6 +122,7 @@ class PerformanceDetailStore {
                 this.samplesList = data.data;
                 if (data.data.length !== 0) {
                     this.activeId = data.data[0].sampleId;
+                    this.time = data.data[0].time;
                     this.onGetOperBaseInfo();
                 }
             });
@@ -134,10 +132,13 @@ class PerformanceDetailStore {
     }
 
     @action onGetOperBaseInfo = async payload => {
+        
         try {
             const data = await Service.getOperBaseInfo({
-                startTime: moment().subtract(getTimeType().startTime.type, getTimeType().startTime.units).valueOf(),
-                endTime: moment().subtract(getTimeType().endTime.type, getTimeType().endTime.units).valueOf(),
+                // startTime: moment().subtract(getTimeType().startTime.type, getTimeType().startTime.units).valueOf(),
+                // endTime: moment().subtract(getTimeType().endTime.type, getTimeType().endTime.units).valueOf(),
+                time: this.time,
+                displayType: this.displayType,
                 operType: this.info.operType,
                 sampleId: this.activeId,
                 ...payload
@@ -160,9 +161,10 @@ class PerformanceDetailStore {
                 }
                 this.baseInfo = _baseInfo;
                 this.onGetOperAnalyze();
-                this.onGetSessionTrace({
-                    sessionId: data.sessionId,
-                    time: data.timestamp
+                data.constant.sessionId && this.onGetSessionTrace({
+                    // sessionID
+                    sessionId: data.constant.sessionId,
+                    time: this.time
                 });
                 this.onGetSampleAnalyze();
             });
@@ -174,8 +176,10 @@ class PerformanceDetailStore {
     @action onGetOperAnalyze = async payload => {
         try {
             const data = await Service.getOperAnalyze({
-                startTime: moment().subtract(getTimeType().startTime.type, getTimeType().startTime.units).valueOf(),
-                endTime: moment().subtract(getTimeType().endTime.type, getTimeType().endTime.units).valueOf(),
+                // startTime: moment().subtract(getTimeType().startTime.type, getTimeType().startTime.units).valueOf(),
+                // endTime: moment().subtract(getTimeType().endTime.type, getTimeType().endTime.units).valueOf(),
+                time: this.time,
+                displayType: this.displayType,
                 operType: this.info.operType,
                 sampleId: this.activeId,
                 ...payload
@@ -206,8 +210,9 @@ class PerformanceDetailStore {
     @action onGetSampleAnalyze = async payload => {
         try {
             const data = await Service.getSampleAnalyze({
-                startTime: moment().subtract(getTimeType().startTime.type, getTimeType().startTime.units).valueOf(),
-                endTime: moment().subtract(getTimeType().endTime.type, getTimeType().endTime.units).valueOf(),
+                // startTime: moment().subtract(getTimeType().startTime.type, getTimeType().startTime.units).valueOf(),
+                // endTime: moment().subtract(getTimeType().endTime.type, getTimeType().endTime.units).valueOf(),
+                time: this.time,
                 pageIndex: this.sampleAnalyzePageIndex,
                 sampleId: this.activeId,
                 type: this.type,

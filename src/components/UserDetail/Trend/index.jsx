@@ -11,6 +11,7 @@ class BarChart2 extends BarChart {
     }
 }
 export default class Trend extends React.Component {
+    
     clickChart(params) {
         const {
             sessionCount,
@@ -30,7 +31,9 @@ export default class Trend extends React.Component {
         return (
             <div className={styles['trend']}>
                 <div className={cls('tile-body')}>
-                    <BarChart2 handleClick={this.clickChart.bind(this)} chartId={`userTrend-${itemId}`} options={config.get('default').mergeDeep(config.get('trend'))
+                    <BarChart2 handleClick={this.clickChart.bind(this)} 
+                    chartId={`userTrend-${itemId}`} 
+                    options={config.get('default').mergeDeep(config.get('trend'))
                         .setIn(['xAxis', 0, 'data'], sessionCount.map(item => moment(item.time).format('MM-DD')))
                         .setIn(['series', 0, 'data'], sessionCount.map(item => item.value))
                         .toJS()}

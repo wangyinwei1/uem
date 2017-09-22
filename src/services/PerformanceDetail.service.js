@@ -52,8 +52,8 @@ export default {
     getOperBaseInfo: payload => Request('get', 'perfor/oper/sample/baseinfo/view', {
         appId: sessionStorage.getItem('UEM_appId'),
         platform: sessionStorage.getItem('UEM_platform'),
-        startTime: undefined,
-        endTime: undefined,
+        // startTime: undefined,
+        // endTime: undefined,
         sampleId: undefined,
         operType: undefined,
         ...payload
