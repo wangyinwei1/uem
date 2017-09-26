@@ -12,7 +12,7 @@ import {
     PieMobile
 } from '../components/ErrorDetail';
 
-@inject('frameStore','errorDetailStore')
+@inject('frameStore','errorDetailStore','sidePanelStore')
 @observer
 export default class ErrorDetail extends React.Component {
     componentDidMount() {
@@ -41,7 +41,8 @@ export default class ErrorDetail extends React.Component {
             onGetErrorDetailTrend,
             onGetSampleInfo,
             onSessionTrace,
-            onChangeUser
+            onChangeUser,
+            onPassParamsInStores
         } = this.props.errorDetailStore;
         let { 
             firstTime, 
@@ -49,7 +50,7 @@ export default class ErrorDetail extends React.Component {
             firstPage, 
             summaryId 
         } = this.props.data;
-
+        const { panelList } = this.props.sidePanelStore;
         const { itemId } = this.props;
         firstTime = new Date(firstTime).toLocaleString('chinese',{hour12:false}).replace(/[/]/g,'-');
         lastTime = new Date(lastTime).toLocaleString('chinese',{hour12:false}).replace(/[/]/g,'-');
@@ -68,11 +69,13 @@ export default class ErrorDetail extends React.Component {
                     summaryId={summaryId}
                     itemId={itemId}
                 />
-                <Analysis 
+                <Analysis
+                    passParamsInStores={onPassParamsInStores} 
                     sampleInfo={sampleInfo} 
                     sampleList={sampleList} 
                     sessionTrace={sessionTrace}
                     onGetSamplesList={onGetSamplesList}
+                    panelList = {panelList[panelList.length-1]}
                     onGetSampleInfo={onGetSampleInfo}
                     onSessionTrace={onSessionTrace}
                     errorId={summaryId} 

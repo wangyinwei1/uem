@@ -162,7 +162,6 @@ export default class UserTrace extends React.Component {
         );
     }
     renderInfo() {
-        console.log('111111111111111',this.props.data)
         const {
             ip,
             area,

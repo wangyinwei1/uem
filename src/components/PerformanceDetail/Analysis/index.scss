@@ -122,6 +122,9 @@
     .main {
         margin-top: 20px;
         :global {
+            .ant-table-tbody > tr {
+                background-color: #0D3F67;
+            }
             .ant-table-tbody > tr > td {
                 text-align: left;
                 line-height: 1.5;

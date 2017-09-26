@@ -12,6 +12,7 @@ export default class Analysis extends React.Component {
             type,
             itemId,
             baseInfo,
+            threadInfo,
             samplesList,
             activeId,
             analyzeData,
@@ -29,6 +30,7 @@ export default class Analysis extends React.Component {
                             <BaseInfo data={baseInfo} />
                             <Process
                                 type={type}
+                                threadInfo={threadInfo}
                                 itemId={itemId}
                                 sessionTrace={sessionTrace}
                                 analyzeData={analyzeData}

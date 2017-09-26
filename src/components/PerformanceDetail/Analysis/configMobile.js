@@ -113,10 +113,8 @@ export default Immutable.fromJS({
             },
             data: [0, 900, 1245, 1530, 1376, 1376, 1511, 1689, 1856, 1495, 1292]
         },
-
         {
             name: '收入',
-
             type: 'bar',
             stack: 'one',
             itemStyle: itemStyle,

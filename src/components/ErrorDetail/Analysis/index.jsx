@@ -10,11 +10,18 @@ export default class Analysis extends React.Component {
         super(props);
     }
     componentDidMount() {
-        this.props.onGetSampleInfo({
-            errorId: this.props.errorId
-        });
+        // this.props.onGetSampleInfo({
+        //     errorId: this.props.errorId,
+        //     errorType: this.props.panelList.errorType ? this.props.panelList.errorType : ''
+        // });
+        
+        // 将sidePanelStore里的errorType传到errorDetailStore里面
+        this.props.passParamsInStores({
+            errorType: this.props.panelList.errorType ? this.props.panelList.errorType : ''
+        })
         this.props.onGetSamplesList({
-            summaryId: this.props.errorId
+            summaryId: this.props.errorId,
+            
         });
         // sessionId 从onGetSampleInfo返回的结果中取的 
         this.props.sampleInfo.sessionId ? this.props.onSessionTrace({

@@ -14,7 +14,7 @@ export default class PieMobile extends React.Component {
                 // targetDimension: value,
                 // metrics: 'errorCount'
                 summaryId: this.props.summaryId,
-                dimension: JSON.stringify([value])
+                dimension: value
   
             })
         })

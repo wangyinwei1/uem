@@ -1,6 +1,7 @@
 import React from 'react';
 import config from './config';
 import Resource from './Resource';
+import immutable from 'immutable';
 import {
     BarChart
 } from '../../Common/Chart';
@@ -21,9 +22,43 @@ export default class PerformanceAnalyze extends React.Component {
     ]
         const {
             itemId, 
-            analyzeData 
+            analyzeData,
+            threadInfo 
         } = this.props;
-        
+        // 移动端线程图
+        const { constant,resources,threadNames } = threadInfo;
+        const threadLength = threadNames ? threadNames.length : 0;
+        // 原始数组 ['-','-','-',...,'-']
+        let originArray = immutable.fromJS(new Array(threadLength).fill('-'));
+        // 将各个线程起止时间存在对象里面
+        let obj = {};
+        // 按照线程名称进行分组
+        const threadGroup =_.groupBy(resources, 'threadName');
+        // 透明条
+        let emptyBar = [];
+        // threadNames != undefined && threadNames.map((value,index) => {
+        //     for(let i in threadGroup){
+        //         if(value == i){
+        //         var len = threadGroup[i].length;
+        //         for(let n = 0; n < len; n++){
+        //             obj[`${i}-${n}`] = [threadGroup[i][n]];
+        //             emptyBar[index] = originArray.set(index,threadGroup[i][n].start).toJS();
+
+        //         }
+        //     }
+        //     }
+        // })
+        // console.log('obj里的是',obj,emptyBar);
+        // emptyBar.map((item,index) => {
+        //     return {
+                
+        //     }
+        // })
+
+
+
+
+        // pc的
         const bars = (() => {
             const arr = [];
             for (let i in analyzeData) {

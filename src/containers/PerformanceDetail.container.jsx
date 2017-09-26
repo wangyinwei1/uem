@@ -83,7 +83,7 @@ export default class PerformanceDetail extends React.Component {
         const platform = sessionStorage.getItem('UEM_platform');
         const {
             info,
-            baseInfo,
+            threadInfo,
             trend,
             samplesList,
             sessionTrace,
@@ -95,6 +95,7 @@ export default class PerformanceDetail extends React.Component {
             onChangeUser,
             onChangeType,
         } = this.props.performanceDetailStore;
+        // debugger
         const {
             pv,
             uv,
@@ -170,6 +171,7 @@ export default class PerformanceDetail extends React.Component {
                     sampleAnalyzeData={sampleAnalyzeData}
                     type={type}
                     itemId={itemId}
+                    threadInfo={threadInfo} 
                     baseInfo={sessionTrace.baseInfo}
                     samplesList={samplesList}
                     activeId={activeId}

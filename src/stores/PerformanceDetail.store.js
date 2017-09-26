@@ -1,4 +1,4 @@
-import { observable, action, runInAction, autorun } from 'mobx';
+import { observable, action, runInAction, autorun, computed } from 'mobx';
 import { observer, inject } from 'mobx-react';
 import {
     getTimeType,
@@ -9,7 +9,7 @@ import Service from '../services/PerformanceDetail.service';
 
 class PerformanceDetailStore {
     @observable info = {};
-    @observable baseInfo = {};
+    @observable threadInfo = {};
     @observable analyzeData = {
         callback: [],
         request: [],
@@ -50,7 +50,8 @@ class PerformanceDetailStore {
         data: []
     };
 
-    get sampleAnalyzeData() {
+    @computed get sampleAnalyzeData() {
+        const { data, total } = this.sampleAnalyze;
         return {
             data: this.sampleAnalyze.data,
             total: this.sampleAnalyze.total,
@@ -135,8 +136,8 @@ class PerformanceDetailStore {
         
         try {
             const data = await Service.getOperBaseInfo({
-                // startTime: moment().subtract(getTimeType().startTime.type, getTimeType().startTime.units).valueOf(),
-                // endTime: moment().subtract(getTimeType().endTime.type, getTimeType().endTime.units).valueOf(),
+                startTime: moment().subtract(getTimeType().startTime.type, getTimeType().startTime.units).valueOf(),
+                endTime: moment().subtract(getTimeType().endTime.type, getTimeType().endTime.units).valueOf(),
                 time: this.time,
                 displayType: this.displayType,
                 operType: this.info.operType,
@@ -159,8 +160,8 @@ class PerformanceDetailStore {
                         _baseInfo[i] = data[i];
                     }
                 }
-                this.baseInfo = _baseInfo;
-                this.onGetOperAnalyze();
+                this.threadInfo = _baseInfo;
+                // this.onGetOperAnalyze();
                 data.constant.sessionId && this.onGetSessionTrace({
                     // sessionID
                     sessionId: data.constant.sessionId,
@@ -172,7 +173,7 @@ class PerformanceDetailStore {
             throw e;
         }
     }
-
+    // 貌似这个接口砍掉了，后续注意
     @action onGetOperAnalyze = async payload => {
         try {
             const data = await Service.getOperAnalyze({
@@ -219,7 +220,8 @@ class PerformanceDetailStore {
                 ...payload
             });
             runInAction(() => {
-                this.sampleAnalyze = data;
+                this.sampleAnalyze.data = data;
+                this.sampleAnalyze.total = length;
             });
         } catch (e) {
             throw e;

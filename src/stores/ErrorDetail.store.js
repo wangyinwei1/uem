@@ -18,11 +18,17 @@ class ErrorDetailStore {
     @observable sessionTrace = [];
     @observable activeId = '';
     @observable time='';
+    @observable errorType = '';
+    // @observable errorId = '';
 
     @action onChangeUser = payload => {
         this.activeId = payload.activeId;
         this.time = payload.time;
         this.onGetSampleInfo();
+    }
+
+    @action onPassParamsInStores = payload => {
+        this.errorType = payload.errorType;
     }
 
     @action onGetErrorTopView = async payload => {
@@ -53,6 +59,15 @@ class ErrorDetailStore {
             });
             runInAction( ()=>{
                 this.sampleList = datas.data;
+                if(datas.data.length != 0){
+                    // 第一次进来的时候，发送列表第一行的请求
+                    this.activeId = datas.data[0].sampleId;
+                    this.time = datas.data[0].time;
+                    this.onGetSampleInfo({
+                        errorId: this.activeId,
+                        time: this.time
+                    })
+                }
             })
         } catch(e){
             throw e;
@@ -82,6 +97,8 @@ class ErrorDetailStore {
                 endTime: moment().subtract(getTimeType().endTime.type, getTimeType().endTime.units).valueOf(),
                 errorId: this.activeId,
                 version: getVersion(),
+                time: this.time,
+                errorType: this.errorType,
                 ...payload
             });
             runInAction( () =>{
@@ -101,6 +118,7 @@ class ErrorDetailStore {
                     }
                 }
                 this.sampleInfo = _baseInfo;
+                // this.errorType = this.sampleInfo.errorType;
                 data.sessionId ? this.onSessionTrace({
                     sessionId: data.sessionId,
                     time: this.time,
