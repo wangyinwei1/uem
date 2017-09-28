@@ -46,7 +46,8 @@ export default class TimingMobile extends React.Component {
             avgRspTime
         } = this.props.data;
         clearTimeout(this.timer);
-        const all = firstByteTime + lastByteTime + domLoadingTime + pageAvgRspTime;
+        // const all = firstByteTime + lastByteTime + domLoadingTime + pageAvgRspTime;
+        const all = firstByteTime + lastByteTime 
         if (all > 0) {
             this.timer = setTimeout(() => {
                 this.setState({

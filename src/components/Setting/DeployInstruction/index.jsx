@@ -159,7 +159,7 @@ export default class DeployInstruction extends Component {
                                 </a>
                             )
                     }
-                    <a href="/src/help/132-部署agent-sdk.html" className={styles['deploy-ducument']} target="_blank">{locale('部署文档')}</a>
+                    <a href="/help/132-部署agent-sdk.html" className={styles['deploy-ducument']} target="_blank">{locale('部署文档')}</a>
                 </div>
             )
         }

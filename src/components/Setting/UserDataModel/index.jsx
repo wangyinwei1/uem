@@ -102,7 +102,7 @@ export default class UserDataModel extends Component {
             <div className={styles['user-model-container']}>
                 <div className={styles.description}>
                     <p>{locale('用户数据模型允许自定义用户属性，例如姓名、E-mail、公司、年龄、性别等，便于还原完整的用户信息。目前系统最多允许接入10个自定义用户属性。')}</p>
-                    <p><a href="./src/help/1apishuo_ming.html" target="_blank">{locale('查看用户属性接入API')}</a></p>
+                    <p><a href="./help/1apishuo_ming.html" target="_blank">{locale('查看用户属性接入API')}</a></p>
                 </div>
                 <div className={styles['operation']}>
                     <div className={styles['btn-wrapper']}>

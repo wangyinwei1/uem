@@ -40,7 +40,8 @@ export default class SidePanelItem extends React.Component {
         this.$win.off('click', this.closeSidePanel);
     }
     closeSidePanel(e) {
-        if ($(e.target).parents().hasClass(styles['side-panel-wrap']) || $(e.target).parents().hasClass('ant-table-tbody')) {
+        // 点击不关闭详情页的情况
+        if ($(e.target).parents().hasClass(styles['side-panel-wrap']) || $(e.target).parents().hasClass('ant-table-tbody') || $(e.target).parents().hasClass('ant-select-dropdown')) {
             
         } else {
             setTimeout(() => {
@@ -64,7 +65,7 @@ export default class SidePanelItem extends React.Component {
         //     return null;
         // } else {
             return (
-                <div ref='SidePanel' className={cls(styles['side-panel-item'])}>
+                <div ref='SidePanel' className={cls(styles['side-panel-item'])} >
                     {this.renderDetail(this.module, this.props.data, index)}
                 </div>
             );

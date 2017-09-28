@@ -78,6 +78,15 @@ module.exports = webpackMerge(config, {
                 // target: 'http://10.1.241.23:7600', // r9
                 target: "http://10.1.51.238:7600", // r10
                 pathRewrite: { '^\/uem\/api': '' }
+            },
+            //在本地环境引用uyundev的公共头部
+            "/tenant": {
+                "target": "http://www.uyundev.cn",
+                "secure": false
+            },
+            "/frontend": {
+                "target": "http://www.uyundev.cn/",
+                "secure": false
             }
         }
     }

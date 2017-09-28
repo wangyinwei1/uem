@@ -143,7 +143,7 @@ export default class Menu extends React.Component {
                     <div className={styles['setting-expand']}><i className='fa fa-fw fa-chevron-left' onClick={this.expand.bind(this)}></i></div>
                     <a target='_blank' onClick={this.setTheme.bind(this)}> <i className='iconfont icon-xiugaishanchuyibiaopankong'></i>{locale('换肤')}</a>
                     <NavLink exact onClick={this.checkApp.bind(this)} activeClassName={styles['current']} replace to='/setting'><i className='iconfont icon-xiugaishanchuyibiaopankong'></i>{locale('设置')}</NavLink>
-                    <a href='./src/help/index.html' target='_blank'><i className='iconfont icon-bangzhu'></i>{locale('帮助')}</a>
+                    <a href='./help/index.html' target='_blank'><i className='iconfont icon-bangzhu'></i>{locale('帮助')}</a>
                 </div>
             </div>
         );

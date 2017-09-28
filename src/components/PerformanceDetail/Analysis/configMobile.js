@@ -50,9 +50,9 @@ function lineBarFormatter(params, ticket, callback) {
 
 export default Immutable.fromJS({
     title: {
-        text: '阶梯瀑布图',
+        text: 'UI加载时间',
     },
-    color: ['#fc6', '#03a9f4', '#ff0000'],
+    color: ['#fc6', '#03a9f4', '#ff0000','#ff0'],
     tooltip: {
         trigger: 'item',
         // axisPointer : {            // 坐标轴指示器，坐标轴触发有效
@@ -71,8 +71,10 @@ export default Immutable.fromJS({
         formatter: lineBarFormatter()
     },
     legend: {
-        data: ['支出', '收入', '截止'],
-        // color: ['red','green','yellow','black']
+        data: ['method', 'http', 'http错误','UI加载完成'],
+        textStyle:{
+            color: '#fff'
+        } 
     },
     grid: {
         left: '3%',
@@ -95,96 +97,96 @@ export default Immutable.fromJS({
         type: 'value'
     },
     series: [
+        // {
+        //     name: '辅助',
+        //     type: 'bar',
+        //     stack: 'one',
+        //     tooltip: { show: false },
+        //     itemStyle: {
+        //         normal: {
+        //             barBorderColor: 'rgba(0,0,0,0)',
+        //             color: 'rgba(0,0,0,0)'
+        //         },
+        //         emphasis: {
+        //             barBorderColor: 'rgba(0,0,0,0)',
+        //             color: 'rgba(0,0,0,0)'
+        //         }
+        //     },
+        //     data: [0, 900, 1245, 1530, 1376, 1376, 1511, 1689, 1856, 1495, 1292]
 
-        {
-            name: '辅助',
-            type: 'bar',
-            stack: 'one',
-            tooltip: { show: false },
-            itemStyle: {
-                normal: {
-                    barBorderColor: 'rgba(0,0,0,0)',
-                    color: 'rgba(0,0,0,0)'
-                },
-                emphasis: {
-                    barBorderColor: 'rgba(0,0,0,0)',
-                    color: 'rgba(0,0,0,0)'
-                }
-            },
-            data: [0, 900, 1245, 1530, 1376, 1376, 1511, 1689, 1856, 1495, 1292]
-        },
-        {
-            name: '收入',
-            type: 'bar',
-            stack: 'one',
-            itemStyle: itemStyle,
-            label: {
-                normal: {
-                    show: true,
-                    position: 'right'
-                }
-            },
-            data: [900, 345, 393, '-', '-', 135, 178, 286, '-', '-', '-']
-        },
-        {
-            name: '支出',
-            type: 'bar',
-            stack: 'one',
-            itemStyle: itemStyle,
-            label: {
-                normal: {
-                    show: true,
-                    position: 'right'
-                }
-            },
-            data: ['-', '-', '-', 108, 154, '-', '-', '-', 119, 361, 203]
-        },
-        {
-            name: '特殊',
-            type: 'bar',
-            stack: 'one',
-            tooltip: { show: false },
-            itemStyle: {
-                normal: {
-                    barBorderColor: 'rgba(0,0,0,0)',
-                    color: 'rgba(255,0,0,0)'
-                },
-                emphasis: {
-                    barBorderColor: 'rgba(0,0,0,0)',
-                    color: 'rgba(0,0,0,0)'
-                }
-            },
-            data: [900, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-        },
-        {
-            name: '收入',
-            type: 'bar',
-            stack: 'one',
-            itemStyle: itemStyle,
-            label: {
-                normal: {
-                    show: true,
-                    position: 'right'
-                }
-            },
-            barWidth: 10,
-            data: [100, '-', '-', '-', '-', '-', '-', '-', '-', '-', '-']
-        },
-        {
-            name: '截止',
-            type: 'line',
-            stack: '总量',
-            // itemStyle: itemStyle,
-            label: {
-                normal: {
-                    show: true,
-                    position: 'right'
-                }
-            },
-            axisLabel: {
-                formatter: 'just test'
-            },
-            data: [2500, 2500, 2500, 2500, 2500, 2500, 2500, 2500, 2500, 2500, 2500]
-        }
+        // },
+        // {
+        //     name: '收入',
+        //     type: 'bar',
+        //     stack: 'one',
+        //     itemStyle: itemStyle,
+        //     label: {
+        //         normal: {
+        //             show: true,
+        //             position: 'right'
+        //         }
+        //     },
+        //     data: [900, 345, 393, '-', '-', 135, 178, 286, '-', '-', '-']
+        // },
+        // {
+        //     name: '支出',
+        //     type: 'bar',
+        //     stack: 'one',
+        //     itemStyle: itemStyle,
+        //     label: {
+        //         normal: {
+        //             show: true,
+        //             position: 'right'
+        //         }
+        //     },
+        //     data: ['-', '-', '-', 108, 154, '-', '-', '-', 119, 361, 203]
+        // },
+        // {
+        //     name: '特殊',
+        //     type: 'bar',
+        //     stack: 'one',
+        //     tooltip: { show: false },
+        //     itemStyle: {
+        //         normal: {
+        //             barBorderColor: 'rgba(0,0,0,0)',
+        //             color: 'rgba(255,0,0,0)'
+        //         },
+        //         emphasis: {
+        //             barBorderColor: 'rgba(0,0,0,0)',
+        //             color: 'rgba(0,0,0,0)'
+        //         }
+        //     },
+        //     data: [900, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+        // },
+        // {
+        //     name: '收入',
+        //     type: 'bar',
+        //     stack: 'one',
+        //     itemStyle: itemStyle,
+        //     label: {
+        //         normal: {
+        //             show: true,
+        //             position: 'right'
+        //         }
+        //     },
+        //     barWidth: 10,
+        //     data: [100, '-', '-', '-', '-', '-', '-', '-', '-', '-', '-']
+        // },
+        // {
+        //     name: '截止',
+        //     type: 'line',
+        //     stack: '总量',
+        //     // itemStyle: itemStyle,
+        //     label: {
+        //         normal: {
+        //             show: true,
+        //             position: 'right'
+        //         }
+        //     },
+        //     axisLabel: {
+        //         formatter: 'just test'
+        //     },
+        //     data: [2500, 2500, 2500, 2500, 2500, 2500, 2500, 2500, 2500, 2500, 2500]
+        // }
     ]
 });

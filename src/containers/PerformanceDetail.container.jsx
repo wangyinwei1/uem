@@ -27,6 +27,9 @@ export default class PerformanceDetail extends React.Component {
     //         type,
     //     };
     // }
+    
+    displayType = '';
+    
     componentDidMount() {
         const platform = sessionStorage.getItem('UEM_platform');
         const { onGetOperInfo, onGetOperTrend, onGetOperSamplesList } = this.props.performanceDetailStore;
@@ -37,13 +40,19 @@ export default class PerformanceDetail extends React.Component {
             text,
             // isMarked,
             path,
-            displayType
+            // displayType,
+            uiType,clickNum,thruput,specificUrls
         } = this.props.data;
         // 点击tabTable的时候，是按 已标记0 未标记1 传的，需要反过来
         const { tagType } = this.props.performanceInteractiveStore;
-        // uitype 第一次点击获取不到， mark
-        const { panelList }  = this.props.sidePanelStore;
-        const { uiType,clickNum,thruput } = panelList[panelList.length - 1];
+        let displayType  = this.props.data.displayType;
+        if(uiType == 'H5'){
+            // 取specificUrls第一个displayType作为参数
+            displayType = specificUrls[0].displayType;
+            this.displayType = specificUrls[0].displayType;
+        }else{
+            this.displayType = displayType;
+        }
         onGetOperInfo({
             operType,
             selector,
@@ -51,7 +60,7 @@ export default class PerformanceDetail extends React.Component {
             "isMarked":tagType == 0 ? 1 : 0,
             path,
             performanceType: type,
-            displayType,
+            displayType: this.displayType,
             // columnCode: JSON.stringify(['clientTime', 'serverTime'])
         });
         platform == 'pc' && path == '' || undefined ? message.info('path字段为空'):onGetOperTrend({
@@ -61,7 +70,7 @@ export default class PerformanceDetail extends React.Component {
             "isMarked":tagType == 0 ? 1 : 0,
             path,
             performanceType: type,
-            displayType,
+            displayType: this.displayType,
             columnCode: uiType === "NATIVE" ? 
             JSON.stringify(['avgRspTime', 'clickNum','thruput','apdexs', 'median','netWorkTime','clientTime', 'serverTime','percent5']) :
             JSON.stringify(['clickNum', 'apdexs', 'median', 'avgRspTime', 'percent5', 'thruput', 'clientTime', 'serverTime', 'netWorkTime']),
@@ -73,8 +82,12 @@ export default class PerformanceDetail extends React.Component {
             text,
             "isMarked":tagType == 0 ? 1 : 0,
             path,
-            displayType,
+            displayType:this.displayType,
         });
+    }
+    changeDisplayType(value){
+        this.displayType = value;
+        console.log('value,this.displayType',value,this.displayType);
     }
     shouldComponentUpdate(nextProps) {
         return nextProps.tag;
@@ -95,7 +108,6 @@ export default class PerformanceDetail extends React.Component {
             onChangeUser,
             onChangeType,
         } = this.props.performanceDetailStore;
-        // debugger
         const {
             pv,
             uv,
@@ -104,7 +116,7 @@ export default class PerformanceDetail extends React.Component {
             bounceRate,
             operType,
             url,
-            uiType,
+            // uiType,
             apdexD,
             operName,
             // Timing
@@ -119,6 +131,8 @@ export default class PerformanceDetail extends React.Component {
             domReady,
             avgRspTime
         } = info;
+        const { panelList }  = this.props.sidePanelStore;
+        const { specificUrls,uiType } = panelList[panelList.length - 1];
         const { itemId } = this.props;
         return (
             <DetailWrap>
@@ -137,8 +151,10 @@ export default class PerformanceDetail extends React.Component {
                         operType,
                         url,
                         uiType,
-                        operName
+                        operName,
+                        specificUrls
                     }}
+                    changeDisplayType={this.changeDisplayType.bind(this)}
                 />
                 {platform == 'pc' ?
                     operType === 'redirect' &&
