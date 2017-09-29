@@ -34,7 +34,7 @@ export function tableProgress(avgRsp = 0, avgRsps = [0, 0, 0], config = [{ color
     return (
         <div className={styles['tableProgress']}>
             {isShowAvgRsp && <div className={styles['title']}>{avgRsp}</div>}
-            <Popover content={(overlay)} trigger="hover" placement="rightBottom">
+            <Popover content={(overlay)} trigger="hover" placement="rightBottom" key={Math.random(1, 100)}>
                 <div className={styles['progress']} style={{ width: width }}>
                     {newConfig.map((val, i) => {
                         return (<span key={Math.random(1, 100)} className={styles['per']} style={{ background: val.color, width: val.width }} ></span>)
@@ -81,7 +81,7 @@ export function errorTableTrend(text, record, index) {
                     const _top = top[index] || 0;
 
                     return (
-                        <Popover content={content} trigger="hover" placement="rightBottom" skey={index}>
+                        <Popover content={content} trigger="hover" placement="rightBottom" key={index}>
                             <div className={styles['bar']}style={{ height: _height, top: _top }}></div>
                         </Popover>
                     )

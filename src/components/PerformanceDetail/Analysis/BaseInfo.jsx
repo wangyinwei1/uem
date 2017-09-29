@@ -4,12 +4,13 @@ import styles from './index.scss';
 export default class BaseInfo extends React.Component {
     renderUserDefined() {
         const { userDefined = [] } = this.props.data;
-        if (userDefined.length === 0) {
+        if (Object.keys(userDefined).length === 0 || undefined ) {
             return null;
         }
         return (
             <div className={styles['base']}>
-                {userDefined.map(item => <div className={styles['base-item']} key={item.name} title={item.value}>{`${item.name}：${item.value}`}</div>)}
+                {/* {userDefined.map(item => <div className={styles['base-item']} key={item.name} title={item.value}>{`${item.name}：${item.value}`}</div>)} */}
+                {_.forIn(userDefined,(value,key) => <div className={styles['base-item']} key={key} title={value}>{`${key}：${value}`}</div> )}
             </div>
         );
     }

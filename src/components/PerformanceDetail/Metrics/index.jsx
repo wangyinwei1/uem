@@ -19,21 +19,18 @@ export default class Metrics extends React.Component {
     }
     // 字段需要后端提供
     mobileMetrics = {
-        'avgRspTime': '平均响应时间',
+        // 'avgRspTime': '平均响应时间',
         'apdexD': '响应时间 > 1s的次数',
         'clickNum': '点击数',
         'thruput' : '吞吐率'
     }
-    mobileType = {
-        // UIType ?
-        'html': 'H5',
-        'native': 'NATIVE',
-
-    }
+    // mobileType = {
+    //     // UIType ?
+    //     'html': 'H5',
+    //     'native': 'NATIVE',
+    // }
     handleSelectChange(e) {
-        debugger
         // 切换url应有的操作
-        console.log('传进来的url信息',e);
         this.props.changeDisplayType(e.key)
 
     }
@@ -69,7 +66,6 @@ export default class Metrics extends React.Component {
                     arr.push(o);
                 }
             }
-            debugger
             return arr.map(item =>
                 <li key={item.label}>
                     <dl>
@@ -84,23 +80,7 @@ export default class Metrics extends React.Component {
         const platform = sessionStorage.getItem('UEM_platform');
         const { props } = this.props;
         return (
-            platform == 'pc' ?
-                <div className={cls('tile-body', styles['metrics'])}>
-                    <div className={styles['props']}>
-                        <dl>
-                            <dt>{locale('操作类型')}：</dt>
-                            <dd>{locale(this.type[props.operType])}</dd>
-                        </dl>
-                        <dl>
-                            <dt>URL：</dt>
-                            <dd>{props.url}</dd>
-                        </dl>
-                    </div>
-                    <ul className={styles['list']}>
-                        {this._render()}
-                    </ul>
-                </div>
-                :
+
                     <div className={cls('tile-body', styles['metrics'])}>
                        { props.uiType == 'NATIVE' ?
                         <div className={styles['props']}>
@@ -109,7 +89,7 @@ export default class Metrics extends React.Component {
                                 <dd>{props.uiType}</dd>
                             </dl>
                             <dl>
-                                <dt>名称:</dt>
+                                <dt>{locale('名称')}:</dt>
                                 <dd>{props.operName}</dd>
                             </dl>
                         </div>
@@ -117,17 +97,22 @@ export default class Metrics extends React.Component {
                         <div className={styles['props']}>
                             <dl>
                                 <dt>{locale('UI类型')}：</dt>
-                                <dd>{props.uiType}</dd>
+                                <dd>{props.uiType ? props.uiType : 'H5'}</dd>
                             </dl>
                             <dl>
-                                <dt>URL:</dt>
+                                <dt>URL :</dt>
+                                 {
+                                props.specificUrls ?
                                  <dd>
                                     <Select labelInValue defaultValue={{key:props.specificUrls[0].displayType}} style={{ width: 120 }} onChange={this.handleSelectChange.bind(this)}>
                                         {props.specificUrls.map((item,index) => {
                                             return <Option value={item.displayType}>{item.url}</Option>
                                         })}
                                     </Select>
-                                </dd> 
+                                </dd>
+                                :
+                                <dd>{props.path}</dd> 
+                                 }    
                             </dl>
                         </div>}
                         <ul className={styles['list']}>

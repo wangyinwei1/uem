@@ -106,7 +106,7 @@ export default class UserTrace extends React.Component {
             );
             return (
                 <Tooltip placement="right" title={content}>
-                    <div className={cls(styles[`color-${item.apdex.toLowerCase()}`], styles['trace-item'], {
+                    <div className={cls(styles[`color-${item.apdex?item.apdex.toLowerCase():'empty'}`], styles['trace-item'], {
                         [styles['trace-item-ajax']]: item.operType === 'xhr'
                     })}>
                         {this.renderIcon(item.operType)}

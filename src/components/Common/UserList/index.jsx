@@ -31,11 +31,11 @@ export default class UserList extends React.Component {
         return (
             <div className={styles['user-list-wrap']}>
                 <ul className={styles['user-list']}>
-                    {list.map(item => {
+                    {list.map((item,index) => {
                         return (
                             <li className={cls(styles['user-item'], {
                                 [styles['active']]: item.sampleId === activeId
-                            })} key={item.sampleId} onClick={this.changeUser.bind(this, item)}>
+                            })} key={index} onClick={this.changeUser.bind(this, item)}>
                                 {this.makeIcon(item.manufacturer)}
                                 <span className={styles['user']}>{item.ip}</span>
                                 <span className={styles['time']}>{moment(item.time).format('MM/DD HH:mm')}</span>

@@ -43,10 +43,15 @@ export default class Timing extends React.Component {
             firstByteTime,
             lastByteTime,
             domLoadingTime,
-            pageAvgRspTime
+            avgRspTime
         } = this.props.data;
         clearTimeout(this.timer);
-        const all = firstByteTime + lastByteTime + domLoadingTime + pageAvgRspTime;
+        let all = 0;
+        if(domLoadingTime == undefined){
+            all = firstByteTime + lastByteTime + avgRspTime;
+        }else{
+            all = firstByteTime + lastByteTime + domLoadingTime + avgRspTime;
+        }
         if (all > 0) {
             this.timer = setTimeout(() => {
                 this.setState({
@@ -69,7 +74,7 @@ export default class Timing extends React.Component {
             firstByteTime,
             lastByteTime,
             domLoadingTime,
-            pageAvgRspTime
+            avgRspTime
         } = this.props.data;
         const widths = [];
         this.items.map(item => {
@@ -84,7 +89,7 @@ export default class Timing extends React.Component {
         })();
         const lastByteTimeWidth = firstByteTimeWidth + widths[4];
         const domLoadingTimeWidth = lastByteTimeWidth + widths[5] + 15;
-        const pageAvgRspTimeWidth = domLoadingTimeWidth + widths[6];
+        const avgRspTimeWidth = domLoadingTimeWidth + widths[6];
         return (
             <div className={styles['curve']}>
                 <div style={{
@@ -97,22 +102,22 @@ export default class Timing extends React.Component {
                 }}>
                     <span>{locale('末字节时间')} {lastByteTime}s</span>
                 </div>
-                <div style={{
+                {domLoadingTime && <div style={{
                     width: domLoadingTimeWidth + 'px'
                 }}>
                     <span>{locale('DOM加载时间')} {domLoadingTime}s</span>
-                </div>
+                </div>}
                 <div style={{
-                    width: pageAvgRspTimeWidth + 'px'
+                    width: avgRspTimeWidth + 'px'
                 }}>
-                    <span>{locale('页面平均响应时间')} {pageAvgRspTime}s</span>
+                    <span>{locale('页面平均响应时间')} {avgRspTime}s</span>
                 </div>
             </div>
         );
     }
     timingCol() {
         const {
-            netTime = {},
+            networkTime = {},
             serverTime = {},
             clientTime = {},
         } = this.props.data;
@@ -121,17 +126,17 @@ export default class Timing extends React.Component {
                 <dl>
                     <dt>
                         <span>{locale('与服务端建立')}<br />{locale('网络连接时间')}</span>
-                        <span>{`${netTime.value}s`}</span>
+                        <span>{`${networkTime.value}s`}</span>
                     </dt>
                     <dd className={styles['col-wrap']}>
                         <span className={styles['dns']} style={{
-                            width: this.convertPercent(netTime.dns)
+                            width: this.convertPercent(networkTime.dns)
                         }}>dns</span>
                         <span className={styles['connect']} style={{
-                            width: this.convertPercent(netTime.connect)
+                            width: this.convertPercent(networkTime.connect)
                         }}>connect</span>
                         <span className={styles['redirect']} style={{
-                            width: this.convertPercent(netTime.redirect)
+                            width: this.convertPercent(networkTime.redirect)
                         }}>redirect</span>
                     </dd>
                 </dl>

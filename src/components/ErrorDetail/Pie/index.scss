@@ -1,7 +1,7 @@
 .pie {
     .pie-chart{
         display: inline-block;
-        width: 33.33%;
+        width: 33.33% !important;
     }
     :global(.chart) {
         height: 200px;

@@ -11,9 +11,9 @@ class PerformanceDetailStore {
     @observable info = {};
     @observable threadInfo = {};
     @observable analyzeData = {
-        callback: [],
-        request: [],
-        response: []
+        // callback: [],
+        // request: [],
+        // response: []
     };
     @observable sessionTrace = {
         baseInfo: {},
@@ -133,7 +133,6 @@ class PerformanceDetailStore {
     }
 
     @action onGetOperBaseInfo = async payload => {
-        
         try {
             const data = await Service.getOperBaseInfo({
                 startTime: moment().subtract(getTimeType().startTime.type, getTimeType().startTime.units).valueOf(),
@@ -161,9 +160,9 @@ class PerformanceDetailStore {
                     }
                 }
                 this.threadInfo = _baseInfo;
+
                 // this.onGetOperAnalyze();
                 data.constant.sessionId && this.onGetSessionTrace({
-                    // sessionID
                     sessionId: data.constant.sessionId,
                     time: this.time
                 });
@@ -174,11 +173,12 @@ class PerformanceDetailStore {
         }
     }
     // 貌似这个接口砍掉了，后续注意
+    // analyze数据整合在sampleInfo接口里
     @action onGetOperAnalyze = async payload => {
         try {
             const data = await Service.getOperAnalyze({
-                // startTime: moment().subtract(getTimeType().startTime.type, getTimeType().startTime.units).valueOf(),
-                // endTime: moment().subtract(getTimeType().endTime.type, getTimeType().endTime.units).valueOf(),
+                startTime: moment().subtract(getTimeType().startTime.type, getTimeType().startTime.units).valueOf(),
+                endTime: moment().subtract(getTimeType().endTime.type, getTimeType().endTime.units).valueOf(),
                 time: this.time,
                 displayType: this.displayType,
                 operType: this.info.operType,

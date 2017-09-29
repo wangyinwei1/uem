@@ -184,7 +184,7 @@ export function getVersion(){
     // const defaultValue = sessionStorage.getItem('UEM_platform') == 'pc' ? ' ' : 'global';
     try{
         if(sessionStorage.getItem('UEM_platform') == 'pc') {
-            return  JSON.stringify("")
+            return  ''
         } else {
             return sessionStorage.getItem('UEM_appVersion') === null? 'global' : sessionStorage.getItem('UEM_appVersion');
         }

@@ -35,7 +35,7 @@ export default class PerformanceAnalyze extends React.Component {
         ]
         const {
             itemId,
-            analyzeData,
+            // analyzeData,
             threadInfo
         } = this.props;
         // 移动端线程图
@@ -62,7 +62,7 @@ export default class PerformanceAnalyze extends React.Component {
                 }
             }
         })
-        console.log('------emptybar---------', emptyBar);
+        // console.log('------emptybar---------', emptyBar);
         for (let i in emptyBar) {
             emptyBarCollection.push(emptyBar[i]);
         };
@@ -87,7 +87,7 @@ export default class PerformanceAnalyze extends React.Component {
                 data: item
             }
         });
-        console.log('emptyBarConfig-------------', emptyBarConfig);
+        // console.log('emptyBarConfig-------------', emptyBarConfig);
 
         for (let i in threadGroup) {
             if (i.indexOf('main') > -1) {
@@ -117,7 +117,7 @@ export default class PerformanceAnalyze extends React.Component {
             })
             })
         })
-        console.log('threadCollection-----', threadCollection);
+        // console.log('threadCollection-----', threadCollection);
         // 其他线程
         let threadConfig = [];
         threadCollection.map((arr, index) => {
@@ -166,21 +166,25 @@ export default class PerformanceAnalyze extends React.Component {
             })
         })
         let newMobileConfig = emptyBarConfig.concat(mainBarConfig,threadConfig);
-        console.log('-------------newMobileConfig----------',newMobileConfig);
-        console.log('+++++++全部的config++++++++++',configMobile.updateIn(['series'],() => newMobileConfig).updateIn(['yAxis', 0, 'data'], () => threadNames).toJS());
+        // console.log('-------------newMobileConfig----------',newMobileConfig);
+        // console.log('+++++++全部的config++++++++++',configMobile.updateIn(['series'],() => newMobileConfig).updateIn(['yAxis', 0, 'data'], () => threadNames).toJS());
         // pc的
         const bars = (() => {
             const arr = [];
-            for (let i in analyzeData) {
-                arr.push(i);
+            for (let i in threadInfo) {
+                if(i == 'constant'){
+
+                } else{
+                    arr.push(i);
+                } 
             }
             return arr;
         })();
         const startArr = bars.map(item => {
-            return analyzeData[item][0];
+            return threadInfo[item][0];
         });
         const endArr = bars.map(item => {
-            return analyzeData[item][1];
+            return threadInfo[item][1];
         });
         return (
             platform == 'pc' ?

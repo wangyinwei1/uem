@@ -51,6 +51,12 @@ export default class UserDetail extends React.Component {
                 <Trace 
                     data={trace}
                 />
+                <pre>
+                    <h3>从二级表格传进来的数据</h3>
+                    {JSON.stringify(this.props.data, null, 4)}
+                    <h3>交互详情页数据</h3>
+                    {JSON.stringify(this.props.userDetailStore, null, 4)}
+                </pre>
             </DetailWrap>
         );
     }

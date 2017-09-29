@@ -119,11 +119,15 @@ class ErrorDetailStore {
                 }
                 this.sampleInfo = _baseInfo;
                 // this.errorType = this.sampleInfo.errorType;
-                data.sessionId ? this.onSessionTrace({
+                data.hasOwnProperty('constant') ? this.onSessionTrace({
+                    sessionId: data.constant.sessionId,
+                    time: this.time,
+                    ...payload
+                }) : this.onSessionTrace({
                     sessionId: data.sessionId,
                     time: this.time,
                     ...payload
-                }) : message.warning('参数sessionId未定义！')
+                })
             })
         }catch(e){
             throw e;
