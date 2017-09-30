@@ -36,7 +36,6 @@ export default class Timing extends React.Component {
     componentDidMount() {
         this.items = $(this.refs.timing).find('dl').children('dd').children('span');
         this.colWraps = $(this.refs.timing).find('dl').children('dd');
-        console.log('this.items,this.colWraps',this.items,this.colWraps);
     }
     componentWillReceiveProps(nextProps) {
         const {

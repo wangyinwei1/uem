@@ -29,6 +29,7 @@ export default class Process extends React.Component {
                             showBaseInfo={false} 
                         />
                         : <PerformanceAnalyze 
+                            uiType={this.props.uiType}
                             threadInfo={this.props.threadInfo}
                             type={this.props.type}
                             analyzeData={this.props.analyzeData}

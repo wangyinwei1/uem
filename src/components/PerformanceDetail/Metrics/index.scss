@@ -25,11 +25,12 @@
                 color: #70C3FB;
                 :global {
                     .ant-select{
-                        width: 260px !important;
+                        width: 320px !important;
                     }
                     .ant-select-selection {
                     // margin-left: 12px;
-                    width: 260px;
+                    // width: 320px;
+                    border-radius: 1px ;
                     }
                     // :global{
                     //     .ant-select{

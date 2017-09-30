@@ -4,13 +4,13 @@ import { Select } from 'antd';
 const Option = Select.Option;
 
 export default class Metrics extends React.Component {
-    metrics = {
-        pv: 'PV',
-        uv: 'UV',
-        apdex: 'Apdex',
-        thruput: '吞吐率',
-        bounceRate: '跳出率'
+    metricsOverview = {
+        'pv': 'pv',
+        'uv': 'uv ',
+        'apdex': 'apdex',
+        'thruput': '吞吐率'
     }
+
     type = {
         redirect: '重定向',
         xhr: 'AJAX',
@@ -18,7 +18,7 @@ export default class Metrics extends React.Component {
         link: '链接'
     }
     // 字段需要后端提供
-    mobileMetrics = {
+    metrics = {
         // 'avgRspTime': '平均响应时间',
         'apdexD': '响应时间 > 1s的次数',
         'clickNum': '点击数',
@@ -31,26 +31,31 @@ export default class Metrics extends React.Component {
     // }
     handleSelectChange(e) {
         // 切换url应有的操作
-        this.props.changeDisplayType(e.key)
+        this.props.changeDisplayType(e.key.split('-')[0], e.label);
 
     }
     _render() {
         const platform = sessionStorage.getItem('UEM_platform');
-        if (platform == 'pc') {
+        if (this.props.type == 'browse') {
             const { data } = this.props;
             let arr = [];
             for (let i in data) {
-                const o = {};
-                o.label = i;
-                o.value = data[i];
-                if (o.value !== undefined) {
-                    arr.push(o);
+                for(let n in this.metricsOverview){
+                    if( i == n ){
+                        const o = {};
+                        o.label = n;
+                        o.value = data[n];
+                        if (o.value !== undefined) {
+                            arr.push(o);
+                    }
                 }
+                } 
             }
+            console.log('arr是',arr);
             return arr.map(item =>
                 <li key={item.label}>
                     <dl>
-                        <dt className={styles['key']}>{locale(this.metrics[item.label])}</dt>
+                        <dt className={styles['key']}>{locale(this.metricsOverview[item.label])}</dt>
                         <dd title={item.value} className={styles['value']}>{item.value}</dd>
                     </dl>
                 </li>
@@ -59,17 +64,22 @@ export default class Metrics extends React.Component {
             const { data } = this.props;
             let arr = [];
             for (let i in data) {
-                const o = {};
-                o.label = i;
-                o.value = data[i];
-                if (o.value !== undefined) {
-                    arr.push(o);
+                for(let n in this.metrics){
+                    if( i == n ){
+                        const o = {};
+                        o.label = i;
+                        o.value = data[i];
+                        if (o.value !== undefined) {
+                            arr.push(o);
+                    }
                 }
+                } 
             }
+            console.log('arr是',arr);
             return arr.map(item =>
                 <li key={item.label}>
                     <dl>
-                        <dt className={styles['key']}>{locale(this.mobileMetrics[item.label])}</dt>
+                        <dt className={styles['key']}>{locale(this.metrics[item.label])}</dt>
                         <dd title={item.value} className={styles['value']}>{item.value}</dd>
                     </dl>
                 </li>
@@ -104,9 +114,9 @@ export default class Metrics extends React.Component {
                                  {
                                 props.specificUrls ?
                                  <dd>
-                                    <Select labelInValue defaultValue={{key:props.specificUrls[0].displayType}} style={{ width: 120 }} onChange={this.handleSelectChange.bind(this)}>
+                                    <Select labelInValue defaultValue={{key:props.specificUrls[0].url}} style={{ width: 120 }} onChange={this.handleSelectChange.bind(this)}>
                                         {props.specificUrls.map((item,index) => {
-                                            return <Option value={item.displayType}>{item.url}</Option>
+                                            return <Option value={`${item.displayType}-${index}`}>{item.url}</Option>
                                         })}
                                     </Select>
                                 </dd>

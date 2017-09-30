@@ -47,10 +47,7 @@ export default class PerformanceAnalyze extends React.Component {
         let obj = {};
         // 按照线程名称进行分组
         const threadGroup = _.groupBy(resources, 'threadName');
-
         let emptyBar = {}, emptyBarCollection = [], mainCollection = [], threadCollection = [];
-
-        // 透明条
         threadNames != undefined && threadNames.map((value, index) => {
             for (let i in threadGroup) {
                 if (value == i) {
@@ -66,7 +63,6 @@ export default class PerformanceAnalyze extends React.Component {
         for (let i in emptyBar) {
             emptyBarCollection.push(emptyBar[i]);
         };
-
         // 透明条
         let emptyBarConfig = emptyBarCollection.map((item, index) => {
             return {
@@ -88,7 +84,6 @@ export default class PerformanceAnalyze extends React.Component {
             }
         });
         // console.log('emptyBarConfig-------------', emptyBarConfig);
-
         for (let i in threadGroup) {
             if (i.indexOf('main') > -1) {
                 mainCollection.push(threadGroup[i]);
@@ -187,7 +182,7 @@ export default class PerformanceAnalyze extends React.Component {
             return threadInfo[item][1];
         });
         return (
-            platform == 'pc' ?
+            this.props.uiType == 'H5' ?
                 <div key={bars.length}>
                     <BarChart chartId={`PerformanceAnalyze-${itemId}`} options={config.get('default').mergeDeep(config.get('analyze'))
                         .setIn(['yAxis', 0, 'data'], bars)
