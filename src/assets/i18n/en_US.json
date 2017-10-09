@@ -333,7 +333,9 @@
     "吞吐率(rmp)": "Throughput (rpm)",
     "Activity生命周期图":"Activity Lifecycle Chart",
     "响应时间 > 1s的次数": "Response times> 1s",
-    "回调": "Callback"
+    "回调": "Callback",
+    "apdex" : "Apdex",
+    "pv" : "PV",
+    "uv" : "UV"
     
-
 }

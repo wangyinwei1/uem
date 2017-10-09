@@ -6,7 +6,7 @@ const Option = Select.Option;
 export default class Metrics extends React.Component {
     metricsOverview = {
         'pv': 'pv',
-        'uv': 'uv ',
+        'uv': 'uv',
         'apdex': 'apdex',
         'thruput': '吞吐率'
     }

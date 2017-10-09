@@ -113,7 +113,7 @@ class PerformanceMapChart extends Component {
         )
     }
 
-    render() {
+    render() {  
         const { activeMap,activePillar } = this.state;
         let pillarConfig, mapConfig, yAxisInCN=[],mapSeriesData = [];
         const yAxis = this.props.mapData.yAxis;

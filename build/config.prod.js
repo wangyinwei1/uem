@@ -14,7 +14,8 @@ module.exports = webpackMerge(config, {
             test: /\.css$/,
             use: ExtractTextPlugin.extract({
                 fallback: 'style-loader',
-                use: ['css-loader']
+                use: ['css-loader'],
+                publicPath: '../'
             })
         }, {
             test: /\.less$/,
