@@ -68,7 +68,7 @@ class PerformanceOverviewStore {
             });
             if( areaType == 'province'){
                 datas.data && datas.data.map((item,index)=>{
-                    if(item.area == '-'){
+                    if(item.area == '-' || item.area == ""){
                         item.area = '未知地址'
                     }
                 }).sort((a,b)=> b.value - a.value);
@@ -132,6 +132,7 @@ class PerformanceOverviewStore {
                         tempMapData.series = seriesData;
                         tempMapData.total = total;
                         this.mapData = tempMapData;
+                        debugger
                     });
                 }
             }

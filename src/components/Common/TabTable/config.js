@@ -165,7 +165,23 @@ export default {
                 checked: true,
                 disabled: false,
                 width: 100,
-                render: (text, record, index) => text ? text : '--',
+                // render: (text, record, index) => text ? text : '--',
+                render(text, record, index) {
+                    // const config = UYUN.getTheme("performanceChart-table1");
+                    const config = [
+                        {
+                            color: "#ff5252",
+                            text: locale('不满意')
+                        }, {
+                            color: "#ffec0c",
+                            text: locale('可接受')
+                        }, {
+                            color: "#66dc6b",
+                            text: locale('满意')
+                        }
+                    ];
+                    return tableProgress(record.apdex, record.satisfactionIndex, config);
+                }
             }, {
                 value: 'thruput',
                 label: locale('吞吐率'),
