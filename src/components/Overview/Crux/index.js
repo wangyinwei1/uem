@@ -77,11 +77,11 @@ class Crux extends Component {
         const dataEnum = [{
             name: locale('浏览量PV'),
             key: 'pv',
-            value: _.isNull(realTimeData['pv']) ? '--' : realTimeData['pv']            
+            value: _.isNull(realTimeData['pv']) ? '--' : realTimeData['pv']
         }, {
             name: locale('平均访问页数'),
             key: 'avgNoPv',
-            value: _.isNull(realTimeData['avgNoPv']) ? '--' : realTimeData['avgNoPv'] 
+            value: _.isNull(realTimeData['avgNoPv']) ? '--' : realTimeData['avgNoPv']
         }, {
             name: locale('点击数'), // ?
             key: 'clickNum',
@@ -89,7 +89,7 @@ class Crux extends Component {
         }, {
             name: locale('平均响应时间'),
             key: 'avgRspTime',
-            value: _.isNull(realTimeData['avgRspTime']) ? '--' : window.timeFormat(realTimeData['avgRspTime'])            
+            value: _.isNull(realTimeData['avgRspTime']) ? '--' : window.timeFormat(realTimeData['avgRspTime'])
         }, {
             name: locale('访问量UV'), // ? 
             key: 'uv',
@@ -122,7 +122,7 @@ class Crux extends Component {
                                 <div className={styles['key']}>{locale(item.name)}
                                     {item.tooltip && <Tooltip placement="bottom" title={item.tooltipText}>
                                         <i className={cls('iconfont icon-bangzhu')}></i>
-                                        </Tooltip>  }
+                                    </Tooltip>}
                                 </div>
                                 <div className={cls('toe', styles['value'])}>{item.value}</div>
                             </li>
@@ -132,9 +132,9 @@ class Crux extends Component {
                         <Progress className={cls(dashboardClass)} strokeWidth={8} type="dashboard" percent={apdex * 100} />
                         {this.hackDashboard()}
                         <ul className={styles['range']}>
-                            <li><i className={cls('iconfont icon-manyi')}></i><span>{`${realTimeData['dPercentage'] || '--'} ${locale('的操作响应快')}（0 ~ ${T.toFixed(1)}s）`}</span></li>
+                            <li><i className={cls('iconfont icon-manyi')}></i><span>{`${realTimeData['sPercentage'] || '--'} ${locale('的操作响应快')}（0 ~ ${T.toFixed(1)}s）`}</span></li>
                             <li><i className={cls('iconfont icon-yiban')}></i><span>{`${realTimeData['tPercentage'] || '--'} ${locale('的操作可接受')}（${T.toFixed(1)} ~ ${(4 * T).toFixed(1)}s）`}</span></li>
-                            <li><i className={cls('iconfont icon-bumanyi')}></i><span>{`${realTimeData['sPercentage'] || '--'} ${locale('的操作响应慢')}（> ${(4 * T).toFixed(1)}s）`}</span></li>
+                            <li><i className={cls('iconfont icon-bumanyi')}></i><span>{`${realTimeData['dPercentage'] || '--'} ${locale('的操作响应慢')}（> ${(4 * T).toFixed(1)}s）`}</span></li>
                         </ul>
                     </div>
                 </div>

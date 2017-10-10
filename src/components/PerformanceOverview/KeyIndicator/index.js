@@ -9,7 +9,7 @@ class KeyIndicator extends Component {
     componentDidMount() {
         const { getKeyIndicator } = this.props;
         getKeyIndicator({
-            metrics: sessionStorage.getItem('UEM_paltform') == 'pc' ? JSON.stringify(["avgRspTime","avgNetworkTime","avgServerTime","avgClientTime"]) : JSON.stringify(["avgUiRspTime","avgRspTime","thruput"])
+            metrics: sessionStorage.getItem('UEM_platform') == 'pc' ? JSON.stringify(["avgRspTime","avgNetworkTime","avgServerTime","avgClientTime"]) : JSON.stringify(["avgUiRspTime","avgRspTime","thruput"])
         });
     }
     componentWillReceiveProps(nextProps) {

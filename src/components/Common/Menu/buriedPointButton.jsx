@@ -37,8 +37,7 @@ export default class PointButton extends React.Component {
     render() {
         const { platform, theme } = this.props;
         // cookie,localStorage,sessionStorage受同源策略所限，无法跨域。使用url传参。
-        // let language = document.cookie.split(';').some(item => { return item.indexOf('language') > -1}) ? document.cookie.split(';').filter(str => {return str.indexOf('language') != -1 })[0].split('=')[1] : 'zh_CN';
-        let language = sessionStorage.getItem("UEM_platform") ? sessionStorage.getItem("UEM_platform") : 'zh_CN';
+        let language = localStorage.getItem("UEM_lang") ? localStorage.getItem("UEM_lang") : 'zh_CN';
         if (platform === 'pc') {
             return (
                 <div className={styles["pointButton"]} onClick={this.buriedPoint.bind(this)}>
