@@ -26,14 +26,14 @@ export default class DeployInstruction extends Component {
         this.state = {
             editVisible: false,
             sendEmailVisible: false,
-            videoVisible: false
+            videoVisible: false,
+            appId: props.appInfo.appId
         }
         // ${this.code.slice(8).slice(0,-9)}
-        const config = require('../../../../config/config.json');
-        const origin = window.location.origin;
-        // this.code = `<script>(function(win,doc){win.YYRUM={};YYRUM.info={appId:${this.props.appInfo.appId},beacon:'http://web.uyundev.cn/connect',agent:'http://web.uyundev.cn/buriedPoint/YYRUM.js'};var loadSource={createScript:function(src){var d=doc,f=d.getElementsByTagName('script')[0],s=d.createElement('script');s.type='text/javascript';s.src=src; f.parentNode.insertBefore(s,f);return s;}};var script=loadSource.createScript(YYRUM.info.agent);win.onerror=function(msg, url,line,col,error){YYRUM.info.errorData={msg:msg,url:url,line:line,col:col,error:error}};if(script.readyState){script.onreadystatechange=function(){if(script.readyState=='loaded'||script.readyState=='complete'){script.onreadystatechange=null; YYRUM.report.installGlobalHandler()}};}else{script.onload=function(){YYRUM.report.installGlobalHandler()};}})(window,document)</script>`;
-        this.code = "<script>(function(win,doc){win.YYRUM={};YYRUM.info={appId:'" + this.props.appInfo.appId + "',beacon:'" + origin + '/'+`${ config.globalSetting == 'true' ? 'uem/':'' }`+'connect' + "',agent:'" + origin + '/'+`${ config.globalSetting == 'true' ? 'uem/':'' }`+'buriedPoint/YYRUM.js' + "'};var loadSource={createScript:function(src){var d=doc,f=d.getElementsByTagName('script')[0],s=d.createElement('script');s.type='text/javascript';s.src=src; f.parentNode.insertBefore(s,f);return s;}};var script=loadSource.createScript(YYRUM.info.agent);win.onerror=function(msg, url,line,col,error){YYRUM.info.errorData={msg:msg,url:url,line:line,col:col,error:error}};if(script.readyState){script.onreadystatechange=function(){if(script.readyState=='loaded'||script.readyState=='complete'){script.onreadystatechange=null; YYRUM.report.installGlobalHandler()}};}else{script.onload=function(){YYRUM.report.installGlobalHandler()};}})(window,document)</script>";
-
+        this.config = require('../../../../config/config.json');
+        this. origin = window.location.origin;
+        const appId = sessionStorage.getItem('UEM_appId');
+        this.code = "<script>(function(win,doc){win.YYRUM={};YYRUM.info={appId:'" + appId + "',beacon:'" + origin + '/'+`${ this.config.globalSetting == 'true' ? 'uem/':'' }`+'connect' + "',agent:'" + origin + '/'+`${ this.config.globalSetting == 'true' ? 'uem/':'' }`+'buriedPoint/YYRUM.js' + "'};var loadSource={createScript:function(src){var d=doc,f=d.getElementsByTagName('script')[0],s=d.createElement('script');s.type='text/javascript';s.src=src; f.parentNode.insertBefore(s,f);return s;}};var script=loadSource.createScript(YYRUM.info.agent);win.onerror=function(msg, url,line,col,error){YYRUM.info.errorData={msg:msg,url:url,line:line,col:col,error:error}};if(script.readyState){script.onreadystatechange=function(){if(script.readyState=='loaded'||script.readyState=='complete'){script.onreadystatechange=null; YYRUM.report.installGlobalHandler()}};}else{script.onload=function(){YYRUM.report.installGlobalHandler()};}})(window,document)</script>";
         this.content =
             `<!DOCTYPE html><html><head><meta charset="utf-8"></head>你好：<br>&nbsp;&nbsp;&nbsp;&nbsp;我们是优云团队！你的同事 %s(%s) 请求您为应用: %s <br>部署监测代码，以实现用户体验监控。<br>
             &nbsp;&nbsp;&nbsp;&nbsp;为保证数据采集的正确进行，请将以下代码部署到Web项目中，尽可能保证代码覆<br>盖整个项目，通常只需在您项目中公共的页头文件加入即可。<br>
@@ -49,6 +49,7 @@ export default class DeployInstruction extends Component {
             &nbsp;&nbsp;&nbsp;优云团队<br>
             </html>`
     }
+
     copyCode() {
         this.input.select();
         const isSuccess = document.execCommand('copy');
@@ -171,8 +172,6 @@ export default class DeployInstruction extends Component {
 
     render() {
         const { appInfo } = this.props;
-
-
         return (
             <div className={styles['depoly-container']}>
                 <Timeline>

@@ -132,7 +132,6 @@ class PerformanceOverviewStore {
                         tempMapData.series = seriesData;
                         tempMapData.total = total;
                         this.mapData = tempMapData;
-                        debugger
                     });
                 }
             }

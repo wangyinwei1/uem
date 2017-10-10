@@ -118,7 +118,6 @@ class PerformanceMapChart extends Component {
         let pillarConfig, mapConfig, yAxisInCN=[],mapSeriesData = [];
         const yAxis = this.props.mapData.yAxis;
         const series = this.props.mapData.series;
-        debugger
         //  性能地图左下角的dataRange
         let apdex = Number(( JSON.parse(sessionStorage.UEM_deploy).apdex / 1000).toFixed(1));
         let apdex_4 = apdex*4;
