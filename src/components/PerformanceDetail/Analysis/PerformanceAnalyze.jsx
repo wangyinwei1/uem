@@ -182,7 +182,7 @@ export default class PerformanceAnalyze extends React.Component {
             return threadInfo[item][1];
         });
         return (
-            this.props.uiType == 'H5' ?
+            this.props.uiType !== 'NATIVE' ?
                 <div key={bars.length}>
                     <BarChart chartId={`PerformanceAnalyze-${itemId}`} options={config.get('default').mergeDeep(config.get('analyze'))
                         .setIn(['yAxis', 0, 'data'], bars)

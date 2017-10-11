@@ -24,6 +24,18 @@ export default Immutable.fromJS({
             }],
             yAxis: [{
                 minInterval: 1,
+            },{
+                type: 'value',
+                splitLine: {
+                    show: true
+                },
+                min: 0,
+                axisLine: {
+                    show: false
+                },
+                axisTick: {
+                    show: false
+                }
             }],
             color: ['#ffeb0b', '#66dc6a', colorChangeTest("test")],
             series: [

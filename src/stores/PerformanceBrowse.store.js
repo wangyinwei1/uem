@@ -34,6 +34,8 @@ class PerformanceBrowseStore {
 
     @action onLoading = () => {
         this.loading = true;
+        //给tagtype初始值
+        sessionStorage.setItem('tagType',this.tagType);
     }
     @action onLoaded = () => {
         this.loading = false;
@@ -53,6 +55,7 @@ class PerformanceBrowseStore {
     }
     @action onChangeTagType = payload => {
         this.tagType = payload.tagType;
+        sessionStorage.setItem('tagType',payload.tagType);
         this.data = [];
         this.searchValue = undefined;
         this.onGetOpersList();

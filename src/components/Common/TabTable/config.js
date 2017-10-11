@@ -158,6 +158,12 @@ export default {
                 disabled: true,
                 // fixed: 'left',
                 render: (text, record, index) => <OperType type={record.operType} />
+            },{
+                value: 'path',
+                label: 'URL',
+                width:200,
+                checkd: true,
+                disabled: false
             }],
             quota: [{
                 value: 'apdex',
@@ -709,6 +715,7 @@ export default {
             quota: []
         }
     }],
+
     UserTable: [{
         tabName: locale('已登录'),
         options: {
@@ -722,12 +729,21 @@ export default {
                 value: 'firstViewTimestamp',
                 checked: true,
                 disabled: true,
+                sorter: (a, b) => a.lastTime - b.lastTime,
+                render(text, record, index) {
+                    const time = moment(Number(text)).format("YYYY-MM-DD HH:mm");
+                    return time == "Invalid date" ? "--" : time;
+                }
             }, {
                 label: locale('最后访问时间'),
                 value: 'lastTime',
                 checked: true,
                 disabled: true,
                 sorter: (a, b) => a.lastTime - b.lastTime,
+                render(text, record, index) {
+                    const time = moment(Number(text)).format("YYYY-MM-DD HH:mm");
+                    return time == "Invalid date" ? "--" : time;
+                }
             }, {
                 label: locale('会话数'),
                 value: 'sessionCount',
@@ -745,7 +761,7 @@ export default {
         tabName: locale('未登录'),
         options: {
             normal: [{
-                label: locale('用户名'),
+                label: locale('用户ID'),
                 value: 'displayName',
                 checked: true,
                 disabled: true,
@@ -765,12 +781,14 @@ export default {
                 value: 'sessionCount',
                 checked: true,
                 sorter: (a, b) => a.sessionCount - b.sessionCount,
-            }, {
-                label: locale('用户ID'),
-                value: 'userId',
-                checked: false,
-                disabled: false,
-            }],
+            }, 
+            // {
+            //     label: locale('用户ID'),
+            //     value: 'userId',
+            //     checked: false,
+            //     disabled: false,
+            // }
+        ],
             quota: []
         }
     }],

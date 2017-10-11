@@ -42,6 +42,8 @@ class PerformanceInteractiveStore {
     }
     @action onLoaded = () => {
         this.loading = false;
+        //给tagtype初始值
+        sessionStorage.setItem('tagType',this.tagType);
     }
     @action onSearch = payload => {
         this.searchValue = payload.searchValue;
@@ -59,6 +61,7 @@ class PerformanceInteractiveStore {
     @action onChangeTagType = payload => {
         // debugger
         this.tagType = payload.tagType;
+        sessionStorage.setItem('tagType',payload.tagType);
         this.data = [];
         this.searchValue = undefined;
         this.onGetOpersList();

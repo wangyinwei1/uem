@@ -118,7 +118,9 @@ export default class Table extends React.Component {
                         current: pageIndex,
                         pageSize: pageSize,
                         onChange: this.changePage.bind(this)
-                    }} rowSelection={rowSelection} columns={this.columns} dataSource={dataList}
+                    }} rowSelection={rowSelection} 
+                    columns={this.columns} 
+                    dataSource={dataList}
                     scroll={{ x: this.getScollX() }}
                 />
             </div>
