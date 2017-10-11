@@ -88,11 +88,12 @@ export default class PerformanceDetail extends React.Component {
         } = this.props.data;
         // 点击tabTable的时候，是按'已标记:0 未标记:1'传的，需要反过来
         const { tagType } = this.props.performanceInteractiveStore;
+        console.log('tagtype是-----',tagType);
         onGetOperInfo({
             operType,
             selector,
             text,
-            "isMarked": tagType == 0 ? 1 : 0,
+            isMarked : tagType == 0 ? 1 : 0,
             path: this.getPath,
             performanceType: type,
             displayType: this.displayType,
@@ -102,7 +103,7 @@ export default class PerformanceDetail extends React.Component {
             operType,
             selector,
             text,
-            "isMarked": tagType == 0 ? 1 : 0,
+            isMarked : tagType == 0 ? 1 : 0,
             path: this.getPath,
             performanceType: type,
             displayType: this.displayType,
@@ -115,7 +116,7 @@ export default class PerformanceDetail extends React.Component {
             operType,
             selector,
             text,
-            "isMarked": tagType == 0 ? 1 : 0,
+            isMarked : tagType == 0 ? 1 : 0,
             path: this.getPath,
             displayType: this.displayType,
         });

@@ -31,7 +31,7 @@ export default class DeployInstruction extends Component {
         }
         // ${this.code.slice(8).slice(0,-9)}
         this.config = require('../../../../config/config.json');
-        this. origin = window.location.origin;
+        this.origin = window.location.origin;
         const appId = sessionStorage.getItem('UEM_appId');
         this.code = "<script>(function(win,doc){win.YYRUM={};YYRUM.info={appId:'" + appId + "',beacon:'" + origin + '/'+`${ this.config.globalSetting == 'true' ? 'uem/':'' }`+'connect' + "',agent:'" + origin + '/'+`${ this.config.globalSetting == 'true' ? 'uem/':'' }`+'buriedPoint/YYRUM.js' + "'};var loadSource={createScript:function(src){var d=doc,f=d.getElementsByTagName('script')[0],s=d.createElement('script');s.type='text/javascript';s.src=src; f.parentNode.insertBefore(s,f);return s;}};var script=loadSource.createScript(YYRUM.info.agent);win.onerror=function(msg, url,line,col,error){YYRUM.info.errorData={msg:msg,url:url,line:line,col:col,error:error}};if(script.readyState){script.onreadystatechange=function(){if(script.readyState=='loaded'||script.readyState=='complete'){script.onreadystatechange=null; YYRUM.report.installGlobalHandler()}};}else{script.onload=function(){YYRUM.report.installGlobalHandler()};}})(window,document)</script>";
         this.content =

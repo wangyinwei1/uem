@@ -32,7 +32,7 @@ class PerformanceTrend extends Component {
         // pc性能趋势的配置
         let options = basicConfig.mergeDeep({
             legend: {
-                data: [{name:locale('浏览量PV')},{name: locale('点击数')},{name: locale('响应时间')}]
+                data: [{name:locale('浏览量PV')},{name: locale('点击数')},{name: locale('平均响应时间')}]
             },
             xAxis: [{
                 data: trend.avgRspTime && trend.avgRspTime.map((val, i) => {
@@ -48,7 +48,7 @@ class PerformanceTrend extends Component {
             series: [
                 {name: locale('浏览量PV'),data: trend.pv},
                 {name: locale('点击数'),data: trend.clickNum},
-                {name: locale('响应时间'), data: trend.avgRspTime}
+                {name: locale('平均响应时间'), data: trend.avgRspTime}
             ]
         })
         // pc的apdex的配置
