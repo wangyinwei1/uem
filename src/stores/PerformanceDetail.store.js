@@ -22,7 +22,7 @@ class PerformanceDetailStore {
     };
     @observable samplesList = [];
     @observable activeId = '';
-    @observable time = new Date();
+    @observable time = 0;
     @observable displayType = '';
     @observable pageIndex = 1;
     @observable trend = {
@@ -61,6 +61,7 @@ class PerformanceDetailStore {
 
     @action onChangeUser = payload => {
         this.activeId = payload.activeId;
+        this.time = payload.time;
         this.sampleAnalyzePageIndex = 1;
         this.onGetOperBaseInfo();
     }
@@ -68,7 +69,8 @@ class PerformanceDetailStore {
     @action onChangeType = payload => {
         this.type = payload.type;
         this.sampleAnalyzePageIndex = 1;
-        this.onGetSampleAnalyze();
+        // 没这俩不发送请求
+        this.time !==0 && this.activeId !=='' && this.onGetSampleAnalyze();
     }
 
     @action onChangeResourcePage = payload => {
@@ -211,8 +213,8 @@ class PerformanceDetailStore {
     @action onGetSampleAnalyze = async payload => {
         try {
             const data = await Service.getSampleAnalyze({
-                // startTime: moment().subtract(getTimeType().startTime.type, getTimeType().startTime.units).valueOf(),
-                // endTime: moment().subtract(getTimeType().endTime.type, getTimeType().endTime.units).valueOf(),
+                startTime: moment().subtract(getTimeType().startTime.type, getTimeType().startTime.units).valueOf(),
+                endTime: moment().subtract(getTimeType().endTime.type, getTimeType().endTime.units).valueOf(),
                 time: this.time,
                 pageIndex: this.sampleAnalyzePageIndex,
                 sampleId: this.activeId,

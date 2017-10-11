@@ -35,6 +35,8 @@ export default {
     })),
 
     saveUserDataModel: payload => Request('post', 'userDefine/keys/save', {
+        appId: sessionStorage.getItem('UEM_appId'),
+        platform: sessionStorage.getItem('UEM_platform'),
         ...payload,
 
     }),
