@@ -19,6 +19,7 @@ export default {
         appId: sessionStorage.getItem('UEM_appId'),
         platform: sessionStorage.getItem('UEM_platform'),
         summaryId: undefined,
+        version: getVersion(),
         ...payload
     })
 };

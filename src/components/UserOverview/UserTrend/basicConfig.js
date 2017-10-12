@@ -30,14 +30,17 @@ export default Immutable.fromJS({
     },{
         type: 'value',
         splitLine: {
-            show: true
+            show: false
         },
         min: 0,
-        axisLine: {
-            show: false
-        },
         axisTick: {
             show: false
+        },
+        axisLine: {
+            show: false,
+            lineStyle: {
+                color: '#70c3fb'
+            }
         }
     }],
     // xAxis: {

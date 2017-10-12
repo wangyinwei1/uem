@@ -15,6 +15,7 @@ class ErrorTableStore {
     @observable tagType = 0;
     @observable colOptions = getColOptions('ErrorTable');
     @observable rows = [];
+    @observable errorType = [];
     get dataList() {
         return this.data.toJS();
     }
@@ -40,6 +41,7 @@ class ErrorTableStore {
     }
     @action onChangeRows = payload => {
         this.rows = payload.rows;
+        this.errorType = payload.errorType;
     }
     @action onChangeTagType = payload => {
         this.tagType = payload.tagType;
@@ -53,7 +55,8 @@ class ErrorTableStore {
     @action onResolveRow = async () => {
         try {
             const data = await Service.resolveRow({
-                summaryId: JSON.stringify(this.rows.toJS())
+                summaryId: JSON.stringify(this.rows.toJS()),
+                errorType: JSON.stringify(this.errorType.toJS()),
             });
             runInAction(() => {
                 this.onGetOpersList();

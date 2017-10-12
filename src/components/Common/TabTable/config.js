@@ -71,6 +71,11 @@ export default {
                 checked: false,
                 disabled: false,
                 width: 200,
+                sorter: (a, b) => a.createTime - b.createTime,
+                render(text, record, index) {
+                    const time = moment(Number(text)).format("YYYY-MM-DD HH:mm");
+                    return time == "Invalid date" ? "--" : time;
+                }
             }, {
                 value: 'updator',
                 label: locale('修改人'),
@@ -83,6 +88,11 @@ export default {
                 checked: false,
                 disabled: false,
                 width: 200,
+                sorter: (a, b) => a.updateTime - b.updateTime,
+                render(text, record, index) {
+                    const time = moment(Number(text)).format("YYYY-MM-DD HH:mm");
+                    return time == "Invalid date" ? "--" : time;
+                }
             }],
             quota: [{
                 value: 'apdex',
@@ -277,6 +287,11 @@ export default {
                 checked: false,
                 disabled: false,
                 width: 200,
+                sorter: (a, b) => a.createTime - b.createTime,
+                render(text, record, index) {
+                    const time = moment(Number(text)).format("YYYY-MM-DD HH:mm");
+                    return time == "Invalid date" ? "--" : time;
+                }
             }, {
                 value: 'updator',
                 label: locale('修改人'),
@@ -289,6 +304,11 @@ export default {
                 checked: false,
                 disabled: false,
                 width: 200,
+                sorter: (a, b) => a.updateTime - b.updateTime,
+                render(text, record, index) {
+                    const time = moment(Number(text)).format("YYYY-MM-DD HH:mm");
+                    return time == "Invalid date" ? "--" : time;
+                }
             }],
             quota: [{
                 value: 'apdex',
@@ -724,12 +744,14 @@ export default {
                 value: 'displayName',
                 checked: true,
                 disabled: true,
+                width: 100
             }, {
                 label: locale('首次访问时间'),
                 value: 'firstViewTimestamp',
                 checked: true,
                 disabled: true,
-                sorter: (a, b) => a.lastTime - b.lastTime,
+                width: 250,
+                sorter: (a, b) => a.firstViewTimestamp - b.firstViewTimestamp,
                 render(text, record, index) {
                     const time = moment(Number(text)).format("YYYY-MM-DD HH:mm");
                     return time == "Invalid date" ? "--" : time;
@@ -739,6 +761,7 @@ export default {
                 value: 'lastTime',
                 checked: true,
                 disabled: true,
+                width: 250,
                 sorter: (a, b) => a.lastTime - b.lastTime,
                 render(text, record, index) {
                     const time = moment(Number(text)).format("YYYY-MM-DD HH:mm");
@@ -748,12 +771,14 @@ export default {
                 label: locale('会话数'),
                 value: 'sessionCount',
                 checked: true,
+                width: 150,
                 sorter: (a, b) => a.sessionCount - b.sessionCount,
             }, {
                 label: locale('用户ID'),
                 value: 'userId',
                 checked: false,
                 disabled: false,
+                width: 150,
             }],
             quota: []
         }
@@ -765,21 +790,34 @@ export default {
                 value: 'displayName',
                 checked: true,
                 disabled: true,
+                width: 150,
             },{
                 label: locale('首次访问时间'),
                 value: 'firstViewTimestamp',
                 checked: true,
                 disabled: true,
+                width: 250,
+                sorter: (a, b) => a.firstViewTimestamp - b.firstViewTimestamp,
+                render(text, record, index) {
+                    const time = moment(Number(text)).format("YYYY-MM-DD HH:mm");
+                    return time == "Invalid date" ? "--" : time;
+                }
             }, {
                 label: locale('最后访问时间'),
                 value: 'lastTime',
                 checked: true,
                 disabled: true,
+                width: 250,
                 sorter: (a, b) => a.lastTime - b.lastTime,
+                render(text, record, index) {
+                    const time = moment(Number(text)).format("YYYY-MM-DD HH:mm");
+                    return time == "Invalid date" ? "--" : time;
+                }
             }, {
                 label: locale('会话数'),
                 value: 'sessionCount',
                 checked: true,
+                width: 100,
                 sorter: (a, b) => a.sessionCount - b.sessionCount,
             }, 
             // {

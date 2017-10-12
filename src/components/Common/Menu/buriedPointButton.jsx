@@ -23,7 +23,6 @@ export default class PointButton extends React.Component {
         document.cookie = "uyun-appId=" + appId;
         // document.cookie = "uyun-deploy-code=" + encodeURIComponent(code);
         document.cookie = "uyun-platform=" + platform;
-        console.log('-----------',encodeURIComponent(this.filterUrl('http://www.uyunsoft.cn/kb')));
     }
     filterUrl(url : any) : string {
         let filter = /^http(s|)/g;

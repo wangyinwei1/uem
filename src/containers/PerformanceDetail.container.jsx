@@ -27,7 +27,7 @@ export default class PerformanceDetail extends React.Component {
             if (uiType == 'H5' || platform == 'pc' ) {
                 // 取specificUrls第一个displayType作为参数
                 // display = specificUrls[0].displayType;
-                this.display = specificUrls !== undefined ? specificUrls[0].displayType : 'page';
+                this.display = specificUrls !== undefined && specificUrls.length > 0 ? specificUrls[0].displayType : 'page';
             } else {
                 this.display = displayType !== undefined ? displayType : '' ;
             }
@@ -37,7 +37,7 @@ export default class PerformanceDetail extends React.Component {
     @computed get getPath(){
             // const { path, specificUrls } = this.props.data;
         if(this.path == '' ){
-            if (this.props.data.hasOwnProperty('specificUrls') ) {
+            if (this.props.data.hasOwnProperty('specificUrls') && this.props.data.specificUrls.length > 0 ) {
                 this.path = this.props.data.specificUrls[0].url;
         } else {
             if(this.props.data.hasOwnProperty('path'))
@@ -95,7 +95,6 @@ export default class PerformanceDetail extends React.Component {
         }else{
             isMarked = 0;
         }
-        console.log('tagtype是-----',tagType,isMarked);
         onGetOperInfo({
             operType,
             selector,
@@ -126,6 +125,7 @@ export default class PerformanceDetail extends React.Component {
             isMarked : isMarked,
             path: this.getPath,
             displayType: this.displayType,
+            performanceType: type,
         });
     }
 

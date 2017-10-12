@@ -36,7 +36,8 @@ export default class UserTrace extends React.Component {
     }, {
         label: '响应时间',
         value: 'rspTime'
-    }]; 
+    }];
+
     detailInfo = [{
         label: '入口来源',
         value: 'referrer'
@@ -60,7 +61,7 @@ export default class UserTrace extends React.Component {
         const {
             traceInfo
         } = this.props.data;
-        return traceInfo.map(item => {
+        return traceInfo.reverse().map(item => {
             return (
                 <div className={styles['trace-box-wrap']}>
                     <div>{item.page}</div>
@@ -216,6 +217,7 @@ export default class UserTrace extends React.Component {
                         })} onClick={this.toggle.bind(this)}></i>
                     </div>
                     {this.renderTimeline()}
+                    <span className={cls(styles['content-start'], { 'dn' : !this.state.toggleShow })}>会话开始</span>
                 </div>
             </div>
         );

@@ -46,6 +46,7 @@ export default {
         selector: undefined,
         isMarked: undefined,
         pageIndex: undefined,
+        performanceType: undefined,
         version: getVersion(),
         ...payload
     }),

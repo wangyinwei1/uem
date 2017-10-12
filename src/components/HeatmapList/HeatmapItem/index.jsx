@@ -6,7 +6,7 @@ export default class HeatmapItem extends React.Component {
         const { data, appId, platform, theme } = this.props;
         return (
             <div className={styles['heatmap-item-wrap']}>
-                <a href={`${process.env.NODE_ENV === 'development' ? 'http://web.uyundev.cn' : ''}/buriedPoint/heatmapDetail.html?id=${appId}&pageUrl=${data.page}&targetUrl=${data.url}&platform=${platform}&theme=${theme}&version=${'undefined'}`} 
+                <a href={`${process.env.NODE_ENV === 'development' ? 'http://web.uyundev.cn' : ''}/buriedPoint/heatmapDetail.html?id=${appId}&pageUrl=${encodeURIComponent(data.page)}&targetUrl=${encodeURIComponent(data.url)}&platform=${platform}&theme=${theme}&version=${''}`} 
                 target="_blank" 
                 className={styles['heatmap-item']} 
                 style={{

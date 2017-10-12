@@ -87,7 +87,9 @@ class ErrorTrend extends Component {
             series: [
                 {
                     name: locale('错误数'),
-                    data: trend.errorCount
+                    type: 'bar',
+                    data: trend.errorCount,
+                    yAxisIndex: 1
                 },
                 {
                     name: locale('点击数'),

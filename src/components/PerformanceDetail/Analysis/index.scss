@@ -129,6 +129,11 @@
                 text-align: left;
                 line-height: 1.5;
             }
+            .ant-table-placeholder {
+                background: rgba(13,63,103,.89);
+                border-bottom: rgba(13,63,103,.89);
+                color: #fff;
+            }
         }
     }
     .btns {
