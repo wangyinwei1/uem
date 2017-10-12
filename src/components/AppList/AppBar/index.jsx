@@ -46,15 +46,17 @@ class AppsBar extends Component {
     }
     // 新建应用
     addApp() {
-        const { addApp } = this.props;
+        const { addApp, chooseApp, setAppInfo } = this.props;
         const { validateFields } = this.props.form;
         validateFields((err, values) => {
             if (!err) {
                 addApp(values).then(res => {
+                    
                     if (res.isExists || res.isExists === 'true') {
                         message.error(locale('应用已存在'));
                     } else {
-                        // message.success('应用创建成功');
+                        message.success('应用创建成功');
+                        // chooseApp({appId: res.appId})
                         this.toggleAddAppModal();
                     }
                 });

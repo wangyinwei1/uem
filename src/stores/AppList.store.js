@@ -77,6 +77,7 @@ class AppListStore {
     }
     @action onDelApp = async payload => {
         try {
+            this.appListMenu = this.appListMenu.filter(item => item.appId !== payload.appId)
             const data = await Service.delApp(payload);
             this.onGetApps();
             return data;
@@ -86,7 +87,15 @@ class AppListStore {
     }
     @action onAddApp = async payload => {
         try {
+            
             const data = await Service.addApp(payload);
+            this.appListMenu = [
+                {
+                    ...payload,
+                    ...data
+                },
+                ...this.appListMenu
+            ];
             this.onGetApps();
             return data;
         } catch (error) {

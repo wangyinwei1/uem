@@ -45,12 +45,14 @@ export default class AppItem extends React.PureComponent {
         this.noEvent(e);
     }
     delApp() {
-        this.props.delApp({
+        const {delApp, setAppInfo} = this.props;
+        delApp({
             appId: this.props.currentAppId
         }).then(res => {
             this.setState({
                 showDelAppModal: false
             });
+            setAppInfo(null)
         });
     }
     deployApp(e) {

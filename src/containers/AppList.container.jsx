@@ -35,7 +35,8 @@ export default class AppList extends React.Component {
 
             // action
             onChooseApp,
-            onChoosePlatform
+            onChoosePlatform,
+            setAppInfo
         } = this.props.frameStore;
         const {
             appList,
@@ -59,6 +60,7 @@ export default class AppList extends React.Component {
                     sortBy={onSortBy}
                     sortKey={sortKey}
                     chartOrTable={this.selectChartOrTable.bind(this)}
+                    chooseApp={onChooseApp}
                 />
                 <Apps
                     loading={loading}
@@ -68,6 +70,7 @@ export default class AppList extends React.Component {
                     chooseApp={onChooseApp}
                     choosePlatform={onChoosePlatform}
                     radioStatus={this.state.chartOrTable}
+                    setAppInfo={setAppInfo}
                 />
                 <Pagination
                     showTotal={total => '总共 ' + total + ' 个应用'}

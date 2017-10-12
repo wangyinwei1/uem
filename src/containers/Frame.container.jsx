@@ -14,9 +14,11 @@ import {
 class Frame extends React.Component {
     componentDidMount() {
         const { onGetApps } = this.props.appListStore;
+        const { onGetAppInfomation } = this.props.frameStore;
         onGetApps({
             pageSize: 100,
         }, 'appListMenu');
+        onGetAppInfomation();
     }
     componentWillReceiveProps(nextProps) {
     }
@@ -27,6 +29,7 @@ class Frame extends React.Component {
         const module = this.takeModuleName(this.props.location.pathname);
         const {
             appId,
+            appInfo,
             platform,
             timeType,
             appAllVersions,
@@ -48,6 +51,7 @@ class Frame extends React.Component {
                     appList={appListMenu}
                     chooseApp={onChooseApp}
                     choosePlatform={onChoosePlatform}
+                    appInfo={appInfo}
                 />
                 <div className="container">
                     <Crumb

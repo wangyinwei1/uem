@@ -1,5 +1,5 @@
-import { observable, action, runInAction,autorun } from 'mobx';
-import { default as CommonService  } from '../services/CommonInterface.service';
+import { observable, action, runInAction, autorun } from 'mobx';
+import { default as CommonService } from '../services/CommonInterface.service';
 import { default as SettingService } from '../services/Setting.service';
 import {
     getTimeType,
@@ -17,29 +17,33 @@ class FrameStore {
     @observable timeType = getTimeType();
     @observable theme = 'blue';
     @observable appAllVersions = [];
+    // {"addTime":1487646979330,"appName":"113kb","appId":"2222","url":"http://10.1.51.113:8080/kb/dashboard.action","status":1}
+    // appInfo应该是当前app的info，当添加一个新应用之后，也要更新appInfo
     @observable appInfo = {};
 
     constructor() {
     }
 
     @action onChooseApp = payload => {
-        this.appId = payload.appId;
         sessionStorage.setItem('UEM_appId', payload.appId);
         this.onGetAppInfomation(payload);
     }
     // 取得app的url，存入localStorage中
     @action onGetAppInfomation = async payload => {
-        try{
-            const appId = payload.appId;
-            const data = await SettingService.getAppInfo({
-                appId: appId
-            });
-            runInAction(()=>{
-                this.appInfo = data;
-                localStorage.setItem('appUrl',data.url);
-            })
-        }catch(e){
-            throw e;
+        const appId = typeof payload === 'undefined' ? this.appId : payload.appId;
+        if (appId) {
+            try {
+                const data = await SettingService.getAppInfo({
+                    appId: appId
+                });
+                runInAction(() => {
+                    this.appId = appId;
+                    this.appInfo = data || {};
+                    localStorage.setItem('appUrl', data.url);
+                })
+            } catch (e) {
+                throw e;
+            }
         }
     }
 
@@ -56,14 +60,14 @@ class FrameStore {
         sessionStorage.setItem('UEM_timeType', JSON.stringify(timeType));
     }
     @action onChooseVersion = payload => {
-        this.appVersion =  payload.version;
+        this.appVersion = payload.version;
         sessionStorage.setItem('UEM_appVersion', this.appVersion);
     }
     @action onChangeTheme = payload => {
         this.theme = payload;
     }
     @action onGetAppVersion = async payload => {
-        try{
+        try {
             const data = await CommonService.getAppVersion({
                 ...payload
             });
@@ -71,8 +75,18 @@ class FrameStore {
                 this.appAllVersions = data;
             });
             return data;
-        }catch(e){
+        } catch (e) {
             throw e;
+        }
+    }
+    // 添加或删除一个应用之后，要更新appInfo的值
+    @action setAppInfo = (appInfo) => {
+        if (!appInfo) {
+            this.appInfo = {};
+            this.appId = '';
+            sessionStorage.removeItem('UEM_appId')
+        } else {
+            this.appInfo = appInfo;
         }
     }
 }
