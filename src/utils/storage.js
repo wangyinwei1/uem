@@ -33,6 +33,7 @@ export function getColOptions(type) {
                 'uv'
             ], [
                 'operType',
+                'path',
                 'apdex',
                 'thruput',
                 'errorCount',
@@ -62,6 +63,8 @@ export function getColOptions(type) {
                 'uv'
             ], [
                 'operType',
+                'operName',
+                'srcName',
                 'apdex',
                 'thruput',
                 'errorCount',

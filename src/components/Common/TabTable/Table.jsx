@@ -87,12 +87,17 @@ export default class Table extends React.Component {
     }
     rowClickHandler(record, index, event) {
         const { type } = this.props;
-        const tag = type === 'PerformanceBrowse' || type === 'PerformanceInteractive' || type === 'PerformanceInteractiveMobile';
-        // 调试用，正式情况下取消注释
-        // if (!Boolean(record.operType) && tag) {
-        //     message.warning(locale('暂无数据'));
-        //     return false;
-        // }
+        const browseTag = type === 'PerformanceBrowse' || type === 'PerformanceInteractiveMobile';
+        const interactiveTag = type === 'PerformanceInteractive';
+        // 某些条件下，点击不进入详情页
+        if (!Boolean(record.operType) && browseTag) {
+            message.warning(locale('暂无数据'));
+            return false;
+        }
+        if (!Boolean(record.displayType) && interactiveTag) {
+            message.warning(locale('暂无数据'));
+            return false;
+        }
         if (this.index === index) {
             return false;
         }

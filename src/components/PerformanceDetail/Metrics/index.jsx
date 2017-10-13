@@ -51,7 +51,7 @@ export default class Metrics extends React.Component {
                 }
                 } 
             }
-            console.log('arr是',arr);
+            // console.log('arr是',arr);
             return arr.map(item =>
                 <li key={item.label}>
                     <dl>
@@ -75,7 +75,7 @@ export default class Metrics extends React.Component {
                 }
                 } 
             }
-            console.log('arr是',arr);
+            // console.log('arr是',arr);
             return arr.map(item =>
                 <li key={item.label}>
                     <dl>

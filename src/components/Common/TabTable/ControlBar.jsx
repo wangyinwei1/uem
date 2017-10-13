@@ -61,6 +61,7 @@ export default class ControlBar extends React.Component {
     }
     makeOptionsContent() {
         const { type, tagType } = this.props;
+        console.log(this.options);
         return (
             <dl className={styles['col-option']}>
                 <dt>{locale('常规')}</dt>

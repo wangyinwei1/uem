@@ -171,9 +171,9 @@ export default {
             },{
                 value: 'path',
                 label: 'URL',
-                width:200,
+                width: 150,
                 checkd: true,
-                disabled: false
+                disabled: true
             }],
             quota: [{
                 value: 'apdex',
@@ -263,18 +263,26 @@ export default {
                 checked: true,
                 disabled: true,
                 // fixed: 'left'
-            }, {
+            },
+            {
+                value: 'srcName',
+                label: locale('所在界面'),
+                checked: true,
+                disabled: false,
+                width: 100,
+            },
+            {
                 value: 'path',
                 label: 'URL',
                 checked: true,
                 disabled: false,
-                width: 400,
+                width: 250,
             }, {
                 value: 'match',
                 label: locale('URL规则'),
                 checked: true,
                 disabled: false,
-                width: 400,
+                width: 250,
             }, {
                 value: 'creator',
                 label: locale('创建人'),
@@ -316,7 +324,22 @@ export default {
                 checked: true,
                 disabled: false,
                 width: 100,
-                render: (text, record, index) => text ? text : '--',
+                render(text, record, index) {
+                    // const config = UYUN.getTheme("performanceChart-table1");
+                    const config = [
+                        {
+                            color: "#ff5252",
+                            text: locale('不满意')
+                        }, {
+                            color: "#ffec0c",
+                            text: locale('可接受')
+                        }, {
+                            color: "#66dc6b",
+                            text: locale('满意')
+                        }
+                    ];
+                    return tableProgress(record.apdex, record.satisfactionIndex, config);
+                }
             }, {
                 value: 'thruput',
                 label: locale('吞吐率'),
@@ -340,7 +363,7 @@ export default {
                 sorter: (a,b) => a.avgRspTime - b.avgRspTime
             }, {
                 value: 'pv',
-                label: locale('浏览量PV'),
+                label: locale('点击数'),
                 checked: true,
                 disabled: false,
                 width: 100,
@@ -370,13 +393,13 @@ export default {
                 value: 'operName',
                 label: locale('名称'),
                 checked: true,
-                disabled: false,
+                disabled: true,
                 width: 100,
             },{
                 value: 'srcName',
                 label: locale('所在界面'),
                 checked: true,
-                disabled: false,
+                disabled: true,
                 width: 100,
             },{
                 value: 'page',
@@ -594,6 +617,22 @@ export default {
                     checked: false,
                     disabled: false,
                     width: 200,
+                    render(text, record, index) {
+                        // const config = UYUN.getTheme("performanceChart-table1");
+                        const config = [
+                            {
+                                color: "#ff5252",
+                                text: locale('不满意')
+                            }, {
+                                color: "#ffec0c",
+                                text: locale('可接受')
+                            }, {
+                                color: "#66dc6b",
+                                text: locale('满意')
+                            }
+                        ];
+                        return tableProgress(record.apdex, record.satisfactionIndex, config);
+                    }
                 }, {
                     value: 'avgRspTime',
                     label: locale('平均响应时间(s)'),
@@ -740,7 +779,7 @@ export default {
         tabName: locale('已登录'),
         options: {
             normal: [{
-                label: locale('用户名'),
+                label: locale('用户ID'),
                 value: 'displayName',
                 checked: true,
                 disabled: true,
