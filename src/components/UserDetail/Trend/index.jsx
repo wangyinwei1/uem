@@ -38,7 +38,6 @@ export default class Trend extends React.Component {
                     return immutable.Map(val).merge({'itemStyle': itemStyle }).toJS()
                 })
             }).toJS();
-        // console.log('newConfig是---',newConfig.toJS(),newValue);
         changeCurrent({
             current: sessionCount[dataIndex],
             config: newConfig
@@ -53,34 +52,14 @@ export default class Trend extends React.Component {
             sessionCount,
             newClickConfig
         } = this.props;
-        console.log('newConfig-----',newClickConfig);
         const initialConfig = config.get('default').mergeDeep(config.get('trend'))
                         .setIn(['xAxis', 0, 'data'], sessionCount.map(item => moment(item.time).format('MM-DD')))
                         .setIn(['series', 0, 'data'], sessionCount.map(item => item.value))
                         .toJS();
-        // const option = Object.keys(newClickConfig).length > 0 ? newClickConfig : initialConfig;
-        const option = initialConfig; 
+        const option = Object.keys(newClickConfig).length > 0 ? newClickConfig : initialConfig;
+        // const option = initialConfig; 
         // console.log('newConfig, initialConfig------------',newClickConfig, initialConfig);        
     // debugger
-        // console.log('sessionCount',sessionCount);
-        // originSessionCount = immutable.fromJS(sessionCount);
-        // // 最后一条条形图的颜色不同
-        // if(sessionCount.length > 0) {
-        //     const value = originSessionCount[sessionCount.length-2].value;
-        //     const lastBarValue = value !== undefined && typeof(value) !== 'object' ? sessionCount[sessionCount.length-2].value : '';
-        //     debugger
-        //     const updateValue ={
-        //     value: lastBarValue,
-        //     itemStyle: {
-        //         mormal: {
-        //             color: '#9bcb29'
-        //         }
-        //     }
-        // }
-        // _.assign(sessionCount[sessionCount.length-2], {'value' : updateValue});
-        // console.log('sessionCount----',sessionCount);
-        // }
-       
         return (
             <div className={styles['trend']}>
                 <div className={cls('tile-body')}>

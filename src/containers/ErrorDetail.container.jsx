@@ -83,12 +83,6 @@ export default class ErrorDetail extends React.Component {
                     changeUser={onChangeUser}
                     time={time}
                 />
-                <pre>
-                    <h3>从二级表格传进来的数据</h3>
-                    {JSON.stringify(this.props.data, null, 4)}
-                    <h3>错误详情页数据</h3>
-                    {JSON.stringify(this.props.errorDetailStore,null,4)}
-                </pre>
             </DetailWrap>
         );
     }

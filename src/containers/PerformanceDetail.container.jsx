@@ -214,27 +214,21 @@ export default class PerformanceDetail extends React.Component {
                         <FlowChart threadInfo={info} />
                     }
                 <Trend itemId={itemId} trend={trend} uiType={info.uiType} />
-                <Analysis
-                    sampleAnalyzeData={sampleAnalyzeData}
-                    uiType={uiType}
-                    type={type}
-                    itemId={itemId}
-                    threadInfo={threadInfo}
-                    baseInfo={sessionTrace.baseInfo}
-                    samplesList={samplesList}
-                    activeId={activeId}
-                    sessionTrace={sessionTrace}
-                    analyzeData={threadInfo}
-                    changeUser={onChangeUser}
-                    changeType={onChangeType}
-                    changeResourcePage={onChangeResourcePage}
-                />
-                <pre>
-                    <h3>从二级表格传进来的数据</h3>
-                    {JSON.stringify(this.props.data, null, 4)}
-                    <h3>交互详情页数据</h3>
-                    {JSON.stringify(this.props.performanceDetailStore, null, 4)}
-                </pre>
+                {samplesList.length > 0 && <Analysis
+                        sampleAnalyzeData={sampleAnalyzeData}
+                        uiType={uiType}
+                        type={type}
+                        itemId={itemId}
+                        threadInfo={threadInfo}
+                        baseInfo={sessionTrace.baseInfo}
+                        samplesList={samplesList}
+                        activeId={activeId}
+                        sessionTrace={sessionTrace}
+                        analyzeData={threadInfo}
+                        changeUser={onChangeUser}
+                        changeType={onChangeType}
+                        changeResourcePage={onChangeResourcePage}
+                    />}
             </DetailWrap>
         );
     }

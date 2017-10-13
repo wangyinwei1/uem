@@ -14,7 +14,6 @@ export default class SidePanelItem extends React.Component {
     // }
     constructor(props) {
         super(props);
-
         this.module = props.module;
         this.closeSidePanel = this.closeSidePanel.bind(this);
     }
