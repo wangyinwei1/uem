@@ -72,7 +72,8 @@ export default class Table extends React.Component {
     }
     selectRow(key, row) {
         const rows = row.map(item => item.summaryId);
-        this.props.changeRows(rows);
+        const errorType = row.map(item => item.errorType);
+        this.props.changeRows(rows,errorType);
     }
     rowSelection() {
         const { type, tagType } = this.props;

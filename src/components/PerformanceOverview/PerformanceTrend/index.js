@@ -48,7 +48,7 @@ class PerformanceTrend extends Component {
             series: [
                 {name: locale('浏览量PV'),data: trend.pv},
                 {name: locale('点击数'),data: trend.clickNum},
-                {name: locale('平均响应时间'), data: trend.avgRspTime}
+                {name: locale('平均响应时间'), data: trend.avgRspTime,areaStyle: {normal: {}},yAxisIndex: 1}
             ]
         })
         // pc的apdex的配置

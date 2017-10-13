@@ -62,7 +62,9 @@ class UserTrend extends Component {
                 },
                 {
                     name: locale('会话数'),
-                    data: trend.sessionCount
+                    type: 'bar',
+                    data: trend.sessionCount,
+                    yAxisIndex: 1
                 }
             ]
         })

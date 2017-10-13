@@ -4,6 +4,7 @@ import {
 } from '../../Common/Chart';
 import config from './config';
 import styles from './index.scss';
+import immutable from 'immutable';
 
 class BarChart2 extends BarChart {
     handleClickEcharts(params) {
@@ -22,12 +23,33 @@ export default class Trend extends React.Component {
             current: sessionCount[dataIndex]
         });
     }
+    // componentDidMount(){
+    //     console.log('didMount时的sessionCount',this.props.sessionCount);
+    // }
     render() {
         const { 
             itemId,
             sessionCount,
         } = this.props;
-        
+        console.log('sessionCount',sessionCount);
+        // originSessionCount = immutable.fromJS(sessionCount);
+        // // 最后一条条形图的颜色不同
+        // if(sessionCount.length > 0) {
+        //     const value = originSessionCount[sessionCount.length-2].value;
+        //     const lastBarValue = value !== undefined && typeof(value) !== 'object' ? sessionCount[sessionCount.length-2].value : '';
+        //     debugger
+        //     const updateValue ={
+        //     value: lastBarValue,
+        //     itemStyle: {
+        //         mormal: {
+        //             color: '#9bcb29'
+        //         }
+        //     }
+        // }
+        // _.assign(sessionCount[sessionCount.length-2], {'value' : updateValue});
+        // console.log('sessionCount----',sessionCount);
+        // }
+       
         return (
             <div className={styles['trend']}>
                 <div className={cls('tile-body')}>

@@ -36,10 +36,10 @@ export default class ErrorTable extends React.Component {
             resTime
         });
     }
-    changeRows(rows) {
+    changeRows(rows,errorType) {
         const { onChangeRows } = this.props.errorTableStore;
         onChangeRows({
-            rows
+            rows,errorType
         });
     }
     resolveRow() {

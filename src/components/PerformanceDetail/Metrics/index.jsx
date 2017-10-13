@@ -112,7 +112,7 @@ export default class Metrics extends React.Component {
                             <dl>
                                 <dt>URL :</dt>
                                  {
-                                props.specificUrls ?
+                                props.specificUrls && props.specificUrls.length > 0 ?
                                  <dd>
                                     <Select labelInValue defaultValue={{key:props.specificUrls[0].url}} style={{ width: 120 }} onChange={this.handleSelectChange.bind(this)}>
                                         {props.specificUrls.map((item,index) => {
