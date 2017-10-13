@@ -31,7 +31,9 @@ export default class UserDetail extends React.Component {
             trace,
             sessionCount,
             onChangeCurrent,
+            newClickConfig
         } = this.props.userDetailStore;
+        // debugger
         const {
             displayName,
             userId,
@@ -47,6 +49,7 @@ export default class UserDetail extends React.Component {
                     sessionCount={sessionCount}
                     itemId={itemId}
                     changeCurrent={onChangeCurrent}
+                    newClickConfig = { newClickConfig }
                 />
                 <Trace 
                     data={trace}

@@ -4,9 +4,10 @@ import styles from './index.scss';
 export default class HeatmapItem extends React.Component {
     render() {
         const { data, appId, platform, theme } = this.props;
+        const language = localStorage.getItem('UEM_lang');
         return (
             <div className={styles['heatmap-item-wrap']}>
-                <a href={`${process.env.NODE_ENV === 'development' ? 'http://web.uyundev.cn' : ''}/buriedPoint/heatmapDetail.html?id=${appId}&pageUrl=${encodeURIComponent(data.page)}&targetUrl=${encodeURIComponent(data.url)}&platform=${platform}&theme=${theme}&version=${''}`} 
+                <a href={`${process.env.NODE_ENV === 'development' ? 'http://web.uyundev.cn' : ''}/buriedPoint/heatmapDetail.html?id=${appId}&pageUrl=${encodeURIComponent(data.page)}&targetUrl=${encodeURIComponent(data.url)}&platform=${platform}&theme=${theme}&version=${''}&protocol=${location.protocol.replace(':', '')}&language=${language}`} 
                 target="_blank" 
                 className={styles['heatmap-item']} 
                 style={{

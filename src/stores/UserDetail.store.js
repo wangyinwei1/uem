@@ -14,14 +14,17 @@ class UserDetailStore {
     @observable sessionCount = [];
     @observable sessionList = [];
     @observable trace = [];
-
+    @observable newClickConfig = {};
     @action onChangeUID = payload => {
         this.uId = payload.uId;
         this.trace = [];
         this.onGetSessionCount();
     }
     @action onChangeCurrent = payload => {
+        // debugger
         this.current = payload.current;
+        // 点击之后更新条形图的配置。被点中的那条颜色不同
+        this.newClickConfig = payload.config;
         this.trace = [];
         this.onGetUserSessionsList({
             startTime: payload.current.time,
