@@ -45,6 +45,30 @@
     line-height: 30px;
 }
 
+.create-app-success-tip {
+    margin: 10px auto 40px auto;
+    text-align: center;
+    line-height: 23px;
+    font-size: 16px;
+    color: #fff;
+    .success-icon {
+        &:before {
+            color: #65da1a
+        }
+    }
+}
+.btn-wrap-success {
+    padding-bottom: 20px;
+    text-align: center;
+    line-height: 35px;
+     :global(.btn) {
+        margin-left: 20px;
+        &:first-child {
+            margin-left: 0;
+        }
+    }
+}
+
 .btn-wrap {
     margin-top: 20px;
     text-align: center;

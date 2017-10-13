@@ -16,6 +16,7 @@ export default class UserDataModel extends Component {
         this.onDelete = this.onDelete.bind(this);
         this.onOK = this.onOK.bind(this);
         this.onCancel = this.onCancel.bind(this);
+        this.handleTypeOfDataChange = this.handleTypeOfDataChange.bind(this);
         this.state = {
             visible: false,
             deleteModalVisible: false,
@@ -43,11 +44,12 @@ export default class UserDataModel extends Component {
     }
     openOperationModal(type, record) {
         const { setFieldsValue } = this.operationForm;
+
         if (type === 'edit' && record) {
             this.setState({
                 title: locale('编辑属性'),
                 isKeyDisable: true,
-                isCalculationDisable: false
+                isCalculationDisable: record.typeOfData === 'text'
             })
             setFieldsValue(record);
         } else if (type === 'add') {
@@ -80,6 +82,20 @@ export default class UserDataModel extends Component {
             message.error(result.message)
         })
 
+    }
+    handleTypeOfDataChange(value) {
+        const { setFieldsValue } = this.operationForm;
+        if(value === 'text') {
+            this.setState({
+                isCalculationDisable: true
+            })
+            
+            setFieldsValue({calculation: 'override'})
+        } else if(value === 'number') {
+            this.setState({
+                isCalculationDisable: false
+            })
+        }
     }
     // {"data":[{"calculation":"override","description":"213123","displayName":"232","key":"232","typeOfData":"text"},{"calculation":"override","description":"test","displayName":"test","key":"test","typeOfData":"text"},{"calculation":"counter","description":"test2","displayName":"test2","key":"test2","typeOfData":"number"}],"status":false,"total":3}
     render() {
@@ -142,6 +158,7 @@ export default class UserDataModel extends Component {
                     title={title}
                     isKeyDisable={isKeyDisable}
                     isCalculationDisable={isCalculationDisable}
+                    handleTypeOfDataChange={this.handleTypeOfDataChange}
                 />
             </div>
         )
@@ -149,7 +166,7 @@ export default class UserDataModel extends Component {
 }
 
 const OpeartionFormModal = Form.create()(props => {
-    const { form, visible, onOK, row = {}, onCancel, title, isKeyDisable, isCalculationDisable } = props
+    const { form, visible, onOK, row = {}, onCancel, title, isKeyDisable, isCalculationDisable, handleTypeOfDataChange } = props
     const { getFieldDecorator } = form;
     return (
         <Modal
@@ -173,12 +190,14 @@ const OpeartionFormModal = Form.create()(props => {
                     })(<Input />)}
                 </FormItem>
                 <FormItem label={locale("数据类型")}>
-                    {getFieldDecorator('typeOfData')(
-                        <Select dropdownClassName={styles['override-dropdown']}>
+                    {getFieldDecorator('typeOfData', {
+                        initialValue: 'text'
+                    })(
+                        <Select dropdownClassName={styles['override-dropdown']} onChange={handleTypeOfDataChange}>
                             <Option value="text">{locale('文本')}</Option>
                             <Option value="number">{locale('数字')}</Option>
                         </Select>
-                    )}
+                        )}
                 </FormItem>
                 <FormItem label={locale("计算方式")}>
                     {getFieldDecorator('calculation', {

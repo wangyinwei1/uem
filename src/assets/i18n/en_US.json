@@ -336,6 +336,8 @@
     "回调": "Callback",
     "apdex" : "Apdex",
     "pv" : "PV",
-    "uv" : "UV"
+    "uv" : "UV",
+    "应用创建成功": "Add app success",
+    "马上去部署": "Deploy immediately"
     
 }

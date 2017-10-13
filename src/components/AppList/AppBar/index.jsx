@@ -7,8 +7,10 @@ import {
     Spin,
     Form,
     Input,
-    Radio
+    Radio,
+    Icon
 } from 'antd';
+import { withRouter } from 'react-router-dom';
 import styles from './index.scss';
 
 const RadioGroup = Radio.Group;
@@ -33,9 +35,12 @@ const menuList = [{
 class AppsBar extends Component {
     constructor(props) {
         super(props);
+        this.toggleAddAppSuccessModal = this.toggleAddAppSuccessModal.bind(this);
+        this.deployApp = this.deployApp.bind(this);
         this.state = {
             showAddAppModal: false,
-            activeRadio: 'chart'
+            activeRadio: 'chart',
+            showAddAppSuccessModal: false
         };
     }
     // 显隐 Modal
@@ -44,22 +49,37 @@ class AppsBar extends Component {
             showAddAppModal: !this.state.showAddAppModal
         });
     }
+    toggleAddAppSuccessModal(show, appId) {
+        this.setState({
+            showAddAppSuccessModal: show
+        })
+        this.appId = appId;
+    }
     // 新建应用
     addApp() {
-        const { addApp } = this.props;
+        const { addApp, chooseApp, setAppInfo } = this.props;
+
         const { validateFields } = this.props.form;
         validateFields((err, values) => {
             if (!err) {
                 addApp(values).then(res => {
+
                     if (res.isExists || res.isExists === 'true') {
                         message.error(locale('应用已存在'));
                     } else {
                         // message.success('应用创建成功');
+                        // chooseApp({appId: res.appId})
                         this.toggleAddAppModal();
+                        this.toggleAddAppSuccessModal(true, res.appId)
                     }
                 });
             }
         });
+    }
+    deployApp() {
+        this.props.chooseApp({ appId: this.appId })
+        this.toggleAddAppSuccessModal(false)
+        this.props.history.push('/setting')
     }
     handleSelectRadio(e) {
         this.setState({
@@ -71,7 +91,7 @@ class AppsBar extends Component {
     render() {
         const { sortBy, sortKey } = this.props;
         const { getFieldDecorator } = this.props.form;
-        const { showAddAppModal } = this.state;
+        const { showAddAppModal, showAddAppSuccessModal } = this.state;
         return (
             <div className={styles['apps-bar']}>
                 <div className={cls('btn', styles['create-app'])} onClick={this.toggleAddAppModal.bind(this)}><i className={cls('fa fa-plus')}></i>{locale('应用')}</div>
@@ -95,6 +115,15 @@ class AppsBar extends Component {
                     <RadioButton value="chart">{locale('图表')}</RadioButton>
                     <RadioButton value="table">{locale('列表')}</RadioButton>
                 </RadioGroup>
+                <Modal footer={null} visible={showAddAppSuccessModal} onCancel={() => this.toggleAddAppSuccessModal(false)}>
+                    <div className={styles['create-app-form-wrap']}>
+                        <div className={styles['create-app-success-tip']}><i className={cls('iconfont icon-submit', styles['success-icon'])} />{locale('应用创建成功')}</div>
+                    </div>
+                    <div className={styles['btn-wrap-success']}>
+                        <div className={cls('btn')} onClick={this.deployApp}>{locale('马上去部署')}</div>
+                        <div className={cls('btn')} onClick={() => this.toggleAddAppSuccessModal(false)}>{locale('取消')}</div>
+                    </div>
+                </Modal>
 
                 <Modal footer={null} visible={showAddAppModal} onCancel={this.toggleAddAppModal.bind(this)}>
                     <div className={styles['create-app-form-wrap']}>
@@ -116,7 +145,7 @@ class AppsBar extends Component {
                                 {getFieldDecorator('url', {
                                     rules: [{
                                         required: true,
-                                        max:100,
+                                        max: 100,
                                         pattern: new RegExp("^((https|http|ftp|rtsp|mms)?://)"
                                             + "?(([0-9a-z_!~*'().&=+$%-]+: )?[0-9a-z_!~*'().&=+$%-]+@)?" //ftp的user@
                                             + "(([0-9]{1,3}\\.){3}[0-9]{1,3}" // IP形式的URL- 199.194.52.184
@@ -143,4 +172,4 @@ class AppsBar extends Component {
     }
 }
 
-export default Form.create()(AppsBar);
+export default Form.create()(withRouter(AppsBar))

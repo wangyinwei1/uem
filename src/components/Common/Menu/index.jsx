@@ -31,12 +31,12 @@ export default class Menu extends React.Component {
         e.stopPropagation();
         e.preventDefault();
     }
-    checkApp(path,e) {
+    checkApp(path, e) {
         const { appId } = this.props;
         if (!appId) {
             Message.error(locale('请先选择应用'));
             this.noEvent(e);
-        }else{
+        } else {
             this.setState({
                 itemTo: path
             })
@@ -55,17 +55,17 @@ export default class Menu extends React.Component {
                         }
                         return (
                             <li key={item.name}>
-                                <NavLink exact onClick={this.checkApp.bind(this,item.to)} activeClassName={styles['current']} replace to={item.to}>
+                                <NavLink exact onClick={this.checkApp.bind(this, item.to)} activeClassName={styles['current']} replace to={item.to}>
                                     <i className={cls('iconfont', item.icon)}></i><span>{locale(item.name)}</span>
                                 </NavLink>
                             </li>
                         );
-                    })  
-                } 
+                    })
+                }
             </ul>
         ));
     }
-    chooseApp(appId) {
+    chooseApp = (appId) => {
         const { chooseApp } = this.props;
         chooseApp({
             appId
@@ -83,15 +83,15 @@ export default class Menu extends React.Component {
         });
     }
     appSelect() {
-        const { appId, appList } = this.props;
+        const { appId, appList, appInfo } = this.props;
         if (!appId) {
             return null;
         }
         return (
             <div className={styles['apps-select']}>
-                <Select value={appId} style={{ width: 120 }} onChange={this.chooseApp.bind(this)} getPopupContainer={() => document.getElementById('Menu')}>
+                <Select value={appInfo.appName} style={{ width: 120 }} onChange={this.chooseApp} getPopupContainer={() => document.getElementById('Menu')}>
                     {appList.map(item =>
-                        <Option key={item.appId}>{item.appName}</Option>
+                        <Option value={item.appId} key={item.appId}>{item.appName}</Option>
                     )}
                 </Select>
             </div>
@@ -104,7 +104,7 @@ export default class Menu extends React.Component {
         $win.trigger('resize');
     }
 
-    setTheme(){
+    setTheme() {
         // const { theme, onChangeTheme } = this.props.frameStore;
         localStorage.setItem('UEM_skin', localStorage.getItem('UEM_skin') && localStorage.getItem('UEM_skin') == 'blue' ? 'white' : 'blue');
         document.getElementsByTagName("html")[0].className = localStorage.getItem('UEM_skin');
@@ -112,7 +112,7 @@ export default class Menu extends React.Component {
         // onChangeTheme(localStorage.getItem('UEM_skin'));
     }
     render() {
-        const { appId,platform } = this.props;
+        const { appId, platform } = this.props;
         return (
             <div className={styles['menu']} id='Menu'>
                 <NavLink exact activeClassName={styles['current']} replace to='/app_list'><i className='iconfont icon-qiehuanyingyong'></i>{locale('所有应用')}</NavLink>
@@ -138,7 +138,7 @@ export default class Menu extends React.Component {
                     })}
                 </ul>
                 {this.makeMenus(config.menus)}
-                {appId && <PointButton appId={appId} platform={platform} theme={localStorage.getItem('UEM_skin')}><span>可视化埋点</span></PointButton>} 
+                {appId && <PointButton appId={appId} platform={platform} theme={localStorage.getItem('UEM_skin')}><span>可视化埋点</span></PointButton>}
                 <div className={styles['setting-other-wrap']}>
                     <div className={styles['setting-expand']}><i className='fa fa-fw fa-chevron-left' onClick={this.expand.bind(this)}></i></div>
                     <a target='_blank' onClick={this.setTheme.bind(this)}> <i className='iconfont icon-xiugaishanchuyibiaopankong'></i>{locale('换肤')}</a>

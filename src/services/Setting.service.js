@@ -6,10 +6,12 @@ export default {
         platform: sessionStorage.getItem('UEM_platform')
     }),
 
-    getAppInfo: payload => Request('get', 'app/info/get', {
-        appId: sessionStorage.getItem('UEM_appId'),
-        platform: sessionStorage.getItem('UEM_platform')
-    }),
+    getAppInfo: payload => {
+        return Request('get', 'app/info/get', {
+            appId: (payload && payload.appId) || sessionStorage.getItem('UEM_appId'),
+            platform: sessionStorage.getItem('UEM_platform')
+        })
+    },
 
     updateAppInfo: payload => Request('post', 'app/update', payload),
 

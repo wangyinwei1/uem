@@ -59,6 +59,7 @@ export default class Apps extends React.Component {
                                         appUse={item.appUse}
                                         chooseApp={this.props.chooseApp}
                                         choosePlatform={this.props.choosePlatform}
+                                        setAppInfo={this.props.setAppInfo}
                                     />
                                 );
                             })}
