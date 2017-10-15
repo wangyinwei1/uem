@@ -18,7 +18,7 @@ export default class HeatmapList extends React.Component {
     }
     render() {
         const { appId , platform, theme } = this.props.frameStore;
-        const { dataList } = this.props.heatmapListStore;
+        const { dataList,onDeleteHeatMap } = this.props.heatmapListStore;
         const length = dataList.length;
         // if(length == 0){
         //     message.info('暂无热图')
@@ -41,7 +41,8 @@ export default class HeatmapList extends React.Component {
                         appId={appId} 
                         platform={platform}
                         theme={theme}
-                        data={item} 
+                        data={item}
+                        onDeleteHeatMap={onDeleteHeatMap} 
                     />
                 )}
             </div>

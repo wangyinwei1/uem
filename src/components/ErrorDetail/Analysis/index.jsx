@@ -32,7 +32,7 @@ export default class Analysis extends React.Component {
     }
     render() {
         const { sampleInfo, sampleList, sessionTrace, activeId } = this.props;
-        console.log('this.props',this.props);
+        // console.log('this.props',this.props);
         return (
             <div className={styles['analysis']}>
                 <div className={cls('tile-head')}>{locale('错误分析')}</div>

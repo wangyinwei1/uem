@@ -24,6 +24,21 @@ class HeatmapList {
             throw e;
         }
     }
+
+    @action onDeleteHeatMap = async paylod => {
+        try {
+            const data = await Service.deleteHeatMap({
+                appId: payload.appId,
+                url: payload.url 
+            })
+            if(data.message == 'successful'){
+                this.onGetHeatmapList();
+            }
+        }catch(e){
+            throw(e)
+        }
+    }
+    
 }
 
 const heatmapListStore = new HeatmapList();
