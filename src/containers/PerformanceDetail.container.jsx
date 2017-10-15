@@ -88,6 +88,7 @@ export default class PerformanceDetail extends React.Component {
         } = this.props.data;
         // 点击tabTable的时候，是按'已标记:0 未标记:1'传的，需要反过来.
         // const { tagType } = this.props.performanceInteractiveStore;
+        const { path } = this.props.data;
         const tagType = sessionStorage.getItem('tagType');
         let isMarked;
         if(tagType == 0){
@@ -100,7 +101,8 @@ export default class PerformanceDetail extends React.Component {
             selector,
             text,
             isMarked : isMarked,
-            path: this.getPath,
+            requestPath: this.getPath,
+            path: path,
             performanceType: type,
             displayType: JSON.stringify([this.displayType]),
             // columnCode: JSON.stringify(['clientTime', 'serverTime'])
@@ -110,7 +112,8 @@ export default class PerformanceDetail extends React.Component {
             selector,
             text,
             isMarked : isMarked,
-            path: this.getPath,
+            requestPath: this.getPath,
+            path: path,
             performanceType: type,
             displayType: JSON.stringify([this.displayType]),
             columnCode: uiType === "NATIVE" ?
@@ -118,6 +121,7 @@ export default class PerformanceDetail extends React.Component {
                 JSON.stringify(['clickNum', 'apdexs', 'median', 'avgRspTime', 'percent5', 'thruput', 'clientTime', 'serverTime', 'netWorkTime']),
 
         });
+
         platform == 'pc' && this.getPath == '' || undefined ? message.info('path字段为空') : onGetOperSamplesList({
             operType,
             selector,
