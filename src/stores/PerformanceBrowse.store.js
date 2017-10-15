@@ -17,7 +17,7 @@ class PerformanceBrowseStore {
     @observable searchValue = undefined;
     @observable tagType = 0;
     @observable colOptions = getColOptions('PerformanceBrowse');
-    @observable sortKey = undefined;
+    @observable sortKey = 'pv';
     @observable order = 'descend';
 
     constructor() {

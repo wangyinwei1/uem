@@ -26,6 +26,7 @@ export default {
         endTime: undefined,
         text: undefined,
         operType: undefined,
+        // path取详情页url列表第一个，path取二级列表的path。下同
         path: undefined,
         requestPath: undefined,
         selector: undefined,

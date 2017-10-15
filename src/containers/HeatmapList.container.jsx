@@ -13,6 +13,9 @@ export default class HeatmapList extends React.Component {
         const { onGetHeatmapList } = this.props.heatmapListStore;
         onGetHeatmapList();
     }
+    clickHeatButton(){
+        return document.querySelector('#pointButton').click();
+    }
     render() {
         const { appId , platform, theme } = this.props.frameStore;
         const { dataList } = this.props.heatmapListStore;
@@ -22,7 +25,16 @@ export default class HeatmapList extends React.Component {
         // }
         return (
             <div id="HeatmapList">
-                {length == 0 && <div className={styles['no-heatMap']}>{locale('暂无热力图')}</div>}
+                {length == 0 && <div>
+                    
+                    <div className={styles['no-heatMap']}>
+                        <i className={cls('iconfont icon-jinggao')}></i>
+                        {locale('您还没有定义热图哦，请到埋点界面定义热图')}
+                        <a className={styles['heatButton']} onClick={this.clickHeatButton.bind(this)}>定义热图</a>
+                        </div>
+                    
+                    </div>
+                }
                 {dataList.map(item => 
                     <HeatmapItem
                         key={item.createTime} 

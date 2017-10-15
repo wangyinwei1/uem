@@ -16,7 +16,7 @@ class ErrorTableStore {
     @observable colOptions = getColOptions('ErrorTable');
     @observable rows = [];
     @observable errorType = [];
-    @observable sortKey = undefined;
+    @observable sortKey = 'errorCount';
     @observable order = 'descend';
     get dataList() {
         return this.data.toJS();

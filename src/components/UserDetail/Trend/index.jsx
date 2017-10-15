@@ -56,14 +56,14 @@ export default class Trend extends React.Component {
                         .setIn(['xAxis', 0, 'data'], sessionCount.map(item => moment(item.time).format('MM-DD')))
                         .setIn(['series', 0, 'data'], sessionCount.map(item => item.value))
                         .toJS();
-        const option = Object.keys(newClickConfig).length > 0 ? newClickConfig : initialConfig;
+        // const option = Object.keys(newClickConfig).length > 0 ? newClickConfig : initialConfig;
         // console.log('newConfig, initialConfig------------',newClickConfig, initialConfig);        
         return (
             <div className={styles['trend']}>
                 <div className={cls('tile-body')}>
                     <BarChart2 handleClick={this.clickChart.bind(this)} 
                     chartId={`userTrend-${itemId}`} 
-                    options={option}
+                    options={initialConfig}
                     />
                 </div>
             </div>

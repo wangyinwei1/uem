@@ -338,6 +338,7 @@
     "pv" : "PV",
     "uv" : "UV",
     "应用创建成功": "Add app success",
-    "马上去部署": "Deploy immediately"
+    "马上去部署": "Deploy immediately",
+    "点击": "Click"
     
 }

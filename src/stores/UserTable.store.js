@@ -15,7 +15,7 @@ class UserTableStore {
     @observable searchValue = undefined;
     @observable tagType = 0;
     @observable colOptions = getColOptions('UserTable');
-    @observable sortKey = undefined;
+    @observable sortKey = 'lastTime';
     @observable order = 'descend';
     timeType = getTimeType();
 

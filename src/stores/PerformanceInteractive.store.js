@@ -23,8 +23,8 @@ class PerformanceInteractiveStore {
     @observable tagType = 0;
     @observable colOptions = getColOptions('PerformanceInteractive');
     @observable colOptionsMobile =  getColOptions('PerformanceInteractiveMobile');
-    @observable sortKey = '';
-    @observable order = '';
+    @observable sortKey = 'apdex';
+    @observable order = 'descend';
 //    constructor(){
 //     autorun(() => 
 //         console.log('111111111111111',this.columns)
