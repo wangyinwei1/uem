@@ -19,6 +19,10 @@ export default class TabTable extends React.Component {
         }
         this.props.changeTagType(tagType);
     }
+
+    click(){
+        return $('#pointButton')[0].click()
+    }
     noData() {
         const { type } = this.props;
         switch(type) {
@@ -26,18 +30,29 @@ export default class TabTable extends React.Component {
                 return (
                     <div className={styles['tab-placeholder']}>
                         <h2>{locale('暂时没发现错误哦，我们也支持自定义错误接入，请查阅帮助文档二次开发API的相关说明')}</h2>
+                        <div className={styles['pointButton']}>
+                            {/* <i className={cls("iconfont icon-maidian")}></i> */}
+                            <a href={"src/help/23001_er_ci_kai_fa_xu_qiu.html"} target="_blank">{locale('查阅帮助')}</a>   
+                        </div>
                     </div>
                 );
             case 'UserTable':
                 return (
                     <div className={styles['tab-placeholder']}>
                         <h2>{locale('暂时没有用户哦，我们也支持接入真实用户，请查阅帮助文档二次开发API的相关说明')}</h2>
+                        <div className={styles['pointButton']}>
+                            {/* <i className={cls("iconfont icon-maidian")}></i> */}
+                            <a href={'src/help/1apishuo_ming.html'} target="_blank">{locale('查阅帮助')}</a>   
+                        </div>
                     </div>
                 );
             default: 
                 return (
                     <div className={styles['tab-placeholder']}>
                         <h2>{locale('你还没有进行可视化埋点，无法查看埋点数据')}</h2>
+                        <div className={styles['pointButton']} onClick={this.click.bind(this)} >
+                        <a onclick="document.querySelector('#pointButton').click()">{locale('马上埋点')}</a>
+                        </div>
                     </div>
                 );   
         }

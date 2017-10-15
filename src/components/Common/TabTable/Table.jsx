@@ -94,10 +94,10 @@ export default class Table extends React.Component {
             message.warning(locale('暂无数据'));
             return false;
         }
-        if (!Boolean(record.displayType) && interactiveTag) {
-            message.warning(locale('暂无数据'));
-            return false;
-        }
+        // if (!Boolean(record.displayType) && interactiveTag) {
+        //     message.warning(locale('暂无数据'));
+        //     return false;
+        // }
         if (this.index === index) {
             return false;
         }
