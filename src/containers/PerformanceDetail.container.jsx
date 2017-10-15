@@ -102,7 +102,7 @@ export default class PerformanceDetail extends React.Component {
             isMarked : isMarked,
             path: this.getPath,
             performanceType: type,
-            displayType: this.displayType,
+            displayType: JSON.stringify([this.displayType]),
             // columnCode: JSON.stringify(['clientTime', 'serverTime'])
         });
         platform == 'pc' && this.getPath == '' || undefined ? message.info('path字段为空') : onGetOperTrend({
@@ -112,7 +112,7 @@ export default class PerformanceDetail extends React.Component {
             isMarked : isMarked,
             path: this.getPath,
             performanceType: type,
-            displayType: this.displayType,
+            displayType: JSON.stringify([this.displayType]),
             columnCode: uiType === "NATIVE" ?
                 JSON.stringify(['avgRspTime', 'clickNum', 'thruput', 'apdexs', 'median', 'netWorkTime', 'clientTime', 'serverTime', 'percent5']) :
                 JSON.stringify(['clickNum', 'apdexs', 'median', 'avgRspTime', 'percent5', 'thruput', 'clientTime', 'serverTime', 'netWorkTime']),
@@ -124,7 +124,7 @@ export default class PerformanceDetail extends React.Component {
             text,
             isMarked : isMarked,
             path: this.getPath,
-            displayType: this.displayType,
+            displayType: JSON.stringify([this.displayType]),
             performanceType: type,
         });
     }

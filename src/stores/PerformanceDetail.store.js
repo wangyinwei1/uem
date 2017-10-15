@@ -140,7 +140,7 @@ class PerformanceDetailStore {
                 startTime: moment().subtract(getTimeType().startTime.type, getTimeType().startTime.units).valueOf(),
                 endTime: moment().subtract(getTimeType().endTime.type, getTimeType().endTime.units).valueOf(),
                 time: this.time,
-                displayType: this.displayType,
+                displayType: JSON.stringify([this.displayType]),
                 operType: this.info.operType,
                 sampleId: this.activeId,
                 ...payload
