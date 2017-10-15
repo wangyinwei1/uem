@@ -61,7 +61,23 @@ export default class ControlBar extends React.Component {
     }
     makeOptionsContent() {
         const { type, tagType } = this.props;
-        console.log(this.options);
+        // 自定义属性
+        if(type == "UserTable"){
+            const arr = [];
+            const { userDefinedColumn } = this.props;
+            if(userDefinedColumn.length > 0){
+                userDefinedColumn.map((item,index) => {
+                    arr.push({
+                        value: item.key,
+                        label: item.displayName,
+                        checked: false,
+                        disabled: false,
+                        width: 100,
+                    })
+                });
+                _.assign(this.options.quota, arr);
+            }
+        }
         return (
             <dl className={styles['col-option']}>
                 <dt>{locale('常规')}</dt>
@@ -83,7 +99,7 @@ export default class ControlBar extends React.Component {
                     {this.options.quota.map(item => {
                         return (
                             <Checkbox
-                                key={item.value}
+                                key={item.value+Math.random(0,100)}
                                 defaultChecked={this.colOptions.some(col => col === item.value)}
                                 value={item.value}
                                 disabled={item.disabled}

@@ -186,7 +186,7 @@ const ParamSettingForm = Form.create()((props) => {
                     }
                     <div className={styles['notice-tip']}>
                         <p>{locale('只接收白名单中域名或IP发送的数据，如果域名带端口，必须把端口号加到URL中。')}</p>
-                        <p>{locale('举例：http://yourURL.com:8080, http://10.1.2.194:8080')}</p>
+                        <p>{`${locale('举例')}：http://yourURL.com:8080, http://10.1.2.194:8080`}</p>
                         <p>{locale('最后记得保存设置')}</p>
                     </div>
                     <button className={styles['save-setting-btn']} onClick={saveSetting}>{locale('保存设置')}</button>

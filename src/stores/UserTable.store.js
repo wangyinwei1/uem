@@ -17,6 +17,7 @@ class UserTableStore {
     @observable colOptions = getColOptions('UserTable');
     @observable sortKey = 'lastTime';
     @observable order = 'descend';
+    @observable userDefinedColumn = [];
     timeType = getTimeType();
 
     get dataList() {
@@ -25,6 +26,18 @@ class UserTableStore {
 
     get columns() {
         return this.colOptions[this.tagType].toJS();
+    }
+
+    @action onGetUserDefineColumn = async payload => {
+        try{
+            const data = await Service.getUserDefineColumn();
+            runInAction(() => {
+                this.userDefinedColumn = data;
+                return data;
+            });
+        }catch(e){
+            throw(e)
+        }
     }
 
     @action onLoading = () => {
@@ -89,6 +102,7 @@ class UserTableStore {
                 }, 300);
                 return data;
             });
+            this.onGetUserDefineColumn();
         } catch (error) {
             throw error;
         }

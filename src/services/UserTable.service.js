@@ -16,4 +16,10 @@ export default {
         version: getVersion(),
         ...payload
     }),
+    getUserDefineColumn: payload => Request('get','session/userDefineColumn/view',{
+        appId: sessionStorage.getItem('UEM_appId'),
+        platform: sessionStorage.getItem('UEM_platform'),
+        version: getVersion(),
+        ...payload
+    })
 };

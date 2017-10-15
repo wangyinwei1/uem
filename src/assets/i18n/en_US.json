@@ -339,6 +339,11 @@
     "uv" : "UV",
     "应用创建成功": "Add app success",
     "马上去部署": "Deploy immediately",
-    "点击": "Click"
+    "点击": "Click",
+    "请输入正整数" : "Please enter a positive integer",
+    "请输入正确的域名":"Please enter the correct domain name",
+    "请输入域名": "Please enter the domain name",
+    "你确定要删除吗？" : "Are you sure you want to delete it?",
+    "请填写描述" : "Please fill in description"
     
 }

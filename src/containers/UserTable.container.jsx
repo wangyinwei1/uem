@@ -56,10 +56,12 @@ export default class UserTable extends React.Component {
             tagType,
             pageIndex,
             pageSize,
+            userDefinedColumn,
             onGetOpersList,
             onChangeResTime,
             onChangePage,
-            onChangeSortkey
+            onChangeSortkey,
+            onGetUserDefineColumn
         } = this.props.userTableStore;
         const { deploy } = this.props.overviewStore;
         const { onChangePanelList } = this.props.sidePanelStore;
@@ -83,6 +85,8 @@ export default class UserTable extends React.Component {
                     changePanelList={onChangePanelList}
                     changePage={onChangePage}
                     onChangeSortkey={onChangeSortkey}
+                    getUserDefineColumn={onGetUserDefineColumn}
+                    userDefinedColumn={userDefinedColumn}
                     search={this.search.bind(this)}
                 />
             </div>

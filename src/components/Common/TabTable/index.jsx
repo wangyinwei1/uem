@@ -91,6 +91,8 @@ export default class TabTable extends React.Component {
                         changeResTime={this.props.changeResTime}
                         resolveRow={this.props.resolveRow}
                         search={this.props.search}
+                        getUserDefineColumn={this.props.getUserDefineColumn}
+                        userDefinedColumn={this.props.userDefinedColumn}
                     />
                     <Table
                         type={type}
