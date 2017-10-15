@@ -23,6 +23,8 @@ class PerformanceInteractiveStore {
     @observable tagType = 0;
     @observable colOptions = getColOptions('PerformanceInteractive');
     @observable colOptionsMobile =  getColOptions('PerformanceInteractiveMobile');
+    @observable sortKey = '';
+    @observable order = '';
 //    constructor(){
 //     autorun(() => 
 //         console.log('111111111111111',this.columns)
@@ -66,6 +68,12 @@ class PerformanceInteractiveStore {
         this.searchValue = undefined;
         this.onGetOpersList();
     }
+    // 点击sortkey排序
+    @action onChangeSortkey = payload => {
+        this.sortkey = payload.columnKey;
+        this.order = payload.order;
+        this.onGetOpersList();
+    }
     @action onChangeColOptions = payload => {
         if(sessionStorage.getItem('UEM_platform') == 'pc' ){
             this.colOptions[this.tagType] = payload.colOptions;
@@ -90,7 +98,10 @@ class PerformanceInteractiveStore {
                 startTime: moment().subtract(getTimeType().startTime.type, getTimeType().startTime.units).valueOf(),
                 endTime: moment().subtract(getTimeType().endTime.type, getTimeType().endTime.units).valueOf(),
                 operName: this.searchValue,
-                avgRspTime: this.avgRspTime
+                avgRspTime: this.avgRspTime,
+                // 点击sortkey排序
+                sortKey: this.sortkey,
+                sort: this.order == 'descend' ? 'desc' : 'asc'
             });
             runInAction(() => {
                 this.data = data.data.map((item, index) => {

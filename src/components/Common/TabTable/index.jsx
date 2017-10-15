@@ -32,7 +32,7 @@ export default class TabTable extends React.Component {
                         <h2>{locale('暂时没发现错误哦，我们也支持自定义错误接入，请查阅帮助文档二次开发API的相关说明')}</h2>
                         <div className={styles['pointButton']}>
                             {/* <i className={cls("iconfont icon-maidian")}></i> */}
-                            <a href={"src/help/23001_er_ci_kai_fa_xu_qiu.html"} target="_blank">{locale('查阅帮助')}</a>   
+                            <a href={"/help/23001_er_ci_kai_fa_xu_qiu.html"} target="_blank">{locale('查阅帮助')}</a>   
                         </div>
                     </div>
                 );
@@ -42,7 +42,7 @@ export default class TabTable extends React.Component {
                         <h2>{locale('暂时没有用户哦，我们也支持接入真实用户，请查阅帮助文档二次开发API的相关说明')}</h2>
                         <div className={styles['pointButton']}>
                             {/* <i className={cls("iconfont icon-maidian")}></i> */}
-                            <a href={'src/help/1apishuo_ming.html'} target="_blank">{locale('查阅帮助')}</a>   
+                            <a href={'/help/1apishuo_ming.html'} target="_blank">{locale('查阅帮助')}</a>   
                         </div>
                     </div>
                 );
@@ -103,6 +103,7 @@ export default class TabTable extends React.Component {
                         changeRows={this.props.changeRows}
                         changePanelList={this.props.changePanelList}
                         changePage={this.props.changePage}
+                        onChangeSortkey={this.props.onChangeSortkey}
                     />
                 </Spin>
                 {dataList.length === 0 && this.noData()}

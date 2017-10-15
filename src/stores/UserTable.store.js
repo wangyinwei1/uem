@@ -15,6 +15,8 @@ class UserTableStore {
     @observable searchValue = undefined;
     @observable tagType = 0;
     @observable colOptions = getColOptions('UserTable');
+    @observable sortKey = undefined;
+    @observable order = 'descend';
     timeType = getTimeType();
 
     get dataList() {
@@ -40,6 +42,13 @@ class UserTableStore {
         this.pageSize = payload.pageSize;
         this.onGetOpersList();
     }
+
+    @action onChangeSortkey = payload => {
+        this.sortKey = payload.columnKey;
+        this.order = payload.order;
+        this.onGetOpersList();
+    }
+
     @action onChangeResTime = payload => {
         this.avgRspTime = payload.resTime;
         this.onGetOpersList();
@@ -65,6 +74,9 @@ class UserTableStore {
                 endTime: moment().subtract(getTimeType().endTime.type, getTimeType().endTime.units).valueOf(),
                 searchKey: this.searchKey,
                 searchInfo: this.searchValue,
+                // 点击sortkey排序
+                sortKey: this.sortKey,
+                sort: this.order == 'descend' ? 'desc' : 'asc'
             });
             runInAction(() => {
                 this.data = data.data.map((item, index) => {

@@ -57,9 +57,7 @@ export default class Trend extends React.Component {
                         .setIn(['series', 0, 'data'], sessionCount.map(item => item.value))
                         .toJS();
         const option = Object.keys(newClickConfig).length > 0 ? newClickConfig : initialConfig;
-        // const option = initialConfig; 
         // console.log('newConfig, initialConfig------------',newClickConfig, initialConfig);        
-    // debugger
         return (
             <div className={styles['trend']}>
                 <div className={cls('tile-body')}>

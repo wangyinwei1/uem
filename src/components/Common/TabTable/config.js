@@ -269,26 +269,28 @@ export default {
                 label: locale('所在界面'),
                 checked: true,
                 disabled: false,
-                width: 100,
+                width: 200,
             },
             {
                 value: 'path',
                 label: 'URL',
                 checked: true,
                 disabled: false,
-                width: 250,
-            }, {
-                value: 'match',
-                label: locale('URL规则'),
-                checked: true,
-                disabled: false,
-                width: 250,
-            }, {
+                width: 200,
+            }, 
+            // {
+            //     value: 'match',
+            //     label: locale('URL规则'),
+            //     checked: true,
+            //     disabled: false,
+            //     width: 200,
+            // }, 
+            {
                 value: 'creator',
                 label: locale('创建人'),
                 checked: false,
                 disabled: false,
-                width: 200,
+                width: 120,
             }, {
                 value: 'createTime',
                 label: locale('创建时间'),
@@ -305,7 +307,7 @@ export default {
                 label: locale('修改人'),
                 checked: false,
                 disabled: false,
-                width: 200,
+                width: 150,
             }, {
                 value: 'updateTime',
                 label: locale('最后修改时间'),
@@ -323,7 +325,7 @@ export default {
                 label: 'Apdex',
                 checked: true,
                 disabled: false,
-                width: 100,
+                width: 120,
                 render(text, record, index) {
                     // const config = UYUN.getTheme("performanceChart-table1");
                     const config = [
@@ -362,7 +364,7 @@ export default {
                 width: 100,
                 sorter: (a,b) => a.avgRspTime - b.avgRspTime
             }, {
-                value: 'pv',
+                value: 'clickNum',
                 label: locale('点击数'),
                 checked: true,
                 disabled: false,

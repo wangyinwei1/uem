@@ -16,6 +16,8 @@ class ErrorTableStore {
     @observable colOptions = getColOptions('ErrorTable');
     @observable rows = [];
     @observable errorType = [];
+    @observable sortKey = undefined;
+    @observable order = 'descend';
     get dataList() {
         return this.data.toJS();
     }
@@ -39,6 +41,13 @@ class ErrorTableStore {
         this.pageSize = payload.pageSize;
         this.onGetOpersList();
     }
+    // 点击表格的排序
+    @action onChangeSortkey = payload => {
+        this.sortKey = payload.columnKey;
+        this.order = payload.order;
+        this.onGetOpersList();
+    }
+
     @action onChangeRows = payload => {
         this.rows = payload.rows;
         this.errorType = payload.errorType;
@@ -76,7 +85,10 @@ class ErrorTableStore {
                 status: this.tagType,
                 startTime: moment().subtract(getTimeType().startTime.type, getTimeType().startTime.units).valueOf(),
                 endTime: moment().subtract(getTimeType().endTime.type, getTimeType().endTime.units).valueOf(),
-                searchInfo: this.searchValue
+                searchInfo: this.searchValue,
+                // 点击sortkey排序
+                sortKey: this.sortKey,
+                sort: this.order == 'descend' ? 'desc' : 'asc'
             });
             runInAction(() => {
                 this.data = data.data.map((item, index) => {

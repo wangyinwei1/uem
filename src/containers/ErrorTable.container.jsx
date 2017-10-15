@@ -71,6 +71,7 @@ export default class ErrorTable extends React.Component {
             onChangeResTime,
             onResolveRow,
             onChangePage,
+            onChangeSortkey
         } = this.props.errorTableStore;
         const { deploy } = this.props.overviewStore;
         const { onChangePanelList } = this.props.sidePanelStore;
@@ -96,6 +97,7 @@ export default class ErrorTable extends React.Component {
                     resolveRow={this.resolveRow.bind(this)}
                     changePanelList={onChangePanelList}
                     changePage={onChangePage}
+                    onChangeSortkey={onChangeSortkey}
                     search={this.search.bind(this)}
                 />
             </div>

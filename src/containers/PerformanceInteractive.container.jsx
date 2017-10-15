@@ -58,6 +58,7 @@ export default class PerformanceInteractive extends React.Component {
             onGetOpersList,
             onChangeResTime,
             onChangePage,
+            onChangeSortkey
         } = this.props.performanceInteractiveStore;
         const { deploy } = this.props.overviewStore;
         const { onChangePanelList } = this.props.sidePanelStore;
@@ -81,6 +82,7 @@ export default class PerformanceInteractive extends React.Component {
                     changeResTime={this.changeResTime.bind(this)}
                     changeColOptions={this.changeColOptions.bind(this)}
                     changePanelList={onChangePanelList}
+                    onChangeSortkey={onChangeSortkey}
                     changePage={onChangePage}
                     search={this.search.bind(this)}
                 />    

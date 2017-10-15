@@ -62,6 +62,7 @@ export default class PerformanceBrowse extends React.Component {
             onGetOpersList,
             onChangeResTime,
             onChangePage,
+            onChangeSortkey,
         } = this.props.performanceBrowseStore;
         const { deploy } = this.props.overviewStore;
         const { onChangePanelList } = this.props.sidePanelStore;
@@ -84,6 +85,7 @@ export default class PerformanceBrowse extends React.Component {
                     changeColOptions={this.changeColOptions.bind(this)}
                     changePanelList={onChangePanelList}
                     changePage={onChangePage}
+                    onChangeSortkey={onChangeSortkey}
                     search={this.search.bind(this)}
                 />
             </div>

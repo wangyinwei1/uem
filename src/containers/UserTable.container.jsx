@@ -59,6 +59,7 @@ export default class UserTable extends React.Component {
             onGetOpersList,
             onChangeResTime,
             onChangePage,
+            onChangeSortkey
         } = this.props.userTableStore;
         const { deploy } = this.props.overviewStore;
         const { onChangePanelList } = this.props.sidePanelStore;
@@ -81,6 +82,7 @@ export default class UserTable extends React.Component {
                     changeColOptions={this.changeColOptions.bind(this)}
                     changePanelList={onChangePanelList}
                     changePage={onChangePage}
+                    onChangeSortkey={onChangeSortkey}
                     search={this.search.bind(this)}
                 />
             </div>

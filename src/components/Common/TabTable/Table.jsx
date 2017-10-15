@@ -112,6 +112,15 @@ export default class Table extends React.Component {
             pageSize
         });
     }
+    sorting(pagination, filters, sorter ){
+        const { columnKey, order } = sorter;
+        if(columnKey && order){
+            this.props.onChangeSortkey({
+                'columnKey':columnKey,
+                'order': order
+            })
+        }
+    }
     render() {
         const { dataList, total, pageIndex, pageSize } = this.props;
         const rowSelection = this.rowSelection();
@@ -119,6 +128,7 @@ export default class Table extends React.Component {
             <div className="table">
                 <AntdTable
                     onRowClick={this.rowClickHandler.bind(this)}
+                    onChange={this.sorting.bind(this)}
                     pagination={{
                         total,
                         current: pageIndex,
