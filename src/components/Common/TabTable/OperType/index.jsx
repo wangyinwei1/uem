@@ -25,6 +25,10 @@ export default class OperType extends React.Component {
                 icon = 'icon-shuaxin';
                 title = '重定向';
                 break;
+            case 'click':
+                icon = 'icon-dianji';
+                title = '点击'; 
+                break;   
             default: 
                 return '--';
         }

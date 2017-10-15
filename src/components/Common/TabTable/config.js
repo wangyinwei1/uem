@@ -247,15 +247,15 @@ export default {
                 // fixed: 'left',
                 render: (text, record, index) => <ColorType type={record.type} />
             }, 
-            // {
-            //     value: 'operType',
-            //     label: locale('类型'),
-            //     width: 80,
-            //     checked: true,
-            //     disabled: true,
-            //     // fixed: 'left',
-            //     render: (text, record, index) => <OperType type={record.operType} />,
-            // }, 
+            {
+                value: 'operType',
+                label: locale('类型'),
+                width: 80,
+                checked: true,
+                disabled: true,
+                // fixed: 'left',
+                render: (text, record, index) => <OperType type={record.operType} />,
+            }, 
             {
                 value: 'operName',
                 label: locale('页面名称'),
