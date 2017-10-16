@@ -5,7 +5,9 @@
 .fr {
     float: right;
 }
-
+.ma {
+    margin: auto;
+}
 .clearfix::after {
     display: block;
     clear: both;

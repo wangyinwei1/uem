@@ -96,7 +96,7 @@ export default class PerformanceDetail extends React.Component {
         }else{
             isMarked = 0;
         }
-        onGetOperInfo({
+        platform == 'pc' && !Boolean(this.getPath) ? message.info('requestPath字段为空') : onGetOperInfo({
             operType,
             selector,
             text,
@@ -107,7 +107,7 @@ export default class PerformanceDetail extends React.Component {
             displayType: JSON.stringify([this.displayType]),
             // columnCode: JSON.stringify(['clientTime', 'serverTime'])
         });
-        platform == 'pc' && this.getPath == '' || undefined ? message.info('path字段为空') : onGetOperTrend({
+        platform == 'pc' && !Boolean(this.getPath) ? message.info('requestPath字段为空') : onGetOperTrend({
             operType,
             selector,
             text,
@@ -122,7 +122,7 @@ export default class PerformanceDetail extends React.Component {
 
         });
 
-        platform == 'pc' && this.getPath == '' || undefined ? message.info('path字段为空') : onGetOperSamplesList({
+        platform == 'pc' && !Boolean(this.getPath) ? message.info('path字段为空') : onGetOperSamplesList({
             operType,
             selector,
             text,
@@ -181,7 +181,8 @@ export default class PerformanceDetail extends React.Component {
         } = info;
         // const { panelList } = this.props.sidePanelStore;
         // const { specificUrls, uiType } = panelList[panelList.length - 1];
-        const { specificUrls, path } = this.props.data;
+        const { path, specificUrls } = this.props.data;
+        // const specificUrls = Boolean(this.props.data.specificUrls) ? this.props.data.specificUrls : this.props.data.path;
         const { itemId } = this.props;
         return (
             <DetailWrap>
@@ -212,12 +213,13 @@ export default class PerformanceDetail extends React.Component {
                                 domLoadingTime,
                                 avgRspTime
                             }}
+                            specificUrls={Boolean(specificUrls) ? specificUrls : path}
                             displayType={this.displayType}
                         />
                         :
                         <FlowChart threadInfo={info} />
                     }
-                <Trend itemId={itemId} trend={trend} uiType={info.uiType} />
+                <Trend itemId={itemId} trend={trend} uiType={info.uiType} specificUrls={Boolean(specificUrls) ? specificUrls : path} />
                 {samplesList.length > 0 && <Analysis
                         sampleAnalyzeData={sampleAnalyzeData}
                         uiType={uiType}

@@ -85,6 +85,7 @@ export const tableConfig = {
         title: 'URL/PATH',
         dataIndex: 'resName',
         key: 'resName',
+        width:400
     }, {
         title: locale('耗时'),
         dataIndex: 'time',

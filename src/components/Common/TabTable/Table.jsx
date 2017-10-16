@@ -86,7 +86,8 @@ export default class Table extends React.Component {
         return null;
     }
     rowClickHandler(record, index, event) {
-        const { type } = this.props;
+        // tagType为0是已标记，1是未标记。
+        const { type, tagType } = this.props;
         const browseTag = type === 'PerformanceBrowse' || type === 'PerformanceInteractiveMobile';
         const interactiveTag = type === 'PerformanceInteractive';
         // 某些条件下，点击不进入详情页
@@ -94,10 +95,10 @@ export default class Table extends React.Component {
             message.warning(locale('暂无数据'));
             return false;
         }
-        // if (!Boolean(record.displayType) && interactiveTag) {
-        //     message.warning(locale('暂无数据'));
-        //     return false;
-        // }
+        if (!Boolean(record.displayType) && interactiveTag && tagType == 0 ) {
+            message.warning(locale('暂无数据'));
+            return false;
+        }
         if (this.index === index) {
             return false;
         }

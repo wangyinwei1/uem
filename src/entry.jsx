@@ -37,6 +37,7 @@ message.config({
 });
 
 if (process.env.NODE_ENV === 'development') {
+    //放到dev环境下用的，实际上线，这个要注释掉。这是由由租户控制的，挂在window下
     window.USER_INFO = {
         tenantId: 'e0a67e986a594a61b3d1e523a0a39c77',
         userId: 'e0a67e986a594a61b3d1e523a0a39c77'
@@ -59,11 +60,11 @@ if (true) {
     //     }
     //     return echartsColor[name][localStorage.getItem('UEM_skin')];
     // }
-    //放到dev环境下用的，实际上线，这个要注释掉。这是由由租户控制的，挂在window下
-    window.USER_INFO = {
-        tenantId: 'e0a67e986a594a61b3d1e523a0a39c77',
-        userId: 'e0a67e986a594a61b3d1e523a0a39c77'
-    };
+ 
+    // window.USER_INFO = {
+    //     tenantId: 'e0a67e986a594a61b3d1e523a0a39c77',
+    //     userId: 'e0a67e986a594a61b3d1e523a0a39c77'
+    // };
     // 时间转换函数，各概况时间指标的单位自适应
     window.timeFormat = (time) => {
         let newTimeFormat;

@@ -5,7 +5,7 @@ import styles from "./index.scss";
 import { Popover } from 'antd';
 import React from 'react';
 
-export function tableProgress(avgRsp = 0, avgRsps = [0, 0, 0], config = [{ color: "#ffec0c", text: locale('可接受') }, { color: "#ff5252", text: locale('不满意') }, { color: "#66dc6b", text: locale('满意') }], isShowAvgRsp = true) {
+export function tableProgress(avgRsp = '--', avgRsps = [0, 0, 0], config = [{ color: "#ffec0c", text: locale('可接受') }, { color: "#ff5252", text: locale('不满意') }, { color: "#66dc6b", text: locale('满意') }], isShowAvgRsp = true) {
     const width = '101px';
     let count = avgRsps[0] + avgRsps[1] + avgRsps[2];
     if (!count && count !== 0) {
@@ -33,15 +33,15 @@ export function tableProgress(avgRsp = 0, avgRsps = [0, 0, 0], config = [{ color
     );
     return (
         <div className={styles['tableProgress']}>
-            {isShowAvgRsp && <div className={styles['title']}>{avgRsp}</div>}
-            <Popover content={(overlay)} trigger="hover" placement="rightBottom" key={Math.random(1, 100)}>
-                <div className={styles['progress']} style={{ width: width }}>
-                    {newConfig.map((val, i) => {
-                        return (<span key={Math.random(1, 100)} className={styles['per']} style={{ background: val.color, width: val.width }} ></span>)
-                    })}
-                </div>
-            </Popover>
-        </div>
+                {isShowAvgRsp && <div className={cls(styles['title'],{'fl': avgRsp !== '--','ma': avgRsp == '--'  })}>{avgRsp}</div>}
+                {avgRsp !== '--' && <Popover content={(overlay)} trigger="hover" placement="rightBottom" key={Math.random(1, 100)}>
+                    <div className={styles['progress']} style={{ width: width }}>
+                        {newConfig.map((val, i) => {
+                            return (<span key={Math.random(1, 100)} className={styles['per']} style={{ background: val.color, width: val.width }} ></span>)
+                        })}
+                    </div>
+                </Popover>}
+            </div>
     );
 }
 

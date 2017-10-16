@@ -234,21 +234,30 @@ export default class TimingH5 extends React.Component {
         return (
             <div className={styles['timing']}>
                 <div className='tile-head'>{locale('响应时间分解图')}</div>
-                <div className='tile-body'>
-                    {this.state.showTimingCurve && this.timingCurve()}
-                    {this.timingCol()}
-                    <ul className={styles['timeline-list']}>
-                        {   this.props.displayType == 'page' ?
-                            this.typePage.map(item => {
-                            return <li key={item.label}><i className={styles[item.value]}></i><span>{locale(item.label)}</span></li>
-                            })
-                            :
-                            this.typeXhr.map(item => {
-                            return <li key={item.label}><i className={styles[item.value]}></i><span>{locale(item.label)}</span></li>
-                            })
-                        }
-                    </ul>
-                </div>
+                {this.props.specificUrls.length > 0 ? 
+                    <div className='tile-body'>
+                        {this.state.showTimingCurve && this.timingCurve()}
+                        {this.timingCol()}
+                        <ul className={styles['timeline-list']}>
+                            {   this.props.displayType == 'page' ?
+                                this.typePage.map(item => {
+                                return <li key={item.label}><i className={styles[item.value]}></i><span>{locale(item.label)}</span></li>
+                                })
+                                :
+                                this.typeXhr.map(item => {
+                                return <li key={item.label}><i className={styles[item.value]}></i><span>{locale(item.label)}</span></li>
+                                })
+                            }
+                        </ul>
+                    </div>
+                    :
+                    <div className='tile-body'>
+                        <span className={styles['emptyText']}>
+                            <i className={cls('iconfont icon-jinggao')}></i>
+                            {locale('此点击行为不是一个HTTP请求，因此无数据')}
+                        </span>
+                    </div>
+                    }
             </div>
         );
     }

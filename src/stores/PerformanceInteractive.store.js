@@ -23,7 +23,7 @@ class PerformanceInteractiveStore {
     @observable tagType = 0;
     @observable colOptions = getColOptions('PerformanceInteractive');
     @observable colOptionsMobile =  getColOptions('PerformanceInteractiveMobile');
-    @observable sortKey = 'apdex';
+    @observable sortKey = 'clickNum';
     @observable order = 'descend';
 //    constructor(){
 //     autorun(() => 
@@ -100,7 +100,7 @@ class PerformanceInteractiveStore {
                 operName: this.searchValue,
                 avgRspTime: this.avgRspTime,
                 // 点击sortkey排序
-                sortKey: this.sortkey,
+                sortKey: this.sortKey,
                 sort: this.order == 'descend' ? 'desc' : 'asc'
             });
             runInAction(() => {

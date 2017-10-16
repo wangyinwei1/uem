@@ -125,9 +125,19 @@ export default class Trend extends React.Component {
                         [styles['active']]: this.state.activeTrend === index
                     })} key={item.name} onClick={this.changeTrend.bind(this, index)}>{locale(item.name)}</div>)}
                 </div>
+                {
+                this.props.specificUrls.length > 0 ?
                 <div className={cls('tile-body', styles['trend-body'])} key={this.state.activeTrend}>
                     {this.renderTrend()}
                 </div>
+                :
+                <div className='tile-body'>
+                    <span className={styles['emptyText']}>
+                        <i className={cls('iconfont icon-jinggao')}></i>
+                        {locale('此点击行为不是一个HTTP请求，因此无数据')}
+                    </span>
+                </div>
+                }
             </div>
         );
     }

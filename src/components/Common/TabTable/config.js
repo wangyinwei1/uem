@@ -265,6 +265,13 @@ export default {
                 // fixed: 'left'
             },
             {
+                value: 'clickNum',
+                label: locale('点击数'),
+                checked: true,
+                disabled: true,
+                width: 100,
+            },
+            {
                 value: 'srcName',
                 label: locale('所在界面'),
                 checked: true,
@@ -291,7 +298,8 @@ export default {
                 checked: false,
                 disabled: false,
                 width: 120,
-            }, {
+            }, 
+            {
                 value: 'createTime',
                 label: locale('创建时间'),
                 checked: false,
@@ -363,13 +371,7 @@ export default {
                 disabled: false,
                 width: 100,
                 sorter: (a,b) => a.avgRspTime - b.avgRspTime
-            }, {
-                value: 'clickNum',
-                label: locale('点击数'),
-                checked: true,
-                disabled: false,
-                width: 100,
-            },
+            }
             // 高保真有矛盾 
             // {
             //     value: 'uv',
@@ -402,13 +404,21 @@ export default {
                 label: locale('所在界面'),
                 checked: true,
                 disabled: true,
+                width: 200,
+            },
+            {
+                value: 'clickNum',
+                label: locale('点击数'),
+                checked: true,
+                disabled: true,
                 width: 100,
-            },{
-                value: 'page',
+            },
+            {
+                value: 'path',
                 label: locale('目标URL'),
                 checked: true,
                 disabled: false,
-                width: 100,
+                width: 200,
             }],
             quota: [{
                 value: 'apdex',
@@ -457,13 +467,7 @@ export default {
                     const config = [{ color: "#03a9f4", text: locale('客户端') }, { color: "#91eb7c", text: locale('网络传输') }, { color: "#6270ef", text: locale('服务器') }]
                     return tableProgress(record.avgRspTime, record.avgRspTimes, config, locale('平均响应时间'));
                 }
-            }, {
-                value: 'clickNum',
-                label: locale('点击数'),
-                checked: true,
-                disabled: false,
-                width: 100,
-            }, 
+            }
         ]
         }
     }],
