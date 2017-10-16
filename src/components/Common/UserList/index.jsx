@@ -32,7 +32,7 @@ export default class UserList extends React.Component {
             <div className={styles['user-list-wrap']}>
                 <ul className={styles['user-list']}>
                     {list.map((item,index) => {
-                        return (
+                        return (    
                             <li className={cls(styles['user-item'], {
                                 [styles['active']]: item.sampleId === activeId
                             })} key={index} onClick={this.changeUser.bind(this, item)}>

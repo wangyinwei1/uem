@@ -233,7 +233,6 @@ class Chart extends React.PureComponent {
             this.timer = setTimeout(() => {
                 this.chartDom.setOption(Immutable.fromJS(this._mergeOptions()).mergeDeep(nextProps.options).toJS());
             }, 300);
-            console.log('合并了之后的option',Immutable.fromJS(this._mergeOptions()).mergeDeep(nextProps.options).toJS() );
             
         } catch(e) {
             this.chartDom.clear();
@@ -262,9 +261,7 @@ class Chart extends React.PureComponent {
                 tooltip: {formatter: this.props.mapState == 'china' ? mapTooltipFormatter : mapTooltipFormatterForWorldMap }
             })
         }
-
         return globalOptions.mergeDeep(this.defaultOptions.mergeDeep(this.options)).toJS();
-        // console.log('_mergeOptions里面的', globalOptions.mergeDeep(this.defaultOptions.mergeDeep(this.options)).toJS());
 
     }
     _setOption() {

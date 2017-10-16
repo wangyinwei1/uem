@@ -129,7 +129,7 @@ class PerformanceTrend extends Component {
             }],
             line: {
                 symbol: 'circle',  // 拐点图形类型
-                symbolSize: 5   // 拐点图形大小
+                symbolSize: 8   // 拐点图形大小
             },
             color: ['yellow', ''],
             series: [

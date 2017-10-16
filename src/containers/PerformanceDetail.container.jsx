@@ -127,7 +127,8 @@ export default class PerformanceDetail extends React.Component {
             selector,
             text,
             isMarked : isMarked,
-            path: this.getPath,
+            requestPath: this.getPath,
+            path: path,
             displayType: JSON.stringify([this.displayType]),
             performanceType: type,
         });
@@ -219,7 +220,7 @@ export default class PerformanceDetail extends React.Component {
                         :
                         <FlowChart threadInfo={info} />
                     }
-                <Trend itemId={itemId} trend={trend} uiType={info.uiType} specificUrls={Boolean(specificUrls) && specificUrls.length > 0 ? specificUrls : path} />
+                <Trend itemId={itemId} trend={trend} uiType={info.uiType} type={this.props.type} specificUrls={Boolean(specificUrls) && specificUrls.length > 0 ? specificUrls : path} />
                 {samplesList.length > 0 && <Analysis
                         sampleAnalyzeData={sampleAnalyzeData}
                         uiType={uiType}

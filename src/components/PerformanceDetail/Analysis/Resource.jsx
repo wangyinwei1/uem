@@ -65,7 +65,7 @@ export default class Resource extends React.Component {
                 <div className={styles['main']}>
                     <Table
                         columns={tableConfig.columns}
-                        dataSource={data}
+                        dataSource={data.toJS()}
                         pagination={{
                             current: pageIndex,
                             total: total,

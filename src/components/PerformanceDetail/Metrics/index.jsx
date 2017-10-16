@@ -116,7 +116,7 @@ export default class Metrics extends React.Component {
                                  <dd>
                                     <Select labelInValue defaultValue={{key:props.specificUrls[0].url}} style={{ width: 120 }} onChange={this.handleSelectChange.bind(this)}>
                                         {props.specificUrls.map((item,index) => {
-                                            return <Option value={`${item.displayType}-${index}`}>{item.url}</Option>
+                                            return <Option key={`${item.displayType}-${index}`} value={`${item.displayType}-${index}`}>{item.url}</Option>
                                         })}
                                     </Select>
                                 </dd>
