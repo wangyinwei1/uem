@@ -233,7 +233,7 @@ class Chart extends React.PureComponent {
             this.timer = setTimeout(() => {
                 this.chartDom.setOption(Immutable.fromJS(this._mergeOptions()).mergeDeep(nextProps.options).toJS());
             }, 300);
-            // console.log('合并了之后的option',Immutable.fromJS(this._mergeOptions()).mergeDeep(nextProps.options).toJS() );
+            console.log('合并了之后的option',Immutable.fromJS(this._mergeOptions()).mergeDeep(nextProps.options).toJS() );
             
         } catch(e) {
             this.chartDom.clear();
