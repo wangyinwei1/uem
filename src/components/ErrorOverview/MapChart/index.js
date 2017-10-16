@@ -64,6 +64,7 @@ class ErrorMapChart extends Component {
     }
 
     clickUpdateMap(params) {
+        // debugger
         if (this.state.activeMap == 'china' && params.componentSubType == 'map' && params.name !== '台湾') {
             if (this.state.isSelectingCity && typeof params.value != "undefined" && !isNaN(params.value)) {
                 this.setState({ isSelectingCity: false,activeProvince:params.name }, () => this.props.getMapData({
@@ -81,7 +82,7 @@ class ErrorMapChart extends Component {
                 this.tempConfig = config.updateIn(['china', 'series', 0, 'mapType'], () => 'china');
             }
         } else {
-            console.log('外国和台湾省的次级地区暂无法查看')
+            console.log('暂时无法查看')
         }
     }
 
@@ -118,6 +119,7 @@ class ErrorMapChart extends Component {
                 effectedUserNum: this.state.activePillar == 'effectedUserNum' ? series[i] :  undefined
             })
         }
+
         pillarConfig = this.tempConfig.get('bar').updateIn(['yAxis', 0, 'data'], () => activeMap == 'china'? yAxis.slice(0,10).reverse() : yAxisInCN.slice(0,10).reverse())
             .updateIn(['series', 0, 'data'], () => series.slice(0,10).reverse())
             .updateIn(['series', 0, 'name'], () => this.state.activePillar == 'occurErrorUserRate' ? locale('用户错误率') : locale('影响用户数'))
@@ -127,10 +129,13 @@ class ErrorMapChart extends Component {
                 return 'rgba(255,122,63,' + opacity + ")";
             });
 
-        mapConfig = this.tempConfig.get(activeMap).updateIn(['series', 0, 'data'], () => mapSeriesData).updateIn(['visualMap',0,'max'], ()=> series.length > 0 ? Math.max.apply(null, series) : 1)
-            .updateIn(['visualMap',0,'text'], ()=> this.state.activePillar == 'occurErrorUserRate' ? [locale('用户错误率')] : [locale('影响用户数')])
-            .updateIn(['visualMap',0,'inRange','color'], ()=> ["#564e60","#78575a","#915e55","#ab6450","#c66b4b","#de7146","#f17642","#fe7a3f"]);
-
+        // map的配置
+        mapConfig = this.tempConfig.get(activeMap).updateIn(['series', 0, 'data'], () => mapSeriesData)
+        .updateIn(['visualMap',0,'max'], ()=> series.length > 0 ? Math.max.apply(null, series) : 1)
+        .updateIn(['visualMap',0,'text'], ()=> this.state.activePillar == 'occurErrorUserRate' ? [locale('用户错误率')] : [locale('影响用户数')])
+        .updateIn(['visualMap',0,'inRange','color'], ()=> ["#564e60","#78575a","#915e55","#ab6450","#c66b4b","#de7146","#f17642","#fe7a3f"]);
+        
+        // console.log('6555555------',config.get('default').mergeDeep(mapConfig).toJS());
         return (
             <div className={styles['map-chart']}>
                 <div className={cls('tile-head')}>{locale('地理位置')}</div>
