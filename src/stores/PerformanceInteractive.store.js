@@ -70,7 +70,7 @@ class PerformanceInteractiveStore {
     }
     // 点击sortkey排序
     @action onChangeSortkey = payload => {
-        this.sortkey = payload.columnKey;
+        this.sortKey = payload.columnKey;
         this.order = payload.order;
         this.onGetOpersList();
     }

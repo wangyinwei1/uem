@@ -344,6 +344,7 @@
     "请输入正确的域名":"Please enter the correct domain name",
     "请输入域名": "Please enter the domain name",
     "你确定要删除吗？" : "Are you sure you want to delete it?",
-    "请填写描述" : "Please fill in description"
+    "请填写描述" : "Please fill in description",
+    "此点击行为没有触发HTTP请求，因此无数据" : "This click behavior does not trigger an HTTP request, so there is no data" 
     
 }

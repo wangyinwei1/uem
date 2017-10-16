@@ -213,13 +213,13 @@ export default class PerformanceDetail extends React.Component {
                                 domLoadingTime,
                                 avgRspTime
                             }}
-                            specificUrls={Boolean(specificUrls) ? specificUrls : path}
+                            specificUrls={Boolean(specificUrls) && specificUrls.length > 0 ? specificUrls : path}
                             displayType={this.displayType}
                         />
                         :
                         <FlowChart threadInfo={info} />
                     }
-                <Trend itemId={itemId} trend={trend} uiType={info.uiType} specificUrls={Boolean(specificUrls) ? specificUrls : path} />
+                <Trend itemId={itemId} trend={trend} uiType={info.uiType} specificUrls={Boolean(specificUrls) && specificUrls.length > 0 ? specificUrls : path} />
                 {samplesList.length > 0 && <Analysis
                         sampleAnalyzeData={sampleAnalyzeData}
                         uiType={uiType}

@@ -2,7 +2,7 @@ import Request from '../utils/request';
 import { getVersion } from '../utils/storage';
 
 export default {
-    getOperInfo: payload => Request('get', 'perfor/oper/info/view', {
+    getOperInfo: payload => Request('post', 'perfor/oper/info/view', {
         appId: sessionStorage.getItem('UEM_appId'),
         platform: sessionStorage.getItem('UEM_platform'),
         startTime: undefined,
@@ -19,7 +19,7 @@ export default {
         version: getVersion(),
         ...payload
     }),
-    getOperTrend: payload => Request('get', 'perfor/oper/trend/show', {
+    getOperTrend: payload => Request('post', 'perfor/oper/trend/show', {
         appId: sessionStorage.getItem('UEM_appId'),
         platform: sessionStorage.getItem('UEM_platform'),
         startTime: undefined,
@@ -38,7 +38,7 @@ export default {
         version: getVersion(),
         ...payload
     }),
-    getOperSamplesList: payload => Request('get', 'perfor/oper/samples/list', {
+    getOperSamplesList: payload => Request('post', 'perfor/oper/samples/list', {
         appId: sessionStorage.getItem('UEM_appId'),
         platform: sessionStorage.getItem('UEM_platform'),
         startTime: undefined,

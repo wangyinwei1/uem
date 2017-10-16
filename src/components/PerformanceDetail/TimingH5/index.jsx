@@ -254,7 +254,7 @@ export default class TimingH5 extends React.Component {
                     <div className='tile-body'>
                         <span className={styles['emptyText']}>
                             <i className={cls('iconfont icon-jinggao')}></i>
-                            {locale('此点击行为不是一个HTTP请求，因此无数据')}
+                            {locale('此点击行为没有触发HTTP请求，因此无数据')}
                         </span>
                     </div>
                     }

@@ -161,6 +161,8 @@ function mapTooltipFormatterForWorldMap(params, ticket, callback) {
         }).join(' ')
     };
 
+window.Immutable = Immutable;
+
 // @inject('frameStore')
 // @observer
 class Chart extends React.PureComponent {
@@ -174,6 +176,7 @@ class Chart extends React.PureComponent {
         this.customOptions = Immutable.fromJS(props.options || {});
         this._resizeChart = this._resizeChart.bind(this);
         // new setTheme(props.frameStore.theme);
+
     }
     
     componentDidMount() {
@@ -223,16 +226,19 @@ class Chart extends React.PureComponent {
         // $(window).on('resize', this._resizeChart);
     }
     componentWillReceiveProps(nextProps) {
+        // debugger
         clearTimeout(this.timer);
         try {
             // this.chartDom.clear();
             this.timer = setTimeout(() => {
                 this.chartDom.setOption(Immutable.fromJS(this._mergeOptions()).mergeDeep(nextProps.options).toJS());
             }, 300);
+            console.log('合并了之后的option',Immutable.fromJS(this._mergeOptions()).mergeDeep(nextProps.options).toJS() );
+            
         } catch(e) {
             this.chartDom.clear();
             this.chartDom.setOption(Immutable.fromJS(this._mergeOptions()).mergeDeep(nextProps.options).toJS());
-            // throw e;
+            throw e;
         }
     }
     componentWillUnmount() {
@@ -256,7 +262,10 @@ class Chart extends React.PureComponent {
                 tooltip: {formatter: this.props.mapState == 'china' ? mapTooltipFormatter : mapTooltipFormatterForWorldMap }
             })
         }
+
         return globalOptions.mergeDeep(this.defaultOptions.mergeDeep(this.options)).toJS();
+        // console.log('_mergeOptions里面的', globalOptions.mergeDeep(this.defaultOptions.mergeDeep(this.options)).toJS());
+
     }
     _setOption() {
         this.chartDom.setOption(this._mergeOptions());

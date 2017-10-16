@@ -95,7 +95,7 @@ export default class Table extends React.Component {
             message.warning(locale('暂无数据'));
             return false;
         }
-        if (!Boolean(record.displayType) && interactiveTag && tagType == 0 ) {
+        if (!Boolean(record.operType) && interactiveTag && tagType == 0 ) {
             message.warning(locale('暂无数据'));
             return false;
         }
