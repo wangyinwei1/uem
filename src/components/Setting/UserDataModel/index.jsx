@@ -53,11 +53,13 @@ export default class UserDataModel extends Component {
             })
             setFieldsValue(record);
         } else if (type === 'add') {
+            this.operationForm.resetFields();
             this.setState({
                 title: locale('添加属性'),
                 isKeyDisable: false,
                 isCalculationDisable: true
             })
+
         }
         this.toggleModal(true);
     }
@@ -76,22 +78,22 @@ export default class UserDataModel extends Component {
     onDelete() {
         const { selectedRowKeys } = this.state;
         this.props.deleteUserDataModel({ key: selectedRowKeys }).then(result => {
+            this.setState({ selectedRowKeys: [] })
             this.toggleDeleteModal(false);
             message.success(result.message);
         }).catch(result => {
             message.error(result.message)
         })
-
     }
     handleTypeOfDataChange(value) {
         const { setFieldsValue } = this.operationForm;
-        if(value === 'text') {
+        if (value === 'text') {
             this.setState({
                 isCalculationDisable: true
             })
-            
-            setFieldsValue({calculation: 'override'})
-        } else if(value === 'number') {
+
+            setFieldsValue({ calculation: 'override' })
+        } else if (value === 'number') {
             this.setState({
                 isCalculationDisable: false
             })
@@ -114,6 +116,7 @@ export default class UserDataModel extends Component {
             onChange: this.onSelectChange,
         };
         const hasSelected = selectedRowKeys.length > 0;
+        const addBtnDisable = userDataModelList.length >= 10;
         return (
             <div className={styles['user-model-container']}>
                 <div className={styles.description}>
@@ -123,7 +126,7 @@ export default class UserDataModel extends Component {
                 <div className={styles['operation']}>
                     <div className={styles['btn-wrapper']}>
                         <Button type="primary" disabled={!hasSelected} size="large" onClick={() => this.toggleDeleteModal(true)}>{locale('删除')}</Button>
-                        <Button type="primary" size="large" onClick={() => this.openOperationModal('add')}>{locale('添加')}</Button>
+                        <Button type="primary" disabled={addBtnDisable} size="large" onClick={() => this.openOperationModal('add')}>{locale('添加')}</Button>
                     </div>
                     <div className={styles['operation-table']}>
                         <Table
