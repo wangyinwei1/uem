@@ -80,14 +80,14 @@ module.exports = webpackMerge(config, {
                 pathRewrite: { '^\/uem\/api': '' }
             },
             //在本地环境引用uyundev的公共头部
-            "/tenant": {
-                "target": "http://www.uyundev.cn",
-                "secure": false
-            },
-            "/frontend": {
-                "target": "http://www.uyundev.cn/",
-                "secure": false
-            }
+            // "/tenant": {
+            //     "target": "http://www.uyundev.cn",
+            //     "secure": false
+            // },
+            // "/frontend": {
+            //     "target": "http://www.uyundev.cn/",
+            //     "secure": false
+            // }
         }
     }
 });

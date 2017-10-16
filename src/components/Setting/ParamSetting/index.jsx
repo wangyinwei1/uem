@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import styles from './index.scss';
 import { Form, Input, Table, Button, message } from 'antd';
 import { toJS } from 'mobx';
+import { getDeploy } from '../../../utils/storage';
 
 const FormItem = Form.Item;
 
@@ -73,6 +74,15 @@ class ParamSetting extends Component {
             selectedRowKeys: []
         });
     }
+    updateUEMDeploy(obj) {
+        const deploy = getDeploy();
+        deploy.apdex = obj.apdex;
+        deploy.reportPeriod = obj.reportPeriod;
+        // 更新到sessionStorage中
+        sessionStorage.setItem('UEM_deploy', JSON.stringify(deploy))
+        // overviewStore.deploy从sessionStorage中重新取
+        this.props.setDeploy()
+    }
     saveSetting() {
         const { updateConfig } = this.props;
         const apdex = parseInt(this.form.getFieldValue('apdex'));
@@ -80,6 +90,7 @@ class ParamSetting extends Component {
         updateConfig({ reportPeriod, urls, apdex }).then(result => {
             const msg = result.message;
             if (msg === 'successful') {
+                this.updateUEMDeploy({ apdex, reportPeriod })
                 message.success(msg);
             } else {
                 message.error(msg)
