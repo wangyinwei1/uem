@@ -60,7 +60,7 @@ if (true) {
     //     }
     //     return echartsColor[name][localStorage.getItem('UEM_skin')];
     // }
- 
+ //放到dev环境下用的，实际上线，这个要注释掉。这是由由租户控制的，挂在window下
     // window.USER_INFO = {
     //     tenantId: 'e0a67e986a594a61b3d1e523a0a39c77',
     //     userId: 'e0a67e986a594a61b3d1e523a0a39c77'
