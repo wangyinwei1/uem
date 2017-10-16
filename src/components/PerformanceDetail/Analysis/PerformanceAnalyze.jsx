@@ -164,6 +164,9 @@ export default class PerformanceAnalyze extends React.Component {
         // console.log('-------------newMobileConfig----------',newMobileConfig);
         // console.log('+++++++全部的config++++++++++',configMobile.updateIn(['series'],() => newMobileConfig).updateIn(['yAxis', 0, 'data'], () => threadNames).toJS());
         // pc的
+        // redirect appcache tcp request unload response dom page
+        // response request redirect load domLoading domComplete dns connect
+        // dns redirect connect
         const bars = (() => {
             const arr = [];
             for (let i in threadInfo) {
@@ -173,7 +176,10 @@ export default class PerformanceAnalyze extends React.Component {
                     arr.push(i);
                 } 
             }
-            return arr;
+            // console.log(arr)
+            // 如果确定threadInfo里面的值就是sortArr的值，那么久不用这么麻烦了，直接返回sortArr即可
+            const sortArr = ['dns', 'connect', 'redirect', 'request', 'response', 'domLoading', 'domComplete', 'load'].reverse();
+            return sortArr.filter(item => arr.indexOf(item) > -1)
         })();
         const startArr = bars.map(item => {
             return threadInfo[item][0];
