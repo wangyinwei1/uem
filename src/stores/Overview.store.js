@@ -63,6 +63,10 @@ class OverviewStore {
         total:1
     };
 
+    @action setDeploy = () => {
+        this.deploy = getDeploy()
+    }
+
     @action onGetRealTimeData = async payload => {
         try {
             const data = await Service.getRealTimeData(payload);

@@ -51,9 +51,11 @@ class SettingStore {
 
   @action updateConfig = async (payload) => {
     try {
+      const {apdex, reportPeriod } = payload
       const { slowLoadThreshold } = this.config;
       const result = await Service.updateConfig({
-        ...payload,
+        apdex,
+        reportPeriod,
         slowLoadThreshold,
       })
       this.getConfig();

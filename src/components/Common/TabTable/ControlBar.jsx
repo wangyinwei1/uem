@@ -145,7 +145,7 @@ export default class ControlBar extends React.Component {
         return (
             <div className={styles['options']}>
                 <div className={styles['filter']}>
-                    <Checkbox value={this.props.apdexTime} onChange={this.changeResTime.bind(this)}>{`${locale('响应时间')}>${this.props.apdexTime}s(4T)`}</Checkbox>
+                    <Checkbox value={this.props.apdexTime} onChange={this.changeResTime.bind(this)}>{`${locale('响应时间')}>${this.props.apdexTime * 4}s(4T)`}</Checkbox>
                 </div>
                 <Popover trigger="click" placement="bottomRight" content={this.makeOptionsContent()}>
                     <a className={cls('btn')} href="javascript:;">
