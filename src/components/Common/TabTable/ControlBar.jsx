@@ -13,7 +13,6 @@ const CheckboxGroup = Checkbox.Group;
 export default class ControlBar extends React.Component {
     constructor(props) {
         super(props);
-
         this.options = config[props.type][props.tagType].options;
     }
     componentWillMount() {
@@ -63,9 +62,9 @@ export default class ControlBar extends React.Component {
         const { type, tagType } = this.props;
         // 自定义属性
         if(type == "UserTable"){
-            const arr = [];
             const { userDefinedColumn } = this.props;
             if(userDefinedColumn.length > 0){
+                const arr = [];
                 userDefinedColumn.map((item,index) => {
                     arr.push({
                         value: item.key,
@@ -75,6 +74,7 @@ export default class ControlBar extends React.Component {
                         width: 100,
                     })
                 });
+                this.options.quota = [];
                 _.assign(this.options.quota, arr);
             }
         }
