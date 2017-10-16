@@ -1,0 +1,33 @@
+.delete-modal {
+  :global(.ant-modal-body) {
+    padding: 40px;
+    :global(.ant-form-item) {
+      margin-bottom: 18px;
+      :global(.ant-form-item-label) {
+        label {
+          color: #ffffff;
+        }
+      }
+    }
+  }
+  .title {
+    text-align: center;
+    line-height: 23px;
+    font-size: 16px;
+  }
+  .btn-wrapper {
+    margin-top: 20px;
+    text-align: center;
+    button {
+      margin-left: 20px;
+      &:first-child {
+        margin-left: 0;
+      }
+      &:disabled {
+        background-color: #7d7374;
+        border: none;
+        color: #ffffff;
+      }
+    }
+  }
+}

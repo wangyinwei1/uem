@@ -4,6 +4,8 @@ import React from 'react';
 import './index.scss';
 import moment from 'moment';
 import styles from './index';
+import DelAppModal from '../AppItem/DelAppModal';
+import {toJS} from 'mobx'
 const setList = {
     0: [{
         name: '删除应用',
@@ -36,17 +38,41 @@ class AppTable extends React.Component {
     defaultProps = {
         data: []
     }
-    constructor(props){
+    constructor(props) {
         super(props);
-        this.state={
+        this.state = {
             showDelModal: false,
             // countDown: 3,
-            confirmLoading: false
+            confirmLoading: false,
+            seconds: 5
         };
+        this.toggleDelAppModal = this.toggleDelAppModal.bind(this)
         let currentRecord = {};
+        this.timer = null;
     }
     static contextTypes = {
         router: React.PropTypes.object.isRequired
+    }
+    toggleDelAppModal(visible) {
+        this.setState({
+            showDelAppModal: visible,
+            seconds: 5
+        });
+        if (visible) {
+            let seconds = 5;
+            this.timer = setInterval(() => {
+                if (seconds > 0) {
+                    this.setState({
+                        seconds: --seconds
+                    })
+                } else {
+                    clearInterval(this.timer)
+                }
+            }, 1000)
+
+        } else {
+            this.timer && clearInterval(this.timer)
+        }
     }
     getColumns() {
         return [{
@@ -124,7 +150,7 @@ class AppTable extends React.Component {
                                 const { action } = val;
                                 return (
                                     <Menu.Item key={index}>
-                                        <div className="set-list" key={val.action} action={val.action} onClick={this.handelByApp.bind(this, action, dataIndex,record)}>{locale(val.name)}</div>
+                                        <div className="set-list" key={val.action} action={val.action} onClick={this.handelByApp.bind(this, action, dataIndex, record)}>{locale(val.name)}</div>
                                     </Menu.Item>
                                 )
                             })
@@ -147,7 +173,7 @@ class AppTable extends React.Component {
         }]
     }
 
-    confirmDeleteApp(){
+    confirmDeleteApp() {
         // this.props.delApp({ appId: this.currentRecord.appId }).then(res => { setTimeout( ()=> {
         //         this.setState({
         //         showDelModal: false
@@ -163,19 +189,28 @@ class AppTable extends React.Component {
         //           clearInterval()
         //     }
         // },1000)}
-        this.setState({ confirmLoading: true })
-        setTimeout(() => {
+        const { delApp, setAppInfo } = this.props;
+        delApp({
+            appId: this.currentRecord.appId
+        }).then(res => {
             this.setState({
-                showDelModal: false,
-                confirmLoading: false,
-            }, ()=>this.props.delApp({ appId: this.currentRecord.appId }) );
-        }, 1000);
+                showDelAppModal: false
+            });
+            setAppInfo(null)
+        });
+        // this.setState({ confirmLoading: true })
+        // setTimeout(() => {
+        //     this.setState({
+        //         showDelModal: false,
+        //         confirmLoading: false,
+        //     }, () => this.props.delApp({ appId: this.currentRecord.appId }));
+        // }, 1000);
     }
 
-    cancelDeleteApp(){
+    cancelDeleteApp() {
         this.setState({
             showDelModal: false,
-        });     
+        });
     }
 
     handelByApp(action, index, record, e) {
@@ -183,20 +218,21 @@ class AppTable extends React.Component {
          *  '删除应用','停止监控','应用部署'，'启动监控'
          */
 
-        this.currentRecord = record ;
-        if(action === 'deleteAppConfirm' ){
-            this.setState({
-                showDelModal: true
-            });  
+        this.currentRecord = record;
+        if (action === 'deleteAppConfirm') {
+            // this.setState({
+            //     showDelModal: true
+            // });
+            this.toggleDelAppModal(true)
         }
-        if(action === 'startApp' || 'stopApp' ){
+        if (action === 'startApp' || 'stopApp') {
             // stopPropagation();
             this.props.updateApp({
                 appId: record.appId,
                 status: record.status == 0 ? 1 : 0
             })
         }
-        if( action === 'deployApp' ){
+        if (action === 'deployApp') {
             this.context.router.history.push('/setting');
         }
     }
@@ -225,7 +261,7 @@ class AppTable extends React.Component {
     componentDidMount() {
 
     }
-    onRowClick(record, index) {   
+    onRowClick(record, index) {
         const { chooseApp, choosePlatform } = this.props;
         chooseApp({
             appId: record.appId
@@ -261,13 +297,13 @@ class AppTable extends React.Component {
         return (
             <div>
                 <Table
-                    dataSource={data}
+                    dataSource={toJS(data)}
                     onRowClick={this.onRowClick.bind(this)}
                     columns={this.getColumns()}
                     pagination={false}
                     rowKey={record => record.appId}
-                    />
-                <Modal
+                />
+                {/* <Modal
                     className={styles['confirm_modal']}  
                     title={locale('确认删除？')}
                     visible={this.state.showDelModal}  
@@ -277,10 +313,16 @@ class AppTable extends React.Component {
                     okText={locale('确认')}
                     cancelText={locale('取消')}
                     >
-                    {/*<div className='info-wrapper'>
+                    <div className='info-wrapper'>
                         
-                    </div>*/}
-                </Modal>    
+                    </div>
+                </Modal>     */}
+                <DelAppModal
+                    showDelAppModal={this.state.showDelAppModal}
+                    seconds={this.state.seconds}
+                    toggleDelAppModal={this.toggleDelAppModal}
+                    delApp={this.confirmDeleteApp.bind(this)}
+                />
             </div>
         )
     }

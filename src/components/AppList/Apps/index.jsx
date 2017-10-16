@@ -73,6 +73,7 @@ export default class Apps extends React.Component {
                         choosePlatform={this.props.choosePlatform}
                         updateApp={this.props.updateApp}
                         delApp={this.props.delApp}
+                        setAppInfo={this.props.setAppInfo}
                     />
                 )
         );
