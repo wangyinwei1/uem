@@ -60,7 +60,6 @@ class PerformanceInteractiveStore {
         this.onGetOpersList();
     }
     @action onChangeTagType = payload => {
-        // debugger
         this.tagType = payload.tagType;
         sessionStorage.setItem('tagType',payload.tagType);
         this.data = [];

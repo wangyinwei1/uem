@@ -13,7 +13,6 @@ export default class PointButton extends React.Component {
         const { appId, platform } = this.props;
         // let url;
         // let urlSrc = localStorage.getItem('visual-src' + appId);
-        // debugger
         // if (!!urlSrc) {
         //     url = JSON.parse(urlSrc).url;
         // }

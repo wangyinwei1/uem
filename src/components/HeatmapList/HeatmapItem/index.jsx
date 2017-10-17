@@ -1,35 +1,59 @@
 import React from 'react';
 import styles from './index.scss';
-import { Modal,Tooltip } from 'antd';
+import { Modal,Tooltip,Button } from 'antd';
 
 export default class HeatmapItem extends React.Component {
     constructor(props){
         super(props)
     }
+    state = { 
+        visible : false,
+        loading : false,
+        url: '',
+        appId: ''
+    };
     // 删除热图
     deleteHeatmap(e){
         e.preventDefault();
         const { url } = this.props.data;
         const { appId, platform } = this.props;
-        let data = {
-            appId,
-            url
-        };
-        Modal.confirm({
-        title: '',
-        content: '你确定要删除吗 ？',
-        okText: '确定',
-        cancelText: '取消',
-        onOk:()=>{
-            // 删除热图的方法
-            this.props.onDeleteHeatMap({
-                "appId": appId,
-                "url": url
-            })
-        }
-      });
+        this.setState({
+            visible: true,
+            url: url,
+            appId: appId
+        })
+    //     Modal.confirm({
+    //     title: '',
+    //     content: '你确定要删除吗 ？',
+    //     okText: '确定',
+    //     cancelText: '取消',
+    //     onOk:()=>{
+    //         // 删除热图的方法
+    //         this.props.onDeleteHeatMap({
+    //             "appId": appId,
+    //             "url": url
+    //         })
+    //     }
+    //   });
     }
-
+    handleCancel(){
+        this.setState({
+            visible: false
+        })
+    }
+    handleOk(){
+        // const { url } = this.props.data;
+        // const { appId, platform } = this.props;
+        this.setState({ loading: true });
+        setTimeout(() => {
+            this.setState({ loading: false, visible: false });
+            this.props.onDeleteHeatMap({
+                 "appId": this.state.appId,
+                 "url": this.state.url
+        })
+        }, 800);
+        
+    }
 
     render() {
         const { data, appId, platform, theme } = this.props;
@@ -46,11 +70,23 @@ export default class HeatmapItem extends React.Component {
                     <div className={styles['banner']}>
                         <h3>{data.name}</h3>
                         <p>{locale('创建时间')}：{moment(data.createTime).format('MM-DD')}</p>
+                        <p>{locale('创建人')}：{data.creator}</p>
                         <Tooltip placement="bottom" title={'删除'}>
                                 <i className='iconfont icon-shanchu' onClick={this.deleteHeatmap.bind(this)}></i>
                         </Tooltip>
                     </div>
                 </a>
+                <Modal
+                    title="确定要删除吗？"
+                    visible={this.state.visible}
+                    closable={false}
+                    wrapClassName={styles['delete-modal']}
+                    footer={[
+                        <Button key="back" size="large" onClick={this.handleCancel.bind(this)}>取消</Button>,
+                        <Button key="submit" type="primary" size="large" loading={this.state.loading} onClick={this.handleOk.bind(this)}>确定</Button>
+                    ]}
+                    >
+                </Modal>
             </div>
         );
     }

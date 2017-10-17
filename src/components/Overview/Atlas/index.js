@@ -35,7 +35,6 @@ class Atlas extends Component {
         let pillarConfig, mapConfig, yAxis, series, yAxisInCN = [], mapSeriesData = [], _yAxis = [], _series = [];
         yAxis = this.props.userDistribution.yAxis;
         series = this.props.userDistribution.series;
-        // debugger
         if (activeMap == 'world') {
             for (let i = 0, len = yAxis.length; i < len; i++) {
                 for (let n in countryNameInEN) {

@@ -21,7 +21,43 @@
     color: #fff;
     margin-top: 10px;
 }
+.delete-modal{
+    :global{
+        .ant-modal{
+            width: 360px !important;
+            top: 24%;
+            .ant-modal-content {
+                border-radius: 5px;
+                height: 154px;
+                .ant-modal-header{
+                    padding: 30px 16px;
+                    background-color: #1D6AA7;
+                    text-align: -webkit-center;
+                    height: 90px;
+                    border: none;
+                    .ant-modal-title{
+                        font-size: 16px;
+                        color: #fff
+                    }
+                }
+                .ant-modal-footer{
+                    border-top: none;
+                    // padding: 20px 187px 28px 10px;
+                    text-align: center;
+                    .ant-btn-lg {
+                        font-size: 13px;
+                        height: 26px;
+                        background-color: #108ee9;
+                        border-color: #108ee9;
+                        color: #fff;
+                    }
+                }
+            }
+            
+        }
 
+    }
+}
 .heatmap-item {
     display: inline-block;
     overflow: hidden;

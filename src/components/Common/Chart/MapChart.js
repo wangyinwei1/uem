@@ -103,7 +103,6 @@ class MapChart extends Chart {
     }
 
     // componentWillReceiveProps(nextprops){
-    //     debugger
     //     console.log('nextprops',nextprops);
     //         this.props = nextprops;
     //         this.defaultOptions = this.defaultOptions.mergeDeep({

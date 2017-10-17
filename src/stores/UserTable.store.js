@@ -96,7 +96,6 @@ class UserTableStore {
                     item.key = index;
                     return Immutable.fromJS(item).merge(item.userDefined).toJS();
                 });
-                // debugger
                 console.log('this.data',this.data.toJS());
                 this.total = data.total;
                 setTimeout(() => {

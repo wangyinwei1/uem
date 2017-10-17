@@ -31,7 +31,6 @@ const defaultOptions = Immutable.fromJS({
         // itemStyle: {
         //     normal: {
         //         color: function (value) {
-        //             debugger
         //             // let opacity = Number((value.data / maxUv).toFixed(2));
         //             // return UYUN.getTheme('performance-pillar1') + opacity + ")";
         //         }

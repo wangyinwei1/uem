@@ -33,7 +33,6 @@ export default class UserDetail extends React.Component {
             onChangeCurrent,
             newClickConfig
         } = this.props.userDetailStore;
-        // debugger
         const {
             displayName,
             userId,

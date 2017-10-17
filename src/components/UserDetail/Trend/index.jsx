@@ -19,7 +19,6 @@ export default class Trend extends React.Component {
             changeCurrent,
         } = this.props;
         const { dataIndex } = params;
-        // debugger
         const newValue = [];
         sessionCount.length > 0 && sessionCount.map((item,index) => newValue.push({'value':item.value}) )
 

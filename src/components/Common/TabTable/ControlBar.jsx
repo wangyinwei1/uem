@@ -30,7 +30,6 @@ export default class ControlBar extends React.Component {
         this.colOptions = columns;
     }
     changeColOptions(e) {
-        // debugger
         const checked = e.target.checked;
         const value = e.target.value;
         for (let i = this.colOptions.length - 1; i >= 0; i -= 1) {

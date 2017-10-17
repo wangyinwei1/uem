@@ -21,7 +21,6 @@ class UserDetailStore {
         this.onGetSessionCount();
     }
     @action onChangeCurrent = payload => {
-        // debugger
         this.current = payload.current;
         // 点击之后更新条形图的配置。被点中的那条颜色不同
         this.newClickConfig = payload.config;

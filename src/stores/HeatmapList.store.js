@@ -25,7 +25,7 @@ class HeatmapList {
         }
     }
 
-    @action onDeleteHeatMap = async paylod => {
+    @action onDeleteHeatMap = async payload => {
         try {
             const data = await Service.deleteHeatMap({
                 appId: payload.appId,

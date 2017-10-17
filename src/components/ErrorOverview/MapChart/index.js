@@ -64,7 +64,6 @@ class ErrorMapChart extends Component {
     }
 
     clickUpdateMap(params) {
-        // debugger
         if (this.state.activeMap == 'china' && params.componentSubType == 'map' && params.name !== '台湾') {
             if (this.state.isSelectingCity && typeof params.value != "undefined" && !isNaN(params.value)) {
                 this.setState({ isSelectingCity: false,activeProvince:params.name }, () => this.props.getMapData({

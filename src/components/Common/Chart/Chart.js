@@ -225,7 +225,6 @@ class Chart extends React.PureComponent {
         // $(window).on('resize', this._resizeChart);
     }
     componentWillReceiveProps(nextProps) {
-        // debugger
         clearTimeout(this.timer);
         try {
             // this.chartDom.clear();
