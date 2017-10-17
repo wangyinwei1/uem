@@ -76,6 +76,7 @@ export default class ControlBar extends React.Component {
                 });
                 this.options.quota = [];
                 _.assign(this.options.quota, arr);
+                console.log('this.options------------------',this.options);
             }
         }
         return (
