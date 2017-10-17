@@ -132,8 +132,7 @@ class PerformanceMapChart extends Component {
                 { start: 0.5, end: 0.8, label: '可接受', color:'#ffec0b' },
                 { start: 0, end: 0.5, label: '不满意', color: '#ff5251' }
             ];
-        // }
-        console.log('yAxis,series',yAxis,series);   
+        // } 
         /**
          * 从store获得的地图数据用来地图和条形图的展示。但在世界地图的数据有名称对应问题。
          * 世界地图需要国家名称的英文名字来渲染，条形图国家名需要中文展示，在这里进行转换。

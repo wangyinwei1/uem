@@ -5,6 +5,7 @@ import {
     getTimeType
 } from '../utils/storage';
 import { countryNameInCN, countryNameInEN } from '../components/Common/Chart/WorldCountryName';
+import { NameMap } from "../components/Common/Chart/CityName";
 
 class PerformanceOverviewStore {
     @observable keyIndicator = {};
@@ -57,7 +58,7 @@ class PerformanceOverviewStore {
     //     }
     // }
     @action onGetMapData = async payload => {
-        const { metrics , areaType } = payload;
+        const { metrics , areaType, province } = payload;
         try {
             const datas = await CommonService.getMapData({
                 startTime: moment().subtract(getTimeType().startTime.type, getTimeType().startTime.units).valueOf(),
@@ -72,6 +73,14 @@ class PerformanceOverviewStore {
                         item.area = '未知地址'
                     }
                 }).sort((a,b)=> b.value - a.value);
+                // 将 “杭州” 变成 “杭州市”
+                province !== undefined && datas.data.map((item, index) => {
+                    for(let n in NameMap[province]) {
+                        if (n == item.area){
+                            item.area = NameMap[province][n]
+                        }
+                    }
+                });
                 if( metrics == '["avgRspTime"]' ){
                     runInAction(() => {
                         let yAxisData = [], seriesData = [],tempMapData = {};

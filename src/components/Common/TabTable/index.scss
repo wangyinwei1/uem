@@ -34,6 +34,11 @@ color17:#4082e6,color18:#fff,color19:#4082e6,color20:#adb3bf,color21:#4082e6
                 color: map-get($map,color12);
                 border-bottom: map-get($map,color3);
             }
+            .ant-pagination-prev .ant-pagination-item-link, .ant-pagination-next .ant-pagination-item-link {
+                border: 1px solid #4386B9;
+                border-radius: 0 !important;
+                background: rgba(0, 15, 30, 0.4) !important;
+            }
             .ant-pagination-prev,.ant-pagination-item,.ant-pagination-next {
                 border: 1px solid map-get($map,color14);
                 border-radius: 0;

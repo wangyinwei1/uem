@@ -4,7 +4,7 @@ import {
     getTimeType
 } from '../utils/storage';
 import { countryNameInCN, countryNameInEN } from '../components/Common/Chart/WorldCountryName';
-
+import { NameMap } from "../components/Common/Chart/CityName";
 
 class UserOverviewStore {
     @observable keyIndicator = {};
@@ -48,7 +48,7 @@ class UserOverviewStore {
     }
 
     @action onGetMapData = async payload => {
-        const { metrics , areaType } = payload;
+        const { metrics , areaType, province } = payload;
         try {
             const datas = await CommonService.getMapData({
                 startTime: moment().subtract(getTimeType().startTime.type, getTimeType().startTime.units).valueOf(),
@@ -59,10 +59,18 @@ class UserOverviewStore {
             });
             if( areaType == 'province'){
                 datas.data && datas.data.map((item,index)=>{
-                    if(item.area == '-'){
+                    if(item.area == '-' || "" ){
                         item.area = '未知地址'
                     }
                 })
+                // 将 “杭州” 变成 “杭州市”
+                province !== undefined && datas.data.map((item, index) => {
+                    for(let n in NameMap[province]) {
+                        if (n == item.area){
+                            item.area = NameMap[province][n]
+                        }
+                    }
+                });
                 if( metrics == '["sessionCount"]' ){
                     runInAction(() => {
                         let yAxisData = [], seriesData = [],tempMapData = {};

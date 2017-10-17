@@ -27,7 +27,6 @@ class PerformanceInteractiveStore {
     @observable order = 'descend';
 //    constructor(){
 //     autorun(() => 
-//         console.log('111111111111111',this.columns)
 //     )
 //    }
 

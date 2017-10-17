@@ -187,7 +187,6 @@ class Chart extends React.PureComponent {
         // reaction(()=>mobxListener.get("theme"), theme=> {
         //     // new setTheme(theme);
         //     // this.chartDom = echarts.init(document.getElementById(this.chartId));
-        //     console.log('22222222222222',this);
         // })   
         this.chartDom = echarts.init(document.getElementById(this.chartId));   
         if (this.group) {

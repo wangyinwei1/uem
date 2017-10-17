@@ -137,8 +137,11 @@ class PerformanceTrend extends Component {
                     name: 'Apdex',
                     type: 'line',
                     symbol: 'circle',
+                    symbolSize: 5,
                     smooth: true,
-                    showSymbol: false,
+                    // 显示孤立点
+                    showAllSymbol: true,
+                    showSymbol: true,
                     data: trend.apdex
                 }],
             // backgroundColor: 'rgba(0,0,0,0.2)',

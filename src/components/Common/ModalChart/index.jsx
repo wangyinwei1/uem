@@ -95,7 +95,6 @@ export default class ModalChart extends React.Component {
             'uv':locale('访客数'),
             'userDistribution': locale('用户分布数据')
         }
-        // console.log('-----config', modalChartConfig);
         return (
            <div className={styles["modal-chart"]}>
                 {/* {this.total > 10 && <div onClick={this.showModal} className={styles['check-all']}>{locale('查看全部')}</div>} */}

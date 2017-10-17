@@ -38,7 +38,6 @@ export default class FlowChart extends React.Component {
     // }  
     // componentDidMount(){
     //     setTimeout(()=>{this.cutDiv()},3000);
-    //     // console.log('111111111111111111',this.cutDiv())
     // }
     render() {
         const { threadInfo } = this.props;
