@@ -85,24 +85,24 @@ export const tableConfig = {
         title: 'URL/PATH',
         dataIndex: 'resName',
         key: 'resName',
-        // width:250
+        width:250
     }, {
-        title: locale('耗时'),
+        title: locale('耗时 (单位:s)'),
         dataIndex: 'time',
         key: 'time',
-        width: 60,
+        width: 50,
         sorter: (a, b) => a.time - b.time,
             // render(text, record, index) {
-                // let showlength;
-                // showlength = parseFloat(Number(record.time * 100 / record.max).toFixed(0));
-                // if (isNaN(showlength)) {
-                //     return (<span>{text}s</span>);
-                // } else {
-                //     // return (<span className='analyze-time-bar'>
-                //     //     <div className='text mr10'>{text}s</div>
-                //     //     <div className='bar' style={{ 'width': showlength, 'max-width': '100px' }}></div>
-                //     // </span>);
-                // }
+            //     let showlength;
+            //     showlength = parseFloat(Number(record.time * 100 / record.max).toFixed(0));
+            //     if (isNaN(showlength)) {
+            //         return (<span>{text}s</span>);
+            //     } else {
+            //         return (<span className='analyze-time-bar'>
+            //             <div className='text mr10'>{text}s</div>
+            //             <div className='bar' style={{ 'width': showlength, 'max-width': '100px' }}></div>
+            //         </span>);
+            //     }
             // }
     }],
 };

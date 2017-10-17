@@ -46,15 +46,15 @@ export default class Resource extends React.Component {
             total,
             pageIndex,
         } = this.props.data;
-        // const mockdata = [{
-        //     key: '1',
-        //     resName: "http://10.1.51.113:8080/kb/rest/mywork/00000000000000000000000000000000000000000000000000000000000000000000000",
-        //     time: '0.014'
-        // }, {
-        //     key: '2',
-        //     resName: "http://10.1.51.113:8080/kb/rest/mywork/000000000000000000000000000000000000000000000000000000000000000000000000",
-        //     time: '0.94'
-        // }]
+        const mockdata = [{
+            key: '1',
+            resName: "http://10.1.51.113:8080/kb/rest/mywork/00000000000000000000000000000000000000000000000000000000000000000000000",
+            time: '0.014'
+        }, {
+            key: '2',
+            resName: "http://10.1.51.113:8080/kb/rest/mywork/000000000000000000000000000000000000000000000000000000000000000000000000",
+            time: '0.94'
+        }]
         return (
             <div className={styles['resource']}>
                 <div className={styles['title']}>
