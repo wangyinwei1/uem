@@ -19,33 +19,12 @@ import {
 export default class PerformanceDetail extends React.Component {
     @observable display = '';
     @observable path = '';
-    @computed get displayType() {
-        if (this.display == '') {
-            const { uiType, specificUrls, } = this.props.data;
-            const platform = sessionStorage.getItem('UEM_platform');
-            let displayType = this.props.data.displayType;
-            if (uiType == 'H5' || platform == 'pc' ) {
-                // 取specificUrls第一个displayType作为参数
-                // display = specificUrls[0].displayType;
-                this.display = specificUrls !== undefined && specificUrls.length > 0 ? specificUrls[0].displayType : 'page';
-            } else {
-                this.display = displayType !== undefined ? displayType : '' ;
-            }
-        }
-        return this.display;
-    }
-    @computed get getPath(){
-            // const { path, specificUrls } = this.props.data;
-        if(this.path == '' ){
-            if (this.props.data.hasOwnProperty('specificUrls') && this.props.data.specificUrls.length > 0 ) {
-                this.path = this.props.data.specificUrls[0].url;
-        } else {
-            if(this.props.data.hasOwnProperty('path'))
-                this.path = this.props.data.path;
-            }
-        }
-        return this.path;
-    }
+    // @computed get displayType() {
+    //     return this.display;
+    // }
+    // @computed get getPath(){
+    //     return this.path;
+    // }
     // static childContextTypes = {
     //     type: React.PropTypes.string.isRequired,
     // }
@@ -57,8 +36,35 @@ export default class PerformanceDetail extends React.Component {
     //         type,
     //     };
     // }
-
+    @action initDisplay(){
+         if (this.display == '') {
+            const { uiType, specificUrls, } = this.props.data;
+            const platform = sessionStorage.getItem('UEM_platform');
+            let displayType = this.props.data.displayType;
+            if (uiType == 'H5' || platform == 'pc' ) {
+                // 取specificUrls第一个displayType作为参数
+                this.display = specificUrls !== undefined && specificUrls.length > 0 ? specificUrls[0].displayType : 'page';
+                // display1 = specificUrls !== undefined && specificUrls.length > 0 ? specificUrls[0].displayType : 'page';
+            } else {
+                this.display = displayType !== undefined ? displayType : '' ;
+                // display1 = displayType !== undefined ? displayType : '' ;
+            }
+        }
+    }
+    @action initPath(){
+        if(this.path == '' ){
+            if (this.props.data.hasOwnProperty('specificUrls') && this.props.data.specificUrls.length > 0 ) {
+                this.path = this.props.data.specificUrls[0].url;
+        } else {
+            if(this.props.data.hasOwnProperty('path'))
+                this.path = this.props.data.path;
+            }
+        }
+    }
     componentDidMount() {
+        // 第一次请求时的参数
+        this.initDisplay();
+        this.initPath();
         this.reloadUrl();
     };
 
@@ -68,7 +74,8 @@ export default class PerformanceDetail extends React.Component {
     *   第三个参数布尔值表示是否对传入的值立即做出反应，否则只对data传入新值的时候有反应
     */
     reloadUrl() {
-        reaction(() => { return this.displayType,this.getPath},
+        // reaction(() => { return this.displayType,this.getPath },
+        reaction(() => { return this.display,this.path },
         data => this.requestPerformanceDetailData(),
         true
     )}
@@ -96,40 +103,40 @@ export default class PerformanceDetail extends React.Component {
         }else{
             isMarked = 0;
         }
-        platform == 'pc' && !Boolean(this.getPath) ? message.info('requestPath字段为空') : onGetOperInfo({
+        platform == 'pc' && !Boolean(this.path) ? message.info('requestPath字段为空') : onGetOperInfo({
             operType,
             selector,
             text,
             isMarked : isMarked,
-            requestPath: this.getPath,
+            requestPath: this.path,
             path: path,
             performanceType: type,
-            displayType: JSON.stringify([this.displayType]),
+            displayType: JSON.stringify([this.display]),
             // columnCode: JSON.stringify(['clientTime', 'serverTime'])
         });
-        platform == 'pc' && !Boolean(this.getPath) ? message.info('requestPath字段为空') : onGetOperTrend({
+        platform == 'pc' && !Boolean(this.path) ? message.info('requestPath字段为空') : onGetOperTrend({
             operType,
             selector,
             text,
             isMarked : isMarked,
-            requestPath: this.getPath,
+            requestPath: this.path,
             path: path,
             performanceType: type,
-            displayType: JSON.stringify([this.displayType]),
+            displayType: JSON.stringify([this.display]),
             columnCode: uiType === "NATIVE" ?
                 JSON.stringify(['avgRspTime', 'clickNum', 'thruput', 'apdexs', 'median', 'netWorkTime', 'clientTime', 'serverTime', 'percent5']) :
                 JSON.stringify(['clickNum', 'apdexs', 'median', 'avgRspTime', 'percent5', 'thruput', 'clientTime', 'serverTime', 'netWorkTime']),
 
         });
 
-        platform == 'pc' && !Boolean(this.getPath) ? message.info('path字段为空') : onGetOperSamplesList({
+        platform == 'pc' && !Boolean(this.path) ? message.info('path字段为空') : onGetOperSamplesList({
             operType,
             selector,
             text,
             isMarked : isMarked,
-            requestPath: this.getPath,
+            requestPath: this.path,
             path: path,
-            displayType: JSON.stringify([this.displayType]),
+            displayType: JSON.stringify([this.display]),
             performanceType: type,
         });
     }
@@ -137,6 +144,7 @@ export default class PerformanceDetail extends React.Component {
     @action changeDisplayType(displayType,path) {
         this.display = displayType;
         this.path = path;
+        console.log('this.display, this.path',this.display, this.path);
     }
     shouldComponentUpdate(nextProps) {
         return nextProps.tag;

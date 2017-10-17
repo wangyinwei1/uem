@@ -214,7 +214,7 @@ export default class TimingH5 extends React.Component {
                     </dd>
                 </dl>}
 
-                {displayType == 'xhr' && <dl>
+                {displayType == 'xhr' || !Boolean(displayType)  && <dl>
                     <dt>
                         <span>{locale('回调时间')}</span>
                         <span>{`${callbackTime.value}s`}</span>
