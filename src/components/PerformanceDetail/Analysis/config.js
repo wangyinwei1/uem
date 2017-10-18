@@ -1,3 +1,5 @@
+import React, {Component} from 'react';
+import styles from './index.scss';
 export default Immutable.fromJS({
     default: {
         title: null
@@ -85,24 +87,24 @@ export const tableConfig = {
         title: 'URL/PATH',
         dataIndex: 'resName',
         key: 'resName',
-        width:250
+        // width:250
     }, {
         title: locale('耗时 (单位:s)'),
         dataIndex: 'time',
         key: 'time',
-        width: 50,
+        width: 60,
         sorter: (a, b) => a.time - b.time,
-            // render(text, record, index) {
-            //     let showlength;
-            //     showlength = parseFloat(Number(record.time * 100 / record.max).toFixed(0));
-            //     if (isNaN(showlength)) {
-            //         return (<span>{text}s</span>);
-            //     } else {
-            //         return (<span className='analyze-time-bar'>
-            //             <div className='text mr10'>{text}s</div>
-            //             <div className='bar' style={{ 'width': showlength, 'max-width': '100px' }}></div>
-            //         </span>);
-            //     }
-            // }
+        render(text, record, index) {
+            let showlength;
+            showlength = parseFloat(Number(record.time * 100 / record.max).toFixed(0));
+            if (isNaN(showlength)) {
+                return (<span>{text}s</span>);
+            } else {
+                return (<span className={styles['analyze-time-bar']}>
+                    <div className={styles['text']}>{text}s</div>
+                    <div className={styles['bar']} style={{ 'width': showlength, 'max-width': '100px' }}></div>
+                </span>);
+            }
+        }
     }],
 };

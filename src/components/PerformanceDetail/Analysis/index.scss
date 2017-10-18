@@ -159,3 +159,14 @@
         }
     }
 }
+.analyze-time-bar {
+    .bar{
+        background-color: #03a9f4;
+        height: 5px;
+        position: relative;
+        top: 0;
+    }
+    .text{
+        width: 65px;
+    }
+}

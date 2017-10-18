@@ -49,11 +49,13 @@ export default class Resource extends React.Component {
         const mockdata = [{
             key: '1',
             resName: "http://10.1.51.113:8080/kb/rest/mywork/00000000000000000000000000000000000000000000000000000000000000000000000",
-            time: '0.014'
+            time: 4,
+            max: 10
         }, {
             key: '2',
             resName: "http://10.1.51.113:8080/kb/rest/mywork/000000000000000000000000000000000000000000000000000000000000000000000000",
-            time: '0.94'
+            time: 7,
+            max: 10
         }]
         return (
             <div className={styles['resource']}>
@@ -74,7 +76,7 @@ export default class Resource extends React.Component {
                 <div className={styles['main']}>
                     <Table
                         columns={tableConfig.columns}
-                        dataSource={data.toJS()}
+                        dataSource={mockdata}
                         pagination={{
                             current: pageIndex,
                             total: total,

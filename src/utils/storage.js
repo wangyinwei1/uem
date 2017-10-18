@@ -57,6 +57,7 @@ export function getColOptions(type) {
                 'operName',
                 'apdex',
                 'clickNum',
+                'srcName',
                 'thruput',
                 'errorCount',
                 'avgRspTime',

@@ -1,4 +1,9 @@
 .pie {
+    :global {
+        .tile-body {
+            height: 270px;
+        }
+    }
     .pie-chart{
         display: inline-block;
         width: 33.33% !important;

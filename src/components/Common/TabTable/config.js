@@ -258,7 +258,7 @@ export default {
             }, 
             {
                 value: 'operName',
-                label: locale('页面名称'),
+                label: locale('名称'),
                 width: 200,
                 checked: true,
                 disabled: true,
@@ -275,7 +275,7 @@ export default {
                 value: 'srcName',
                 label: locale('所在界面'),
                 checked: true,
-                disabled: false,
+                disabled: true,
                 width: 200,
             },
             {
