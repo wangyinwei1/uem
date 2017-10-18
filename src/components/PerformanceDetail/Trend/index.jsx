@@ -15,7 +15,7 @@ export default class Trend extends React.Component {
         value: 'thruput'
     }, {
         name: this.props.type == 'browse' ? 'PV按满意度分布图' : '点击数按满意度分布图',
-        value: 'apdex'
+        value: this.props.type == 'browse' ? 'apdex' : 'clickNum'
     }, {
         name: '吞吐率趋势图',
         value: 'throughput'
@@ -96,6 +96,7 @@ export default class Trend extends React.Component {
                     chartId={`trend-${itemId}-${activeTrend}`}
                     options={config.get('default').mergeDeep(config.get('apdex'))
                         .setIn(['series', 0, 'data'], apdexsArr)
+                        .setIn(['series', 0 , 'name'],  this.props.type == 'browse' ? '浏览量PV' : '点击数')
                         .toJS()}
                 />;
 
