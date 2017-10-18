@@ -14,7 +14,6 @@ class UserDetailStore {
     @observable sessionCount = [];
     @observable sessionList = [];
     @observable trace = [];
-    @observable newClickConfig = {};
     @action onChangeUID = payload => {
         this.uId = payload.uId;
         this.trace = [];
@@ -23,7 +22,6 @@ class UserDetailStore {
     @action onChangeCurrent = payload => {
         this.current = payload.current;
         // 点击之后更新条形图的配置。被点中的那条颜色不同
-        this.newClickConfig = payload.config;
         this.trace = [];
         this.onGetUserSessionsList({
             startTime: payload.current.time,
@@ -44,6 +42,9 @@ class UserDetailStore {
             });
             runInAction(() => {
                 this.sessionCount = data.sessionCount;
+                if( data.sessionCount.length > 0){
+                    this.onChangeCurrent({ current: data.sessionCount[data.sessionCount.length - 1] })
+                }
             });
         } catch (e) {
             throw e;

@@ -20,10 +20,16 @@ export default class UserTrace extends React.Component {
     }, {
         label: '满意',
         color: 'green'
-    }, {
-        label: '出错',
-        color: 'gray'
+    }, 
+    // {
+    //     label: '出错',
+    //     color: 'gray'
+    // },
+    {
+        label: '未知',
+        color: 'blue'
     }];
+
     tips = [{
         label: '请求时间',
         value: 'reqTime'
@@ -63,7 +69,7 @@ export default class UserTrace extends React.Component {
         } = this.props.data;
         return traceInfo.reverse().map(item => {
             return (
-                <div className={styles['trace-box-wrap']}>
+                <div className={styles['trace-box-wrap']} key={Math.random(0,1000)}>
                     <div>{item.page}</div>
                     <div>{item.path}</div>
                     <div className={styles['trace-time']}>
@@ -102,7 +108,7 @@ export default class UserTrace extends React.Component {
         return trace.map(item => {
             const content = (
                 <ul className={styles['tooltip']}>
-                    {this.tips.map(tip => <li key={tip.value}>{`${locale(tip.label)}：${item[tip.value]}`}</li>)}
+                    {this.tips.map(tip => Boolean(item[tip.value]) && <li key={tip.value + Math.random(0,1000)}>{`${locale(tip.label)}：${tip.label == '请求时间'? moment(item[tip.value]).format('YYYY-MM-DD HH:mm:ss') : item[tip.value]}`}</li>)}
                 </ul>
             );
             return (
@@ -196,9 +202,9 @@ export default class UserTrace extends React.Component {
             traceInfo
         } = this.props.data;      
         return (
-            <div className={styles['user-trace']}>
+            <div className={styles['user-trace']} key={Math.random(0,1000)}>
                 <div className={styles['legend']}>
-                    {this.legends.map(item => <span key={locale(item.label)}>
+                    {this.legends.map(item => <span key={locale(item.label)+Math.random(0,1000)}>
                         <i className={cls(styles['icon'], styles[`${item.color}`])}></i>
                         <span>{locale(item.label)}</span>
                     </span>)}
@@ -209,7 +215,7 @@ export default class UserTrace extends React.Component {
                     <div className={styles['trace-box-wrap']}>
                         {showBaseInfo && this.renderInfo()}
                         <div className={cls(styles['base-info'], styles['trace-box'])}>
-                            {this.detailInfo.map(item => <div key={item.value} className={styles['base-li']} title={detailInfo[item.value]}>{`${locale(item.label)}：${detailInfo[item.value]}`}</div>)}
+                            {this.detailInfo.map(item => <div key={item.value + Math.random(1,100)} className={styles['base-li']} title={detailInfo[item.value]}>{`${locale(item.label)}：${detailInfo[item.value]}`}</div>)}
                         </div>
                         <i className={cls('iconfont', styles['toggle-btn'], {
                             'icon-shanjian': this.state.toggleShow,

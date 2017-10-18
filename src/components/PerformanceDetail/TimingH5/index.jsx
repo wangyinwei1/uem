@@ -119,7 +119,7 @@ export default class TimingH5 extends React.Component {
             return colWrap_1 + widths[3] + 15;
         })();
         const lastByteTimeWidth = firstByteTimeWidth + widths[4];
-        if(displayType == 'page'){
+        if(displayType == 'page' || displayType == undefined ){
             domLoadingTimeWidth = lastByteTimeWidth + widths[5] + 15;
             avgRspTimeWidth = domLoadingTimeWidth + widths[6];
         }else{
@@ -214,7 +214,7 @@ export default class TimingH5 extends React.Component {
                     </dd>
                 </dl>}
 
-                {displayType == 'xhr' || !Boolean(displayType)  && <dl>
+                {displayType == 'xhr' && <dl>
                     <dt>
                         <span>{locale('回调时间')}</span>
                         <span>{`${callbackTime.value}s`}</span>
@@ -230,16 +230,16 @@ export default class TimingH5 extends React.Component {
         );
     }
     render() {
-        const { data } = this.props;
+        const { data , displayType } = this.props;   
         return (
             <div className={styles['timing']}>
                 <div className='tile-head'>{locale('响应时间分解图')}</div>
-                {this.props.specificUrls.length > 0 ? 
+                {this.props.specificUrls.length > 0 && displayType !== ''  ? 
                     <div className='tile-body'>
                         {this.state.showTimingCurve && this.timingCurve()}
                         {this.timingCol()}
                         <ul className={styles['timeline-list']}>
-                            {   this.props.displayType == 'page' ?
+                            {   displayType == 'page' || displayType == undefined ?
                                 this.typePage.map(item => {
                                 return <li key={item.label}><i className={styles[item.value]}></i><span>{locale(item.label)}</span></li>
                                 })

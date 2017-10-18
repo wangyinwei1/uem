@@ -38,17 +38,24 @@ export default class PerformanceDetail extends React.Component {
     // }
     @action initDisplay(){
          if (this.display == '') {
-            const { uiType, specificUrls, } = this.props.data;
+             const { type } = this.props;
+            const { uiType, specificUrls,displayType } = this.props.data;
             const platform = sessionStorage.getItem('UEM_platform');
-            let displayType = this.props.data.displayType;
-            if (uiType == 'H5' || platform == 'pc' ) {
-                // 取specificUrls第一个displayType作为参数
-                this.display = specificUrls !== undefined && specificUrls.length > 0 ? specificUrls[0].displayType : 'page';
-                // display1 = specificUrls !== undefined && specificUrls.length > 0 ? specificUrls[0].displayType : 'page';
-            } else {
-                this.display = displayType !== undefined ? displayType : '' ;
-                // display1 = displayType !== undefined ? displayType : '' ;
+            // if (uiType == 'HTML' || platform == 'pc' ) {
+            //     // 取specificUrls第一个displayType作为参数
+            //     this.display = specificUrls !== undefined && specificUrls.length > 0 ? specificUrls[0].displayType : 'page';
+            //     // display1 = specificUrls !== undefined && specificUrls.length > 0 ? specificUrls[0].displayType : 'page';
+            // } else {
+            //     this.display = displayType !== undefined ? displayType : '' ;
+            //     // display1 = displayType !== undefined ? displayType : '' ;
+            // }
+            // this.display = displayType ;
+            if( type == 'browse'  &&  displayType == undefined ){
+                this.display = 'page';
+            } else if( type == 'interaction' && displayType !== undefined ){
+                this.display = specificUrls !== undefined && specificUrls.length > 0 ? specificUrls[0].displayType : displayType;
             }
+            
         }
     }
     @action initPath(){
@@ -144,7 +151,6 @@ export default class PerformanceDetail extends React.Component {
     @action changeDisplayType(displayType,path) {
         this.display = displayType;
         this.path = path;
-        console.log('this.display, this.path',this.display, this.path);
     }
     shouldComponentUpdate(nextProps) {
         return nextProps.tag;
@@ -223,7 +229,7 @@ export default class PerformanceDetail extends React.Component {
                                 avgRspTime
                             }}
                             specificUrls={Boolean(specificUrls) && specificUrls.length > 0 ? specificUrls : path}
-                            displayType={this.displayType}
+                            displayType={this.display}
                         />
                         :
                         <FlowChart threadInfo={info} />

@@ -9,7 +9,7 @@ export default class Trace extends React.Component {
         const { data = [] } = this.props;
         return (
             <div className={styles['trace']}>
-                {data.map(item => <UserTrace key={item.baseInfo.sessionId+Math.random(1,100)} data={item} />)}
+                {data.map(item => <UserTrace key={item.baseInfo.sessionId+Math.random(1,1000)} data={item} />)}
             </div>
         );
     }
