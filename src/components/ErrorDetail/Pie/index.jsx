@@ -27,21 +27,21 @@ export default class Pie extends React.Component {
         } = this.props;
         let browserLegendData = [], browserSeriesData = [], ispLegendData = [], ispSeriesData = [], osLegendData = [], osSeriesData = [];
         browser.map((item, index) => {
-            browserLegendData.push(item.name);
+            browserLegendData.push(`浏览器分布  ${item.name}`);
             browserSeriesData.push({
-                name: item.name, value: item.value
+                name: `浏览器分布  ${item.name}`, value: item.value
             })
         });
         isp.map((item, index) => {
-            ispLegendData.push(item.name);
+            ispLegendData.push(`网络分布  ${item.name}`);
             ispSeriesData.push({
-                name: item.name, value: item.value
+                name:`网络分布  ${item.name}`, value: item.value
             })
         });
         os.map((item, index) => {
-            osLegendData.push(item.name);
+            osLegendData.push(`系统版本  ${item.name}`);
             osSeriesData.push({
-                name: item.name, value: item.value
+                name: `系统版本  ${item.name}`, value: item.value
             })
         });
         let browserConfig = config.updateIn(['title', 'text'], () => locale('浏览器分布情况')).updateIn(['legend', 'data'], () => browserLegendData).updateIn(['series', 0, 'data'], () => browserSeriesData);
