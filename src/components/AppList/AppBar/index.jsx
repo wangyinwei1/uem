@@ -37,6 +37,7 @@ class AppsBar extends Component {
         super(props);
         this.toggleAddAppSuccessModal = this.toggleAddAppSuccessModal.bind(this);
         this.deployApp = this.deployApp.bind(this);
+        this.toggleAddAppModal = this.toggleAddAppModal.bind(this);
         this.state = {
             showAddAppModal: false,
             activeRadio: 'chart',
@@ -44,14 +45,17 @@ class AppsBar extends Component {
         };
     }
     // 显隐 Modal
-    toggleAddAppModal() {
+    toggleAddAppModal(visible) {
+        if (!visible) {
+            this.props.form.resetFields();
+        }
         this.setState({
-            showAddAppModal: !this.state.showAddAppModal
+            showAddAppModal: visible
         });
     }
-    toggleAddAppSuccessModal(show, appId) {
+    toggleAddAppSuccessModal(visible, appId) {
         this.setState({
-            showAddAppSuccessModal: show
+            showAddAppSuccessModal: visible
         })
         this.appId = appId;
     }
@@ -69,7 +73,7 @@ class AppsBar extends Component {
                     } else {
                         // message.success('应用创建成功');
                         // chooseApp({appId: res.appId})
-                        this.toggleAddAppModal();
+                        this.toggleAddAppModal(false);
                         this.toggleAddAppSuccessModal(true, res.appId)
                     }
                 });
@@ -94,7 +98,7 @@ class AppsBar extends Component {
         const { showAddAppModal, showAddAppSuccessModal } = this.state;
         return (
             <div className={styles['apps-bar']}>
-                <div className={cls('btn', styles['create-app'])} onClick={this.toggleAddAppModal.bind(this)}><i className={cls('fa fa-plus')}></i>{locale('应用')}</div>
+                <div className={cls('btn', styles['create-app'])} onClick={() => this.toggleAddAppModal(true)}><i className={cls('fa fa-plus')}></i>{locale('应用')}</div>
                 <div className={styles['btn-wrapper']}>
                     <Dropdown overlay={(
                         <Menu onSelect={({ key }) => sortBy(key)} selectedKeys={[sortKey]}>
@@ -125,7 +129,7 @@ class AppsBar extends Component {
                     </div>
                 </Modal>
 
-                <Modal footer={null} visible={showAddAppModal} onCancel={this.toggleAddAppModal.bind(this)}>
+                <Modal footer={null} visible={showAddAppModal} onCancel={() => this.toggleAddAppModal(false)}>
                     <div className={styles['create-app-form-wrap']}>
                         <div className={styles['create-app-title']}>{locale('应用名称')}</div>
                         <Form className={styles['create-app-form']}>
@@ -162,7 +166,7 @@ class AppsBar extends Component {
                             </FormItem>
                             <div className={styles['btn-wrap']}>
                                 <div className={cls('btn')} onClick={this.addApp.bind(this)}>{locale('保存')}</div>
-                                <div className={cls('btn')} onClick={this.toggleAddAppModal.bind(this)}>{locale('取消')}</div>
+                                <div className={cls('btn')} onClick={() => this.toggleAddAppModal(false)}>{locale('取消')}</div>
                             </div>
                         </Form>
                     </div>
