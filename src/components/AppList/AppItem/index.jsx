@@ -62,9 +62,6 @@ export default class AppItem extends React.PureComponent {
             status: status === 1 ? 0 : 1
         });
     }
-    deployApp(e) {
-        this.noEvent(e);
-    }
     delApp() {
         const { delApp, setAppInfo } = this.props;
         delApp({
