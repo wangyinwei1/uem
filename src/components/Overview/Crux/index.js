@@ -132,9 +132,9 @@ class Crux extends Component {
                         <Progress className={cls(dashboardClass)} strokeWidth={8} type="dashboard" percent={apdex * 100} />
                         {this.hackDashboard()}
                         <ul className={styles['range']}>
-                            <li><i className={cls('iconfont icon-manyi')}></i><span>{`${realTimeData['sPercentage'] || '--'} ${locale('的操作响应快')}（0 ~ ${T.toFixed(1)}s）`}</span></li>
-                            <li><i className={cls('iconfont icon-yiban')}></i><span>{`${realTimeData['tPercentage'] || '--'} ${locale('的操作可接受')}（${T.toFixed(1)} ~ ${(4 * T).toFixed(1)}s）`}</span></li>
-                            <li><i className={cls('iconfont icon-bumanyi')}></i><span>{`${realTimeData['dPercentage'] || '--'} ${locale('的操作响应慢')}（> ${(4 * T).toFixed(1)}s）`}</span></li>
+                            <li><i className={cls('iconfont icon-manyi')}></i><span>{`${realTimeData['sPercentage'] || '--'} ${locale('的操作响应快')}（0 ~ ${T.toFixed(2)}s）`}</span></li>
+                            <li><i className={cls('iconfont icon-yiban')}></i><span>{`${realTimeData['tPercentage'] || '--'} ${locale('的操作可接受')}（${T.toFixed(2)} ~ ${(4 * T).toFixed(2)}s）`}</span></li>
+                            <li><i className={cls('iconfont icon-bumanyi')}></i><span>{`${realTimeData['dPercentage'] || '--'} ${locale('的操作响应慢')}（> ${(4 * T).toFixed(2)}s）`}</span></li>
                         </ul>
                     </div>
                 </div>

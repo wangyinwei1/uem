@@ -1,6 +1,8 @@
 export default Immutable.fromJS({
             title: {
-                text: locale('性能趋势图'),
+                // text: locale('性能趋势图'),
+                text: '',
+                // top: 5
             },
             legend: {
                 itemWidth: 8,
@@ -12,7 +14,7 @@ export default Immutable.fromJS({
                 }, {
                     icon: 'circle'
                 }],
-                top: 15,
+                top: 5,
                 right: 15,
                 textStyle: {
                     color: '#fff'
@@ -25,6 +27,7 @@ export default Immutable.fromJS({
             yAxis: [{
                 minInterval: 1,
                 type: 'value',
+                name: '单位:次'
             },{
                 type: 'value',
                 splitLine: {
@@ -39,7 +42,9 @@ export default Immutable.fromJS({
                     lineStyle: {
                         color: '#70c3fb'
                     }
-                }
+                },
+                name: '单位:秒'
+
             }],
             color: ['#ffeb0b', '#66dc6a', colorChangeTest("test")],
             series: [
