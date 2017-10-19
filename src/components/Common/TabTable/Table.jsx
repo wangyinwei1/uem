@@ -20,6 +20,11 @@ export default class Table extends React.Component {
     componentWillReceiveProps(nextProps) {
         if (nextProps.tagType !== this.props.tagType) {
             this.index = null;
+            // const page = 1 ,pageSize = 10 ;
+            // this.props.changePage({
+            //     page,
+            //     pageSize
+            // });
         }
         if (nextProps.columns !== this.props.columns) {
             clearTimeout(this.colTimer);
@@ -135,7 +140,8 @@ export default class Table extends React.Component {
                         current: pageIndex,
                         pageSize: pageSize,
                         onChange: this.changePage.bind(this)
-                    }} rowSelection={rowSelection} 
+                    }} 
+                    rowSelection={rowSelection} 
                     columns={this.columns} 
                     dataSource={dataList}
                     scroll={{ x: this.getScollX() }}

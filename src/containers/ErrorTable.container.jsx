@@ -18,10 +18,10 @@ export default class ErrorTable extends React.Component {
         } = this.props.errorTableStore;
         onGetOpersList();
     }
-    changeTagType(tagType) {
+    changeTagType(tagType,pageIndex) {
         const { onChangeTagType } = this.props.errorTableStore;
         onChangeTagType({
-            tagType
+            tagType,pageIndex
         });
     }
     changeColOptions(colOptions) {

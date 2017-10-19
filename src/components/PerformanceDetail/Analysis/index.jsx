@@ -14,10 +14,14 @@ export default class Analysis extends React.Component {
             baseInfo,
             threadInfo,
             samplesList,
+            samplesListTotal,
             activeId,
             analyzeData,
             sessionTrace,
-            uiType
+            uiType,
+            onLoadMore,
+            changeUser,
+            sampleListParams
         } = this.props;
         // if (samplesList.length === 0) {
         //     return null;
@@ -46,7 +50,10 @@ export default class Analysis extends React.Component {
                         <UserList
                             activeId={activeId}
                             list={samplesList}
-                            changeUser={this.props.changeUser}
+                            total={samplesListTotal}
+                            onLoadMore={onLoadMore}
+                            changeUser={changeUser}
+                            sampleListParams={sampleListParams}
                         />
                     </div>
                 </div>

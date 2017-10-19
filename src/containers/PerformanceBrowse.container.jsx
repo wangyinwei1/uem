@@ -20,10 +20,10 @@ export default class PerformanceBrowse extends React.Component {
         } = this.props.performanceBrowseStore;
         onGetOpersList();
     }
-    changeTagType(tagType) {
+    changeTagType(tagType,pageIndex) {
         const { onChangeTagType } = this.props.performanceBrowseStore;
         onChangeTagType({
-            tagType
+            tagType,pageIndex
         });
     }
     changeColOptions(colOptions) {

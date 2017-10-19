@@ -17,7 +17,9 @@ export default class TabTable extends React.Component {
         if (oldTagType === tagType) {
             return false;
         }
-        this.props.changeTagType(tagType);
+        // 每次切换，表格都要取第一页的数据
+        const pageIndex = 1 ;
+        this.props.changeTagType(tagType,pageIndex);
     }
 
     click(){

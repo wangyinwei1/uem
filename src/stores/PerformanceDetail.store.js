@@ -21,10 +21,12 @@ class PerformanceDetailStore {
         traceInfo: []
     };
     @observable samplesList = [];
+    @observable samplesListTotal = 0;
     @observable activeId = '';
     @observable time = 0;
     @observable displayType = '';
     @observable pageIndex = 1;
+    @observable pageSize = 20;
     @observable trend = {
         "thruput": [],
         "percent5": [],
@@ -64,6 +66,10 @@ class PerformanceDetailStore {
         this.time = payload.time;
         this.sampleAnalyzePageIndex = 1;
         this.onGetOperBaseInfo();
+    }
+ 
+    @action onLoadMore = payload => {
+        this.onGetOperSamplesList(payload);
     }
 
     @action onChangeType = payload => {
@@ -123,7 +129,8 @@ class PerformanceDetailStore {
             });
             runInAction(() => {
                 this.samplesList = data.data;
-                if (data.data.length !== 0) {
+                this.samplesListTotal = data.total; 
+                if (data.total > 0) {
                     this.activeId = data.data[0].sampleId;
                     this.time = data.data[0].time;
                     this.onGetOperBaseInfo();

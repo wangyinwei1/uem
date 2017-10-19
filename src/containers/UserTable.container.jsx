@@ -18,10 +18,10 @@ export default class UserTable extends React.Component {
         } = this.props.userTableStore;
         onGetOpersList();
     }
-    changeTagType(tagType) {
+    changeTagType(tagType,pageIndex) {
         const { onChangeTagType } = this.props.userTableStore;
         onChangeTagType({
-            tagType
+            tagType,pageIndex
         });
     }
     changeColOptions(colOptions) {
