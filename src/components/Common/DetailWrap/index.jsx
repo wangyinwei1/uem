@@ -8,6 +8,7 @@ export default class DetailWrap extends React.PureComponent {
     render() {
         return (
             <div className={styles['detail-wrap']}>
+               <span id='hideBtn' className={cls('iconfont icon-anonymous-iconfont',{'fr': true},styles['hideBtn'])}></span>
                 <div className={styles['detail-content']}>
                     {this.props.children}
                 </div>

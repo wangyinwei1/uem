@@ -46,17 +46,17 @@ export default class Resource extends React.Component {
             total,
             pageIndex,
         } = this.props.data;
-        const mockdata = [{
-            key: '1',
-            resName: "http://10.1.51.113:8080/kb/rest/mywork/00000000000000000000000000000000000000000000000000000000000000000000000",
-            time: 4,
-            max: 10
-        }, {
-            key: '2',
-            resName: "http://10.1.51.113:8080/kb/rest/mywork/000000000000000000000000000000000000000000000000000000000000000000000000",
-            time: 7,
-            max: 10
-        }]
+        // const mockdata = [{
+        //     key: '1',
+        //     resName: "http://10.1.51.113:8080/kb/rest/mywork/00000000000000000000000000000000000000000000000000000000000000000000000",
+        //     time: 4,
+        //     max: 10
+        // }, {
+        //     key: '2',
+        //     resName: "http://10.1.51.113:8080/kb/rest/mywork/000000000000000000000000000000000000000000000000000000000000000000000000",
+        //     time: 7,
+        //     max: 10
+        // }]
         return (
             <div className={styles['resource']}>
                 <div className={styles['title']}>
@@ -76,7 +76,7 @@ export default class Resource extends React.Component {
                 <div className={styles['main']}>
                     <Table
                         columns={tableConfig.columns}
-                        dataSource={mockdata}
+                        dataSource={data.toJS()}
                         pagination={{
                             current: pageIndex,
                             total: total,

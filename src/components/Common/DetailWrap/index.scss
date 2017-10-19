@@ -1,6 +1,14 @@
 .detail-wrap {
     position: relative;
     height: 100%;
+    .hideBtn{
+        margin-right : -3px;
+        margin-top: -35px;
+        // font-Size: 22px;
+        &:hover {
+            cursor: pointer; 
+        }
+    }
 }
 
 .detail-content {

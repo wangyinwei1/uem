@@ -40,8 +40,7 @@ export default class SidePanelItem extends React.Component {
     }
     closeSidePanel(e) {
         // 点击不关闭详情页的情况
-        if ($(e.target).parents().hasClass(styles['side-panel-wrap']) || $(e.target).parents().hasClass('ant-table-tbody') || $(e.target).parents().hasClass('ant-select-dropdown')) {
-            
+        if ($(e.target).parents().hasClass(styles['side-panel-wrap']) && !e.target.attributes.id.value == 'hideBtn' || $(e.target).parents().hasClass('ant-table-tbody') || $(e.target).parents().hasClass('ant-select-dropdown')) {
         } else {
             setTimeout(() => {
                 this.$dom.removeClass(styles['active']);
@@ -65,6 +64,8 @@ export default class SidePanelItem extends React.Component {
         // } else {
             return (
                 <div ref='SidePanel' className={cls(styles['side-panel-item'])} >
+                {/* <span id='hideBtn' className={cls('iconfont icon-anonymous-iconfont',{'fr': true},styles['hideBtn'])}></span> */}
+
                     {this.renderDetail(this.module, this.props.data, index)}
                 </div>
             );

@@ -201,8 +201,9 @@ export default class PerformanceDetail extends React.Component {
         const { itemId } = this.props;
         return (
             <DetailWrap>
+                 {/* <span id='hideBtn' className={cls('iconfont icon-anonymous-iconfont',{'fr': true},styles['hideBtn'])}></span> */}
                 <Metrics
-                    
+                        
                     data ={ this.props.data }
                     type={this.props.type}
                     props={{
