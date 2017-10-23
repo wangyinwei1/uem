@@ -12,8 +12,8 @@ export function tableProgress(avgRsp = '--', avgRsps = [0, 0, 0], config = [{ co
         return '--'
     }
     const newConfig = config.map((cg, i) => {
-        cg.value = `${parseFloat(Number(avgRsps[i] * 100 / count).toFixed(0))}%`;
-        cg.width = `${parseFloat(Number(avgRsps[i] * 100 / count).toFixed(0))}px`;
+        cg.value = `${parseFloat(Number(avgRsps[i] * 100 / count).toFixed(1))}%`;
+        cg.width = `${parseFloat(Number(avgRsps[i] * 100 / count).toFixed(1))}px`;
         return cg;
     });
     let type = arguments[3];
@@ -34,7 +34,7 @@ export function tableProgress(avgRsp = '--', avgRsps = [0, 0, 0], config = [{ co
     return (
         <div className={styles['tableProgress']}>
                 {isShowAvgRsp && <div className={cls(styles['title'],{'fl': avgRsp !== '--','ma': avgRsp == '--'  })}>{avgRsp}</div>}
-                {avgRsp !== '--' && <Popover content={(overlay)} trigger="hover" placement="rightBottom" key={Math.random(1, 100)}>
+                {avgRsp !== '--' && <Popover content={(overlay)} trigger="hover" placement="rightBottom" key={Math.random(1, 100)} getTooltipContainer={parents => parents}>
                     <div className={styles['progress']} style={{ width: width }}>
                         {newConfig.map((val, i) => {
                             return (<span key={Math.random(1, 100)} className={styles['per']} style={{ background: val.color, width: val.width }} ></span>)

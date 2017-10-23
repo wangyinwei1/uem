@@ -24,8 +24,23 @@
 
 .overlay {
     .popover {
+        background: #183a61;
         height: 25px;
         line-height: 25px;
+        min-width: 150px;
+        border-radius: 2px;
+        // :global(ant-popover){
+            
+        //             min-width: 177px;
+        //             background-color: #183a61;
+        //             background-clip: padding-box;
+        //             border: 1px solid #183a61;
+        //             border-radius: 6px;
+        //             box-shadow: 0 1px 6px #142e4e;
+            
+            
+            
+        // }
         .marker-colol {
             height: 15px;
             width: 5px;

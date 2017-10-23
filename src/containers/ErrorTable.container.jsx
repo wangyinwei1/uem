@@ -75,7 +75,7 @@ export default class ErrorTable extends React.Component {
         } = this.props.errorTableStore;
         const { deploy } = this.props.overviewStore;
         const { onChangePanelList } = this.props.sidePanelStore;
-        const apdexTime = (deploy.apdex / 1000).toFixed(1);
+        const apdexTime = (deploy.apdex / 1000).toFixed(2);
         return (
             <div id="ErrorTable">
                 <TabTable

@@ -7,6 +7,7 @@ import {
     UserDetail
 } from '../../../containers';
 import styles from './index.scss';
+import stylesTrace from '../UserTrace/index.scss'
 
 export default class SidePanelItem extends React.Component {
     // state = {
@@ -42,7 +43,7 @@ export default class SidePanelItem extends React.Component {
         // 右上角的关闭按钮
         const hideTag = e.target.hasAttribute('id') &&  e.target.id == 'hideBtn';
         // 点击不关闭详情页的情况
-        if ($(e.target).parents().hasClass(styles['side-panel-wrap']) && !hideTag || $(e.target).parents().hasClass('ant-table-tbody') || $(e.target).parents().hasClass('ant-select-dropdown')) {
+        if ($(e.target).parents().hasClass(styles['side-panel-wrap']) && !hideTag || $(e.target).parents().hasClass('ant-table-tbody') || $(e.target).parents().hasClass('ant-select-dropdown') || $(e.target).parents().hasClass(stylesTrace['user-trace'])) {
         } else {
             setTimeout(() => {
                 this.$dom.removeClass(styles['active']);

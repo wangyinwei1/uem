@@ -109,7 +109,15 @@ class PerformanceOverviewStore {
                     });
                 }
             }else{
+                // datas.data && datas.data.map((item,index)=>{
+                //     if(item.area == '-' || item.area == ""){
+                //         item.area = '未知地址'
+                //     }
+                // })
                 datas.data && datas.data.map((item,index) => {
+                    if(item.area == '-' || item.area == ""){
+                        item.area = '未知地址'
+                    }
                     for(let n in countryNameInEN){
                         if(n == item.area){
                             item.area = countryNameInEN[n]

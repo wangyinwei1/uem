@@ -348,6 +348,9 @@
     "此点击行为没有触发HTTP请求，因此无数据" : "This click behavior does not trigger an HTTP request, so there is no data",
     "耗时 (单位:s)" : "Time consuming (unit: s)",
     "次" : "Times",
-    "未知" : "unknown"
+    "未知" : "unknown",
+    "应用设置" : "Apply settings",
+    "全局设置": "Global Settings"
+    
     
 }

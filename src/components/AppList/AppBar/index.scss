@@ -17,10 +17,38 @@
         }
     }
 }
-
+.global-setting-modal{
+    :global{
+        .ant-modal{
+            width: auto !important;
+            .ant-modal-content {
+                width: 70%;
+                height: 800px;
+                margin-left: 15%;
+            }
+            .ant-modal-header{
+                
+                background: #1D6AA7;
+                .ant-modal-title{
+                    color: #fff;
+                    font-weight: bold;
+                    font-size: 15px;
+                }
+            }
+        }
+        
+    }
+}
 .create-app {
     float: left;
     height: inherit;
+    font-size: 13px;
+    line-height: inherit;
+}
+
+.settingBtn {
+    float: left;
+    margin-left: 15px;
     font-size: 13px;
     line-height: inherit;
 }

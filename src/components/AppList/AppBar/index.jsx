@@ -11,7 +11,9 @@ import {
     Icon
 } from 'antd';
 import { withRouter } from 'react-router-dom';
+import config from '../../../../config/config.json';
 import styles from './index.scss';
+import { SettingMain } from './SettingMain.jsx';
 
 const RadioGroup = Radio.Group;
 const RadioButton = Radio.Button;
@@ -41,7 +43,8 @@ class AppsBar extends Component {
         this.state = {
             showAddAppModal: false,
             activeRadio: 'chart',
-            showAddAppSuccessModal: false
+            showAddAppSuccessModal: false,
+            settingModal: false
         };
     }
     // 显隐 Modal
@@ -92,13 +95,26 @@ class AppsBar extends Component {
             this.props.chartOrTable(e.target.value)
         })
     }
+
+    appSettingModal(){
+        this.setState({
+            settingModal: true
+        })
+    }
+    handleSettingModalCanel(){
+        this.setState({
+            settingModal: false
+        })
+    }
     render() {
         const { sortBy, sortKey } = this.props;
         const { getFieldDecorator } = this.props.form;
         const { showAddAppModal, showAddAppSuccessModal } = this.state;
+        // console.log('settingMain 是个啥',SettingMain, config.globalSetting, config);
         return (
             <div className={styles['apps-bar']}>
                 <div className={cls('btn', styles['create-app'])} onClick={() => this.toggleAddAppModal(true)}><i className={cls('fa fa-plus')}></i>{locale('应用')}</div>
+                { config.globalSetting && <div className={cls('btn',styles['settingBtn'])} onClick={this.appSettingModal.bind(this)}>{locale('应用设置')}</div> }
                 <div className={styles['btn-wrapper']}>
                     <Dropdown overlay={(
                         <Menu onSelect={({ key }) => sortBy(key)} selectedKeys={[sortKey]}>
@@ -170,6 +186,13 @@ class AppsBar extends Component {
                             </div>
                         </Form>
                     </div>
+                </Modal>
+                <Modal title={locale('全局设置')}
+                    footer={null}
+                    wrapClassName={styles['global-setting-modal']}
+                    onCancel={this.handleSettingModalCanel.bind(this)}
+                    visible={this.state.settingModal}>
+                    <SettingMain /> 
                 </Modal>
             </div>
         );

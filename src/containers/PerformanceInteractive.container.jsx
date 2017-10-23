@@ -62,7 +62,7 @@ export default class PerformanceInteractive extends React.Component {
         } = this.props.performanceInteractiveStore;
         const { deploy } = this.props.overviewStore;
         const { onChangePanelList } = this.props.sidePanelStore;
-        const apdexTime = (deploy.apdex / 1000).toFixed(1);
+        const apdexTime = (deploy.apdex / 1000).toFixed(2);
         // const platfrom = localStorage.getItem('UEM_platfrom');
         return (
             // platfrom == 'pc' ?

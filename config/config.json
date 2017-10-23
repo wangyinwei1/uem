@@ -1,4 +1,4 @@
 {
-    "globalSetting": "false",
+    "globalSetting": false,
     "apmStackUrl": "http://10.1.50.180:8080/help/_uem/tem_uem.html"
 }

@@ -66,7 +66,7 @@ export default class PerformanceBrowse extends React.Component {
         } = this.props.performanceBrowseStore;
         const { deploy } = this.props.overviewStore;
         const { onChangePanelList } = this.props.sidePanelStore;
-        const apdexTime = (deploy.apdex / 1000).toFixed(1);
+        const apdexTime = (deploy.apdex / 1000).toFixed(2);
         return (
             <div id="PerformanceBrowse">
                 <TabTable

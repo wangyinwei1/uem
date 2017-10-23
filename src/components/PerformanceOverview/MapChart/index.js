@@ -119,7 +119,7 @@ class PerformanceMapChart extends Component {
         const yAxis = this.props.mapData.yAxis;
         const series = this.props.mapData.series;
         //  性能地图左下角的dataRange
-        let apdex = Number(( JSON.parse(sessionStorage.UEM_deploy).apdex / 1000).toFixed(1));
+        let apdex = Number(( JSON.parse(sessionStorage.UEM_deploy).apdex / 1000).toFixed(2));
         let apdex_4 = apdex*4;
         // if(sessionStorage.getItem('UEM_platform') == 'pc'){
         let splitListForRepTime = [
@@ -181,6 +181,7 @@ class PerformanceMapChart extends Component {
         mapConfig = this.tempConfig.get(activeMap).updateIn(['series', 0, 'data'], () => mapSeriesData )
         .updateIn(['dataRange',0,'splitList'],()=> this.state.activePillar == 'avgRspTime' ? splitListForRepTime : splitListForApdex);
 
+        // console.log('mapConfig===========',mapConfig.toJS(),pillarConfig.toJS());
         return (
             <div className={styles['map-chart']}>
                 <div className={cls('tile-head')}>{locale('用户分布')}</div>
