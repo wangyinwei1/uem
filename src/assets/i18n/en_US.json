@@ -348,6 +348,12 @@
     "此点击行为没有触发HTTP请求，因此无数据" : "This click behavior does not trigger an HTTP request, so there is no data",
     "耗时 (单位:s)" : "Time consuming (unit: s)",
     "次" : "Times",
-    "未知" : "unknown"
-    
+    "未知" : "unknown",
+    "你好": "Hello",
+    "我们是优云团队！你的同事 %s(%s) 请求您为应用: %s <br>部署监测代码，以实现用户体验监控。": "We are Team Uyun! Your colleague %s(%s) is asking you to deploy monitoring code <br> for application %s to implement the monitor of user exprience.",
+    "为保证数据采集的正确进行，请将以下代码部署到Web项目中，尽可能保证代码覆<br>盖整个项目，通常只需在您项目中公共的页头文件加入即可。": "To ensure the data being collected correctly, please deploy the code below to your<br> web project, make sure that the code should cover your whole project. To manage it,<br> you just need to include the code below into the public head of your project.",
+    "拷贝到&lt;meta&gt;标签之后，&lt;script&gt;标签之前": "Copy it to the place after the &lt;meta&gt;, but before &lt;script&gt;.",
+    "如需其他帮助，请访问 优云官网 联系我们的客服。": "Any help needed, please feel free to visit the Uyun offical site, we are glad to support.",
+    "此致": "Thanks & Regards",
+    "优云团队": "Team Uyun"
 }
