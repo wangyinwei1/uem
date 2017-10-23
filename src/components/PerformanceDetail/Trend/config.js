@@ -61,6 +61,8 @@ export default Immutable.fromJS({
             name: locale('客户端'),
             type: 'bar',
             stack: '总量',
+            barWidth: 20,
+            barGap: 20,
             data: []
             // data: _.range(Math.random() * 100, Math.random * 300)
         }, {
@@ -73,6 +75,9 @@ export default Immutable.fromJS({
             name: locale('服务器'),
             type: 'bar',
             stack: '总量',
+            barWidth: 20,
+            barGap: 20,
+            barMinHeight: 0, 
             data: []
             // data: _.range(Math.random() * 100, Math.random * 300)
         }, {

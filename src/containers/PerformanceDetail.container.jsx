@@ -17,6 +17,7 @@ import {
 @inject('frameStore', 'performanceDetailStore', 'performanceInteractiveStore', 'sidePanelStore')
 @observer
 export default class PerformanceDetail extends React.Component {
+    sampleListParams ={};
     @observable display = '';
     @observable path = '';
     // @computed get displayType() {
@@ -146,6 +147,16 @@ export default class PerformanceDetail extends React.Component {
             displayType: JSON.stringify([this.display]),
             performanceType: type,
         });
+        this.sampleListParams = {
+            operType,
+            selector,
+            text,
+            isMarked : isMarked,
+            requestPath: this.path,
+            path: path,
+            displayType: JSON.stringify([this.display]),
+            performanceType: type
+        }
     }
 
     @action changeDisplayType(displayType,path) {
@@ -162,12 +173,14 @@ export default class PerformanceDetail extends React.Component {
             threadInfo,
             trend,
             samplesList,
+            samplesListTotal,
             sessionTrace,
             activeId,
             analyzeData,
             type,
             sampleAnalyzeData,
             onChangeResourcePage,
+            onLoadMore,
             onChangeUser,
             onChangeType,
         } = this.props.performanceDetailStore;
@@ -216,25 +229,25 @@ export default class PerformanceDetail extends React.Component {
                     }}
                     changeDisplayType={this.changeDisplayType.bind(this)}
                 />
-                    {
-                        uiType !== 'NATIVE' ? 
-                        <TimingH5
-                            data={{
-                                networkTime,
-                                serverTime,
-                                clientTime,
-                                callbackTime,
-                                firstByteTime,
-                                lastByteTime,
-                                domLoadingTime,
-                                avgRspTime
-                            }}
-                            specificUrls={Boolean(specificUrls) && specificUrls.length > 0 ? specificUrls : path}
-                            displayType={this.display}
-                        />
-                        :
-                        <FlowChart threadInfo={info} />
-                    }
+                {
+                    uiType !== 'NATIVE' ? 
+                    <TimingH5
+                        data={{
+                            networkTime,
+                            serverTime,
+                            clientTime,
+                            callbackTime,
+                            firstByteTime,
+                            lastByteTime,
+                            domLoadingTime,
+                            avgRspTime
+                        }}
+                        specificUrls={Boolean(specificUrls) && specificUrls.length > 0 ? specificUrls : path}
+                        displayType={this.display}
+                    />
+                    :
+                    <FlowChart threadInfo={info} />
+                }
                 <Trend itemId={itemId} trend={trend} uiType={info.uiType} type={this.props.type} specificUrls={Boolean(specificUrls) && specificUrls.length > 0 ? specificUrls : path} />
                 {samplesList.length > 0 && <Analysis
                         sampleAnalyzeData={sampleAnalyzeData}
@@ -244,6 +257,9 @@ export default class PerformanceDetail extends React.Component {
                         threadInfo={threadInfo}
                         baseInfo={sessionTrace.baseInfo}
                         samplesList={samplesList}
+                        samplesListTotal={samplesListTotal}
+                        onLoadMore={onLoadMore}
+                        sampleListParams={this.sampleListParams}
                         activeId={activeId}
                         sessionTrace={sessionTrace}
                         analyzeData={threadInfo}

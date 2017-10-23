@@ -53,7 +53,7 @@ export default class ControlBar extends React.Component {
     }
     changeResTime(e) {
         const resTime = e.target.checked
-            ? this.props.apdexTime
+            ? this.props.apdexTime*4
             : undefined;
         this.props.changeResTime(resTime);
     }

@@ -17,10 +17,10 @@ export default class PerformanceInteractive extends React.Component {
         } = this.props.performanceInteractiveStore;
         onGetOpersList();
     }
-    changeTagType(tagType) {
+    changeTagType(tagType,pageIndex) {
         const { onChangeTagType } = this.props.performanceInteractiveStore;
         onChangeTagType({
-            tagType
+            tagType,pageIndex
         });
     }
     changeColOptions(colOptions) {

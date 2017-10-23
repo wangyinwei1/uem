@@ -10,6 +10,7 @@ import styles from './index.scss';
  * @extends {React.Component}
  */
 export default class UserList extends React.Component {
+    pageSize = 20;
     changeUser(item) {
         const { activeId, changeUser } = this.props;
         if (item.sampleId === activeId) {
@@ -26,8 +27,15 @@ export default class UserList extends React.Component {
                 return <i className="iconfont icon-user"></i>;
         }
     }
+    loadMore(){
+        this.pageSize += 20;
+        const params = this.props.sampleListParams;
+        params.pageSize = this.pageSize;
+        this.props.onLoadMore(params);
+    }
     render() {
-        const { list, activeId } = this.props;
+        const { list, activeId, total } = this.props;
+        const  showBtn = list.length < total ;
         return (
             <div className={styles['user-list-wrap']}>
                 <ul className={styles['user-list']}>
@@ -42,7 +50,9 @@ export default class UserList extends React.Component {
                             </li>
                         );
                     })}
+                    {showBtn && <div className={styles['loadMoreBtn']} onClick={this.loadMore.bind(this)}>查看更多<i className={cls('bat-arrow-down anticon anticon-down')}></i></div>}
                 </ul>
+                
             </div>
         );
     }

@@ -39,8 +39,10 @@ export default class SidePanelItem extends React.Component {
         this.$win.off('click', this.closeSidePanel);
     }
     closeSidePanel(e) {
+        // 右上角的关闭按钮
+        const hideTag = e.target.hasAttribute('id') &&  e.target.id == 'hideBtn';
         // 点击不关闭详情页的情况
-        if ($(e.target).parents().hasClass(styles['side-panel-wrap']) && !e.target.attributes.id.value == 'hideBtn' || $(e.target).parents().hasClass('ant-table-tbody') || $(e.target).parents().hasClass('ant-select-dropdown')) {
+        if ($(e.target).parents().hasClass(styles['side-panel-wrap']) && !hideTag || $(e.target).parents().hasClass('ant-table-tbody') || $(e.target).parents().hasClass('ant-select-dropdown')) {
         } else {
             setTimeout(() => {
                 this.$dom.removeClass(styles['active']);

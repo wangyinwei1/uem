@@ -108,7 +108,7 @@ export default class UserTrace extends React.Component {
         return trace.map(item => {
             const content = (
                 <ul className={styles['tooltip']}>
-                    {this.tips.map(tip => Boolean(item[tip.value]) && <li key={tip.value + Math.random(0,1000)}>{`${locale(tip.label)}：${tip.label == '请求时间'? moment(item[tip.value]).format('YYYY-MM-DD HH:mm:ss') : item[tip.value]}`}</li>)}
+                    {this.tips.map(tip => Boolean(item[tip.value]) && <li key={tip.value + Math.random(0,1000)}>{`${locale(tip.label)}：${tip.label == locale('请求时间')? moment(item[tip.value]).format('YYYY-MM-DD HH:mm:ss') : item[tip.value]}`}</li>)}
                 </ul>
             );
             return (
@@ -215,7 +215,7 @@ export default class UserTrace extends React.Component {
                     <div className={styles['trace-box-wrap']}>
                         {showBaseInfo && this.renderInfo()}
                         <div className={cls(styles['base-info'], styles['trace-box'])}>
-                            {this.detailInfo.map(item => <div key={item.value + Math.random(1,100)} className={styles['base-li']} title={detailInfo[item.value]}>{`${locale(item.label)}：${detailInfo[item.value]}`}</div>)}
+                            {this.detailInfo.map(item => <div key={item.value + Math.random(1,100)} className={styles['base-li']} title={detailInfo[item.value]}>{`${locale(item.label)}：${item.label == locale('会话时间')?moment(detailInfo[item.value]).format('YYYY-MM-DD hh:mm:ss ') :detailInfo[item.value]}`}</div>)}
                         </div>
                         <i className={cls('iconfont', styles['toggle-btn'], {
                             'icon-shanjian': this.state.toggleShow,

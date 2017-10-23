@@ -68,6 +68,7 @@ class UserTableStore {
     }
     @action onChangeTagType = payload => {
         this.tagType = payload.tagType;
+        this.pageIndex = payload.pageIndex;
         this.data = [];
         this.searchValue = undefined;
         this.onGetOpersList();
