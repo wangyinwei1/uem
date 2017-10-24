@@ -61,12 +61,14 @@ export default class PerformanceDetail extends React.Component {
     }
     @action initPath(){
         if(this.path == '' ){
-            if (this.props.data.hasOwnProperty('specificUrls') && this.props.data.specificUrls.length > 0 ) {
-                this.path = this.props.data.specificUrls[0].url;
-        } else {
-            if(this.props.data.hasOwnProperty('path'))
+            if(this.props.data.hasOwnProperty('requestPath')){
+                this.path = this.props.data.requestPath;
+            }else{
                 this.path = this.props.data.path;
             }
+            // if(this.props.data.hasOwnProperty('specificUrls') && this.props.data.specificUrls.length > 0 ) {
+            //     this.path = this.props.data.specificUrls[0].url;
+            // } 
         }
     }
     componentDidMount() {
