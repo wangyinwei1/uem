@@ -80,6 +80,7 @@ export default Immutable.fromJS({
         series: [
             {
                 type: 'bar',
+                barWidth: 20,
                 data: []
             }
         ]

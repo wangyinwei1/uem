@@ -55,7 +55,7 @@ const defaultOptions = Immutable.fromJS({
         },
         axisTick: {
             show: false
-        }
+        },
     }],
     color: ['#66dc6a', '#00c0ff'],
     // series: [

@@ -58,6 +58,7 @@ export default Immutable.fromJS({
         [
             {
                 type: 'bar',
+                barWidth: 20,
                 data: []
             }
         ]

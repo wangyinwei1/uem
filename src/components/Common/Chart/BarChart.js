@@ -27,7 +27,8 @@ const defaultOptions = Immutable.fromJS({
     series: [{
         // name: this.pillarState == 'avgRspTime' ? UEM_i18n.average_response_time[UEM_lang] : 'Apdex',
         type: 'bar',
-        barWidth: 20,
+        // barWidth设置后barGap设置无效
+        // barWidth: 20,
         barGap: 20,
         // itemStyle: {
         //     normal: {

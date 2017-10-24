@@ -53,8 +53,10 @@ export default class PerformanceDetail extends React.Component {
             // this.display = displayType ;
             if( type == 'browse'  &&  displayType == undefined ){
                 this.display = 'page';
-            } else if( type == 'interaction' && displayType !== undefined ){
-                this.display = specificUrls !== undefined && specificUrls.length > 0 ? specificUrls[0].displayType : displayType;
+            } else if( type == 'interaction' && displayType == undefined ){
+                this.display = "";
+            }else{
+                this.dispay = displayType;
             }
             
         }
@@ -63,7 +65,7 @@ export default class PerformanceDetail extends React.Component {
         if(this.path == '' ){
             if(this.props.data.hasOwnProperty('requestPath')){
                 this.path = this.props.data.requestPath;
-            }else{
+            }else if(this.props.data.hasOwnProperty('path')){
                 this.path = this.props.data.path;
             }
             // if(this.props.data.hasOwnProperty('specificUrls') && this.props.data.specificUrls.length > 0 ) {
@@ -211,7 +213,7 @@ export default class PerformanceDetail extends React.Component {
         } = info;
         // const { panelList } = this.props.sidePanelStore;
         // const { specificUrls, uiType } = panelList[panelList.length - 1];
-        const { path, specificUrls } = this.props.data;
+        const { path, specificUrls,requestPath } = this.props.data;
         // const specificUrls = Boolean(this.props.data.specificUrls) ? this.props.data.specificUrls : this.props.data.path;
         const { itemId } = this.props;
         return (
@@ -227,6 +229,7 @@ export default class PerformanceDetail extends React.Component {
                         uiType,
                         operName,
                         specificUrls,
+                        requestPath,
                         path
                     }}
                     changeDisplayType={this.changeDisplayType.bind(this)}

@@ -31,6 +31,7 @@ export default Immutable.fromJS({
             symbol: 'circle',
             smooth: true,
             showSymbol: false,
+            smooth: true,
             data: []
         }, {
             name: locale('昨日'),
@@ -38,6 +39,7 @@ export default Immutable.fromJS({
             symbol: 'circle',
             smooth: true,
             showSymbol: false,
+            smooth: true,
             data: []
         }]
     },
@@ -48,6 +50,13 @@ export default Immutable.fromJS({
     clickNum: {
     },
     avgRspTime: {
+        title: {
+            top: 5,
+        },
+        yAxis: [{
+            minInterval: 1,
+            name: '单位:秒'
+        }],
     },
     errorCount: {
     }

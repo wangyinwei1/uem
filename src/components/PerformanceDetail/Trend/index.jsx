@@ -31,7 +31,7 @@ export default class Trend extends React.Component {
     renderTrend() {
         const { activeTrend } = this.state;
         const { itemId, trend, uiType } = this.props;
-        const platform = sessionStorage.getItem('UEM_platform');   
+        const platform = sessionStorage.getItem('UEM_platform'); 
         switch (activeTrend) {
             case 0: return (
             platform !== 'pc' && uiType == 'NATIVE' ?

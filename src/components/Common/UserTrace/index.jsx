@@ -51,7 +51,7 @@ export default class UserTrace extends React.Component {
         label: '会话时间',
         value: 'sessionTime'
     }, {
-        label: '入口来源',
+        label: '访问页',
         value: 'landingPage'
     }, {
         label: '点击数',

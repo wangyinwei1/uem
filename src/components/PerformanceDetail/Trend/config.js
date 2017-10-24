@@ -61,22 +61,21 @@ export default Immutable.fromJS({
             name: locale('客户端'),
             type: 'bar',
             stack: '总量',
-            barWidth: 20,
-            barGap: 20,
+            // barGap: 20,
             data: []
             // data: _.range(Math.random() * 100, Math.random * 300)
         }, {
             name: locale('网络传输'),
             type: 'bar',
             stack: '总量',
+            // barGap: 20,
             data: []
             // data: _.range(Math.random() * 100, Math.random * 300)
         }, {
             name: locale('服务器'),
             type: 'bar',
             stack: '总量',
-            barWidth: 20,
-            barGap: 20,
+            // barGap: 20,
             barMinHeight: 0, 
             data: []
             // data: _.range(Math.random() * 100, Math.random * 300)
@@ -142,6 +141,7 @@ export default Immutable.fromJS({
             name: locale('响应时间'),
             type: 'bar',
             stack: '总量',
+            barGap: 20,
             data: []
             // data: _.range(Math.random() * 100, Math.random * 300)
         }, {
@@ -291,6 +291,7 @@ export default Immutable.fromJS({
         series: [{
             name: locale('吞吐率'),
             type: 'bar',
+            barGap: 20,
             data: []
         }, {
             name: locale('点击数'),

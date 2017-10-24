@@ -52,18 +52,21 @@ export default Immutable.fromJS({
                     type: 'line',
                     symbol: 'circle',
                     showSymbol: false,
+                    smooth: true,
                     data: []
                 },
                 {
                     type: 'line',
                     symbol: 'circle',
                     showSymbol: false,
+                    smooth: true,
                     data: []
                 },
                 {
                     type: 'line',
                     symbol: 'circle',
                     showSymbol: false,
+                    smooth: true,
                     data: []
                 }
             ]
