@@ -143,7 +143,6 @@ class UserMapChart extends Component {
                 let opacity = Number((value.data / maxUv).toFixed(2))*(1-window.colorOpacity) + window.colorOpacity;
                 return 'rgba(3,169,245,' + opacity + ")";
             });
-
         mapConfig = this.tempConfig.get(activeMap).updateIn(['series', 0, 'data'], () => mapSeriesData).updateIn(['visualMap',0,'max'], ()=> series.length > 0 ? Math.max.apply(null, series) : 1)
             .updateIn(['visualMap',0,'text'], ()=> this.state.activePillar == 'sessionCount' ? ['会话数'] : ['访客数']);
 

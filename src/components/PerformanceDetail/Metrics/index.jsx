@@ -107,7 +107,7 @@ export default class Metrics extends React.Component {
                         <div className={styles['props']}>
                             <dl>
                                 <dt>{locale('UI类型')}：</dt>
-                                <dd>{props.uiType ? props.uiType : 'H5'}</dd>
+                                <dd>{props.uiType}</dd>
                             </dl>
                             <dl>
                                 <dt>URL :</dt>

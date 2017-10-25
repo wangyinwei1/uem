@@ -53,13 +53,16 @@ export default class PerformanceDetail extends React.Component {
             // this.display = displayType ;
             if( type == 'browse'  &&  displayType == undefined ){
                 this.display = 'page';
-            } else if( type == 'interaction' && displayType == undefined ){
+            }
+            if( type == 'interaction' && displayType == undefined ){
                 this.display = "";
             }else{
-                this.dispay = displayType;
+                this.display = displayType;
+                
             }
             
         }
+        // console.log('this.display',this.display);
     }
     @action initPath(){
         if(this.path == '' ){
