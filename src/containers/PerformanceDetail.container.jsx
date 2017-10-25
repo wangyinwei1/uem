@@ -38,8 +38,9 @@ export default class PerformanceDetail extends React.Component {
     //     };
     // }
     @action initDisplay(){
+        // debugger
          if (this.display == '') {
-             const { type } = this.props;
+            const { type } = this.props;
             const { uiType, specificUrls,displayType } = this.props.data;
             const platform = sessionStorage.getItem('UEM_platform');
             // if (uiType == 'HTML' || platform == 'pc' ) {
@@ -54,11 +55,10 @@ export default class PerformanceDetail extends React.Component {
             if( type == 'browse'  &&  displayType == undefined ){
                 this.display = 'page';
             }
-            if( type == 'interaction' && displayType == undefined ){
+            else if( type == 'interaction' && displayType == undefined ){
                 this.display = "";
-            }else{
+            }else if(type == 'interaction' && displayType !== undefined){
                 this.display = displayType;
-                
             }
             
         }
@@ -66,9 +66,15 @@ export default class PerformanceDetail extends React.Component {
     }
     @action initPath(){
         if(this.path == '' ){
-            if(this.props.data.hasOwnProperty('requestPath')){
+            if(Boolean(this.props.data.requestPath)){
+                // 优先取requestPath
                 this.path = this.props.data.requestPath;
-            }else if(this.props.data.hasOwnProperty('path')){
+            }else if(Boolean(this.props.data.specificUrls) && this.props.data.specificUrls.length > 0){
+                //specificUrls存在且不为空取第一个的
+                this.path = this.props.data.specificUrls[0].url;
+            }
+            else if(this.props.data.hasOwnProperty('path')){
+                // 最后取path（页面浏览里）
                 this.path = this.props.data.path;
             }
             // if(this.props.data.hasOwnProperty('specificUrls') && this.props.data.specificUrls.length > 0 ) {

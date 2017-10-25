@@ -128,7 +128,7 @@ export default class ControlBar extends React.Component {
             return null;
         }
 
-        if (type === 'UserTable') {
+        if (type === 'UserTable' || type === 'PerformanceInteractive') {
             return (
                 <div className={styles['options']}>
                     <Popover trigger="click" placement="bottomRight" content={this.makeOptionsContent()}>

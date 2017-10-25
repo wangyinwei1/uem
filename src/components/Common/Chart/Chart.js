@@ -225,13 +225,15 @@ class Chart extends React.PureComponent {
         // $(window).on('resize', this._resizeChart);
     }
     componentWillReceiveProps(nextProps) {
+        // debugger
         clearTimeout(this.timer);
         try {
+            // debugger
             // this.chartDom.clear();
             this.timer = setTimeout(() => {
                 this.chartDom.setOption(Immutable.fromJS(this._mergeOptions()).mergeDeep(nextProps.options).toJS());
             }, 300);
-            
+            // console.log('将来的终极配置-----',Immutable.fromJS(this._mergeOptions()).mergeDeep(nextProps.options).toJS());   
         } catch(e) {
             this.chartDom.clear();
             this.chartDom.setOption(Immutable.fromJS(this._mergeOptions()).mergeDeep(nextProps.options).toJS());
@@ -259,7 +261,9 @@ class Chart extends React.PureComponent {
                 tooltip: {formatter: this.props.mapState == 'china' ? mapTooltipFormatter : mapTooltipFormatterForWorldMap }
             })
         }
+        // console.log('最终配置',globalOptions.mergeDeep(this.defaultOptions.mergeDeep(this.options)).toJS());
         return globalOptions.mergeDeep(this.defaultOptions.mergeDeep(this.options)).toJS();
+ 
 
     }
     _setOption() {

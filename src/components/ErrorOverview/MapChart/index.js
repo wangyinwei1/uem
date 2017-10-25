@@ -87,7 +87,7 @@ class ErrorMapChart extends Component {
 
     render() {
         const { activeMap } = this.state;
-        let pillarConfig, mapConfig, yAxis, series,yAxisInCN=[], mapSeriesData = [], _yAxis = [], _series = [];
+        let pillarConfig={}, mapConfig={}, yAxis=[], series=[],yAxisInCN=[], mapSeriesData = [], _yAxis = [], _series = [];
         yAxis = this.props.mapData.yAxis;
         series = this.props.mapData.series;
         /**
@@ -127,13 +127,12 @@ class ErrorMapChart extends Component {
                 let opacity = Number((value.data / maxUv).toFixed(2))*(1-window.colorOpacity) + window.colorOpacity;
                 return 'rgba(255,122,63,' + opacity + ")";
             });
-
         // map的配置
         mapConfig = this.tempConfig.get(activeMap).updateIn(['series', 0, 'data'], () => mapSeriesData)
         .updateIn(['visualMap',0,'max'], ()=> series.length > 0 ? Math.max.apply(null, series) : 1)
         .updateIn(['visualMap',0,'text'], ()=> this.state.activePillar == 'occurErrorUserRate' ? [locale('用户错误率')] : [locale('影响用户数')])
         .updateIn(['visualMap',0,'inRange','color'], ()=> ["#564e60","#78575a","#915e55","#ab6450","#c66b4b","#de7146","#f17642","#fe7a3f"]);
-        
+        // console.log('条形图配置',config.get('default').mergeDeep(pillarConfig).toJS());
         return (
             <div className={styles['map-chart']}>
                 <div className={cls('tile-head')}>{locale('地理位置')}</div>
