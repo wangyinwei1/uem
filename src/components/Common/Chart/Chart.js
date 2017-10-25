@@ -232,8 +232,7 @@ class Chart extends React.PureComponent {
             // this.chartDom.clear();
             this.timer = setTimeout(() => {
                 this.chartDom.setOption(Immutable.fromJS(this._mergeOptions()).mergeDeep(nextProps.options).toJS());
-            }, 300);
-            console.log('将来的终极配置-----',Immutable.fromJS(this._mergeOptions()).mergeDeep(nextProps.options).toJS());   
+            }, 300);   
         } catch(e) {
             this.chartDom.clear();
             this.chartDom.setOption(Immutable.fromJS(this._mergeOptions()).mergeDeep(nextProps.options).toJS());
