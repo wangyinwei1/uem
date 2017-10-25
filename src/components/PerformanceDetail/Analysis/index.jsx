@@ -16,6 +16,7 @@ export default class Analysis extends React.Component {
             samplesList,
             samplesListTotal,
             activeId,
+            clickIndex,
             analyzeData,
             sessionTrace,
             uiType,
@@ -52,6 +53,7 @@ export default class Analysis extends React.Component {
                             list={samplesList}
                             total={samplesListTotal}
                             onLoadMore={onLoadMore}
+                            clickIndex={clickIndex}
                             changeUser={changeUser}
                             sampleListParams={sampleListParams}
                         />

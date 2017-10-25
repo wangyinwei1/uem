@@ -188,6 +188,7 @@ export default class PerformanceDetail extends React.Component {
             samplesListTotal,
             sessionTrace,
             activeId,
+            clickIndex,
             analyzeData,
             type,
             sampleAnalyzeData,
@@ -274,6 +275,7 @@ export default class PerformanceDetail extends React.Component {
                         onLoadMore={onLoadMore}
                         sampleListParams={this.sampleListParams}
                         activeId={activeId}
+                        clickIndex={clickIndex}
                         sessionTrace={sessionTrace}
                         analyzeData={threadInfo}
                         changeUser={onChangeUser}

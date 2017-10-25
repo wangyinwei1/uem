@@ -11,14 +11,15 @@ import styles from './index.scss';
  */
 export default class UserList extends React.Component {
     pageSize = 20;
-    changeUser(item) {
+    changeUser(item,index) {
         const { activeId, changeUser } = this.props;
-        if (item.sampleId === activeId) {
-            return false;
-        } 
+        // if (item.sampleId === activeId) {
+        //     return false;
+        // } 
         changeUser({
             activeId: item.sampleId,
-            time: item.time
+            time: item.time,
+            clickIndex: index
         });
     }
     makeIcon(manufacturer) {
@@ -34,7 +35,7 @@ export default class UserList extends React.Component {
         this.props.onLoadMore(params);
     }
     render() {
-        const { list, activeId, total } = this.props;
+        const { list, activeId, total,clickIndex } = this.props;
         const  showBtn = list.length < total ;
         return (
             <div className={styles['user-list-wrap']}>
@@ -42,8 +43,8 @@ export default class UserList extends React.Component {
                     {list.map((item,index) => {
                         return (    
                             <li className={cls(styles['user-item'], {
-                                [styles['active']]: item.sampleId === activeId
-                            })} key={index} onClick={this.changeUser.bind(this, item)}>
+                                [styles['active']]: index === clickIndex
+                            })} key={index} onClick={this.changeUser.bind(this, item, index)}>
                                 {this.makeIcon(item.manufacturer)}
                                 <span className={styles['user']}>{item.ip}</span>
                                 <span className={styles['time']}>{moment(item.time).format('MM/DD HH:mm')}</span>

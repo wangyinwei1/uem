@@ -24,6 +24,7 @@ class PerformanceDetailStore {
     @observable samplesListTotal = 0;
     @observable activeId = '';
     @observable time = 0;
+    @observable clickIndex = 0;
     @observable displayType = '';
     @observable pageIndex = 1;
     @observable pageSize = 20;
@@ -64,6 +65,7 @@ class PerformanceDetailStore {
     @action onChangeUser = payload => {
         this.activeId = payload.activeId;
         this.time = payload.time;
+        this.clickIndex = payload.clickIndex;
         this.sampleAnalyzePageIndex = 1;
         this.onGetOperBaseInfo();
     }

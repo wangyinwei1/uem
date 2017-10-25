@@ -96,7 +96,7 @@ export default class Trend extends React.Component {
                 return <BarChart
                     chartId={`trend-${itemId}-${activeTrend}`}
                     options={config.get('default').mergeDeep(config.get('apdex'))
-                        .setIn(['series', 0, 'data'], this.props.type == 'browse' ? apdexsArr : trend.clickNum)
+                        .setIn(['series', 0, 'data'], apdexsArr)
                         .setIn(['series', 0 , 'name'],  this.props.type == 'browse' ? '浏览量PV' : '点击数')
                         .toJS()}
                 />;
