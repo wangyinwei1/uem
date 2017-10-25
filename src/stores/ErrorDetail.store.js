@@ -17,6 +17,7 @@ class ErrorDetailStore {
     @observable sampleList = [];
     @observable sessionTrace = [];
     @observable activeId = '';
+    @observable clickIndex = 0;
     @observable time='';
     @observable errorType = '';
     // @observable errorId = '';
@@ -24,6 +25,7 @@ class ErrorDetailStore {
     @action onChangeUser = payload => {
         this.activeId = payload.activeId;
         this.time = payload.time;
+        this.clickIndex = payload.clickIndex;
         this.onGetSampleInfo();
     }
 

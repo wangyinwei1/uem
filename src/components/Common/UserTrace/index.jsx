@@ -46,19 +46,24 @@ export default class UserTrace extends React.Component {
 
     detailInfo = [{
         label: '入口来源',
-        value: 'referrer'
+        value: 'referrer',
+        unit: ''
     }, {
         label: '会话时间',
-        value: 'sessionTime'
+        value: 'sessionTime',
+        unit: 's'
     }, {
         label: '访问页',
-        value: 'landingPage'
+        value: 'landingPage',
+        unit: ''
     }, {
         label: '点击数',
-        value: 'clickNum'
+        value: 'clickNum',
+        unit: ''
     }, {
         label: '平均响应时间',
-        value: 'avgRspTime'
+        value: 'avgRspTime',
+        unit: 's'
     }];
     state = {
         toggleShow: true
@@ -215,7 +220,7 @@ export default class UserTrace extends React.Component {
                     <div className={styles['trace-box-wrap']}>
                         {showBaseInfo && this.renderInfo()}
                         <div className={cls(styles['base-info'], styles['trace-box'])}>
-                            {this.detailInfo.map(item => <div key={item.value + Math.random(1,100)} className={styles['base-li']} title={detailInfo[item.value]}>{`${locale(item.label)}：${detailInfo[item.value]}`}</div>)}
+                            {this.detailInfo.map(item => <div key={item.value + Math.random(1,100)} className={styles['base-li']} title={detailInfo[item.value]}>{`${locale(item.label)}：${detailInfo[item.value]} ${item.unit}`}</div>)}
                         </div>
                         <i className={cls('iconfont', styles['toggle-btn'], {
                             'icon-shanjian': this.state.toggleShow,

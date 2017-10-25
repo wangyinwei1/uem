@@ -48,6 +48,7 @@ export default class Analysis extends React.Component {
                             activeId={activeId}
                             list={sampleList}
                             changeUser={this.props.changeUser}
+                            clickIndex={this.props.clickIndex}
                         />
                     </div>
                 </div>

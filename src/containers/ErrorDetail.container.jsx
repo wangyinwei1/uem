@@ -35,6 +35,7 @@ export default class ErrorDetail extends React.Component {
             sessionTrace,
             activeId,
             time,
+            clickIndex,
             // action
             onGetErrorTopView,
             onGetSamplesList,
@@ -81,6 +82,7 @@ export default class ErrorDetail extends React.Component {
                     errorId={summaryId} 
                     activeId={activeId}
                     changeUser={onChangeUser}
+                    clickIndex={clickIndex}
                     time={time}
                 />
             </DetailWrap>

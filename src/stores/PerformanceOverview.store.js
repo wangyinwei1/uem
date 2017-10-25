@@ -97,7 +97,7 @@ class PerformanceOverviewStore {
                 } else {
                     runInAction(() => {
                         let yAxisData = [], seriesData = [],tempMapData = {};
-                        datas.data.length > 0 && datas.data.filter(item => item.apdex > 0).map((item, index) => {
+                        datas.data.length > 0 && datas.data.map((item, index) => {
                             yAxisData.push(item.area);
                             seriesData.push(item.apdex);
                         })
@@ -140,7 +140,7 @@ class PerformanceOverviewStore {
                 } else {
                     runInAction(() => {
                         let yAxisData = [], seriesData = [],tempMapData = {};
-                        datas.data.length > 0 && datas.data.filter(item => item.apdex > 0).map((item, index) => {
+                        datas.data.length > 0 && datas.data.map((item, index) => {
                             yAxisData.push(item.area);
                             seriesData.push(item.apdex);
                         })
