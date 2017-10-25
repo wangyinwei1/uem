@@ -796,7 +796,7 @@ export default {
                 checked: true,
                 disabled: true,
                 width: 250,
-                sorter: (a, b) => a.firstViewTimestamp - b.firstViewTimestamp,
+                // sorter: (a, b) => a.firstViewTimestamp - b.firstViewTimestamp,
                 render(text, record, index) {
                     const time = moment(Number(text)).format("YYYY-MM-DD HH:mm");
                     return time == "Invalid date" ? "--" : time;
@@ -842,7 +842,7 @@ export default {
                 checked: true,
                 disabled: true,
                 width: 250,
-                sorter: (a, b) => a.firstViewTimestamp - b.firstViewTimestamp,
+                // sorter: (a, b) => a.firstViewTimestamp - b.firstViewTimestamp,
                 render(text, record, index) {
                     const time = moment(Number(text)).format("YYYY-MM-DD HH:mm");
                     return time == "Invalid date" ? "--" : time;

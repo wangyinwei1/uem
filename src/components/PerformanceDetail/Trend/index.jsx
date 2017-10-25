@@ -14,8 +14,8 @@ export default class Trend extends React.Component {
         name: '响应时间分析图',
         value: 'thruput'
     }, {
-        name: this.props.type == 'browse' ? 'PV按满意度分布图' : '点击数按满意度分布图',
-        value: this.props.type == 'browse' ? 'apdex' : 'clickNum'
+        name: this.props.type == 'browse' ? 'PV按满意度分布图' : '响应时间按满意度分布图',
+        value: 'apdexs'
     }, {
         name: '吞吐率趋势图',
         value: 'throughput'
