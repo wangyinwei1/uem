@@ -132,7 +132,7 @@ class ErrorMapChart extends Component {
         .updateIn(['visualMap',0,'max'], ()=> series.length > 0 ? Math.max.apply(null, series) : 1)
         .updateIn(['visualMap',0,'text'], ()=> this.state.activePillar == 'occurErrorUserRate' ? [locale('用户错误率')] : [locale('影响用户数')])
         .updateIn(['visualMap',0,'inRange','color'], ()=> ["#564e60","#78575a","#915e55","#ab6450","#c66b4b","#de7146","#f17642","#fe7a3f"]);
-        // console.log('条形图配置',config.get('default').mergeDeep(pillarConfig).toJS());
+        console.log('条形图配置',config.get('default').mergeDeep(pillarConfig).toJS());
         return (
             <div className={styles['map-chart']}>
                 <div className={cls('tile-head')}>{locale('地理位置')}</div>
@@ -159,7 +159,7 @@ class ErrorMapChart extends Component {
                     />
                     <BarChart
                         chartId="bar"  className={styles['bar-chart']}
-                        options={config.get('default').mergeDeep(pillarConfig).toJS()}
+                        options={config.get('default').mergeDeep(pillarConfig)}
                     />
                 </div>
             </div>

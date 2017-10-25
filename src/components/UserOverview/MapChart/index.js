@@ -168,7 +168,7 @@ class UserMapChart extends Component {
                         clickUpdateMap={this.clickUpdateMap.bind(this)}
                     />
                     <BarChart chartId="bar"  className={styles['bar-chart']}
-                        options={config.get('default').mergeDeep(pillarConfig).toJS()}
+                        options={config.get('default').mergeDeep(pillarConfig)}
                     />
                 </div>
             </div>

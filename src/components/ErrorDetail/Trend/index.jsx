@@ -67,6 +67,7 @@ class Trend extends React.Component {
                     name: locale('错误数'),
                     type: 'line',
                     symbol: 'circle',
+                    smooth: true,
                     showSymbol: false,
                     data: errorDetailTrend.errorCount
                 }

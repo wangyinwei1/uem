@@ -159,24 +159,33 @@ class PerformanceMapChart extends Component {
                 apdex: this.state.activePillar == 'avgRspTime' ? undefined : series[i]
             })
         }
-        // 需要更新的配置在这里给进去.当需要更新的数据很多，用mergeDeep会更直观
-        pillarConfig = this.tempConfig.get('bar').mergeDeep({
-            yAxis: [{ data: activeMap == 'china' ? yAxis.slice(0, 10).reverse() : yAxisInCN.slice(0, 10).reverse() }],
-            series: [{
-                data: series.slice(0, 10).reverse(),
-                name: this.state.activePillar == 'avgRspTime' ? locale('平均响应时间') : 'Apdex',
-                itemStyle: {
-                    normal: {
-                        color: function (value) {
-                            let maxUv = Math.max.apply(null, series);
-                            let opacity = Number((value.data / maxUv).toFixed(2)) * (1 - window.colorOpacity) + window.colorOpacity;
-                            let color = activePillar == 'avgRspTime' ? 'rgba(255,235,11,' : 'rgba(102,220,108,';
-                            return color + opacity + ")";
-                        }
-                    }
-                }
-            }]
-        })
+        // 需要更新的配置在这里给进去.当需要更新的数据很多，用mergeDeep会更直观(但是合并存在一些问题)
+        // pillarConfig = this.tempConfig.get('bar').mergeDeep({
+        //     yAxis: [{ data: activeMap == 'china' ? yAxis.slice(0, 10).reverse() : yAxisInCN.slice(0, 10).reverse() }],
+        //     series: [{
+        //         data: series.slice(0, 10).reverse(),
+        //         name: this.state.activePillar == 'avgRspTime' ? locale('平均响应时间') : 'Apdex',
+        //         itemStyle: {
+        //             normal: {
+        //                 color: function (value) {
+        //                     let maxUv = Math.max.apply(null, series);
+        //                     let opacity = Number((value.data / maxUv).toFixed(2))*(1-window.colorOpacity) + window.colorOpacity;
+        //                     let color = activePillar == 'avgRspTime' ? 'rgba(255,235,11,' : 'rgba(102,220,108,';
+        //                     return color + opacity + ")";
+        //                 }
+        //             }
+        //         }
+        //     }]
+        // });
+        pillarConfig = this.tempConfig.get('bar').updateIn(['yAxis', 0, 'data'], () => activeMap == "china" ? yAxis.slice(0,10).reverse() : yAxisInCN.slice(0,10).reverse())
+            .updateIn(['series', 0, 'data'], () => series.slice(0,10).reverse())
+            .updateIn(['series', 0, 'name'], () => this.state.activePillar == 'avgRspTime' ? locale('平均响应时间') : 'Apdex')
+            .updateIn(['series', 0, 'itemStyle', 'normal', 'color'], () => function (value) {
+                let maxUv = Math.max.apply(null, series);
+                let opacity = Number((value.data / maxUv).toFixed(2))*(1-window.colorOpacity) + window.colorOpacity;
+                let color = activePillar == 'avgRspTime' ? 'rgba(255,235,11,' : 'rgba(102,220,108,';
+                return color + opacity + ")";
+            });
 
         mapConfig = this.tempConfig.get(activeMap).updateIn(['series', 0, 'data'], () => mapSeriesData )
         .updateIn(['dataRange',0,'splitList'],()=> this.state.activePillar == 'avgRspTime' ? splitListForRepTime : splitListForApdex);
@@ -212,7 +221,7 @@ class PerformanceMapChart extends Component {
                         clickUpdateMap={this.clickUpdateMap.bind(this)}
                     />
                     <BarChart chartId="bar"  className={styles['bar-chart']}
-                        options={config.get('default').mergeDeep(pillarConfig).toJS()}
+                        options={config.get('default').mergeDeep(pillarConfig)}
                     />
                 </div>
             </div>
