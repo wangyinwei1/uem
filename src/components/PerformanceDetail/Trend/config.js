@@ -221,6 +221,13 @@ export default Immutable.fromJS({
             minInterval: 0,
             min: 0,
         }],
+        tooltip : {
+            trigger: 'axis',
+            axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+                type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+            },
+            formatter: ''
+        },
         xAxis: [{
             type: 'category',
             data: [locale('满意'), locale('可接受'), locale('不满意')]

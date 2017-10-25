@@ -1,6 +1,7 @@
 import React from 'react';
 import Chart from './Chart';
 
+// linechart 和 barChart 共用的
 function lineBarFormatter(params, ticket, callback) {
     const description = params[0].data.description;
     const text = (description === undefined ? '时间段:' : description);

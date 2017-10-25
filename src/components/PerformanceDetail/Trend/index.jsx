@@ -46,8 +46,8 @@ export default class Trend extends React.Component {
                             return moment(item.startTime).format('MM-DD HH:mm');
                         }
                     }))
-                    .setIn(['series', 0, 'data'], trend.avgRspTime.map(item => item.value))
-                    .setIn(['series', 1, 'data'], trend.clickNum.map(item => item.value))
+                    .setIn(['series', 0, 'data'], trend.avgRspTime)
+                    .setIn(['series', 1, 'data'], trend.clickNum)
                     .toJS()}
             /> :
             <BarChart
@@ -61,10 +61,10 @@ export default class Trend extends React.Component {
                             return moment(item.startTime).format('MM-DD HH:mm');
                         }
                     }))
-                    .setIn(['series', 0, 'data'], trend.clientTime.map(item => item.value))
-                    .setIn(['series', 1, 'data'], trend.netWorkTime.map(item => item.value))
-                    .setIn(['series', 2, 'data'], trend.serverTime.map(item => item.value))
-                    .setIn(['series', 3, 'data'], trend.clickNum.map(item => item.value))
+                    .setIn(['series', 0, 'data'], trend.clientTime)
+                    .setIn(['series', 1, 'data'], trend.netWorkTime)
+                    .setIn(['series', 2, 'data'], trend.serverTime)
+                    .setIn(['series', 3, 'data'], trend.clickNum)
                     .toJS()}
             />
             )
@@ -81,9 +81,9 @@ export default class Trend extends React.Component {
                             return moment(item.startTime).format('MM-DD HH:mm');
                         }
                     }))
-                    .setIn(['series', 0, 'data'], trend.median.map(item => item.value))
-                    .setIn(['series', 1, 'data'], trend.avgRspTime.map(item => item.value))
-                    .setIn(['series', 2, 'data'], trend.percent5.map(item => item.value))
+                    .setIn(['series', 0, 'data'], trend.median)
+                    .setIn(['series', 1, 'data'], trend.avgRspTime)
+                    .setIn(['series', 2, 'data'], trend.percent5)
                     .toJS()}
             />;
 
@@ -92,10 +92,11 @@ export default class Trend extends React.Component {
                 apdexsArr.push(trend.apdexs['apdexS'] || 0);
                 apdexsArr.push(trend.apdexs['apdexT'] || 0);
                 apdexsArr.push(trend.apdexs['apdexD'] || 0);
+                
                 return <BarChart
                     chartId={`trend-${itemId}-${activeTrend}`}
                     options={config.get('default').mergeDeep(config.get('apdex'))
-                        .setIn(['series', 0, 'data'], apdexsArr)
+                        .setIn(['series', 0, 'data'], this.props.type == 'browse' ? apdexsArr : trend.clickNum)
                         .setIn(['series', 0 , 'name'],  this.props.type == 'browse' ? '浏览量PV' : '点击数')
                         .toJS()}
                 />;
@@ -111,8 +112,8 @@ export default class Trend extends React.Component {
                             return moment(item.startTime).format('MM-DD HH:mm');
                         }
                     }))
-                    .setIn(['series', 0, 'data'], trend.thruput.map(item => item.value))
-                    .setIn(['series', 1, 'data'], trend.clickNum.map(item => item.value))
+                    .setIn(['series', 0, 'data'], trend.thruput)
+                    .setIn(['series', 1, 'data'], trend.clickNum)
                     .toJS()}
             />;
         }
