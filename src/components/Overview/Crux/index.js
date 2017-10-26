@@ -19,11 +19,11 @@ class Crux extends Component {
     hackDashboard() {
         const title = (
             <div>
-                <p>对真实用户操作的响应时间进行采样。</p>
-                <p>采集一定时间之后，经过计算可以得出 Apdex 指数。</p>
-                <p>计算公式为：</p>
-                <p>Apdex 指数 = [满意数量 + (可容忍数量 / 2)] / 总样本数。</p>
-                <p>从公式可以看出，Apdex指数越接近于1，代表应用性能越好。</p>
+                <p>{locale('对真实用户操作的响应时间进行采样。')}</p>
+                <p>{locale('采集一定时间之后，经过计算可以得出 Apdex 指数。')}</p>
+                <p>{locale('计算公式为：')}</p>
+                <p>{locale('Apdex 指数 = [满意数量 + (可容忍数量 / 2)] / 总样本数。')}</p>
+                <p>{locale('从公式可以看出，Apdex指数越接近于1，代表应用性能越好。')}</p>
             </div>
         );
         return (
@@ -119,7 +119,7 @@ class Crux extends Component {
                     <ul className={styles['list']}>
                         {dataEnum.map(item => (
                             <li key={item.name} className={styles['item']}>
-                                <div className={styles['key']}>{locale(item.name)}
+                                <div className={styles['key']}>{item.name}
                                     {item.tooltip && <Tooltip placement="bottom" title={item.tooltipText}>
                                         <i className={cls('iconfont icon-bangzhu')}></i>
                                     </Tooltip>}

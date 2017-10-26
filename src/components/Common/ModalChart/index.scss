@@ -39,6 +39,16 @@
         }
     }
 }
+
+.modalPagination{
+    :global{
+        .ant-pagination-prev .ant-pagination-item-link, .ant-pagination-next .ant-pagination-item-link{
+            color: #5D8AB9 !important;
+            background-color: #112f4f !important;
+            border: 0px !important;
+        }
+    }
+}
  
 // .modal-Chart {
 //     .modalChart-pillar {

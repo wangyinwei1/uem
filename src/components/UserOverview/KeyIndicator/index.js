@@ -73,7 +73,7 @@ class KeyIndicator extends Component {
                     <ul className={styles['list']}>
                         {indicatorEnum.map(item => (
                             <li key={item.name} className={platform == 'pc' ? styles['item'] :  styles['item-mobile']}>
-                                <div className={styles['key']}>{locale(item.name)}
+                                <div className={styles['key']}>{item.name}
                                 {item.tooltip && <Tooltip placement="bottom" title={item.tooltipText}>
                                 <i className={cls('iconfont icon-bangzhu')}></i>
                                 </Tooltip>}

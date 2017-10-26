@@ -358,5 +358,9 @@
     "如需其他帮助，请访问 优云官网 联系我们的客服。": "Any help needed, please feel free to visit the Uyun offical site, we are glad to support.",
     "此致": "Thanks & Regards",
     "优云团队": "Team Uyun",
-    "响应时间按满意度分布图": "Response time by satisfaction profile"
+    "响应时间按满意度分布图": "RspTime by satisfaction",
+    "对真实用户操作的响应时间进行采样。": "The response time of the real user operation is sampled.",
+    "采集一定时间之后，经过计算可以得出 Apdex 指数。":"After a certain period of time, the Apdex index can be calculated by calculation.",
+    "计算公式为：" : "The formula is:",
+    "Apdex 指数 = [满意数量 + (可容忍数量 / 2)] / 总样本数。": "Apdex is equal to (GoodRequests + OKRequests/2)/TotalRequests."
 }

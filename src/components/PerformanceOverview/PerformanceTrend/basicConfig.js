@@ -27,7 +27,7 @@ export default Immutable.fromJS({
             yAxis: [{
                 minInterval: 1,
                 type: 'value',
-                name: '单位:次'
+                name: locale('单位：次')
             },{
                 type: 'value',
                 splitLine: {
@@ -43,7 +43,7 @@ export default Immutable.fromJS({
                         color: '#70c3fb'
                     }
                 },
-                name: '单位:秒'
+                name: locale('单位：s')
 
             }],
             color: ['#ffeb0b', '#66dc6a', colorChangeTest("test")],

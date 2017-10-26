@@ -55,7 +55,7 @@ export default Immutable.fromJS({
         },
         yAxis: [{
             minInterval: 1,
-            name: '单位:秒'
+            name: locale('单位：s')
         }],
     },
     errorCount: {

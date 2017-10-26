@@ -97,8 +97,8 @@ export default class ModalChart extends React.Component {
         }
         return (
            <div className={styles["modal-chart"]}>
-                {/* {this.total > 10 && <div onClick={this.showModal} className={styles['check-all']}>{locale('查看全部')}</div>} */}
-                <div onClick={this.showModal} className={styles['check-all']}>{locale('查看全部')}</div>
+                {this.total > 10 && <div onClick={this.showModal} className={styles['check-all']}>{locale('查看全部')}</div>}
+                {/* <div onClick={this.showModal} className={styles['check-all']}>{locale('查看全部')}</div> */}
                 <Modal
                     title={pillarStateEnum[this.pillarState]}
                     className={styles['modalChart-pillar']}
@@ -108,7 +108,7 @@ export default class ModalChart extends React.Component {
                     wrapClassName={styles['webModal']}
                 >
                     <div id="modal-chartPillar" style={{height: 542}}></div>
-                    <Pagination defaultCurrent={1} current={this.state.defaultCurrent}  total={this.total} onChange={this.onChange.bind(this)} />
+                    <Pagination className={styles['modalPagination']} defaultCurrent={1} current={this.state.defaultCurrent}  total={this.total} onChange={this.onChange.bind(this)} />
                 </Modal>
             </div> 
         )

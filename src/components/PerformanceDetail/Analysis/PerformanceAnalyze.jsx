@@ -178,7 +178,7 @@ export default class PerformanceAnalyze extends React.Component {
             }
             // console.log(arr)
             // 如果确定threadInfo里面的值就是sortArr的值，那么久不用这么麻烦了，直接返回sortArr即可
-            const sortArr = ['dns', 'connect', 'redirect', 'request', 'response', 'domLoading', 'domComplete', 'load'].reverse();
+            const sortArr = ['dns', 'connect', 'redirect', 'request', 'response', 'domLoading', 'domComplete', 'load','xhrCallback'].reverse();
             return sortArr.filter(item => arr.indexOf(item) > -1)
         })();
         const startArr = bars.map(item => {

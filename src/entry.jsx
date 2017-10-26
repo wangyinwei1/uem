@@ -53,6 +53,7 @@ if (true) {
     localStorage.setItem('UEM_skin', theme)
     localStorage.setItem('UEM_lang', language);
     window.colorOpacity = 0.3;
+    
     // echarts的换肤方法
     // window.changeEchartTheme = (name) => {
     //     if(!echartsColor[name]){
@@ -60,11 +61,13 @@ if (true) {
     //     }
     //     return echartsColor[name][localStorage.getItem('UEM_skin')];
     // }
- //放到dev环境下用的，实际上线，这个要注释掉。这是由由租户控制的，挂在window下
-    window.USER_INFO = {
-        tenantId: 'e0a67e986a594a61b3d1e523a0a39c77',
-        userId: 'e0a67e986a594a61b3d1e523a0a39c77'
-    };
+
+    //放到dev环境下用的，实际上线，这个要注释掉。这是由由租户控制的，挂在window下
+    // window.USER_INFO = {
+    //     tenantId: 'e0a67e986a594a61b3d1e523a0a39c77',
+    //     userId: 'e0a67e986a594a61b3d1e523a0a39c77'
+    // };
+
     // 时间转换函数，各概况时间指标的单位自适应
     window.timeFormat = (time) => {
         let newTimeFormat;
