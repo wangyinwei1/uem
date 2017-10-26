@@ -117,7 +117,7 @@ class UserMapChart extends Component {
         if (activeMap == 'world') {
             for (let i = 0, len = yAxis.length; i < len; i++) {
                 for (let n in countryNameInEN) {
-                    if (yAxis[i] == countryNameInEN[n]) {
+                    if (yAxis[i] == n) {
                         yAxis[i] = countryNameInEN[n],
                         yAxisInCN.push(countryNameInCN[n])
                     }
@@ -143,6 +143,7 @@ class UserMapChart extends Component {
                 let opacity = Number((value.data / maxUv).toFixed(2))*(1-window.colorOpacity) + window.colorOpacity;
                 return 'rgba(3,169,245,' + opacity + ")";
             });
+        // console.log('pillarConfig==========',pillarConfig.toJS(),yAxis,yAxisInCN);    
         mapConfig = this.tempConfig.get(activeMap).updateIn(['series', 0, 'data'], () => mapSeriesData).updateIn(['visualMap',0,'max'], ()=> series.length > 0 ? Math.max.apply(null, series) : 1)
             .updateIn(['visualMap',0,'text'], ()=> this.state.activePillar == 'sessionCount' ? ['会话数'] : ['访客数']);
 

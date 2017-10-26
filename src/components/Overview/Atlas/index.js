@@ -38,7 +38,7 @@ class Atlas extends Component {
         if (activeMap == 'world') {
             for (let i = 0, len = yAxis.length; i < len; i++) {
                 for (let n in countryNameInEN) {
-                    if (yAxis[i] == countryNameInEN[n]) {
+                    if (yAxis[i] == n) {
                         yAxis[i] = countryNameInEN[n];
                         yAxisInCN[i] = countryNameInCN[n];
                     }

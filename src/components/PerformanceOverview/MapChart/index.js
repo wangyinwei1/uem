@@ -141,7 +141,7 @@ class PerformanceMapChart extends Component {
             if( yAxis.length > 0 ){
                 for (let i = 0, len = yAxis.length; i < len; i++) {
                     for (let n in countryNameInEN) {
-                        if ( countryNameInEN[n] == yAxis[i]) {
+                        if ( n == yAxis[i]) {
                             yAxis[i] = countryNameInEN[n],
                             yAxisInCN.push(countryNameInCN[n])
                         }
