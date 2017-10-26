@@ -114,7 +114,7 @@ class AppsBar extends Component {
         return (
             <div className={styles['apps-bar']}>
                 <div className={cls('btn', styles['create-app'])} onClick={() => this.toggleAddAppModal(true)}><i className={cls('fa fa-plus')}></i>{locale('应用')}</div>
-                { config.globalSetting && <div className={cls('btn',styles['settingBtn'])} onClick={this.appSettingModal.bind(this)}>{locale('应用设置')}</div> }
+                {/* { config.globalSetting && <div className={cls('btn',styles['settingBtn'])} onClick={this.appSettingModal.bind(this)}>{locale('应用设置')}</div> } */}
                 <div className={styles['btn-wrapper']}>
                     <Dropdown overlay={(
                         <Menu onSelect={({ key }) => sortBy(key)} selectedKeys={[sortKey]}>
@@ -192,7 +192,7 @@ class AppsBar extends Component {
                     wrapClassName={styles['global-setting-modal']}
                     onCancel={this.handleSettingModalCanel.bind(this)}
                     visible={this.state.settingModal}>
-                    <SettingMain /> 
+                    {/* <SettingMain />  */}
                 </Modal>
             </div>
         );

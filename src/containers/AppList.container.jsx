@@ -5,6 +5,7 @@ import {
     AppBar,
     Apps
 } from '../components/AppList';
+import styles from '../components/AppList/Apps/index.scss';
 
 @inject('frameStore', 'appListStore')
 @observer
@@ -19,7 +20,6 @@ export default class AppList extends React.Component {
         const {
             onGetApps,
         } = this.props.appListStore;
-
         onGetApps();
     }
 
@@ -73,6 +73,7 @@ export default class AppList extends React.Component {
                     setAppInfo={setAppInfo}
                 />
                 <Pagination
+                    className={styles['appList-pagination']}
                     showTotal={total => '总共 ' + total + ' 个应用'}
                     current={pageIndex}
                     total={total}
