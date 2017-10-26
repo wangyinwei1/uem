@@ -67,6 +67,17 @@ if (true) {
         tenantId: 'e0a67e986a594a61b3d1e523a0a39c77',
         userId: 'e0a67e986a594a61b3d1e523a0a39c77'
     };
+    $(document).on('ajaxError', function (e, response) {
+        switch (response.status) {
+            case 401:
+                window.location.href = "/tenant/#/login?return_insite=" + window.location.href;
+                break;
+        }
+    });
+    window.changeSkin_hook_uem = () => {
+        // $('.set-theme').click();
+    };
+    
 
     // 时间转换函数，各概况时间指标的单位自适应
     window.timeFormat = (time) => {
