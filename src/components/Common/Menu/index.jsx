@@ -34,7 +34,7 @@ export default class Menu extends React.Component {
     checkApp(path, e) {
         const { appId } = this.props;
         if (!appId) {
-            Message.error(locale('请先选择应用'));
+            Message.info(locale('请先选择应用'));
             this.noEvent(e);
         } else {
             this.setState({
@@ -74,7 +74,7 @@ export default class Menu extends React.Component {
     choosePlatform(platform, e) {
         const { appId, choosePlatform } = this.props;
         if (!appId) {
-            Message.error(locale('请先选择应用'));
+            Message.info(locale('请先选择应用'));
             return false;
         }
 

@@ -25,7 +25,7 @@ class AppListStore {
         this.onGetApps();
     }
     @action onSortBy = payload => {
-        this.sortKey = payload;
+        this.sortKey = payload.key;
         this.onGetApps();
     }
     @action onGetApps = async (payload, type) => {

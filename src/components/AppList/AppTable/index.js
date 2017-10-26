@@ -94,12 +94,12 @@ class AppTable extends React.Component {
                 return <span>{show}</span>;
             }
         }, {
-            title: locale('操作数'),
-            dataIndex: 'operCount',
-            key: 'operCount',
-            render(operCount) {
-                const type = typeof operCount
-                let show = (type === 'number' || type === 'string') ? operCount : '--'
+            title: locale('点击数'),
+            dataIndex: 'clickNum',
+            key: 'clickNum',
+            render(clickNum) {
+                const type = typeof clickNum
+                let show = (type === 'number' || type === 'string') ? clickNum : '--'
                 return <span>{show}</span>;
             }
         },
@@ -233,6 +233,7 @@ class AppTable extends React.Component {
             })
         }
         if (action === 'deployApp') {
+            this.props.chooseApp({appId: record.appId});
             this.context.router.history.push('/setting');
         }
     }

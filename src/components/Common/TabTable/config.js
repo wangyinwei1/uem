@@ -356,6 +356,7 @@ export default {
                 checked: true,
                 disabled: false,
                 width: 100,
+                render: (text, record, index) => text == null || text == undefined ? '--' : text,
                 sorter: (a,b) => a.thruput - b.thruput
             }, {
                 value: 'errorCount',
@@ -448,6 +449,8 @@ export default {
                 checked: true,
                 disabled: false,
                 width: 100,
+                // render: (text, record, index) => text ? text : '--',
+                render: (text, record, index) => text == null || text == undefined ? '--' : text,
                 sorter: (a,b) => a.thruput - b.thruput
             }, {
                 value: 'errorCount',

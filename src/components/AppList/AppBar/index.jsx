@@ -117,7 +117,7 @@ class AppsBar extends Component {
                 {/* { config.globalSetting && <div className={cls('btn',styles['settingBtn'])} onClick={this.appSettingModal.bind(this)}>{locale('应用设置')}</div> } */}
                 <div className={styles['btn-wrapper']}>
                     <Dropdown overlay={(
-                        <Menu onSelect={({ key }) => sortBy(key)} selectedKeys={[sortKey]}>
+                        <Menu onClick={({key}) => sortBy({key})} selectedKeys={[sortKey]}>
                             {
                                 menuList.map((item, index) => {
                                     return (

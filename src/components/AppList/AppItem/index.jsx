@@ -6,9 +6,9 @@ import styles from './index.scss';
 import DelAppModal from './DelAppModal';
 
 export default class AppItem extends React.PureComponent {
-    static contextTypes = {
-        router: PropTypes.object
-    }
+    // static contextTypes = {
+    //     router: PropTypes.object
+    // }
     state = {
         showDelAppModal: false,
         // 倒计时的秒数
@@ -22,7 +22,10 @@ export default class AppItem extends React.PureComponent {
     timer = null;
     constructor(props) {
         super(props);
-        this.toggleDelAppModal = this.toggleDelAppModal.bind(this)
+        this.toggleDelAppModal = this.toggleDelAppModal.bind(this);
+    }
+    static contextTypes = {
+        router: React.PropTypes.object.isRequired
     }
     noEvent(e) {
         e.nativeEvent.stopImmediatePropagation();
@@ -73,9 +76,11 @@ export default class AppItem extends React.PureComponent {
             setAppInfo(null)
         });
     }
-    deployApp(e) {
+    deployApp(appId,e) {
         this.noEvent(e);
+        this.props.chooseApp({ appId:appId })
         this.context.router.history.push('/setting');
+        // this.props.history.push('/setting')
     }
     enterApp() {
         const { itemAppId, appUse, chooseApp, choosePlatform } = this.props;
@@ -128,7 +133,7 @@ export default class AppItem extends React.PureComponent {
                                         ? locale('停止监控')
                                         : locale('启动监控')}
                                 </li>
-                                <li onClick={this.deployApp.bind(this)}>{locale('应用部署')}</li>
+                                <li onClick={this.deployApp.bind(this,this.props.itemAppId)}>{locale('应用部署')}</li>
                             </ul>
                         </dt>
                         <dd className={styles['content']}>
@@ -164,3 +169,6 @@ export default class AppItem extends React.PureComponent {
         );
     }
 }
+AppItem.contextTypes = {
+    router: React.PropTypes.object.isRequired
+};
