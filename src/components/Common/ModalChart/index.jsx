@@ -93,7 +93,7 @@ export default class ModalChart extends React.Component {
             'effectedUserNum' : locale('影响用户数'),
             'sessionCount': locale('会话数'),
             'uv':locale('访客数'),
-            'userDistribution': locale('用户分布数据')
+            'userDistribution': locale('用户会话数')
         }
         return (
            <div className={styles["modal-chart"]}>
