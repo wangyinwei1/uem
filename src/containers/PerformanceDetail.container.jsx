@@ -123,7 +123,7 @@ export default class PerformanceDetail extends React.Component {
         }else{
             isMarked = 0;
         }
-        platform == 'pc' && !Boolean(this.path) ? message.info('requestPath字段为空') : onGetOperInfo({
+        !Boolean(this.path) ? message.info('requestPath字段为空') : onGetOperInfo({
             operType,
             selector,
             text,
@@ -134,7 +134,8 @@ export default class PerformanceDetail extends React.Component {
             displayType: JSON.stringify([this.display]),
             // columnCode: JSON.stringify(['clientTime', 'serverTime'])
         });
-        platform == 'pc' && !Boolean(this.path) ? message.info('requestPath字段为空') : onGetOperTrend({
+
+        !Boolean(this.path) ? message.info('requestPath字段为空') : onGetOperTrend({
             operType,
             selector,
             text,
@@ -144,12 +145,23 @@ export default class PerformanceDetail extends React.Component {
             performanceType: type,
             displayType: JSON.stringify([this.display]),
             columnCode: uiType === "NATIVE" ?
-                JSON.stringify(['avgRspTime', 'clickNum', 'thruput', 'apdexs', 'median', 'netWorkTime', 'clientTime', 'serverTime', 'percent5']) :
-                JSON.stringify(['clickNum', 'apdexs', 'median', 'avgRspTime', 'percent5', 'thruput', 'clientTime', 'serverTime', 'netWorkTime']),
-
+                JSON.stringify(['avgRspTime', 'thruput', 'apdexs', 'median', 'netWorkTime', 'clientTime', 'serverTime', 'percent5']) :
+                JSON.stringify(['apdexs', 'median', 'avgRspTime', 'percent5', 'thruput', 'clientTime', 'serverTime', 'netWorkTime']),
+        });
+        // 因为设计问题，这里的clickNum需要另外发送，它的displayType和requestPath都为''
+        onGetOperTrend({
+            operType,
+            selector,
+            text,
+            isMarked : isMarked,
+            requestPath: '',
+            path: path,
+            performanceType: type,
+            displayType: JSON.stringify(['']),
+            columnCode:JSON.stringify(['clickNum'])
         });
 
-        platform == 'pc' && !Boolean(this.path) ? message.info('path字段为空') : onGetOperSamplesList({
+        !Boolean(this.path) ? message.info('path字段为空') : onGetOperSamplesList({
             operType,
             selector,
             text,

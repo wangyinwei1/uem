@@ -228,7 +228,6 @@ class Chart extends React.PureComponent {
         // debugger
         clearTimeout(this.timer);
         try {
-            debugger
             // this.chartDom.clear();
             this.timer = setTimeout(() => {
                 this.chartDom.setOption(Immutable.fromJS(this._mergeOptions()).mergeDeep(nextProps.options).toJS());

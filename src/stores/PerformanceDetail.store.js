@@ -113,8 +113,16 @@ class PerformanceDetailStore {
                 ...payload
             });
             runInAction(() => {
-                this.trend = data;
+                // this.trend = data;
+                for(let n in this.trend){
+                    for(let key in data){
+                        if(n == key){
+                            this.trend[n] = data[key]
+                        }
+                    }
+                }
             });
+            console.log('this.trend',this.trend);
         } catch (e) {
             throw e;
         }
