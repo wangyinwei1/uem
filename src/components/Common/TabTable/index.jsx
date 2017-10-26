@@ -51,7 +51,7 @@ export default class TabTable extends React.Component {
             default: 
                 return (
                     <div className={styles['tab-placeholder']}>
-                        <h2>{locale('你还没有进行可视化埋点，无法查看埋点数据')}</h2>
+                        <h2>{locale('暂无数据')}</h2>
                         <div className={styles['pointButton']} onClick={this.click.bind(this)} >
                         <a>{locale('马上埋点')}</a>
                         </div>
