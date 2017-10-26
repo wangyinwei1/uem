@@ -35,6 +35,9 @@ export default Immutable.fromJS({
             bottom: 60,
             right: 60
         }],
+        tooltip: {
+            formatter: ''
+        },
         // dataZoom: [
         //     {
         //         type: 'inside',

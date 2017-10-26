@@ -44,6 +44,9 @@ export default Immutable.fromJS({
                 show: false
             }
         }],
+        tooltip: {
+            formatter: ''
+        },
         yAxis: [{
             type: 'category',
             axisLine: {
