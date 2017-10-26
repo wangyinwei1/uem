@@ -6,6 +6,7 @@ import { Popover } from 'antd';
 import React from 'react';
 
 export function tableProgress(avgRsp = '--', avgRsps = [0, 0, 0], config = [{ color: "#ffec0c", text: locale('可接受') }, { color: "#ff5252", text: locale('不满意') }, { color: "#66dc6b", text: locale('满意') }], isShowAvgRsp = true) {
+    avgRsp = avgRsp == null ? '--' : avgRsp;
     const width = '101px';
     let count = avgRsps[0] + avgRsps[1] + avgRsps[2];
     if (!count && count !== 0) {
@@ -73,15 +74,15 @@ export function errorTableTrend(text, record, index) {
                     endTime = (endTime == "Invalid date" ? "--" : endTime);
                     let content = (
                         <div key={item.value}>
-                            <div><span className={styles['mr20']}> {locale('时间段')}</span>{startTime} {locale('至')} {endTime}</div>
-                            <div><span className={styles['mr20']}>{locale('错误数')}</span>{item.value}</div>
+                            <div><span className={styles['mr20']}> {locale('时间段:')}</span>{startTime} {locale('至')} {endTime}</div>
+                            <div><span className={styles['mr20']}>{locale('错误数:')}</span>{item.value}</div>
                         </div>
                     )
                     const _height = heights[index] || 0;
                     const _top = top[index] || 0;
 
                     return (
-                        <Popover content={content} trigger="hover" placement="rightBottom" key={index}>
+                        <Popover content={content} trigger="hover" placement="rightBottom" key={index}  getTooltipContainer={parents => parents}>
                             <div className={styles['bar']}style={{ height: _height, top: _top }}></div>
                         </Popover>
                     )

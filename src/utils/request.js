@@ -23,7 +23,7 @@ function Request(type = 'GET', api = '', data = {}, config = {}) {
         url,
         type,
         data,
-        timeout: 10000,
+        timeout: 30000,
         dataType: 'json',
         crossDomain: false,
         ...config

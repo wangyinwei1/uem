@@ -83,6 +83,7 @@
     "性能趋势图": "Performance Trend",
     "操作次数": "Actions",
     "时间段": "Time range:",
+    "时间段:": "Time range:",
     "响应时间指用户发起请求动作到页面完全加载完毕的总时间,响应时间=网络时间+服务端时间+客户端时间": "Average interval between the time that an end-user initiates a request and the completion of the page load of the response in the user\"s browser.Response Time = Network Time + Server Time + Browser Render Time ",
     "系统检测到当前跳转到的URL与定义的热力图URL不一致，很可能是需要登录/退出才能具有访问，建议您先登录/退出再刷新本页面": "We detected that the URL currently jumped to does not match the URL of the defined heatmap. We suggest that you log in / out and then refresh this page",
     "地理位置": "Locations",

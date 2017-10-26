@@ -119,7 +119,7 @@ export default {
                 }
             }, {
                 value: 'thruput',
-                label: locale('吞吐率'),
+                label: locale('吞吐率(rpm)'),
                 checked: true,
                 disabled: false,
                 width: 100,
@@ -133,7 +133,7 @@ export default {
                 sorter: (a,b) => a.errorCount - b.errorCount
             }, {
                 value: 'avgRspTime',
-                label: locale('响应时间'),
+                label: locale('响应时间(s)'),
                 checked: true,
                 disabled: false,
                 width: 100,
@@ -200,7 +200,7 @@ export default {
                 }
             }, {
                 value: 'thruput',
-                label: locale('吞吐率'),
+                label: locale('吞吐率(rpm)'),
                 checked: true,
                 disabled: false,
                 width: 100,
@@ -214,7 +214,7 @@ export default {
                 sorter: (a,b) => a.errorCount - b.errorCount
             }, {
                 value: 'avgRspTime',
-                label: locale('响应时间'),
+                label: locale('响应时间(s)'),
                 checked: true,
                 disabled: false,
                 width: 100,
@@ -352,7 +352,7 @@ export default {
                 }
             }, {
                 value: 'thruput',
-                label: locale('吞吐率'),
+                label: locale('吞吐率(rpm)'),
                 checked: true,
                 disabled: false,
                 width: 100,
@@ -367,7 +367,7 @@ export default {
                 sorter: (a,b) => a.errorCount - b.errorCount
             }, {
                 value: 'avgRspTime',
-                label: locale('响应时间'),
+                label: locale('响应时间(s)'),
                 checked: true,
                 disabled: false,
                 width: 100,
@@ -445,7 +445,7 @@ export default {
                 }
             }, {
                 value: 'thruput',
-                label: locale('吞吐率'),
+                label: locale('吞吐率(rpm)'),
                 checked: true,
                 disabled: false,
                 width: 100,
@@ -461,7 +461,7 @@ export default {
                 sorter: (a,b) => a.errorCount - b.errorCount
             }, {
                 value: 'avgRspTime',
-                label: locale('响应时间'),
+                label: locale('响应时间(s)'),
                 checked: true,
                 disabled: false,
                 width: 100,

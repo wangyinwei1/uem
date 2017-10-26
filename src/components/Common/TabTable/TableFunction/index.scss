@@ -62,7 +62,46 @@
         margin-right: 2px;
         background-color: #fff;
     }
+    :global{
+        .ant-popover-arrow{
+            border-right-color: #183a61;
+        }
+        .ant-popover-inner {
+            min-width: 230px;
+            background-color: #183a61;
+            background-clip: padding-box;
+            border: 1px solid #183a61;
+            border-radius: 6px;
+            box-shadow: 0 1px 6px #142e4e;
+            .ant-popover-inner-content {
+                padding: 8px 16px;
+                color: #fff;
+                background: #183a61;
+            }
+        }
+    }
 }
+// .errorBarpopver{
+//     transform-origin: -4px 52.5284px 0px;
+//     :global{
+//         .ant-popover-arrow{
+//             border-right-color: #183a61;
+//         }
+//         .ant-popover-inner {
+//             min-width: 177px;
+//             background-color: #183a61;
+//             background-clip: padding-box;
+//             border: 1px solid #183a61;
+//             border-radius: 6px;
+//             box-shadow: 0 1px 6px #142e4e;
+//             .ant-popover-inner-content {
+//                 padding: 8px 16px;
+//                 color: #fff;
+//                 background: #183a61;
+//             }
+//         }
+//     }
+// }
 .mr20 {
     
 }
