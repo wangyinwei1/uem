@@ -30,6 +30,8 @@ export default class TabTable extends React.Component {
         // 每次切换，表格都要取第一页的数据
         const pageIndex = 1 ;
         this.props.changeTagType(tagType,pageIndex);
+        // 切换的时候，将searchKey还原成 'display_name'初始状态
+        this.props.onChangeSortKey('display_name');
         this.setState({
             tagType : tagType
         })
@@ -130,8 +132,10 @@ export default class TabTable extends React.Component {
                         changeResTime={this.props.changeResTime}
                         resolveRow={this.props.resolveRow}
                         search={this.props.search}
+                        searchKey={this.props.searchKey}
                         getUserDefineColumn={this.props.getUserDefineColumn}
                         userDefinedColumn={this.props.userDefinedColumn}
+                        onChangeSortKey={this.props.onChangeSortKey}
                     />
                     <Table
                         type={type}

@@ -2,7 +2,8 @@ import React from 'react';
 import {
     Input,
     Checkbox,
-    Popover
+    Popover,
+    Select
 } from 'antd';
 import config from './config';
 import styles from './index.scss';
@@ -159,7 +160,7 @@ export default class ControlBar extends React.Component {
     // 搜索栏 
     searchInput(){
         const { type, tagType } = this.props;
-        debugger
+        // debugger
         if( type == 'PerformanceBrowse' ){
             if(tagType == 0 ){
                 return (
@@ -193,8 +194,29 @@ export default class ControlBar extends React.Component {
                 />
             )
         }
-        // if(){
-        // }
+        if( type == "UserTable" ){
+                const InputGroup = Input.Group;
+                const { userDefinedColumn,searchKey } = this.props;
+                    return (
+                        <InputGroup className={styles['userInput']}>
+                            <Select className={styles['userTraceSelect']} key="userTraceSelect" defaultValue={ locale('用户ID')} onChange={this.handleSelectChange.bind(this)} >
+                                <Select.Option key='display_name' > {locale('用户ID')} </Select.Option>
+                                {userDefinedColumn.map((value,index) => { return (<Select.Option key={value.key} >{value.displayName}</Select.Option>) })}
+                            </Select>
+                            <Search
+                                className={cls('search-bar',styles['search'])}
+                                placeholder={''}
+                                style={{ width: 200 }}
+                                onSearch={value => this.props.search(value)}
+                            />
+                        </InputGroup> 
+                    )
+                // }
+                // else{
+
+                // }
+               
+        }
         else{
             return(
                 <Search
@@ -205,6 +227,11 @@ export default class ControlBar extends React.Component {
                 />
             ) 
         }  
+    }
+
+    handleSelectChange(e){
+        // 更改searchKey
+        this.props.onChangeSortKey(e)
     }
 
     render() {

@@ -27,6 +27,10 @@ class UserTableStore {
     get columns() {
         return this.colOptions[this.tagType].toJS();
     }
+    // 改变用户轨迹搜索框边上的切换searchKey
+    @action onChangeSortKey = payload => {
+        this.searchKey = payload
+    }
 
     @action onGetUserDefineColumn = async payload => {
         try{

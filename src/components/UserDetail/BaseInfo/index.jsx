@@ -9,8 +9,6 @@ export default class BaseInfo extends React.Component {
             value: 'displayName'
         }]
         const { userDefinedColumn, tagType,data } = this.props;
-        console.log('userDefinedColumn, tagType=====',userDefinedColumn, tagType,data);
-        debugger
         if(tagType == 0){
             userDefinedColumn.map((item,index) => {
                 list.push({
