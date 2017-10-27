@@ -829,13 +829,15 @@ export default {
                 checked: true,
                 width: 150,
                 sorter: (a, b) => a.sessionCount - b.sessionCount,
-            }, {
-                label: locale('用户ID'),
-                value: 'userId',
-                checked: false,
-                disabled: false,
-                width: 150,
-            }],
+            }, 
+            // {
+            //     label: locale('用户ID'),
+            //     value: 'userId',
+            //     checked: false,
+            //     disabled: false,
+            //     width: 150,
+            // }
+        ],
             quota: []
         }
     }, {

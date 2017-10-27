@@ -111,7 +111,7 @@ class OverviewStore {
             const datas = await Service.getUserDistribution(payload);
             if( areaType == 'province' ){
                  datas.data && datas.data.map((item,index)=>{
-                    if(item.areaName == '-'){
+                    if(item.areaName == '-' || item.areaName == ''){
                         item.areaName = '未知地址'
                     }
                 })

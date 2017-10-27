@@ -3,11 +3,8 @@ import styles from './index.scss';
 
 export default class BaseInfo extends React.Component {
     list = [{
-        label: '用户名',
-        value: 'displayName'
-    }, {
         label: '用户ID',
-        value: 'userId'
+        value: 'displayName'
     }]
     render() {
         return (

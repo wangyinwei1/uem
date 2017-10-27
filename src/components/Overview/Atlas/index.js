@@ -40,7 +40,7 @@ class Atlas extends Component {
                 for (let n in countryNameInEN) {
                     if (yAxis[i] == n) {
                         yAxis[i] = countryNameInEN[n];
-                        yAxisInCN[i] = countryNameInCN[n];
+                        yAxisInCN.push(countryNameInCN[n]);
                     }
                 }
             }
