@@ -80,7 +80,7 @@ export default class Metrics extends React.Component {
                 <li key={item.label}>
                     <dl>
                         <dt className={styles['key']}>{locale(this.metrics[item.label])}</dt>
-                        <dd title={item.value} className={styles['value']}>{item.value}</dd>
+                        <dd title={item.value} className={styles['value']}>{item.value ? item.value : '--' }</dd>
                     </dl>
                 </li>
             );
