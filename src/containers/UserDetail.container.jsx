@@ -9,7 +9,7 @@ import {
     Trace,
 } from '../components/UserDetail';
 
-@inject('frameStore', 'userDetailStore')
+@inject('frameStore', 'userDetailStore','userTableStore')
 @observer
 export default class UserDetail extends React.Component {
     componentDidMount() {
@@ -34,15 +34,20 @@ export default class UserDetail extends React.Component {
             newClickConfig
         } = this.props.userDetailStore;
         const {
-            displayName,
-            userId,
-        } = this.props.data;
+            userDefinedColumn,
+            tagType,
+        } = this.props.userTableStore;
+        // const {
+        //     displayName,
+        //     userId
+        // } = this.props.data;
         const { itemId } = this.props;
         return (
             <DetailWrap>
                 <BaseInfo 
-                    displayName={displayName}
-                    userId={userId}
+                    userDefinedColumn={userDefinedColumn}
+                    tagType={tagType}
+                    data={this.props.data}
                 />
                 <Trend 
                     sessionCount={sessionCount}
