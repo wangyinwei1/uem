@@ -61,11 +61,14 @@ class PerformanceInteractiveStore {
     }
     @action onChangeTagType = payload => {
         this.tagType = payload.tagType;
-        this.pageIndex = payload.pageIndex;
         sessionStorage.setItem('tagType',payload.tagType);
         this.data = [];
         this.searchValue = undefined;
-        this.onGetOpersList();
+        if(payload.pageIndex){
+            this.pageIndex = payload.pageIndex;
+            this.onGetOpersList();
+        }
+
     }
     // 点击sortkey排序
     @action onChangeSortkey = payload => {

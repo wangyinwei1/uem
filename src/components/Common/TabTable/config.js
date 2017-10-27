@@ -218,7 +218,11 @@ export default {
                 checked: true,
                 disabled: false,
                 width: 100,
-                sorter: (a,b) => a.avgRspTime - b.avgRspTime
+                sorter: (a,b) => a.avgRspTime - b.avgRspTime,
+                render(text, record, index){
+                    const config = [{ color: "#03a9f4", text: locale('客户端') }, { color: "#91eb7c", text: locale('网络传输') }, { color: "#6270ef", text: locale('服务器') }]
+                    return tableProgress(record.avgRspTime, record.avgRspTimes, config, locale('平均响应时间'));
+                } 
             }, {
                 value: 'pv',
                 label: locale('浏览量PV'),
@@ -370,8 +374,12 @@ export default {
                 label: locale('响应时间(s)'),
                 checked: true,
                 disabled: false,
-                width: 100,
-                sorter: (a,b) => a.avgRspTime - b.avgRspTime
+                width: 150,
+                sorter: (a,b) => a.avgRspTime - b.avgRspTime,
+                render(text, record, index){
+                    const config = [{ color: "#03a9f4", text: locale('客户端') }, { color: "#91eb7c", text: locale('网络传输') }, { color: "#6270ef", text: locale('服务器') }]
+                    return tableProgress(record.avgRspTime, record.avgRspTimes, config, locale('平均响应时间'));
+                } 
             }
             // 高保真有矛盾 
             // {
@@ -538,7 +546,7 @@ export default {
                     width: 200,
                 }, {
                     value: 'thruput',
-                    label: locale('吞吐率(rmp)'),
+                    label: locale('吞吐率(rpm)'),
                     checked: false,
                     disabled: false,
                     width: 200,
@@ -650,7 +658,7 @@ export default {
                     width: 200,
                 }, {
                     value: 'thruput',
-                    label: locale('吞吐率(rmp)'),
+                    label: locale('吞吐率(rpm)'),
                     checked: false,
                     disabled: false,
                     width: 200,

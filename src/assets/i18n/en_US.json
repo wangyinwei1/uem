@@ -331,7 +331,7 @@
     "手势":"Gestures",
     "UI类型": "UI type",
     "平均响应时间(s)": "Average response time (s)",
-    "吞吐率(rmp)": "Throughput (rpm)",
+    "吞吐率(rpm)": "Throughput (rpm)",
     "Activity生命周期图":"Activity Lifecycle Chart",
     "响应时间 > 1s的次数": "Response times> 1s",
     "回调": "Callback",
@@ -363,5 +363,6 @@
     "对真实用户操作的响应时间进行采样。": "The response time of the real user operation is sampled.",
     "采集一定时间之后，经过计算可以得出 Apdex 指数。":"After a certain period of time, the Apdex index can be calculated by calculation.",
     "计算公式为：" : "The formula is:",
-    "Apdex 指数 = [满意数量 + (可容忍数量 / 2)] / 总样本数。": "Apdex is equal to (GoodRequests + OKRequests/2)/TotalRequests."
+    "Apdex 指数 = [满意数量 + (可容忍数量 / 2)] / 总样本数。": "Apdex is equal to (GoodRequests + OKRequests/2)/TotalRequests.",
+    "响应时间(s)": "Response time(s)"
 }

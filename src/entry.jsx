@@ -72,6 +72,10 @@ if (true) {
             case 401:
                 window.location.href = "/tenant/#/login?return_insite=" + window.location.href;
                 break;
+            case 403:
+                window.location.href = "/tenant/#/login?return_insite=" + window.location.href;
+                // window.location.href = "/tenant/#/login"
+                break;
         }
     });
     window.changeSkin_hook_uem = () => {

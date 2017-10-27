@@ -34,8 +34,8 @@ export function tableProgress(avgRsp = '--', avgRsps = [0, 0, 0], config = [{ co
     );
     return (
         <div className={styles['tableProgress']}>
-                {isShowAvgRsp && <div className={cls(styles['title'],{'fl': avgRsp !== '--','ma': avgRsp == '--'  })}>{avgRsp}</div>}
-                {avgRsp !== '--' && <Popover content={(overlay)} trigger="hover" placement="rightBottom" key={Math.random(1, 100)} getTooltipContainer={parents => parents}>
+                {isShowAvgRsp && <div className={cls(styles['title'],{'fl': avgRsp !== '--' && avgRsp !== 0,'ma': avgRsp == '--' || avgRsp == 0 })}>{avgRsp}</div>}
+                {avgRsp !== '--' && avgRsp !== 0 && <Popover content={(overlay)} trigger="hover" placement="rightBottom" key={Math.random(1, 100)} getTooltipContainer={parents => parents}>
                     <div className={styles['progress']} style={{ width: width }}>
                         {newConfig.map((val, i) => {
                             return (<span key={Math.random(1, 100)} className={styles['per']} style={{ background: val.color, width: val.width }} ></span>)

@@ -11,7 +11,17 @@ const TabPane = Tabs.TabPane;
 export default class TabTable extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {
+            tagType : 0
+        }
+    } 
+
+    //这里的作用是，每次切换左侧导航栏时，都回到tabTable的第一个( 已标记 等等)
+    componentDidMount(){
+        // 不发送pageIndex，避免出现两次请求列表
+        this.props.changeTagType(0);
     }
+
     changeTagType(tagType) {
         const { tagType: oldTagType } = this.props;
         if (oldTagType === tagType) {
@@ -20,6 +30,9 @@ export default class TabTable extends React.Component {
         // 每次切换，表格都要取第一页的数据
         const pageIndex = 1 ;
         this.props.changeTagType(tagType,pageIndex);
+        this.setState({
+            tagType : tagType
+        })
     }
 
     click(){
@@ -29,6 +42,14 @@ export default class TabTable extends React.Component {
         const { type } = this.props;
         switch(type) {
             case 'ErrorTable':
+                if(this.state.tagType == 1){
+                    // 已解决
+                    return (
+                        <div className={styles['tab-placeholder']}>
+                            <h2>{locale('暂无数据')}</h2>
+                        </div>
+                    )
+                }
                 return (
                     <div className={styles['tab-placeholder']}>
                         <h2>{locale('暂时没发现错误哦，我们也支持自定义错误接入，请查阅帮助文档二次开发API的相关说明')}</h2>
@@ -39,6 +60,14 @@ export default class TabTable extends React.Component {
                     </div>
                 );
             case 'UserTable':
+                if(this.state.tagType == 1){
+                    // 未登录
+                    return (
+                        <div className={styles['tab-placeholder']}>
+                            <h2>{locale('暂无数据')}</h2>
+                        </div>
+                    )
+                }
                 return (
                     <div className={styles['tab-placeholder']}>
                         <h2>{locale('暂时没有用户哦，我们也支持接入真实用户，请查阅帮助文档二次开发API的相关说明')}</h2>
@@ -49,9 +78,17 @@ export default class TabTable extends React.Component {
                     </div>
                 );
             default: 
+                if(this.state.tagType == 1){
+                    // 未标记
+                    return (
+                        <div className={styles['tab-placeholder']}>
+                            <h2>{locale('暂无数据')}</h2>
+                        </div>
+                    )
+                }
                 return (
                     <div className={styles['tab-placeholder']}>
-                        <h2>{locale('暂无数据')}</h2>
+                        <h2>{locale("你还没有进行可视化埋点，无法查看埋点数据")}</h2>
                         <div className={styles['pointButton']} onClick={this.click.bind(this)} >
                         <a>{locale('马上埋点')}</a>
                         </div>
