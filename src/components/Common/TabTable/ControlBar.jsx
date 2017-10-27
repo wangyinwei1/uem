@@ -155,15 +155,62 @@ export default class ControlBar extends React.Component {
             </div>
         );
     }
-    render() {
-        return (
-            <div className={styles['control-bar']} key={this.props.tagType}>
+
+    // 搜索栏 
+    searchInput(){
+        const { type, tagType } = this.props;
+        debugger
+        if( type == 'PerformanceBrowse' ){
+            if(tagType == 0 ){
+                return (
+                    <Search
+                        className={cls('search-bar')}
+                        placeholder={locale("页面名称")}
+                        style={{ width: 200 }}
+                        onSearch={value => this.props.search(value)}
+                    />
+                )
+            }else{
+                return (
+                    <Search
+                        className={cls('search-bar')}
+                        placeholder={locale("URL")}
+                        style={{ width: 200 }}
+                        onSearch={value => this.props.search(value)}
+                    />
+                )
+
+            }
+            
+        }
+        if( type == "ErrorTable"){
+            return (
+                <Search
+                    className={cls('search-bar')}
+                    placeholder={locale("错误描述")}
+                    style={{ width: 200 }}
+                    onSearch={value => this.props.search(value)}
+                />
+            )
+        }
+        // if(){
+        // }
+        else{
+            return(
                 <Search
                     className={cls('search-bar')}
                     placeholder={locale("名称")}
                     style={{ width: 200 }}
                     onSearch={value => this.props.search(value)}
                 />
+            ) 
+        }  
+    }
+
+    render() {
+        return (
+            <div className={styles['control-bar']} key={this.props.tagType}>
+                {this.searchInput()}
                 {this.switchControl(this.props.type)}
             </div>
         );
