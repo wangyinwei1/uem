@@ -141,6 +141,7 @@ class PerformanceDetailStore {
                 this.samplesList = data.data;
                 this.samplesListTotal = data.total; 
                 if (data.total > 0) {
+                    this.clickIndex = 0;
                     this.activeId = data.data[0].sampleId;
                     this.time = data.data[0].time;
                     this.onGetOperBaseInfo();
@@ -191,7 +192,7 @@ class PerformanceDetailStore {
             throw e;
         }
     }
-    // 貌似这个接口砍掉了，后续注意
+
     // analyze数据整合在sampleInfo接口里
     @action onGetOperAnalyze = async payload => {
         try {

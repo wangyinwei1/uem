@@ -63,6 +63,7 @@ class ErrorDetailStore {
                 this.sampleList = datas.data;
                 if(datas.data.length != 0){
                     // 第一次进来的时候，发送列表第一行的请求
+                    this.clickNum = 0;
                     this.activeId = datas.data[0].sampleId;
                     this.time = datas.data[0].time;
                     this.onGetSampleInfo({
