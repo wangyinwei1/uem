@@ -66,6 +66,9 @@ export default class Menu extends React.Component {
         ));
     }
     chooseApp = (appId) => {
+        // if(appId == 'newApp'){
+            
+        // }
         const { chooseApp } = this.props;
         chooseApp({
             appId
@@ -102,6 +105,7 @@ export default class Menu extends React.Component {
                     {appList.map(item =>
                         <Option value={item.appId} key={item.appId}>{item.appName}</Option>
                     )}
+                    {/* {<Option value={'newApp'} key={'newApp'}><i style={{'fontSize':14}} className={cls('iconfont icon-xinzeng',styles['size'])}></i>新建应用</Option>} */}
                 </Select>
             </div>
         );

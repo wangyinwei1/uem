@@ -63,6 +63,7 @@ export default class ErrorTable extends React.Component {
             columns,
             dataList,
             total,
+            dataStatus,
             rows,
             tagType,
             pageIndex,
@@ -87,6 +88,7 @@ export default class ErrorTable extends React.Component {
                     apdexTime={apdexTime}
                     dataList={dataList}
                     total={total}
+                    dataStatus={dataStatus}
                     pageIndex={pageIndex}
                     pageSize={pageSize}
                     getTableData={onGetOpersList}

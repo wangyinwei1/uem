@@ -9,6 +9,7 @@ class ErrorTableStore {
     @observable loading = false;
     @observable data = [];
     @observable total = 0;
+    @observable dataStatus = false;
     @observable pageIndex = 1;
     @observable pageSize = 10;
     @observable searchValue = undefined;
@@ -99,6 +100,7 @@ class ErrorTableStore {
                     return item;
                 });
                 this.total = data.total;
+                this.dataStatus  = data.status;
                 setTimeout(() => {
                     this.onLoaded();
                 }, 300);

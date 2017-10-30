@@ -23,15 +23,17 @@ export default class TabTable extends React.Component {
     }
 
     changeTagType(tagType) {
-        const { tagType: oldTagType } = this.props;
+        const { tagType: oldTagType, type } = this.props;
         if (oldTagType === tagType) {
             return false;
+        }
+        if(type == 'UserTable'){
+            // 切换的时候，将searchKey还原成 'display_name'初始状态(只在用户轨迹列表的时候)
+            this.props.onChangeSearchKey('display_name');
         }
         // 每次切换，表格都要取第一页的数据
         const pageIndex = 1 ;
         this.props.changeTagType(tagType,pageIndex);
-        // 切换的时候，将searchKey还原成 'display_name'初始状态
-        this.props.onChangeSortKey('display_name');
         this.setState({
             tagType : tagType
         })
@@ -109,6 +111,7 @@ export default class TabTable extends React.Component {
             dataList,
             apdexTime,
             total,
+            dataStatus,
             pageIndex,
             pageSize,
         } = this.props;
@@ -135,7 +138,7 @@ export default class TabTable extends React.Component {
                         searchKey={this.props.searchKey}
                         getUserDefineColumn={this.props.getUserDefineColumn}
                         userDefinedColumn={this.props.userDefinedColumn}
-                        onChangeSortKey={this.props.onChangeSortKey}
+                        onChangeSearchKey={this.props.onChangeSearchKey}
                     />
                     <Table
                         type={type}
@@ -151,7 +154,7 @@ export default class TabTable extends React.Component {
                         onChangeSortkey={this.props.onChangeSortkey}
                     />
                 </Spin>
-                {dataList.length === 0 && this.noData()}
+                {dataStatus === true && this.noData()}
             </div>
         );
     }

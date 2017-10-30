@@ -53,7 +53,8 @@ if (true) {
     localStorage.setItem('UEM_skin', theme)
     localStorage.setItem('UEM_lang', language);
     window.colorOpacity = 0.3;
-    
+    //给初始platform值
+    sessionStorage.getItem('UEM_platform') ? sessionStorage.getItem('UEM_platform') : sessionStorage.setItem('UEM_platform','pc');
     // echarts的换肤方法
     // window.changeEchartTheme = (name) => {
     //     if(!echartsColor[name]){

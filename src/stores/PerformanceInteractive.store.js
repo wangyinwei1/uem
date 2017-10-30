@@ -10,6 +10,7 @@ class PerformanceInteractiveStore {
     @observable avgRspTime = undefined;
     @observable data = [];
     @observable total = 0;
+    @observable dataStatus = false;
     @observable type = JSON.stringify([0, 1, 2, 3, 4, 5, 6]);
     @observable pageIndex = 1;
     @observable pageSize = 10;
@@ -111,6 +112,7 @@ class PerformanceInteractiveStore {
                     return item;
                 });
                 this.total = data.total;
+                this.dataStatus = data.status;
                 setTimeout(() => {
                     this.onLoaded();
                 }, 300);

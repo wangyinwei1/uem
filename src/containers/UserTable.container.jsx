@@ -53,6 +53,7 @@ export default class UserTable extends React.Component {
             columns,
             dataList,
             total,
+            dataStatus,
             tagType,
             pageIndex,
             pageSize,
@@ -63,7 +64,7 @@ export default class UserTable extends React.Component {
             onChangePage,
             onChangeSortkey,
             onGetUserDefineColumn,
-            onChangeSortKey
+            onChangeSearchKey
         } = this.props.userTableStore;
         const { deploy } = this.props.overviewStore;
         const { onChangePanelList } = this.props.sidePanelStore;
@@ -78,6 +79,7 @@ export default class UserTable extends React.Component {
                     apdexTime={apdexTime}
                     dataList={dataList}
                     total={total}
+                    dataStatus={dataStatus}
                     pageIndex={pageIndex}
                     pageSize={pageSize}
                     getTableData={onGetOpersList}
@@ -89,7 +91,7 @@ export default class UserTable extends React.Component {
                     onChangeSortkey={onChangeSortkey}
                     getUserDefineColumn={onGetUserDefineColumn}
                     userDefinedColumn={userDefinedColumn}
-                    onChangeSortKey={onChangeSortKey}
+                    onChangeSearchKey={onChangeSearchKey}
                     search={this.search.bind(this)}
                     searchKey={searchKey}
                 />

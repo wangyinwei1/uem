@@ -9,6 +9,7 @@ class UserTableStore {
     @observable loading = false;
     @observable data = [];
     @observable total = 0;
+    @observable dataStatus = false;
     @observable pageIndex = 1;
     @observable pageSize = 10;
     @observable searchKey = 'display_name';
@@ -28,7 +29,7 @@ class UserTableStore {
         return this.colOptions[this.tagType].toJS();
     }
     // 改变用户轨迹搜索框边上的切换searchKey
-    @action onChangeSortKey = payload => {
+    @action onChangeSearchKey = payload => {
         this.searchKey = payload
     }
 
@@ -105,6 +106,7 @@ class UserTableStore {
                 });
                 // console.log('this.data',this.data.toJS());
                 this.total = data.total;
+                this.dataStatus = data.status;
                 setTimeout(() => {
                     this.onLoaded();
                 }, 300);

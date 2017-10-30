@@ -55,6 +55,7 @@ export default class PerformanceBrowse extends React.Component {
             columns,
             dataList,
             total,
+            dataStatus,
             tagType,
             pageIndex,
             pageSize,
@@ -77,6 +78,7 @@ export default class PerformanceBrowse extends React.Component {
                     apdexTime={apdexTime}
                     dataList={dataList}
                     total={total}
+                    dataStatus={dataStatus}
                     pageIndex={pageIndex}
                     pageSize={pageSize}
                     getTableData={onGetOpersList}

@@ -125,7 +125,7 @@ color17:#e9edf2,color18:#828b99
             .ant-select-selection {
                 border: none;
                 background-color: map-get($map,color14);
-                color: map-get($map,color15);
+                color: map-get($map,color15); 
             }
             .ant-select-selection--single {
                 height: 30px;
@@ -247,6 +247,7 @@ color17:#e9edf2,color18:#828b99
                     display: none;
                 }
             }
+
         }
         .platform {
             a {
@@ -259,6 +260,8 @@ color17:#e9edf2,color18:#828b99
         .apps-select {
             display: none;
         }
+        
+        
         .setting-expand {
             :global(.fa) {
                 transform: rotate(180deg);

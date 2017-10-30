@@ -231,7 +231,7 @@ export default class ControlBar extends React.Component {
 
     handleSelectChange(e){
         // 更改searchKey
-        this.props.onChangeSortKey(e)
+        this.props.onChangeSearchKey(e);
     }
 
     render() {
