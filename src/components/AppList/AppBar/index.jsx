@@ -110,10 +110,9 @@ class AppsBar extends Component {
         const { sortBy, sortKey } = this.props;
         const { getFieldDecorator } = this.props.form;
         const { showAddAppModal, showAddAppSuccessModal } = this.state;
-        // console.log('settingMain 是个啥',SettingMain, config.globalSetting, config);
         return (
             <div className={styles['apps-bar']}>
-                <div className={cls('btn', styles['create-app'])} onClick={() => this.toggleAddAppModal(true)}><i className={cls('fa fa-plus')}></i>{locale('应用')}</div>
+                <div className={cls('btn', styles['create-app'])} id='createApp' onClick={() => this.toggleAddAppModal(true)}><i className={cls('fa fa-plus')}></i>{locale('应用')}</div>
                 {/* { config.globalSetting && <div className={cls('btn',styles['settingBtn'])} onClick={this.appSettingModal.bind(this)}>{locale('应用设置')}</div> } */}
                 <div className={styles['btn-wrapper']}>
                     <Dropdown overlay={(
@@ -135,6 +134,7 @@ class AppsBar extends Component {
                     <RadioButton value="chart">{locale('图表')}</RadioButton>
                     <RadioButton value="table">{locale('列表')}</RadioButton>
                 </RadioGroup>
+                
                 <Modal footer={null} visible={showAddAppSuccessModal} onCancel={() => this.toggleAddAppSuccessModal(false)}>
                     <div className={styles['create-app-form-wrap']}>
                         <div className={styles['create-app-success-tip']}><i className={cls('iconfont icon-submit', styles['success-icon'])} />{locale('应用创建成功')}</div>

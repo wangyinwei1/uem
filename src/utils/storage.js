@@ -167,7 +167,7 @@ export function getDeploy(type) {
         slowLoadThreshold: 40000
     };
     try {
-        return JSON.parse(sessionStorage.getItem('UEM_deploy')) === null
+        return sessionStorage.getItem('UEM_deploy') == "undefined" || JSON.parse(sessionStorage.getItem('UEM_deploy')) === null
             ? defaultValue
             : JSON.parse(sessionStorage.getItem('UEM_deploy'));
     } catch (error) {

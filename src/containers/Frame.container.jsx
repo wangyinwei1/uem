@@ -38,15 +38,16 @@ class Frame extends React.Component {
             onChoosePlatform,
             onChooseTimeType,
             onChooseVersion,
-            onGetAppVersion
+            onGetAppVersion,
         } = this.props.frameStore;
-        const { appListMenu } = this.props.appListStore;
+        const { appListMenu, onAddApp } = this.props.appListStore;
         const { panelList } = this.props.sidePanelStore;
         const { versionSettings, getVersionSettings } = this.props.settingStore;
         return (
             <div id="Frame">
                 <Menu
                     appId={appId}
+                    addApp={onAddApp}
                     platform={platform}
                     appList={appListMenu}
                     chooseApp={onChooseApp}

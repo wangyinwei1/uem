@@ -115,7 +115,47 @@ color17:#e9edf2,color18:#828b99
             }
         }
     }
-
+    .create-app-form-wrap {
+        padding: 20px;
+         :global(.ant-form-item) {}
+    }
+    .create-app-success-tip {
+        margin: 10px auto 40px auto;
+        text-align: center;
+        line-height: 23px;
+        font-size: 16px;
+        color: #fff;
+        .success-icon {
+            &:before {
+                color: #65da1a
+            }
+        }
+    }
+    .create-app-title {
+        line-height: 30px;
+    }
+    .btn-wrap {
+        margin-top: 20px;
+        text-align: center;
+        line-height: 35px;
+         :global(.btn) {
+            margin-left: 20px;
+            &:first-child {
+                margin-left: 0;
+            }
+        }
+    }
+    .btn-wrap-success {
+        padding-bottom: 20px;
+        text-align: center;
+        line-height: 35px;
+         :global(.btn) {
+            margin-left: 20px;
+            &:first-child {
+                margin-left: 0;
+            }
+        }
+    }
    
     
     .apps-select {
