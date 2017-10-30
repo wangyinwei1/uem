@@ -219,10 +219,11 @@
     height: 50px;
     background: #153253;
     color: #57C5F7;
-    text-align: center;
+    text-align: left;
     font-weight: bold;
     white-space: nowrap;
     line-height: 1.5;
+    padding: 10px;
 }
 .ant-table-tbody {
     & > tr {
@@ -240,7 +241,7 @@
             padding: 10px;
             height: 60px;
             border-bottom: 0;
-            text-align: center;
+            text-align: left;
             // line-height: 40px;
             // padding: 20px 10px;
             line-height: 1.5;

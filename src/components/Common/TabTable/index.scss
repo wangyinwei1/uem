@@ -1,7 +1,7 @@
 @import "../../../assets/styles/mixin";
 $var_default: (color1: #153253,color2: #1D6AA7, color3: none,color4: #fff,color5: #1C426E,
 color6:#0D5990,color7: #41A4E2,color8:#1E76AE, color9:#07476F,color10:#0D3F67,color11:#153253,
-color12:#57C5F7,color13:#1B3E67,color14:#4386B9,color15:rgba(0, 15, 30, 0.4),color16:#108ee9,
+color12:#57C5F7,color13:#316cad,color14:#4386B9,color15:rgba(0, 15, 30, 0.4),color16:#108ee9,
 color17:#108ee9,color18:#226EAF,color19:#07476F,color20:#276490,color21:#2277C3,
 );
 $var_white: (color1: #f6f9fb,color2:#fff,color3: 1px solid #d5ddeb,color4: #6c7480,color5:#fff,
@@ -20,11 +20,14 @@ color17:#4082e6,color18:#fff,color19:#4082e6,color20:#adb3bf,color21:#4082e6
             .ant-table-tbody > tr {
                 background-color: map-get($map,color10);
             }
+            .ant-table-tbody > tr:nth-child(even) {
+                background-color: #104B7B;
+            }
             .ant-table-tbody > tr:hover {
                 background-color: map-get($map,color13) !important;
             }
             .ant-table-tbody > tr > td {
-                text-align: center;
+                text-align: left;
                 cursor: pointer;
                 border-bottom: map-get($map,color3);
                 color: map-get($map,color4);
@@ -33,6 +36,8 @@ color17:#4082e6,color18:#fff,color19:#4082e6,color20:#adb3bf,color21:#4082e6
                 background: map-get($map,color11);
                 color: map-get($map,color12);
                 border-bottom: map-get($map,color3);
+                padding: 10px;
+                text-align: left;
             }
             .ant-pagination-prev .ant-pagination-item-link, .ant-pagination-next .ant-pagination-item-link {
                 // border: 1px solid #4386B9;
