@@ -120,7 +120,7 @@ export default class AppItem extends React.PureComponent {
                                 styles['tag'],
                                 styles[`tag-${this.props.status}`]
                             )}>{locale(this.statusText[this.props.status])}</i>
-                            <span>{this.props.title}</span>
+                            <span className={styles['appNameText']}>{this.props.title}</span>
                             <i className={cls('fa fa-cog', styles['option'], {
                                 [styles['active']]: this.props.currentAppId === this.props.itemAppId
                             })} onClick={this.toggleOptionList.bind(this, this.props.itemAppId)}></i>

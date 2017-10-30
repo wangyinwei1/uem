@@ -31,6 +31,14 @@
         font-weight: bold;
         font-size: 16px;
         line-height: 50px;
+        .appNameText{
+            display: block;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-height: 50px;
+            margin-left: 80px;
+            margin-right: 50px;
+        }
     }
     .content {
         padding-top: 35px;
