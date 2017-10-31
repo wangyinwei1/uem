@@ -24,7 +24,7 @@
 .delete-modal{
     :global{
         .ant-modal{
-            width: 360px !important;
+            // width: 360px !important;
             top: 24%;
             .ant-modal-content {
                 border-radius: 5px;
@@ -36,7 +36,7 @@
                     height: 90px;
                     border: none;
                     .ant-modal-title{
-                        font-size: 16px;
+                        font-size: 17px;
                         color: #fff
                     }
                 }
@@ -45,11 +45,18 @@
                     // padding: 20px 187px 28px 10px;
                     text-align: center;
                     .ant-btn-lg {
-                        font-size: 13px;
-                        height: 26px;
                         background-color: #108ee9;
                         border-color: #108ee9;
                         color: #fff;
+                        padding: 0 15px;
+                        font-size: 14px;
+                        border-radius: 4px;
+                        height: 32px;
+                    }
+                    .ant-btn[disabled] {
+                        background-color: #7d7374;
+                        border: none;
+                        color: #ffffff;
                     }
                 }
             }

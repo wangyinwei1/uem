@@ -10,18 +10,30 @@ export default class HeatmapItem extends React.Component {
         visible : false,
         loading : false,
         url: '',
-        appId: ''
+        appId: '',
+        seconds: 5
     };
     // 删除热图
     deleteHeatmap(e){
         e.preventDefault();
         const { url } = this.props.data;
         const { appId, platform } = this.props;
+        let seconds = 5;
         this.setState({
             visible: true,
             url: url,
-            appId: appId
+            appId: appId,
+            seconds: 5
         })
+        this.timer = setInterval(() => {
+            if (seconds > 0) {
+                this.setState({
+                    seconds: --seconds
+                })
+            } else {
+                clearInterval(this.timer)
+            }
+        }, 1000);
     //     Modal.confirm({
     //     title: '',
     //     content: '你确定要删除吗 ？',
@@ -58,7 +70,7 @@ export default class HeatmapItem extends React.Component {
     render() {
         const { data, appId, platform, theme } = this.props;
         const language = localStorage.getItem('UEM_lang');
-
+        const showSeconds = this.state.seconds > 0 ? `(${this.state.seconds})` : '';
         return (
             <div className={styles['heatmap-item-wrap']}>
                 <a href={`${process.env.NODE_ENV === 'development' ? 'http://web.uyundev.cn' : ''}/buriedPoint/heatmapDetail.html?id=${appId}&pageUrl=${encodeURIComponent(data.page)}&targetUrl=${encodeURIComponent(data.url)}&platform=${platform}&theme=${theme}&version=${''}&protocol=${location.protocol.replace(':', '')}&language=${language}`} 
@@ -82,8 +94,8 @@ export default class HeatmapItem extends React.Component {
                     closable={false}
                     wrapClassName={styles['delete-modal']}
                     footer={[
-                        <Button key="back" size="large" onClick={this.handleCancel.bind(this)}>取消</Button>,
-                        <Button key="submit" type="primary" size="large" loading={this.state.loading} onClick={this.handleOk.bind(this)}>确定</Button>
+                        <Button key="submit" type="primary" size="large" loading={this.state.loading} disabled={ this.state.seconds > 0} onClick={this.handleOk.bind(this)}>{locale('确定')+showSeconds}</Button>,
+                        <Button key="back" size="large" onClick={this.handleCancel.bind(this)}>取消</Button>
                     ]}
                     >
                 </Modal>
