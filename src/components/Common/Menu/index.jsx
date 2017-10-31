@@ -26,6 +26,9 @@ class Menu extends React.Component {
     constructor(props) {
         super(props);
     }
+    static contextTypes = {
+        router: React.PropTypes.object.isRequired
+    }
     componentDidMount() {
     }
     componentWillUnmount() {
@@ -78,8 +81,9 @@ class Menu extends React.Component {
             chooseApp({
                 appId
             });
-        }
-        
+            // 回到今日概况
+            this.context.router.history.push('/overview');
+        }   
     }
     // 选择系统
     choosePlatform(platform, e) {
@@ -110,11 +114,15 @@ class Menu extends React.Component {
         }
         return (
             <div className={styles['apps-select']}>
-                <Select value={appInfo.appName} style={{ width: 120 }} onChange={this.chooseApp} getPopupContainer={() => document.getElementById('Menu')}>
+                <Select value={appInfo.appName} 
+                style={{ width: 120 }} 
+                onChange={this.chooseApp}
+                placeholder={locale("请先选择应用")}
+                getPopupContainer={() => document.getElementById('Menu')}>
                     {appList.map(item =>
                         <Option value={item.appId} key={item.appId}>{item.appName}</Option>
                     )}
-                    {<Option value={'newApp'} key={'newApp'}><i style={{ 'fontSize': 14 }} className={cls('iconfont icon-xinzeng', styles['size'])}></i>新建应用</Option>}
+                    {<Option value={'newApp'} key={'newApp'} style={{'color':'#fff'}}><i style={{ 'fontSize': 15, 'color':'#fff','marginRight':5 }} className={cls('iconfont icon-xinzeng', styles['size'])}></i>新建应用</Option>}
                 </Select>
             </div>
         );
@@ -269,5 +277,7 @@ class Menu extends React.Component {
         );
     }
 }
-
+Menu.contextTypes = {
+    router: React.PropTypes.object.isRequired
+};
 export default Form.create()(withRouter(Menu))

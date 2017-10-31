@@ -179,7 +179,8 @@ export default class PerformanceDetail extends React.Component {
             requestPath: this.path,
             path: path,
             displayType: JSON.stringify([this.display]),
-            performanceType: type
+            performanceType: type,
+            // "loadMore" : true
         }
     }
 

@@ -20,12 +20,17 @@ class AppListStore {
     @action onLoaded = () => {
         this.loading = false;
     }
+    @action onInitPaginationIndex = () => {
+        this.pageIndex = 1;
+    }
     @action onPageJump = payload => {
         this.pageIndex = payload.index;
         this.onGetApps();
     }
     @action onSortBy = payload => {
         this.sortKey = payload.key;
+        // 重置为第一页
+        this.pageIndex = 1;
         this.onGetApps();
     }
     @action onGetApps = async (payload, type) => {

@@ -366,5 +366,8 @@
     "Apdex 指数 = [满意数量 + (可容忍数量 / 2)] / 总样本数。": "Apdex is equal to (GoodRequests + OKRequests/2)/TotalRequests.",
     "响应时间(s)": "Response time(s)",
     "请求您协助为应用部署监测代码": "Request your assistance in monitoring the code for the application deployment",
-    "URL":"URL"
+    "URL":"URL",
+    "会话开始" : "Session Start",
+    "请先选择应用" : "Please select an application",
+    "查看更多" : "Load More"
 }

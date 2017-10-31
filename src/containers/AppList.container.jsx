@@ -19,8 +19,11 @@ export default class AppList extends React.Component {
     componentDidMount() {
         const {
             onGetApps,
+            onInitPaginationIndex
         } = this.props.appListStore;
+        onInitPaginationIndex();
         onGetApps();
+
     }
 
     selectChartOrTable(value){

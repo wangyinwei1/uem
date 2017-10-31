@@ -5,15 +5,15 @@ export default {
     },
     dataBoard: {
         zh_CN: '数据看板',
-        en_US: ''
+        en_US: 'Dashboards'
     },
     frontendMonitor: {
         zh_CN: '前端监控',
-        en_US: ''
+        en_US: 'Front-end Monitoring'
     },
     userAction: {
         zh_CN: '用户行为',
-        en_US: ''
+        en_US: 'User Behavior'
     },
     setting: {
         zh_CN: '设置',

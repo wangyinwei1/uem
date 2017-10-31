@@ -27,7 +27,7 @@ export default {
             normal: [{
                 value: 'type',
                 label: locale('标识'),
-                width: 80,
+                width: 70,
                 checked: true,
                 disabled: true,
                 render: (text, record, index) => <ColorType type={record.type} />,
@@ -245,7 +245,7 @@ export default {
             normal: [{
                 value: 'type',
                 label: locale('标识'),
-                width: 100,
+                width: 70,
                 checked: true,
                 disabled: true,
                 // fixed: 'left',

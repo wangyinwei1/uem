@@ -9,6 +9,7 @@
     height: 600px;
     }
     .appList-pagination {
+        margin-top: 10px;
         :global{
             .ant-pagination-prev .ant-pagination-item-link, .ant-pagination-next .ant-pagination-item-link{
                 color: #5D8AB9 !important;

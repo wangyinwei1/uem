@@ -181,13 +181,13 @@ export default class UserTrace extends React.Component {
         } = this.props.data.baseInfo;
         return (
             <div className={styles['info']}>
-                <div className={styles['base-item']}>
+                <div className={styles['base-item']} style={{'width': '25%'}}>
                     IP：{ip}
                 </div>
-                <div className={styles['base-item']}>
+                <div className={styles['base-item']} style={{'width': '50%'}}>
                     {locale('区域')}：{area}
                 </div>
-                <div className={styles['base-item']}>
+                <div className={styles['base-item']}style={{'width': '25%'}}>
                     {locale('运营商')}：{isp}
                 </div>
                 {this.renderIcons()}
@@ -228,7 +228,7 @@ export default class UserTrace extends React.Component {
                         })} onClick={this.toggle.bind(this)}></i>
                     </div>
                     {this.renderTimeline()}
-                    <span className={cls(styles['content-start'], { 'dn' : !this.state.toggleShow })}>会话开始</span>
+                    <span className={cls(styles['content-start'], { 'dn' : !this.state.toggleShow })}>{locale('会话开始')}</span>
                 </div>
             </div>
         );

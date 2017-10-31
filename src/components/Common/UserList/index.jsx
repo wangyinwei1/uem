@@ -51,7 +51,7 @@ export default class UserList extends React.Component {
                             </li>
                         );
                     })}
-                    {showBtn && <div className={styles['loadMoreBtn']} onClick={this.loadMore.bind(this)}>查看更多<i className={cls('bat-arrow-down anticon anticon-down')}></i></div>}
+                    {showBtn && <div className={styles['loadMoreBtn']} onClick={this.loadMore.bind(this)}>{locale('查看更多')}<i className={cls('bat-arrow-down anticon anticon-down')}></i></div>}
                 </ul>
                 
             </div>

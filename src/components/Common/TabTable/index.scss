@@ -40,16 +40,16 @@ color17:#4082e6,color18:#fff,color19:#4082e6,color20:#adb3bf,color21:#4082e6
                 text-align: left;
             }
             .ant-pagination-prev .ant-pagination-item-link, .ant-pagination-next .ant-pagination-item-link {
-                // border: 1px solid #4386B9;
+                border: 1px solid #4386B9;
                 border-radius: 0 !important;
                 background: #112f4f !important;
                 color: #5D8AB9 !important;
             }
-            .ant-pagination-prev,.ant-pagination-item,.ant-pagination-next {
-                border: 1px solid map-get($map,color14);
-                border-radius: 0;
-                background-color: map-get($map,color15);
-            }
+            // .ant-pagination-prev,.ant-pagination-item,.ant-pagination-next {
+            //     border: 1px solid map-get($map,color14);
+            //     border-radius: 0;
+            //     background-color: map-get($map,color15);
+            // }
             .ant-pagination-item-active a{
                 color:map-get($map,color4);
             }
