@@ -1,4 +1,5 @@
 import { observable, runInAction, action, computed, autorun } from 'mobx';
+import { countryNameInCN } from '../components/Common/Chart/WorldCountryName';
 import Service from '../services/UserDetail.service';
 import {
     getTimeType,
@@ -74,13 +75,26 @@ class UserDetailStore {
     }
     @action onGetTrace = async payload => {
         try {
-            const data = await Service.getSessionTrace({
+            let data = await Service.getSessionTrace({
                 startTime: moment().subtract(getTimeType().startTime.type, getTimeType().startTime.units).valueOf(),
                 endTime: moment().subtract(getTimeType().endTime.type, getTimeType().endTime.units).valueOf(),
                 ...payload
             });
             runInAction(() => {
                 const trace = this.trace.toJS();
+                if(Object.keys(data).length > 0 && data.hasOwnProperty('baseInfo') && Boolean(data.baseInfo.area)){
+                    const { baseInfo } = data;
+                    let areaArray = baseInfo.area.split(' ');
+                    for(let i = 0; i < areaArray.length; i++){
+                        for(let n in countryNameInCN){
+                            if( n == areaArray[i]){
+                                areaArray[i] = countryNameInCN[n]
+                            }
+                        }
+                    }
+                    let temparea = areaArray.join(' ');
+                    data.baseInfo.area = temparea;
+                } 
                 trace.push(data);
                 this.trace = trace;
                 // console.log(this.trace);

@@ -48,7 +48,7 @@ export default class BaseInfo extends React.Component {
             if (_browser.indexOf('firefox') >= 0) {
                 return 'huohu';
             }
-            if (_browser.indexOf('internet') >= 0) {
+            if (_browser.indexOf('ie') >= 0) {
                 return 'ie';
             }
             if (_browser.indexOf('opera') >= 0) {
@@ -84,7 +84,7 @@ export default class BaseInfo extends React.Component {
                     {locale('运营商')}：{isp}
                 </div>
                 {this.renderIcons()}
-                <div className={styles['base-item']}>
+                {/* <div className={styles['base-item']}>
                     {locale('浏览器')}：{browser}
                 </div>
                 <div className={styles['base-item']}>
@@ -92,7 +92,7 @@ export default class BaseInfo extends React.Component {
                 </div>
                 <div className={styles['base-item']}>
                     {locale('平台')}：{platform}
-                </div>
+                </div> */}
             </div>
         );
     }

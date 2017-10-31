@@ -1,5 +1,6 @@
 import { observable, action, runInAction,autorun } from 'mobx';
 import { message } from 'antd';
+import { countryNameInCN } from '../components/Common/Chart/WorldCountryName';
 // import { default as CommonService  } from '../services/CommonInterface.service';
 import {
     getTimeType,getVersion
@@ -116,7 +117,20 @@ class ErrorDetailStore {
                             });
                         }
                         _baseInfo['userDefined'] = userDefinedArr;
-                    } else {
+                    } 
+                    if(i === 'area'){
+                        let areaArray = data[i].split(' ');
+                        for(let i = 0; i < areaArray.length; i++){
+                            for(let n in countryNameInCN){
+                                if( n == areaArray[i]){
+                                    areaArray[i] = countryNameInCN[n]
+                                }
+                            }
+                        }
+                        let temparea = areaArray.join(' ');
+                        _baseInfo['area'] = temparea;
+                    }
+                    else {
                         _baseInfo[i] = data[i];
                     }
                 }
@@ -139,12 +153,25 @@ class ErrorDetailStore {
 
     @action onSessionTrace = async payload => {
         try {
-            const data = await Service.getSessionTrace({
+            let data = await Service.getSessionTrace({
                 startTime: moment().subtract(getTimeType().startTime.type, getTimeType().startTime.units).valueOf(),
                 endTime: moment().subtract(getTimeType().endTime.type, getTimeType().endTime.units).valueOf(),
                 ...payload
             });
             runInAction( () =>{
+                // if(Object.keys(data).length > 0 && data.hasOwnProperty('baseInfo') && Boolean(data.baseInfo.area)){
+                //     const { baseInfo } = data;
+                //     let areaArray = baseInfo.area.split(' ');
+                //     for(let i = 0; i < areaArray.length; i++){
+                //         for(let n in countryNameInCN){
+                //             if( n == areaArray[i]){
+                //                 areaArray[i] = countryNameInCN[n]
+                //             }
+                //         }
+                //     }
+                //     let temparea = areaArray.join(' ');
+                //     data.baseInfo.area = temparea;
+                // } 
                 this.sessionTrace = data;
             })
         }catch(e){
