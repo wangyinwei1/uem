@@ -54,11 +54,11 @@ export default class Trend extends React.Component {
             itemId,
             sessionCount
         } = this.props;
-        sessionCount.map((item,index) => {
-            item.startTime = item.time;
-            item.endTime = moment(item.time).add(1, 'days').valueOf();
-            return item;
-        });
+        // sessionCount.map((item,index) => {
+        //     item.startTime = item.time;
+        //     item.endTime = moment(item.time).add(1, 'days').valueOf();
+        //     return item;
+        // });
         let initialConfig = {} ;
         // 第一次进来，条形图最后一条的颜色是不同的
         if( sessionCount.length > 0 && this.state.firstLoad ){

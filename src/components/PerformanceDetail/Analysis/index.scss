@@ -135,6 +135,11 @@
                 border-bottom: rgba(13,63,103,.89);
                 color: #fff;
             }
+            .ant-pagination-prev .ant-pagination-item-link, .ant-pagination-next .ant-pagination-item-link{
+                border: 0px !important;
+                background: #112f4f !important;
+                color: #5D8AB9 !important;
+            }
         }
     }
     .btns {

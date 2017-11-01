@@ -29,6 +29,9 @@ export default Immutable.fromJS({
                 show: true
             },
         }],
+        tooltip: {
+            formatter: ''
+        },
         series: [{
             name: locale('会话数'),
             type: 'bar',
