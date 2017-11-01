@@ -139,7 +139,7 @@ export default {
                 width: 100,
                 sorter: (a, b) => a.avgRspTime - b.avgRspTime,
                 render(text, record, index){
-                    const config = [{ color: "#03a9f4", text: locale('客户端') }, { color: "#91eb7c", text: locale('网络传输') }, { color: "#6270ef", text: locale('服务器') }]
+                    const config = [{ color: "#91eb7c", text: locale('客户端') }, { color: "#03a9f4", text: locale('网络传输') }, { color: "#6270ef", text: locale('服务器') }]
                     return tableProgress(record.avgRspTime, record.avgRspTimes, config, locale('平均响应时间'));
                 } 
             }, {
@@ -377,7 +377,11 @@ export default {
                 width: 150,
                 sorter: (a,b) => a.avgRspTime - b.avgRspTime,
                 render(text, record, index){
-                    const config = [{ color: "#03a9f4", text: locale('客户端') }, { color: "#91eb7c", text: locale('网络传输') }, { color: "#6270ef", text: locale('服务器') }]
+                    const config = record.displayType == 'xhr' ?
+                    [{ color: "#91eb7c", text: locale('回调') }, { color: "#03a9f4", text: locale('网络传输') }, { color: "#6270ef", text: locale('服务器') }]
+                    :
+                    [{ color: "#91eb7c", text: locale('客户端') }, { color: "#03a9f4", text: locale('网络传输') }, { color: "#6270ef", text: locale('服务器') }]
+                    
                     return tableProgress(record.avgRspTime, record.avgRspTimes, config, locale('平均响应时间'));
                 } 
             }
@@ -475,7 +479,10 @@ export default {
                 width: 100,
                 sorter: (a, b) => a.avgRspTime - b.avgRspTime,
                 render(text, record, index){
-                    const config = [{ color: "#03a9f4", text: locale('客户端') }, { color: "#91eb7c", text: locale('网络传输') }, { color: "#6270ef", text: locale('服务器') }]
+                    const config = record.displayType == 'xhr' ?
+                    [{ color: "#91eb7c", text: locale('回调') }, { color: "#03a9f4", text: locale('网络传输') }, { color: "#6270ef", text: locale('服务器') }]
+                    :
+                    [{ color: "#91eb7c", text: locale('客户端') }, { color: "#03a9f4", text: locale('网络传输') }, { color: "#6270ef", text: locale('服务器') }]
                     return tableProgress(record.avgRspTime, record.avgRspTimes, config, locale('平均响应时间'));
                 }
             }

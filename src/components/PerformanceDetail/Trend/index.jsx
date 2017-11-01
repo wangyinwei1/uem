@@ -61,7 +61,9 @@ export default class Trend extends React.Component {
                             return moment(item.startTime).format('MM-DD HH:mm');
                         }
                     }))
-                    .setIn(['series', 0, 'data'], trend.clientTime)
+                    .setIn(['legend', 'data',0,'name'], this.props.displayType == 'xhr' ? locale('回调') : locale('客户端'))
+                    .setIn(['series', 0, 'name'], this.props.displayType == 'xhr' ? locale('回调') : locale('客户端')) 
+                    .setIn(['series', 0, 'data'],  this.props.displayType == 'xhr' ? trend.callbackTime : trend.clientTime)
                     .setIn(['series', 1, 'data'], trend.netWorkTime)
                     .setIn(['series', 2, 'data'], trend.serverTime)
                     .setIn(['series', 3, 'data'], trend.clickNum)

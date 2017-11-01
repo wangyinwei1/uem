@@ -45,7 +45,8 @@ class PerformanceDetailStore {
         "clickNum": [],
         "serverTime": [],
         "netWorkTime": [],
-        "clientTime": []
+        "clientTime": [],
+        "callbackTime" :[]
     };
     @observable type = 'all';
     @observable sampleAnalyzePageIndex = 1;

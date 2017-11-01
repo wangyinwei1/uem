@@ -20,12 +20,6 @@ export default class PerformanceDetail extends React.Component {
     sampleListParams ={};
     @observable display = '';
     @observable path = '';
-    // @computed get displayType() {
-    //     return this.display;
-    // }
-    // @computed get getPath(){
-    //     return this.path;
-    // }
     // static childContextTypes = {
     //     type: React.PropTypes.string.isRequired,
     // }
@@ -145,8 +139,8 @@ export default class PerformanceDetail extends React.Component {
             performanceType: type,
             displayType: JSON.stringify([this.display]),
             columnCode: uiType === "NATIVE" ?
-                JSON.stringify(['avgRspTime', 'thruput', 'apdexs', 'median', 'netWorkTime', 'clientTime', 'serverTime', 'percent5']) :
-                JSON.stringify(['apdexs', 'median', 'avgRspTime', 'percent5', 'thruput', 'clientTime', 'serverTime', 'netWorkTime']),
+                JSON.stringify(['avgRspTime', 'thruput', 'apdexs', 'median', 'netWorkTime', 'clientTime', 'serverTime', 'percent5','callbackTime']) :
+                JSON.stringify(['apdexs', 'median', 'avgRspTime', 'percent5', 'thruput', 'clientTime', 'serverTime', 'netWorkTime','callbackTime']),
         });
         // 因为设计问题，这里的clickNum需要另外发送，它的displayType和requestPath都为''
         onGetOperTrend({
@@ -180,7 +174,7 @@ export default class PerformanceDetail extends React.Component {
             path: path,
             displayType: JSON.stringify([this.display]),
             performanceType: type,
-            // "loadMore" : true
+            // "loadMore" : true    
         }
     }
 
@@ -275,7 +269,7 @@ export default class PerformanceDetail extends React.Component {
                     :
                     <FlowChart threadInfo={info} />
                 }
-                <Trend itemId={itemId} trend={trend} uiType={info.uiType} type={this.props.type} specificUrls={Boolean(specificUrls) && specificUrls.length > 0 ? specificUrls : path} />
+                <Trend itemId={itemId} displayType={this.display} trend={trend} uiType={info.uiType} type={this.props.type} specificUrls={Boolean(specificUrls) && specificUrls.length > 0 ? specificUrls : path} />
                 {samplesList.length > 0 && <Analysis
                         sampleAnalyzeData={sampleAnalyzeData}
                         uiType={uiType}
