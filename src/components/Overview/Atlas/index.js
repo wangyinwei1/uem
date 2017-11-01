@@ -38,12 +38,13 @@ class Atlas extends Component {
         if (activeMap == 'world') {
             for (let i = 0, len = yAxis.length; i < len; i++) {
                 for (let n in countryNameInEN) {
-                    if (yAxis[i] == n) {
+                    if (yAxis[i] == countryNameInEN[n]) {
                         yAxis[i] = countryNameInEN[n];
                         yAxisInCN.push(countryNameInCN[n]);
                     }
                 }
             }
+        }else {
         }
 
         for (let i = 0, len = series.length; i < len; i++) {

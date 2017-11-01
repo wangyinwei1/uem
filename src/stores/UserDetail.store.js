@@ -56,7 +56,8 @@ class UserDetailStore {
             const data = await Service.getUserSessionsList({
                 uId: this.uId,
                 pageIndex: this.pageIndex,
-                pageSize: this.pageSize,
+                // 暂时取20，后续待优化
+                pageSize: 20,
                 version: getVersion(),
                 ...payload
             });

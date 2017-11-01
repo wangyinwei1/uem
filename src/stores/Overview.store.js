@@ -130,6 +130,9 @@ class OverviewStore {
                 });
             }else{
                datas.data.length > 0 && datas.data.map((item,index) => {
+                    if(item.areaName == '-' || item.areaName == ""){
+                        item.areaName = '未知地址'
+                    }
                     for(let n in countryNameInEN){
                         if(n == item.areaName){
                             item.areaName = countryNameInEN[n]
