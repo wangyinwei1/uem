@@ -92,8 +92,8 @@ class PerformanceDetailStore {
         this.displayType = payload.displayType;
         try {
             const data = await Service.getOperInfo({
-                startTime: moment().subtract(getTimeType().startTime.type, getTimeType().startTime.units).valueOf(),
-                endTime: moment().subtract(getTimeType().endTime.type, getTimeType().endTime.units).valueOf(),
+                startTime: getTimeType().startTime.units == 'milliseconds' && Math.floor(getTimeType().startTime.type/86400000) == getTimeType().startTime.type/86400000 ? moment(moment().format('YYYY-MM-DD')).subtract(getTimeType().startTime.type, getTimeType().startTime.units).valueOf(): moment().subtract(getTimeType().startTime.type, getTimeType().startTime.units).valueOf(),
+                endTime: getTimeType().startTime.units == 'milliseconds' && Math.floor(getTimeType().endTime.type/86400000) == getTimeType().endTime.type/86400000 ?  moment(moment().format('YYYY-MM-DD')).subtract(getTimeType().endTime.type, getTimeType().endTime.units).valueOf() : moment().subtract(getTimeType().endTime.type, getTimeType().endTime.units).valueOf(),
                 ...payload
             });
             runInAction(() => {
@@ -109,8 +109,8 @@ class PerformanceDetailStore {
         const platform = sessionStorage.getItem('UEM_platform');
         try {
             const data = await Service.getOperTrend({
-                startTime: moment().subtract(getTimeType().startTime.type, getTimeType().startTime.units).valueOf(),
-                endTime: moment().subtract(getTimeType().endTime.type, getTimeType().endTime.units).valueOf(),
+                startTime: getTimeType().startTime.units == 'milliseconds' && Math.floor(getTimeType().startTime.type/86400000) == getTimeType().startTime.type/86400000 ? moment(moment().format('YYYY-MM-DD')).subtract(getTimeType().startTime.type, getTimeType().startTime.units).valueOf(): moment().subtract(getTimeType().startTime.type, getTimeType().startTime.units).valueOf(),
+                endTime: getTimeType().startTime.units == 'milliseconds' && Math.floor(getTimeType().endTime.type/86400000) == getTimeType().endTime.type/86400000 ?  moment(moment().format('YYYY-MM-DD')).subtract(getTimeType().endTime.type, getTimeType().endTime.units).valueOf() : moment().subtract(getTimeType().endTime.type, getTimeType().endTime.units).valueOf(),
                 ...payload
             });
             runInAction(() => {
@@ -132,8 +132,8 @@ class PerformanceDetailStore {
     @action onGetOperSamplesList = async payload => {
         try {
             const data = await Service.getOperSamplesList({
-                startTime: moment().subtract(getTimeType().startTime.type, getTimeType().startTime.units).valueOf(),
-                endTime: moment().subtract(getTimeType().endTime.type, getTimeType().endTime.units).valueOf(),
+                startTime: getTimeType().startTime.units == 'milliseconds' && Math.floor(getTimeType().startTime.type/86400000) == getTimeType().startTime.type/86400000 ? moment(moment().format('YYYY-MM-DD')).subtract(getTimeType().startTime.type, getTimeType().startTime.units).valueOf(): moment().subtract(getTimeType().startTime.type, getTimeType().startTime.units).valueOf(),
+                endTime: getTimeType().startTime.units == 'milliseconds' && Math.floor(getTimeType().endTime.type/86400000) == getTimeType().endTime.type/86400000 ?  moment(moment().format('YYYY-MM-DD')).subtract(getTimeType().endTime.type, getTimeType().endTime.units).valueOf() : moment().subtract(getTimeType().endTime.type, getTimeType().endTime.units).valueOf(),
                 pageIndex: this.pageIndex,
                 pageSize: 20,
                 ...payload
@@ -156,8 +156,8 @@ class PerformanceDetailStore {
     @action onGetOperBaseInfo = async payload => {
         try {
             const data = await Service.getOperBaseInfo({
-                startTime: moment().subtract(getTimeType().startTime.type, getTimeType().startTime.units).valueOf(),
-                endTime: moment().subtract(getTimeType().endTime.type, getTimeType().endTime.units).valueOf(),
+                startTime: getTimeType().startTime.units == 'milliseconds' && Math.floor(getTimeType().startTime.type/86400000) == getTimeType().startTime.type/86400000 ? moment(moment().format('YYYY-MM-DD')).subtract(getTimeType().startTime.type, getTimeType().startTime.units).valueOf(): moment().subtract(getTimeType().startTime.type, getTimeType().startTime.units).valueOf(),
+                endTime: getTimeType().startTime.units == 'milliseconds' && Math.floor(getTimeType().endTime.type/86400000) == getTimeType().endTime.type/86400000 ?  moment(moment().format('YYYY-MM-DD')).subtract(getTimeType().endTime.type, getTimeType().endTime.units).valueOf() : moment().subtract(getTimeType().endTime.type, getTimeType().endTime.units).valueOf(),
                 time: this.time,
                 displayType: this.displayType,
                 operType: this.info.operType,
@@ -198,8 +198,8 @@ class PerformanceDetailStore {
     @action onGetOperAnalyze = async payload => {
         try {
             const data = await Service.getOperAnalyze({
-                startTime: moment().subtract(getTimeType().startTime.type, getTimeType().startTime.units).valueOf(),
-                endTime: moment().subtract(getTimeType().endTime.type, getTimeType().endTime.units).valueOf(),
+                startTime: getTimeType().startTime.units == 'milliseconds' && Math.floor(getTimeType().startTime.type/86400000) == getTimeType().startTime.type/86400000 ? moment(moment().format('YYYY-MM-DD')).subtract(getTimeType().startTime.type, getTimeType().startTime.units).valueOf(): moment().subtract(getTimeType().startTime.type, getTimeType().startTime.units).valueOf(),
+                endTime: getTimeType().startTime.units == 'milliseconds' && Math.floor(getTimeType().endTime.type/86400000) == getTimeType().endTime.type/86400000 ?  moment(moment().format('YYYY-MM-DD')).subtract(getTimeType().endTime.type, getTimeType().endTime.units).valueOf() : moment().subtract(getTimeType().endTime.type, getTimeType().endTime.units).valueOf(),
                 time: this.time,
                 displayType: this.displayType,
                 operType: this.info.operType,
@@ -217,8 +217,8 @@ class PerformanceDetailStore {
     @action onGetSessionTrace = async payload => {
         try {
             let data = await Service.getSessionTrace({
-                startTime: moment().subtract(getTimeType().startTime.type, getTimeType().startTime.units).valueOf(),
-                endTime: moment().subtract(getTimeType().endTime.type, getTimeType().endTime.units).valueOf(),
+                startTime: getTimeType().startTime.units == 'milliseconds' && Math.floor(getTimeType().startTime.type/86400000) == getTimeType().startTime.type/86400000 ? moment(moment().format('YYYY-MM-DD')).subtract(getTimeType().startTime.type, getTimeType().startTime.units).valueOf(): moment().subtract(getTimeType().startTime.type, getTimeType().startTime.units).valueOf(),
+                endTime: getTimeType().startTime.units == 'milliseconds' && Math.floor(getTimeType().endTime.type/86400000) == getTimeType().endTime.type/86400000 ?  moment(moment().format('YYYY-MM-DD')).subtract(getTimeType().endTime.type, getTimeType().endTime.units).valueOf() : moment().subtract(getTimeType().endTime.type, getTimeType().endTime.units).valueOf(),
                 ...payload
             });
             runInAction(() => {
@@ -246,8 +246,8 @@ class PerformanceDetailStore {
     @action onGetSampleAnalyze = async payload => {
         try {
             const data = await Service.getSampleAnalyze({
-                startTime: moment().subtract(getTimeType().startTime.type, getTimeType().startTime.units).valueOf(),
-                endTime: moment().subtract(getTimeType().endTime.type, getTimeType().endTime.units).valueOf(),
+                startTime: getTimeType().startTime.units == 'milliseconds' && Math.floor(getTimeType().startTime.type/86400000) == getTimeType().startTime.type/86400000 ? moment(moment().format('YYYY-MM-DD')).subtract(getTimeType().startTime.type, getTimeType().startTime.units).valueOf(): moment().subtract(getTimeType().startTime.type, getTimeType().startTime.units).valueOf(),
+                endTime: getTimeType().startTime.units == 'milliseconds' && Math.floor(getTimeType().endTime.type/86400000) == getTimeType().endTime.type/86400000 ?  moment(moment().format('YYYY-MM-DD')).subtract(getTimeType().endTime.type, getTimeType().endTime.units).valueOf() : moment().subtract(getTimeType().endTime.type, getTimeType().endTime.units).valueOf(),
                 time: this.time,
                 pageIndex: this.sampleAnalyzePageIndex,
                 sampleId: this.activeId,

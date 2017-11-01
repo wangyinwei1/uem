@@ -53,8 +53,10 @@ let DatePicker = React.createClass({
         if (values.text == 'custom') {
             this.setState({text: startText});
             this.props.onChange({
-                beginTime: values.startTime,
-                endTime: values.endTime,
+                // beginTime: values.startTime,
+                // endTime: values.endTime,
+                beginTime: moment(values.startTime.format(this.props.format)).valueOf(),
+                endTime: moment(values.endTime.format(this.props.format)).valueOf(),
                 type: 'custom'
             });
         } else {

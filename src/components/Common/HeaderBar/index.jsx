@@ -57,8 +57,10 @@ export default class HeaderBar extends React.PureComponent {
         };
 
         if (obj.type === 'custom') {
-            startTime.type = moment().valueOf() - obj.beginTime.valueOf();
-            endTime.type = moment().valueOf() - obj.endTime.valueOf();
+            // startTime.type = moment().valueOf() - obj.beginTime.valueOf();
+            // endTime.type = moment().valueOf() - obj.endTime.valueOf();
+            startTime.type = moment(moment().format('YYYY-MM-DD')).valueOf() - obj.beginTime;
+            endTime.type = moment(moment().format('YYYY-MM-DD')).valueOf() - obj.endTime;
         } else {
             const { type, units } = obj;
             startTime.type = type;

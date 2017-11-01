@@ -32,8 +32,8 @@ class UserDetailStore {
     @action onGetSessionCount = async payload => {
         try {
             const data = await Service.getUserTrend({
-                // startTime: moment().subtract(getTimeType().startTime.type, getTimeType().startTime.units).valueOf(),
-                // endTime: moment().subtract(getTimeType().endTime.type, getTimeType().endTime.units).valueOf(),
+                // startTime: getTimeType().startTime.units == 'milliseconds' && Math.floor(getTimeType().startTime.type/86400000) == getTimeType().startTime.type/86400000 ? moment(moment().format('YYYY-MM-DD')).subtract(getTimeType().startTime.type, getTimeType().startTime.units).valueOf(): moment().subtract(getTimeType().startTime.type, getTimeType().startTime.units).valueOf(),
+                // endTime: getTimeType().startTime.units == 'milliseconds' && Math.floor(getTimeType().endTime.type/86400000) == getTimeType().endTime.type/86400000 ?  moment(moment().format('YYYY-MM-DD')).subtract(getTimeType().endTime.type, getTimeType().endTime.units).valueOf() : moment().subtract(getTimeType().endTime.type, getTimeType().endTime.units).valueOf(),
                 // 近一个月的访问情况，不能用时间组件选择的时间
                 startTime : Date.now()-(30*24*60*60*1000),
                 endTime : Date.now(),
@@ -76,8 +76,8 @@ class UserDetailStore {
     @action onGetTrace = async payload => {
         try {
             let data = await Service.getSessionTrace({
-                startTime: moment().subtract(getTimeType().startTime.type, getTimeType().startTime.units).valueOf(),
-                endTime: moment().subtract(getTimeType().endTime.type, getTimeType().endTime.units).valueOf(),
+                startTime: getTimeType().startTime.units == 'milliseconds' && Math.floor(getTimeType().startTime.type/86400000) == getTimeType().startTime.type/86400000 ? moment(moment().format('YYYY-MM-DD')).subtract(getTimeType().startTime.type, getTimeType().startTime.units).valueOf(): moment().subtract(getTimeType().startTime.type, getTimeType().startTime.units).valueOf(),
+                endTime: getTimeType().startTime.units == 'milliseconds' && Math.floor(getTimeType().endTime.type/86400000) == getTimeType().endTime.type/86400000 ?  moment(moment().format('YYYY-MM-DD')).subtract(getTimeType().endTime.type, getTimeType().endTime.units).valueOf() : moment().subtract(getTimeType().endTime.type, getTimeType().endTime.units).valueOf(),
                 ...payload
             });
             runInAction(() => {

@@ -19,8 +19,8 @@ class ErrorOverviewStore {
     @action onGetKeyIndicator = async payload => {        
         try {
             const data = await CommonService.getKeyIndicator({
-                startTime: moment().subtract(getTimeType().startTime.type, getTimeType().startTime.units).valueOf(),
-                endTime: moment().subtract(getTimeType().endTime.type, getTimeType().endTime.units).valueOf(),
+                startTime: getTimeType().startTime.units == 'milliseconds' && Math.floor(getTimeType().startTime.type/86400000) == getTimeType().startTime.type/86400000 ? moment(moment().format('YYYY-MM-DD')).subtract(getTimeType().startTime.type, getTimeType().startTime.units).valueOf(): moment().subtract(getTimeType().startTime.type, getTimeType().startTime.units).valueOf(),
+                endTime: getTimeType().startTime.units == 'milliseconds' && Math.floor(getTimeType().endTime.type/86400000) == getTimeType().endTime.type/86400000 ?  moment(moment().format('YYYY-MM-DD')).subtract(getTimeType().endTime.type, getTimeType().endTime.units).valueOf() : moment().subtract(getTimeType().endTime.type, getTimeType().endTime.units).valueOf(),
                 version: getVersion(),
                 ...payload
             });
@@ -36,8 +36,8 @@ class ErrorOverviewStore {
     @action onGetErrorTrend = async payload => {
         try {
             const data = await CommonService.getTrend({
-                startTime: moment().subtract(getTimeType().startTime.type, getTimeType().startTime.units).valueOf(),
-                endTime: moment().subtract(getTimeType().endTime.type, getTimeType().endTime.units).valueOf(),
+                startTime: getTimeType().startTime.units == 'milliseconds' && Math.floor(getTimeType().startTime.type/86400000) == getTimeType().startTime.type/86400000 ? moment(moment().format('YYYY-MM-DD')).subtract(getTimeType().startTime.type, getTimeType().startTime.units).valueOf(): moment().subtract(getTimeType().startTime.type, getTimeType().startTime.units).valueOf(),
+                endTime: getTimeType().startTime.units == 'milliseconds' && Math.floor(getTimeType().endTime.type/86400000) == getTimeType().endTime.type/86400000 ?  moment(moment().format('YYYY-MM-DD')).subtract(getTimeType().endTime.type, getTimeType().endTime.units).valueOf() : moment().subtract(getTimeType().endTime.type, getTimeType().endTime.units).valueOf(),
                 ...payload
             });
             runInAction(() => {
@@ -53,8 +53,8 @@ class ErrorOverviewStore {
         const { metrics, areaType, province } = payload;
         try {
             const datas = await CommonService.getMapData({
-                startTime: moment().subtract(getTimeType().startTime.type, getTimeType().startTime.units).valueOf(),
-                endTime: moment().subtract(getTimeType().endTime.type, getTimeType().endTime.units).valueOf(),
+                startTime: getTimeType().startTime.units == 'milliseconds' && Math.floor(getTimeType().startTime.type/86400000) == getTimeType().startTime.type/86400000 ? moment(moment().format('YYYY-MM-DD')).subtract(getTimeType().startTime.type, getTimeType().startTime.units).valueOf(): moment().subtract(getTimeType().startTime.type, getTimeType().startTime.units).valueOf(),
+                endTime: getTimeType().startTime.units == 'milliseconds' && Math.floor(getTimeType().endTime.type/86400000) == getTimeType().endTime.type/86400000 ?  moment(moment().format('YYYY-MM-DD')).subtract(getTimeType().endTime.type, getTimeType().endTime.units).valueOf() : moment().subtract(getTimeType().endTime.type, getTimeType().endTime.units).valueOf(),
                 pageSize: areaType == 'province' ? 100 : 300,
                 sortKey: JSON.parse(metrics)[0],
                 ...payload

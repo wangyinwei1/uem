@@ -91,8 +91,8 @@ class UserTableStore {
             const data = await Service.getUserList({
                 pageIndex: this.pageIndex,
                 userType: this.tagType === 0 ? 1 : 0,
-                startTime: moment().subtract(getTimeType().startTime.type, getTimeType().startTime.units).valueOf(),
-                endTime: moment().subtract(getTimeType().endTime.type, getTimeType().endTime.units).valueOf(),
+                startTime: getTimeType().startTime.units == 'milliseconds' && Math.floor(getTimeType().startTime.type/86400000) == getTimeType().startTime.type/86400000 ? moment(moment().format('YYYY-MM-DD')).subtract(getTimeType().startTime.type, getTimeType().startTime.units).valueOf(): moment().subtract(getTimeType().startTime.type, getTimeType().startTime.units).valueOf(),
+                endTime: getTimeType().startTime.units == 'milliseconds' && Math.floor(getTimeType().endTime.type/86400000) == getTimeType().endTime.type/86400000 ?  moment(moment().format('YYYY-MM-DD')).subtract(getTimeType().endTime.type, getTimeType().endTime.units).valueOf() : moment().subtract(getTimeType().endTime.type, getTimeType().endTime.units).valueOf(),
                 searchKey: this.searchKey,
                 searchInfo: this.searchValue,
                 // 点击sortkey排序

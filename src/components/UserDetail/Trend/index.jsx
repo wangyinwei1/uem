@@ -54,11 +54,16 @@ export default class Trend extends React.Component {
             itemId,
             sessionCount
         } = this.props;
+        sessionCount.map((item,index) => {
+            item.startTime = item.time;
+            item.endTime = moment(item.time).add(1, 'days').valueOf();
+            return item;
+        });
         let initialConfig = {} ;
         // 第一次进来，条形图最后一条的颜色是不同的
         if( sessionCount.length > 0 && this.state.firstLoad ){
             const newValue = [];
-            sessionCount.map((item,index) => newValue.push({'value':item.value}) );
+            sessionCount.map((item,index) => newValue.push({'value':item.value,'startTime':item.startTime,'endTime':item.endTime }) );
             initialConfig =  config.get('default').mergeDeep(config.get('trend'))
             .setIn(['xAxis', 0, 'data'], sessionCount.map(item => moment(item.time).format('MM-DD')))
             .updateIn(['series',0,'data'], () =>{
@@ -77,7 +82,7 @@ export default class Trend extends React.Component {
         }else {
             initialConfig = config.get('default').mergeDeep(config.get('trend'))
                         .setIn(['xAxis', 0, 'data'], sessionCount.map(item => moment(item.time).format('MM-DD')))
-                        .setIn(['series', 0, 'data'], sessionCount.map(item => item.value))
+                        .setIn(['series', 0, 'data'], sessionCount)
                         .toJS();
         }
         const option = Object.keys(this.newOption).length > 0 ? this.newOption : initialConfig;

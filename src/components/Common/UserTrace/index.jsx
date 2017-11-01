@@ -158,7 +158,7 @@ export default class UserTrace extends React.Component {
             if (_browser.indexOf('firefox') >= 0) {
                 return 'huohu';
             }
-            if (_browser.indexOf('internet') >= 0) {
+            if (_browser.indexOf('ie') >= 0) {
                 return 'ie';
             }
             if (_browser.indexOf('opera') >= 0) {
