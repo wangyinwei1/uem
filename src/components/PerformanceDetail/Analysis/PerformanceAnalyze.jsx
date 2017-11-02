@@ -177,21 +177,29 @@ export default class PerformanceAnalyze extends React.Component {
                 } 
             }
             // console.log(arr)
+            const sortArr = [
+                {'key':'dns','label':'DNS'},{'key':'connect','label':'连接'},{'key':'redirect','label':'重定向'},{'key':'request','label':'请求文档'},
+                {'key':'response','label':'响应传输数据'},{'key':'domLoading','label':'DOM树解析'},{'key':'domComplete','label':'DOM内容加载'},{'key':'load','label':'页面渲染'},{'key':'xhrCallback','label':'回调'}
+            ].reverse();
             // 如果确定threadInfo里面的值就是sortArr的值，那么久不用这么麻烦了，直接返回sortArr即可
-            const sortArr = ['dns', 'connect', 'redirect', 'request', 'response', 'domLoading', 'domComplete', 'load','xhrCallback'].reverse();
-            return sortArr.filter(item => arr.indexOf(item) > -1)
+            // const sortArr = ['dns', 'connect', 'redirect', 'request', 'response', 'domLoading', 'domComplete', 'load','xhrCallback'].reverse();
+            return sortArr.filter(item => arr.indexOf(item.key) > -1)
         })();
         const startArr = bars.map(item => {
-            return threadInfo[item][0];
+            return threadInfo[item.key][0];
         });
+        const yAxisName = bars.map(item =>{
+            return item.label;
+        });
+
         const endArr = bars.map(item => {
-            return threadInfo[item][1];
+            return threadInfo[item.key][1];
         });
         return (
             this.props.uiType !== 'NATIVE' ?
                 <div key={bars.length}>
                     <BarChart chartId={`PerformanceAnalyze-${itemId}`} options={config.get('default').mergeDeep(config.get('analyze'))
-                        .setIn(['yAxis', 0, 'data'], bars)
+                        .setIn(['yAxis', 0, 'data'], yAxisName)
                         .setIn(['series', 0, 'data'], startArr)
                         .setIn(['series', 1, 'data'], endArr)
                         .toJS()}

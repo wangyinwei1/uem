@@ -274,6 +274,7 @@ export default {
                 checked: true,
                 disabled: true,
                 width: 100,
+                sorter: (a,b) => a.clickNum - b.clickNum
             },
             {
                 value: 'srcName',
@@ -425,6 +426,7 @@ export default {
                 checked: true,
                 disabled: true,
                 width: 100,
+                sorter: (a,b) => a.clickNum - b.clickNum
             },
             {
                 value: 'path',

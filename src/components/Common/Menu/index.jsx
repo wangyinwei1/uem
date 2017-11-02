@@ -92,19 +92,19 @@ class Menu extends React.Component {
             Message.info(locale('请先选择应用'));
             return false;
         }
-        switch (platform) {
-            case 'ios': Message.info('IOS监控暂未开放');
-                break;
-            case 'android': Message.info('Android监控暂未开放');
-                break;
-            default: choosePlatform({
-                platform
-            });
-                break;
-        }
-        // choosePlatform({
-        //     platform
-        // });
+        // switch (platform) {
+        //     case 'ios': Message.info('IOS监控暂未开放');
+        //         break;
+        //     case 'android': Message.info('Android监控暂未开放');
+        //         break;
+        //     default: choosePlatform({
+        //         platform
+        //     });
+        //         break;
+        // }
+        choosePlatform({
+            platform
+        });
     }
     // 选择应用
     appSelect() {
