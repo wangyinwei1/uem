@@ -184,7 +184,7 @@ export default {
                 checked: true,
                 disabled: false,
                 width: 100,
-                // render: (text, record, index) => text ? text : '--',
+                sorter: (a,b) => a.apdex - b.apdex,
                 render(text, record, index) {
                     // const config = UYUN.getTheme("performanceChart-table1");
                     const config = [
