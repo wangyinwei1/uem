@@ -6,7 +6,7 @@ import styles from '../components/Setting/ParamSetting/index.scss';
 
 const TabPane = Tabs.TabPane;
 
-@inject('settingStore', 'overviewStore')
+@inject('settingStore', 'overviewStore','appListStore')
 @observer
 export default class Setting extends React.Component {
     constructor(props) {
@@ -122,10 +122,12 @@ export default class Setting extends React.Component {
             userDataModelList, getUserDataModelList, deleteUserDataModel, saveUserDataModel,
             versionSettings, getVersionSettings, updateVersionStatus
         } = this.props.settingStore;
+
+        const { onGetApps } = this.props.appListStore;
         // 更新设置参数之后，要同步更新overviewStore.deploy，页面浏览和页面交互中有用到apdex，其他组件暂时没有发现有影响
         const { setDeploy } = this.props.overviewStore;
 
-        const deployProps = { appInfo, updateAppInfo, updateAppInfoOnFront, sendEmail };
+        const deployProps = { appInfo, updateAppInfo, updateAppInfoOnFront, sendEmail, onGetApps };
         const paramProps = { config, updateConfig, getConfig, setDeploy };
         const userDataProps = { userDataModelList, getUserDataModelList, deleteUserDataModel, saveUserDataModel };
         const versionProps = { versionSettings, getVersionSettings, updateVersionStatus };

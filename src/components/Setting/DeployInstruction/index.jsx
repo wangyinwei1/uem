@@ -90,7 +90,7 @@ export default class DeployInstruction extends Component {
     handleEditOk() {
         const { validateFields } = this.editModalForm;
         const { appId } = this.props.appInfo;
-        const { updateAppInfo, updateAppInfoOnFront } = this.props;
+        const { updateAppInfo, updateAppInfoOnFront, onGetApps } = this.props;
         validateFields((err, values) => {
             if (!err) {
                 const appInfo = {
@@ -102,6 +102,10 @@ export default class DeployInstruction extends Component {
                         message.success(result.message);
                         // 后端更新成功后，更新前端store存储的数据
                         updateAppInfoOnFront(appInfo);
+                        // 修改之后同步更新左侧下拉应用列表
+                        onGetApps({
+                            pageSize: 100,
+                        }, 'appListMenu'); 
                         this.toggleEditModal(false);
                     } else {
                         message.error(result.message)

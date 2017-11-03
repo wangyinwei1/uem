@@ -49,17 +49,19 @@ export default {
                 // fixed: 'left'
             }, {
                 value: 'path',
-                label: 'URL',
-                checked: false,
-                disabled: false,
-                width: 400,
-            }, {
-                value: 'match',
                 label: locale('URL规则'),
                 checked: false,
                 disabled: false,
                 width: 400,
-            }, {
+            }, 
+            // {
+            //     value: 'match',
+            //     label: locale('URL规则'),
+            //     checked: false,
+            //     disabled: false,
+            //     width: 400,
+            // }, 
+            {
                 value: 'creator',
                 label: locale('创建人'),
                 checked: false,
@@ -100,7 +102,7 @@ export default {
                 checked: true,
                 disabled: false,
                 width: 100,
-                // render: (text, record, index) => text ? text : '--',
+                sorter: (a,b) => a.apdex - b.apdex,
                 render(text, record, index) {
                     // const config = UYUN.getTheme("performanceChart-table1");
                     const config = [
@@ -148,13 +150,14 @@ export default {
                 checked: true,
                 disabled: false,
                 width: 100,
-                sorter: (a,b) => a.pc - b.pv
+                sorter: (a,b) => a.pv - b.pv
             }, {
                 value: 'uv',
                 label: locale('访问量UV'),
                 checked: true,
                 disabled: false,
                 width: 100,
+                sorter: (a,b) => a.uv - b.uv,
             }]
         }
     }, {
@@ -236,6 +239,7 @@ export default {
                 checked: true,
                 disabled: false,
                 width: 100,
+                sorter: (a,b) => a.uv - b.uv
             }]
         }
     }],
@@ -310,7 +314,7 @@ export default {
                 checked: false,
                 disabled: false,
                 width: 200,
-                sorter: (a, b) => a.createTime - b.createTime,
+                // sorter: (a, b) => a.createTime - b.createTime,
                 render(text, record, index) {
                     const time = moment(Number(text)).format("YYYY-MM-DD HH:mm");
                     return time == "Invalid date" ? "--" : time;
@@ -327,7 +331,7 @@ export default {
                 checked: false,
                 disabled: false,
                 width: 200,
-                sorter: (a, b) => a.updateTime - b.updateTime,
+                // sorter: (a, b) => a.updateTime - b.updateTime,
                 render(text, record, index) {
                     const time = moment(Number(text)).format("YYYY-MM-DD HH:mm");
                     return time == "Invalid date" ? "--" : time;
@@ -339,6 +343,7 @@ export default {
                 checked: true,
                 disabled: false,
                 width: 120,
+                sorter: (a,b) => a.apdex - b.apdex,
                 render(text, record, index) {
                     // const config = UYUN.getTheme("performanceChart-table1");
                     const config = [
@@ -441,6 +446,7 @@ export default {
                 checked: true,
                 disabled: false,
                 width: 100,
+                sorter: (a,b) => a.apdex - b.apdex,
                 render(text, record, index) {
                     // const config = UYUN.getTheme("performanceChart-table1");
                     const config = [
@@ -740,7 +746,7 @@ export default {
                 label: locale('错误数'),
                 value: 'errorCount',
                 width: '10%',
-                // sorter: (a, b) => a.errorCount - b.errorCount,
+                sorter: (a, b) => a.errorCount - b.errorCount,
             }, {
                 label: locale('趋势'),
                 value: 'trend',
