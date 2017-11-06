@@ -107,13 +107,15 @@ class AppsBar extends Component {
         })
     }
     render() {
-        const { sortBy, sortKey } = this.props;
+        const { sortBy, sortKey,onGetIpCityList,provinceList, 
+            ipCityList,citys,onUpdateMappingStatus,status,onAddIp,
+            onUpdateIpMap } = this.props;
         const { getFieldDecorator } = this.props.form;
         const { showAddAppModal, showAddAppSuccessModal } = this.state;
         return (
             <div className={styles['apps-bar']}>
                 <div className={cls('btn', styles['create-app'])} id='createApp' onClick={() => this.toggleAddAppModal(true)}><i className={cls('fa fa-plus')}></i>{locale('应用')}</div>
-                {/* { config.globalSetting && <div className={cls('btn',styles['settingBtn'])} onClick={this.appSettingModal.bind(this)}>{locale('应用设置')}</div> } */}
+                { config.globalSetting && <div className={cls('btn',styles['settingBtn'])} onClick={this.appSettingModal.bind(this)}>{locale('应用设置')}</div> }
                 <div className={styles['btn-wrapper']}>
                     <Dropdown overlay={(
                         <Menu onClick={({key}) => sortBy({key})} selectedKeys={[sortKey]}>
@@ -192,7 +194,16 @@ class AppsBar extends Component {
                     wrapClassName={styles['global-setting-modal']}
                     onCancel={this.handleSettingModalCanel.bind(this)}
                     visible={this.state.settingModal}>
-                    {/* <SettingMain />  */}
+                    {<SettingMain 
+                    provinceList={provinceList} 
+                    onGetIpCityList={onGetIpCityList} 
+                    ipCityList={ipCityList}
+                    citys={citys}
+                    status={status}
+                    onUpdateMappingStatus={onUpdateMappingStatus}
+                    onAddIp={onAddIp}
+                    onUpdateIpMap={onUpdateIpMap}
+                    /> }
                 </Modal>
             </div>
         );

@@ -31,5 +31,34 @@ export default {
         appId: sessionStorage.getItem('UEM_appId'),
         status: undefined,
         ...payload
-    })
+    }),
+    // 获取省份的名称和邮政编码
+    getProvinceList: payload => Request('get','area/provinces/list',{
+        tenantId: window.USER_INFO.tenantId,
+        ...payload
+    }),
+
+    getIpCityList: payload => Request('get', 'area/cities/list',{
+        tenantId: window.USER_INFO.tenantId,
+        provinceId: undefined,
+        ...payload
+    }),
+
+    getMappingStatus: payload => Request('get','area/ip/mapping/enabled/view',{
+        tenantId: window.USER_INFO.tenantId,
+        ...payload
+    }),
+
+    updateMappingStatus: payload => Request('post', 'area/ip/mapping/enable', {
+        tenantId: window.USER_INFO.tenantId,
+        status: undefined,
+        ...payload
+    }),
+
+    updateIpMap: payload => Request('post', 'area/ip/map',{
+        tenantId: window.USER_INFO.tenantId,
+        mappingIps: undefined,
+        ...payload
+    } )
+
 };

@@ -19,11 +19,12 @@ export default class AppList extends React.Component {
     componentDidMount() {
         const {
             onGetApps,
-            onInitPaginationIndex
+            onInitPaginationIndex,
+            onGetProvinceList
         } = this.props.appListStore;
         onInitPaginationIndex();
         onGetApps();
-
+        onGetProvinceList();
     }
 
     selectChartOrTable(value){
@@ -48,8 +49,15 @@ export default class AppList extends React.Component {
             pageSize,
             pageIndex,
             loading,
-
+            provinceList,
+            ipCityList,
+            onGetIpCityList,
+            citys,
+            status,
             // action
+            onUpdateIpMap,
+            onUpdateMappingStatus,
+            onAddIp,
             onUpdateApp,
             onDelApp,
             onPageJump,
@@ -64,6 +72,14 @@ export default class AppList extends React.Component {
                     sortKey={sortKey}
                     chartOrTable={this.selectChartOrTable.bind(this)}
                     chooseApp={onChooseApp}
+                    provinceList={provinceList}
+                    ipCityList={ipCityList}
+                    citys={citys}
+                    onGetIpCityList={onGetIpCityList}
+                    status={status}
+                    onUpdateMappingStatus={onUpdateMappingStatus}
+                    onAddIp={onAddIp}
+                    onUpdateIpMap={onUpdateIpMap}
                 />
                 <Apps
                     loading={loading}
