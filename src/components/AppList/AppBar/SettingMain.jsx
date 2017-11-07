@@ -7,7 +7,7 @@ import {
     Icon,
     Table,
     Button,
-    message,
+    Message,
     Modal
 } from 'antd';
 // require('echarts/lib/chart/map');
@@ -17,8 +17,7 @@ import {
 // require('echarts/lib/component/tooltip');
 // require('echarts/lib/component/title');
 
-
-
+       
 function ipValidator(ip) {
     if (ip == "") {
         return true
@@ -50,7 +49,7 @@ export class SettingMain extends React.Component {
 
     componentDidMount() {
         this.initTable(this.state.curProvince);
-        let myChart = echarts.init(document.getElementById('setting-map'), 'map');
+        let myChart = echarts.init(document.getElementById('setting-map'), 'blue');
         // echarts组件里调用this只是它内部的，所以需要将外面的this先赋值给that
         let that = this;
         this.myChart = myChart;
@@ -283,12 +282,12 @@ export class SettingMain extends React.Component {
             })
         }
         let columns = [{
-            title: '地域',
+            title: locale('地域'),
             dataIndex: 'area',
             key: 'area',
             width: '20%'
         }, {
-            title: '起始IP',
+            title: locale('起始IP'),
             dataIndex: 'startIp',
             key: 'startIp',
             width: '35%',
@@ -298,7 +297,7 @@ export class SettingMain extends React.Component {
                 );
             }
         }, {
-            title: '结束IP',
+            title: locale('结束IP'),
             dataIndex: 'endIp',
             key: 'endIp',
             width: '35%',
@@ -308,7 +307,7 @@ export class SettingMain extends React.Component {
                 );
             }
         }, {
-            title: '操作',
+            title: locale('操作'),
             key: 'operation',
             width: '10%',
             render(text, record, index) {
@@ -330,7 +329,7 @@ export class SettingMain extends React.Component {
                     <div id='setting-map' className={styles['setting-map']}></div>
                     <div className={styles['tab-content']}>
                         <div className={styles['clearfix']}>
-                            <span className={styles['tip']}>地域设置，启用需自己手动设置IP地址库，关闭状态使用公共IP地址库</span>
+                            <span className={styles['tip']}>{locale('地域设置，启用需自己手动设置IP地址库，关闭状态使用公共IP地址库')}</span>
                             <Switch
                                 className='switch'
                                 checkedChildren="启用"

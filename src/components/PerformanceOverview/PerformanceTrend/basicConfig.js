@@ -1,3 +1,4 @@
+
 export default Immutable.fromJS({
             title: {
                 // text: locale('性能趋势图'),
@@ -46,7 +47,7 @@ export default Immutable.fromJS({
                 name: locale('单位：s')
 
             }],
-            color: ['#ffeb0b', '#66dc6a', colorChangeTest("test")],
+            color: ['#ffeb0b', '#66dc6a', '#00c0fc'],
             series: [
                 {   
                     type: 'line',

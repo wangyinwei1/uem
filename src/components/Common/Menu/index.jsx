@@ -7,11 +7,12 @@ import config from './config';
 import styles from './index.scss';
 import PointButton from "./buriedPointButton";
 import { withRouter } from 'react-router-dom';
+import Cookies from '../../../utils/cookies';
 
 const Option = Select.Option;
 const FormItem = Form.Item;
-// @inject('frameStore') 
-// @observer
+@inject('frameStore') 
+@observer
 class Menu extends React.Component {
     // 通过context取router，暂时没用到
     // static contextTypes = {
@@ -135,11 +136,15 @@ class Menu extends React.Component {
     }
 
     setTheme() {
-        // const { theme, onChangeTheme } = this.props.frameStore;
-        localStorage.setItem('UEM_skin', localStorage.getItem('UEM_skin') && localStorage.getItem('UEM_skin') == 'blue' ? 'white' : 'blue');
-        document.getElementsByTagName("html")[0].className = localStorage.getItem('UEM_skin');
+        const { theme, onChangeTheme } = this.props.frameStore;
+        const skin = document.getElementsByTagName("html")[0].className == 'blue' ? 'white' : 'blue';
+        document.getElementsByTagName("html")[0].className = skin;
         // action 改变theme，被监听.
-        // onChangeTheme(localStorage.getItem('UEM_skin'));
+        onChangeTheme(skin);
+        document.cookie = "skin=" + skin;
+        console.log('skin-------',skin, document.cookie);
+
+        // history.go(0); 
     }
 
     toggleAddAppModal(visible) {
@@ -217,7 +222,7 @@ class Menu extends React.Component {
                 {appId && <PointButton appId={appId} platform={platform} theme={localStorage.getItem('UEM_skin')}><span>可视化埋点</span></PointButton>}
                 <div className={styles['setting-other-wrap']}>
                     <div className={styles['setting-expand']}><i className='fa fa-fw fa-chevron-left' onClick={this.expand.bind(this)}></i></div>
-                    {/* <a target='_blank' onClick={this.setTheme.bind(this)}> <i className='iconfont icon-xiugaishanchuyibiaopankong'></i>{locale('换肤')}</a> */}
+                    <a target='_blank' onClick={this.setTheme.bind(this)}> <i className='iconfont icon-xiugaishanchuyibiaopankong'></i>{locale('换肤')}</a>
                     <NavLink exact onClick={this.checkApp.bind(this)} activeClassName={styles['current']} replace to='/setting'><i className='iconfont icon-xiugaishanchuyibiaopankong'></i>{locale('设置')}</NavLink>
                     <a href='./help/index.html' target='_blank'><i className='iconfont icon-bangzhu'></i>{locale('帮助')}</a>
                 </div>

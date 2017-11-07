@@ -32,6 +32,7 @@ class Frame extends React.Component {
             appInfo,
             platform,
             timeType,
+            theme,
             appAllVersions,
             onChooseApp,
             appVersion,

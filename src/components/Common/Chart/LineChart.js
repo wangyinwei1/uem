@@ -1,5 +1,8 @@
 import React from 'react';
 import Chart from './Chart';
+import { inject,observer } from 'mobx-react';
+import { observable, reaction } from 'mobx';
+// import cookies from '../../../utils/cookies';
 
 // linechart 和 barChart 共用的
 function lineBarFormatter(params, ticket, callback) {
@@ -79,6 +82,7 @@ const defaultOptions = Immutable.fromJS({
     // ]
 });
 
+
 class LineChart extends Chart {
     constructor(props) {
         super(props);
@@ -86,12 +90,6 @@ class LineChart extends Chart {
         this.defaultOptions = defaultOptions;
         // console.log('[chart props options]:',this.options.toJS());
     }
-    // @override
-    // draw() {
-    //     return (
-    //         <div>{this.chartId}</div>
-    //     );
-    // }
 }
 
 export default LineChart;

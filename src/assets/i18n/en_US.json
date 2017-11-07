@@ -369,5 +369,8 @@
     "URL":"URL",
     "会话开始" : "Session Start",
     "请先选择应用" : "Please select an application",
-    "查看更多" : "Load More"
+    "查看更多" : "Load More",
+    "地域设置，启用需自己手动设置IP地址库，关闭状态使用公共IP地址库":"Geographical settings, enable the need to manually set the IP address of the library, off the public IP address database",
+    "起始IP": "Start IP",
+    "结束IP":"End IP"
 }

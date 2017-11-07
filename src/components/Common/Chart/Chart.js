@@ -111,6 +111,8 @@ const globalOptions = Immutable.fromJS({
     }
 });
 
+// const vintage = require('./EchartTheme/theme/vintage');
+
 function mapTooltipFormatter(params, ticket, callback) {
         if (isNaN(params.value)) {
             params.value = '暂无数据';
@@ -163,10 +165,9 @@ function mapTooltipFormatterForWorldMap(params, ticket, callback) {
 
 window.Immutable = Immutable;
 
-// @inject('frameStore')
-// @observer
 class Chart extends React.PureComponent {
     constructor(props) {
+        // debugger
         super(props);
         this.state = {};
         this.chartId = props.chartId;
@@ -178,7 +179,9 @@ class Chart extends React.PureComponent {
         // new setTheme(props.frameStore.theme);
 
     }
-    
+    componentDidUpdate(){ 
+    }
+
     componentDidMount() {
         if (!this.chartId) {
             console.log(this.chartId)
@@ -225,13 +228,13 @@ class Chart extends React.PureComponent {
         // $(window).on('resize', this._resizeChart);
     }
     componentWillReceiveProps(nextProps) {
-        // debugger
         clearTimeout(this.timer);
         try {
             // this.chartDom.clear();
             this.timer = setTimeout(() => {
                 this.chartDom.setOption(Immutable.fromJS(this._mergeOptions()).mergeDeep(nextProps.options).toJS());
-            }, 300);   
+            }, 300); 
+            this.chartDom.resize();  
         } catch(e) {
             this.chartDom.clear();
             this.chartDom.setOption(Immutable.fromJS(this._mergeOptions()).mergeDeep(nextProps.options).toJS());

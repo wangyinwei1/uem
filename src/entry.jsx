@@ -5,7 +5,7 @@ import { message } from 'antd';
 
 import { AppContainer } from 'react-hot-loader';
 import App from './App';
-import echartsColor from './assets/styles/echartsColors'
+// import echartsColor from './assets/styles/echartsColors'
 
 // window.mobxListener = observable.shallowMap({
 //     theme: 'blue'
@@ -50,11 +50,14 @@ if (true) {
     // 线上从cookie里取，没有的话用默认值，有的话存在localStorage里，以便以后调用。
     let theme = document.cookie.split(';').some(item => { return item.indexOf('skin') > -1 }) ? document.cookie.split(';').filter(str => { return str.indexOf('skin') != -1 })[0].split('=')[1] : 'blue';
     let language = document.cookie.split(';').some(item => { return item.indexOf('language') > -1 }) ? document.cookie.split(';').filter(str => { return str.indexOf('language') != -1 })[0].split('=')[1] : 'zh_CN';
+    document.getElementsByTagName("html")[0].className = theme;
+
     localStorage.setItem('UEM_skin', theme)
     localStorage.setItem('UEM_lang', language);
+
     window.colorOpacity = 0.3;
     //给初始platform值
-    sessionStorage.getItem('UEM_platform') ? sessionStorage.getItem('UEM_platform') : sessionStorage.setItem('UEM_platform','pc');
+    sessionStorage.getItem('UEM_platform') ? sessionStorage.getItem('UEM_platform') : sessionStorage.setItem('UEM_platform', 'pc');
     // echarts的换肤方法
     // window.changeEchartTheme = (name) => {
     //     if(!echartsColor[name]){
@@ -82,7 +85,6 @@ if (true) {
     window.changeSkin_hook_uem = () => {
         // $('.set-theme').click();
     };
-    
 
     // 时间转换函数，各概况时间指标的单位自适应
     window.timeFormat = (time) => {
@@ -102,6 +104,22 @@ if (true) {
             newTimeFormat = (time).toFixed(1) + 's';
         }
         return newTimeFormat;
+    }
+
+    window.colorChangeTest = (colorName,theme) => {
+        // const theme =  document.getElementsByTagName("html")[0].className;
+        console.log('canshu theme',theme);
+        if (theme) {
+            const newColor = echartColor[colorName][theme];
+            if (newColor) {
+                return newColor;
+            } else {
+                console.error(`未找到 "${colorName}" 的 "${theme}" 的对应颜色`);
+                return colorName;
+            }
+        } else {
+            return colorName;
+        }
     }
 }
 

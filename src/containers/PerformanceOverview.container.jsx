@@ -42,7 +42,7 @@ export default class PerformanceOverview extends React.Component {
             onGetMapData
         } = this.props.performanceOverviewStore;
         const startTime = this.props.frameStore.timeType;
-        const { platform } = this.props.frameStore;
+        const { platform,theme } = this.props.frameStore;
         const { loading } = this.state;
         return (
             <div id="PerformanceOverview" >
@@ -58,6 +58,7 @@ export default class PerformanceOverview extends React.Component {
                         getPerformanceTrend={onGetPerformanceTrend}
                         startTime = {startTime}
                         platform={platform}
+                        theme={theme}
                     />
                     <PerformanceMapChart
                         mapData={mapData}

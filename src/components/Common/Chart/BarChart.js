@@ -1,6 +1,6 @@
 import React from 'react';
 import Chart from './Chart';
-// import { override } from 'core-decorators';
+import { observer, inject } from 'mobx-react';
 
 function lineBarFormatter(params, ticket, callback) {
     const description = params[0].data.description;
@@ -69,6 +69,7 @@ class BarChart extends Chart {
         super(props);
         this.type = 'BarChart';
         this.defaultOptions = defaultOptions;
+        // this.theme = this.props.frameStore.theme;
     }
     // @override
     // draw() {

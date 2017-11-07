@@ -45,6 +45,7 @@ class PerformanceTrend extends Component {
                     }
                 })
             }],
+            color: ['#ffeb0b', '#66dc6a', colorChangeTest('test',this.props.theme)],
             series: [
                 {name: locale('浏览量PV'),data: trend.pv},
                 {name: locale('点击数'),data: trend.clickNum},
@@ -177,7 +178,7 @@ class PerformanceTrend extends Component {
                         <Col className={styles['performance-trend']} style={{ width:'60%'}}>
                             <div className={cls('tile-head')}>{locale('性能趋势')}</div>
                             <div className={cls('tile-body')}>
-                                <LineChart group="performance" chartId="PerformanceTrend" options={options} />
+                                <LineChart group="performance" chartId="PerformanceTrend" options={options} theme={this.props.theme} />
                             </div>
                         </Col>
                         <Col className={styles['apdex-chart']}>

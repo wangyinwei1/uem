@@ -65,6 +65,7 @@ class FrameStore {
     }
     @action onChangeTheme = payload => {
         this.theme = payload;
+        console.log('this.theme',this.theme);
     }
     @action onGetAppVersion = async payload => {
         try {
