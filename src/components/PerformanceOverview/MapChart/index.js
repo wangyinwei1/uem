@@ -118,19 +118,20 @@ class PerformanceMapChart extends Component {
         let pillarConfig, mapConfig, yAxisInCN=[],mapSeriesData = [];
         const yAxis = this.props.mapData.yAxis;
         const series = this.props.mapData.series;
+        const theme = this.props.theme;
         //  性能地图左下角的dataRange
         let apdex = Number(( JSON.parse(sessionStorage.UEM_deploy).apdex / 1000).toFixed(2));
         let apdex_4 = apdex*4;
         // if(sessionStorage.getItem('UEM_platform') == 'pc'){
         let splitListForRepTime = [
-                { start:apdex_4, label: `不满意 (响应时间 >${apdex_4}s)`,color: '#ff5251' },
-                { start:apdex, end:apdex_4, label: `可接受 (响应时间 ${apdex}-${apdex_4}s)`,color:'#ffec0b' },
-                { start:0, end:apdex, label: `满意 (响应时间 0-${apdex}s)`, color:'#66dc6b' },
+                { start:apdex_4, label: `不满意 (响应时间 >${apdex_4}s)`,color: themeChange('displeasure',theme) },
+                { start:apdex, end:apdex_4, label: `可接受 (响应时间 ${apdex}-${apdex_4}s)`,color:themeChange('acceptable',theme) },
+                { start:0, end:apdex, label: `满意 (响应时间 0-${apdex}s)`, color: themeChange('satisfaction',theme) },
             ];
         let splitListForApdex = [
-                { start: 0.8, end: 1, label: '满意', color:'#66dc6b'},
-                { start: 0.5, end: 0.8, label: '可接受', color:'#ffec0b' },
-                { start: 0, end: 0.5, label: '不满意', color: '#ff5251' }
+                { start: 0.8, end: 1, label: '满意', color: themeChange('satisfaction',theme)},
+                { start: 0.5, end: 0.8, label: '可接受', color: themeChange('acceptable',theme) },
+                { start: 0, end: 0.5, label: '不满意', color:  themeChange('displeasure',theme) }
             ];
         // } 
         /**
@@ -183,17 +184,40 @@ class PerformanceMapChart extends Component {
             .updateIn(['series', 0, 'itemStyle', 'normal', 'color'], () => function (value) {
                 let maxUv = Math.max.apply(null, series);
                 let opacity = Number((value.data / maxUv).toFixed(2))*(1-window.colorOpacity) + window.colorOpacity;
-                let color = activePillar == 'avgRspTime' ? 'rgba(255,235,11,' : 'rgba(102,220,108,';
+                let color = activePillar == 'avgRspTime' ? themeChange('perforPillarColor1',theme) : themeChange('perforPillarColor2',theme);
                 return color + opacity + ")";
             });
 
-        mapConfig = this.tempConfig.get(activeMap).updateIn(['series', 0, 'data'], () => mapSeriesData )
-        .updateIn(['dataRange',0,'splitList'],()=> this.state.activePillar == 'avgRspTime' ? splitListForRepTime : splitListForApdex);
+        mapConfig = this.tempConfig.get(activeMap).mergeDeep({
+            // visualMap: [{
+            //     inRange: {
+            //         color: themeChange('mapColorInRange', theme),
+            //     },
+            //     textStyle: {
+            //         color: themeChange('visualMapText', theme)
+            //     },
+            // }],
+            series:[{
+                itemStyle: {
+                    normal: {
+                        areaColor: themeChange('normalAreaColor', theme),
+                        borderColor: themeChange('normalBorderColor', theme)
+                    },
+                    emphasis: {
+                        areaColor: themeChange('emphasisAreaColorOther', theme),
+                        borderColor: '#fff',
+                    }
+                }
+            }]
+        })
+        .updateIn(['series', 0, 'data'], () => mapSeriesData )
+        .updateIn(['dataRange',0,'splitList'],()=> this.state.activePillar == 'avgRspTime' ? splitListForRepTime : splitListForApdex)
+        .updateIn(['dataRange',0,'textStyle','color'],() => themeChange('legendTextColor', theme))
 
         // console.log('mapConfig===========',mapConfig.toJS(),pillarConfig.toJS());
         return (
             <div className={styles['map-chart']}>
-                <div className={cls('tile-head')}>{locale('用户分布')}</div>
+                <div className={cls('tile-head')}>{locale('地理位置')}</div>
                 <div className={cls('tile-body')}>
                     <div className={styles['btn-wrap']}>
                         <div className={cls('btn btn-china', {
@@ -219,9 +243,11 @@ class PerformanceMapChart extends Component {
                         chartId="map"  className={styles['map-chart']}
                         options={config.get('default').mergeDeep(mapConfig).toJS()}
                         clickUpdateMap={this.clickUpdateMap.bind(this)}
+                        theme={this.props.theme}
                     />
                     <BarChart chartId="bar"  className={styles['bar-chart']}
                         options={config.get('default').mergeDeep(pillarConfig)}
+                        theme={this.props.theme}
                     />
                 </div>
             </div>

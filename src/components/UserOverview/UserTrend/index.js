@@ -20,6 +20,7 @@ class UserTrend extends Component {
     }
     render() {
         const trend = this.props.userTrend;
+        const theme = this.props.theme;
         let yAxisMax1, yAxisMax2;
         if (trend.clickNum && Math.max.apply(null, trend.clickNum.map((item) => item.value)) < 3) {
             yAxisMax1 = 3;
@@ -38,8 +39,20 @@ class UserTrend extends Component {
                     name: locale('点击数'),
                 }, {
                     name: locale('会话数'),
-                }]
+                }],
+                textStyle: {
+                    color: themeChange('legendTextColor',theme)
+                }
             },
+            yAxis: [{
+            },{
+                axisLine: {
+                    lineStyle: {
+                        color: themeChange('axisLineColor',theme)
+                    }
+                }
+            }],
+            color: themeChange('userLegendColor',theme),
             xAxis: [{
                 data: trend.sessionCount && trend.sessionCount.map((val, i) => {
                     let selectTime = trend.sessionCount[i].endTime - trend.sessionCount[i].startTime;
@@ -112,7 +125,7 @@ class UserTrend extends Component {
                     <Col className={styles['user-trend']}>
                         <div className={cls('tile-head')}>{locale('错误趋势')}</div>
                         <div className={cls('tile-body')}>
-                            <LineChart group="UserTrend" chartId="UserTrend" options={options} />
+                            <LineChart group="UserTrend" chartId="UserTrend" options={options} theme={theme} />
                         </div>
                     </Col>
                     {/*<Col className={styles['apdex-chart']}>

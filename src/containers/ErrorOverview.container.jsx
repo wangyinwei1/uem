@@ -42,7 +42,7 @@ export default class ErrorOverview extends React.Component {
             onGetMapData
         } = this.props.errorOverviewStore;
         // const startTime = this.props.frameStore.timeType;
-        const { appVersion } = this.props.frameStore;
+        const { appVersion,theme } = this.props.frameStore;
         const { loading } = this.state;
         return (
             <div id="ErrorOverview" key={appVersion}>
@@ -55,16 +55,19 @@ export default class ErrorOverview extends React.Component {
                     <ErrorTrend
                         errorTrend={errorTrend}
                         getErrorTrend={onGetErrorTrend}
+                        theme={theme}
                     />
                      <ErrorMapChart
                         mapData={mapData}
                         getMapData={onGetMapData}
                         selectStatus={this.selectStatus.bind(this)}
+                        theme={theme}
                     />
                     <ErrorModalChart
                         mapData={mapData}
                         pillarState={this.pillarStatus}
                         mapStatus={this.mapStatus}
+                        theme={theme}
                     />
                 </Spin>
             </div>

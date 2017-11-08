@@ -87,6 +87,7 @@ class ErrorMapChart extends Component {
 
     render() {
         const { activeMap } = this.state;
+        const theme = this.props.theme;
         let pillarConfig={}, mapConfig={}, yAxis=[], series=[],yAxisInCN=[], mapSeriesData = [], _yAxis = [], _series = [];
         yAxis = this.props.mapData.yAxis;
         series = this.props.mapData.series;
@@ -118,20 +119,41 @@ class ErrorMapChart extends Component {
                 effectedUserNum: this.state.activePillar == 'effectedUserNum' ? series[i] :  undefined
             })
         }
-
-        pillarConfig = this.tempConfig.get('bar').updateIn(['yAxis', 0, 'data'], () => activeMap == 'china'? yAxis.slice(0,10).reverse() : yAxisInCN.slice(0,10).reverse())
-            .updateIn(['series', 0, 'data'], () => series.slice(0,10).reverse())
+        pillarConfig = this.tempConfig.get('bar').updateIn(['yAxis', 0, 'data'], () => activeMap == 'china'? yAxis.slice(0,10).reverse() : yAxisInCN.slice(0,10).reverse())    
+        .updateIn(['series', 0, 'data'], () => series.slice(0,10).reverse())
             .updateIn(['series', 0, 'name'], () => this.state.activePillar == 'occurErrorUserRate' ? locale('用户错误率') : locale('影响用户数'))
             .updateIn(['series', 0, 'itemStyle', 'normal', 'color'], () => function (value) {
                 let maxUv = Math.max.apply(null, series);
                 let opacity = Number((value.data / maxUv).toFixed(2))*(1-window.colorOpacity) + window.colorOpacity;
-                return 'rgba(255,122,63,' + opacity + ")";
+                return themeChange('errorPillarColor',theme) + opacity + ")";
             });
         // map的配置
-        mapConfig = this.tempConfig.get(activeMap).updateIn(['series', 0, 'data'], () => mapSeriesData)
+        mapConfig = this.tempConfig.get(activeMap).mergeDeep({
+            visualMap: [{
+                inRange: {
+                    color: themeChange('errorColorInRange', theme),
+                },
+                textStyle: {
+                    color: themeChange('visualMapText', theme)
+                },
+            }],
+            series:[{
+                itemStyle: {
+                    normal: {
+                        areaColor: themeChange('normalAreaColor', theme),
+                        borderColor: themeChange('normalBorderColor', theme)
+                    },
+                    emphasis: {
+                        areaColor: themeChange('emphasisAreaColorOther', theme),
+                        borderColor: '#fff',
+                    }
+                }
+            }]
+        })
+        .updateIn(['series', 0, 'data'], () => mapSeriesData)
         .updateIn(['visualMap',0,'max'], ()=> series.length > 0 ? Math.max.apply(null, series) : 1)
         .updateIn(['visualMap',0,'text'], ()=> this.state.activePillar == 'occurErrorUserRate' ? [locale('用户错误率')] : [locale('影响用户数')])
-        .updateIn(['visualMap',0,'inRange','color'], ()=> ["#564e60","#78575a","#915e55","#ab6450","#c66b4b","#de7146","#f17642","#fe7a3f"]);
+;
         // console.log('条形图配置',config.get('default').mergeDeep(pillarConfig).toJS());
         return (
             <div className={styles['map-chart']}>
@@ -156,10 +178,12 @@ class ErrorMapChart extends Component {
                         chartId="map"  className={styles['map-chart']}
                         options={config.get('default').mergeDeep(mapConfig).toJS()}
                         clickUpdateMap={this.clickUpdateMap.bind(this)}
+                        theme={this.props.theme}
                     />
                     <BarChart
                         chartId="bar"  className={styles['bar-chart']}
                         options={config.get('default').mergeDeep(pillarConfig)}
+                        theme={this.props.theme}
                     />
                 </div>
             </div>

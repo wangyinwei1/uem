@@ -21,6 +21,7 @@ class PerformanceTrend extends Component {
     render() {
         let trend = this.props.performanceTrend;
         let platform = this.props.platform;
+        const theme = this.props.theme;
         // let yAxisMax1, yAxisMax2;
         // if (trend.clickNum && Math.max.apply(null, trend.clickNum.map((item) => item.value)) < 3) {
         //     yAxisMax1 = 3;
@@ -30,9 +31,14 @@ class PerformanceTrend extends Component {
         // } else { }
 
         // pc性能趋势的配置
-        let options = basicConfig.mergeDeep({
+        let options = basicConfig
+        .updateIn(['yAxis',1,'axisLine','lineStyle','color'],()=>themeChange('axisLineColor',theme))
+        .mergeDeep({
             legend: {
-                data: [{name:locale('浏览量PV')},{name: locale('点击数')},{name: locale('平均响应时间')}]
+                data: [{name:locale('浏览量PV')},{name: locale('点击数')},{name: locale('平均响应时间')}],
+                textStyle: {
+                    color: themeChange('legendTextColor',theme)
+                }
             },
             xAxis: [{
                 data: trend.avgRspTime && trend.avgRspTime.map((val, i) => {
@@ -45,7 +51,7 @@ class PerformanceTrend extends Component {
                     }
                 })
             }],
-            color: ['#ffeb0b', '#66dc6a', colorChangeTest('test',this.props.theme)],
+            color: themeChange('perforLegendColor',theme),
             series: [
                 {name: locale('浏览量PV'),data: trend.pv},
                 {name: locale('点击数'),data: trend.clickNum},
@@ -120,11 +126,7 @@ class PerformanceTrend extends Component {
                 splitArea: {
                     show: true,
                     areaStyle: {
-                        color: [
-                            'rgba(66,60,83,0.8)', 'rgba(66,60,83,0.8)', 'rgba(66,60,83,0.8)', 'rgba(66,60,83,0.8)', 'rgba(66,60,83,0.8)',
-                            'rgba(65,89,77,0.8)', 'rgba(65,89,77,0.8)', 'rgba(65,89,77,0.8)',
-                            'rgba(29,75,76,0.8)', 'rgba(29,75,76,0.8)', 'rgba(29,75,76,0.8)'
-                        ]
+                        color: themeChange('apdexAreaColor',theme)
                     }
                 }
             }],
@@ -132,7 +134,7 @@ class PerformanceTrend extends Component {
                 symbol: 'circle',  // 拐点图形类型
                 symbolSize: 8   // 拐点图形大小
             },
-            color: ['yellow', ''],
+            color: themeChange('apdexLineColor',theme),
             series: [
                 {
                     name: 'Apdex',
@@ -151,8 +153,22 @@ class PerformanceTrend extends Component {
         // mobile性能趋势的配置
         let mobileOptions = basicConfig.mergeDeep({
             legend: {
-                data: [{name:locale('平均UI响应时间')},{name: locale('平均HTTP响应时间')},{name: locale('点击数')}]
+                data: [{name:locale('平均UI响应时间')},{name: locale('平均HTTP响应时间')},{name: locale('点击数')}],
+                textStyle: {
+                    color: themeChange('legendTextColor',theme)
+                }
             },
+            yAxis: [{
+            },{
+                axisLine: {
+                    lineStyle: {
+                        color: themeChange('titleColor',theme)
+                    }
+                },
+                name: locale('单位：s')
+
+            }],
+            color: themeChange('perforLegendColor',theme),
             xAxis: [{
                 data : trend.avgRspTime && trend.avgRspTime.map((val, i) => {
                     let selectTime = trend.avgRspTime[i].endTime - trend.avgRspTime[i].startTime;
@@ -184,7 +200,7 @@ class PerformanceTrend extends Component {
                         <Col className={styles['apdex-chart']}>
                             <div className={cls('tile-head')}>{locale('Apdex 指数')}</div>
                             <div className={cls('tile-body')}>
-                                <LineChart group="performance" chartId="apedxTrend" options={apdexOptions} />
+                                <LineChart group="performance" chartId="apedxTrend" options={apdexOptions} theme={this.props.theme}/>
                             </div>
                         </Col> 
                     </Row> : 
@@ -192,7 +208,7 @@ class PerformanceTrend extends Component {
                         <Col className={styles['performance-trend']} style={{ width: '100%'}}>
                             <div className={cls('tile-head')}>{locale('性能趋势')}</div>
                             <div className={cls('tile-body')}>
-                                <LineChart group="performance" chartId="PerformanceTrendMobile" options={mobileOptions} />
+                                <LineChart group="performance" chartId="PerformanceTrendMobile" options={mobileOptions} theme={this.props.theme}/>
                             </div>
                         </Col>
                     </Row>

@@ -27,7 +27,6 @@ const defaultOptions = Immutable.fromJS({
     title: {
         text: '分时趋势图 Demo',
         textStyle: {
-            color: '#70c3fb',
             fontSize: 12
         },
         left: 15,
@@ -82,12 +81,13 @@ const defaultOptions = Immutable.fromJS({
     // ]
 });
 
-
+@inject('frameStore')
 class LineChart extends Chart {
     constructor(props) {
         super(props);
         this.type = 'LineChart';
         this.defaultOptions = defaultOptions;
+        // this.theme = this.props.frameStore.theme;
         // console.log('[chart props options]:',this.options.toJS());
     }
 }

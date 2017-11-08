@@ -106,21 +106,21 @@ if (true) {
         return newTimeFormat;
     }
 
-    window.colorChangeTest = (colorName,theme) => {
-        // const theme =  document.getElementsByTagName("html")[0].className;
-        console.log('canshu theme',theme);
-        if (theme) {
-            const newColor = echartColor[colorName][theme];
-            if (newColor) {
-                return newColor;
-            } else {
-                console.error(`未找到 "${colorName}" 的 "${theme}" 的对应颜色`);
-                return colorName;
-            }
-        } else {
-            return colorName;
-        }
-    }
+    // window.themeChange = (colorName,theme) => {
+    //     // const theme =  document.getElementsByTagName("html")[0].className;
+    //     console.log('canshu theme',theme);
+    //     if (theme) {
+    //         const newColor = echartColor[colorName][theme];
+    //         if (newColor) {
+    //             return newColor;
+    //         } else {
+    //             console.error(`未找到 "${colorName}" 的 "${theme}" 的对应颜色`);
+    //             return colorName;
+    //         }
+    //     } else {
+    //         return colorName;
+    //     }
+    // }
 }
 
 const render = (Component) => {

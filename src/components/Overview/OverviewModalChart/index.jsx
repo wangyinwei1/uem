@@ -2,7 +2,7 @@ import { ModalChart } from '../../Common'
 import React from "react"
 // import { override } from 'core-decorators';
 
-export default class ErrorModalChart extends ModalChart {
+export default class OverviewModalChart extends ModalChart {
     state = {
         // 组件内的一些状态
     }
@@ -15,6 +15,7 @@ export default class ErrorModalChart extends ModalChart {
         let maxPageNum = Math.ceil(this.total / 10);
         let currentPage = this.state.defaultCurrent;
         let total = this.total;
+        const theme = this.props.theme;
         if(currentPage < maxPageNum){
             this.state = {
                 ...this.state,
@@ -31,8 +32,8 @@ export default class ErrorModalChart extends ModalChart {
                                     color: function (value) {
                                         let pillarColor;
                                         // pillarColor = value.seriesName == '用户错误率' ? 'rgba(255,235,11,' : 'rgba(102,220,108,';
-                                        pillarColor = 'rgba(26, 177, 245, ';
-                                        let opacity = Number((value.data / maxQuota).toFixed(2)) * (1 - 0.5) + 0.5;
+                                        pillarColor = themeChange('overviewPillarColor',theme);
+                                        let opacity = Number((value.data / maxQuota).toFixed(2)) * (1 - window.colorOpacity) + window.colorOpacity;
                                         return pillarColor + opacity + ")"
                                         // // return '#fff';
                                         // console.log(value)
@@ -60,8 +61,9 @@ export default class ErrorModalChart extends ModalChart {
                                 color: function (value) {
                                     let pillarColor;
                                     // pillarColor = value.seriesName == '平均响应时间' ? 'rgba(255,235,11,' : 'rgba(102,220,108,';
-                                    pillarColor = 'rgba(26, 177, 245, ';
-                                    let opacity = Number((value.data / maxQuota).toFixed(2)) * (1 - 0.5) + 0.5;
+                                    pillarColor = themeChange('overviewPillarColor',theme);
+                                    let opacity = Number((value.data / maxQuota).toFixed(2)) * (1 - window.colorOpacity) + window.colorOpacity;
+                                    return pillarColor + opacity + ")"
                                     return pillarColor + opacity + ")"
                                 }
                             }

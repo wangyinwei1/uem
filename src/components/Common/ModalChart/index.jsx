@@ -47,6 +47,28 @@ export default class ModalChart extends React.Component {
         this.seriesDatasLocal = nextprops.mapData.series;
         this.total = nextprops.mapData.total;
         this.pillarState = nextprops.pillarState;
+        // 根据主题改变颜色
+        this.config = modalChartConfig.mergeDeep({
+            xAxis: {
+                axisLabel: { textStyle: { color: themeChange('legendTextColor', nextprops.theme) } },
+            },
+            yAxis: [
+                {
+                    axisLine: { lineStyle: { color: themeChange('modalLineColor', nextprops.theme) } },
+                    axisLabel: { textStyle: { color:  themeChange('legendTextColor', nextprops.theme), baseline: 'bottom' } },
+                },
+                {
+                    axisLine: { lineStyle: { color: themeChange('modalLineColor', nextprops.theme) } },
+                    axisLabel: { textStyle: { color:  themeChange('legendTextColor', nextprops.theme), baseline: 'bottom' } },
+                }
+            ],
+            // series: nextprops.seriesDatas
+            series: [{
+                itemStyle: {
+                    normal: {color: '#fff'}
+                }
+            }]
+        });
         this.displayModalChart();
 
         // if (this.echart) {
@@ -97,8 +119,8 @@ export default class ModalChart extends React.Component {
         }
         return (
            <div className={styles["modal-chart"]}>
-                {this.total > 10 && <div onClick={this.showModal} className={styles['check-all']}>{locale('查看全部')}</div>}
-                {/* <div onClick={this.showModal} className={styles['check-all']}>{locale('查看全部')}</div> */}
+                {/* {this.total > 10 && <div onClick={this.showModal} className={styles['check-all']}>{locale('查看全部')}</div>} */}
+                <div onClick={this.showModal} className={styles['check-all']}>{locale('查看全部')}</div>
                 <Modal
                     title={pillarStateEnum[this.pillarState]}
                     className={styles['modalChart-pillar']}

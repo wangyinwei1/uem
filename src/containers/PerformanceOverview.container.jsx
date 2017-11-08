@@ -67,11 +67,13 @@ export default class PerformanceOverview extends React.Component {
                         selectStatus={this.selectStatus.bind(this)}
                         mapStatus={this.mapStatus}
                         platform={platform}
+                        theme={theme}
                     />
                     <PerformanceModalChart 
                         mapData={mapData}
                         mapStatus={this.mapStatus}
                         pillarState={this.pillarStatus}
+                        theme={theme}
                     />
                 </Spin>
             </div>

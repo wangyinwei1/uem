@@ -107,6 +107,7 @@ class UserMapChart extends Component {
 
     render() {
         const { activeMap,activePillar } = this.state;
+        const theme = this.props.theme;
         let pillarConfig, mapConfig, yAxis, series, yAxisInCN=[],mapSeriesData = [], _yAxis = [], _series = [];
         yAxis = this.props.mapData.yAxis;
         series = this.props.mapData.series;
@@ -141,11 +142,34 @@ class UserMapChart extends Component {
             .updateIn(['series', 0, 'itemStyle', 'normal', 'color'], () => function (value) {
                 let maxUv = Math.max.apply(null, series);
                 let opacity = Number((value.data / maxUv).toFixed(2))*(1-window.colorOpacity) + window.colorOpacity;
-                return 'rgba(3,169,245,' + opacity + ")";
+                return themeChange('overviewPillarColor',theme) + opacity + ")";
             });
         // console.log('pillarConfig==========',pillarConfig.toJS(),yAxis,yAxisInCN);    
-        mapConfig = this.tempConfig.get(activeMap).updateIn(['series', 0, 'data'], () => mapSeriesData).updateIn(['visualMap',0,'max'], ()=> series.length > 0 ? Math.max.apply(null, series) : 1)
-            .updateIn(['visualMap',0,'text'], ()=> this.state.activePillar == 'sessionCount' ? ['会话数'] : ['访客数']);
+        mapConfig = this.tempConfig.get(activeMap).mergeDeep({
+            visualMap: [{
+                inRange: {
+                    color: themeChange('mapColorInRange', theme),
+                },
+                textStyle: {
+                    color: themeChange('visualMapText', theme)
+                },
+            }],
+            series:[{
+                itemStyle: {
+                    normal: {
+                        areaColor: themeChange('normalAreaColor', theme),
+                        borderColor: themeChange('normalBorderColor', theme)
+                    },
+                    emphasis: {
+                        areaColor: themeChange('emphasisAreaColorOther', theme),
+                        borderColor: '#fff',
+                    }
+                }
+            }]
+            
+        })
+        .updateIn(['series', 0, 'data'], () => mapSeriesData).updateIn(['visualMap',0,'max'], ()=> series.length > 0 ? Math.max.apply(null, series) : 1)
+        .updateIn(['visualMap',0,'text'], ()=> this.state.activePillar == 'sessionCount' ? ['会话数'] : ['访客数']);
 
         return (
             <div className={styles['map-chart']}>
@@ -167,9 +191,11 @@ class UserMapChart extends Component {
                         chartId="map"  className={styles['map-chart']}
                         options={config.get('default').mergeDeep(mapConfig).toJS()}
                         clickUpdateMap={this.clickUpdateMap.bind(this)}
+                        theme={theme}
                     />
                     <BarChart chartId="bar"  className={styles['bar-chart']}
                         options={config.get('default').mergeDeep(pillarConfig)}
+                        theme={theme}
                     />
                 </div>
             </div>

@@ -12,6 +12,7 @@ export default class PerformanceModalChart extends ModalChart {
         let maxPageNum = Math.ceil(this.total / 10);
         let currentPage = this.state.defaultCurrent;
         let total = this.total;
+        const theme = this.props.theme;
         if(currentPage < maxPageNum){
             this.state = {
                 ...this.state,
@@ -27,7 +28,7 @@ export default class PerformanceModalChart extends ModalChart {
                                 normal:{
                                     color: function (value) {
                                         let pillarColor;
-                                        pillarColor = value.seriesName == '平均响应时间' ? 'rgba(255,235,11,' : 'rgba(102,220,108,';
+                                        pillarColor = value.seriesName == '平均响应时间' ? themeChange('perforPillarColor1',theme) : themeChange('perforPillarColor2',theme);
                                         let opacity = Number((value.data / maxQuota).toFixed(2)) * (1 - window.colorOpacity) + window.colorOpacity;
                                         return pillarColor + opacity + ")"
                                         // // return '#fff';
@@ -55,7 +56,7 @@ export default class PerformanceModalChart extends ModalChart {
                             normal: {
                                 color: function (value) {
                                     let pillarColor;
-                                    pillarColor = value.seriesName == '平均响应时间' ? 'rgba(255,235,11,' : 'rgba(102,220,108,';
+                                    pillarColor = value.seriesName == '平均响应时间' ? themeChange('perforPillarColor1',theme) : themeChange('perforPillarColor2',theme);
                                     let opacity = Number((value.data / maxQuota).toFixed(2)) * (1 - window.colorOpacity) + window.colorOpacity;
                                     return pillarColor + opacity + ")"
                                 }

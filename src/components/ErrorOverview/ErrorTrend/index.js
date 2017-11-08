@@ -21,6 +21,7 @@ class ErrorTrend extends Component {
     render() {
         const trend = this.props.errorTrend;
         let yAxisMax1, yAxisMax2;
+        const theme = this.props.theme;
         if (trend.clickNum && Math.max.apply(null, trend.clickNum.map((item) => item.value)) < 3) {
             yAxisMax1 = 3;
         }
@@ -37,7 +38,9 @@ class ErrorTrend extends Component {
                 }, {
                     name: locale('出错次数')
                 }],
+                textStyle: {color: themeChange('legendTextColor',theme)}
             },
+            color: themeChange('errorLegendColor',theme),
             xAxis: [{
                 data: trend.errorCount && trend.errorCount.map((val, i) => {
                     let selectTime = trend.errorCount[i].endTime - trend.errorCount[i].startTime;
@@ -72,7 +75,17 @@ class ErrorTrend extends Component {
                 }, {
                     name: locale('点击数')
                 }],
+                textStyle: {color: themeChange('legendTextColor',theme)}
             },
+            yAxis: [{
+            },{
+                axisLine: {
+                    lineStyle: {
+                        color: themeChange('titleColor',theme)
+                    }
+                }
+            }],
+            color: themeChange('errorLegendColorMobile',theme),
             xAxis: [{
                 data: trend.errorCount && trend.errorCount.map((val, i) => {
                     let selectTime = trend.errorCount[i].endTime - trend.errorCount[i].startTime;
@@ -97,14 +110,14 @@ class ErrorTrend extends Component {
                 }
             ]
         })
-        let options = sessionStorage.getItem('UEM_platfrom') == 'pc' ? optionsPC : optionsMobile;
+        let options = sessionStorage.getItem('UEM_platform') == 'pc' ? optionsPC : optionsMobile;
         return (
             <div>
                 <Row>
                     <Col className={styles['error-trend']}>
                         <div className={cls('tile-head')}>{locale('错误趋势')}</div>
                         <div className={cls('tile-body')}>
-                            <LineChart group="ErrorTrend" chartId="ErrorTrend" options={options} />
+                            <LineChart group="ErrorTrend" chartId="ErrorTrend" options={options} theme={this.props.theme} />
                         </div>
                     </Col>
                     {/*<Col className={styles['apdex-chart']}>

@@ -1,13 +1,134 @@
 
 !function () {
     window.echartColor = {
-        "test":{
-            blue: '#00c0fc',
-            white: '#000'
-        },
-        "test2":{
+        "overviewLegend":{
             blue:['#66dc6a', '#00c0ff'],
-            white: ['#f00','#f0f']
-        }
+            white: ['#76e7c1','#40c9e6']
+        },
+        'titleColor': {
+            blue: '#70c3fb',
+            white: '#6c7480'
+        },
+        'axisLineColor': {
+            blue: '#70c3fb',
+            white: '#6c7480'
+        },
+        'axisSplitLineColor': {
+            blue: '#236592',
+            white: '#eff1f3'
+        },
+        'tooltipBgColor':{
+            blue: 'rgba(50,50,50,0.7)',
+            white: 'rgba(255,255,255,0.8)'
+        },
+        'tooltipText': {
+            blue:'#fff',
+            white: '#6d7480'
+        },
+        'legendTextColor': {
+            blue: '#fff',
+            white: '#6c7480'
+        },
+        'normalAreaColor':{
+            blue: 'rgba(0, 0, 0, 0)',
+            white: '#e4e7eb'
+        },
+        'normalBorderColor': {
+            blue: '#5eb1e7',
+            white: '#fff'
+        },
+        'emphasisAreaColor': {
+            blue:'#03a9f5',
+            white: '#7c92f7'
+        },
+        'emphasisAreaColorOther':{
+            blue:'#03a9f5',
+            white: '#cfd7fc'
+        },
+        'modalLineColor':{
+            blue: '#3479b0',
+            white: '#e4e7eb'
+        },
+        // 'emphasisBorderColor':{
+        //     blue: '#fff',
+        //     white: ''
+        // }
+        'mapColorInRange': {
+            blue: ['#195d95', '#1767a2', '#1470ae', '#1275b5', '#0e83c7', '#0a90d6', '#0997de', '#03a9f5'],
+            white:['#e4e7eb','#cfd7fc','#bbc7fb','#aab8fa','#97a9f9','#889cf8','#7e93f7','#7c92f7']
+        },
+        'visualMapText' : {
+            blue: '#fff',
+            white: '#6c7480'
+        },
+        'overviewPillarColor': {
+            blue: 'rgba(26, 177, 245, ',
+            white: 'rgba(124,146,247, '
+        },
+        'perforLegendColor': {
+            blue: ['#ffeb0b', '#66dc6a', '#00c0fc'],
+            white: ['#73e6bf','#f7987a','#63a4ff']
+        },
+        'apdexAreaColor':{
+            blue:[
+                'rgba(66,60,83,0.8)', 'rgba(66,60,83,0.8)', 'rgba(66,60,83,0.8)', 'rgba(66,60,83,0.8)', 'rgba(66,60,83,0.8)',
+                'rgba(65,89,77,0.8)', 'rgba(65,89,77,0.8)', 'rgba(65,89,77,0.8)',
+                'rgba(29,75,76,0.8)', 'rgba(29,75,76,0.8)'
+            ],
+            white: [
+                '#fce0dd', '#fce0dd', '#fce0dd', '#fce0dd', '#fce0dd',
+                '#fff8e5', '#fff8e5', '#fff8e5',
+                '#e7fbf2', '#e7fbf2'
+            ]
+        },
+        'apdexLineColor': {
+            blue: ['yellow'],
+            white: ['#fe8b68']
+        },
+        'satisfaction':{
+            blue: '#66dc6b',
+            white: '#73e6bf'
+        },
+        'acceptable':{
+            blue: '#ffec0b',
+            white: '#fbda65'
+        },
+        'displeasure':{
+            blue: '#ff5251',
+            white: '#ea7886'
+        },
+        'perforPillarColor1':{
+            blue: 'rgba(255,235,11,' ,
+            white: 'rgba(255,224,77,'
+        },
+        'perforPillarColor2':{
+            blue: 'rgba(102,220,108,' ,
+            white: 'rgba(115,230,191,'
+        },
+        'errorLegendColor':{
+            blue: ['#ffeb0b', '#66dc6a', '#00c0ff'],
+            white: ['#78e7c1','#fd8f6d','#f78494']
+        },
+        'errorLegendColorMobile':{
+            blue: [ '#66dc6a', '#00c0ff'],
+            white: ['#fd8f6d','#f78494']
+        },
+        'errorColorInRange': {
+            blue: ["#564e60","#78575a","#915e55","#ab6450","#c66b4b","#de7146","#f17642","#fe7a3f"],
+            white: ['#fff','#feeff1','#fbd5da','#f9bec7','#f7a4b0','#f48b9a', '#f3798a','#f27183']
+        },
+        'errorPillarColor': {
+            blue: 'rgba(255,123,63,',
+            white: 'rgba(242,113,131,'
+        },
+        'userLegendColor':{
+            blue: ['#ffeb0b', '#66dc6a', '#00c0ff'],
+            white: ['#73e6bf','#fd8b67','#8ea2f8']
+        },
+        // 'userColorInRange':{
+        //     blue: ['#195d95', '#1767a2', '#1470ae', '#1275b5', '#0e83c7', '#0a90d6', '#0997de', '#03a9f5'].reverse(),
+        //     white: [''].reverse()
+        // }
+
     }
 }();

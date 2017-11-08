@@ -42,6 +42,7 @@ export default class Overview extends React.Component {
             onGetTrend,
             onGetUserDistribution
         } = this.props.overviewStore;
+        const { theme } = this.props.frameStore;
         // 其他也有用到apdex的地方
         window.apdex =  deploy.apdex ;
         const { loading } = this.state;
@@ -54,26 +55,31 @@ export default class Overview extends React.Component {
                         getRealTimeData={onGetRealTimeData}
                         getApdex={onGetApdex}
                         apdex={deploy.apdex}
+                        theme={theme}
                     /> : <CruxMobile
                         realTimeData={realTimeData}
                         getRealTimeData={onGetRealTimeData}
                         getApdex={onGetApdex}
                         apdex={deploy.apdex}
+                        theme={theme}
                     />}
                      <Quotas
                         trend={trend}
                         trendMobile={trendMobile}
                         getTrend={onGetTrend}
+                        theme={theme}
                     /> 
                     <Atlas
                         getUserDistribution={onGetUserDistribution}
                         userDistribution={userDistribution}
                         selectStatus={this.selectStatus.bind(this)}
+                        theme={theme}
                     />
                     <OverviewModalChart 
                         mapData={userDistribution}
                         pillarState={'userDistribution'}
                         mapStatus={this.mapStatus}
+                        theme={theme}
                     />
                 </Spin>
             </div>

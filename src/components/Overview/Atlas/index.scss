@@ -1,6 +1,6 @@
 @import '../../../assets/styles/_mixin';
-$var_default: ();
-$var_white: ();
+$var_default: (color1:#113860,color2:#5E8BBD,color3:#113860 );
+$var_white: (color1:#fff,color2:#6c7480,color3:#d5ddeb);
 
 @mixin getTheme($map){
     .atlas {
@@ -50,8 +50,9 @@ $var_white: ();
                 }
                 &.not-active {
                     padding: 0 10px;
-                    background-color: #113860;
-                    color: #5E8BBD;
+                    background-color: map-get($map, color1);
+                    color: map-get($map, color2);
+                    border:1px solid map-get($map, color3);
                     cursor: pointer;
                 }
             }

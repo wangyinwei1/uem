@@ -1,65 +1,86 @@
-.check-all {
-    font-size: 12px;
-    border: none;
-    color: #70c3fb;
-    // z-index: 999;
-    cursor: pointer;
-    position: absolute;
-    right: 28px;
-    bottom: 30px;
-}
-.webModal{
-    :global {
-        .ant-modal {
-            height: 680px;
-            width: 678px !important;
-            top: 18%;
-            padding-bottom: 0px;
-        }
-        .ant-modal-content {
-            .ant-modal-header {
-                background: #1d6aa7;
-                height: 50px;
-                border-bottom: 1px solid #135991;
-                .ant-modal-title {
-                    color: #fff;
-                }
+@import '../../../assets/styles/_mixin';
+$var_default: (color1: #70c3fb,color2:#1d6aa7,color3:#135991,color4:#fff,color5:#112f4f,color6: #5D8AB9,color7:rgba(0, 15, 30, 0.4),
+color8:#4386B9,color9: #FFF,color10:#103e60
+);
+$var_white: (color1: #6c7480,color2:#fff,color3: #e4e7eb, color4:#6c7480,color5: #fff,color6: #6c7480,color7:#fff,
+color8:#d5ddeb,color9: #5D8AB9,color10:#6c7480
+);
+@mixin getTheme($map){
+    .check-all {
+        font-size: 12px;
+        border: none;
+        color: map-get($map,color1);
+        // z-index: 999;
+        cursor: pointer;
+        position: absolute;
+        right: 28px;
+        bottom: 30px;
+    }
+    .webModal{
+        :global {
+            .ant-modal {
+                height: 680px;
+                width: 678px !important;
+                top: 18%;
+                padding-bottom: 0px;
             }
-            .ant-modal-body {
-                height: 630px;
-                .modal-chartPillar {
-                    height: 560px;
+            .ant-modal-content {
+                background: map-get($map,color2);
+                .ant-modal-close-x{
+                    color: map-get($map,color10)
                 }
-                .ant-pagination {
-                    text-align: right;
-                    margin-right: 24px;
-                    margin-bottom: 60px;
+                .ant-modal-header {
+                    background: map-get($map,color2);
+                    height: 50px;
+                    border-bottom: 1px solid map-get($map,color3);
+                    .ant-modal-title {
+                        color: map-get($map,color4);
+                    }
+                }
+                .ant-modal-body {
+                    height: 630px;
+                    .modal-chartPillar {
+                        height: 560px;
+                    }
+                    .ant-pagination {
+                        text-align: right;
+                        margin-right: 24px;
+                        margin-bottom: 60px;
+                    }
                 }
             }
         }
     }
-}
-
-.modalPagination{
-    :global{
-        .ant-pagination-prev .ant-pagination-item-link, .ant-pagination-next .ant-pagination-item-link{
-            color: #5D8AB9 !important;
-            background-color: #112f4f !important;
-            border: 0px !important;
+    
+    .modalPagination{
+        :global{
+            .ant-pagination-item{
+                background-color: map-get($map,color7)
+            }
+            .ant-pagination-prev, .ant-pagination-next, .ant-pagination-jump-prev, .ant-pagination-jump-next{
+                color: map-get($map,color4) !important;
+                background-color: map-get($map,color5);
+                border: 1px solid map-get($map,color8);
+            }
+            .ant-pagination-item-active a, .ant-pagination-item-active:focus a, .ant-pagination-item-active:hover a{
+                color: map-get($map,color9)
+            }
         }
     }
+     
+    // .modal-Chart {
+    //     .modalChart-pillar {
+    //         width: 680px !important;
+    //         :global{
+    //             .ant-modal-content {
+    //             height: 678px;
+    //             .ant-modal-header {
+    //                 background: red;
+    //             }
+    //         }
+    //         }
+    //     }
+    // }
+    
 }
- 
-// .modal-Chart {
-//     .modalChart-pillar {
-//         width: 680px !important;
-//         :global{
-//             .ant-modal-content {
-//             height: 678px;
-//             .ant-modal-header {
-//                 background: red;
-//             }
-//         }
-//         }
-//     }
-// }
+@include setTheme($var_default, $var_white)

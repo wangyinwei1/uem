@@ -15,9 +15,9 @@ export default Immutable.fromJS({
             }],
             top: 15,
             right: 15,
-            textStyle: {
-                color: '#fff'
-            }
+            // textStyle: {
+            //     color: '#fff'
+            // }
         },
         xAxis: [{
             data: _.range(1, 25)

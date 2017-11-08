@@ -15,7 +15,7 @@ class FrameStore {
     @observable lang = localStorage.getItem('UEM_lang');
     @observable theme = getTheme();
     @observable timeType = getTimeType();
-    @observable theme = 'blue';
+    @observable theme = document.getElementsByTagName('html')[0].className;
     @observable appAllVersions = [];
     // {"addTime":1487646979330,"appName":"113kb","appId":"2222","url":"http://10.1.51.113:8080/kb/dashboard.action","status":1}
     // appInfo应该是当前app的info，当添加一个新应用之后，也要更新appInfo

@@ -54,15 +54,11 @@ const globalOptions = Immutable.fromJS({
         left: 15,
         top: 15
     },
-    // legend: {
-    //     itemWidth: 8,
-    //     itemHeight: 8,
-    //     top: 15,
-    //     right: 15,
-    //     textStyle: {
-    //         color: '#fff'
-    //     }
-    // },
+    legend: {
+        textStyle: {
+            color: '#fff'
+        }
+    },
     grid: [{
         left: 20,
         right: 20,
@@ -165,6 +161,7 @@ function mapTooltipFormatterForWorldMap(params, ticket, callback) {
 
 window.Immutable = Immutable;
 
+
 class Chart extends React.PureComponent {
     constructor(props) {
         // debugger
@@ -176,11 +173,18 @@ class Chart extends React.PureComponent {
         this.group = props.group;
         this.customOptions = Immutable.fromJS(props.options || {});
         this._resizeChart = this._resizeChart.bind(this);
-        // new setTheme(props.frameStore.theme);
 
     }
-    componentDidUpdate(){ 
-    }
+    // componentDidMount(){ 
+    //     globalOptions.merge({
+    //         title: {
+    //             textStyle: {
+    //                 color: themeChange('test3',this.props.frameStore.theme),
+    //                 fontSize: 12
+    //             }
+    //         }
+    //     })
+    // }
 
     componentDidMount() {
         if (!this.chartId) {
@@ -262,8 +266,59 @@ class Chart extends React.PureComponent {
                 tooltip: {formatter: this.props.mapState == 'china' ? mapTooltipFormatter : mapTooltipFormatterForWorldMap }
             })
         }
-        // console.log('最终配置',globalOptions.mergeDeep(this.defaultOptions.mergeDeep(this.options)).toJS());
-        return globalOptions.mergeDeep(this.defaultOptions.mergeDeep(this.options)).toJS();
+        // console.log('this.defaultOptions',this.defaultOptions, this.theme);
+        return globalOptions.mergeDeep({
+            title: {
+                textStyle: {
+                    color: themeChange('titleColor',this.props.theme)
+                }
+            },
+            xAxis: [{
+                axisLine: {
+                    lineStyle: {
+                        color: themeChange('axisLineColor',this.props.theme)
+                    }
+                },
+                splitLine: {
+                    lineStyle: {
+                        color: themeChange('axisSplitLineColor',this.props.theme)
+                    }
+                }
+            }],
+            yAxis: [{
+                axisLine: {
+                    lineStyle: {
+                        color: themeChange('axisLineColor',this.props.theme)
+                    }
+                },
+                splitLine: {
+                    lineStyle: {
+                        color: themeChange('axisSplitLineColor',this.props.theme)
+                    }
+                }
+            }],
+            legend: {
+                textStyle: {
+                    color:  themeChange('legendTextColor',this.props.theme)
+                }
+            },
+            color: ['#195d95', '#1767a2', '#1470ae', '#1275b5', '#0e83c7', '#0a90d6', '#0997de', '#03a9f5'].reverse(),
+            tooltip: {
+                show: true,
+                trigger: 'axis',
+                backgroundColor: themeChange('tooltipBgColor',this.props.theme),
+                textStyle: {
+                    color: themeChange('tooltipText',this.props.theme)
+                },
+                // formatter: formatterFoo,
+                axisPointer: {
+                    type: 'shadow',
+                    shadowStyle: {
+                        color: 'rgba(0, 0, 0, .1)'
+                    }
+                }
+            }
+        }).mergeDeep(this.defaultOptions.mergeDeep(this.options)).toJS();
  
 
     }

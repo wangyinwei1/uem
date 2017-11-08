@@ -18,7 +18,9 @@ class Quotas extends Component {
     quotasMobile(){
         const options={};
         ['avgRspTime','clickNum','errorCount','sessionCount','avgUiRspTime'].forEach(type => {
-            options[type]= config.get('default').mergeDeep(config.get(type))
+            options[type]= config.get('default').mergeDeep(config.get(type)).mergeDeep({
+                color: themeChange('overviewLegend',this.props.theme),
+            })
             .setIn(['series', 0, 'data'], this.props.trendMobile[type]['today'])
             .setIn(['series', 1, 'data'], this.props.trendMobile[type]['yesterday']).setIn(['tooltip','formatter'],this.formatterForOverview);
         })
@@ -28,19 +30,19 @@ class Quotas extends Component {
                     <Col span={8}>
                         <div className={cls('tile-head')}>{locale('启动次数')}</div>
                         <div className={cls('tile-body')}>
-                            <LineChart group="quotas" chartId="sessionCount" options={options.sessionCount.toJS()} />
+                            <LineChart group="quotas" chartId="sessionCount" options={options.sessionCount.toJS()} theme={this.props.theme}/>
                         </div>
                     </Col>
                     <Col span={8}>
                         <div className={cls('tile-head')}>{locale('点击数')}</div>
                         <div className={cls('tile-body')}>
-                            <LineChart group="quotas" chartId="cliclNum" options={options.clickNum.toJS()} />
+                            <LineChart group="quotas" chartId="cliclNum" options={options.clickNum.toJS()} theme={this.props.theme}/>
                         </div>
                     </Col>
                     <Col span={8}>
                         <div className={cls('tile-head')}>{locale('原生UI平均响应时间')}</div>
                         <div className={cls('tile-body')}>
-                            <LineChart group="quotas" chartId="avgUiRspTime" options={options.avgUiRspTime.toJS()} />
+                            <LineChart group="quotas" chartId="avgUiRspTime" options={options.avgUiRspTime.toJS()} theme={this.props.theme} />
                         </div>
                     </Col>
                 </Row>
@@ -48,13 +50,13 @@ class Quotas extends Component {
                     <Col span={12}>
                         <div className={cls('tile-head')}>{locale('H5平均响应时间')}</div>
                         <div className={cls('tile-body')}>
-                            <LineChart group="quotas" chartId="avgRspTime" options={options.avgRspTime.toJS()} />
+                            <LineChart group="quotas" chartId="avgRspTime" options={options.avgRspTime.toJS()} theme={this.props.theme}/>
                         </div>
                     </Col>
                     <Col span={12}>
                         <div className={cls('tile-head')}>{locale('错误数')}</div>
                         <div className={cls('tile-body')}>
-                            <LineChart group="quotas" chartId="errorCount" options={options.errorCount.toJS()} />
+                            <LineChart group="quotas" chartId="errorCount" options={options.errorCount.toJS()} theme={this.props.theme}/>
                         </div>
                     </Col>
                 </Row>
@@ -103,9 +105,11 @@ class Quotas extends Component {
         const { trend } = this.props;
         const options = {};
         ['pv', 'uv', 'clickNum', 'avgRspTime', 'errorCount'].forEach(type => {
-            options[type] = config.get('default').mergeDeep(config.get(type))
-                .setIn(['series', 0, 'data'], trend[type]['today'])
-                .setIn(['series', 1, 'data'], trend[type]['yesterday']).setIn(['tooltip','formatter'],this.formatterForOverview);
+            options[type] = config.get('default').mergeDeep(config.get(type)).mergeDeep({
+                color: themeChange('overviewLegend',this.props.theme),
+            })
+            .setIn(['series', 0, 'data'], trend[type]['today'])
+            .setIn(['series', 1, 'data'], trend[type]['yesterday']).setIn(['tooltip','formatter'],this.formatterForOverview);
         });
         // const optionsMobile = {};
         // ['']
@@ -117,19 +121,19 @@ class Quotas extends Component {
                     <Col span={8}>
                         <div className={cls('tile-head')}>{locale('浏览量PV')}</div>
                         <div className={cls('tile-body')}>
-                            <LineChart group="quotas" chartId="pv" options={options.pv.toJS()} />
+                            <LineChart group="quotas" chartId="pv" options={options.pv.toJS()} theme={this.props.theme}/>
                         </div>
                     </Col>
                     <Col span={8}>
                         <div className={cls('tile-head')}>{locale('访问量UV')}</div>
                         <div className={cls('tile-body')}>
-                            <LineChart group="quotas" chartId="uv" options={options.uv.toJS()} />
+                            <LineChart group="quotas" chartId="uv" options={options.uv.toJS()} theme={this.props.theme}/>
                         </div>
                     </Col>
                     <Col span={8}>
                         <div className={cls('tile-head')}>{locale('点击数')}</div>
                         <div className={cls('tile-body')}>
-                            <LineChart group="quotas" chartId="clickNum" options={options.clickNum.toJS()} />
+                            <LineChart group="quotas" chartId="clickNum" options={options.clickNum.toJS()} theme={this.props.theme}/>
                         </div>
                     </Col>
                 </Row>
@@ -137,13 +141,13 @@ class Quotas extends Component {
                     <Col span={12}>
                         <div className={cls('tile-head')}>{locale('平均响应时间')}</div>
                         <div className={cls('tile-body')}>
-                            <LineChart group="quotas" chartId="avgRspTime" options={options.avgRspTime.toJS()} />
+                            <LineChart group="quotas" chartId="avgRspTime" options={options.avgRspTime.toJS()} theme={this.props.theme}/>
                         </div>
                     </Col>
                     <Col span={12}>
                         <div className={cls('tile-head')}>{locale('错误数')}</div>
                         <div className={cls('tile-body')}>
-                            <LineChart group="quotas" chartId="errorCount" options={options.errorCount.toJS()} />
+                            <LineChart group="quotas" chartId="errorCount" options={options.errorCount.toJS()} theme={this.props.theme} />
                         </div>
                     </Col>
                 </Row>

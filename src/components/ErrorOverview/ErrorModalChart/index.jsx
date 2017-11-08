@@ -15,6 +15,7 @@ export default class ErrorModalChart extends ModalChart {
         let maxPageNum = Math.ceil(this.total / 10);
         let currentPage = this.state.defaultCurrent;
         let total = this.total;
+        const theme = this.props.theme;
         if(currentPage < maxPageNum){
             this.state = {
                 ...this.state,
@@ -29,11 +30,8 @@ export default class ErrorModalChart extends ModalChart {
                             itemStyle: {
                                 normal:{
                                     color: function (value) {
-                                        let pillarColor;
-                                        // pillarColor = value.seriesName == '用户错误率' ? 'rgba(255,235,11,' : 'rgba(102,220,108,';
-                                        pillarColor = 'rgba(255,122,63, ';
                                         let opacity = Number((value.data / maxQuota).toFixed(2)) * (1 - 0.5) + 0.5;
-                                        return pillarColor + opacity + ")"
+                                        return themeChange('errorPillarColor',theme) + opacity + ")"
                                         // // return '#fff';
                                         // console.log(value)
                                     }
@@ -58,11 +56,9 @@ export default class ErrorModalChart extends ModalChart {
                         itemStyle: {
                             normal: {
                                 color: function (value) {
-                                    let pillarColor;
-                                    // pillarColor = value.seriesName == '平均响应时间' ? 'rgba(255,235,11,' : 'rgba(102,220,108,';
-                                    pillarColor = 'rgba(255,122,63, ';
+                                    
                                     let opacity = Number((value.data / maxQuota).toFixed(2)) * (1 - 0.5) + 0.5;
-                                    return pillarColor + opacity + ")"
+                                    return themeChange('errorPillarColor',theme) + opacity + ")"
                                 }
                             }
                         },

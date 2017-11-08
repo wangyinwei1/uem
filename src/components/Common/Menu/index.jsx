@@ -142,9 +142,7 @@ class Menu extends React.Component {
         // action 改变theme，被监听.
         onChangeTheme(skin);
         document.cookie = "skin=" + skin;
-        console.log('skin-------',skin, document.cookie);
 
-        // history.go(0); 
     }
 
     toggleAddAppModal(visible) {

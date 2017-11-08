@@ -54,12 +54,49 @@ class Atlas extends Component {
                 sessionCount: series[i]
             })
         }
+        const maxUv = Math.max.apply(null, series);
+        const theme = this.props.theme;
         pillarConfig = config.get('bar').updateIn(['yAxis', 0, 'data'], () => activeMap == 'china' ? yAxis.slice(0, 10).reverse() : yAxisInCN.slice(0, 10).reverse())
-            .updateIn(['series', 0, 'data'], () => series.slice(0, 10).reverse())
-            .updateIn(['series', 0, 'name'], () => locale('用户会话数'));
+        .mergeDeep({
+            series: [{
+                itemStyle:{
+                    normal:{
+                        color: function(value) {
+                            let opacity = Number(parseInt(value.data) / maxUv)*(1-window.colorOpacity)+window.colorOpacity;
+                            return themeChange('overviewPillarColor',theme) + opacity + ")";
+                        } 
+                    }
+                }
+            }]
+        })    
+        .updateIn(['series', 0, 'data'], () => series.slice(0, 10).reverse())
+        .updateIn(['series', 0, 'name'], () => locale('用户会话数'));
 
-        mapConfig = config.get(activeMap).updateIn(['series', 0, 'data'], () => mapSeriesData).updateIn(['visualMap', 0, 'max'], () => series.length > 0 ? Math.max.apply(null, series) : 1)
-            .updateIn(['visualMap', 0, 'text'], () => [locale('用户会话数')]);
+        mapConfig = config.get(activeMap).mergeDeep({
+            visualMap: [{
+                inRange: {
+                    color: themeChange('mapColorInRange', theme),
+                },
+                textStyle: {
+                    color: themeChange('visualMapText', theme)
+                },
+            }],
+            series:[{
+                itemStyle: {
+                    normal: {
+                        areaColor: themeChange('normalAreaColor', theme),
+                        borderColor: themeChange('normalBorderColor', theme)
+                    },
+                    emphasis: {
+                        areaColor: themeChange('emphasisAreaColor', theme),
+                        borderColor: '#fff',
+                    }
+                }
+            }]
+            
+        })
+        .updateIn(['series', 0, 'data'], () => mapSeriesData).updateIn(['visualMap', 0, 'max'], () => series.length > 0 ? Math.max.apply(null, series) : 1)
+        .updateIn(['visualMap', 0, 'text'], () => [locale('用户会话数')]);
 
         return (
             <div className={styles['atlas']}>
@@ -77,9 +114,11 @@ class Atlas extends Component {
                         mapState={this.state.activeMap}
                         chartId="map" className={styles['map-chart']}
                         options={config.get('default').mergeDeep(mapConfig).toJS()}
+                        theme={this.props.theme}
                     />
                     <BarChart chartId="bar" className={styles['bar-chart']}
                         options={config.get('default').mergeDeep(pillarConfig).toJS()}
+                        theme={this.props.theme}
                     />
                 </div>
             </div>

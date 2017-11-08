@@ -42,7 +42,7 @@ export default class UserOverview extends React.Component {
             onGetUserTrend,
             onGetMapData
         } = this.props.userOverviewStore;
-
+        const { theme } = this.props.frameStore;
         const startTime = this.props.frameStore.timeType;
         const { loading } = this.state;
         return (
@@ -57,17 +57,20 @@ export default class UserOverview extends React.Component {
                         userTrend={userTrend}
                         getUserTrend={onGetUserTrend}
                         startTime = {startTime}
+                        theme={theme}
                     />
                      <UserMapChart
                         mapData={mapData}
                         getMapData={onGetMapData}
                         startTime = {startTime}
                         selectStatus={this.selectStatus.bind(this)}
+                        theme={theme}
                     />
                     <UserModalChart 
                         mapData={mapData}
                         pillarState={this.pillarStatus}
                         mapStatus={this.mapStatus}
+                        theme={theme}
                     />
                 </Spin>
             </div>
