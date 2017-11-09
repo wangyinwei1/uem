@@ -227,6 +227,7 @@ export default class PerformanceDetail extends React.Component {
             domLoadingTime,
             avgRspTime
         } = info;
+        const { theme } = this.props.frameStore;
         // const { panelList } = this.props.sidePanelStore;
         // const { specificUrls, uiType } = panelList[panelList.length - 1];
         const { path, specificUrls,requestPath } = this.props.data;
@@ -269,7 +270,14 @@ export default class PerformanceDetail extends React.Component {
                     :
                     <FlowChart threadInfo={info} />
                 }
-                <Trend itemId={itemId} displayType={this.display} trend={trend} uiType={info.uiType} type={this.props.type} specificUrls={Boolean(specificUrls) && specificUrls.length > 0 ? specificUrls : path} />
+                <Trend itemId={itemId} 
+                    displayType={this.display} 
+                    trend={trend} 
+                    uiType={info.uiType} 
+                    type={this.props.type} 
+                    specificUrls={Boolean(specificUrls) && specificUrls.length > 0 ? specificUrls : path} 
+                    theme={theme}
+                />
                 {samplesList.length > 0 && <Analysis
                         sampleAnalyzeData={sampleAnalyzeData}
                         uiType={uiType}
@@ -288,6 +296,7 @@ export default class PerformanceDetail extends React.Component {
                         changeUser={onChangeUser}
                         changeType={onChangeType}
                         changeResourcePage={onChangeResourcePage}
+                        theme={theme}
                     />}
             </DetailWrap>
         );

@@ -1,87 +1,127 @@
-.metrics {
-    padding: 20px;
-    background-color: #125389 !important;
-}
-
-
-.props {
-    overflow: hidden;
-    margin-bottom: 20px;
-    font-size: 13px;
-    dl {
-        float: left;
+@import '../../../assets/styles/_mixin';
+$var_default: (color1:#125389, color2:#fff, color3:#70C3FB,color4:#0A497B,color5:#1C426B,color6:#5E8BBD,
+color7:#2DB7F5,color8: #1C426B
+);
+$var_white:(color1:#f8fbfd, color2:#6c7480,color3:#6c7480,color4:#edf2f6,color5:#edf2f6,color6:#6c7480,
+color7: #6c7480,color8: #acccfb
+);
+@mixin getTheme($map){
+    .metrics {
+        padding: 20px;
+        background-color: map-get($map,color1) !important;
+    }
+    
+    
+    .props {
         overflow: hidden;
-        dt,
-        dd {
+        margin-bottom: 20px;
+        font-size: 13px;
+        color: map-get($map,color2);
+        dl {
             float: left;
-            margin-right: 12px;
-        }
-        &:first-child {
-            width: 30%;
-        }
-        &:last-child {
-            width: 70%;
+            overflow: hidden;
+            dt,
             dd {
-                color: #70C3FB;
-                :global {
-                    .ant-select{
-                        width: 500px !important;
+                float: left;
+                margin-right: 12px;
+            }
+            &:first-child {
+                width: 30%;
+            }
+            &:last-child {
+                width: 70%;
+                dd {
+                    color: map-get($map,color3);
+                    :global {
+                        .ant-select{
+                            width: 500px !important;
+                        }
+                        .url_selectDropdown{
+                            background-color: map-get($map,color5);
+                        }
+                        .ant-select-selection {
+                        background-color: map-get($map,color5);
+                        color: map-get($map,color6);
+                        border-radius: 1px ;
+                        }
+                        .ant-select-dropdown{
+                            background-color: map-get($map,color5) !important;
+                        }
+                        .ant-select-dropdown-menu-item{
+                            color: map-get($map,color6);
+                        }
+                        // :global{
+                        //     .ant-select{
+                        //         .ant-select-dropdown {
+                        //             background-color: #1D6AA7;
+                        //             left: 696px ;
+                        //             top: 162px ;
+                        //             width: 260px;
+                        //         }
+                        //     }
+                            
+                        // }
                     }
-                    .ant-select-selection {
-                    // margin-left: 12px;
-                    // width: 320px;
-                    border-radius: 1px ;
-                    }
-                    // :global{
-                    //     .ant-select{
-                    //         .ant-select-dropdown {
-                    //             background-color: #1D6AA7;
-                    //             left: 696px ;
-                    //             top: 162px ;
-                    //             width: 260px;
-                    //         }
-                    //     }
-                        
-                    // }
                 }
             }
         }
     }
-}
-.list {
-    overflow: hidden;
-    margin-left: -8px;
-    li {
-        float: left;
-        width: 33.333%;
-        height: 50px;
-        border-left: 8px solid transparent;
-        line-height: 50px;
-        margin-top: 10px;
-        &:nth-child(1),
-        &:nth-child(2),
-        &:nth-child(3) {
-            margin-top: 0;
-        }
-
-        dl {
-            overflow: hidden;
-            padding: 0 20px;
-            background-color: #0A497B;
-        }
-        .key {
+    .url_selectDropdown{
+        :global{
+            // .ant-select-dropdown{
+            //     background-color: map-get($map,color5);
+            // }
+            .ant-select-dropdown-menu{
+                background-color: map-get($map,color5);
+            }
+            .ant-select-dropdown-menu-item{
+                color: map-get($map,color7);
+                &:hover{
+                    background-color: map-get($map,color8);
+                }
+            }
+            // .ant-select-dropdown-menu-item :hover{
+            //     color: map-get($map,color7);
+            // }
+        } 
+    }
+    .list {
+        overflow: hidden;
+        margin-left: -8px;
+        li {
             float: left;
-            width: 90px;
-            color: #70C3FB;
-            font-size: 14px;
-        }
-        .value {
-            overflow: hidden;
-            margin-left: 90px;
-            text-align: right;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-            font-size: 18px;
+            width: 33.333%;
+            height: 50px;
+            border-left: 8px solid transparent;
+            line-height: 50px;
+            margin-top: 10px;
+            &:nth-child(1),
+            &:nth-child(2),
+            &:nth-child(3) {
+                margin-top: 0;
+            }
+    
+            dl {
+                overflow: hidden;
+                padding: 0 20px;
+                background-color: map-get($map,color4);
+                color:  map-get($map,color2);
+            }
+            .key {
+                float: left;
+                width: 90px;
+                color: map-get($map,color3);
+                font-size: 14px;
+            }
+            .value {
+                overflow: hidden;
+                margin-left: 90px;
+                text-align: right;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                font-size: 18px;
+            }
         }
     }
 }
+@include setTheme($var_default,$var_white);

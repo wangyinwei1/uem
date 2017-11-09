@@ -1,89 +1,105 @@
-.user-list-wrap {
-    padding: 20px 0;
-}
+@import '../../../assets/styles/_mixin';
 
-.user-list {
-    overflow-y: scroll;
-    margin-right: 6px;
-    padding: 0 0 0 12px;
-    height: 350px;
-    &::-webkit-scrollbar-track {
-        border-radius: 0;
-    }
-    &::-webkit-scrollbar {
-        width: 3px;
-    }
-    &::-webkit-scrollbar-thumb {
-        border: 0;
-    }
-    .loadMoreBtn{
-        line-height: 40px;
-        height: 40px;
-        text-align: center;
-        color: #6499c7;
-        cursor: pointer;
-    }
-}
+$var_default: (color1:#fff,color2:#0B4371,color3:#093B64,color4:#115FA2,color5:#115FA2,color6:#fff,color7:#52A9F6);
+$var_white: (color1:#6c7480,color2:#fff,color3:#f8fbfd,color4:#6bd9b4,color5:#fff,color6:#4182e6,color7:#6c7480);
 
-.user-item {
-    position: relative;
-    right: 0;
-    padding: 6px;
-    height: 38px;
-    font-size: 0;
-    line-height: 26px;
-    cursor: pointer;
-    transition: .2s;
-    &:hover {
-        right: 0;
+@mixin getTheme($map){
+    .user-list-wrap {
+        padding: 20px 0;
     }
-    &:nth-child(odd) {
-        background-color: #0B4371;
+    
+    .user-list {
+        overflow-y: scroll;
+        margin-right: 6px;
+        padding: 0 0 0 12px;
+        height: 350px;
+        color: map-get($map,color1);
+        &::-webkit-scrollbar-track {
+            border-radius: 0;
+        }
+        &::-webkit-scrollbar {
+            width: 3px;
+        }
+        &::-webkit-scrollbar-thumb {
+            border: 0;
+        }
+        .loadMoreBtn{
+            line-height: 40px;
+            height: 40px;
+            text-align: center;
+            color: #6499c7;
+            cursor: pointer;
+        }
     }
-    &:nth-child(even) {
-        background-color: #093B64;
-    }
-    & > i,
-    & > span {
-        vertical-align: middle;
-    }
-    & > span {
-        display: inline-block;
-        font-size: 12px;
-    }
-    &.active {
+    
+    .user-item {
         position: relative;
-        background-color: #115FA2;
-        cursor: default;
-        &:before {
-            position: absolute;
-            top: 12px;
-            left: -20px;
-            display: block;
-            width: 0;
-            height: 0;
-            border-width: 8px 10px;
-            border-style: solid;
-            border-color: transparent #115FA2 transparent transparent;
-            content: "";
+        right: 0;
+        padding: 6px;
+        height: 38px;
+        font-size: 0;
+        line-height: 26px;
+        cursor: pointer;
+        transition: .2s;
+        &:hover {
+            right: 0;
+        }
+        &:nth-child(odd) {
+            background-color: map-get($map,color2);
+        }
+        &:nth-child(even) {
+            background-color: map-get($map,color3);
+        }
+        & > i,
+        & > span {
+            vertical-align: middle;
+        }
+        & > span {
+            display: inline-block;
+            font-size: 12px;
+        }
+        &.active {
+            position: relative;
+            background-color: map-get($map,color5);
+            color: map-get($map,color6);
+            .time {
+                float: right;
+                color: map-get($map,color6);
+            }
+            cursor: default;
+            &:before {
+                position: absolute;
+                top: 12px;
+                left: -20px;
+                display: block;
+                width: 0;
+                height: 0;
+                border-width: 8px 10px;
+                border-style: solid;
+                border-color: transparent map-get($map,color4) transparent transparent;
+                content: "";
+            }
+        }
+        :global {
+            .iconfont {
+                margin-right: 5px;
+                font-size: 24px;
+            }
         }
     }
-    :global {
-        .iconfont {
-            margin-right: 5px;
-            font-size: 24px;
-        }
+    
+    .user {
+        overflow: hidden;
+        width: 95px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+    
+    .time {
+        float: right;
+        color: map-get($map,color7);
     }
 }
 
-.user {
-    overflow: hidden;
-    width: 95px;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
+@include setTheme($var_default,$var_white);
 
-.time {
-    float: right;
-    color: #52A9F6;
-}

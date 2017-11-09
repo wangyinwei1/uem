@@ -1,177 +1,224 @@
-.analysis {
-    :global(.tile-body) {
+@import '../../../assets/styles/_mixin';
+$var_default:(color1:#fff,color2:#155A92,color3:#125489,color4:#6CA4CD,color5:#127B55,color6:#0DE717,
+color7:#394B57,color8:#535B5D,color9:#174964,color10:#2987AB,color11:#153253,color12:#57C5F7,color13:transparent,
+color14:#0D3F67,color15:#1B3E67,color16:rgba(13,63,103,.89),color17:rgba(13,63,103,.89),color18:#4386B9,color19:#112f4f,
+color20:#5D8AB9,color21:#4386B9,color22:rgba(0, 15, 30, 0.4),color23:#108ee9
+);
+$var_white: (color1:#6c7480,color2:#e4e7ec,color3:#f8fbfd,color4:#5c94e7,color5:#6bd9b4,color6:#6bd9b4,
+color7:#f5f8fb,color8:#d5ddeb,color9:#5c94e7,color10:#4082e6,color11:#fff,color12:#6c7480,color13:#e4e7eb,
+color14:#fff,color15:#f8fbfd,color16:#e4e7ec,color17:#e4e7eb,color18:#d5ddeb,color19:#f8fbfd,
+color20:#6c7480,color21:#f8fbfd,color22:#fff,color23:#fff
+);
+
+
+@mixin getTheme($map){
+    .analysis {
+        :global(.tile-body) {
+            overflow: hidden;
+            padding: 0;
+            background-color: map-get($map,color3);
+        }
+    }
+    
+    .left-side-wrap {
+        float: left;
+        padding-right: 230px;
+        width: 100%;
+        .left-side {
+            min-height: 500px;
+            border-right: 1px solid map-get($map,color2);
+        }
+    }
+    .right-side-wrap {
+        float: left;
+        margin-left: -230px;
+        width: 230px;
+    }
+    
+    .base-info-wrap {
         overflow: hidden;
-        padding: 0;
-        background-color: #125489;
-    }
-}
-
-.left-side-wrap {
-    float: left;
-    padding-right: 230px;
-    width: 100%;
-    .left-side {
-        min-height: 500px;
-        border-right: 1px solid #155A92;
-    }
-}
-.right-side-wrap {
-    float: left;
-    margin-left: -230px;
-    width: 230px;
-}
-
-.base-info-wrap {
-    overflow: hidden;
-    & > div {
-        padding: 20px;
-    }
-    .base {
-        border-bottom: 1px solid #155A92;
-    }
-    .info {
-        position: relative;
-        padding-right: 110px;
-        border-bottom: 1px solid #155A92;
-        .icons {
-            position: absolute;
-            top: 0;
-            right: 0;
-            padding: 0 20px;
-            width: 110px;
-            height: 63px;
-            text-align: center;
-            line-height: 63px;
-            :global(.iconfont) {
-                margin-right: 2px;
-                font-size: 22px;
-                &:last-child {
-                    margin-right: 0;
+        & > div {
+            padding: 20px;
+        }
+        .base {
+            border-bottom: 1px solid map-get($map,color2);
+        }
+        .info {
+            position: relative;
+            padding-right: 110px;
+            border-bottom: 1px solid map-get($map,color2);
+            color: map-get($map,color1);
+            .icons {    
+                position: absolute;
+                top: 0;
+                right: 0;
+                padding: 0 20px;
+                width: 110px;
+                height: 63px;
+                text-align: center;
+                line-height: 63px;
+                :global(.iconfont) {
+                    margin-right: 2px;
+                    font-size: 22px;
+                    color: map-get($map,color4);
+                    &:last-child {
+                        margin-right: 0;
+                    }
                 }
             }
         }
+        .base-item {
+            display: inline-block;
+            overflow: hidden;
+            padding-right: 10px;
+            width: 33.333%;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            font-size: 12px;
+        }
+        // dl {
+        //     float: left;
+        //     overflow: hidden;
+        //     padding: 0 10px;
+        //     width: 25%;
+        //     height: 60px;
+        //     text-align: center;
+        //     dt {
+        //         color: #70C3FB;
+        //         font-size: 12px;
+        //         line-height: 30px;
+        //     }
+        //     dd {
+        //         overflow: hidden;
+        //         color: #FFFFFF;
+        //         text-overflow: ellipsis;
+        //         white-space: nowrap;
+        //         font-size: 16px;
+        //         line-height: 30px;
+        //     }
+        // }
     }
-    .base-item {
-        display: inline-block;
-        overflow: hidden;
-        padding-right: 10px;
-        width: 33.333%;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        font-size: 12px;
+    
+    .process {
+        .head {
+            overflow: hidden;
+            // height: 60px;
+            // line-height: 60px;
+            padding: 10px;
+            height: 50px;
+            line-height: 50px;
+            :global(.btn) {
+                float: right;
+                padding: 0 10px;
+                height: 30px;
+                border: 1px solid  map-get($map,color6);
+                border-radius: 5px;
+                background-color: map-get($map,color5);
+                color: #FFFFFF;
+                vertical-align: middle;
+                text-align: center;
+                line-height: 28px;
+                cursor: pointer;
+            }
+        }
+        .body {
+        }
     }
-    // dl {
-    //     float: left;
-    //     overflow: hidden;
-    //     padding: 0 10px;
-    //     width: 25%;
-    //     height: 60px;
-    //     text-align: center;
-    //     dt {
-    //         color: #70C3FB;
-    //         font-size: 12px;
-    //         line-height: 30px;
-    //     }
-    //     dd {
-    //         overflow: hidden;
-    //         color: #FFFFFF;
-    //         text-overflow: ellipsis;
-    //         white-space: nowrap;
-    //         font-size: 16px;
-    //         line-height: 30px;
-    //     }
-    // }
-}
-
-.process {
-    .head {
-        overflow: hidden;
-        // height: 60px;
-        // line-height: 60px;
-        padding: 10px;
-        height: 50px;
-        line-height: 50px;
-        :global(.btn) {
+    
+    .resource {
+        padding: 20px;
+        .title {
+            overflow: hidden;
+            height: 32px;
+            line-height: 32px;
+            color: map-get($map,color1);
+            & > span {
+                display: inline-block;
+            }
+        }
+        .main {
+            margin-top: 20px;
+            :global {
+                .ant-table-tbody > tr {
+                    background-color: map-get($map,color14);
+                    color: map-get($map,color1);
+                    &:hover{
+                        background-color: map-get($map,color15);
+                    }
+                }
+                .ant-table-thead > tr > th{
+                    background: map-get($map,color11);
+                    color: map-get($map,color12);
+                    border: 1px solid map-get($map,color13);
+                }
+                .ant-table-tbody > tr > td {
+                    text-align: left;
+                    line-height: 1.5;
+                    word-break: break-all;
+                    border:1px solid map-get($map,color13);
+                }
+                .ant-table-placeholder {
+                    background: map-get($map,color16);
+                    border-bottom: map-get($map,color17);
+                    color: map-get($map,color1);
+                }
+                .ant-pagination-prev ,
+                .ant-pagination-item-link, 
+                .ant-pagination-next, 
+                .ant-pagination-item-link{
+                    border: 1px solid map-get($map,color18);
+                    background: map-get($map,color19);
+                    color: map-get($map,color20);
+                }
+                .ant-pagination-item{
+                    border: 1px solid map-get($map,color21);
+                    background-color: map-get($map,color22);
+                    color: map-get($map,color1);
+                }
+                .ant-pagination-item-active{
+                    background-color: map-get($map,color23);
+                    border-color: #108ee9;
+                    color: map-get($map,color1);
+                }
+                .ant-pagination-item-active a{
+                    color: map-get($map,color1);
+                }
+            }
+        }
+        .btns {
             float: right;
-            padding: 0 10px;
-            height: 30px;
-            border: 1px solid #0DE717;
-            border-radius: 5px;
-            background-color: #127B55;
-            color: #FFFFFF;
-            vertical-align: middle;
-            text-align: center;
-            line-height: 28px;
-            cursor: pointer;
+            .active {
+                border: 1px solid map-get($map,color10);
+                background-color: map-get($map,color9);
+                color: #fff;
+                cursor: default;
+            }
+            li {
+                display: inline-block;
+                margin-left: 6px;
+                width: 66px;
+                height: 28px;
+                border: 1px solid map-get($map,color8);
+                border-radius: 5px;
+                background-color: map-get($map,color7);
+                color: map-get($map,color1);
+                text-align: center;
+                line-height: 26px;
+                cursor: pointer;
+            }
         }
     }
-    .body {
+    .analyze-time-bar {
+        .bar{
+            background-color: #03a9f4;
+            height: 5px;
+            position: relative;
+            top: 0;
+        }
+        .text{
+            width: 65px;
+        }
     }
 }
 
-.resource {
-    padding: 20px;
-    .title {
-        overflow: hidden;
-        height: 32px;
-        line-height: 32px;
-        & > span {
-            display: inline-block;
-        }
-    }
-    .main {
-        margin-top: 20px;
-        :global {
-            .ant-table-tbody > tr {
-                background-color: #0D3F67;
-            }
-            .ant-table-tbody > tr > td {
-                text-align: left;
-                line-height: 1.5;
-                word-break: break-all;
-            }
-            .ant-table-placeholder {
-                background: rgba(13,63,103,.89);
-                border-bottom: rgba(13,63,103,.89);
-                color: #fff;
-            }
-            .ant-pagination-prev .ant-pagination-item-link, .ant-pagination-next .ant-pagination-item-link{
-                border: 0px !important;
-                background: #112f4f !important;
-                color: #5D8AB9 !important;
-            }
-        }
-    }
-    .btns {
-        float: right;
-        .active {
-            border: 1px solid #2987AB;
-            background-color: #174964;
-            cursor: default;
-        }
-        li {
-            display: inline-block;
-            margin-left: 6px;
-            width: 66px;
-            height: 28px;
-            border: 1px solid #535B5D;
-            border-radius: 5px;
-            background-color: #394B57;
-            color: #FFFFFF;
-            text-align: center;
-            line-height: 26px;
-            cursor: pointer;
-        }
-    }
-}
-.analyze-time-bar {
-    .bar{
-        background-color: #03a9f4;
-        height: 5px;
-        position: relative;
-        top: 0;
-    }
-    .text{
-        width: 65px;
-    }
-}
+@include setTheme($var_default, $var_white);

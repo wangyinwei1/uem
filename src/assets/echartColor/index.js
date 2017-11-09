@@ -129,6 +129,34 @@
         //     blue: ['#195d95', '#1767a2', '#1470ae', '#1275b5', '#0e83c7', '#0a90d6', '#0997de', '#03a9f5'].reverse(),
         //     white: [''].reverse()
         // }
+        'performanceTrendColor':{
+            blue: ['#6B7BFF', '#90ED7D', '#03B9FF', '#AADF2D'],
+            white: ['#899ef8','#73e6bf','#f79475','#fbda65']
+        },
+        'performanceTrendColor_1': {
+            blue: ['#90ec7d', '#03a9f3', 'rgb(254,226,92)'],
+            white: ['#8ea2f8','#73e6bf','#f7987a']
+        },
+        'performanceTrendColor_2': {
+            blue: ['#66dc6b', '#ffeb0b', '#ff5252'],
+            white: ['#73e6bf','#fbda65','#ea7886']
+        },
+        'performanceTrendColor_3': {
+            blue: ['#90ED7D', 'rgb(254,226,92)'],
+            white: ['#73e6bf','#f79475']
+        },
+        'perforAnalyzeChart': {
+            blue: '#00a9f7',
+            white: '#f2cb54'
+        },
+        'perforAnalyzeChart_1': {
+            blue: '#63a4ff',
+            white: 'rgb(254,226,92)'
+        },
+        'perforAnalyzeChartText':{
+            blue: '#00a9f7',
+            white: '#6c7480'
+        }
 
     }
 }();

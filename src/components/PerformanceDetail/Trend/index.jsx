@@ -30,14 +30,32 @@ export default class Trend extends React.Component {
     }
     renderTrend() {
         const { activeTrend } = this.state;
-        const { itemId, trend, uiType } = this.props;
+        const { itemId, trend, uiType, theme } = this.props;
         const platform = sessionStorage.getItem('UEM_platform'); 
+
+
         switch (activeTrend) {
             case 0: return (
             platform !== 'pc' && uiType == 'NATIVE' ?
             <BarChart
                 chartId={`trend-${itemId}-${activeTrend}`}
                 options={config.get('default').mergeDeep(config.get('avgRspTimeMobile'))
+                    .mergeDeep({
+                        color: themeChange('performanceTrendColor',theme),
+                        legend: {
+                            textStyle: {
+                                color: themeChange('legendTextColor',theme)
+                            }
+                        },
+                        yAxis: [{
+                            }, {
+                                axisLine: {
+                                    lineStyle: {
+                                        color: themeChange('axisLineColor',theme)
+                                }
+                            }
+                        }],
+                    })
                     .setIn(['xAxis', 0, 'data'], trend.avgRspTime.map(item => {
                         const timeDiff = item.endTime - item.startTime;
                         if (timeDiff <= 1800000) {
@@ -49,10 +67,22 @@ export default class Trend extends React.Component {
                     .setIn(['series', 0, 'data'], trend.avgRspTime)
                     .setIn(['series', 1, 'data'], trend.clickNum)
                     .toJS()}
+                theme={theme}    
             /> :
             <BarChart
                 chartId={`trend-${itemId}-${activeTrend}`}
                 options={config.get('default').mergeDeep(config.get('avgRspTime'))
+                    .mergeDeep({
+                        color: themeChange('performanceTrendColor',theme),
+                        legend: {
+                            textStyle: {color: themeChange('legendTextColor',theme)}
+                        },
+                        yAxis: [{}, 
+                            {
+                                axisLine: { lineStyle: { color: themeChange('axisLineColor',theme) }
+                            }
+                        }],
+                    })
                     .setIn(['xAxis', 0, 'data'], trend.clientTime.map(item => {
                         const timeDiff = item.endTime - item.startTime;
                         if (timeDiff <= 1800000) {
@@ -68,6 +98,7 @@ export default class Trend extends React.Component {
                     .setIn(['series', 2, 'data'], trend.serverTime)
                     .setIn(['series', 3, 'data'], trend.clickNum)
                     .toJS()}
+                theme={theme}    
             />
             )
             ;
@@ -75,6 +106,12 @@ export default class Trend extends React.Component {
             case 1: return <LineChart
                 chartId={`trend-${itemId}-${activeTrend}`}
                 options={config.get('default').mergeDeep(config.get('thruput'))
+                    .mergeDeep({
+                        color: themeChange('performanceTrendColor_1',theme),
+                        legend: {
+                            textStyle: {color: themeChange('legendTextColor',theme)}
+                        }
+                    })
                     .setIn(['xAxis', 0, 'data'], trend.median.map(item => {
                         const timeDiff = item.endTime - item.startTime;
                         if (timeDiff <= 1800000) {
@@ -87,6 +124,7 @@ export default class Trend extends React.Component {
                     .setIn(['series', 1, 'data'], trend.avgRspTime)
                     .setIn(['series', 2, 'data'], trend.percent5)
                     .toJS()}
+                theme={theme}    
             />;
 
             case 2:
@@ -98,14 +136,34 @@ export default class Trend extends React.Component {
                 return <BarChart
                     chartId={`trend-${itemId}-${activeTrend}`}
                     options={config.get('default').mergeDeep(config.get('apdex'))
+                        .mergeDeep({
+                            series: [{
+                                itemStyle: {
+                                    normal: {
+                                        color: item => {
+                                            const colors = themeChange('performanceTrendColor_2',theme);
+                                            return colors[item.dataIndex];
+                                        }
+                                    }
+                                },
+                                data: []
+                            }]
+                        })
                         .setIn(['series', 0, 'data'], apdexsArr)
                         .setIn(['series', 0 , 'name'],  this.props.type == 'browse' ? locale('浏览量PV') : locale('点击数'))
                         .toJS()}
+                    theme={theme}    
                 />;
 
             case 3: return <BarChart
                 chartId={`trend-${itemId}-${activeTrend}`}
                 options={config.get('default').mergeDeep(config.get('throughput'))
+                    .mergeDeep({
+                        color: themeChange('performanceTrendColor_3',theme),
+                        legend: {
+                            textStyle: {color: themeChange('legendTextColor',theme)}
+                        }
+                    })
                     .setIn(['xAxis', 0, 'data'], trend.thruput.map(item => {
                         const timeDiff = item.endTime - item.startTime;
                         if (timeDiff <= 1800000) {
@@ -117,6 +175,7 @@ export default class Trend extends React.Component {
                     .setIn(['series', 0, 'data'], trend.thruput)
                     .setIn(['series', 1, 'data'], trend.clickNum)
                     .toJS()}
+                theme={theme}    
             />;
         }
     }

@@ -11,7 +11,7 @@ function themeChange(colorName,theme){
             return colorName;
         }
     } else {
-        console.error(`未找到 "${colorName}" 中的 "${theme}" `);
+        // console.error(`未找到 "${colorName}" 中的 "${theme}" `);
         return colorName;
     }
 }

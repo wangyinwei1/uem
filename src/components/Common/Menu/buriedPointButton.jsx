@@ -38,14 +38,14 @@ export default class PointButton extends React.Component {
         if (platform === 'pc') {
             return (
                 <div className={styles["pointButton"]} onClick={this.buriedPoint.bind(this)}>
-                    <i className={cls("iconfont icon-maidian")}></i>
+                    <i className={cls("iconfont icon-maidian")} style={{'color':'#fff'}}></i>
                     <a href={`/buriedPoint/visual.html?protocol=${location.protocol.replace(':', '')}&theme=${theme}&language=${language}`} target="_blank" id="pointButton">{this.props.children}</a>
                 </div>
             );
         }else{
             return (
             <div className={styles["pointButton"]} onClick={this.buriedPoint.bind(this)}>
-                <i className={cls("iconfont icon-maidian")}></i>
+                <i className={cls("iconfont icon-maidian")} style={{'color':'#fff'}}></i>
                 <a href={`/buriedPointMobile/#/?theme=${theme}&language=${language}`} target="_blank" id="pointButton">{this.props.children}</a>
             </div>
         );

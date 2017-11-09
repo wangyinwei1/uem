@@ -107,8 +107,10 @@ export default class DeployInstruction extends Component {
                             pageSize: 100,
                         }, 'appListMenu'); 
                         this.toggleEditModal(false);
-                    } else {
-                        message.error(result.message)
+                    } else if(result.isExists === 'true'){
+                        message.error('应用名称已经存在')
+                    }else{
+                        message.error('保存失败')
                     }
                 })
             }

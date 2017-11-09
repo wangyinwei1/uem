@@ -10,6 +10,7 @@ import configMobile from './configMobile';
 export default class PerformanceAnalyze extends React.Component {
     id = 0;
     render() {
+        const { theme } = this.props; 
         var itemStyle = {
             normal: {
                 barBorderRadius: 10,
@@ -196,13 +197,49 @@ export default class PerformanceAnalyze extends React.Component {
             return threadInfo[item.key][1];
         });
         return (
+            
             this.props.uiType !== 'NATIVE' ?
                 <div key={bars.length}>
                     <BarChart chartId={`PerformanceAnalyze-${itemId}`} options={config.get('default').mergeDeep(config.get('analyze'))
+                        .mergeDeep({
+                            yAxis: [{
+                                axisLine: {
+                                    show: true,
+                                    lineStyle: {
+                                        color: themeChange('axisSplitLineColor',theme)
+                                    }
+                                },
+                                axisLabel: {
+                                    textStyle: {
+                                        color: themeChange('legendTextColor',theme)
+                                    }
+                                },
+                                data: []
+                            }],
+                            series: [{
+                            }, {
+                                itemStyle: {
+                                    normal: {
+                                        barBorderColor: 'rgba(0,0,0,0)',
+                                        color: themeChange('perforAnalyzeChart',theme)
+                                    },
+                                    emphasis: {
+                                        barBorderColor: 'rgba(0,0,0,0)',
+                                        color: themeChange('perforAnalyzeChart_1',theme)
+                                    }
+                                },
+                                label: {
+                                    normal: {
+                                       color: themeChange('perforAnalyzeChartText',theme)
+                                    }
+                                },
+                            }]
+                        })
                         .setIn(['yAxis', 0, 'data'], yAxisName)
                         .setIn(['series', 0, 'data'], startArr)
                         .setIn(['series', 1, 'data'], endArr)
                         .toJS()}
+                        theme={theme}
                     />
                     <Resource
                         data={this.props.sampleAnalyzeData}
@@ -215,6 +252,7 @@ export default class PerformanceAnalyze extends React.Component {
                 <div key={bars.length}>
                     <BarChart chartId={`PerformanceAnalyze-mobile-${itemId}`} 
                     options={configMobile.updateIn(['series'],() => newMobileConfig).updateIn(['yAxis', 0, 'data'], ()=>threadNames).toJS()}
+                    theme={theme}
                     />
                     <Resource
                         data={this.props.sampleAnalyzeData}

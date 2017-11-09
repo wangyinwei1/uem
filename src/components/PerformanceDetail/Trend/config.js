@@ -25,9 +25,9 @@ export default Immutable.fromJS({
             },
             splitLine: {
                 show: false,
-                lineStyle: {
-                    color: '#236592'
-                }
+                // lineStyle: {
+                //     color: '#236592'
+                // }
             },
             axisTick: {
                 show: false

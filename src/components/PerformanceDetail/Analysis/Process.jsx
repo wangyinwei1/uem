@@ -37,6 +37,7 @@ export default class Process extends React.Component {
                             changeType={this.props.changeType}
                             changeResourcePage={this.props.changeResourcePage}
                             itemId={this.props.itemId}
+                            theme={this.props.theme}
                         />
                     }
                 </div>

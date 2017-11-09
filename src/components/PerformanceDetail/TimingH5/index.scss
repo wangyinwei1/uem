@@ -1,162 +1,172 @@
-.timing {
-    :global(.tile-body) {
-        font-size: 0;
-    }
-    .dns {
-        background-color: #1F71D6;
-    }
-    .connect {
-        background-color: #00C0FF;
-    }
-    .redirect {
-        background-color: #0391F4;
-    }
-    .request {
-        background-color: #626FEF;
-    }
-    .response {
-        background-color: #9E7AF9;
-    }
-    .domLoading {
-        background-color: #66DC6A;
-    }
-    .domComplete {
-        background-color: #22B645;
-    }
-    .load {
-        background-color: #25EADE;
-    }
-    .callback {
-        background-color: #22B645;
-    }
-}
+@import '../../../assets/styles/_mixin';
+$var_default: (color1:#fff,color2:#70C3FB,color3:#104B7A,color4:#70C3FB);
+$var_white: (color1:#6c7480,color2:#66a6fe,color3:#f8fbfd,color4:#6c7480);
 
-.emptyText{
-    color: #4b8fba;
-    font-size: 15px;
-    padding: 8px 30%;
-    height: 90px;
-    line-height: 90px;
-}
-
-.timgin-col {
-    overflow: hidden;
-    margin-left: -15px;
-    dl {
-        position: relative;
-        float: left;
-        padding-top: 35px;
-        width: 25%;
-        border-left: 15px solid transparent;
-        font-size: 12px;
-        &:last-child {
-            width: 50%;
+@mixin getTheme($map){
+    .timing {
+        :global(.tile-body) {
+            font-size: 0;
         }
-        dt {
-            text-align: center;
-            span:nth-child(2) {
-                margin-left: 15px;
-                font-size: 18px;
-            }
+        .dns {
+            background-color: #1F71D6;
         }
-        span {
-            position: relative;
-            z-index: 2;
-            display: inline-block;
-            height: inherit;
-            vertical-align: middle;
-            line-height: inherit;
-            transition: .7s;
-            transition-delay: .6s;
+        .connect {
+            background-color: #00C0FF;
         }
-        // &:nth-child(1) {
-        // }
-        // &:nth-child(2) {
-        // }
-        // &:nth-child(3) {
-        // }
+        .redirect {
+            background-color: #0391F4;
+        }
+        .request {
+            background-color: #626FEF;
+        }
+        .response {
+            background-color: #9E7AF9;
+        }
+        .domLoading {
+            background-color: #66DC6A;
+        }
+        .domComplete {
+            background-color: #22B645;
+        }
+        .load {
+            background-color: #25EADE;
+        }
+        .callback {
+            background-color: #22B645;
+        }
     }
-    .col-wrap {
-        position: absolute;
-        top: 0;
+    
+    .emptyText{
+        color: #4b8fba;
+        font-size: 15px;
+        padding: 8px 30%;
+        height: 90px;
+        line-height: 90px;
+    }
+    
+    .timgin-col {
         overflow: hidden;
-        width: 100%;
-        height: 32px;
-        font-size: 0;
-        &:after {
+        margin-left: -15px;
+        dl {
+            position: relative;
+            float: left;
+            padding-top: 35px;
+            width: 25%;
+            border-left: 15px solid transparent;
+            font-size: 12px;
+            &:last-child {
+                width: 50%;
+            }
+            dt {
+                text-align: center;
+                color: map-get($map,color1);
+                span:nth-child(2) {
+                    margin-left: 15px;
+                    font-size: 18px;
+                }
+            }
+            span {
+                position: relative;
+                z-index: 2;
+                display: inline-block;
+                height: inherit;
+                vertical-align: middle;
+                line-height: inherit;
+                transition: .7s;
+                transition-delay: .6s;
+            }
+            // &:nth-child(1) {
+            // }
+            // &:nth-child(2) {
+            // }
+            // &:nth-child(3) {
+            // }
+        }
+        .col-wrap {
             position: absolute;
             top: 0;
+            overflow: hidden;
+            width: 100%;
+            height: 32px;
+            font-size: 0;
+            &:after {
+                position: absolute;
+                top: 0;
+                left: 0;
+                z-index: 1;
+                display: block;
+                width: 99%;
+                height: 100%;
+                border: 1px dashed #70C3FB;
+                content: "";
+                opacity: .7;
+            }
+        }
+    }
+    
+    .timeline-list {
+        // position: absolute;
+        // right: 20px;
+        // bottom: 10px;
+        overflow: hidden;
+        margin-top: 20px;
+        color: map-get($map,color4);
+        text-align: right;
+        font-size: 12px;
+        li {
+            display: inline-block;
+            margin-right: 15px;
+            i {
+                display: inline-block;
+                margin-right: 5px;
+                width: 12px;
+                height: 12px;
+                border-radius: 2px;
+            }
+            i,
+            span {
+                vertical-align: middle;
+            }
+        }
+    }
+    
+    .curve {
+        position: relative;
+        height: 140px;
+        font-size: 12px;
+        & > div {
+            position: absolute;
             left: 0;
-            z-index: 1;
-            display: block;
-            width: 99%;
-            height: 100%;
-            border: 1px dashed #70C3FB;
-            content: "";
-            opacity: .7;
+            border-top: 1px solid map-get($map,color2);
+            border-radius: 100%;
+            text-align: center;
+            line-height: 1;
+            span {
+                position: relative;
+                top: -6px;
+                display: inline-block;
+                padding: 0 5px;
+                background-color: map-get($map,color3);
+                color: map-get($map,color1)
+            }
+            &:nth-child(1) {
+                top: 115px;
+                height: 50px;
+            }
+            &:nth-child(2) {
+                top: 90px;
+                height: 100px;
+            }
+            &:nth-child(3) {
+                top: 55px;
+                height: 170px;
+            }
+            &:nth-child(4) {
+                top: 25px;
+                height: 230px;
+            }
         }
     }
 }
 
-.timeline-list {
-    // position: absolute;
-    // right: 20px;
-    // bottom: 10px;
-    overflow: hidden;
-    margin-top: 20px;
-    color: #70C3FB;
-    text-align: right;
-    font-size: 12px;
-    li {
-        display: inline-block;
-        margin-right: 15px;
-        i {
-            display: inline-block;
-            margin-right: 5px;
-            width: 12px;
-            height: 12px;
-            border-radius: 2px;
-        }
-        i,
-        span {
-            vertical-align: middle;
-        }
-    }
-}
-
-.curve {
-    position: relative;
-    height: 140px;
-    font-size: 12px;
-    & > div {
-        position: absolute;
-        left: 0;
-        border-top: 1px solid #70C3FB;
-        border-radius: 100%;
-        text-align: center;
-        line-height: 1;
-        span {
-            position: relative;
-            top: -6px;
-            display: inline-block;
-            padding: 0 5px;
-            background-color: #104B7A;
-        }
-        &:nth-child(1) {
-            top: 115px;
-            height: 50px;
-        }
-        &:nth-child(2) {
-            top: 90px;
-            height: 100px;
-        }
-        &:nth-child(3) {
-            top: 55px;
-            height: 170px;
-        }
-        &:nth-child(4) {
-            top: 25px;
-            height: 230px;
-        }
-    }
-}
+@include setTheme($var_default,$var_white)

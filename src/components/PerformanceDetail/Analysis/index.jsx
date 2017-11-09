@@ -22,7 +22,8 @@ export default class Analysis extends React.Component {
             uiType,
             onLoadMore,
             changeUser,
-            sampleListParams
+            sampleListParams,
+            theme
         } = this.props;
         // if (samplesList.length === 0) {
         //     return null;
@@ -44,6 +45,7 @@ export default class Analysis extends React.Component {
                                 sampleAnalyzeData={this.props.sampleAnalyzeData}
                                 changeType={this.props.changeType}
                                 changeResourcePage={this.props.changeResourcePage}
+                                theme={theme}
                             />
                         </div>
                     </div>

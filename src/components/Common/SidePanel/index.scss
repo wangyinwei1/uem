@@ -1,40 +1,47 @@
-.side-panel-wrap {
-    position: relative;
-    :global {
-        .tile-head {
-            font-size: 12px;
+@import '../../../assets/styles/_mixin';
+$var_default:(color1:#145E99);
+$var_white:(color1:#fff);
+
+@mixin getTheme($map){
+    .side-panel-wrap {
+        position: relative;
+        :global {
+            .tile-head {
+                font-size: 12px;
+            }
+        }
+        // .hideBtn{
+        //     margin-right : 5px;
+        //     margin-top: 5px;
+        //     font-Size: 22px;
+        //     &:hover {
+        //         cursor: pointer; 
+        //     }
+        // }
+    }
+    .side-panel-item {
+        position: fixed;
+        top: 75px;
+        right: -70%;
+        bottom: 0;
+        z-index: 9;
+        // padding: 20px;
+        min-width: 840px;
+        width: 70%;
+        background-color: map-get($map,color1);
+        
+        // opacity: 0;
+        transition: right .7s, opacity .7s;
+        &.active {
+            box-shadow: 2px 8px 20px -5px #000000;
+            right: 0;
+            z-index: 10;
+            // opacity: 1;
+        }
+    
+        & > div {
+            padding: 40px 10px 20px 10px;
         }
     }
-    // .hideBtn{
-    //     margin-right : 5px;
-    //     margin-top: 5px;
-    //     font-Size: 22px;
-    //     &:hover {
-    //         cursor: pointer; 
-    //     }
-    // }
 }
-.side-panel-item {
-    position: fixed;
-    top: 75px;
-    right: -70%;
-    bottom: 0;
-    z-index: 9;
-    // padding: 20px;
-    min-width: 840px;
-    width: 70%;
-    background-color: #145E99;
-    
-    // opacity: 0;
-    transition: right .7s, opacity .7s;
-    &.active {
-        box-shadow: 2px 8px 20px -5px #000000;
-        right: 0;
-        z-index: 10;
-        // opacity: 1;
-    }
-
-    & > div {
-        padding: 40px 10px 20px 10px;
-    }
-}
+@include setTheme($var_default, $var_white);
