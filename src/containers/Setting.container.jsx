@@ -133,7 +133,7 @@ export default class Setting extends React.Component {
         const versionProps = { versionSettings, getVersionSettings, updateVersionStatus };
         const platform = sessionStorage.getItem('UEM_platform');
         return (
-            <div id="Setting">
+            <div id="Setting" className={styles['setting-tabs']}>
                 <Tabs activeKey={activeKey} animated={false} onChange={this.handleTabChange}>
                     <TabPane tab={locale("部署说明")} key="DeployInstruction">
                         {/* {platform === 'pc' ? <DeployInstruction {...deployProps} /> : null} */}

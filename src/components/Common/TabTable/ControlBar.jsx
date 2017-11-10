@@ -199,7 +199,7 @@ export default class ControlBar extends React.Component {
                 const { userDefinedColumn,searchKey } = this.props;
                     return (
                         <InputGroup className={styles['userInput']}>
-                            <Select className={styles['userTraceSelect']} key="userTraceSelect" defaultValue={ locale('用户ID')} onChange={this.handleSelectChange.bind(this)} >
+                            <Select dropdownClassName={styles['user_selectDropdown']} className={styles['userTraceSelect']} key="userTraceSelect" defaultValue={ locale('用户ID')} onChange={this.handleSelectChange.bind(this)} >
                                 <Select.Option key='display_name' > {locale('用户ID')} </Select.Option>
                                 {userDefinedColumn.map((value,index) => { return (<Select.Option key={value.key} >{value.displayName}</Select.Option>) })}
                             </Select>

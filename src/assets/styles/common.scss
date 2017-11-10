@@ -4,8 +4,8 @@
 //     vertical-align: middle;
 // }
 
-$var_default: (color1:transparent,color2: #10335B, color3: #ffffff,color4: rgba(0, 0, 0, .2), color5: none,color6:#fff);
-$var_white: (color1: transparent,color2:#f2f7fc,color3: #6c7480,color4: #f8fbfd, color5: 1px solid #e4e7ec,color6:#6c7480);
+$var_default: (color1:#1681C4,color2: #10335B, color3: #ffffff,color4: rgba(0, 0, 0, .2), color5: none,color6:#fff);
+$var_white: (color1: #4082e6,color2:#f2f7fc,color3: #6c7480,color4: #f8fbfd, color5: 1px solid #e4e7ec,color6:#6c7480);
 
 @mixin getTheme($map){
     // 按钮
@@ -66,6 +66,7 @@ $var_white: (color1: transparent,color2:#f2f7fc,color3: #6c7480,color4: #f8fbfd,
     padding: 15px 20px;
     background-color: map-get($map,color4);
     border:map-get($map, color5);
+    color: map-get($map, color3);
 }
 
 // 搜索框

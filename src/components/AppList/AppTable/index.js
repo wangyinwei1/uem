@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import React from 'react';
 import './index.scss';
 import moment from 'moment';
-import styles from './index';
+// import styles from './index';
 import DelAppModal from '../AppItem/DelAppModal';
 import {toJS} from 'mobx'
 const setList = {
@@ -303,6 +303,7 @@ class AppTable extends React.Component {
                     columns={this.getColumns()}
                     pagination={false}
                     rowKey={record => record.appId}
+                    className='apps-table'
                 />
                 {/* <Modal
                     className={styles['confirm_modal']}  

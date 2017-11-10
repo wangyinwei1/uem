@@ -1,6 +1,10 @@
 @import '../../../assets/styles/_mixin';
-$var_default: (color1:rgba(0, 0, 0, .2),color2:#fff, color3:#41a8f3,color4:#3998d4,color5:#0a548a,color6:#fff,color7:#3b87bf,color8:#0b71b1,color9:#2db7f5);
-$var_white: (color1:#fff,color2:#6c7480,color3:#4082e6,color4:#d5ddeb,color5:#fff,color6:#4082e6,color7:#828b99,color8:#4082e6,color9:#4082e6);
+$var_default: (color1:rgba(0, 0, 0, .2),color2:#fff, color3:#41a8f3,color4:#3998d4,color5:#0a548a,color6:#fff,color7:#3b87bf,color8:#0b71b1,color9:#2db7f5,
+color10:#1D6AA7,color11:#41A4E2,color12:#0D5990,color13:#1681c4
+);
+$var_white: (color1:#fff,color2:#6c7480,color3:#4082e6,color4:#d5ddeb,color5:#fff,color6:#4082e6,color7:#828b99,color8:#4082e6,color9:#4082e6,
+color10:#fff,color11:#e4e7eb,color12:#fff,color13:#4082e6
+);
 @mixin getTheme($map){
 .depoly-container {
   background-color: map-get($map,color1);
@@ -84,7 +88,7 @@ $var_white: (color1:#fff,color2:#6c7480,color3:#4082e6,color4:#d5ddeb,color5:#ff
       height: 39px;
       border: none;
       border-radius: 2px;
-      background-color: #1681c4;
+      background-color: map-get($map,color13);
       color: #fff;
     }
     .tip{
@@ -95,13 +99,19 @@ $var_white: (color1:#fff,color2:#6c7480,color3:#4082e6,color4:#d5ddeb,color5:#ff
 
 // 编辑Modal
 .edit-information-modal {
+  :global{
+    .ant-modal-content{
+      background-color: map-get($map,color10);
+      color: map-get($map,color2);
+    }
+  }
   :global(.ant-modal-body) {
     padding: 40px;
     :global(.ant-form-item) {
       margin-bottom: 18px;
       :global(.ant-form-item-label) {
         label {
-          color: #ffffff;
+          color: map-get($map,color2);
         }
       }
     }
@@ -114,6 +124,22 @@ $var_white: (color1:#fff,color2:#6c7480,color3:#4082e6,color4:#d5ddeb,color5:#ff
     }
   }
 }
+
+.input-style{
+  border: 1px solid map-get($map,color11);
+  background-color: map-get($map,color12);
+  color:  map-get($map,color2);
+}
+
+// .app-input{
+//   :global{
+//     .ant-input{
+//       border: 1px solid map-get($map,color11);
+//       background-color: map-get($map,color12);
+//       color:  map-get($map,color2);
+//     }
+//   }
+// }
 
 // 部署说明 发送邮件Modal
 .send-email-modal {

@@ -1,97 +1,200 @@
-.user-trace {
-    padding: 0 20px 20px 20px;
-}
+@import '../../../assets/styles/_mixin';
 
-.legend {
-    text-align: center;
-    & > span {
+$var_default: (color1:#155A92,color2:#fff,color3:#FF5252,color4:#FFEB0B,color5:#66DC6B,color6:#143FCE,color7:#6AC5FE,
+color8:#6AC5FE,color9:#3887B9,color10:#114B7A,color11:#6CA4CD
+);
+$var_white: (color1:#e4e7ec,color2:#6c7480,color3:#ea7886,color4:#fbda65,color5:#73e6bf,color6:#66a6ff,color7:#4082e6,
+color8:#5c95e6,color9:#fff,color10:#eaedf2,color11:#5c94e7
+);
+
+@mixin getTheme($map){
+    .user-trace {
+        padding: 0 20px 20px 20px;
+    }
+    
+    .legend {
+        text-align: center;
+        color: map-get($map,color2);
+        & > span {
+            display: inline-block;
+            margin-right: 20px;
+            i,
+            span {
+                vertical-align: middle;
+            }
+            .icon {
+                display: inline-block;
+                margin-right: 5px;
+                width: 12px;
+                height: 12px;
+            }
+            .red {
+                background-color: map-get($map,color3);
+            }
+            .yellow {
+                background-color: map-get($map,color4);
+            }
+            .green {
+                background-color: map-get($map,color5);
+            }
+            .gray {
+                background-color: #8C8C8C;
+            }
+            .blue {
+                background-color: map-get($map,color6)
+            }
+        }
+    }
+    
+    .trace-wrap {
+        margin-left: 110px;
+        .content-start {
+            font-size: 13px;
+            margin-left: -80px;
+        }
+    }
+    .toggle-show {
+        .trace-box-wrap {
+            display: block !important;
+            color: map-get($map,color2);
+        }
+    }
+    .trace-box-wrap {
+        position: relative;
+        padding: 20px 10px 20px 30px;
+        border-left: 3px solid map-get($map,color8);
+        &:not(:first-child) {
+            display: none;
+        }
+        &:after {
+            position: absolute;
+            top: 100%;
+            left: -10px;
+            display: inline-block;
+            margin-top: -4px;
+            padding: 8px;
+            border-radius: 50%;
+            background: map-get($map,color8);
+            content: "";
+        }
+        .trace-box {
+            padding: 20px;
+            background-color: map-get($map,color10);
+            line-height: 20px;
+        }
+        .toggle-btn {
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: inline-block;
+            margin-top: -5px;
+            margin-left: -14px;
+            width: 26px;
+            height: 26px;
+            border-radius: 100%;
+            background: map-get($map,color8);
+            color: map-get($map,color9);
+            content: "";
+            text-align: center;
+            line-height: 26px;
+            cursor: pointer;
+        }
+    }
+    .trace-box {
+        // padding-left: 20px;
+        // border-left: 3px solid #6AC5FE;
+        .base-li {
+            display: inline-block;
+            overflow: hidden;
+            padding-right: 10px;
+            width: 33.333%;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            font-size: 12px;
+        }
+    }
+    
+    .trace-list {
+        // padding: 10px 5px;
+    }
+    .trace-time {
+        position: absolute;
+        top: 20px;
+        left: -100px;
+        text-align: right;
+        color: map-get($map,color2);
+        div {
+            text-align: right;
+            font-size: 13px;
+            &:last-child {
+                color: map-get($map,color7);
+            }
+        }
+    }
+    
+    .trace-item {
         display: inline-block;
-        margin-right: 20px;
+        margin-right: 10px;
+        padding: 5px;
+        border-bottom: 5px solid transparent;
+        cursor: default;
         i,
         span {
             vertical-align: middle;
         }
-        .icon {
-            display: inline-block;
+        :global(.iconfont) {
             margin-right: 5px;
-            width: 12px;
-            height: 12px;
-        }
-        .red {
-            background-color: #FF5252;
-        }
-        .yellow {
-            background-color: #FFEB0B;
-        }
-        .green {
-            background-color: #66DC6B;
-        }
-        .gray {
-            background-color: #8C8C8C;
-        }
-        .blue {
-            background-color: #143FCE
+            color: #FFFFFF;
         }
     }
-}
-
-.trace-wrap {
-    margin-left: 110px;
-    .content-start {
-        font-size: 13px;
-        margin-left: -80px;
-    }
-}
-.toggle-show {
-    .trace-box-wrap {
-        display: block !important;
-    }
-}
-.trace-box-wrap {
-    position: relative;
-    padding: 20px 10px 20px 30px;
-    border-left: 3px solid #6AC5FE;
-    &:not(:first-child) {
-        display: none;
-    }
-    &:after {
-        position: absolute;
-        top: 100%;
-        left: -10px;
-        display: inline-block;
-        margin-top: -4px;
-        padding: 8px;
-        border-radius: 50%;
-        background: #6AC5FE;
-        content: "";
-    }
-    .trace-box {
-        padding: 20px;
-        background-color: #114B7A;
-        line-height: 20px;
-    }
-    .toggle-btn {
-        position: absolute;
-        top: 0;
-        left: 0;
-        display: inline-block;
-        margin-top: -5px;
-        margin-left: -14px;
-        width: 26px;
-        height: 26px;
-        border-radius: 100%;
-        background: #6AC5FE;
-        color: #3887B9;
-        content: "";
-        text-align: center;
-        line-height: 26px;
+    .trace-item-ajax {
         cursor: pointer;
     }
-}
-.trace-box {
-    // padding-left: 20px;
-    // border-left: 3px solid #6AC5FE;
-    .base-li {
+    .color-s {
+        border-color: map-get($map,color5);
+    }
+    .color-t {
+        border-color: map-get($map,color4);
+    }
+    .color-d {
+        border-color: map-get($map,color3);
+    }
+    .color-empty {
+        border-color: map-get($map,color6);
+    }
+    
+    .tooltip {
+        li {
+            word-wrap: break-word;
+        }
+    }
+    
+    .info {
+        position: relative;
+        padding: 20px;
+        padding-right: 110px;
+        border-bottom: 1px solid map-get($map,color1);
+        color: map-get($map,color2);
+        .icons {
+            position: absolute;
+            top: 0;
+            right: 0;
+            padding: 0 20px;
+            width: 110px;
+            height: 63px;
+            text-align: center;
+            line-height: 63px;
+            :global(.iconfont) {
+                margin-right: 2px;
+                font-size: 22px;
+                color: map-get($map,color11);
+                &:last-child {
+                    margin-right: 0;
+                }
+            }
+        }
+    }
+    .base-item {
         display: inline-block;
         overflow: hidden;
         padding-right: 10px;
@@ -101,90 +204,4 @@
         font-size: 12px;
     }
 }
-
-.trace-list {
-    // padding: 10px 5px;
-}
-.trace-time {
-    position: absolute;
-    top: 20px;
-    left: -100px;
-    text-align: right;
-    div {
-        text-align: right;
-        font-size: 13px;
-        &:last-child {
-            color: #6AC5FE;
-        }
-    }
-}
-
-.trace-item {
-    display: inline-block;
-    margin-right: 10px;
-    padding: 5px;
-    border-bottom: 5px solid transparent;
-    cursor: default;
-    i,
-    span {
-        vertical-align: middle;
-    }
-    :global(.iconfont) {
-        margin-right: 5px;
-        color: #FFFFFF;
-    }
-}
-.trace-item-ajax {
-    cursor: pointer;
-}
-.color-s {
-    border-color: #66DC6B;
-}
-.color-t {
-    border-color: #FFEB0B;
-}
-.color-d {
-    border-color: #FF5252;
-}
-.color-empty {
-    border-color: #143FCE
-}
-
-.tooltip {
-    li {
-        word-wrap: break-word;
-    }
-}
-
-.info {
-    position: relative;
-    padding: 20px;
-    padding-right: 110px;
-    border-bottom: 1px solid #155A92;
-    .icons {
-        position: absolute;
-        top: 0;
-        right: 0;
-        padding: 0 20px;
-        width: 110px;
-        height: 63px;
-        text-align: center;
-        line-height: 63px;
-        :global(.iconfont) {
-            margin-right: 2px;
-            font-size: 22px;
-            &:last-child {
-                margin-right: 0;
-            }
-        }
-    }
-}
-.base-item {
-    display: inline-block;
-    overflow: hidden;
-    padding-right: 10px;
-    width: 33.333%;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    font-size: 12px;
-}
+@include setTheme($var_default, $var_white);

@@ -156,7 +156,15 @@
         'perforAnalyzeChartText':{
             blue: '#00a9f7',
             white: '#6c7480'
-        }
+        },
+        'userDetailTrendColor':{
+            blue: '#a2b17e',
+            white: '#73e6bf'
+        },
+        'userDetailTrendColor_1':{
+            blue: '#9bcb29',
+            white: '#90ED7D'
+        },
 
     }
 }();

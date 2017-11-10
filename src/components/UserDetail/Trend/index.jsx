@@ -20,6 +20,7 @@ export default class Trend extends React.Component {
         const {
             sessionCount,
             changeCurrent,
+            theme
         } = this.props;
         this.setState({
             firstLoad : false
@@ -28,17 +29,28 @@ export default class Trend extends React.Component {
         const newValue = [];
         sessionCount.length > 0 && sessionCount.map((item,index) => newValue.push({'value':item.value}) )
         const newConfig = config.get('default').mergeDeep(config.get('trend'))
+            .mergeDeep({
+                title: {
+                    textStyle: {color: themeChange('tooltipText',theme)}
+                },
+                yAxis: [{
+                    nameTextStyle: {color: themeChange('tooltipText',theme)},
+                }]
+            })
             .setIn(['xAxis', 0, 'data'], sessionCount.map(item => moment(item.time).format('MM-DD')))
             .updateIn(['series',0,'data'], () => 
             {
                 return newValue.map((val,i) => {
                     const itemStyle = {
                         normal: {
-                            color : '#a2b17e'
+                            color : themeChange('userDetailTrendColor',theme)
+                        },
+                        emphasis: {
+                            color: themeChange('userDetailTrendColor_1',theme)
                         }
                     };
                     if( i == dataIndex ){
-                        itemStyle.normal.color = '#9bcb29'
+                        itemStyle.normal.color = themeChange('userDetailTrendColor_1',theme)
                     }
                     return immutable.Map(val).merge({'itemStyle': itemStyle }).toJS()
                 })
@@ -52,7 +64,8 @@ export default class Trend extends React.Component {
     render() {
         const { 
             itemId,
-            sessionCount
+            sessionCount,
+            theme
         } = this.props;
         // sessionCount.map((item,index) => {
         //     item.startTime = item.time;
@@ -65,22 +78,41 @@ export default class Trend extends React.Component {
             const newValue = [];
             sessionCount.map((item,index) => newValue.push({'value':item.value,'startTime':item.startTime,'endTime':item.endTime }) );
             initialConfig =  config.get('default').mergeDeep(config.get('trend'))
+            .mergeDeep({
+                title: {
+                    textStyle: {color: themeChange('tooltipText',theme)}
+                },
+                yAxis: [{
+                    nameTextStyle: {color: themeChange('tooltipText',theme)},
+                }],
+            })
             .setIn(['xAxis', 0, 'data'], sessionCount.map(item => moment(item.time).format('MM-DD')))
             .updateIn(['series',0,'data'], () =>{
                 return newValue.map((val,i) => {
                     const itemStyle = {
                         normal: {
-                            color : '#a2b17e'
+                            color : themeChange('userDetailTrendColor',theme)
+                        },
+                        emphasis: {
+                            color: themeChange('userDetailTrendColor_1',theme)
                         }
                     };
                     if( i == 29 ){
-                        itemStyle.normal.color = '#9bcb29'
+                        itemStyle.normal.color = themeChange('userDetailTrendColor_1',theme)
                     }
                     return immutable.Map(val).merge({'itemStyle': itemStyle }).toJS()
                 })
             }).toJS();
         }else {
             initialConfig = config.get('default').mergeDeep(config.get('trend'))
+                        .mergeDeep({
+                            title: {
+                                textStyle: {color: themeChange('tooltipText',theme)}
+                            },
+                            yAxis: [{
+                                nameTextStyle: {color: themeChange('tooltipText',theme)},
+                            }],
+                        })
                         .setIn(['xAxis', 0, 'data'], sessionCount.map(item => moment(item.time).format('MM-DD')))
                         .setIn(['series', 0, 'data'], sessionCount)
                         .toJS();
@@ -92,6 +124,7 @@ export default class Trend extends React.Component {
                     <BarChart2 handleClick={this.clickChart.bind(this)} 
                     chartId={`userTrend-${itemId}`} 
                     options={option}
+                    theme={this.props.theme}
                     />
                 </div>
             </div>

@@ -1,141 +1,187 @@
-.user-model-container {
-  background-color: rgba(0, 0, 0, .2);
-  h3 {
-    margin-bottom: 20px;
-  }
-  padding: 30px 50px 125px 55px;
-  margin-top: 2px;
-  color: #fff;
-  font-size: 13px;
+@import '../../../assets/styles/_mixin';
+$var_default:(color1:rgba(0, 0, 0, .2),color2:#fff,color3:#f0f0f0,color4:#2db7f5,color5:#153253,color6:#57C5F7,
+color7:#5085c3,color8:#4f8cd4,color9:#24548D,color10:#0D3F67,color11:transparent,color12:#1E76AE,color13:#07476F
+);
+$var_white: (color1:#fff,color2:#6c7480,color3:#6c7480,color4:#4082e6,color5:#f8fbfd,color6:#6c7480,
+color7:#e4e7eb,color8:#6c7480,color9:#fff,color10:#fff,color11:#e4e7eb,color12:#e4e7eb,color13:#4082e6
+);
 
-  .description{
-    color: #f0f0f0;
-    p {
-      margin-bottom: 15px;  
+@mixin getTheme($map){
+  .user-model-container {
+    background-color: map-get($map,color1);
+    h3 {
+      margin-bottom: 20px;
     }
-    a{
-      color: #2db7f5;
-      background: transparent;
-      text-decoration: none;
-      outline: none;
-      cursor: pointer;
-      transition: color .3s ease;
+    padding: 30px 50px 125px 55px;
+    margin-top: 2px;
+    color: map-get($map,color2);
+    font-size: 13px;
+  
+    .description{
+      color: map-get($map,color3);
+      p {
+        margin-bottom: 15px;  
+      }
+      a{
+        color:  map-get($map,color4);
+        background: transparent;
+        text-decoration: none;
+        outline: none;
+        cursor: pointer;
+        transition: color .3s ease;
+      }
     }
+    .operation {
+      .btn-wrapper {
+        margin-top: 15px;
+        margin-bottom: 25px;
+        button {
+          margin-left: 15px;
+          border: none;
+          &:first-child {
+            margin-left: 0;
+            &:disabled {
+              background-color: #48555d;
+              color: #f0f0f0;
+            }
+          }
+        }
+      }
+      .operation-table {
+        :global{
+          .ant-table-tbody{
+            // .ant-table-tbody > tr{
+            //   background-color: map-get($map,color10);
+            // }
+            // .ant-table-thead{
+            //   .ant-table-thead > tr > th{
+            //     background: map-get($map,color5);
+            //     color: map-get($map,color6);
+            //   }
+            // }
+            tr:hover {
+              cursor: pointer;
+            }
+          }
+        }    
+        // 表格没数据时的样式覆盖
+        :global(.ant-table-placeholder) {
+          border-bottom: 1px solid map-get($map,color7);
+          color: map-get($map,color8);
+          font-size: 14px;
+          line-height: 112px;
+          background-color: map-get($map,color9);
+        }
+      }
+    }
+  
   }
-  .operation {
-    .btn-wrapper {
-      margin-top: 15px;
-      margin-bottom: 25px;
-      button {
-        margin-left: 15px;
-        border: none;
-        &:first-child {
-          margin-left: 0;
-          &:disabled {
-            background-color: #48555d;
-            color: #f0f0f0;
+
+  .userModalTable{
+    background: red;
+    :global{
+          .ant-checkbox-inner {
+            border: 1px solid map-get($map,color12);
+            background-color: map-get($map,color13);
+          }
+          .ant-table-content{
+            border: 1px solid map-get($map,color11);
+          }
+          .ant-table-tbody > tr{
+            background-color: map-get($map,color10);
+          }
+          .ant-table-tbody > tr > td{
+            color: map-get($map,color2);
+          }
+        .ant-table-thead > tr > th{
+          background: map-get($map,color5);
+          color: map-get($map,color6);
+          border-bottom: 1px solid map-get($map,color11);
+        }
+  }
+}
+  
+  
+  .delete-modal {
+    :global(.ant-modal-body) {
+      padding: 40px;
+      :global(.ant-form-item) {
+        margin-bottom: 18px;
+        :global(.ant-form-item-label) {
+          label {
+            color: #ffffff;
           }
         }
       }
     }
-    .operation-table {
-      :global(.ant-table-tbody){
-        tr:hover {
-          cursor: pointer;
-        }
-      }
-      
-      // 表格没数据时的样式覆盖
-      :global(.ant-table-placeholder) {
-        border-bottom: 1px solid #5085c3;
-        color: #4f8cd4;
-        font-size: 14px;
-        line-height: 112px;
-        background-color: #24548D;
-      }
+    .title {
+      text-align: center;
     }
-  }
-
-}
-
-
-.delete-modal {
-  :global(.ant-modal-body) {
-    padding: 40px;
-    :global(.ant-form-item) {
-      margin-bottom: 18px;
-      :global(.ant-form-item-label) {
-        label {
-          color: #ffffff;
+    .btn-wrapper {
+      margin-top: 20px;
+      text-align: center;
+      button {
+        margin-left: 20px;
+        &:first-child {
+          margin-left: 0;
         }
       }
     }
   }
-  .title {
-    text-align: center;
-  }
-  .btn-wrapper {
-    margin-top: 20px;
-    text-align: center;
-    button {
-      margin-left: 20px;
-      &:first-child {
-        margin-left: 0;
-      }
-    }
-  }
-}
-
-
-.opeartion-modal {
-  :global(.ant-modal-header) {
-    background-color: inherit;
-    border: none;
-    text-align: center;
-    :global(.ant-modal-title) {
-      color: #ffffff;
-      font-size: 17px;
-    }
-  }
-  :global(.ant-modal-body) {
-    padding: 40px;
-    :global(.ant-form-item) {
-      margin-bottom: 18px;
-      :global(.ant-form-item-label) {
-        label {
-          color: #ffffff;
-        }
-      }
-      :global(.ant-select-selection) {
-        background-color:#0D5990;
+  
+  
+  .opeartion-modal {
+    :global(.ant-modal-header) {
+      background-color: inherit;
+      border: none;
+      text-align: center;
+      :global(.ant-modal-title) {
         color: #ffffff;
+        font-size: 17px;
       }
-      :global(.ant-select-disabled) {
-        :global(.ant-select-selection){
+    }
+    :global(.ant-modal-body) {
+      padding: 40px;
+      :global(.ant-form-item) {
+        margin-bottom: 18px;
+        :global(.ant-form-item-label) {
+          label {
+            color: #ffffff;
+          }
+        }
+        :global(.ant-select-selection) {
+          background-color:#0D5990;
+          color: #ffffff;
+        }
+        :global(.ant-select-disabled) {
+          :global(.ant-select-selection){
+            border: 1px solid #565c5d;
+            color: #767779;
+            background-color: #3e546a;
+          }
+        }
+        :global(.ant-input:disabled) {
           border: 1px solid #565c5d;
           color: #767779;
           background-color: #3e546a;
         }
       }
-      :global(.ant-input:disabled) {
-        border: 1px solid #565c5d;
-        color: #767779;
-        background-color: #3e546a;
+    }
+    .btn-wrapper {
+      margin-top: 20px;
+      text-align: center;
+      button:last-child {
+        margin-left: 20px;
       }
     }
   }
-  .btn-wrapper {
-    margin-top: 20px;
-    text-align: center;
-    button:last-child {
-      margin-left: 20px;
+  
+  
+  .override-dropdown {
+    :global(.ant-select-dropdown-menu-item-active) {
+      background-color: inherit;
     }
   }
+  
 }
-
-
-.override-dropdown {
-  :global(.ant-select-dropdown-menu-item-active) {
-    background-color: inherit;
-  }
-}
+@include setTheme($var_default, $var_white);

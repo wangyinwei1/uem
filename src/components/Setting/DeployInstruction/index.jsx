@@ -255,10 +255,10 @@ const EditInformationModal = Form.create()(({ editVisible, handleEditOk, toggleE
                 <FormItem label={locale("应用名称")}>
                     {getFieldDecorator('appName', {
                         rules: [{ required: true, message: locale('该字段不能为空') }]
-                    })(<Input />)}
+                    })(<Input className={styles['input-style']} />)}
                 </FormItem>
                 <FormItem label="URL">
-                    {getFieldDecorator('url')(<Input />)}
+                    {getFieldDecorator('url')(<Input className={styles['input-style']} />)}
                 </FormItem>
                 <div className={styles['btn-wrapper']}>
                     <Button key="back" size="large" type="primary" onClick={handleEditOk}>{locale('保存')}</Button>

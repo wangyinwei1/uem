@@ -135,6 +135,7 @@ export default class UserDataModel extends Component {
                             pagination={false}
                             rowSelection={rowSelection}
                             onRowClick={(record) => this.openOperationModal('edit', record)}
+                            className={styles['userModalTable']}
                         />
                     </div>
                 </div>

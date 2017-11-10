@@ -37,6 +37,7 @@ export default class UserDetail extends React.Component {
             userDefinedColumn,
             tagType,
         } = this.props.userTableStore;
+        const { theme } = this.props.frameStore;
         // const {
         //     displayName,
         //     userId
@@ -54,6 +55,7 @@ export default class UserDetail extends React.Component {
                     itemId={itemId}
                     changeCurrent={onChangeCurrent}
                     newClickConfig = { newClickConfig }
+                    theme={theme}
                 />
                 <Trace 
                     data={trace}

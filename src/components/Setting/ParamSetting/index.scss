@@ -1,155 +1,198 @@
-.param-container {
-  background-color: rgba(0, 0, 0, .2);
-  h3 {
-    margin-bottom: 20px;
-  }
-  padding: 35px 0 50px 0;
-  margin-top: 2px;
-  color: #fff;
-  font-size: 13px;
-  // 表格没数据时的样式覆盖
-  :global {
-    .ant-table-placeholder{
-      border-bottom: 1px solid #5085c3;
-      color: #4f8cd4;
-      font-size: 14px;
-      line-height: 112px;
-      background-color: #24548D;
-    }
-    .ant-input{
-      width: 25%;
-    }
-  }
-  .inputlabel {
-    float: left;
-    margin-right: 4px;
-    width: 180px;
-    height: 31px;
-    text-align: right;
-    font-size: 16px;
-    line-height: 31px;
-    // :global(ant-input){
-    //   width: 35%;
-    // }
-  }
-}
+@import '../../../assets/styles/_mixin';
 
-.chunk {
-  overflow: hidden;
-  margin: 35px 0;
-  .label {
-    float: left;
-    margin-right: 4px;
-    width: 180px;
-    height: 31px;
-    text-align: right;
-    font-size: 16px;
-    line-height: 31px;
-  }
-  .content {
-    float: left;
-    width: calc(100% - 184px);
-    input {
-      width: 230px;
-      margin: 0 10px 16px 0px;
+$var_default: (color1:#153253,color2:#153253,color3:#fff,color4:#fff,color5:#1D6AA7,color6:transparent,color7:rgba(0, 0, 0, .2),
+color8:#1681c4,color9:#1e5279,color10:#0D5990,color11: #41A4E2,color12:#535b5d,color13:#394b57,color14:#174964,color15:#2987ab,
+
+);
+$var_white: (color1:#fff,color2:#f6f9fb,color3: #6c7480,color4:#4082e6,color5:#fff,color6:#e9ecf0,color7:#fff,
+color8:#4082e6,color9:#e4e7eb,color10:#fff,color11: #d5ddeb,color12:#d5ddeb,color13:#ffffff,color14:#4082e6,color15:#4082e6,
+
+);
+
+@mixin getTheme($map){
+  .param-container {
+    background-color: map-get($map,color7);
+    h3 {
+      margin-bottom: 20px;
     }
-    .form-item {
-      color: #ffffff;
-      font-size: 13px;
+    padding: 35px 0 50px 0;
+    margin-top: 2px;
+    color: map-get($map,color3);
+    font-size: 13px;
+    // 表格没数据时的样式覆盖
+    :global {
+      .ant-table-placeholder{
+        border-bottom: 1px solid #5085c3;
+        color: #4f8cd4;
+        font-size: 14px;
+        line-height: 112px;
+        background-color: #24548D;
+      }
+      .ant-input{
+        width: 25%;
+      }
+    }
+    .inputlabel {
+      float: left;
+      margin-right: 4px;
+      width: 180px;
+      height: 31px;
+      text-align: right;
+      font-size: 16px;
+      line-height: 31px;
+      // :global(ant-input){
+      //   width: 35%;
+      // }
     }
   }
-}
-
-.apdex-warning {
-  color: #1681c4;
-  font-size: 12px;
-}
-.splite-line{
-  border-bottom: 1px dashed #1e5279;
-}
-.block-select {
-  li {
-    width: 66px;
-    height: 28px;
-    color: #f0f0f0;
-    border: 1px solid #535b5d;
-    border-radius: 2px;
-    background-color: #394b57;
-    display: inline-block;
-    margin-left: 6px;
-    text-align: center;
-    line-height: 2;
-    cursor: pointer;
-    &.active {
-      border: 1px solid #2987ab;
-      background-color: #174964;
-      color: #f0f0f0;
-    }
-  }
-}
-
-.common-btn {
-    min-width: 63px;
-    padding: 0 10px;
-    height: 31px;
-    background-color: #1681c4;
-    line-height: 31px;
-    border-radius: 5px;
-    border: none;
-    cursor: pointer;
-    &:focus {
-      outline: none;
-    }
-}
-
-.notice-tip {
-    margin-top: 4px;
-    color: #1681c4;
-    font-size: 12px;
-}
-
-.save-setting-btn {
-    width: 120px;
-    height: 40px;
-    font-size: 14px;
-    line-height: 40px;
-    margin-top: 35px;
-    margin-left: 6px;
-    border-radius: 5px;
-    background-color: #1681c4;
-    color: #f0f0f0;
-    cursor: pointer;
-    border: none;
-}
-
-.white-list-table {
-  width: 500px;
-}
-
-// 离开该组件时的弹出框，用于Setting.container组件
-.leave-modal {
-  :global(.ant-modal-body) {
-    padding: 40px;
-    :global(.ant-form-item) {
-      margin-bottom: 18px;
-      :global(.ant-form-item-label) {
-        label {
-          color: #ffffff;
+  
+  .setting-tabs{
+    // background: red;
+    :global{
+      .ant-tabs-nav-scroll{
+        background-color: map-get($map,color1);
+        .ant-tabs-nav{
+          background: map-get($map,color2);
+        }
+        .ant-tabs-nav .ant-tabs-tab-active{
+          background-color: map-get($map,color5);
+          color: map-get($map,color4) !important;
+          font-size: 14px;
+          font-weight: bold;
+          border: 1px solid map-get($map,color6);
+          box-shadow: 1px 0px 1px #888888
+        }
+        .ant-tabs-nav .ant-tabs-tab{
+          color: map-get($map,color3);
         }
       }
     }
   }
-  .title {
-    text-align: center;
+  
+  .chunk {
+    overflow: hidden;
+    margin: 35px 0;
+    .label {
+      float: left;
+      margin-right: 4px;
+      width: 180px;
+      height: 31px;
+      text-align: right;
+      font-size: 16px;
+      line-height: 31px;
+    }
+    .content {
+      float: left;
+      width: calc(100% - 184px);
+      input {
+        width: 230px;
+        margin: 0 10px 16px 0px;
+        background: map-get($map,color10);
+        border: 1px solid map-get($map,color11);
+        color: map-get($map,color3);
+      }
+      span{
+        color:map-get($map,color3);
+      }
+      .form-item {
+        color: #ffffff;
+        font-size: 13px;
+      }
+    }
   }
-  .btn-wrapper {
-    margin-top: 20px;
-    text-align: center;
-    button {
-      margin-left: 20px;
-      &:first-child {
-        margin-left: 0;
+  
+  .apdex-warning {
+    color: map-get($map,color8);
+    font-size: 12px;
+  }
+  .splite-line{
+    border-bottom: 1px dashed map-get($map,color9);
+  }
+  .block-select {
+    li {
+      width: 66px;
+      height: 28px;
+      color: map-get($map,color3);
+      border: 1px solid map-get($map,color12);
+      border-radius: 2px;
+      background-color: map-get($map,color13);
+      display: inline-block;
+      margin-left: 6px;
+      text-align: center;
+      line-height: 2;
+      cursor: pointer;
+      &.active {
+        border: 1px solid map-get($map,color15);
+        background-color: map-get($map,color14);
+        color: #f0f0f0;
+      }
+    }
+  }
+  
+  .common-btn {
+      min-width: 63px;
+      padding: 0 10px;
+      height: 31px;
+      background-color: map-get($map,color8);
+      line-height: 31px;
+      border-radius: 5px;
+      border: none;
+      cursor: pointer;
+      &:focus {
+        outline: none;
+      }
+  }
+  
+  .notice-tip {
+      margin-top: 4px;
+      color: map-get($map,color8);
+      font-size: 12px;
+  }
+  
+  .save-setting-btn {
+      width: 120px;
+      height: 40px;
+      font-size: 14px;
+      line-height: 40px;
+      margin-top: 35px;
+      margin-left: 6px;
+      border-radius: 5px;
+      background-color: map-get($map,color8);
+      color: #f0f0f0;
+      cursor: pointer;
+      border: none;
+  }
+  
+  .white-list-table {
+    width: 500px;
+  }
+  
+  // 离开该组件时的弹出框，用于Setting.container组件
+  .leave-modal {
+    :global(.ant-modal-body) {
+      padding: 40px;
+      :global(.ant-form-item) {
+        margin-bottom: 18px;
+        :global(.ant-form-item-label) {
+          label {
+            color: #ffffff;
+          }
+        }
+      }
+    }
+    .title {
+      text-align: center;
+    }
+    .btn-wrapper {
+      margin-top: 20px;
+      text-align: center;
+      button {
+        margin-left: 20px;
+        &:first-child {
+          margin-left: 0;
+        }
       }
     }
   }
 }
+@include setTheme($var_default,$var_white);
