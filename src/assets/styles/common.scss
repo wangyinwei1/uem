@@ -15,7 +15,7 @@ $var_white: (color1: #4082e6,color2:#f2f7fc,color3: #6c7480,color4: #f8fbfd, col
     border-radius: 2px;
     background-color: map-get($map,color1);
     color: #FFFFFF;
-    border: 1px solid map-get($map,color1);
+    // border: 1px solid map-get($map,color1);
     cursor: pointer;
     transition: .2s;
     &.active {

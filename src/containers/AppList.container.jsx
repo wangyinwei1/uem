@@ -40,7 +40,8 @@ export default class AppList extends React.Component {
             // action
             onChooseApp,
             onChoosePlatform,
-            setAppInfo
+            setAppInfo,
+            theme
         } = this.props.frameStore;
         const {
             appList,
@@ -80,6 +81,7 @@ export default class AppList extends React.Component {
                     onUpdateMappingStatus={onUpdateMappingStatus}
                     onAddIp={onAddIp}
                     onUpdateIpMap={onUpdateIpMap}
+                    theme={theme}
                 />
                 <Apps
                     loading={loading}
@@ -90,6 +92,7 @@ export default class AppList extends React.Component {
                     choosePlatform={onChoosePlatform}
                     radioStatus={this.state.chartOrTable}
                     setAppInfo={setAppInfo}
+                    theme={theme}
                 />
                 <Pagination
                     className={styles['appList-pagination']}

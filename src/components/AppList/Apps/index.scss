@@ -1,8 +1,8 @@
 
-// @import "../../../assets/styles/mixin";
-// $var_default: ( color1: #0C5087);
-// $var_white: ( color1: red);
-// @mixin getTheme($map){
+@import "../../../assets/styles/mixin";
+$var_default: ( color1: #112f4f,color2:#fff,color3:#4386B9,color4:rgba(0, 15, 30, 0.4),color5:#fff,color6:#4386B9);
+$var_white: ( color1: #fff,color2:#6c7480,color3:#d5ddeb,color4:#fff,color5:#4082e6,color6:#4082e6);
+@mixin getTheme($map){
     .apps {
     overflow: hidden;
     padding-left: 8px;
@@ -11,11 +11,23 @@
     .appList-pagination {
         margin-top: 10px;
         :global{
-            .ant-pagination-prev .ant-pagination-item-link, .ant-pagination-next .ant-pagination-item-link{
-                color: #5D8AB9 !important;
-                background-color: #112f4f !important;
-                border: 0px !important;
+            .ant-pagination-prev,.ant-pagination-item-link, .ant-pagination-next,.ant-pagination-item-link{
+                color: map-get($map,color2);
+                background-color: map-get($map,color1);
+                // border: 0px;
+                border: 1px solid map-get($map,color3);
             }
+            .ant-pagination-item {
+                border: 1px solid map-get($map,color3);
+                background-color: map-get($map,color4);
+            }
+            .ant-pagination-item-active{
+                border: 1px solid map-get($map,color6);
+                a{
+                    color: map-get($map,color5) !important;
+                }
+            } 
+
             // .ant-pagination-item-link{
             //     color: #5D8AB9 !important;
             //     background-color: #112f4f !important;
@@ -23,5 +35,5 @@
             // }
         }
     }
-// }
-// @include setTheme($var_default, $var_white);
+}
+@include setTheme($var_default, $var_white);

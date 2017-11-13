@@ -1,8 +1,8 @@
-// @import "../../../assets/styles/mixin";
-// $var_default: ( color1: #0C5087);
-// $var_white: ( color1: red);
+@import "../../../assets/styles/mixin";
+$var_default: ( color1: #0C5087,color2:#fff,color3:#fff,color4:#0D60A2);
+$var_white: ( color1: #fff,color2:#6c7480,color3:#4082e6,color4:#fff);
 
-// @mixin getTheme($map) {
+@mixin getTheme($map) {
     .app-item {
         float: left;
         margin-bottom: 24px;
@@ -44,7 +44,8 @@
         padding-top: 35px;
         height: 126px;
         border-radius: 0 0 8px 8px;
-        background-color: #0C5087;
+        background-color: map-get($map,color1);
+        color:map-get($map,color2);
         dl {
             float: left;
             margin-left: 5%;
@@ -60,6 +61,7 @@
                 }
                 &:nth-child(2) {
                     font-size: 30px;
+                    color: map-get($map,color3);
                 }
             }
             i {
@@ -96,8 +98,9 @@
         border-radius: 0 6px 0 0;
         line-height: 50px !important;
         &.active {
-            background-color: #0D60A2;
+            background-color: map-get($map,color4);
             box-shadow: inset 25px 0 10px -30px #000000;
+            color: map-get($map,color2);
         } // i {
         //     margin-left: 5px;
         // }
@@ -109,8 +112,9 @@
         overflow: hidden;
         height: 0;
         border-radius: 0 0 8px 8px;
-        background-color: #0D60A2;
-        box-shadow: 0 5px 10px -8px #000000;
+        background-color: map-get($map,color4);
+        box-shadow: 0 6px 21px -9px #000000;
+        color: map-get($map,color2);
         transition: .3s;
         li {
             width: 110px;
@@ -126,6 +130,6 @@
             height: 105px;
         }
     }
-// }
+}
 
-// @include setTheme($var_default,$var_white);
+@include setTheme($var_default,$var_white);

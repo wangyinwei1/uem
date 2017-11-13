@@ -165,6 +165,14 @@
             blue: '#9bcb29',
             white: '#90ED7D'
         },
+        'settingModalColor':{
+            blue: '#5fbfee',
+            white: '#fff'
+        },
+        'settingModalColor_1':{
+            blue: 'rgba(0, 0, 0, 0)',
+            white: '#e4e7eb'
+        },
 
     }
 }();

@@ -49,6 +49,7 @@ export class SettingMain extends React.Component {
 
     componentDidMount() {
         this.initTable(this.state.curProvince);
+        const theme = this.props.theme;
         let myChart = echarts.init(document.getElementById('setting-map'), 'blue');
         // echarts组件里调用this只是它内部的，所以需要将外面的this先赋值给that
         let that = this;
@@ -65,8 +66,8 @@ export class SettingMain extends React.Component {
                 }],
                 itemStyle: {
                         normal: {
-                            areaColor: 'rgba(0, 0, 0, 0)',
-                            borderColor: '#5fbfee'
+                            areaColor: themeChange('settingModalColor_1',theme),
+                            borderColor: themeChange('settingModalColor',theme)
                         },
                         emphasis: {
                             areaColor: '#68dd69',
@@ -247,6 +248,7 @@ export class SettingMain extends React.Component {
     }
     render() {
         let that = this;
+        const theme = this.props.theme;
         const {
             curProvince,
         } = this.state;
@@ -264,8 +266,8 @@ export class SettingMain extends React.Component {
                     data: data,
                     itemStyle: {
                         normal: {
-                            areaColor: 'rgba(0, 0, 0, 0)',
-                            borderColor: '#5fbfee'
+                            areaColor: themeChange('settingModalColor_1',theme),
+                            borderColor: themeChange('settingModalColor',theme)
                         },
                         emphasis: {
                             areaColor: '#68dd69',

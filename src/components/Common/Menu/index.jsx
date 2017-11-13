@@ -123,7 +123,7 @@ class Menu extends React.Component {
                     {appList.map(item =>
                         <Option value={item.appId} key={item.appId}>{item.appName}</Option>
                     )}
-                    {<Option value={'newApp'} key={'newApp'} style={{'color':'#fff'}}><i style={{ 'fontSize': 15, 'color':'#fff','marginRight':5 }} className={cls('iconfont icon-xinzeng', styles['size'])}></i>新建应用</Option>}
+                    {<Option value={'newApp'} key={'newApp'} className={styles['newAdd']} ><i style={{ 'fontSize': 15,'marginRight':5 }} className={cls('iconfont icon-xinzeng', styles['size'])}></i>新建应用</Option>}
                 </Select>
             </div>
         );
@@ -237,7 +237,7 @@ class Menu extends React.Component {
                                         max: 50,
                                         message: locale('请输入应用名称，并且名称长度应小于50')
                                     }],
-                                })(<Input placeholder={locale("请输入应用名称")} autoComplete='off' />)}
+                                })(<Input placeholder={locale("请输入应用名称")} className={styles['input-style']} autoComplete='off' />)}
                             </FormItem>
                             <div className={styles['create-app-title']}>URL</div>
                             <FormItem>
@@ -257,7 +257,7 @@ class Menu extends React.Component {
                                             + "(/[0-9a-z_!~*'().;?:@&=+$,%#-]+)+/?)$"),
                                         message: locale('请输入正确的Url')
                                     }],
-                                })(<Input placeholder={locale("请输入Url")} autoComplete='off' />)}
+                                })(<Input placeholder={locale("请输入Url")} className={styles['input-style']} autoComplete='off' />)}
                             </FormItem>
                             <div className={styles['btn-wrap']}>
                                 <div className={cls('btn')} onClick={this.addApp.bind(this)}>{locale('保存')}</div>

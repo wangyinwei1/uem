@@ -1,7 +1,12 @@
 @import '../../../assets/styles/_mixin';
-$var_default:(color1:#1681c4);
-$var_white:(color1:#4082e6);
-
+$var_default:(color1:#1681c4,color2:#1D6AA7,color3:#fff,color4:#41A4E2,color5:#0D5990,
+color6:rgb(29, 68, 113),color7:#153253,color8: transparent,color9:#0D3F67,collor10:#0d3956,
+color11:#306285,color12:#1d597b,color13:#2987ab,color14:#5db3e4
+);
+$var_white:(color1:#4082e6,color2:#fff,color3:#6c7480,color4:#e4e7eb,color5:#fff,
+color6:#f8fbfd,color7:#f8fbfd,color8: #e4e7eb,color9:#fff,color10:#fff,
+color11:#d5ddeb,color12:#4082e6,color13:#4082e6,color14:#4082e6
+);
 @mixin getTheme($map){
     .apps-bar {
         margin: 20px 0;
@@ -25,12 +30,13 @@ $var_white:(color1:#4082e6);
     
     .is-save-ip-modal{
         :global{
-            .ant-modal .ant-modal-content {
-                background-color: #1D6AA7;
+            .ant-modal ,.ant-modal-content {
+                background-color: map-get($map,color2);
+                
             }
             .ant-confirm-body .ant-confirm-content{
                 font-size: 16px;
-                color: #fff;
+                color: map-get($map,color3);
             }
             .ant-confirm-btns{
                 margin-top: 30px;
@@ -63,9 +69,10 @@ $var_white:(color1:#4082e6);
                 padding: 20px;
                 width: 49%;
                 height: 600px;
-                background: rgb(29, 68, 113) !important;
+                background: map-get($map,color6) !important;
                 margin-left: 2%;
                 margin-right: 30px;
+                border: 1px solid map-get($map,color8);
             }
             .tab-content{
                 display: block;
@@ -75,7 +82,7 @@ $var_white:(color1:#4082e6);
                 // margin-top: 10%;
                 margin-right: 20px;
                 .clearfix{
-                    color: #5db3e4;
+                    color: map-get($map,color14);
                     margin-bottom: 10px;
                         :global{
                             .ant-switch-checked{
@@ -89,15 +96,23 @@ $var_white:(color1:#4082e6);
                 }
                 .common-tab{
                     :global{
+                            .ant-table{
+                                border: 1px solid map-get($map,color8);
+                            }
+                            .ant-table-tbody > tr {
+                                background-color: map-get($map,color9);
+                                color: map-get($map,color3);
+                            }
                             .ant-table-thead > tr > th {
-                                background: #153253;
-                                color: #fff;
+                                background: map-get($map,color7);
+                                color: map-get($map,color3);
                                 font-weight: 300;
                                 height: 30px;
                                 border-bottom: 1px solid #7990a2;
                             }
                             .ant-table-tbody > tr > td {
                                 height: 54px;
+                                border-bottom: 1px solid map-get($map,color8);
                                 .anticon-plus-circle:before{
                                     color: #439c42;
                                     font-size: 16px;
@@ -120,14 +135,18 @@ $var_white:(color1:#4082e6);
                     width: 90%;
                     // height: 800px;
                     margin-left: 5%;
+                    background-color: map-get($map,color2);
+                    .ant-modal-close{
+                        color: map-get($map,color3);
+                    }
                 }
                 .ant-modal-header{
                     height: 70px;
-                    background: #1D6AA7;
+                    background: map-get($map,color2);
                     padding: 35px;
                     border-bottom: none;
                     .ant-modal-title{
-                        color: #fff;
+                        color: map-get($map,color3);
                         font-weight: bold;
                         font-size: 15px;
                     }
@@ -138,21 +157,22 @@ $var_white:(color1:#4082e6);
     }
     
     .ip-input{
-        color: #fff;
+        color: map-get($map,color3);
         font-size: 12px;
         width: 120px;
         height: 26px;
-        border: 1px solid #306285;
+        border: 1px solid map-get($map,color11);
         border-radius: 4px;
         padding-left: 6px;
-        background: #0d3956;
+        background: map-get($map,color10);;
     }
     .save-btn{
         height: 30px;
         width: 110px;
-        background: #1d597b;
+        background: map-get($map,color12);
+        // color: map-get($map,color3);
         margin-top: 15px;
-        border-color: #2987ab;
+        border-color: map-get($map,color13);
     }
     
     // .plus-circle{
@@ -186,7 +206,14 @@ $var_white:(color1:#4082e6);
     
     .create-app-form-wrap {
         padding: 20px;
+        background: map-get($map,color2);
+        color: map-get($map,color3);
          :global(.ant-form-item) {}
+    }
+    .input-style{
+        border: 1px solid map-get($map,color4);
+        background-color: map-get($map,color5);
+        color:  map-get($map,color3);
     }
     
     .create-app-title {

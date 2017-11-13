@@ -160,7 +160,7 @@ class AppsBar extends Component {
                                         max: 50,
                                         message: locale('请输入应用名称，并且名称长度应小于50')
                                     }],
-                                })(<Input placeholder={locale("请输入应用名称")} />)}
+                                })(<Input placeholder={locale("请输入应用名称")} className={styles['input-style']} />)}
                             </FormItem>
                             <div className={styles['create-app-title']}>URL</div>
                             <FormItem>
@@ -180,7 +180,7 @@ class AppsBar extends Component {
                                             + "(/[0-9a-z_!~*'().;?:@&=+$,%#-]+)+/?)$"),
                                         message: locale('请输入正确的Url')
                                     }],
-                                })(<Input placeholder={locale("请输入Url")} />)}
+                                })(<Input placeholder={locale("请输入Url")} className={styles['input-style']} />)}
                             </FormItem>
                             <div className={styles['btn-wrap']}>
                                 <div className={cls('btn')} onClick={this.addApp.bind(this)}>{locale('保存')}</div>
@@ -203,6 +203,7 @@ class AppsBar extends Component {
                     onUpdateMappingStatus={onUpdateMappingStatus}
                     onAddIp={onAddIp}
                     onUpdateIpMap={onUpdateIpMap}
+                    theme={this.props.theme}
                     /> }
                 </Modal>
             </div>

@@ -1,11 +1,12 @@
 @import '../../../assets/styles/_mixin';
 $var_default: (color1:#183A61, color2:#74AFD9,color3:#153454,color4:#fff,color5:#74AFD9,color6:#6CA4CD,color7:#fff,color8:#14507E,color9:#03A9F3,color10:#163457,
 color11: #122A46,color12:#132E4E,color13: #163457,color14:#1d4676,color15:#5E8BBD,color16:rgba(22,69,118,.9),
-color17:#224872,color18:#4D77BC
+color17:#224872,color18:#4D77BC,color19:#1D6AA7,color20:#fff,color21:#41A4E2,color22:#0D5990,color23:#1d4676,color24:#2DB7F5,color25:#1C426B,color26:#2DB7F5
+
 );
 $var_white: (color1: #fff, color2:#828b99,color3:#f2f7ff,color4:#4082e6,color5:#acb3bf,color6:#4082e6,color7:#9ea0b5,color8:#3e7fe5,color9:#326fdf,color10:#c5d9f7,
 color11: #ebeef1,color12:f3f5f9, color13:#e1e4e9,color14:#fff,color15:#4082e6,color16:#e9edf2,
-color17:#e9edf2,color18:#828b99
+color17:#e9edf2,color18:#828b99,color19:#fff,color20:#6c7480,color21:#e4e7eb,color22:#fff,color23:#d9d9d9,color24:#6c7480,color25:#f2f7ff,color26:#4082e6
 );
 
 @mixin getTheme($map){
@@ -58,6 +59,28 @@ color17:#e9edf2,color18:#828b99
         //         margin-bottom: 20px;
         //     }
         // }
+        :global{
+            .ant-select-dropdown{
+                background:map-get($map,color19);
+                
+            }
+            .ant-select-dropdown-menu-item{
+                color: map-get($map,color24);
+                &:hover{
+                    background-color: map-get($map,color25);
+                    color: map-get($map,color26);
+                }
+                :global{
+                    .iconfont{
+                        color: map-get($map,color20);
+                    }
+                }
+                .newAdd{
+                    color: map-get($map,color20);
+                    
+                }
+            }
+        }
         .menu-list {
             li {
                 a {
@@ -117,7 +140,18 @@ color17:#e9edf2,color18:#828b99
     }
     .create-app-form-wrap {
         padding: 20px;
-         :global(.ant-form-item) {}
+        background: map-get($map,color19);
+        color: map-get($map,color20);
+         :global(.ant-form-item) {
+        //      .ant-input {
+        //         background: red;
+        //      }
+         }
+    }
+    .input-style{
+        border: 1px solid map-get($map,color21);
+        background-color: map-get($map,color22);
+        color:  map-get($map,color20);
     }
     .create-app-success-tip {
         margin: 10px auto 40px auto;
@@ -163,7 +197,7 @@ color17:#e9edf2,color18:#828b99
         text-align: center;
         :global {
             .ant-select-selection {
-                border: none;
+                border: 1px solid map-get($map,color23);
                 background-color: map-get($map,color14);
                 color: map-get($map,color15); 
             }
@@ -329,4 +363,5 @@ color17:#e9edf2,color18:#828b99
         }
     }    
 }
+
 @include setTheme($var_default,$var_white);
